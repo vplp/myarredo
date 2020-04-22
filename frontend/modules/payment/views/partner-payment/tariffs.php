@@ -37,35 +37,35 @@ $this->title = Yii::t('app', 'Тарифы');
 
                         <!-- tarifbox -->
                         <div class="tarifbox">
-                            <div class="tarif-title">Тариф на год</div>
-                            <div class="tarif-subtitle">Получать заявку по России</div>
-                            <div class="tarif-fotnote">* кроме Москвы и Санк-Петербурга</div>
+                            <div class="tarif-title"><?= Yii::t('app', 'Тариф на полгода') ?></div>
+                            <div class="tarif-subtitle"><?= Yii::t('app', 'Получать заявку по России') ?></div>
+                            <div class="tarif-fotnote">* <?= Yii::t('app', 'кроме Москвы и Санк-Петербурга') ?></div>
                             <div class="tarif-checkpanel">
                                 <?= Html::checkbox('Payment[tariffs][]', false, [
-                                        'value' => 'Получать заявку по России (год)',
-                                        'data-price' => 60000
-                                    ]) . Html::label('60 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                                    'value' => Yii::t('app', 'Получать заявку по России (полгода)'),
+                                    'data-price' => 60000
+                                ]) . Html::label('60 000 ' . $modelPayment->currency, false, ['class' => 'label-check']); ?>
                             </div>
-                            
-                            <div class="tarif-subtitle">Получать заявку на Москву </div>
-                                
+
+                            <div class="tarif-subtitle"><?= Yii::t('app', 'Получать заявку на Москву') ?></div>
+
                             <div class="tarif-checkpanel">
                                 <?= Html::checkbox('Payment[tariffs][]', false, [
-                                    'value' => 'Получать заявку на Москву (год)',
+                                    'value' => Yii::t('app', 'Получать заявку на Москву (полгода)'),
                                     'data-price' => 30000
-                                ]) . Html::label('30 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                                ]) . Html::label('30 000 ' . $modelPayment->currency, false, ['class' => 'label-check']); ?>
                             </div>
-                            
-                            <div class="tarif-subtitle"> Получать заявку на Санк-Петербург </div>
+
+                            <div class="tarif-subtitle"><?= Yii::t('app', 'Получать заявку на Санк-Петербург') ?></div>
                             <div class="tarif-checkpanel">
                                 <?= Html::checkbox('Payment[tariffs][]', false, [
-                                    'value' => 'Получать заявку на Санк-Петербург (год)',
+                                    'value' => Yii::t('app', 'Получать заявку на Санк-Петербург (полгода)'),
                                     'data-price' => 10000
-                                ]) . Html::label('10 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                                ]) . Html::label('10 000 ' . $modelPayment->currency, false, ['class' => 'label-check']); ?>
                             </div>
                         </div>
                         <!-- end tarifbox -->
-                        
+
                     </div>
                     <!-- end tarif col -->
 
@@ -74,30 +74,30 @@ $this->title = Yii::t('app', 'Тарифы');
 
                         <!-- tarifbox -->
                         <div class="tarifbox">
-                            <div class="tarif-title">Тариф на полгода</div>
-                            <div class="tarif-subtitle">Получать заявку по России</div>
-                            <div class="tarif-fotnote">* кроме Москвы и Санк-Петербурга</div>
+                            <div class="tarif-title"><?= Yii::t('app', 'Тариф на 3 месяца') ?></div>
+                            <div class="tarif-subtitle"><?= Yii::t('app', 'Получать заявку по России') ?></div>
+                            <div class="tarif-fotnote">* <?= Yii::t('app', 'кроме Москвы и Санк-Петербурга') ?></div>
                             <div class="tarif-checkpanel">
                                 <?= Html::checkbox('Payment[tariffs][]', false, [
-                                    'value' => 'Получать заявку по России (полгода)',
+                                    'value' => Yii::t('app', 'Получать заявку по России (3 месяца)'),
                                     'data-price' => 40000
-                                ]) . Html::label('40 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                                ]) . Html::label('40 000 ' . $modelPayment->currency, false, ['class' => 'label-check']); ?>
                             </div>
 
-                            <div class="tarif-subtitle">Получать заявку на Москву </div>
+                            <div class="tarif-subtitle"><?= Yii::t('app', 'Получать заявку на Москву') ?></div>
                             <div class="tarif-checkpanel">
                                 <?= Html::checkbox('Payment[tariffs][]', false, [
-                                    'value' => 'Получать заявку на Москву (полгода)',
+                                    'value' => Yii::t('app', 'Получать заявку на Москву (3 месяца)'),
                                     'data-price' => 20000
-                                ]) . Html::label('20 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                                ]) . Html::label('20 000 ' . $modelPayment->currency, false, ['class' => 'label-check']); ?>
                             </div>
 
-                            <div class="tarif-subtitle">Получать заявку на Санк-Петербург</div>
+                            <div class="tarif-subtitle"><?= Yii::t('app', 'Получать заявку на Санк-Петербург') ?></div>
                             <div class="tarif-checkpanel">
                                 <?= Html::checkbox('Payment[tariffs][]', false, [
-                                    'value' => 'Получать заявку на Санк-Петербург (полгода)',
+                                    'value' => Yii::t('app', 'Получать заявку на Санк-Петербург (3 месяца)'),
                                     'data-price' => 8000
-                                ]) . Html::label('8 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                                ]) . Html::label('8 000 ' . $modelPayment->currency, false, ['class' => 'label-check']); ?>
                             </div>
 
                         </div>
@@ -111,30 +111,30 @@ $this->title = Yii::t('app', 'Тарифы');
 
                         <!-- tarifbox -->
                         <div class="tarifbox">
-                            <div class="tarif-title">Другие страны (год)</div>
+                            <div class="tarif-title"><?= Yii::t('app', 'Другие страны (год)') ?></div>
 
-                            <div class="tarif-subtitle"> Получать заявку с Беларусии </div>
+                            <div class="tarif-subtitle"><?= Yii::t('app', 'Получать заявку с Беларусии') ?></div>
                             <div class="tarif-checkpanel">
                                 <?= Html::checkbox('Payment[tariffs][]', false, [
-                                    'value' => 'Получать заявку с Беларусии (год)',
+                                    'value' => Yii::t('app', 'Получать заявку с Беларусии (год)'),
                                     'data-price' => 20000
-                                ]) . Html::label('20 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
-                            </div>
-                                
-                            <div class="tarif-subtitle">Получать заявку с Италии</div>
-                            <div class="tarif-checkpanel">
-                                <?= Html::checkbox('Payment[tariffs][]', false, [
-                                    'value' => 'Получать заявку с Италии (год)',
-                                    'data-price' => 40000
-                                ]) . Html::label('40 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                                ]) . Html::label('20 000 ' . $modelPayment->currency, false, ['class' => 'label-check']); ?>
                             </div>
 
-                            <div class="tarif-subtitle">Получать заявку с Украины</div>
+                            <div class="tarif-subtitle"><?= Yii::t('app', 'Получать заявку с Италии') ?></div>
                             <div class="tarif-checkpanel">
                                 <?= Html::checkbox('Payment[tariffs][]', false, [
-                                    'value' => 'Получать заявку с Украины (год)',
+                                    'value' => Yii::t('app', 'Получать заявку с Италии (год)'),
+                                    'data-price' => 40000
+                                ]) . Html::label('40 000 ' . $modelPayment->currency, false, ['class' => 'label-check']); ?>
+                            </div>
+
+                            <div class="tarif-subtitle"><?= Yii::t('app', 'Получать заявку с Украины') ?></div>
+                            <div class="tarif-checkpanel">
+                                <?= Html::checkbox('Payment[tariffs][]', false, [
+                                    'value' => Yii::t('app', 'Получать заявку с Украины (год)'),
                                     'data-price' => 25000
-                                ]) . Html::label('25 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                                ]) . Html::label('25 000 ' . $modelPayment->currency, false, ['class' => 'label-check']); ?>
                             </div>
                         </div>
                         <!-- end tarifbox -->
@@ -143,7 +143,7 @@ $this->title = Yii::t('app', 'Тарифы');
                     <!-- end tarif col -->
 
                     <div class="col-xs-12">
-                        
+
                         <!-- tarif-total-panel -->
                         <div class="tarif-total-panel">
                             <div class="tarif-totlal">
