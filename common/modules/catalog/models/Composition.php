@@ -116,6 +116,8 @@ class Composition extends Product
                 'novelty',
                 'bestseller',
                 'onmain',
+                'image_link',
+                'gallery_image',
                 'published',
                 'deleted',
                 'removed',
