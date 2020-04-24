@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+
 //
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\menu\widgets\menu\Menu;
@@ -64,7 +65,18 @@ $bundle = AppAsset::register($this);
                         <?= topBarInfo::widget(); ?>
 
                     </div>
-                    <?= FormFeedback::widget(); ?>
+
+                    <ul class="nav">
+                        <li><?= FormFeedback::widget(); ?></li>
+                        <li>
+                            <?= Html::a(
+                                Yii::t('app', 'Стать главным партнером в городе'),
+                                'https://www.myarredo.ru/uploads/myarredofamily-for-partners.pdf',
+                                ['class' => 'btn']
+                            ); ?>
+                        </li>
+                    </ul>
+
                     <div class="menu-items">
 
                         <?php
@@ -135,4 +147,5 @@ $bundle = AppAsset::register($this);
         "https://www.instagram.com/my_arredo_family/"
     ]
 }
+
 </script>

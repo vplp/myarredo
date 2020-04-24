@@ -22,6 +22,11 @@ use frontend\modules\user\widgets\partner\PartnerMap;
                 []
             ); ?>
         </div>
+        <?= Html::a(
+            Yii::t('app', 'Стать главным партнером в городе'),
+            'https://www.myarredo.ru/uploads/myarredofamily-for-partners.pdf',
+            ['class' => 'btn']
+        ); ?>
         <div class="partner-maybyphoto">
             <span class="for-mayby"><?= Yii::t('app', 'Здесь может быть фото Вашего салона') ?></span>
         </div>
