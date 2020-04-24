@@ -21,7 +21,6 @@ $image_link = $partner['profile']['image_link']
         <div class="cont-info-border">
             <div class=""><?= Yii::t('app', 'Contacts') ?></div>
 
-
             <?php
             if (!Yii::$app->getUser()->isGuest &&
                 in_array(Yii::$app->user->identity->group->role, ['partner', 'admin', 'factory', 'logistician'])
@@ -32,7 +31,7 @@ $image_link = $partner['profile']['image_link']
                 <p><?= Yii::t('app', 'Администрация проекта') ?></p>
 
                 <?php
-                if (Yii::$app->language == 'it-IT') {
+                if (Yii::$app->city->domain == 'com') {
                     $phone = '+39 (0422) 150-02-15';
                 } elseif (Yii::$app->city->domain == 'ua') {
                     $phone = '+39 (0422) 150-02-15';
@@ -44,7 +43,7 @@ $image_link = $partner['profile']['image_link']
 
                 <p class="num"><?= $phone ?></p>
                 <p class="num"><?= $email ?></p>
-                <p class="num">skype: <?= Html::a('myarredo', 'skype:myarredo?chat') ?></p>
+                <p class="num">skype: <?= Html::a('daniellalazareva123', 'skype:daniellalazareva123?chat') ?></p>
 
             <?php } else { ?>
                 <div class="ico">
