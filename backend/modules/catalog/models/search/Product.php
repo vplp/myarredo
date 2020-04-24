@@ -117,7 +117,7 @@ class Product extends ProductModel implements BaseBackendSearchModel
      * @param $params
      * @return ActiveDataProvider
      */
-    public function baseSearchSpecificationAndDescription($query, $params)
+    public function basesSearchWithoutSpecificationAndDescription($query, $params)
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -195,9 +195,9 @@ class Product extends ProductModel implements BaseBackendSearchModel
      * @param array $params
      * @return ActiveDataProvider
      */
-    public function searchSpecificationAndDescription($params)
+    public function searchWithoutSpecificationAndDescription($params)
     {
         $query = ProductModel::findBase()->undeleted();
-        return $this->baseSearchSpecificationAndDescription($query, $params);
+        return $this->basesSearchWithoutSpecificationAndDescription($query, $params);
     }
 }

@@ -16,7 +16,7 @@ $params = Yii::$app->request->queryParams ?? [];
  * @var $model Product
  */
 echo GridView::widget([
-    'dataProvider' => $model->searchSpecificationAndDescription($params),
+    'dataProvider' => $model->searchWithoutSpecificationAndDescription($params),
     'filterModel' => $filter,
     'columns' => [
         'id',
