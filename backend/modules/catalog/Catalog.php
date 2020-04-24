@@ -33,6 +33,11 @@ class Catalog extends \common\modules\catalog\Catalog
                         'url' => ['/catalog/product/list'],
                     ],
                     [
+                        'label' => 'Product without specification',
+                        'position' => 1,
+                        'url' => ['/catalog/product-without-specification/list'],
+                    ],
+                    [
                         'label' => 'Factory product',
                         'position' => 1,
                         'url' => ['/catalog/factory-product/list'],

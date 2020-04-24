@@ -95,4 +95,19 @@ class ProductRelSpecification extends ActiveRecord
     {
         return $this->hasOne(Product::class, ['id' => 'catalog_item_id']);
     }
+
+    /**
+     * @param $specification_id
+     * @return mixed
+     */
+    public static function getCounts($specification_id)
+    {
+        return self::find()
+            ->asArray()
+            ->indexBy('specification_id')
+            ->select('specification_id, count(specification_id) as count')
+            ->groupBy('specification_id')
+            ->andWhere(['in', 'specification_id', $specification_id])
+            ->all();
+    }
 }

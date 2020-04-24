@@ -3,8 +3,10 @@
 namespace backend\modules\catalog\models;
 
 use yii\helpers\ArrayHelper;
+
 //
 use thread\app\model\interfaces\BaseBackendModel;
+
 //
 use common\modules\catalog\models\Product as CommonProductModel;
 
@@ -42,6 +44,15 @@ class Product extends CommonProductModel implements BaseBackendModel
     public function trash($params)
     {
         return (new search\Product())->trash($params);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function searchSpecificationAndDescription($params)
+    {
+        return (new search\Product())->searchSpecificationAndDescription($params);
     }
 
     /**

@@ -41,6 +41,7 @@ return [
     'Category' => 'Категории',
     'Types' => 'Типы',
     'Product' => 'Товары',
+    'Product without specification' => 'Товары без размеров или описания',
     'Compositions' => 'Композиции',
     'Samples' => 'Отделка',
     'Specification' => 'Характеристики',

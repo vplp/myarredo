@@ -6,28 +6,24 @@ use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
 //
 use backend\modules\catalog\models\{
-    CountriesFurniture
+    Product
 };
 //
+use thread\actions\ListModel;
 use thread\app\base\controllers\BackendController;
-use thread\actions\{
-    ListModel
-};
 
 /**
- * Class CountriesFurnitureController
+ * Class ProductWithoutSpecificationController
  *
  * @package backend\modules\catalog\controllers
  */
-class CountriesFurnitureController extends BackendController
+class ProductWithoutSpecificationController extends BackendController
 {
-    public $model = CountriesFurniture::class;
+    public $model = Product::class;
 
-    public $filterModel = CountriesFurniture::class;
+    public $title = 'Product without specification';
 
-    public $title = 'Countries furniture';
-
-    public $name = 'Countries furniture';
+    public $name = 'Product without specification';
 
     /**
      * @return array
