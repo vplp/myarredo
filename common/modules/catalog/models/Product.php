@@ -362,6 +362,24 @@ class Product extends ActiveRecord implements iProduct
             $this->gallery_image = implode(',', $imagesSources);
         }
 
+        // не давать создавать товары без размеров
+        if (Yii::$app->request->getBodyParam('SpecificationValue') && $this->is_composition == 0 && !in_array(14, $this->category_ids)) {
+            $data = Specification::find()->andWhere(['parent_id' => 4])->all();
+            $sizeIDs = ArrayHelper::map($data, 'id', 'id');
+
+            $count = 0;
+            foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
+                if (in_array($specification_id, $sizeIDs) && $val) {
+                    ++$count;
+                }
+            }
+
+            if ($count <= 3) {
+                Yii::$app->session->setFlash('error', 'Не заполнены размеры и вы не можете сохранить товар');
+                return false;
+            }
+        }
+
         return parent::beforeSave($insert);
     }
 

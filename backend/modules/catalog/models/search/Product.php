@@ -132,6 +132,15 @@ class Product extends ProductModel implements BaseBackendSearchModel
             Product::tableName() . '.is_composition' => '0'
         ]);
 
+        // не светильники
+        $query
+            ->innerJoinWith(["category"])
+            ->andFilterWhere([
+                'NOT IN',
+                Category::tableName() . '.id',
+                14
+            ]);
+
         $data = Specification::find()->andWhere(['parent_id' => 4])->all();
         $modelSpecification = ArrayHelper::map($data, 'id', 'id');
 
@@ -159,11 +168,11 @@ class Product extends ProductModel implements BaseBackendSearchModel
             ->groupBy(ProductRelSpecification::tableName() . '.catalog_item_id');
 
         $query
-            ->andFilterWhere([
+            ->andWhere([
                 'OR',
                 ['=', ProductLang::tableName() . '.description', ''],
                 ['in', self::tableName() . '.id', $subQuery1],
-                ['in', self::tableName() . '.id', $subQuery2]
+                //['in', self::tableName() . '.id', $subQuery2]
             ]);
 
         if (!($this->load($params) && $this->validate())) {
