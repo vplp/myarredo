@@ -375,7 +375,7 @@ class Product extends ActiveRecord implements iProduct
                     }
                 }
 
-                if ($count <= 3) {
+                if ($count <= 2) {
                     Yii::$app->session->setFlash('error', 'Не заполнены размеры и вы не можете сохранить товар');
                     return false;
                 }
