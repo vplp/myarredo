@@ -9519,8 +9519,78 @@ body>.modal-backdrop.fade.in{
 .field-registerform-phone .iti {
   width: 100%;
 }
-.btn-gopartner {
-  white-space: normal;
+.btn-gopartner,
+.nav>li>a.btn-gopartner {
+  text-transform: uppercase;
+  margin-top: 20px;
+  background-color: transparent;
+  border-radius: 1px;
+  padding: 4.5px 8px;
+  transition: 0.3s;
+}
+.btn-gopartner:hover,
+.nav>li>a.btn-gopartner:hover {
+  color: #198be8;
+  text-decoration: underline;
+  background-color: transparent;
+}
+.btn-gopartner .fa {
+  font-size: 18px;
+  margin-left: 5px;
+}
+.btn-feedback,
+.nav>li>a.btn-feedback {
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  background-color: #545451;
+  color: #f2f2f2;
+  border-radius: 1px;
+  padding: 0 0 0 8px;
+  transition: 0.3s;
+}
+.btn-feedback:hover,
+.nav>li>a.btn-feedback:hover {
+  background-color: #30302f;
+  color: #ffffff;
+}
+.btn-feedback svg {
+  position: relative;
+  top: 3px;
+}
+.btn-feedback svg path {
+  fill: #ffffff;
+}
+.ftr-nav {
+  padding: 0 20px;
+}
+#formFeedbackModal h4 {
+  font-size: 19px;
+  color: #454545;
+}
+#formFeedbackModal p {
+  color: #676767;
+}
+#formFeedbackModal a {
+  font-size: 15px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+#formFeedbackModal a:hover {
+  color: #198be8;
+}
+.mt25 {
+  margin-top: 25px;
+}
+.for-cicon {
+  display: inline-block;
+  width: 40px;
+  height: 31px;
+  background-color: #C4252F;
+  margin-left: 4px;
+}
+.for-ctext {
+  line-height: 22px;
 }
 
 /* --------------------------------------------------------------------------------------------------------- */
@@ -9556,6 +9626,16 @@ body>.modal-backdrop.fade.in{
   }
   .part-contact-left-formbox {
     padding-left: 20px;
+  }
+}
+/*min-width 992px and  max 1340px */
+@media (min-width: 992px) and (max-width: 1340px) {
+  .footer .footer-cont {
+    flex-wrap: wrap;
+  }
+  .footer .logo-reg,
+  .ftr-nav {
+    margin-bottom: 30px;
   }
 }
 @media (min-width: 1200px) {
@@ -9601,6 +9681,12 @@ body>.modal-backdrop.fade.in{
 @media (max-width: 1460px) {
   .largex-container {
     padding: 0 20px;
+  }
+}
+/* max 1350px */
+@media (max-width: 1350px) {
+  .footer .menu-items a {
+    padding-left: 20px;
   }
 }
 @media (max-width: 1340px) {
@@ -9707,6 +9793,7 @@ body>.modal-backdrop.fade.in{
     background-color: #ffffff;
   }
 }
+/* max 991px */
 @media (max-width: 991px) {
   .progress-steps-step {
     padding-right: 0px;
@@ -9755,6 +9842,10 @@ body>.modal-backdrop.fade.in{
   }
   .largex-container .rulescont.forflex ul li {
     width: 50%;
+  }
+  .footer .logo-reg,
+  .ftr-nav {
+    margin-bottom: 30px;
   }
 }
 @media (min-width: 768px) {
@@ -9890,6 +9981,13 @@ body>.modal-backdrop.fade.in{
   .prod-card-page.page .container {
     width: 100%;
   }
+  .footer .bot-footer .container {
+    width: 100%;
+  }
+  .ftr-nav {
+    margin: 0 auto 30px;
+    padding: 0;
+  }
 }
 @media (max-width: 535px) {
   .profile-box {
@@ -9921,6 +10019,15 @@ body>.modal-backdrop.fade.in{
     min-width: 25%;
   }
 }
+/* max 419px */
+@media(max-width: 419px) {
+  .btn-feedback, .nav>li>a.btn-feedback {
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
 @media (max-width: 400px) {
   .itprod-panel-add {
     flex-direction: column;
@@ -9939,5 +10046,11 @@ body>.modal-backdrop.fade.in{
   }
   .profile-gencont .btn-green {
     font-size: 13px;
+  }
+  .ftr-nav {
+    max-width: 280px;
+  }
+  .btn-gopartner, .nav>li>a.btn-gopartner {
+    font-size: 12px;
   }
 }

@@ -66,11 +66,11 @@ $bundle = AppAsset::register($this);
 
                     </div>
 
-                    <ul class="nav">
+                    <ul class="nav ftr-nav">
                         <li><?= FormFeedback::widget(); ?></li>
                         <li>
                             <?= Html::a(
-                                Yii::t('app', 'Стать главным партнером в городе'),
+                                Yii::t('app', 'Стать главным партнером в городе') . '<i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
                                 'https://www.myarredo.ru/uploads/myarredofamily-for-partners.pdf',
                                 ['class' => 'btn btn-gopartner', 'target' => '_blank']
                             ); ?>
