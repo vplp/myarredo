@@ -655,7 +655,7 @@ $(document).ready(function () {
     $(document).on('click', '.link-composition', function() {
         if ($('#comp-slider').length > 0) { 
             $('#comp-slider').addClass('mw-item');
-            $('#comp-slider').slick('slickNext');
+            // $('#comp-slider').slick('slickNext');
         }
     });
 });
