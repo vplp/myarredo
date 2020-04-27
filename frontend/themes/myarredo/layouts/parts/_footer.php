@@ -72,7 +72,7 @@ $bundle = AppAsset::register($this);
                             <li>
                                 <?= Html::a(
                                     Yii::t('app', 'Стать главным партнером в городе') . '<i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
-                                    'https://www.myarredo.ru/uploads/myarredofamily-for-partners.pdf',
+                                    'https://www.myarredo.' . DOMAIN . '/uploads/myarredofamily-for-partners.pdf',
                                     ['class' => 'btn btn-gopartner', 'target' => '_blank']
                                 ); ?>
                             </li>
@@ -149,6 +149,7 @@ $bundle = AppAsset::register($this);
         "https://www.instagram.com/my_arredo_family/"
     ]
 }
+
 
 
 
