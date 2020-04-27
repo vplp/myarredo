@@ -13,7 +13,7 @@ use frontend\modules\forms\models\FormsFeedback;
 
 <?= Html::a(
     '<span class="for-ctext">'
-        .Yii::t('app', 'Связаться с оператором сайта').
+    . Yii::t('app', 'Связаться с оператором сайта') .
     '</span>
     <span class="for-cicon">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="22px" height="22px" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -54,22 +54,25 @@ use frontend\modules\forms\models\FormsFeedback;
             </div>
             <div class="modal-body">
 
-                <h4><?= Yii::t('app', 'Contacts') ?></h4>
+                <?php if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['factory', 'partner'])) { ?>
+                    <h4><?= Yii::t('app', 'Contacts') ?></h4>
 
-                <?php
-                if (Yii::$app->city->domain == 'com') {
-                    $phone = '<a href="tel:+3904221500215">+39 (0422) 150-02-15</a>';
-                } elseif (Yii::$app->city->domain == 'ua') {
-                    $phone = '<a href="tel:+3904221500215">+39 (0422) 150-02-15</a>';
-                } else {
-                    $phone = '<a href="tel:+79683533636">+7 968 353 36 36</a>';
-                }
-                $email = (Yii::$app->city->domain == 'ua') ? '<a href="mailto:help@myarredo.ua">help@myarredo.ua</a>' : '<a href="mailto:help@myarredo.ru">help@myarredo.ru</a>';
-                ?>
+                    <?php
+                    if (Yii::$app->city->domain == 'com') {
+                        $phone = '<a href="tel:+3904221500215">+39 (0422) 150-02-15</a>';
+                    } elseif (Yii::$app->city->domain == 'ua') {
+                        $phone = '<a href="tel:+3904221500215">+39 (0422) 150-02-15</a>';
+                    } else {
+                        $phone = '<a href="tel:+79683533636">+7 968 353 36 36</a>';
+                    }
+                    $email = (Yii::$app->city->domain == 'ua') ? '<a href="mailto:help@myarredo.ua">help@myarredo.ua</a>' : '<a href="mailto:help@myarredo.ru">help@myarredo.ru</a>';
+                    ?>
 
-                <p><i class="fa fa-phone" aria-hidden="true"></i> <?= $phone ?></p>
-                <p><i class="fa fa-envelope-o" aria-hidden="true"></i> <?= $email ?></p>
-                <p><i class="fa fa-skype" aria-hidden="true"></i> skype: <?= Html::a('daniellalazareva123', 'skype:daniellalazareva123?chat') ?></p>
+                    <p><i class="fa fa-phone" aria-hidden="true"></i> <?= $phone ?></p>
+                    <p><i class="fa fa-envelope-o" aria-hidden="true"></i> <?= $email ?></p>
+                    <p><i class="fa fa-skype" aria-hidden="true"></i>
+                        skype: <?= Html::a('daniellalazareva123', 'skype:daniellalazareva123?chat') ?></p>
+                <?php } ?>
 
                 <h4 class="mt25"><?= Yii::t('app', 'Заполните форму') ?></h4>
                 <?= $this->render('@app/modules/forms/views/forms/parts/form', [
