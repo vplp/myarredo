@@ -9,6 +9,9 @@ use backend\modules\catalog\models\{
 };
 //
 use backend\widgets\GridView\gridColumns\ActionColumn;
+use thread\widgets\grid\{
+    ActionStatusColumn, GridViewFilter
+};
 
 $params = Yii::$app->request->queryParams ?? [];
 
@@ -56,10 +59,12 @@ echo GridView::widget([
                 return implode(', ', $result);
             },
             'label' => Yii::t('app', 'Category'),
+            'filter' => GridViewFilter::selectOne($filter, 'category', Category::dropDownList()),
         ],
         [
             'attribute' => Yii::t('app', 'Factory'),
             'value' => 'factory.title',
+            'filter' => GridViewFilter::selectOne($filter, 'factory_id', Factory::dropDownList()),
         ],
         [
             'class' => ActionColumn::class,

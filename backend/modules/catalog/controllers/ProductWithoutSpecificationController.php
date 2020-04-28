@@ -6,7 +6,8 @@ use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
 //
 use backend\modules\catalog\models\{
-    Product
+    Product,
+    search\Product as filterProduct
 };
 //
 use thread\actions\ListModel;
@@ -20,6 +21,7 @@ use thread\app\base\controllers\BackendController;
 class ProductWithoutSpecificationController extends BackendController
 {
     public $model = Product::class;
+    public $filterModel = filterProduct::class;
 
     public $title = 'Product without specification';
 
