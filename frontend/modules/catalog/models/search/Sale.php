@@ -154,9 +154,11 @@ class Sale extends SaleModel implements BaseBackendSearchModel
 
         if (in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159])) {
             $query
-                ->innerJoinWith(['city']);
+                ->innerJoinWith(['city'])
+                ->andFilterWhere(['NOT IN', City::tableName() . '.id', [5]]);
             $order[] = City::tableName() . '.id ASC';
         }
+
         $order[] = self::tableName() . '.updated_at DESC';
         $query->orderBy(implode(',', $order));
 
