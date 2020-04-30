@@ -330,6 +330,7 @@ class SendPulseController extends Controller
 
             if ($item->product['factory_id']) {
                 // use user factory email
+                /** @var $modelUser User */
                 $modelUser = User::findBase()
                     ->andWhere([
                         'group_id' => Group::FACTORY,
@@ -345,7 +346,7 @@ class SendPulseController extends Controller
                     Yii::$app
                         ->mailer
                         ->compose(
-                            !in_array($modelOrder->country_id, [1, 2, 3])
+                            $modelUser->profile->factory->producing_country_id == 4
                                 ? 'letter_new_order_for_factory_from_italy'
                                 : 'letter_new_order_for_factory',
                             [

@@ -52,6 +52,7 @@ use common\modules\catalog\models\Factory;
  *
  * @property Country $country
  * @property City $city
+ * @property Factory $factory
  *
  * @property ProfileLang $lang
  *
