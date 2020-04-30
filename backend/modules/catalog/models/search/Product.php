@@ -154,7 +154,7 @@ class Product extends ProductModel implements BaseBackendSearchModel
             ])
             ->groupBy(ProductRelSpecification::tableName() . '.catalog_item_id')
             ->having(
-                'count(' . ProductRelSpecification::tableName() . '.catalog_item_id) <= 2'
+                'count(' . ProductRelSpecification::tableName() . '.catalog_item_id) < 2'
             );
 
         // нет размеров
