@@ -15,14 +15,19 @@ class City extends \common\modules\location\models\City implements BaseBackendMo
 {
     /**
      * @param int $country_id
+     * @param array $city_id
      * @return array
      */
-    public static function dropDownList($country_id = 0)
+    public static function dropDownList($country_id = 0, $city_id = [])
     {
         $query = self::findBase();
 
         if ($country_id) {
             $query->andFilterWhere(['country_id' => $country_id]);
+        }
+
+        if ($city_id) {
+            $query->byId($city_id);
         }
 
         $data = $query->undeleted()->all();

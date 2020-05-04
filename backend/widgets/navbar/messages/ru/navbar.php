@@ -63,5 +63,6 @@ return [
     'Sale in Italy request' => 'Предложения цены в Италии',
     'Forms' => 'Формы',
     'Feedback' => 'Обратная связь',
-    'Countries furniture' => 'Мебели стран'
+    'Countries furniture' => 'Мебели стран',
+    'Click on become partner' => 'Число нажатий на "Стать главным партнером"'
 ];

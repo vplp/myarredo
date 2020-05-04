@@ -146,7 +146,7 @@ if ($user->profile->possibilityToAnswer) { ?>
                                                     $fileLink,
                                                     [
                                                         'target' => '_blank',
-                                                        'class' => 'click-by-factory-file',
+                                                        'class' => 'click-on-factory-file',
                                                         'data-id' => $priceFile->id
                                                     ]
                                                 ) ?>

@@ -28,7 +28,7 @@ use yii\helpers\Html;
                                 $fileLink,
                                 [
                                     'target' => '_blank',
-                                    'class' => 'click-by-factory-file',
+                                    'class' => 'click-on-factory-file',
                                     'data-id' => $catalogFile->id
                                 ]
                             ) ?>
@@ -49,7 +49,7 @@ use yii\helpers\Html;
                                 $fileLink,
                                 [
                                     'target' => '_blank',
-                                    'class' => 'click-by-factory-file',
+                                    'class' => 'click-on-factory-file',
                                     'data-id' => $priceFile->id
                                 ]
                             ) ?>

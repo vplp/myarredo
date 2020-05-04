@@ -171,7 +171,7 @@ $route = $model->producing_country_id == 4
                             ) .
                             Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
                             $catalogFile->getFileLink(),
-                            ['target' => '_blank', 'class' => 'click-by-factory-file', 'data-id' => $catalogFile->id]
+                            ['target' => '_blank', 'class' => 'click-on-factory-file', 'data-id' => $catalogFile->id]
                         ) .
                         Html::endTag('li');
                 } ?>
@@ -213,7 +213,7 @@ $route = $model->producing_country_id == 4
                             ) .
                             Html::tag('span', $priceFile->title, ['class' => 'for-catalog-list']),
                             $priceFile->getFileLink(),
-                            ['target' => '_blank', 'class' => 'click-by-factory-file', 'data-id' => $priceFile->id]
+                            ['target' => '_blank', 'class' => 'click-on-factory-file', 'data-id' => $priceFile->id]
                         ) .
                         Html::endTag('li');
                 } ?>

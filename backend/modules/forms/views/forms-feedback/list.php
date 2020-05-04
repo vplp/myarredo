@@ -2,9 +2,10 @@
 
 use backend\widgets\GridView;
 use backend\widgets\gridColumns\ActionColumn;
+use backend\modules\forms\models\FormsFeedback;
 
 /**
- * @var \backend\modules\forms\models\FormsFeedback $model
+ * @var FormsFeedback $model
  */
 
 echo GridView::widget([

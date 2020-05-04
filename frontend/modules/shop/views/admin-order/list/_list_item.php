@@ -81,7 +81,7 @@ use frontend\modules\catalog\models\Product;
                                             $fileLink,
                                             [
                                                 'target' => '_blank',
-                                                'class' => 'click-by-factory-file',
+                                                'class' => 'click-on-factory-file',
                                                 'data-id' => $priceFile->id
                                             ]
                                         ) ?>

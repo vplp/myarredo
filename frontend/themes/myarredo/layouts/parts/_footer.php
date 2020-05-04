@@ -73,7 +73,7 @@ $bundle = AppAsset::register($this);
                                 <?= Html::a(
                                     Yii::t('app', 'Стать главным партнером в городе') . '<i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
                                     'https://www.myarredo.' . DOMAIN . '/uploads/myarredofamily-for-partners.pdf',
-                                    ['class' => 'btn btn-gopartner', 'target' => '_blank']
+                                    ['class' => 'btn btn-gopartner click-on-become-partner', 'target' => '_blank']
                                 ); ?>
                             </li>
                         <?php } ?>

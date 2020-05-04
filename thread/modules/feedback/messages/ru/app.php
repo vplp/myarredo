@@ -4,10 +4,12 @@
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
+
 return [
     //module name
     'feedback' => 'Feedback',
     'Feedback' => 'Feedback',
+
     //
     'User' => 'Name',
     'Email' => 'Email address',

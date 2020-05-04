@@ -27,6 +27,11 @@ class FormsModule extends \common\modules\forms\FormsModule
                     'icon' => 'fa-file-text',
                     'url' => ['/forms/forms-feedback/list'],
                 ],
+                [
+                    'label' => 'Click on become partner',
+                    'icon' => 'fa-file-text',
+                    'url' => ['/forms/click-on-become-partner/list'],
+                ],
             ]
         ];
     }

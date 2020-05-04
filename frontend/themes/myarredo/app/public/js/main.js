@@ -932,10 +932,16 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on('click', '.click-by-factory-file', function () {
-        $.post(baseUrl + 'catalog/factory/click-by-file/', {
+    $(document).on('click', '.click-on-factory-file', function () {
+        $.post(baseUrl + 'catalog/factory/click-on-file/', {
             _csrf: $('#token').val(),
             id: $(this).data('id'),
+        });
+    });
+
+    $(document).on('click', '.click-on-become-partner', function () {
+        $.post(baseUrl + 'forms/click-on-become-partner/', {
+            _csrf: $('#token').val()
         });
     });
 

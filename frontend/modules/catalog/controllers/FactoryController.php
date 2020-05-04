@@ -38,7 +38,7 @@ class FactoryController extends BaseController
                 'actions' => [
                     'list' => ['get'],
                     'view' => ['get'],
-                    'click-by-file' => ['post'],
+                    'click-on-file' => ['post'],
                 ],
             ],
         ];
@@ -262,7 +262,7 @@ class FactoryController extends BaseController
     /**
      * @return array
      */
-    public function actionClickByFile()
+    public function actionClickOnFile()
     {
         $response = ['success' => 0];
         Yii::$app->getResponse()->format = Response::FORMAT_JSON;

@@ -8,7 +8,7 @@ use yii\widgets\Breadcrumbs;
 <?php $this->beginContent('@app/layouts/main.php'); ?>
 
 <div class="row border-bottom white-bg page-heading">
-    <div class="col-md-10">
+    <div class="col-md-12">
         <h2>
             <?= Yii::t($this->context->module->name, $this->context->module->title) ?>.
             <?= Yii::t($this->context->module->name, $this->context->title) ?>
@@ -25,12 +25,6 @@ use yii\widgets\Breadcrumbs;
                 Yii::t('app', 'List'),
             ],
         ]) ?>
-    </div>
-
-    <div class="col-md-2">
-        <h2 class="btn-group" role="group">
-            <?= Html::a('<i class="fa fa-trash"></i> ', ['trash'], ['class' => 'btn btn-default', 'title' => Yii::t('app', 'Trash')]) ?>
-        </h2>
     </div>
 </div>
 
