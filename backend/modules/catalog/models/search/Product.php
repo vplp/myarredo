@@ -3,18 +3,15 @@
 namespace backend\modules\catalog\models\search;
 
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
-
-//
+use yii\helpers\ArrayHelper;
+use yii\data\ActiveDataProvider;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
-
-//
+use common\modules\catalog\models\ProductRelFactoryPricesFiles;
 use backend\modules\catalog\Catalog;
 use backend\modules\catalog\models\{
     ProductRelCategory, Product as ProductModel, ProductLang, Specification, ProductRelSpecification
 };
-use yii\helpers\ArrayHelper;
 
 /**
  * Class Product
@@ -208,5 +205,66 @@ class Product extends ProductModel implements BaseBackendSearchModel
     {
         $query = ProductModel::findBase()->undeleted();
         return $this->basesSearchWithoutSpecificationAndDescription($query, $params);
+    }
+
+    /**
+     * @param $query
+     * @param $params
+     * @return ActiveDataProvider
+     */
+    public function basesSearchWithoutPriceList($query, $params)
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'defaultPageSize' => $module->itemOnPage
+            ],
+        ]);
+
+        $query->andFilterWhere([
+            Product::tableName() . '.is_composition' => '0'
+        ]);
+
+        $query
+            ->joinWith(["factoryPricesFiles" => function ($query) {
+                return $query
+                    ->andWhere(['IS', ProductRelFactoryPricesFiles::tableName() . '.catalog_item_id', null]);
+            }]);
+
+        if (!($this->load($params) && $this->validate())) {
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            self::tableName() . '.id' => $this->id,
+            self::tableName() . '.factory_id' => $this->factory_id,
+        ]);
+
+        $query
+            ->andFilterWhere(['like', self::tableName() . '.alias', $this->alias])
+            ->andFilterWhere(['=', self::tableName() . '.published', $this->published]);
+
+        $query
+            ->andFilterWhere(['like', ProductLang::tableName() . '.title', $this->title]);
+
+        if ($this->category) {
+            $query
+                ->innerJoinWith(["category"])
+                ->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $this->category]);
+        }
+
+        return $dataProvider;
+    }
+
+    /**
+     * @param array $params
+     * @return ActiveDataProvider
+     */
+    public function searchWithoutPriceList($params)
+    {
+        $query = ProductModel::findBase()->undeleted();
+        return $this->basesSearchWithoutPriceList($query, $params);
     }
 }

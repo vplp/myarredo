@@ -19,4 +19,5 @@ return [
     'Sale in Italy request' => 'Предложения цены в Италии',
     'Countries furniture' => 'Мебели стран',
     'Product without specification' => 'Товары без размеров или описания',
+    'Product without price list' => 'Товары без прайсов',
 ];
