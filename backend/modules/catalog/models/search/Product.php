@@ -264,7 +264,11 @@ class Product extends ProductModel implements BaseBackendSearchModel
      */
     public function searchWithoutPriceList($params)
     {
-        $query = ProductModel::findBase()->undeleted();
+        $query = ProductModel::findBase()
+            ->andFilterWhere([
+                ProductModel::tableName() . '.removed' => '0'
+            ])
+            ->enabled();
         return $this->basesSearchWithoutPriceList($query, $params);
     }
 }
