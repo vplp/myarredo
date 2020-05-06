@@ -10055,6 +10055,9 @@ body>.modal-backdrop.fade.in{
     justify-content: space-between;
     align-items: center;
   }
+  .concact-page .one-cont a.btn-gopartner {
+    font-size: 10px;
+  }
 }
 @media (max-width: 400px) {
   .itprod-panel-add {
