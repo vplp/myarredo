@@ -363,7 +363,7 @@ class Product extends ActiveRecord implements iProduct
         }
 
         // не давать создавать товары без размеров
-        if ($this->is_composition == 0 && !in_array(14, $this->category_ids)) {
+        if (!$this->isNewRecord && $this->is_composition == 0 && !in_array(14, $this->category_ids)) {
             if (Yii::$app->request->getBodyParam('SpecificationValue')) {
                 $data = Specification::find()->andWhere(['parent_id' => 4])->all();
                 $sizeIDs = ArrayHelper::map($data, 'id', 'id');
