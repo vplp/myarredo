@@ -9533,8 +9533,9 @@ body>.modal-backdrop.fade.in{
   transition: 0.3s;
 }
 .btn-gopartner:hover,
-.nav>li>a.btn-gopartner:hover {
-  color: #535351;
+.nav>li>a.btn-gopartner:hover,
+.concact-page .one-cont a.btn-gopartner:hover {
+  color: #333331;
   background-color: transparent;
 }
 .btn-gopartner .fa {

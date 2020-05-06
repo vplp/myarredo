@@ -22,13 +22,15 @@ use frontend\modules\user\widgets\partner\PartnerMap;
                 []
             ); ?>
         </div>
-        <?= Html::a(
-            Yii::t('app', 'Стать главным партнером в городе'),
-            'https://www.myarredo.ru/uploads/myarredofamily-for-partners.pdf',
-            ['class' => 'btn', 'target' => '_blank']
-        ); ?>
+        
         <div class="partner-maybyphoto">
-            <span class="for-mayby"><?= Yii::t('app', 'Здесь может быть фото Вашего салона') ?></span>
+            <span class="for-mayby">
+                <?= Html::a(
+                Yii::t('app', 'Стать главным партнером в городе') . '<i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                'https://www.myarredo.ru/uploads/myarredofamily-for-partners.pdf',
+                ['class' => 'btn btn-gopartner', 'target' => '_blank']
+            ); ?>
+            </span>
         </div>
     </div>
 </div>
