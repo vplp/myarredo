@@ -7,10 +7,13 @@ use yii\helpers\{
     ArrayHelper
 };
 use yii\behaviors\AttributeBehavior;
+
 //
 use voskobovich\behaviors\ManyToManyBehavior;
+
 //
 use thread\app\base\models\ActiveRecord;
+
 //
 use common\helpers\Inflector;
 use common\modules\location\models\{
@@ -311,7 +314,7 @@ class Sale extends ActiveRecord
         if (in_array($this->scenario, ['backend', 'frontend'])) {
             $this->alias = (!empty($this->types) ? $this->types->alias : '') .
                 (!empty($this->factory) ? ' ' . $this->factory->alias : '') .
-                (($this->article) ? ' ' . $this->article : '');
+                (($this->article) ? ' ' . $this->article : uniqid());
 
             if ($this->id) {
                 $this->alias = $this->id . ' ' . $this->alias;

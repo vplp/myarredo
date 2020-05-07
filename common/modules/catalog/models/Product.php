@@ -7,11 +7,14 @@ use yii\helpers\{
     ArrayHelper
 };
 use yii\behaviors\AttributeBehavior;
+
 //
 use voskobovich\behaviors\ManyToManyBehavior;
+
 //
 use thread\app\base\models\ActiveRecord;
 use thread\modules\shop\interfaces\Product as iProduct;
+
 //
 use common\helpers\Inflector;
 use common\modules\catalog\Catalog;
@@ -329,7 +332,7 @@ class Product extends ActiveRecord implements iProduct
         if (in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
             $this->alias = (!empty($this->types) ? $this->types->alias : '')
                 . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
-                . (($this->article) ? ' ' . $this->article : '');
+                . (($this->article) ? ' ' . $this->article : uniqid());
 
             if ($this->id) {
                 $this->alias = $this->id . ' ' . $this->alias;
