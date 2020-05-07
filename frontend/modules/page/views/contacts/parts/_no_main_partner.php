@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+
 //
 use frontend\modules\user\widgets\partner\PartnerMap;
 
@@ -22,14 +23,14 @@ use frontend\modules\user\widgets\partner\PartnerMap;
                 []
             ); ?>
         </div>
-        
+
         <div class="partner-maybyphoto">
             <span class="for-mayby">
                 <?= Html::a(
-                Yii::t('app', 'Стать главным партнером в городе') . '<i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
-                'https://www.myarredo.ru/uploads/myarredofamily-for-partners.pdf',
-                ['class' => 'btn btn-gopartner', 'target' => '_blank']
-            ); ?>
+                    Yii::t('app', 'Стать главным партнером в городе') . '<i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                    'https://www.myarredo.ru/uploads/myarredofamily-for-partners.pdf',
+                    ['class' => 'btn btn-gopartner  click-on-become-partner', 'target' => '_blank']
+                ); ?>
             </span>
         </div>
     </div>
