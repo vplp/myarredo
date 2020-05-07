@@ -7,15 +7,9 @@ use yii\helpers\{
     ArrayHelper
 };
 use yii\behaviors\AttributeBehavior;
-
-//
 use voskobovich\behaviors\ManyToManyBehavior;
-
-//
 use thread\app\base\models\ActiveRecord;
 use thread\modules\shop\interfaces\Product as iProduct;
-
-//
 use common\helpers\Inflector;
 use common\modules\catalog\Catalog;
 use common\modules\user\models\{
@@ -366,7 +360,7 @@ class Product extends ActiveRecord implements iProduct
         }
 
         // не давать создавать товары без размеров
-        if (!$this->isNewRecord && $this->is_composition == 0 && !in_array(14, $this->category_ids)) {
+        if (in_array($this->scenario, ['frontend', 'backend']) && !$this->isNewRecord && $this->is_composition == 0 && !in_array(14, $this->category_ids)) {
             if (Yii::$app->request->getBodyParam('SpecificationValue')) {
                 $data = Specification::find()->andWhere(['parent_id' => 4])->all();
                 $sizeIDs = ArrayHelper::map($data, 'id', 'id');

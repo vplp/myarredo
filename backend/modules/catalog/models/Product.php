@@ -3,11 +3,7 @@
 namespace backend\modules\catalog\models;
 
 use yii\helpers\ArrayHelper;
-
-//
 use thread\app\model\interfaces\BaseBackendModel;
-
-//
 use common\modules\catalog\models\Product as CommonProductModel;
 
 /**
