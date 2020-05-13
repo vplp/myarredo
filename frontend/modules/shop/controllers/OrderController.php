@@ -153,6 +153,28 @@ class OrderController extends BaseController
 
                 $orderItem->save();
 
+                /**
+                 * send user letter
+                 */
+                Yii::$app
+                    ->mailer
+                    ->compose(
+                        '/../mail/new_order_user_letter',
+                        [
+                            'model' => $order,
+                            'customerForm' => $customerForm,
+                            'order' => $order,
+                            'text' => ($order->product_type == 'product')
+                                ? Yii::$app->param->getByName('MAIL_SHOP_ORDER_TEXT')
+                                : Yii::$app->param->getByName('MAIL_SHOP_ORDER_TEXT_FOR_SALE_ITALY')
+                        ]
+                    )
+                    ->setTo($customerForm['email'])
+                    ->setSubject(
+                        Yii::t('app', 'Your order № {order_id}', ['order_id' => $order['id']])
+                    )
+                    ->send();
+
                 return Yii::$app->controller->redirect(Url::toRoute(['/shop/cart/notepad', 'order' => 'good']));
             }
         }
