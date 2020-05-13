@@ -221,6 +221,7 @@ return [
     'shop/factory/pjax-save-order-answer' => 'shop/factory-order/pjax-save-order-answer',
     'shop/factory/orders-italy' => 'shop/factory-order/list-italy',
 
+    'admin/order/update/<id:[\d\-]+>' => 'shop/admin-order/update',
     'admin/orders' => 'shop/admin-order/list',
     'admin/orders-italy' => 'shop/admin-order/list-italy',
 

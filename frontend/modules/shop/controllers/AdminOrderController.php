@@ -6,10 +6,15 @@ use Yii;
 use yii\filters\{
     VerbFilter, AccessControl
 };
+
 //
 use frontend\components\BaseController;
 use frontend\modules\location\models\City;
 use frontend\modules\shop\models\Order;
+use yii\db\Exception;
+use yii\db\Transaction;
+use yii\helpers\Url;
+use yii\web\NotFoundHttpException;
 
 /**
  * Class AdminOrderController
@@ -31,6 +36,7 @@ class AdminOrderController extends BaseController
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
+                    'update' => ['post'],
                     'list' => ['get', 'post'],
                     'list-italy' => ['get', 'post'],
                 ],
@@ -48,6 +54,46 @@ class AdminOrderController extends BaseController
                 ],
             ],
         ];
+    }
+
+    /**
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionUpdate($id)
+    {
+        $model = Order::findById($id);
+
+        /** @var $model Order */
+
+        if ($model == null) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        }
+
+        $model->scenario = 'admin_comment';
+
+        if ($model->load(Yii::$app->getRequest()->post())) {
+            /** @var Transaction $transaction */
+            $transaction = $model::getDb()->beginTransaction();
+            try {
+                $save = $model->save();
+
+                if ($save) {
+                    $transaction->commit();
+                } else {
+                    $transaction->rollBack();
+                }
+            } catch (Exception $e) {
+                $transaction->rollBack();
+            }
+        }
+
+        $url = $model->product_type == 'product'
+            ? Url::toRoute(['/shop/admin-order/list'])
+            : Url::toRoute(['/shop/admin-order/list-italy']);
+
+        return $this->redirect($url . '#' . $model->id);
     }
 
     /**

@@ -22,6 +22,7 @@ use common\modules\location\models\{
  * @property integer $items_count
  * @property integer $items_total_count
  * @property string $comment
+ * @property string $admin_comment
  * @property string $token
  * @property integer $created_at
  * @property integer $updated_at
@@ -50,8 +51,8 @@ class Order extends \thread\modules\shop\models\Order
     {
         return [
             ['lang', 'string', 'min' => 5, 'max' => 5],
-            [['customer_id', 'country_id'], 'required'],
-            [['comment'], 'string', 'max' => 512],
+            [['customer_id', 'country_id'], 'required', 'on' => ['backend', 'addNewOrder']],
+            [['comment', 'admin_comment'], 'string', 'max' => 512],
             [['token'], 'string', 'max' => 255],
             [['customer_id', 'country_id', 'city_id', 'items_count', 'items_total_count'], 'integer'],
             [['order_status'], 'in', 'range' => array_keys(self::getOrderStatuses())],
@@ -78,6 +79,7 @@ class Order extends \thread\modules\shop\models\Order
             'create_campaign' => ['create_campaign'],
             'mark' => ['mark'],
             'mark1' => ['mark1'],
+            'admin_comment' => ['admin_comment'],
             'backend' => [
                 'customer_id',
                 'country_id',
@@ -88,12 +90,29 @@ class Order extends \thread\modules\shop\models\Order
                 'items_total_count',
                 'order_status',
                 'comment',
+                'admin_comment',
                 'token',
                 'published',
                 'deleted',
                 'create_campaign',
                 'created_at',
                 'updated_at'
+            ],
+            'addNewOrder' => [
+                'product_type',
+                'lang',
+                'delivery_method_id',
+                'payment_method_id',
+                'order_status',
+                'comment',
+                'customer_id',
+                'country_id',
+                'city_id',
+                'items_count',
+                'items_total_count',
+                'token',
+                'published',
+                'deleted'
             ],
         ];
     }
@@ -106,6 +125,7 @@ class Order extends \thread\modules\shop\models\Order
         $attributeLabels = [
             'lang' => Yii::t('app', 'lang'),
             'comment' => Yii::t('app', 'Comment client'),
+            'admin_comment' => Yii::t('app', 'Admin comment'),
         ];
 
         return ArrayHelper::merge(parent::attributeLabels(), $attributeLabels);

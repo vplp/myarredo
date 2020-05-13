@@ -19,31 +19,6 @@ use frontend\modules\location\models\{
 class Order extends \common\modules\shop\models\Order
 {
     /**
-     * @return array
-     */
-    public function scenarios()
-    {
-        return ArrayHelper::merge(parent::scenarios(), [
-            'addNewOrder' => [
-                'product_type',
-                'lang',
-                'delivery_method_id',
-                'payment_method_id',
-                'order_status',
-                'comment',
-                'customer_id',
-                'country_id',
-                'city_id',
-                'items_count',
-                'items_total_count',
-                'token',
-                'published',
-                'deleted'
-            ],
-        ]);
-    }
-
-    /**
      * @return mixed
      */
     public static function findBase()

@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+use yii\widgets\ActiveForm;
 use frontend\modules\shop\models\{
     Order, OrderItem
 };
@@ -88,6 +89,29 @@ use frontend\modules\catalog\models\ItalianProduct;
                         'disabled' => true
                     ]
                 );
+
+            if ($modelOrder->lang != 'ru-RU') {
+                $form = ActiveForm::begin([
+                    'id' => 'OrderAnswerForm',
+                    'options' => ['data' => ['pjax' => true]],
+                    'action' => Url::toRoute(['/shop/admin-order/update', 'id' => $modelOrder->id]),
+                ]);
+
+                echo $form
+                        ->field($modelOrder, 'admin_comment')
+                        ->textarea(['rows' => 5])
+
+                    . Html::submitButton(
+                        Yii::t('app', 'Save'),
+                        [
+                            'class' => 'btn btn-success',
+                            'name' => 'action-save-admin-comment',
+                            'value' => 1
+                        ]
+                    );
+
+                ActiveForm::end();
+            }
 
             foreach ($modelOrder->orderAnswers as $answer) {
                 echo '<div><strong>' . $answer['user']['profile']['lang']['name_company'] . '</strong></div>' .
