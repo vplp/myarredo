@@ -4,7 +4,6 @@ use yii\helpers\{
     Html, Url
 };
 use yii\widgets\ActiveForm;
-
 //
 use frontend\modules\shop\models\CartCustomerForm;
 
@@ -17,7 +16,7 @@ $model->user_agreement = 1;
 
 <?php $form = ActiveForm::begin([
     'method' => 'post',
-    'action' => Url::toRoute('/shop/cart/notepad'),
+    'action' => Url::toRoute(['/shop/order/create', 'product_id' => $product_id]),
     'id' => 'checkout-form',
 ]); ?>
 
@@ -84,7 +83,7 @@ $model->user_agreement = 1;
     ->label(false) ?>
 
 <?= Html::submitButton(
-    Yii::t('app', 'Получить лучшую цену'),
+    Yii::t('app', 'Узнай цену на доставку'),
     [
         'class' => 'add-to-notepad-product btn btn-success big',
         'data-id' => $product_id,

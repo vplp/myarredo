@@ -183,8 +183,5 @@ class Cart extends ActiveRecord
             $this->items_total_summ += $item->total_summ;
         }
         $this->total_summ = $this->items_total_summ - $this->discount_full;
-
     }
-
-
 }

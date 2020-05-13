@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+
 //
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{Factory, ItalianProduct, ItalianProductLang, Product};
@@ -307,7 +308,10 @@ $this->title = $this->context->title;
                                 <div class="best-price-form">
                                     <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на доставку') ?></h3>
 
-                                    <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
+                                    <?= RequestPrice::widget([
+                                        'product_id' => $model['id'],
+                                        'view' => 'request_price_form_sale_italy_product'
+                                    ]) ?>
 
                                 </div>
                             </div>

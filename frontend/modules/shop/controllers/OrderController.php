@@ -2,14 +2,17 @@
 
 namespace frontend\modules\shop\controllers;
 
+use frontend\modules\shop\models\OrderItem;
 use Yii;
 use yii\helpers\Url;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
-//
 use frontend\components\BaseController;
 use frontend\modules\shop\models\Order;
+use frontend\modules\shop\models\search\Order as SearchOrder;
+use frontend\modules\catalog\models\ItalianProduct;
+use frontend\modules\shop\models\CartCustomerForm;
 
 /**
  * Class OrderController
@@ -41,6 +44,10 @@ class OrderController extends BaseController
                         'roles' => ['@']
                     ],
                     [
+                        'allow' => true,
+                        'actions' => ['create'],
+                    ],
+                    [
                         'allow' => false,
                     ],
                 ],
@@ -50,6 +57,7 @@ class OrderController extends BaseController
                 'actions' => [
                     'view' => ['get'],
                     'link' => ['get'],
+                    'create' => ['post'],
                 ],
             ],
         ];
@@ -102,5 +110,53 @@ class OrderController extends BaseController
         return $this->render('view', [
             'order' => $order,
         ]);
+    }
+
+    /**
+     * @param $product_id
+     * @return \yii\web\Response
+     */
+    public function actionCreate($product_id)
+    {
+        $customerForm = new CartCustomerForm();
+        $customerForm->setScenario('frontend');
+
+        if ($customerForm->load(Yii::$app->getRequest()->post(), 'CartCustomerForm') && $customerForm->validate()) {
+            // сначала добавляем покупателя и получаем его id
+            $customer_id = SearchOrder::addNewCustomer($customerForm);
+
+            $order = new Order();
+            $order->scenario = 'addNewOrder';
+
+            $order->setAttributes($customerForm->getAttributes());
+
+            if ($customerForm->country_code) {
+                $order->country_id = $customerForm->country->id;
+            }
+
+            if (ItalianProduct::findById($product_id) != null) {
+                $order->product_type = 'sale-italy';
+            } else {
+                $order->product_type = 'product';
+            }
+
+            $order->lang = Yii::$app->language;
+            $order->customer_id = $customer_id;
+
+            if ($order->validate() && $order->save()) {
+                $orderItem = new OrderItem();
+                $orderItem->scenario = 'addNewOrderItem';
+
+                $orderItem->order_id = $order->id;
+                $orderItem->product_id = $product_id;
+                $orderItem->count = 1;
+
+                $orderItem->save();
+
+                return Yii::$app->controller->redirect(Url::toRoute(['/shop/cart/notepad', 'order' => 'good']));
+            }
+        }
+
+        return $this->redirect(Yii::$app->request->referrer);
     }
 }
