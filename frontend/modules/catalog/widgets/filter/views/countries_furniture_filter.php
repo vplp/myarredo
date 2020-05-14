@@ -321,7 +321,7 @@ use frontend\modules\catalog\models\Category;
                     </div>
                 </div>
                 <?= Html::input('hidden', 'price[link]', $priceRange['link']) ?>
-                <a href="javascript:void(0);" class="submit submit_price">OK</a>
+                <a href="javascript:void(0);" class="submit submit_price" rel="nofollow">OK</a>
             </div>
         </div>
     <?php } ?>
