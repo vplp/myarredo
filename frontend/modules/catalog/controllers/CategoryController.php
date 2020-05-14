@@ -288,7 +288,7 @@ class CategoryController extends BaseController
         if (!empty($params[$keys['colors']])) {
             $models = Colors::findByAlias($params[$keys['colors']]);
 
-            if (count($params[$keys['colors']]) >= 1) {
+            if (count($params[$keys['colors']]) > 1) {
                 $noIndex = 1;
             }
 
@@ -321,7 +321,7 @@ class CategoryController extends BaseController
         if (!empty($params[$keys['type']])) {
             $models = Types::findByAlias($params[$keys['type']]);
 
-            if (count($params[$keys['type']]) >= 1) {
+            if (count($params[$keys['type']]) > 1) {
                 $noIndex = 1;
             }
 
@@ -344,7 +344,7 @@ class CategoryController extends BaseController
         if (!empty($params[$keys['subtypes']])) {
             $models = SubTypes::findByAlias($params[$keys['subtypes']]);
 
-            if (count($params[$keys['subtypes']]) >= 1) {
+            if (count($params[$keys['subtypes']]) > 1) {
                 $noIndex = 1;
             }
 
@@ -372,7 +372,7 @@ class CategoryController extends BaseController
                 $factory[] = $model['title'];
             }
 
-            if (count($params[$keys['factory']]) >= 1) {
+            if (count($params[$keys['factory']]) > 1) {
                 $noIndex = 1;
             }
 
@@ -394,7 +394,7 @@ class CategoryController extends BaseController
         if (!empty($params[$keys['style']])) {
             $models = Specification::findByAlias($params[$keys['style']]);
 
-            if (count($params[$keys['style']]) >= 1) {
+            if (count($params[$keys['style']]) > 1) {
                 $noIndex = 1;
             }
 
@@ -534,7 +534,7 @@ class CategoryController extends BaseController
         if (!empty($params[$keys['type']])) {
             $models = Types::findByAlias($params[$keys['type']]);
 
-            if (count($params[$keys['type']]) >= 1) {
+            if (count($params[$keys['type']]) > 1) {
                 $noIndex = 1;
             }
 
@@ -557,7 +557,7 @@ class CategoryController extends BaseController
         if (!empty($params[$keys['subtypes']])) {
             $models = SubTypes::findByAlias($params[$keys['subtypes']]);
 
-            if (count($params[$keys['subtypes']]) >= 1) {
+            if (count($params[$keys['subtypes']]) > 1) {
                 $noIndex = 1;
             }
 
@@ -580,7 +580,7 @@ class CategoryController extends BaseController
         if (!empty($params[$keys['style']])) {
             $models = Specification::findByAlias($params[$keys['style']]);
 
-            if (count($params[$keys['style']]) >= 1) {
+            if (count($params[$keys['style']]) > 1) {
                 $noIndex = 1;
             }
 
@@ -603,7 +603,7 @@ class CategoryController extends BaseController
         if (!empty($params[$keys['collection']])) {
             $models = Collection::findByIDs($params[$keys['collection']]);
 
-            if (count($params[$keys['collection']]) >= 1) {
+            if (count($params[$keys['collection']]) > 1) {
                 $noIndex = 1;
             }
 
@@ -640,7 +640,7 @@ class CategoryController extends BaseController
                 $factory[] = $model['title'];
             }
 
-            if (count($params[$keys['factory']]) >= 1) {
+            if (count($params[$keys['factory']]) > 1) {
                 $noIndex = 1;
             }
 
