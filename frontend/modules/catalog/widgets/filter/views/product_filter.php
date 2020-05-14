@@ -4,9 +4,10 @@ use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
-//
 use frontend\modules\catalog\models\Category;
 
+/** @var $filterParams [] */
+/** @var $keys [] */
 /** @var $route string */
 /** @var $category Category */
 /** @var $types [] */
@@ -66,9 +67,14 @@ use frontend\modules\catalog\models\Category;
             ) ?>
             <div class="list-item">
                 <?php foreach ($types as $item) {
-                    $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
+                    $options = [];
+                    $options['href'] = $item['link'];
+                    $options['class'] = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
+                    if (isset($filterParams[$keys['type']]) && count($filterParams[$keys['type']]) >= 1 && $item['checked'] == 0) {
+                        $options['rel'] = 'nofollow';
+                    }
 
-                    echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
+                    echo Html::beginTag('a', $options);
                     ?>
                     <div class="filter-group">
                         <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
@@ -88,8 +94,14 @@ use frontend\modules\catalog\models\Category;
             ) ?>
             <div class="list-item">
                 <?php foreach ($subtypes as $item) {
-                    $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
-                    echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
+                    $options = [];
+                    $options['href'] = $item['link'];
+                    $options['class'] = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
+                    if (isset($filterParams[$keys['subtypes']]) && count($filterParams[$keys['subtypes']]) >= 1 && $item['checked'] == 0) {
+                        $options['rel'] = 'nofollow';
+                    }
+
+                    echo Html::beginTag('a', $options);
                     ?>
                     <div class="filter-group">
                         <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
@@ -109,9 +121,14 @@ use frontend\modules\catalog\models\Category;
             ) ?>
             <div class="list-item">
                 <?php foreach ($style as $item) {
-                    $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
+                    $options = [];
+                    $options['href'] = $item['link'];
+                    $options['class'] = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
+                    if (isset($filterParams[$keys['style']]) && count($filterParams[$keys['style']]) >= 1 && $item['checked'] == 0) {
+                        $options['rel'] = 'nofollow';
+                    }
 
-                    echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
+                    echo Html::beginTag('a', $options);
                     ?>
                     <div class="filter-group">
                         <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
@@ -132,8 +149,14 @@ use frontend\modules\catalog\models\Category;
             <div class="list-item">
 
                 <?php foreach ($factory_first_show as $key => $item) {
-                    $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
-                    echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
+                    $options = [];
+                    $options['href'] = $item['link'];
+                    $options['class'] = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
+                    if (isset($filterParams[$keys['factory']]) && count($filterParams[$keys['factory']]) >= 1 && $item['checked'] == 0) {
+                        $options['rel'] = 'nofollow';
+                    }
+
+                    echo Html::beginTag('a', $options);
                     ?>
                     <div class="filter-group">
                         <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
@@ -174,11 +197,14 @@ use frontend\modules\catalog\models\Category;
                                 <?php foreach ($factory as $letter => $val) { ?>
                                     <div data-show="<?= $letter ?>">
                                         <?php foreach ($val as $item) {
-                                            $class = $item['checked']
-                                                ? 'one-item-check selected'
-                                                : 'one-item-check';
+                                            $options = [];
+                                            $options['href'] = $item['link'];
+                                            $options['class'] = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
+                                            if (isset($filterParams[$keys['factory']]) && count($filterParams[$keys['factory']]) >= 1 && $item['checked'] == 0) {
+                                                $options['rel'] = 'nofollow';
+                                            }
 
-                                            echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
+                                            echo Html::beginTag('a', $options);
                                             ?>
                                             <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
                                             <?php
@@ -226,8 +252,14 @@ use frontend\modules\catalog\models\Category;
             ) ?>
             <div class="list-item">
                 <?php foreach ($colors as $item) {
-                    $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
-                    echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
+                    $options = [];
+                    $options['href'] = $item['link'];
+                    $options['class'] = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
+                    if (isset($filterParams[$keys['colors']]) && count($filterParams[$keys['colors']]) >= 1 && $item['checked'] == 0) {
+                        $options['rel'] = 'nofollow';
+                    }
+
+                    echo Html::beginTag('a', $options);
                     ?>
                     <div class="filter-group">
                         <div class="my-checkbox"

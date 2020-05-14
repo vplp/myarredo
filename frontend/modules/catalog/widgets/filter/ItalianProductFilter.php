@@ -7,7 +7,6 @@ use yii\base\Widget;
 use yii\helpers\{
     ArrayHelper
 };
-//
 use frontend\modules\catalog\models\{
     ItalianProduct,
     ItalianProductLang,
@@ -390,6 +389,8 @@ class ItalianProductFilter extends Widget
         }
 
         return $this->render($this->view, [
+            'keys' => $keys,
+            'filterParams' => $this->catalogFilterParams,
             'route' => $this->route,
             'category' => $category,
             'types' => $types,

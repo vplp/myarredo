@@ -5,8 +5,6 @@ namespace frontend\modules\catalog\widgets\filter;
 use Yii;
 use yii\base\Widget;
 use yii\helpers\ArrayHelper;
-//
-//
 use frontend\modules\location\models\{
     Country, City
 };
@@ -606,6 +604,8 @@ class CountriesFurnitureFilter extends Widget
         $sizesLink = Yii::$app->catalogFilter->createUrl($sizesParams, [$this->route]);
 
         return $this->render($this->view, [
+            'keys' => $keys,
+            'filterParams' => $this->catalogFilterParams,
             'route' => $this->route,
             'countries' => $countries,
             'category' => $category,

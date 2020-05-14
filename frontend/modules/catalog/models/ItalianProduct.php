@@ -497,6 +497,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
             return $query
                 ->select([
                     self::tableName() . '.id',
+                    self::tableName() . '.factory_id',
                     'max(' . self::tableName() . '.price_new) as max',
                     'min(' . self::tableName() . '.price_new) as min'
                 ])

@@ -564,6 +564,8 @@ class ProductFilter extends Widget
         $sizesLink = Yii::$app->catalogFilter->createUrl($sizesParams, [$this->route]);
 
         return $this->render($this->view, [
+            'keys' => $keys,
+            'filterParams' => $this->catalogFilterParams,
             'route' => $this->route,
             'category' => $category,
             'types' => $types,

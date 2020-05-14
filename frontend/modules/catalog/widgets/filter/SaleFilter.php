@@ -7,7 +7,6 @@ use yii\base\Widget;
 use yii\helpers\{
     ArrayHelper, Html
 };
-//
 use frontend\modules\location\models\{
     Country, City
 };
@@ -442,6 +441,8 @@ class SaleFilter extends Widget
         }
 
         return $this->render($this->view, [
+            'keys' => $keys,
+            'filterParams' => $this->catalogFilterParams,
             'route' => $this->route,
             'category' => $category,
             'types' => $types,
