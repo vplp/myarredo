@@ -158,5 +158,5 @@ use yii\helpers\{
 
     <?= Html::input('hidden', 'sizesLink', $sizesLink) ?>
 
-    <a href="javascript:void(0);" class="submit submit_sizes">OK</a>
+    <a href="javascript:void(0);" class="submit submit_sizes" rel="nofollow">OK</a>
 </div>

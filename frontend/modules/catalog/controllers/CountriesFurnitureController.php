@@ -86,7 +86,7 @@ class CountriesFurnitureController extends BaseController
 
         Yii::$app->metatag
             ->render()
-            ->setImageUrl(Yii::$app->request->hostInfo . AppAsset::register(Yii::$app->view)->baseUrl . 'img/logo.svg')
+            ->setImageUrl(Yii::$app->request->hostInfo . AppAsset::register(Yii::$app->view)->baseUrl . '/img/logo.svg')
             ->renderGraph();
 
         if (!empty($models->getModels()) && !empty($queryParams[$keys['colors']])) {
