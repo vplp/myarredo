@@ -1,7 +1,5 @@
 <?php
 
-use yii\helpers\Html;
-//
 use frontend\modules\articles\models\Article;
 use frontend\modules\articles\widgets\articles\ArticlesList;
 use frontend\themes\myarredo\assets\AppAsset;
@@ -62,7 +60,7 @@ $this->title = $model['lang']['title'];
         "name": "MyArredoFamily",
         "logo": {
             "@type": "ImageObject",
-            "url": "<?= Yii::$app->request->hostInfo . $bundle->baseUrl ?>/img/logo.svg"
+            "url": "<?= Yii::$app->request->hostInfo ?>/uploads/logo.svg"
         }
     }
 }

@@ -5,9 +5,7 @@ namespace frontend\modules\home\controllers;
 use frontend\modules\articles\models\Article;
 use Yii;
 use yii\web\ErrorAction;
-//
 use frontend\components\BaseController;
-use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\catalog\models\{
     Product, ItalianProduct
 };
@@ -74,7 +72,7 @@ class HomeController extends BaseController
     {
         Yii::$app->metatag
             ->render()
-            ->setImageUrl(Yii::$app->request->hostInfo . AppAsset::register(Yii::$app->view)->baseUrl . '/img/logo.svg')
+            ->setImageUrl(Yii::$app->request->hostInfo . '/uploads/logo.svg')
             ->renderGraph();
 
         return $this->render('index');

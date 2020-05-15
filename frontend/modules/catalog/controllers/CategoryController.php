@@ -6,7 +6,6 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\VerbFilter;
 use yii\web\Response;
-//
 use frontend\components\BaseController;
 use frontend\modules\catalog\widgets\filter\{
     ProductFilter, ProductFilterSizes
@@ -14,7 +13,6 @@ use frontend\modules\catalog\widgets\filter\{
 use frontend\modules\catalog\models\{
     Collection, Product, Category, Factory, Types, SubTypes, Specification, Colors, ProductRelSpecification
 };
-use frontend\themes\myarredo\assets\AppAsset;
 
 /**
  * Class CategoryController
@@ -86,7 +84,7 @@ class CategoryController extends BaseController
 
         Yii::$app->metatag
             ->render()
-            ->setImageUrl(Yii::$app->request->hostInfo . AppAsset::register(Yii::$app->view)->baseUrl . '/img/logo.svg')
+            ->setImageUrl(Yii::$app->request->hostInfo . '/uploads/logo.svg')
             ->renderGraph();
 
         if (!empty($models->getModels()) && !empty($queryParams[$keys['colors']])) {

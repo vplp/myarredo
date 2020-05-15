@@ -9,12 +9,7 @@ use yii\helpers\{
 use yii\web\Response;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-//
 use frontend\components\BaseController;
-use frontend\modules\location\models\{
-    Country, City
-};
 use frontend\modules\user\models\Profile;
 use frontend\modules\catalog\models\{
     Sale,
@@ -30,7 +25,6 @@ use frontend\modules\catalog\models\{
     Colors
 };
 use frontend\modules\catalog\widgets\filter\SaleFilter;
-use frontend\themes\myarredo\assets\AppAsset;
 
 /**
  * Class SaleController
@@ -130,7 +124,7 @@ class SaleController extends BaseController
 
         Yii::$app->metatag
             ->render()
-            ->setImageUrl(Yii::$app->request->hostInfo . AppAsset::register(Yii::$app->view)->baseUrl . '/img/logo.svg')
+            ->setImageUrl(Yii::$app->request->hostInfo . '/uploads/logo.svg')
             ->renderGraph();
 
         if (!empty($models->getModels())) {
