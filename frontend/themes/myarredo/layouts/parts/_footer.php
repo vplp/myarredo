@@ -143,7 +143,7 @@ $bundle = AppAsset::register($this);
     "url": "https://www.myarredo.<?= DOMAIN ?>",
     "name": "MyArredoFamily",
     "email": "info@myarredo.ru",
-    "logo": "<?= 'https://img.myarredo.' . DOMAIN ?>/uploads/logo.png",
+    "logo": "<?= 'https://img.myarredo.' . DOMAIN ?>/uploads/myarredo.png",
     "sameAs": [
         "https://www.facebook.com/Myarredo/",
         "https://www.instagram.com/my_arredo_family/"
