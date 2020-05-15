@@ -60,7 +60,7 @@ $this->title = $model['lang']['title'];
         "name": "MyArredoFamily",
         "logo": {
             "@type": "ImageObject",
-            "url": "<?= 'https://img.myarredo.' . DOMAIN ?>/uploads/logo.png"
+            "url": "<?= 'https://img.myarredo.' . DOMAIN ?>/uploads/logo.svg"
         }
     }
 }

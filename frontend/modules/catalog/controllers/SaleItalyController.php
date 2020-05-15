@@ -116,7 +116,7 @@ class SaleItalyController extends BaseController
 
         Yii::$app->metatag
             ->render()
-            ->setImageUrl('https://img.myarredo.' . DOMAIN . '/uploads/logo.png')
+            ->setImageUrl('https://img.myarredo.' . DOMAIN . '/uploads/logo.svg')
             ->renderGraph();
 
         if (!empty($models->getModels())) {
