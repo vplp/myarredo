@@ -84,7 +84,7 @@ class CategoryController extends BaseController
 
         Yii::$app->metatag
             ->render()
-            ->setImageUrl('https://img.myarredo.' . DOMAIN . '/uploads/myarredo.png')
+            ->setImageUrl('https://img.myarredo.' . DOMAIN . '/uploads/myarredo-ico.jpg')
             ->renderGraph();
 
         if (!empty($models->getModels()) && !empty($queryParams[$keys['colors']])) {
