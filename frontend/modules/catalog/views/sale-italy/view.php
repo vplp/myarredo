@@ -87,11 +87,11 @@ $this->title = $this->context->title;
 
                                 <?php if ($model->is_sold) { ?>
                                     <div class="prod-is-sold"><?= Yii::t('app', 'Item sold') ?></div>
-                                <?php } else { ?>
+                                <?php } /*else { ?>
                                     <div class="alert"><?= Yii::t('app', 'Без учета НДС') ?></div>
-                                <?php } ?>
+                                <?php }*/ ?>
 
-                                <?php if (Yii::$app->controller->id == 'sale-italy' && $model->is_sold == 0) { ?>
+                                <?php /*if (Yii::$app->controller->id == 'sale-italy' && $model->is_sold == 0) { ?>
                                     <?= Html::a(
                                         Yii::t('app', 'Предложите свою цену'),
                                         'javascript:void(0);',
@@ -101,7 +101,7 @@ $this->title = $this->context->title;
                                             'data-target' => '#modalSaleItalyOfferPrice'
                                         ]
                                     ) ?>
-                                <?php } ?>
+                                <?php }*/ ?>
 
                                 <div class="alert" role="alert">
                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
