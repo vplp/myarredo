@@ -37,6 +37,15 @@ echo GridView::widget([
             'label' => Yii::t('app', 'Title'),
         ],
         [
+            'attribute' => 'created_at',
+            'value' => function ($model) {
+                /** @var $model Product */
+                return date('j.m.Y H:i', $model->created_at);
+            },
+            'format' => 'raw',
+            'filter' => false
+        ],
+        [
             'attribute' => 'updated_at',
             'value' => function ($model) {
                 /** @var $model Product */
