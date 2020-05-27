@@ -257,6 +257,7 @@ class CategoryController extends BaseController
             return [
                 'success' => 1,
                 'html' => ProductFilterSizes::widget([
+                    'modelProductRelSpecificationClass' => ProductRelSpecification::class,
                     'route' => Yii::$app->getRequest()->post('link'),
                     'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
                 ])

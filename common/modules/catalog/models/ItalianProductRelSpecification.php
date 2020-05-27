@@ -95,4 +95,27 @@ class ItalianProductRelSpecification extends ActiveRecord
     {
         return $this->hasOne(Specification::class, ['id' => 'val']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItalianProduct()
+    {
+        return $this->hasOne(ItalianProduct::class, ['id' => 'item_id']);
+    }
+
+    /**
+     * @param $specification_id
+     * @return mixed
+     */
+    public static function getCounts($specification_id)
+    {
+        return self::find()
+            ->asArray()
+            ->indexBy('specification_id')
+            ->select('specification_id, count(specification_id) as count')
+            ->groupBy('specification_id')
+            ->andWhere(['in', 'specification_id', $specification_id])
+            ->all();
+    }
 }

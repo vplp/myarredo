@@ -66,6 +66,7 @@ return [
     'factories' => 'catalog/factory/list',
     'sale' => 'catalog/sale/list',
     'catalog/sale/ajax-get-filter' => 'catalog/sale/ajax-get-filter',
+    'catalog/sale/ajax-get-filter-sizes' => 'catalog/sale/ajax-get-filter-sizes',
     'catalog/sale/ajax-get-phone' => 'catalog/sale/ajax-get-phone',
 
     'product-stats' => 'catalog/product-stats/list',
@@ -122,6 +123,7 @@ return [
     'sale-italy' => 'catalog/sale-italy/list',
     'sale-italy-product/<alias:[\w\-]+>' => 'catalog/sale-italy/view',
     'catalog/sale-italy/ajax-get-filter' => 'catalog/sale-italy/ajax-get-filter',
+    'catalog/sale-italy/ajax-get-filter-sizes' => 'catalog/sale-italy/ajax-get-filter-sizes',
     //
     'italian-product' => 'catalog/italian-product/list',
     'italian-product/completed' => 'catalog/italian-product/completed',

@@ -11,9 +11,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\components\BaseController;
 use frontend\modules\user\models\Profile;
-use frontend\modules\catalog\models\{
-    Sale,
+use frontend\modules\catalog\models\{Sale,
     SaleLang,
+    SaleRelSpecification,
     SaleStats,
     SalePhoneRequest,
     search\Sale as filterSaleModel,
@@ -22,9 +22,10 @@ use frontend\modules\catalog\models\{
     Types,
     SubTypes,
     Specification,
-    Colors
+    Colors};
+use frontend\modules\catalog\widgets\filter\{
+    SaleFilter, ProductFilterSizes
 };
-use frontend\modules\catalog\widgets\filter\SaleFilter;
 
 /**
  * Class SaleController
@@ -58,6 +59,7 @@ class SaleController extends BaseController
                     'view' => ['post', 'get'],
                     'ajax-get-phone' => ['post'],
                     'ajax-get-filter' => ['post'],
+                    'ajax-get-filter-sizes' => ['post'],
                 ],
             ]
         ];
@@ -307,6 +309,26 @@ class SaleController extends BaseController
                 'success' => 1,
                 'html' => SaleFilter::widget([
                     'route' => '/catalog/sale/list',
+                    'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
+                ])
+            ];
+        }
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function actionAjaxGetFilterSizes()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            return [
+                'success' => 1,
+                'html' => ProductFilterSizes::widget([
+                    'modelProductRelSpecificationClass' => SaleRelSpecification::class,
+                    'route' => Yii::$app->getRequest()->post('link'),
                     'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
                 ])
             ];

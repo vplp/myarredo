@@ -4,6 +4,7 @@ use yii\helpers\{
     Html, Url
 };
 use yii\data\Pagination;
+
 //
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
@@ -20,85 +21,150 @@ $this->title = $this->context->title;
 
 ?>
 
-<main>
-    <div class="page category-page">
-        <div class="container-wrap">
-            <div class="container large-container">
-                <div class="row">
-
-                    <?= Html::tag('h1', (Yii::$app->metatag->seo_h1 != '')
-                        ? Yii::$app->metatag->seo_h1
-                        : Yii::t('app', 'Распродажа итальянской мебели')); ?>
-
-                    <?= Breadcrumbs::widget([
-                        'links' => $this->context->breadcrumbs,
-                    ]) ?>
-
-                </div>
-                <div class="cat-content">
+    <main>
+        <div class="page category-page">
+            <div class="container-wrap">
+                <div class="container large-container">
                     <div class="row">
-                        <div class="col-md-3 col-lg-3 ajax-get-filter"></div>
-                        <div class="col-md-9 col-lg-9">
-                            <div class="cont-area">
 
-                                <div class="cat-prod-wrap">
-                                    <div class="cat-prod">
+                        <?= Html::tag('h1', (Yii::$app->metatag->seo_h1 != '')
+                            ? Yii::$app->metatag->seo_h1
+                            : Yii::t('app', 'Распродажа итальянской мебели')); ?>
 
-                                        <?php
-                                        if (!empty($models)) {
-                                            foreach ($models as $model) {
-                                                echo $this->render('_list_item', ['model' => $model]);
-                                            }
-                                        } else {
-                                            echo '<p>' . Yii::t('app', 'Не найдено') . '</p>';
-                                        } ?>
+                        <?= Breadcrumbs::widget([
+                            'links' => $this->context->breadcrumbs,
+                        ]) ?>
 
+                    </div>
+                    <div class="cat-content">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 ajax-get-filter"></div>
+                            <div class="col-md-9 col-lg-9">
+                                <div class="cont-area">
+
+                                    <div class="cat-prod-wrap">
+                                        <div class="cat-prod">
+
+                                            <?php
+                                            if (!empty($models)) {
+                                                foreach ($models as $model) {
+                                                    echo $this->render('_list_item', ['model' => $model]);
+                                                }
+                                            } else {
+                                                echo '<p>' . Yii::t('app', 'Не найдено') . '</p>';
+                                            } ?>
+
+                                        </div>
+                                        <div class="pagi-wrap">
+
+                                            <?= frontend\components\LinkPager::widget([
+                                                'pagination' => $pages,
+                                            ]) ?>
+
+                                        </div>
                                     </div>
-                                    <div class="pagi-wrap">
 
-                                        <?= frontend\components\LinkPager::widget([
-                                            'pagination' => $pages,
-                                        ]) ?>
-
-                                    </div>
                                 </div>
-
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="comp-advanteges">
-                            <?= Yii::$app->metatag->seo_content ?>
+                        <div class="row">
+                            <div class="comp-advanteges">
+                                <?= Yii::$app->metatag->seo_content ?>
+                            </div>
                         </div>
+
+                        <?= ViewedProducts::widget([
+                            'modelClass' => Sale::class,
+                            'modelLangClass' => SaleLang::class,
+                            'cookieName' => 'viewed_sale'
+                        ]) ?>
+
                     </div>
-
-                    <?= ViewedProducts::widget([
-                        'modelClass' => Sale::class,
-                        'modelLangClass' => SaleLang::class,
-                        'cookieName' => 'viewed_sale'
-                    ]) ?>
-
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 
 <?php
 
-$url = Url::to(['/catalog/sale/ajax-get-filter']);
 $queryParams = json_encode(Yii::$app->catalogFilter->params);
+$url = Url::to(['/catalog/sale/ajax-get-filter']);
+$url2 = Url::toRoute('/catalog/sale/ajax-get-filter-sizes');
+$link = '/catalog/sale/list';
 
 $script = <<<JS
 $.post('$url', {_csrf: $('#token').val(), catalogFilterParams:$queryParams}, function(data) {
     $('.ajax-get-filter').html(data.html);
     
     setTimeout(function() {
-      rangeInit();
-    }, 300);
-    runDesctop();
-    selectFirstFEl();
+        $.post('$url2', {_csrf: $('#token').val(),catalogFilterParams:$queryParams,link: '$link'}, function(data) {
+            $('<div class="one-filter">'+data.html+'</div>').insertAfter('.one-filter:eq(2)').addClass('filter-range-slider');
+
+            setTimeout(function() {
+                rangeInit();
+            }, 500);
+            runDesctop();
+            selectFirstFEl();
+            
+            $('.submit_sizes').on('click', function () {
+                let link = $('input[name="sizesLink"]').val(),
+                diameterMin = $('input[name="diameter[min]"]'),
+                diameterMax = $('input[name="diameter[max]"]'),
+                widthMin = $('input[name="width[min]"]'),
+                widthMax = $('input[name="width[max]"]'),
+                lengthMin = $('input[name="length[min]"]'),
+                lengthMax = $('input[name="length[max]"]'),
+                heightMin = $('input[name="height[min]"]'),
+                heightMax = $('input[name="height[max]"]'),
+                apportionmentMin = $('input[name="apportionment[min]"]'),
+                apportionmentMax = $('input[name="apportionment[max]"]');
+            
+                if (diameterMin.length && diameterMax.length &&
+                    diameterMin.data('default') == diameterMin.val() && diameterMax.data('default') == diameterMax.val()) {
+                    link = link.replace('={diameterMin}-{diameterMax}', '');
+                } else if (diameterMin.length && diameterMax.length) {
+                    link = link.replace('{diameterMin}', diameterMin.val());
+                    link = link.replace('{diameterMax}', diameterMax.val());   
+                }
+            
+                if (widthMin.length && widthMax.length &&
+                    widthMin.data('default') == widthMin.val() && widthMax.data('default') == widthMax.val()) {
+                    link = link.replace('={widthMin}-{widthMax}', '');
+                } else if (widthMin.length && widthMax.length) {
+                    link = link.replace('{widthMin}', widthMin.val());
+                    link = link.replace('{widthMax}', widthMax.val());   
+                }
+                 
+                if (lengthMin.length && lengthMax.length &&
+                    lengthMin.data('default') == lengthMin.val() && lengthMax.data('default') == lengthMax.val()) {
+                    link = link.replace('={lengthMin}-{lengthMax}', '');
+                } else if (lengthMin.length && lengthMax.length) {
+                    link = link.replace('{lengthMin}', lengthMin.val());
+                    link = link.replace('{lengthMax}', lengthMax.val());   
+                }
+            
+                if (heightMin.length && heightMax.length &&
+                    heightMin.data('default') == heightMin.val() && heightMax.data('default') == heightMax.val()) {
+                    console.log(heightMin.data('default'));
+                    link = link.replace('={heightMin}-{heightMax}', '');
+                } else if (heightMin.length && heightMax.length) {
+                    link = link.replace('{heightMin}', heightMin.val());
+                    link = link.replace('{heightMax}', heightMax.val());   
+                }
+                
+                if (apportionmentMin.length && apportionmentMax.length &&
+                    apportionmentMin.data('default') == apportionmentMin.val() && apportionmentMax.data('default') == apportionmentMax.val()) {
+                    link = link.replace('={apportionmentMin}-{apportionmentMax}', '');
+                } else if (apportionmentMin.length && apportionmentMax.length) {
+                    link = link.replace('{apportionmentMin}', apportionmentMin.val());
+                    link = link.replace('{apportionmentMax}', apportionmentMax.val());   
+                }
+            
+                window.location.href = link;
+            });
+        });
+    }, 1000);
     
     $('.submit_price').on('click', function () {
         let link = $('input[name="price[link]"]').val(),

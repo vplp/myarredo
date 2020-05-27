@@ -5,8 +5,6 @@ namespace frontend\modules\catalog\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-
-//
 use frontend\modules\catalog\models\{
     Category,
     Types,

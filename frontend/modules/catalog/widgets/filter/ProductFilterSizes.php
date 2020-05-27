@@ -4,11 +4,6 @@ namespace frontend\modules\catalog\widgets\filter;
 
 use Yii;
 use yii\base\Widget;
-use yii\helpers\ArrayHelper;
-//
-use frontend\modules\catalog\models\{
-    Collection, Product, Category, Factory, Types, SubTypes, Specification, Colors, ProductRelSpecification
-};
 
 /**
  * Class ProductFilter
@@ -17,6 +12,9 @@ use frontend\modules\catalog\models\{
  */
 class ProductFilterSizes extends Widget
 {
+    /** @var string */
+    public $modelProductRelSpecificationClass;
+
     /** @var string */
     public $view = 'product_filter_sizes';
 
@@ -54,11 +52,11 @@ class ProductFilterSizes extends Widget
 
         $queryParams = $this->catalogFilterParams;
 
-        $this->diameterRange = ProductRelSpecification::getRange($queryParams, 42);
-        $this->widthRange = ProductRelSpecification::getRange($queryParams, 8);
-        $this->lengthRange = ProductRelSpecification::getRange($queryParams, 6);
-        $this->heightRange = ProductRelSpecification::getRange($queryParams, 7);
-        $this->apportionmentRange = ProductRelSpecification::getRange($queryParams, 67);
+        $this->diameterRange = $this->modelProductRelSpecificationClass::getRange($queryParams, 42);
+        $this->widthRange = $this->modelProductRelSpecificationClass::getRange($queryParams, 8);
+        $this->lengthRange = $this->modelProductRelSpecificationClass::getRange($queryParams, 6);
+        $this->heightRange = $this->modelProductRelSpecificationClass::getRange($queryParams, 7);
+        $this->apportionmentRange = $this->modelProductRelSpecificationClass::getRange($queryParams, 67);
 
         $sizesParams = $this->catalogFilterParams;
 

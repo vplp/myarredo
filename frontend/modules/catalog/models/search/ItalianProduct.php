@@ -5,14 +5,12 @@ namespace frontend\modules\catalog\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-//
 use frontend\modules\catalog\models\{
     Colors,
     SubTypes,
     ItalianProduct as ItalianProductModel,
     ItalianProductLang
 };
-//
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 
 /**
@@ -138,6 +136,52 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
             $query
                 ->innerJoinWith(["colors"])
                 ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
+        }
+
+
+        if (isset($params[$keys['diameter']])) {
+            $min = $params[$keys['diameter']][0];
+            $max = $params[$keys['diameter']][1];
+            $query
+                ->innerJoinWith(["specificationValue diameter"])
+                ->andFilterWhere(['diameter.specification_id' => 42])
+                ->andFilterWhere(['BETWEEN', 'diameter.val', $min, $max]);
+        }
+
+        if (isset($params[$keys['width']])) {
+            $min = $params[$keys['width']][0];
+            $max = $params[$keys['width']][1];
+            $query
+                ->innerJoinWith(["specificationValue width"])
+                ->andFilterWhere(['width.specification_id' => 8])
+                ->andFilterWhere(['BETWEEN', 'width.val', $min, $max]);
+        }
+
+        if (isset($params[$keys['length']])) {
+            $min = $params[$keys['length']][0];
+            $max = $params[$keys['length']][1];
+            $query
+                ->innerJoinWith(["specificationValue length"])
+                ->andFilterWhere(['length.specification_id' => 6])
+                ->andFilterWhere(['BETWEEN', 'length.val', $min, $max]);
+        }
+
+        if (isset($params[$keys['height']])) {
+            $min = $params[$keys['height']][0];
+            $max = $params[$keys['height']][1];
+            $query
+                ->innerJoinWith(["specificationValue height"])
+                ->andFilterWhere(['height.specification_id' => 7])
+                ->andFilterWhere(['BETWEEN', 'height.val', $min, $max]);
+        }
+
+        if (isset($params[$keys['apportionment']])) {
+            $min = $params[$keys['apportionment']][0];
+            $max = $params[$keys['apportionment']][1];
+            $query
+                ->innerJoinWith(["specification apportionment"])
+                ->andFilterWhere(['apportionment.specification_id' => 67])
+                ->andFilterWhere(['BETWEEN', 'apportionment.val', $min, $max]);
         }
 
         $query->andFilterWhere(['like', ItalianProductLang::tableName() . '.title', $this->title]);

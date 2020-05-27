@@ -17,7 +17,8 @@ use common\modules\catalog\Catalog;
 class SaleRelSpecification extends ActiveRecord
 {
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -85,5 +86,28 @@ class SaleRelSpecification extends ActiveRecord
     public function getSpecification()
     {
         return $this->hasOne(Specification::class, ['id' => 'specification_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSale()
+    {
+        return $this->hasOne(Sale::class, ['id' => 'sale_catalog_item_id']);
+    }
+
+    /**
+     * @param $specification_id
+     * @return mixed
+     */
+    public static function getCounts($specification_id)
+    {
+        return self::find()
+            ->asArray()
+            ->indexBy('specification_id')
+            ->select('specification_id, count(specification_id) as count')
+            ->groupBy('specification_id')
+            ->andWhere(['in', 'specification_id', $specification_id])
+            ->all();
     }
 }
