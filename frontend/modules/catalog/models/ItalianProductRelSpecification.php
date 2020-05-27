@@ -144,13 +144,7 @@ class ItalianProductRelSpecification extends \common\modules\catalog\models\Ital
                 ->andFilterWhere(['BETWEEN', 'apportionment.val', $min, $max]);
         }
 
-//        if (Yii::$app->request->get('show') == 'in_stock') {
-//            $query->andWhere([
-//                Product::tableName() . '.in_stock' => '1'
-//            ]);
-//        }
-
-//        $result = self::getDb()->cache(function ($db) use ($query) {
+        $result = self::getDb()->cache(function ($db) use ($query) {
             return $query
                 ->select([
                     'max(' . self::tableName() . '.val) as max',
@@ -158,8 +152,8 @@ class ItalianProductRelSpecification extends \common\modules\catalog\models\Ital
                 ])
                 ->asArray()
                 ->one();
-//        }, 60 * 60);
+        }, 60 * 60);
 
-//        return $result;
+        return $result;
     }
 }
