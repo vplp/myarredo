@@ -80,6 +80,11 @@ echo GridView::widget([
         ],
         [
             'class' => ActionStatusColumn::class,
+            'attribute' => 'novelty',
+            'action' => 'novelty'
+        ],
+        [
+            'class' => ActionStatusColumn::class,
             'attribute' => 'removed',
             'action' => 'removed'
         ],

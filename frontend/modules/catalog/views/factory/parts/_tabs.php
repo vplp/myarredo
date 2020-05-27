@@ -3,7 +3,6 @@
 use yii\helpers\{
     Url, Html
 };
-//
 use frontend\modules\shop\models\Order;
 use frontend\modules\catalog\models\{
     Product, Factory, FactoryCatalogsFiles, FactoryPricesFiles, Samples, CountriesFurniture
