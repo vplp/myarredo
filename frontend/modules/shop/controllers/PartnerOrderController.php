@@ -8,7 +8,6 @@ use yii\db\mssql\PDO;
 use yii\db\Transaction;
 use yii\filters\AccessControl;
 use yii\web\Response;
-//
 use frontend\components\BaseController;
 use frontend\modules\location\models\City;
 use frontend\modules\shop\models\{Order, OrderAnswer, OrderItem, OrderItemPrice};
@@ -68,6 +67,17 @@ class PartnerOrderController extends BaseController
         $model = new Order();
 
         $params = Yii::$app->request->get() ?? [];
+
+        $start_date = mktime(0, 0, 0, 1, 1, date("Y"));
+        $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
+
+        if (!isset($params['start_date'])) {
+            $params['start_date'] = date('d-m-Y', $start_date);
+        }
+
+        if (!isset($params['end_date'])) {
+            $params['end_date'] = date('d-m-Y', $end_date);
+        }
 
         if (!isset($params['city_id'])) {
             $params['city_id'] = 0;
