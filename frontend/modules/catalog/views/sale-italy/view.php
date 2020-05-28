@@ -176,19 +176,19 @@ $this->title = $this->context->title;
                                     $array = [];
                                     foreach ($model['specificationValue'] as $item) {
                                         if ($item['specification']['parent_id'] == 4 && $item['val']) {
-                                            $array[] = Html::beginTag('span') .
+                                            $array[] = Html::beginTag('div') .
                                                 $item['specification']['lang']['title'] .
                                                 ' (' . Yii::t('app', 'см') . ')' .
                                                 ': ' .
                                                 $item['val'] .
-                                                Html::endTag('span');
+                                                Html::endTag('div');
                                         }
                                     }
                                     if (!empty($array)) { ?>
                                         <tr>
                                             <td><?= Yii::t('app', 'Размеры') ?></td>
                                             <td>
-                                                <?= implode('; ', $array) ?>
+                                                <?= implode('', $array) ?>
                                             </td>
                                         </tr>
                                     <?php } ?>

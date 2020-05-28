@@ -172,12 +172,12 @@ $this->title = $this->context->title;
                                             <?php
                                             foreach ($model['specificationValue'] as $item) {
                                                 if ($item['specification']['parent_id'] == 4) {
-                                                    echo Html::beginTag('span') .
+                                                    echo Html::beginTag('div') .
                                                         $item['specification']['lang']['title'] .
                                                         ' (' . Yii::t('app', 'см') . ')' .
                                                         ': ' .
                                                         $item['val'] .
-                                                        Html::endTag('span');
+                                                        Html::endTag('div');
                                                 }
                                             } ?>
                                         </td>
