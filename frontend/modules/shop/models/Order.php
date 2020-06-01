@@ -6,7 +6,6 @@ use Yii;
 use yii\helpers\{
     Url, ArrayHelper
 };
-//
 use frontend\modules\location\models\{
     City, Country
 };
@@ -59,7 +58,7 @@ class Order extends \common\modules\shop\models\Order
      */
     public function getItems()
     {
-        return $this->hasMany(OrderItem::class, ['order_id' => 'id'])->cache(7200);
+        return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
     }
 
     /**

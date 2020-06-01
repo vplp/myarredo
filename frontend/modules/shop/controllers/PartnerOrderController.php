@@ -137,7 +137,7 @@ class PartnerOrderController extends BaseController
 
         $models = $model->search($params);
 
-        $this->title = Yii::t('app', 'Orders');
+        $this->title = Yii::t('app', 'Orders italy');
 
         $this->breadcrumbs[] = [
             'label' => $this->title,

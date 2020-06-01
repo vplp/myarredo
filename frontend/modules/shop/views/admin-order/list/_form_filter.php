@@ -63,7 +63,7 @@ $lang = substr(Yii::$app->language, 0, 2);
     <div class="form-group">
         <?= Select2::widget([
             'name' => 'factory_id',
-            'value' => (!is_array($params['factory_id'])) ? $params['factory_id'] : 0,
+            'value' => $params['factory_id'],
             'data' => [0 => Yii::t('app', 'Все фабрики')] + Factory::dropDownList($params['factory_id']),
             'options' => [
                 'id' => 'factory_id',
@@ -76,7 +76,7 @@ $lang = substr(Yii::$app->language, 0, 2);
     <div class="form-group">
         <?= Select2::widget([
             'name' => 'city_id',
-            'value' => (!is_array($params['city_id'])) ? $params['city_id'] : 0,
+            'value' => $params['city_id'],
             'data' => [0 => Yii::t('app', 'Все города')] + City::dropDownList($params['country_id']),
             'options' => [
                 'id' => 'city_id',

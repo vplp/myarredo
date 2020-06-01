@@ -116,10 +116,17 @@ class Order extends OrderModel
         }*/
 
         if (isset($params['factory_id']) && $params['factory_id'] > 0) {
-            $subQueryFactory = OrderModel::find()
-                ->select(OrderModel::tableName() . '.id')
-                ->innerJoinWith(["items.product product"], false)
-                ->andFilterWhere(['IN', 'product.factory_id', $params['factory_id']]);
+            if ($this->product_type == 'sale-italy') {
+                $subQueryFactory = OrderModel::find()
+                    ->select(OrderModel::tableName() . '.id')
+                    ->innerJoinWith(["items.italianProduct italianProduct"], false)
+                    ->andFilterWhere(['IN', 'italianProduct.factory_id', $params['factory_id']]);
+            } else {
+                $subQueryFactory = OrderModel::find()
+                    ->select(OrderModel::tableName() . '.id')
+                    ->innerJoinWith(["items.product product"], false)
+                    ->andFilterWhere(['IN', 'product.factory_id', $params['factory_id']]);
+            }
 
             $query->andFilterWhere([
                 'AND',

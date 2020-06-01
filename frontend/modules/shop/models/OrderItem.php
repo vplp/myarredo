@@ -45,7 +45,7 @@ class OrderItem extends \common\modules\shop\models\OrderItem
 
         $amount = number_format($amount, 2, '.', '');
 
-        return  $amount;
+        return $amount;
     }
 
     /**
@@ -77,6 +77,11 @@ class OrderItem extends \common\modules\shop\models\OrderItem
         } else {
             return $this->hasOne(Product::class, ['id' => 'product_id']);
         }
+    }
+
+    public function getItalianProduct()
+    {
+        return $this->hasOne(ItalianProduct::class, ['id' => 'product_id']);
     }
 
     public function getProductUrl()

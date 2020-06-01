@@ -74,7 +74,7 @@ class FactoryOrderController extends BaseController
 
         $params = Yii::$app->request->get() ?? [];
 
-        $start_date = mktime(0, 0, 0, date("m"), date("d") - 30, date("Y"));
+        $start_date = mktime(0, 0, 0, 1, 1, date("Y"));
         $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
 
         if (!isset($params['start_date'])) {
@@ -127,9 +127,9 @@ class FactoryOrderController extends BaseController
     {
         $model = new Order();
 
-        $params = Yii::$app->request->post() ?? [];
+        $params = Yii::$app->request->get() ?? [];
 
-        $start_date = mktime(0, 0, 0, date("m"), date("d") - 30, date("Y"));
+        $start_date = mktime(0, 0, 0, 1, 1, date("Y"));
         $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
 
         if (!isset($params['start_date'])) {
@@ -160,7 +160,9 @@ class FactoryOrderController extends BaseController
 
         $models = $model->search($params);
 
-        $this->title = Yii::t('app', 'Orders');
+        $this->title = Yii::$app->user->identity->profile->factory->producing_country_id == 4
+            ? Yii::t('app', 'Orders italy')
+            : Yii::t('app', 'Заявки на наличие на складе');
 
         $this->breadcrumbs[] = [
             'label' => $this->title,
