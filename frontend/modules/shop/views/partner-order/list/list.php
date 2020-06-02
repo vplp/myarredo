@@ -8,6 +8,8 @@ use frontend\modules\shop\models\Order;
 
 /**
  * @var $modelOrder Order
+ * @var $model array
+ * @var $models array
  */
 
 ?>

@@ -40,8 +40,23 @@ $this->title = $this->context->title;
                                 <li class="application-date">
                                     <span><?= Yii::t('app', 'Request Date') ?></span>
                                 </li>
+                                <li>
+                                    <span><?= Yii::t('app', 'Name') ?></span>
+                                </li>
+                                <li>
+                                    <span><?= Yii::t('app', 'Phone') ?></span>
+                                </li>
+                                <li>
+                                    <span><?= Yii::t('app', 'Email') ?></span>
+                                </li>
+                                <li>
+                                    <span><?= Yii::t('app', 'Дата ответа') ?></span>
+                                </li>
                                 <li class="lang-cell">
                                     <span><?= Yii::t('app', 'lang') ?></span>
+                                </li>
+                                <li>
+                                    <span><?= Yii::t('app', 'Country') ?></span>
                                 </li>
                                 <li>
                                     <span><?= Yii::t('app', 'City') ?></span>
@@ -65,15 +80,46 @@ $this->title = $this->context->title;
                                 <div class="item" data-hash="<?= $modelOrder->id; ?>">
                                     <ul class="orders-title-block flex" <?= $isFactoryOrder ? 'style="background-color: #ecffe7;"' : ''; ?>>
                                         <li class="order-id">
-                                        <span>
-                                            <?= $modelOrder->id ?>
-                                        </span>
+                                            <span>
+                                                <?= $modelOrder->id ?>
+                                            </span>
                                         </li>
                                         <li class="application-date">
                                             <span><?= $modelOrder->getCreatedTime() ?></span>
                                         </li>
+                                        <li>
+                                            <span><?= $modelOrder->customer->full_name ?></span>
+                                        </li>
+                                        <li>
+                                            <span>
+                                                <?php if ($modelOrder->orderAnswer->id &&
+                                                    $modelOrder->orderAnswer->answer_time != 0) {
+                                                    echo $modelOrder->customer->phone;
+                                                } else {
+                                                    echo '-';
+                                                } ?>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span>
+                                                <?php if ($modelOrder->orderAnswer->id &&
+                                                    $modelOrder->orderAnswer->answer_time != 0) {
+                                                    echo $modelOrder->customer->email;
+                                                } else {
+                                                    echo '-';
+                                                } ?>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span><?= $modelOrder->orderAnswer->getAnswerTime() ?></span>
+                                        </li>
                                         <li class="lang-cell">
                                             <span><?= substr($modelOrder->lang, 0, 2) ?></span>
+                                        </li>
+                                        <li>
+                                        <span>
+                                            <?= ($modelOrder->country) ? $modelOrder->country->getTitle() : ''; ?>
+                                        </span>
                                         </li>
                                         <li>
                                         <span>
