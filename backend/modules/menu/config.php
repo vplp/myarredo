@@ -23,6 +23,7 @@ return [
         ],
     ],
     'permanent_link' => [
+        '/home/home/index' => 'Главная',
         '/catalog/category/list' => 'Каталог мебели',
         '/catalog/sale/list' => 'Распродажа',
         '/catalog/sale-italy/list' => 'Распродажа в Италии',
