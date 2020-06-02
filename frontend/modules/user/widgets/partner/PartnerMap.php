@@ -3,7 +3,6 @@
 namespace frontend\modules\user\widgets\partner;
 
 use yii\base\Widget;
-//
 use frontend\modules\user\models\User;
 
 /**
