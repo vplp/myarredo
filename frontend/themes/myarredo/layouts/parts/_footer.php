@@ -3,8 +3,6 @@
 use yii\helpers\{
     Html, Url
 };
-
-//
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\menu\widgets\menu\Menu;
 use frontend\modules\location\widgets\Cities;
@@ -83,9 +81,12 @@ $bundle = AppAsset::register($this);
 
                         <?php
                         if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
-                        } else {
+                            echo '';
+                        } elseif (Yii::$app->city->domain != 'com') {
                             echo Menu::widget(['alias' => 'footer']);
-                        } ?>
+                        } elseif (Yii::$app->city->domain == 'com') {
+                            echo Menu::widget(['alias' => 'footer_com']);
+                        }?>
 
                     </div>
                     <div class="soc-copy">
