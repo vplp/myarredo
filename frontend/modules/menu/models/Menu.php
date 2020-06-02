@@ -92,11 +92,11 @@ final class Menu extends \common\modules\menu\models\Menu implements BaseFrontMo
      */
     public static function getByAlias($alias)
     {
-        //$result = self::getDb()->cache(function ($db) use ($alias) {
+        $result = self::getDb()->cache(function ($db) use ($alias) {
             return self::findByAlias($alias)->one();
-        //}, 60 * 60);
+        }, 60 * 60);
 
-       // return $result;
+        return $result;
     }
 
     /**

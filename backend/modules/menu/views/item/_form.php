@@ -1,8 +1,7 @@
 <?php
+
 use yii\helpers\Html;
-//
 use backend\app\bootstrap\ActiveForm;
-//
 use backend\modules\menu\models\MenuItem;
 
 $type = array_keys(MenuItem::linkTypeRange())[0];
