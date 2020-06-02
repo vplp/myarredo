@@ -85,7 +85,7 @@ $bundle = AppAsset::register($this);
                         } elseif (DOMAIN != 'com') {
                             echo Menu::widget(['alias' => 'footer']);
                         } elseif (DOMAIN == 'com') {
-                            echo Menu::widget(['alias' => 'footer_com']);
+                            echo Menu::widget(['alias' => 'footer-com']);
                         }?>
 
                     </div>
