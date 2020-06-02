@@ -25,10 +25,3 @@ use backend\modules\user\models\{
 <?php if (!in_array($model['id'], [1])) {
     echo $form->switcher($model, 'published');
 } ?>
-
-<p>
-    <?= Html::a(Yii::t('user', 'Edit profile'), ['/user/profile/update', 'id' => $model->profile->id]); ?>
-</p>
-<p>
-    <?= Html::a(Yii::t('user', 'Change password'), ['/user/password/change', 'id' => $model->id]); ?>
-</p>

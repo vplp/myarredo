@@ -1,14 +1,13 @@
 <?php
 
+use yii\helpers\Html;
 use backend\widgets\GridView\GridView;
-//
 use backend\modules\user\models\Group;
 use backend\modules\user\models\User;
 use backend\modules\location\models\{
     Country, City
 };
 use backend\modules\catalog\models\Factory;
-//
 use thread\widgets\grid\{
     ActionCheckboxColumn, GridViewFilter
 };
@@ -81,6 +80,26 @@ echo GridView::widget([
             'attribute' => 'published',
             'action' => function ($model) {
                 return (in_array($model['id'], [1])) ? false : 'published';
+            },
+        ],
+        [
+            'format' => 'raw',
+            'value' => function ($model) {
+                if (isset($model->profile)) {
+                    return Html::a('<i class="fa fa-user-md"></i>', ['/user/profile/update', 'id' => $model->profile->id], [
+                        'class' => 'btn btn-info'
+                    ]);
+                } else {
+                    return '';
+                }
+            },
+        ],
+        [
+            'format' => 'raw',
+            'value' => function ($model) {
+                return Html::a('<i class="fa fa-credit-card"></i>', ['/user/password/change', 'id' => $model->id], [
+                    'class' => 'btn btn-warning'
+                ]);
             },
         ],
         [

@@ -25,7 +25,7 @@ class User extends aModule
     public $translationsBasePath = __DIR__ . '/messages';
     public $configPath = __DIR__ . '/config.php';
 
-    public $itemOnPage = 20;
+    public $itemOnPage = 100;
 
     public $username_attribute = 'username';
     public $password_min_length = 4;

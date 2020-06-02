@@ -17,96 +17,186 @@ $this->title = $this->context->title;
 
 ?>
 
-<main>
-    <div class="page adding-product-page ordersbox">
-        <div class="largex-container">
+    <main>
+        <div class="page adding-product-page ordersbox">
+            <div class="largex-container">
 
-            <?= Html::tag('h1', $this->context->title); ?>
+                <?= Html::tag('h1', $this->context->title); ?>
 
-            <?= $this->render('/admin-order/list/_form_filter', [
-                'model' => $model,
-                'params' => $params,
-                'models' => $models,
-            ]); ?>
+                <?= $this->render('/admin-order/list/_form_filter', [
+                    'model' => $model,
+                    'params' => $params,
+                    'models' => $models,
+                ]); ?>
 
-            <div class="manager-history">
+                <div class="manager-history">
 
-                <?php if (!empty($models)) { ?>
-                    <div class="manager-history-header">
-                        <ul class="orders-title-block flex">
-                            <li class="order-id">
-                                <span>№</span>
-                            </li>
-                            <li class="application-date">
-                                <span><?= Yii::t('app', 'Request Date') ?></span>
-                            </li>
-                            <li class="lang-cell">
-                                <span><?= Yii::t('app', 'lang') ?></span>
-                            </li>
-                            <li>
-                                <span><?= Yii::t('app', 'City') ?></span>
-                            </li>
-                            <li>
-                                <span><?= Yii::t('app', 'Status') ?></span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="manager-history-list">
+                    <?php if (!empty($models)) { ?>
+                        <div class="manager-history-header">
+                            <ul class="orders-title-block flex">
+                                <li class="order-id">
+                                    <span>№</span>
+                                </li>
+                                <li class="application-date">
+                                    <span><?= Yii::t('app', 'Request Date') ?></span>
+                                </li>
+                                <li class="lang-cell">
+                                    <span><?= Yii::t('app', 'lang') ?></span>
+                                </li>
+                                <li>
+                                    <span><?= Yii::t('app', 'City') ?></span>
+                                </li>
+                                <li>
+                                    <span><?= Yii::t('app', 'Status') ?></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="manager-history-list">
 
-                        <?php foreach ($models->getModels() as $modelOrder) {
-                            $is = false;
-                            foreach ($modelOrder->items as $orderItem) {
-                                if ($orderItem->product['factory_id'] == Yii::$app->user->identity->profile->factory_id) {
-                                    $is = true;
-                                    continue;
+                            <?php foreach ($models->getModels() as $modelOrder) {
+                                $isFactoryOrder = false;
+                                foreach ($modelOrder->items as $orderItem) {
+                                    if ($orderItem->product['factory_id'] == Yii::$app->user->identity->profile->factory_id) {
+                                        $isFactoryOrder = true;
+                                        continue;
+                                    }
                                 }
-                            }
-                            ?>
-                            <div class="item" data-hash="<?= $modelOrder->id; ?>">
-                                <ul class="orders-title-block flex" <?= $is ? 'style="background-color: #ecffe7;"' : ''; ?>>
-                                    <li class="order-id">
+                                ?>
+                                <div class="item" data-hash="<?= $modelOrder->id; ?>">
+                                    <ul class="orders-title-block flex" <?= $isFactoryOrder ? 'style="background-color: #ecffe7;"' : ''; ?>>
+                                        <li class="order-id">
                                         <span>
                                             <?= $modelOrder->id ?>
                                         </span>
-                                    </li>
-                                    <li class="application-date">
-                                        <span><?= $modelOrder->getCreatedTime() ?></span>
-                                    </li>
-                                    <li class="lang-cell">
-                                        <span><?= substr($modelOrder->lang, 0, 2) ?></span>
-                                    </li>
-                                    <li>
+                                        </li>
+                                        <li class="application-date">
+                                            <span><?= $modelOrder->getCreatedTime() ?></span>
+                                        </li>
+                                        <li class="lang-cell">
+                                            <span><?= substr($modelOrder->lang, 0, 2) ?></span>
+                                        </li>
+                                        <li>
                                         <span>
                                             <?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?>
                                         </span>
-                                    </li>
-                                    <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
-                                </ul>
+                                        </li>
+                                        <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
+                                    </ul>
 
-                                <div class="hidden-order-info flex">
-                                    <?= $this->render('_list_item', [
-                                        'modelOrder' => $modelOrder,
-                                    ]) ?>
+                                    <div class="hidden-order-info flex">
+                                        <?= $this->render(
+                                            ($isFactoryOrder && Yii::$app->user->identity->profile->getPossibilityToAnswerForFactory($modelOrder->country_id)) ? '_list_item_answer' : '_list_item',
+                                            [
+                                                'modelOrder' => $modelOrder,
+                                                'modelOrderAnswer' => $modelOrder->orderAnswer,
+                                            ]
+                                        ) ?>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php } ?>
+                            <?php } ?>
 
-                    </div>
-                <?php } else { ?>
-                    <div class="text-center">
-                        <?= Yii::t(
-                            'app',
-                            'Пока что по мебели Вашей фабрики запросов не поступало.'
-                        ) ?>
-                    </div>
-                <?php } ?>
+                        </div>
+                    <?php } else { ?>
+                        <div class="text-center">
+                            <?= Yii::t(
+                                'app',
+                                'Пока что по мебели Вашей фабрики запросов не поступало.'
+                            ) ?>
+                        </div>
+                    <?php } ?>
+
+                </div>
+
+                <?= frontend\components\LinkPager::widget([
+                    'pagination' => $models->getPagination(),
+                ]) ?>
 
             </div>
-
-            <?= frontend\components\LinkPager::widget([
-                'pagination' => $models->getPagination(),
-            ]) ?>
-
         </div>
-    </div>
-</main>
+    </main>
+
+<?php
+if (Yii::$app->user->identity->profile->possibilityToAnswerForFactory) {
+    $url = Url::toRoute(['/shop/factory-order/pjax-save-order-answer']);
+    $messagePrice = Yii::t('app', 'Ваш ответ должен быть максимально приближен к реальности');
+
+    $script = <<<JS
+    // Если произошел клик по кнопке - отправить ответ клиенту
+$(".manager-history-list").on("click", ".action-save-answer", function() {
+    var thisBtn = $(this);
+    var form = thisBtn.parent('form');
+    
+    // clear messages
+    form.find('.field-orderanswer-answer').removeClass('has-error');
+    form.find('.help-block').text('');
+    
+    var isError = false;
+    
+    form.find('.basket-item-info').each(function (index, value) {
+        var price = $(value).find('.field-orderitemprice-price');
+        var out_of_production = $(value).find('input[type="checkbox"].outof-prod-checkbox').prop('checked');
+
+        price.removeClass('has-error').find('.help-block').text('');
+        
+        // если не выбран чекбокс - Товар снят с производства
+        if (!out_of_production) {
+            // запускаем валидацию поля - цена
+            console.log(parseFloat(price.find('#orderitemprice-price').val()));
+            if (parseFloat(price.find('#orderitemprice-price').val()) < 180) {
+                price.addClass('has-error').find('.help-block').text('$messagePrice');
+                isError = true;
+            }
+        }
+    });
+    
+    if (isError) {
+        return false;
+    }
+    
+    // send form
+    $.post('$url', form.serialize()+'&action-save-answer=1').done(function (data) {
+        if (data.OrderAnswer) {
+            form
+                .find('.field-orderanswer-answer')
+                .addClass('has-error')
+                .find('.help-block')
+                .text(data.OrderAnswer.answer);
+        }
+        if (data.OrderItemPrice) {
+            $.each(data.OrderItemPrice, function( product_id, error ) {
+                form
+                    .find('input[name="OrderItemPrice['+product_id+'][price]"]')
+                    .parent()
+                    .addClass('has-error')
+                    .find('.help-block').text(error.price);
+            });
+        }
+        
+        if (data.success == 1) {
+            document.location.reload(true);
+        }
+    }, 'json');
+      
+    return false;
+});
+
+// Если происходит переключение именно чекбокса - Товар снят с производства
+$(".manager-history-list").on('change', 'input[type="checkbox"].field-orderitemprice-out_of_production', function() {
+    // и если этот чекбокс выбран
+    if ($(this).prop('checked')) {
+        // находим и отключаем поле - цена
+        $(this).closest('tr').siblings('tr.orderlist-price-tr').find('input.orderlist-price-field').prop('disabled', true);
+        // также прячем сообщение об ошибке в поле цена
+        $(this).closest('tr').siblings('tr.orderlist-price-tr').find('.field-orderitemprice-price').find('.help-block').addClass('hidden');
+    }
+    else {
+        // иначе включаем поле цена
+        $(this).closest('tr').siblings('tr.orderlist-price-tr').find('input.orderlist-price-field').prop('disabled', false);
+        // также убыраем скритие сообщения об ошибке в поле цены
+        $(this).closest('tr').siblings('tr.orderlist-price-tr').find('.field-orderitemprice-price').find('.help-block').removeClass('hidden');
+    }
+});
+JS;
+
+    $this->registerJs($script);
+}

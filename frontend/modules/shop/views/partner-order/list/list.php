@@ -88,7 +88,7 @@ use frontend\modules\shop\models\Order;
                     </div>
                     <div class="manager-history-list">
 
-                        <?php foreach ($models->getModels() as $one_key => $modelOrder) { ?>
+                        <?php foreach ($models->getModels() as $modelOrder) { ?>
                             <div class="item" data-hash="<?= $modelOrder->id; ?>">
 
                                 <ul class="orders-title-block flex">
@@ -151,7 +151,6 @@ use frontend\modules\shop\models\Order;
                                         ]);
                                     } else {
                                         echo $this->render('_list_item', [
-                                            'one_key' => $one_key,
                                             'modelOrder' => $modelOrder,
                                             'modelOrderAnswer' => $modelOrder->orderAnswer,
                                         ]);

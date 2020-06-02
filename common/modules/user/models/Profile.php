@@ -4,9 +4,7 @@ namespace common\modules\user\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-//
 use voskobovich\behaviors\ManyToManyBehavior;
-//
 use common\modules\user\User as UserModule;
 use common\modules\location\models\{
     City, Country
@@ -75,6 +73,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'class' => ManyToManyBehavior::className(),
                 'relations' => [
                     'city_ids' => 'cities',
+                    'country_ids' => 'countries',
                 ],
             ],
         ]);
@@ -144,6 +143,7 @@ class Profile extends \thread\modules\user\models\Profile
             [
                 [
                     'city_ids',
+                    'countries_ids',
                     'country_cities_1',
                     'country_cities_2',
                     'country_cities_3',
@@ -258,6 +258,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'show_contacts',
                 'show_contacts_on_sale',
                 'city_ids',
+                'countries_ids',
                 'country_cities_1',
                 'country_cities_2',
                 'country_cities_3',
@@ -305,6 +306,7 @@ class Profile extends \thread\modules\user\models\Profile
             'show_contacts' => Yii::t('app', 'Показывать в контактах'),
             'show_contacts_on_sale' => Yii::t('app', 'Показывать контакты в распродаже'),
             'city_ids' => Yii::t('app', 'Ответы в городах'),
+            'countries_ids' => Yii::t('app', 'Ответы в странах'),
             'factory_package' => Yii::t('app', 'Package'),
             'cape_index' => Yii::t('app', 'CAPE index'),
             'image_link' => Yii::t('app', 'Image link'),
@@ -386,6 +388,17 @@ class Profile extends \thread\modules\user\models\Profile
         return $this
             ->hasMany(City::class, ['id' => 'location_city_id'])
             ->viaTable('fv_user_rel_location_city', ['user_id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getCountries()
+    {
+        return $this
+            ->hasMany(Country::class, ['id' => 'location_country_id'])
+            ->viaTable('fv_user_rel_location_country', ['user_id' => 'user_id']);
     }
 
     /**
@@ -489,6 +502,31 @@ class Profile extends \thread\modules\user\models\Profile
                 return true;
             } elseif (in_array('https://www.myarredo.by/', $matches[1])) {
                 return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param int $country_id
+     * @return bool
+     * @throws \Throwable
+     */
+    public function getPossibilityToAnswerForFactory($country_id = 0)
+    {
+        if (Yii::$app->user->identity->group->role == 'factory') {
+            return true;
+        }
+
+        if ($country_id) {
+            $modelCountries = Yii::$app->getUser()->getIdentity()->profile->countries;
+            if ($modelCountries != null) {
+                foreach ($modelCountries as $item) {
+                    if ($item['id'] == $country_id) {
+                        return true;
+                    }
+                }
             }
         }
 

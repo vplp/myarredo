@@ -14,7 +14,6 @@ use frontend\modules\catalog\models\Product;
 /* @var $modelOrder Order */
 /* @var $modelOrderAnswer OrderAnswer */
 /* @var $orderItem OrderItem */
-/* @var $one_key integer */
 
 $user = Yii::$app->user->identity;
 $dealers_can_answer = [];
@@ -30,7 +29,7 @@ if ($user->profile->possibilityToAnswer) { ?>
     <div class="hidden-order-in ordersanswer-box">
         <div class="flex-product orderanswer-cont">
 
-            <?php foreach ($modelOrder->items as $key_numb => $orderItem) {
+            <?php foreach ($modelOrder->items as $orderItem) {
                 $dealers_can_answer[] = $orderItem->product->factory
                     ? $orderItem->product->factory->dealers_can_answer
                     : 0;
@@ -114,7 +113,7 @@ if ($user->profile->possibilityToAnswer) { ?>
                                 <?= $form
                                     ->field($orderItem->orderItemPrice, 'out_of_production')
                                     ->checkbox([
-                                        'id' => 'orderitemprice-out_of_production' . $one_key . $key_numb,
+                                        'id' => 'orderitemprice-out_of_production' . $orderItem->id,
                                         'name' => 'OrderItemPrice[' . $orderItem->product_id . '][out_of_production]',
                                         'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true,
                                         'class' => 'field-orderitemprice-out_of_production outof-prod-checkbox'
