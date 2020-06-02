@@ -3,7 +3,6 @@
 namespace frontend\modules\menu\widgets\menu;
 
 use thread\app\base\widgets\Widget;
-//
 use frontend\modules\menu\models\{
     Menu as ModelMenu, MenuItem
 };
