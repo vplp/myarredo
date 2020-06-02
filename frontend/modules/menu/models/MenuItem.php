@@ -89,11 +89,11 @@ final class MenuItem extends \common\modules\menu\models\MenuItem implements Bas
      */
     public static function getAllByGroup($group = '', $parent = 0)
     {
-        $result = self::getDb()->cache(function ($db) use ($group, $parent) {
+        //$result = self::getDb()->cache(function ($db) use ($group, $parent) {
             return self::findBase()->group_id($group)->parent_id($parent)->all();
-        }, 60 * 60);
+        //}, 60 * 60);
 
-        return $result;
+        //return $result;
     }
 
     /**
