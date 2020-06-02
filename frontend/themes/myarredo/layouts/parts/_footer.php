@@ -82,9 +82,9 @@ $bundle = AppAsset::register($this);
                         <?php
                         if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
                             echo '';
-                        } elseif (Yii::$app->city->domain != 'com') {
+                        } elseif (DOMAIN != 'com') {
                             echo Menu::widget(['alias' => 'footer']);
-                        } elseif (Yii::$app->city->domain == 'com') {
+                        } elseif (DOMAIN == 'com') {
                             echo Menu::widget(['alias' => 'footer_com']);
                         }?>
 
