@@ -87,11 +87,7 @@ class AdminOrderController extends BaseController
             }
         }
 
-        $url = $model->product_type == 'product'
-            ? Url::toRoute(['/shop/admin-order/list'])
-            : Url::toRoute(['/shop/admin-order/list-italy']);
-
-        return $this->redirect($url . '#' . $model->id);
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     /**
