@@ -7,7 +7,7 @@ use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{Factory, Product, ProductLang};
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\shop\widgets\request\{
-    RequestPrice, RequestNotFound
+    RequestPrice, RequestFindProduct
 };
 use frontend\modules\catalog\widgets\product\ViewedProducts;
 
@@ -286,7 +286,7 @@ $this->title = $this->context->title;
                                     <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
                                     <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
 
-                                    <?php //RequestNotFound::widget([]) ?>
+                                    <?= RequestFindProduct::widget([]) ?>
                                 </div>
 
                             <?php } else { ?>

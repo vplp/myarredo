@@ -21,7 +21,6 @@ $factoryDealersId = [];
 
 if ($user->profile->possibilityToAnswer) { ?>
     <?php $form = ActiveForm::begin([
-        'id' => 'OrderAnswerForm',
         'options' => ['data' => ['pjax' => true]],
         'action' => $modelOrder->getPartnerOrderOnListUrl(),
     ]); ?>
@@ -155,11 +154,17 @@ if ($user->profile->possibilityToAnswer) { ?>
                                 </ul>
                             <?php } ?>
                         </div>
-
                     <?php } ?>
-
                 </div>
+            <?php } ?>
 
+
+            <?php if ($modelOrder->image_link) { ?>
+                <div class="basket-item-info">
+                    <div class="img-cont">
+                        <?= Html::img($modelOrder->getImageLink()); ?>
+                    </div>
+                </div>
             <?php } ?>
 
         </div>

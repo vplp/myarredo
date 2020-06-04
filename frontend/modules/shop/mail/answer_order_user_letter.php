@@ -1,8 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-
-//
 use frontend\modules\catalog\models\Product;
 use frontend\modules\shop\models\{
     Order, OrderItem
@@ -37,9 +35,9 @@ use frontend\modules\shop\models\{
         </p>
     </div>
 
+    <?php if ($modelOrder->items) { ?>
     <div style="background-color:#fff; padding:20px; clear: both;">
         <p style="color: #591612; font-size: 16px;"><?= Yii::t('app', 'Цены на запрошенные товары') ?></p>
-
         <?php foreach ($modelOrder->items as $item) { ?>
             <div style="clear: both; height: 100px;">
                 <div style="float: left;">
@@ -66,10 +64,9 @@ use frontend\modules\shop\models\{
                     } ?>
                 </div>
             </div>
-
         <?php } ?>
-
     </div>
+    <?php } ?>
 
     <?php if ($modelOrder->orderAnswer->answer) { ?>
         <div style="background-color:#fff; padding:20px;">

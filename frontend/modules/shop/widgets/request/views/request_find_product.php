@@ -36,7 +36,10 @@ $model->user_agreement = 1;
 
                 <?php $form = ActiveForm::begin([
                     'method' => 'post',
-                    'action' => Url::toRoute('/shop/cart/request-not-found'),
+                    'action' => Url::toRoute('/shop/cart/request-find-product'),
+                    'options' => [
+                        'enctype' => 'multipart/form-data'
+                    ]
                 ]); ?>
 
                 <?= $form
@@ -90,6 +93,10 @@ $model->user_agreement = 1;
                     ->field($model, 'comment')
                     ->textarea(['placeholder' => Yii::t('app', 'Comment')])
                     ->label(false) ?>
+
+                <?= $form
+                    ->field($model, 'image_link')
+                    ->fileInput() ?>
 
                 <?= $form
                     ->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])

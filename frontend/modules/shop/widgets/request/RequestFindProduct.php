@@ -7,13 +7,13 @@ use yii\base\Widget;
 use frontend\modules\shop\models\CartCustomerForm;
 
 /**
- * Class RequestNotFound
+ * Class RequestFindProduct
  *
  * @package frontend\modules\shop\widgets\cart
  */
-class RequestNotFound extends Widget
+class RequestFindProduct extends Widget
 {
-    public $view = 'request_not_found';
+    public $view = 'request_find_product';
 
     /**
      * @return string
@@ -21,7 +21,6 @@ class RequestNotFound extends Widget
     public function run()
     {
         $model = new CartCustomerForm();
-
         $model->setScenario('frontend');
 
         $model->load(Yii::$app->getRequest()->post());

@@ -33,6 +33,8 @@ class CartCustomerForm extends Model
     public $pay;
     public $user_agreement;
 
+    public $image_link;
+
     public $country_code;
     public $city_id;
 
@@ -61,6 +63,8 @@ class CartCustomerForm extends Model
                 'requiredValue' => 1,
                 'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
             ],
+            [['image_link'], 'string', 'max' => 255],
+            ['image_link', 'file', 'extensions' => ['png', 'jpg'], 'maxSize' => 1024 * 500],
             [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::class]
         ];
     }
@@ -101,6 +105,7 @@ class CartCustomerForm extends Model
             'user_agreement' => Yii::t('app', 'Подтверждаю <a href="/terms-of-use/" target="_blank">пользовательское соглашение</a>'),
             'country_code' => Yii::t('app', 'Country'),
             'city_id' => Yii::t('app', 'City'),
+            'image_link' => Yii::t('app', 'Image link'),
         ];
     }
 

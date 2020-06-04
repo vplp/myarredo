@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-//
 use frontend\modules\catalog\models\ItalianProduct;
 use frontend\modules\shop\models\{
     Order, OrderItem
@@ -36,33 +35,32 @@ use frontend\modules\shop\models\{
         </p>
     </div>
 
-    <div style="background-color:#fff; padding:20px; clear: both;">
-        <p style="color: #591612; font-size: 16px;"><?= Yii::t('app', 'Цены на запрошенные товары') ?></p>
-
-        <?php foreach ($modelOrder->items as $item) { ?>
-            <div style="clear: both; height: 100px;">
-                <div style="float: left;">
-                    <?= Html::a(
-                        $item->product['lang']['title'],
-                        ItalianProduct::getUrl($item->product['alias']),
-                        ['style' => 'width: 140px; max-height: 100px;']
-                    ); ?>
+    <?php if ($modelOrder->items) { ?>
+        <div style="background-color:#fff; padding:20px; clear: both;">
+            <p style="color: #591612; font-size: 16px;"><?= Yii::t('app', 'Цены на запрошенные товары') ?></p>
+            <?php foreach ($modelOrder->items as $item) { ?>
+                <div style="clear: both; height: 100px;">
+                    <div style="float: left;">
+                        <?= Html::a(
+                            $item->product['lang']['title'],
+                            ItalianProduct::getUrl($item->product['alias']),
+                            ['style' => 'width: 140px; max-height: 100px;']
+                        ); ?>
+                    </div>
+                    <div style="float: left; margin: 10px 30px;">
+                        <?= Html::a(
+                            $item->product['lang']['title'],
+                            ItalianProduct::getUrl($item->product['alias']),
+                            ['style' => 'font-weight:bold; color: #000; text-transform: uppercase; text-decoration: underline;']
+                        ); ?>
+                        <br>
+                        <span style="color:#9f8b80; font-size: 14px;"><?= $item->product['factory']['title']; ?></span>
+                    </div>
+                    <div style="padding-top: 10px; color:#8e3628"><?= $item->orderItemPrice->price; ?> &euro;</div>
                 </div>
-                <div style="float: left; margin: 10px 30px;">
-                    <?= Html::a(
-                        $item->product['lang']['title'],
-                        ItalianProduct::getUrl($item->product['alias']),
-                        ['style' => 'font-weight:bold; color: #000; text-transform: uppercase; text-decoration: underline;']
-                    ); ?>
-                    <br>
-                    <span style="color:#9f8b80; font-size: 14px;"><?= $item->product['factory']['title']; ?></span>
-                </div>
-                <div style="padding-top: 10px; color:#8e3628"><?= $item->orderItemPrice->price; ?> &euro;</div>
-            </div>
-
-        <?php } ?>
-
-    </div>
+            <?php } ?>
+        </div>
+    <?php } ?>
 
     <?php if ($modelOrder->orderAnswer->answer) { ?>
         <div style="background-color:#fff; padding:20px;">

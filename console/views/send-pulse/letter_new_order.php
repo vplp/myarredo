@@ -34,7 +34,7 @@ if (in_array($order->lang, ['ru-RU'])) {
 
             <?php if (in_array($order->lang, ['ru-RU'])) { ?>
                 <span style="display:block;">
-                    <?= Yii::t('app', 'Клиент из г.') .  $order->city->lang->title ?>
+                    <?= Yii::t('app', 'Клиент из г.') . $order->city->lang->title ?>
                 </span>
             <?php } ?>
         </p>
@@ -43,23 +43,30 @@ if (in_array($order->lang, ['ru-RU'])) {
         <p><?= Yii::t('app', 'Клиента интересует следующая мебель') ?>:</p>
 
         <?php
-        foreach ($order->items as $item) {
-            echo Html::beginTag('p');
+        if ($order->items) {
+            foreach ($order->items as $item) {
+                echo Html::beginTag('p');
 
-            if (Product::isImage($item->product['image_link'])) {
-                echo Html::img(
-                    Product::getImage($item->product['image_link']),
-                    ['class' => 'width: 140px; max-height: 100px;']
+                if (Product::isImage($item->product['image_link'])) {
+                    echo Html::img(
+                        Product::getImage($item->product['image_link']),
+                        ['class' => 'width: 140px; max-height: 100px;']
+                    );
+                }
+
+                echo Html::a(
+                    $item->product['lang']['title'],
+                    'https://www.myarredo.' . $domain . '/product/' . $item->product['alias'] . '/',
+                    ['style' => 'font-weight:bold; display: block; color: #000; text-transform: uppercase; text-decoration: underline;']
                 );
+
+                echo Html::endTag('p');
             }
-
-            echo Html::a(
-                $item->product['lang']['title'],
-                'https://www.myarredo.' . $domain . '/product/' . $item->product['alias'] . '/',
-                ['style' => 'font-weight:bold; display: block; color: #000; text-transform: uppercase; text-decoration: underline;']
-            );
-
-            echo Html::endTag('p');
+        } else {
+            echo Html::tag('p', $order->comment);
+            if ($order->image_link) {
+                echo Html::tag('p', Html::img('https://img.myarredo.' . DOMAIN . $order->getImageLink(), ['style' => 'width: 140px; max-height: 100px;']));
+            }
         }
 
         // phone

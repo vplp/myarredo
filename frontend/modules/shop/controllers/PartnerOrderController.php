@@ -157,7 +157,7 @@ class PartnerOrderController extends BaseController
     {
         if (Yii::$app->request->isPost &&
             (Yii::$app->request->post('OrderAnswer'))['order_id'] &&
-            Yii::$app->request->post('OrderItemPrice') &&
+            //Yii::$app->request->post('OrderItemPrice') &&
             Yii::$app->request->post('action-save-answer')
         ) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -183,46 +183,48 @@ class PartnerOrderController extends BaseController
 
                 $dataOrderItemPrice = Yii::$app->request->post('OrderItemPrice');
 
-                foreach ($dataOrderItemPrice as $product_id => $modelPrice) {
-                    $modelOrderItemPrice = OrderItemPrice::findByOrderIdUserIdProductId(
-                        $modelOrder->id,
-                        Yii::$app->getUser()->getId(),
-                        $product_id
-                    );
+                if ($dataOrderItemPrice) {
+                    foreach ($dataOrderItemPrice as $product_id => $modelPrice) {
+                        $modelOrderItemPrice = OrderItemPrice::findByOrderIdUserIdProductId(
+                            $modelOrder->id,
+                            Yii::$app->getUser()->getId(),
+                            $product_id
+                        );
 
-                    if ($modelOrderItemPrice == null) {
-                        $modelOrderItemPrice = new OrderItemPrice();
-                    }
+                        if ($modelOrderItemPrice == null) {
+                            $modelOrderItemPrice = new OrderItemPrice();
+                        }
 
-                    $modelOrderItemPrice->setScenario('frontend');
+                        $modelOrderItemPrice->setScenario('frontend');
 
-                    $modelOrderItemPrice->order_id = $modelOrder->id;
-                    $modelOrderItemPrice->user_id = Yii::$app->getUser()->getId();
-                    $modelOrderItemPrice->product_id = $product_id; // intval($modelPrice['product_id']);
-                    $modelOrderItemPrice->price = isset($modelPrice['price']) ? intval($modelPrice['price']) : 0;
-                    $modelOrderItemPrice->out_of_production = $modelPrice['out_of_production'] ?? 0;
+                        $modelOrderItemPrice->order_id = $modelOrder->id;
+                        $modelOrderItemPrice->user_id = Yii::$app->getUser()->getId();
+                        $modelOrderItemPrice->product_id = $product_id; // intval($modelPrice['product_id']);
+                        $modelOrderItemPrice->price = isset($modelPrice['price']) ? intval($modelPrice['price']) : 0;
+                        $modelOrderItemPrice->out_of_production = $modelPrice['out_of_production'] ?? 0;
 
-                    if ($modelOrderItemPrice->load(Yii::$app->request->post()) && $modelOrderItemPrice->validate()) {
-                        /** @var PDO $transaction */
-                        $transaction = $modelOrderItemPrice::getDb()->beginTransaction();
-                        try {
-                            $save = $modelOrderItemPrice->save();
-                            if ($save) {
-                                $transaction->commit();
-                            } else {
+                        if ($modelOrderItemPrice->load(Yii::$app->request->post()) && $modelOrderItemPrice->validate()) {
+                            /** @var PDO $transaction */
+                            $transaction = $modelOrderItemPrice::getDb()->beginTransaction();
+                            try {
+                                $save = $modelOrderItemPrice->save();
+                                if ($save) {
+                                    $transaction->commit();
+                                } else {
+                                    $transaction->rollBack();
+                                }
+                            } catch (Exception $e) {
                                 $transaction->rollBack();
                             }
-                        } catch (Exception $e) {
-                            $transaction->rollBack();
+                        } else {
+                            $response['success'] = 0;
+                            $response['OrderItemPrice'][$product_id] = $modelOrderItemPrice->getFirstErrors();
                         }
-                    } else {
-                        $response['success'] = 0;
-                        $response['OrderItemPrice'][$product_id] = $modelOrderItemPrice->getFirstErrors();
                     }
-                }
 
-                if (isset($response['OrderItemPrice'])) {
-                    return $response;
+                    if (isset($response['OrderItemPrice'])) {
+                        return $response;
+                    }
                 }
 
                 /**

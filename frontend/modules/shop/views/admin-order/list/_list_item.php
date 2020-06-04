@@ -17,82 +17,90 @@ use frontend\modules\catalog\models\Product;
 
 <div class="hidden-order-in">
     <div class="flex-product">
+        <?php if ($modelOrder->items) { ?>
+            <?php foreach ($modelOrder->items as $orderItem) { ?>
+                <div class="basket-item-info">
 
-        <?php foreach ($modelOrder->items as $orderItem) { ?>
+                    <div class="img-cont">
+                        <?= Html::a(
+                            Html::img(Product::getImageThumb($orderItem->product['image_link'])),
+                            Product::getUrl($orderItem->product['alias']),
+                            ['target' => '_blank']
+                        ); ?>
+                    </div>
+                    <table class="char" width="100%">
+                        <tr>
+                            <td><?= Yii::t('app', 'Предмет') ?></td>
+                            <td>
+                                <?= Html::a(
+                                    $orderItem->product['lang']['title'],
+                                    Product::getUrl($orderItem->product['alias'])
+                                ); ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><?= Yii::t('app', 'Артикул') ?></td>
+                            <td>
+                                <?= $orderItem->product['article'] ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><?= Yii::t('app', 'Factory') ?></td>
+                            <td><?= $orderItem->product['factory']['title'] ?></td>
+                        </tr>
+                        <tr>
+                            <td><?= Yii::t('app', 'Цена для клиента') ?></td>
+                            <td>
+                                <?php
+                                foreach ($orderItem->orderItemPrices as $price) {
+                                    echo '<div><strong>' . $price['user']['profile']['lang']['name_company'] . '</strong></div>' .
+                                        '<div>' . $price['user']['email'] . '</div>' .
+                                        '<div><strong>' . ($price['out_of_production'] == '1' ? Yii::t('app', 'Снят с производства') : $price['price']) . '</strong></div><br>';
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="downloads">
+                        <?php
+                        $pricesFiles = [];
+                        if (isset($orderItem->product->factoryPricesFiles)) {
+                            $pricesFiles = $orderItem->product->factoryPricesFiles;
+                        } else if (isset($orderItem->product->factory->pricesFiles)) {
+                            $pricesFiles = $orderItem->product->factory->pricesFiles;
+                        }
+
+                        if (!empty($pricesFiles)) { ?>
+                            <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
+                            <ul class="pricelist">
+                                <?php foreach ($pricesFiles as $priceFile) {
+                                    if ($fileLink = $priceFile->getFileLink()) { ?>
+                                        <li>
+                                            <?= Html::a(
+                                                $priceFile->title,
+                                                $fileLink,
+                                                [
+                                                    'target' => '_blank',
+                                                    'class' => 'click-on-factory-file',
+                                                    'data-id' => $priceFile->id
+                                                ]
+                                            ) ?>
+                                        </li>
+                                    <?php }
+                                } ?>
+                            </ul>
+                        <?php } ?>
+                    </div>
+                </div>
+            <?php } ?>
+        <?php } ?>
+
+        <?php if ($modelOrder->image_link) { ?>
             <div class="basket-item-info">
-
                 <div class="img-cont">
-                    <?= Html::a(
-                        Html::img(Product::getImageThumb($orderItem->product['image_link'])),
-                        Product::getUrl($orderItem->product['alias']),
-                        ['target' => '_blank']
-                    ); ?>
+                    <?= Html::img($modelOrder->getImageLink()); ?>
                 </div>
-                <table class="char" width="100%">
-                    <tr>
-                        <td><?= Yii::t('app', 'Предмет') ?></td>
-                        <td>
-                            <?= Html::a(
-                                $orderItem->product['lang']['title'],
-                                Product::getUrl($orderItem->product['alias'])
-                            ); ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><?= Yii::t('app', 'Артикул') ?></td>
-                        <td>
-                            <?= $orderItem->product['article'] ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><?= Yii::t('app', 'Factory') ?></td>
-                        <td><?= $orderItem->product['factory']['title'] ?></td>
-                    </tr>
-                    <tr>
-                        <td><?= Yii::t('app', 'Цена для клиента') ?></td>
-                        <td>
-                            <?php
-                            foreach ($orderItem->orderItemPrices as $price) {
-                                echo '<div><strong>' . $price['user']['profile']['lang']['name_company'] . '</strong></div>' .
-                                    '<div>' . $price['user']['email'] . '</div>' .
-                                    '<div><strong>' . ($price['out_of_production'] == '1' ? Yii::t('app', 'Снят с производства') : $price['price']) . '</strong></div><br>';
-                            }
-                            ?>
-                        </td>
-                    </tr>
-                </table>
-
-                <div class="downloads">
-                    <?php
-                    $pricesFiles = [];
-                    if (isset($orderItem->product->factoryPricesFiles)) {
-                        $pricesFiles = $orderItem->product->factoryPricesFiles;
-                    } else if (isset($orderItem->product->factory->pricesFiles)) {
-                        $pricesFiles = $orderItem->product->factory->pricesFiles;
-                    }
-
-                    if (!empty($pricesFiles)) { ?>
-                        <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
-                        <ul class="pricelist">
-                            <?php foreach ($pricesFiles as $priceFile) {
-                                if ($fileLink = $priceFile->getFileLink()) { ?>
-                                    <li>
-                                        <?= Html::a(
-                                            $priceFile->title,
-                                            $fileLink,
-                                            [
-                                                'target' => '_blank',
-                                                'class' => 'click-on-factory-file',
-                                                'data-id' => $priceFile->id
-                                            ]
-                                        ) ?>
-                                    </li>
-                                <?php }
-                            } ?>
-                        </ul>
-                    <?php } ?>
-                </div>
-
             </div>
         <?php } ?>
 

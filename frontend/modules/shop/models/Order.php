@@ -23,7 +23,7 @@ class Order extends \common\modules\shop\models\Order
     public static function findBase()
     {
         return self::find()
-            ->innerJoinWith(['items', 'customer'])
+            ->innerJoinWith([/*'items',*/'customer'])
             ->orderBy(['created_at' => SORT_DESC])
             ->enabled();
     }

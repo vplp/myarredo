@@ -3,12 +3,12 @@
 use yii\helpers\{
     Url, Html
 };
-//
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
     Factory, Category
 };
+use frontend\modules\shop\widgets\request\RequestFindProduct;
 
 /**
  * @var $model Factory
@@ -54,6 +54,8 @@ $route = $model->producing_country_id == 4
                         <div class="fact-img">
                             <?= Html::img(Factory::getImage($model['image_link'])) ?>
                         </div>
+
+                        <?= RequestFindProduct::widget([]) ?>
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-9">
                         <div class="descr">

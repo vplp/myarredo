@@ -11,6 +11,7 @@ use frontend\modules\shop\models\{
     Order,
     search\Order as SearchOrder
 };
+use yii\web\UploadedFile;
 
 /**
  * Class CartController
@@ -21,6 +22,93 @@ class CartController extends BaseController
 {
     public $title = "Cart";
     public $defaultAction = 'notepad';
+
+    /**
+     * @return bool|Response
+     */
+    public function actionRequestFindProduct()
+    {
+        $customerForm = new CartCustomerForm();
+        $customerForm->setScenario('frontend');
+
+        if ($customerForm->load(Yii::$app->getRequest()->post(), 'CartCustomerForm') && $customerForm->validate()) {
+            // сначала добавляем покупателя и получаем его id
+            $customer_id = SearchOrder::addNewCustomer($customerForm);
+
+            /**
+             * новый заказ
+             */
+            $order = new Order();
+            $order->scenario = 'addNewOrder';
+
+            // переносим все атрибуты из заполненой формы в заказ
+            $order->setAttributes($customerForm->getAttributes());
+
+            if ($customerForm->country_code) {
+                $order->country_id = $customerForm->country->id;
+            }
+            $order->product_type = 'product';
+            $order->lang = Yii::$app->language;
+            $order->customer_id = $customer_id;
+            $order->generateToken();
+
+            $file = UploadedFile::getInstance($customerForm, 'image_link');
+
+            if ($file && $file->error == UPLOAD_ERR_OK) {
+                $path = Yii::$app->getModule('shop')->getOrderUploadPath($order);
+
+                @mkdir($path, 0777, true);
+
+                $file->name = uniqid() . '.' . $file->extension;
+                $file->saveAs($path . '/' . $file->name);
+                $order->image_link = $file->name;
+            }
+
+            /** @var PDO $transaction */
+            $transaction = $order::getDb()->beginTransaction();
+            try {
+                if ($order->save()) {
+                    $transaction->commit();
+
+                    /**
+                     * send user letter
+                     */
+                    Yii::$app
+                        ->mailer
+                        ->compose(
+                            '/../mail/new_order_user_letter',
+                            [
+                                'model' => $order,
+                                'customerForm' => $customerForm,
+                                'order' => $order,
+                                'text' => ($order->product_type == 'product')
+                                    ? Yii::$app->param->getByName('MAIL_SHOP_ORDER_TEXT')
+                                    : Yii::$app->param->getByName('MAIL_SHOP_ORDER_TEXT_FOR_SALE_ITALY')
+                            ]
+                        )
+                        ->setTo($customerForm['email'])
+                        ->setSubject(
+                            Yii::t('app', 'Your order № {order_id}', ['order_id' => $order['id']])
+                        )
+                        ->send();
+
+                    // message
+                    Yii::$app->getSession()->setFlash(
+                        'success',
+                        Yii::t('app', 'Отправлено')
+                    );
+                } else {
+                    $transaction->rollBack();
+                }
+            } catch (Exception $e) {
+                Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
+                $transaction->rollBack();
+                return false;
+            }
+        }
+
+        return $this->redirect(Yii::$app->request->referrer);
+    }
 
     /**
      * Notepad

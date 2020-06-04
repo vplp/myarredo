@@ -50,6 +50,14 @@ use frontend\modules\catalog\models\Product;
             </div>
         <?php } ?>
 
+        <?php if ($modelOrder->image_link) { ?>
+            <div class="basket-item-info">
+                <div class="img-cont">
+                    <?= Html::img($modelOrder->getImageLink()); ?>
+                </div>
+            </div>
+        <?php } ?>
+
     </div>
     <div class="form-wrap">
         <div class="form-group">

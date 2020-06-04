@@ -189,9 +189,9 @@ $(".manager-history-list").on("click", ".action-save-answer", function() {
     form.find('.field-orderanswer-answer').removeClass('has-error');
     form.find('.help-block').text('');
     
-    var isError = false;
-    
     form.find('.basket-item-info').each(function (index, value) {
+        var isError = false;
+         
         var price = $(value).find('.field-orderitemprice-price');
         var out_of_production = $(value).find('input[type="checkbox"].outof-prod-checkbox').prop('checked');
 
@@ -205,11 +205,11 @@ $(".manager-history-list").on("click", ".action-save-answer", function() {
                 isError = true;
             }
         }
+        
+       if (isError) {
+            return false;
+        }
     });
-    
-    if (isError) {
-        return false;
-    }
     
     // send form
     $.post('$url', form.serialize()+'&action-save-answer=1').done(function (data) {

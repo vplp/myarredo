@@ -4,6 +4,7 @@ namespace common\modules\shop\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+
 //
 use common\modules\location\models\{
     City, Country
@@ -22,6 +23,7 @@ use common\modules\location\models\{
  * @property integer $items_count
  * @property integer $items_total_count
  * @property string $comment
+ * @property string $image_link
  * @property string $admin_comment
  * @property string $token
  * @property integer $created_at
@@ -62,7 +64,7 @@ class Order extends \thread\modules\shop\models\Order
                 'in',
                 'range' => array_keys(self::statusKeyRange())
             ],
-
+            [['image_link'], 'string', 'max' => 255],
             // set default values
             [['delivery_method_id', 'payment_method_id', 'country_id', 'city_id'], 'default', 'value' => 0]
         ];
@@ -90,6 +92,7 @@ class Order extends \thread\modules\shop\models\Order
                 'items_total_count',
                 'order_status',
                 'comment',
+                'image_link',
                 'admin_comment',
                 'token',
                 'published',
@@ -105,6 +108,7 @@ class Order extends \thread\modules\shop\models\Order
                 'payment_method_id',
                 'order_status',
                 'comment',
+                'image_link',
                 'customer_id',
                 'country_id',
                 'city_id',
@@ -126,6 +130,7 @@ class Order extends \thread\modules\shop\models\Order
             'lang' => Yii::t('app', 'lang'),
             'comment' => Yii::t('app', 'Comment client'),
             'admin_comment' => Yii::t('app', 'Admin comment'),
+            'image_link' => Yii::t('app', 'Image link'),
         ];
 
         return ArrayHelper::merge(parent::attributeLabels(), $attributeLabels);
@@ -239,5 +244,33 @@ class Order extends \thread\modules\shop\models\Order
         return ($this->isArchive())
             ? Yii::t('app', 'Archival')
             : Yii::t('app', 'New');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBaseUploadPath()
+    {
+        return Yii::$app->getModule('shop')->getShopBaseUploadPath('order', $this);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBaseUploadUrl()
+    {
+        return Yii::$app->getModule('shop')->getShopBaseUploadUrl('order', $this);
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getImageLink()
+    {
+        $image = null;
+        if (!empty($this->image_link) && is_file($this->getBaseUploadPath() . '/' . $this->image_link)) {
+            $image = $this->getBaseUploadUrl() . '/' . $this->image_link;
+        }
+        return $image;
     }
 }
