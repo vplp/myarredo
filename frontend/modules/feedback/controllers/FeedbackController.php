@@ -51,7 +51,6 @@ class FeedbackController extends BaseController
             'label' => Yii::t('app', 'Contacts'),
             'url' => Url::toRoute(['/feedback/feedback/index'])
         ];
-        //
 
         return $this->render('index', [
             'form' => new Question([

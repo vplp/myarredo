@@ -186,8 +186,7 @@ $(".manager-history-list").on("click", ".action-save-answer", function() {
         
         // если не выбран чекбокс - Товар снят с производства
         if (!out_of_production) {
-            // запускаем валидацию поля - цена
-            console.log(parseFloat(price.find('#orderitemprice-price').val()));
+            // запускаем валидацию поля - цена        
             if (parseFloat(price.find('#orderitemprice-price').val()) < 180) {
                 price.addClass('has-error').find('.help-block').text('$messagePrice');
                 isError = true;

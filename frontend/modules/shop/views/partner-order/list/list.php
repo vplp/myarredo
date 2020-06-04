@@ -184,10 +184,7 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) {
 $(".manager-history-list").on("click", ".action-save-answer", function() {
     var thisBtn = $(this);
     var form = thisBtn.parent('form');
-
-    // Отключаем кнопку пока не придет ответ от сервера
-    thisBtn.attr('disabled', true);
-  
+    
     // clear messages
     form.find('.field-orderanswer-answer').removeClass('has-error');
     form.find('.help-block').text('');
@@ -236,11 +233,6 @@ $(".manager-history-list").on("click", ".action-save-answer", function() {
         if (data.success == 1) {
             document.location.reload(true);
         }
-        else {
-            // Делаем кнопку опять активной
-            thisBtn.attr('disabled', false);
-        }
-            
     }, 'json');
       
     return false;
