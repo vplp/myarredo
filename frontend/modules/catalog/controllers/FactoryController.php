@@ -7,11 +7,15 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
-//
 use frontend\components\BaseController;
 use frontend\modules\user\models\User;
 use frontend\modules\catalog\models\{
-    Product, Factory, Sale, FactoryFileClickStats, CountriesFurniture
+    FactoryCatalogsFiles,
+    Product,
+    Factory,
+    Sale,
+    FactoryFileClickStats,
+    CountriesFurniture
 };
 
 /**
@@ -39,6 +43,7 @@ class FactoryController extends BaseController
                     'list' => ['get'],
                     'view' => ['get'],
                     'click-on-file' => ['post'],
+                    'catalog-pdf' => ['get'],
                 ],
             ],
         ];
@@ -273,5 +278,20 @@ class FactoryController extends BaseController
         }
 
         return $response;
+    }
+
+    public function actionCatalogPdf($id)
+    {
+        $model = FactoryCatalogsFiles::findById($id);
+
+        if ($model == null) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        }
+
+        $this->layout = 'pdf';
+
+        return $this->render('pdf', [
+            'model' => $model
+        ]);
     }
 }
