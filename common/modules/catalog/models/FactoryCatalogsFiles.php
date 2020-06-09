@@ -75,8 +75,6 @@ class FactoryCatalogsFiles extends FactoryFile
 
         if (!empty($this->file_link) && is_file($path . '/' . $this->file_link)) {
             $image = $url . '/' . $this->file_link;
-        } else {
-            $image = 'https://www.myarredo.ru/uploads/factoryFileCatalog/' . $this->file_link;
         }
 
         return $image;
