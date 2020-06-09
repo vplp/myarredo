@@ -49,7 +49,9 @@ $this->title = $this->context->title;
                             <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') {
                                 echo Html::a(
                                     Yii::t('app', 'Edit'),
-                                    '/backend/catalog/product/update?id=' . $model['id'],
+                                    ($model['is_composition'])
+                                        ? '/backend/catalog/compositions/update?id=' . $model['id']
+                                        : '/backend/catalog/product/update?id=' . $model['id'],
                                     [
                                         'target' => '_blank'
                                     ]
