@@ -18,18 +18,30 @@ use yii\helpers\Html;
     <div class="downloads">
 
         <?php if (!empty($model->factoryCatalogsFiles)): ?>
-            <p class="title-small"><?= Yii::t('app', 'Посмотреть каталоги') ?></p>
-            <ul>
+            <p class="inpdf-title"><?= Yii::t('app', 'Посмотреть каталоги') ?></p>
+            <ul class="inpdf-list">
+                
                 <?php foreach ($model->factoryCatalogsFiles as $catalogFile): ?>
                     <?php if ($fileLink = $catalogFile->getFileLink()): ?>
                         <li>
                             <?= Html::a(
-                                $catalogFile->title,
+                                $catalogFile->title . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                                'inpdf/web/viewer.html?file=/inpdf/test.pdf',
+                                [
+                                    'target' => '_blank',
+                                    'class' => 'click-on-factory-file btn-inpdf',
+                                    'data-id' => $catalogFile->id,
+                                    'title' => 'Улучшеный просмотр PDF'
+                                ]
+                            ) ?>
+                            <?= Html::a(
+                                '<i class="fa fa-file" aria-hidden="true"></i>',
                                 $fileLink,
                                 [
                                     'target' => '_blank',
-                                    'class' => 'click-on-factory-file',
-                                    'data-id' => $catalogFile->id
+                                    'class' => 'click-on-factory-file btn-inpdf',
+                                    'data-id' => $catalogFile->id,
+                                    'title' => 'Обычный просмотр PDF'
                                 ]
                             ) ?>
                         </li>
@@ -39,8 +51,8 @@ use yii\helpers\Html;
         <?php endif; ?>
 
         <?php if (!empty($model->factoryPricesFiles)): ?>
-            <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
-            <ul>
+            <p class="inpdf-title"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
+            <ul class="inpdf-list">
                 <?php foreach ($model->factoryPricesFiles as $priceFile): ?>
                     <?php if ($fileLink = $priceFile->getFileLink()): ?>
                         <li>
@@ -49,7 +61,7 @@ use yii\helpers\Html;
                                 $fileLink,
                                 [
                                     'target' => '_blank',
-                                    'class' => 'click-on-factory-file',
+                                    'class' => 'click-on-factory-file btn-inpdf',
                                     'data-id' => $priceFile->id
                                 ]
                             ) ?>

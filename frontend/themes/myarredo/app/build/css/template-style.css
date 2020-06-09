@@ -9521,7 +9521,8 @@ body>.modal-backdrop.fade.in{
   width: 100%;
 }
 .btn-gopartner,
-.nav>li>a.btn-gopartner {
+.nav>li>a.btn-gopartner,
+.btn-inpdf {
   text-transform: uppercase;
   font-weight: 600;
   margin-top: 20px;
@@ -9534,11 +9535,14 @@ body>.modal-backdrop.fade.in{
 }
 .btn-gopartner:hover,
 .nav>li>a.btn-gopartner:hover,
-.concact-page .one-cont a.btn-gopartner:hover {
+.concact-page .one-cont a.btn-gopartner:hover,
+.btn-inpdf:hover {
   color: #333331;
   background-color: transparent;
+  text-decoration: none;
 }
-.btn-gopartner .fa {
+.btn-gopartner .fa,
+.btn-inpdf .fa {
   font-size: 18px;
   margin-left: 5px;
 }
@@ -9553,6 +9557,9 @@ body>.modal-backdrop.fade.in{
   padding: 0 0 0 8px;
   transition: 0.3s;
 }
+.btn-inpdf:focus {
+  text-decoration: none;
+}
 .btn-feedback:hover,
 .nav>li>a.btn-feedback:hover {
   background-color: #30302f;
@@ -9564,6 +9571,23 @@ body>.modal-backdrop.fade.in{
 }
 .btn-feedback svg path {
   fill: #ffffff;
+}
+.inpdf-list {
+  padding: 0;
+  margin: 2px 0;
+  padding: 2px 0;
+}
+.inpdf-list li {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0;
+}
+.inpdf-title {
+  color: #787878;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 8px;
+  margin-bottom: 4px;
 }
 .ftr-nav {
   padding: 0 20px;
@@ -9817,7 +9841,9 @@ body>.modal-backdrop.fade.in{
 }
 /* max 992px */
 @media(max-width: 992px) {
-  .btn-gopartner, .nav>li>a.btn-gopartner {
+  .btn-gopartner, 
+  .nav>li>a.btn-gopartner,
+  .btn-inpdf {
     margin-top: 12px;
   }
 }
@@ -10081,7 +10107,9 @@ body>.modal-backdrop.fade.in{
   .ftr-nav {
     max-width: 280px;
   }
-  .btn-gopartner, .nav>li>a.btn-gopartner {
+  .btn-gopartner, 
+  .nav>li>a.btn-gopartner,
+  .btn-inpdf {
     font-size: 12px;
   }
 }
