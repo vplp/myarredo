@@ -21,7 +21,7 @@ use yii\helpers\{
     ['class' => 'filt-but']
 ) ?>
 <div class="price-slider-cont">
-    <?php if ($widthRange && $widthRange['min']['default'] != $widthRange['max']['default']) { ?>
+    <?php if (isset($widthRange['min']) && isset($widthRange['max']) && $widthRange['min']['default'] != $widthRange['max']['default']) { ?>
         <span class="for-filter-text"><?= Yii::t('app', 'Ширина') ?></span>
         <div class="myarredo-slider" data-min="<?= $widthRange['min']['current'] ?>"
              data-max="<?= $widthRange['max']['current'] ?>"></div>
@@ -48,7 +48,7 @@ use yii\helpers\{
         </div>
     <?php } ?>
 
-    <?php if ($heightRange && $heightRange['min']['default'] != $heightRange['max']['default']) { ?>
+    <?php if (isset($heightRange['min']) && isset($heightRange['max']) && $heightRange['min']['default'] != $heightRange['max']['default']) { ?>
         <span class="for-filter-text"><?= Yii::t('app', 'Высота') ?></span>
         <div class="myarredo-slider" data-min="<?= $heightRange['min']['current'] ?>"
              data-max="<?= $heightRange['max']['current'] ?>"></div>
@@ -75,7 +75,7 @@ use yii\helpers\{
         </div>
     <?php } ?>
 
-    <?php if ($lengthRange && $lengthRange['min']['default'] != $lengthRange['max']['default']) { ?>
+    <?php if (isset($lengthRange['min']) && isset($lengthRange['max']) && $lengthRange['min']['default'] != $lengthRange['max']['default']) { ?>
         <span class="for-filter-text"><?= Yii::t('app', 'Длина') ?></span>
         <div class="myarredo-slider" data-min="<?= $lengthRange['min']['current'] ?>"
              data-max="<?= $lengthRange['max']['current'] ?>"></div>
@@ -102,7 +102,7 @@ use yii\helpers\{
         </div>
     <?php } ?>
 
-    <?php if ($diameterRange && $diameterRange['min']['default'] != $diameterRange['max']['default']) { ?>
+    <?php if (isset($diameterRange['min']) && isset($diameterRange['max']) && $diameterRange['min']['default'] != $diameterRange['max']['default']) { ?>
         <span class="for-filter-text"><?= Yii::t('app', 'Диаметр') ?></span>
         <div class="myarredo-slider" data-min="<?= $diameterRange['min']['current'] ?>"
              data-max="<?= $diameterRange['max']['current'] ?>"></div>
@@ -129,7 +129,7 @@ use yii\helpers\{
         </div>
     <?php } ?>
 
-    <?php if ($apportionmentRange && $apportionmentRange['min']['default'] != $apportionmentRange['max']['default']) { ?>
+    <?php if (isset($apportionmentRange['min']) && isset($apportionmentRange['max']) && $apportionmentRange['min']['default'] != $apportionmentRange['max']['default']) { ?>
         <span class="for-filter-text"><?= Yii::t('app', 'Раскладка') ?></span>
         <div class="myarredo-slider" data-min="<?= $apportionmentRange['min']['current'] ?>"
              data-max="<?= $apportionmentRange['max']['current'] ?>"></div>
