@@ -396,6 +396,20 @@ See https://github.com/adobe-type-tools/cmap-resources
 </div> <!-- outerContainer -->
 <div id="printContainer"></div>
 
+<script>
+    // Автоматическая активация поиска если есть поисковый запрос
+    const urlParams = new URLSearchParams(window.location.search);
+    const schParam = urlParams.get('search');
+    if (schParam) {
+    window.onload = function() {
+        // document.getElementById("viewFind").click();
+        var input = document.getElementById("findInput");
+        input.value=schParam;
+        document.getElementById("findNext").click();
+    }
+    }
+</script>
+
 <?php $this->endBody() ?>
 
 </body>
