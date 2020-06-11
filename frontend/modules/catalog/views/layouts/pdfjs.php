@@ -40,7 +40,7 @@ See https://github.com/adobe-type-tools/cmap-resources
     <?php $this->head(); ?>
 
     <!-- This snippet is used in production (included from viewer.html) -->
-    <link rel="resource" type="application/l10n" href="locale/locale.properties">
+    <link rel="resource" type="application/l10n" href="<?= $bundle->baseUrl ?>/web/locale/locale.properties">
 
 </head>
 
