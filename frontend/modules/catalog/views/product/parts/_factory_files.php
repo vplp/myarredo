@@ -24,7 +24,7 @@ use yii\helpers\{
                         <li>
                             <?= Html::a(
                                 $catalogFile->title . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
-                                Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=/inpdf/test.pdf',
+                                Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink . '&search=' . $model->getTitle(),
                                 [
                                     'target' => '_blank',
                                     'class' => 'click-on-factory-file btn-inpdf',
@@ -55,6 +55,16 @@ use yii\helpers\{
                 <?php foreach ($model->factoryPricesFiles as $priceFile) {
                     if ($fileLink = $priceFile->getFileLink()) { ?>
                         <li>
+                            <?= Html::a(
+                                $catalogFile->title . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                                Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink . '&search=' . $model->article,
+                                [
+                                    'target' => '_blank',
+                                    'class' => 'click-on-factory-file btn-inpdf',
+                                    'data-id' => $priceFile->id,
+                                    'title' => 'Улучшеный просмотр PDF'
+                                ]
+                            ) ?>
                             <?= Html::a(
                                 $priceFile->title,
                                 $fileLink,
