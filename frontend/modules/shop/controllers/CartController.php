@@ -142,7 +142,7 @@ class CartController extends BaseController
                 /**
                  * send user letter
                  */
-                Yii::$app
+                @Yii::$app
                     ->mailer
                     ->compose(
                         '/../mail/new_order_user_letter',
