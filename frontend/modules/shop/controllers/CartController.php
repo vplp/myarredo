@@ -142,24 +142,24 @@ class CartController extends BaseController
                 /**
                  * send user letter
                  */
-                @Yii::$app
-                    ->mailer
-                    ->compose(
-                        '/../mail/new_order_user_letter',
-                        [
-                            'model' => $new_order,
-                            'customerForm' => $customerForm,
-                            'order' => $order,
-                            'text' => ($new_order->product_type == 'product')
-                                ? Yii::$app->param->getByName('MAIL_SHOP_ORDER_TEXT')
-                                : Yii::$app->param->getByName('MAIL_SHOP_ORDER_TEXT_FOR_SALE_ITALY')
-                        ]
-                    )
-                    ->setTo($customerForm['email'])
-                    ->setSubject(
-                        Yii::t('app', 'Your order № {order_id}', ['order_id' => $new_order['id']])
-                    )
-                    ->send();
+//                Yii::$app
+//                    ->mailer
+//                    ->compose(
+//                        '/../mail/new_order_user_letter',
+//                        [
+//                            'model' => $new_order,
+//                            'customerForm' => $customerForm,
+//                            'order' => $order,
+//                            'text' => ($new_order->product_type == 'product')
+//                                ? Yii::$app->param->getByName('MAIL_SHOP_ORDER_TEXT')
+//                                : Yii::$app->param->getByName('MAIL_SHOP_ORDER_TEXT_FOR_SALE_ITALY')
+//                        ]
+//                    )
+//                    ->setTo($customerForm['email'])
+//                    ->setSubject(
+//                        Yii::t('app', 'Your order № {order_id}', ['order_id' => $new_order['id']])
+//                    )
+//                    ->send();
 
                 /**
                  * clear cart
