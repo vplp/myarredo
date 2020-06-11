@@ -56,10 +56,11 @@ return [
     'catalog/category/ajax-get-filter-on-main' => 'catalog/category/ajax-get-filter-on-main',
 
     'sale/<filter:[\=\;\-\/\w\d]+>' => 'catalog/sale/list',
+
+    'factory/pdf-viewer' => 'catalog/factory/pdf-viewer',
+
     'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>' => 'catalog/template-factory/factory',
     'factory/<alias:[\w\-]+>' => 'catalog/factory/view',
-
-    'factory/catalog-pdf/<id:[\d\-]+>' => 'catalog/factory/catalog-pdf',
 
     'catalog/factory/click-on-file' => 'catalog/factory/click-on-file',
     'product/ajax-get-compositions' => 'catalog/product/ajax-get-compositions',
