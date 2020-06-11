@@ -28,18 +28,7 @@ use yii\helpers\{
                                 [
                                     'target' => '_blank',
                                     'class' => 'click-on-factory-file btn-inpdf',
-                                    'data-id' => $catalogFile->id,
-                                    'title' => 'Улучшеный просмотр PDF'
-                                ]
-                            ) ?>
-                            <?= Html::a(
-                                '<i class="fa fa-file" aria-hidden="true"></i>',
-                                $fileLink,
-                                [
-                                    'target' => '_blank',
-                                    'class' => 'click-on-factory-file btn-inpdf',
-                                    'data-id' => $catalogFile->id,
-                                    'title' => 'Обычный просмотр PDF'
+                                    'data-id' => $catalogFile->id
                                 ]
                             ) ?>
                         </li>
@@ -58,16 +47,6 @@ use yii\helpers\{
                             <?= Html::a(
                                 $catalogFile->title . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
                                 Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink . '&search=' . $model->article,
-                                [
-                                    'target' => '_blank',
-                                    'class' => 'click-on-factory-file btn-inpdf',
-                                    'data-id' => $priceFile->id,
-                                    'title' => 'Улучшеный просмотр PDF'
-                                ]
-                            ) ?>
-                            <?= Html::a(
-                                $priceFile->title,
-                                $fileLink,
                                 [
                                     'target' => '_blank',
                                     'class' => 'click-on-factory-file btn-inpdf',
