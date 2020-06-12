@@ -72,6 +72,17 @@ if (in_array($model['user']['group_id'], [4, 7])) {
     </div>
 
     <?php
+    echo $form
+        ->field($model, 'country_ids')
+        ->label(Yii::t('app', 'Ответ на заявку из страны'))
+        ->widget(Select2::class, [
+            'data' => Country::dropDownList(),
+            'options' => [
+                'placeholder' => Yii::t('app', 'Select option'),
+                'multiple' => true
+            ],
+        ]);
+
     foreach (Country::dropDownList([1, 2, 3, 4]) as $id => $name) {
         echo $form
             ->field($model, 'country_cities_' . $id)

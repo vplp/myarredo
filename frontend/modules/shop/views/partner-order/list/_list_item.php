@@ -19,7 +19,7 @@ $user = Yii::$app->user->identity;
 $dealers_can_answer = [];
 $factoryDealersId = [];
 
-if ($user->profile->possibilityToAnswer) { ?>
+if ($user->profile->getPossibilityToAnswer($modelOrder->country_id)) { ?>
     <?php $form = ActiveForm::begin([
         'options' => ['data' => ['pjax' => true]],
         'action' => $modelOrder->getPartnerOrderOnListUrl(),

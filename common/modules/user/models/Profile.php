@@ -143,7 +143,7 @@ class Profile extends \thread\modules\user\models\Profile
             [
                 [
                     'city_ids',
-                    'countries_ids',
+                    'country_ids',
                     'country_cities_1',
                     'country_cities_2',
                     'country_cities_3',
@@ -258,7 +258,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'show_contacts',
                 'show_contacts_on_sale',
                 'city_ids',
-                'countries_ids',
+                'country_ids',
                 'country_cities_1',
                 'country_cities_2',
                 'country_cities_3',
@@ -306,7 +306,7 @@ class Profile extends \thread\modules\user\models\Profile
             'show_contacts' => Yii::t('app', 'Показывать в контактах'),
             'show_contacts_on_sale' => Yii::t('app', 'Показывать контакты в распродаже'),
             'city_ids' => Yii::t('app', 'Ответы в городах'),
-            'countries_ids' => Yii::t('app', 'Ответы в странах'),
+            'country_ids' => Yii::t('app', 'Ответы в странах'),
             'factory_package' => Yii::t('app', 'Package'),
             'cape_index' => Yii::t('app', 'CAPE index'),
             'image_link' => Yii::t('app', 'Image link'),
@@ -475,12 +475,23 @@ class Profile extends \thread\modules\user\models\Profile
     }
 
     /**
+     * @param int $country_id
      * @return bool
-     * @throws \Exception
      * @throws \Throwable
      */
-    public function getPossibilityToAnswer()
+    public function getPossibilityToAnswer($country_id = 0)
     {
+        if (in_array(Yii::$app->user->identity->group->role, ['partner', 'factory']) && $country_id) {
+            $modelCountries = Yii::$app->getUser()->getIdentity()->profile->countries;
+            if ($modelCountries != null) {
+                foreach ($modelCountries as $item) {
+                    if ($item['id'] == $country_id) {
+                        return true;
+                    }
+                }
+            }
+        }
+
         if (in_array(Yii::$app->user->identity->group->role, ['partner']) &&
             Yii::$app->user->identity->profile->country_id &&
             Yii::$app->user->identity->profile->country_id == 4) {
@@ -515,11 +526,7 @@ class Profile extends \thread\modules\user\models\Profile
      */
     public function getPossibilityToAnswerForFactory($country_id = 0)
     {
-        if (Yii::$app->user->identity->group->role == 'factory') {
-            return true;
-        }
-
-        if ($country_id) {
+        if (Yii::$app->user->identity->group->role == 'factory' && $country_id) {
             $modelCountries = Yii::$app->getUser()->getIdentity()->profile->countries;
             if ($modelCountries != null) {
                 foreach ($modelCountries as $item) {
@@ -528,6 +535,8 @@ class Profile extends \thread\modules\user\models\Profile
                     }
                 }
             }
+        } else if (Yii::$app->user->identity->group->role == 'factory') {
+            return true;
         }
 
         return false;
