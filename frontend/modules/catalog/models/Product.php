@@ -382,15 +382,6 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
-     * @return string
-     */
-    public function getPdfTitle()
-    {
-        return (!empty($this->factory) ? ' ' . $this->factory->title : '')
-            . (($this->article && $this->is_composition == '0') ? ' ' . $this->article : '');
-    }
-
-    /**
      * @param $model
      * @return string
      */
