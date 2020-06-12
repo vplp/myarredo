@@ -195,7 +195,7 @@ if ($user->profile->getPossibilityToAnswer($modelOrder->country_id)) { ?>
 
     <?php
     // Только дилеры Фабрики отвечает на запросы
-    if ($user->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null && $user->profile->getPossibilityToSaveAnswerPerMonth()) {
+    if ($user->profile->getPossibilityToSaveAnswer($modelOrder->city_id, $modelOrder->country_id) != null && $user->profile->getPossibilityToSaveAnswerPerMonth()) {
         if (in_array(1, $dealers_can_answer) && !in_array(Yii::$app->user->identity->id, $factoryDealersId)) {
             echo Yii::t('app', 'Чтобы ответить на данный запрос, Вы должны стать дилером данной фабрики.');
         } elseif (!$modelOrderAnswer->id) {
@@ -208,7 +208,7 @@ if ($user->profile->getPossibilityToAnswer($modelOrder->country_id)) { ?>
                 ]
             );
         }
-    } elseif ($user->profile->getPossibilityToSaveAnswer($modelOrder->city_id) && $user->profile->getPossibilityToSaveAnswerPerMonth() == false) {
+    } elseif ($user->profile->getPossibilityToSaveAnswer($modelOrder->city_id, $modelOrder->country_id) && $user->profile->getPossibilityToSaveAnswerPerMonth() == false) {
         echo Html::tag('p', Yii::t('app', 'Вы исчерпали бесплатный месячный лимит ответов на заявки. Для продления свяжитесь с оператором сайта.'));
     } else {
         echo Html::tag('p', Yii::t('app', 'Для ответа на данные заявки свяжитесь с оператором сайта, тел.:') . ' +7 968 353 36 36, e-mail: help@myarredo.ru');

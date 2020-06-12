@@ -562,10 +562,11 @@ class Profile extends \thread\modules\user\models\Profile
 
     /**
      * @param int $city_id
+     * @param int $country_id
      * @return bool
      * @throws \Throwable
      */
-    public function getPossibilityToSaveAnswer($city_id = 0)
+    public function getPossibilityToSaveAnswer($city_id = 0, $country_id = 0)
     {
         /**
          * Answers per month
@@ -580,6 +581,15 @@ class Profile extends \thread\modules\user\models\Profile
             Yii::$app->user->identity->profile->country_id &&
             Yii::$app->user->identity->profile->country_id == 4) {
             return true;
+        } elseif (in_array(Yii::$app->user->identity->group->role, ['partner']) && $country_id) {
+            $modelCountries = Yii::$app->user->identity->profile->countries;
+            if ($modelCountries != null) {
+                foreach ($modelCountries as $item) {
+                    if ($item['id'] == $country_id) {
+                        return true;
+                    }
+                }
+            }
         }
 
         $modelCities = Yii::$app->getUser()->getIdentity()->profile->cities;
