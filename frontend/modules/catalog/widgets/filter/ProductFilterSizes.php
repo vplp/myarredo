@@ -85,7 +85,7 @@ class ProductFilterSizes extends Widget
                 ];
             }
 
-            if ($diameterRange && $diameterRange['min']['default'] != $diameterRange['max']['default']) {
+            if (isset($diameterRange['min']) && isset($diameterRange['max']) && $diameterRange['min']['default'] != $diameterRange['max']['default']) {
                 $sizesParams[$keys['diameter']] = ['{diameterMin}', '{diameterMax}'];
             }
         }
@@ -115,7 +115,7 @@ class ProductFilterSizes extends Widget
                 ];
             }
 
-            if ($widthRange && $widthRange['min']['default'] != $widthRange['max']['default']) {
+            if (isset($widthRange['min']) && isset($widthRange['max']) && $widthRange['min']['default'] != $widthRange['max']['default']) {
                 $sizesParams[$keys['width']] = ['{widthMin}', '{widthMax}'];
             }
         }
@@ -145,7 +145,7 @@ class ProductFilterSizes extends Widget
                 ];
             }
 
-            if ($lengthRange && $lengthRange['min']['default'] != $lengthRange['max']['default']) {
+            if (isset($lengthRange['min']) && isset($lengthRange['max']) && $lengthRange['min']['default'] != $lengthRange['max']['default']) {
                 $sizesParams[$keys['length']] = ['{lengthMin}', '{lengthMax}'];
             }
         }
@@ -175,7 +175,7 @@ class ProductFilterSizes extends Widget
                 ];
             }
 
-            if ($heightRange && $heightRange['min']['default'] != $heightRange['max']['default']) {
+            if (isset($heightRange['min']) && isset($heightRange['max']) && $heightRange['min']['default'] != $heightRange['max']['default']) {
                 $sizesParams[$keys['height']] = ['{heightMin}', '{heightMax}'];
             }
         }
@@ -205,7 +205,7 @@ class ProductFilterSizes extends Widget
                 ];
             }
 
-            if ($apportionmentRange && $apportionmentRange['min']['default'] != $apportionmentRange['max']['default']) {
+            if (isset($apportionmentRange['min']) && isset($apportionmentRange['max']) && $apportionmentRange['min']['default'] != $apportionmentRange['max']['default']) {
                 $sizesParams[$keys['apportionment']] = ['{apportionmentMin}', '{apportionmentMax}'];
             }
         }

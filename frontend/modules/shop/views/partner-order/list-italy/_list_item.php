@@ -205,7 +205,7 @@ use frontend\modules\catalog\models\ItalianProduct;
     </div>
 </div>
 
-<?php if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null && Yii::$app->user->identity->profile->getPossibilityToSaveAnswerPerMonth()) {
+<?php if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id, $modelOrder->country_id) != null && Yii::$app->user->identity->profile->getPossibilityToSaveAnswerPerMonth()) {
     if (!$modelOrderAnswer->id) {
         echo Html::submitButton(
             Yii::t('app', 'Отправить ответ клиенту'),
@@ -216,7 +216,7 @@ use frontend\modules\catalog\models\ItalianProduct;
             ]
         );
     }
-} elseif (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) && Yii::$app->user->identity->profile->getPossibilityToSaveAnswerPerMonth() == false) {
+} elseif (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id, $modelOrder->country_id) && Yii::$app->user->identity->profile->getPossibilityToSaveAnswerPerMonth() == false) {
     echo Html::tag('p', Yii::t('app', 'Вы исчерпали бесплатный месячный лимит ответов на заявки. Для продления свяжитесь с оператором сайта.'));
 } else {
     echo Html::tag('p', Yii::t('app', 'Оплатите возможность отвечать на заявки из этого города!'));

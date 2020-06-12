@@ -9541,11 +9541,23 @@ body>.modal-backdrop.fade.in{
   background-color: transparent;
   text-decoration: none;
 }
+.btn-inpdf {
+  display: inline-block;
+  margin-top: 0;
+  position: relative;
+  padding-right: 25px;
+}
 .btn-gopartner .fa,
 .btn-inpdf .fa {
   font-size: 18px;
   margin-left: 5px;
 }
+.btn-inpdf .fa {
+  position: absolute;
+  top: calc(50% - 9px);
+  right: 5px;
+}
+
 .btn-feedback,
 .nav>li>a.btn-feedback {
   font-size: 16px;

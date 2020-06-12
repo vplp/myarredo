@@ -43,7 +43,7 @@ class FactoryController extends BaseController
                     'list' => ['get'],
                     'view' => ['get'],
                     'click-on-file' => ['post'],
-                    'catalog-pdf' => ['get'],
+                    'pdf-viewer' => ['get'],
                 ],
             ],
         ];
@@ -280,18 +280,13 @@ class FactoryController extends BaseController
         return $response;
     }
 
-    public function actionCatalogPdf($id)
+    /**
+     * @return string
+     */
+    public function actionPdfViewer()
     {
-        $model = FactoryCatalogsFiles::findById($id);
+        $this->layout = 'pdfjs';
 
-        if ($model == null) {
-            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
-        }
-
-        $this->layout = 'pdf';
-
-        return $this->render('pdf', [
-            'model' => $model
-        ]);
+        return $this->render('pdfjs', []);
     }
 }
