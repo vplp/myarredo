@@ -26,11 +26,11 @@ use frontend\modules\catalog\models\{
                 <?= Html::a(
                     Html::img('/', [
                         'class' => 'lazy',
-                        'data-src' => Category::getImage($model['image_link'])
+                        'data-src' => Category::getImage(Yii::$app->city->domain != 'com' ? $model['image_link'] : $model['image_link_com'])
                     ])
                     . Html::img('/', [
                         'class' => 'is-hover lazy',
-                        'data-src' => Category::getImage($model['image_link2'])
+                        'data-src' => Category::getImage(Yii::$app->city->domain != 'com' ? $model['image_link2'] : $model['image_link2_com'])
                     ]),
                     Category::getUrl(Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2']),
                     ['class' => 'img-cont']

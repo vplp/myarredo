@@ -331,6 +331,8 @@ class Category extends \common\modules\catalog\models\Category
                     self::tableName() . '.image_link',
                     self::tableName() . '.image_link2',
                     self::tableName() . '.image_link3',
+                    self::tableName() . '.image_link_com',
+                    self::tableName() . '.image_link2_com',
                     self::tableName() . '.position',
                     CategoryLang::tableName() . '.title',
                     'count(' . self::tableName() . '.id) as count'
@@ -426,6 +428,8 @@ class Category extends \common\modules\catalog\models\Category
                     self::tableName() . '.image_link',
                     self::tableName() . '.image_link2',
                     self::tableName() . '.image_link3',
+                    self::tableName() . '.image_link_com',
+                    self::tableName() . '.image_link2_com',
                     CategoryLang::tableName() . '.title',
                     'count(' . self::tableName() . '.id) as count'
                 ])
@@ -517,6 +521,8 @@ class Category extends \common\modules\catalog\models\Category
                     self::tableName() . '.image_link',
                     self::tableName() . '.image_link2',
                     self::tableName() . '.image_link3',
+                    self::tableName() . '.image_link_com',
+                    self::tableName() . '.image_link2_com',
                     CategoryLang::tableName() . '.title',
                     'count(' . self::tableName() . '.id) as count'
                 ])

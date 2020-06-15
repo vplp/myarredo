@@ -7,10 +7,8 @@ use yii\helpers\{
     ArrayHelper
 };
 use voskobovich\behaviors\ManyToManyBehavior;
-//
 use common\modules\catalog\Catalog;
 use common\actions\upload\UploadBehavior;
-//
 use thread\app\base\models\ActiveRecord;
 
 /**
@@ -22,6 +20,8 @@ use thread\app\base\models\ActiveRecord;
  * @property string $image_link
  * @property string $image_link2
  * @property string $image_link3
+ * @property string $image_link_com
+ * @property string $image_link2_com
  * @property integer $position
  * @property integer $popular
  * @property integer $popular_by
@@ -84,6 +84,16 @@ class Category extends ActiveRecord
                         'tempPath' => Yii::getAlias('@temp'),
                         'url' => Yii::$app->getModule('catalog')->getCategoryUploadPath(),
                     ],
+                    'image_link_com' => [
+                        'path' => Yii::$app->getModule('catalog')->getCategoryUploadPath(),
+                        'tempPath' => Yii::getAlias('@temp'),
+                        'url' => Yii::$app->getModule('catalog')->getCategoryUploadPath(),
+                    ],
+                    'image_link2_com' => [
+                        'path' => Yii::$app->getModule('catalog')->getCategoryUploadPath(),
+                        'tempPath' => Yii::getAlias('@temp'),
+                        'url' => Yii::$app->getModule('catalog')->getCategoryUploadPath(),
+                    ],
                 ]
             ],
         ]);
@@ -98,7 +108,7 @@ class Category extends ActiveRecord
             [['alias', 'alias2'], 'required'],
             [['created_at', 'updated_at', 'position', 'product_count'], 'integer'],
             [['published', 'deleted', 'popular', 'popular_by'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['alias', 'alias2', 'image_link', 'image_link2', 'image_link3'], 'string', 'max' => 255],
+            [['alias', 'alias2', 'image_link', 'image_link2', 'image_link3', 'image_link_com', 'image_link2_com'], 'string', 'max' => 255],
             [['alias', 'alias2'], 'unique'],
             [['position', 'product_count'], 'default', 'value' => '0'],
             [['types_ids'], 'each', 'rule' => ['integer']],
@@ -124,6 +134,8 @@ class Category extends ActiveRecord
                 'image_link',
                 'image_link2',
                 'image_link3',
+                'image_link_com',
+                'image_link2_com',
                 'popular',
                 'popular_by',
                 'position',
@@ -146,6 +158,8 @@ class Category extends ActiveRecord
             'image_link' => Yii::t('app', 'Image link'),
             'image_link2' => 'Вторая картинка',
             'image_link3' => 'Иконка для главного меню',
+            'image_link_com' => 'Изображение для .com',
+            'image_link2_com' => 'Вторая картинка для .com',
             'position' => Yii::t('app', 'Position'),
             'popular' => 'Популярный Ru',
             'popular_by' => 'Популярный By',
@@ -273,6 +287,46 @@ class Category extends ActiveRecord
 
         if (!empty($this->image_link3) && is_file($path . '/' . $this->image_link3)) {
             $image = $url . '/' . $this->image_link3;
+        }
+
+        return $image;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getImageLinkCom()
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getCategoryUploadPath();
+        $url = $module->getCategoryUploadUrl();
+
+        $image = null;
+
+        if (!empty($this->image_link_com) && is_file($path . '/' . $this->image_link_com)) {
+            $image = $url . '/' . $this->image_link_com;
+        }
+
+        return $image;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getImageLink2Com()
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getCategoryUploadPath();
+        $url = $module->getCategoryUploadUrl();
+
+        $image = null;
+
+        if (!empty($this->image_link2_com) && is_file($path . '/' . $this->image_link2_com)) {
+            $image = $url . '/' . $this->image_link2_com;
         }
 
         return $image;
