@@ -51,6 +51,10 @@ class Seo extends \common\modules\seo\Seo
                             'position' => 2,
                             'url' => ['/seo/directlink/directlink/list'],
                         ],
+                        [
+                            'label' => Yii::t('seo', 'Redirects'),
+                            'url' => ['/seo/redirects/list'],
+                        ],
                         /*[
                             'label' => 'Base Info',
                             'position' => 2,

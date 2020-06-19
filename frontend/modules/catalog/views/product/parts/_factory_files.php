@@ -24,7 +24,7 @@ use yii\helpers\{
                         <li>
                             <?= Html::a(
                                 $catalogFile->title . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
-                                Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink . '&search=' . $model->getPdfTitle(),
+                                Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink . '&search=' . $model->article,
                                 [
                                     'target' => '_blank',
                                     'class' => 'click-on-factory-file btn-inpdf',

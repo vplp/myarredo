@@ -2,11 +2,11 @@
 
 namespace frontend\components;
 
-use frontend\modules\catalog\Catalog;
 use Yii;
 use yii\helpers\Url;
 use yii\web\Controller;
-//
+use frontend\modules\catalog\Catalog;
+use frontend\modules\seo\models\Redirects;
 use frontend\modules\sys\models\Language;
 
 /**
@@ -33,6 +33,8 @@ abstract class BaseController extends Controller
 
     public function beforeAction($action)
     {
+        Redirects::findRedirect();
+
         $lang = substr(Yii::$app->language, 0, 2);
 
         if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && Yii::$app->city->domain == 'com' && !in_array($lang, ['it', 'en'])) {
