@@ -426,7 +426,7 @@ use frontend\modules\user\widgets\menu\UserMenu;
     </div>
     <div class="right-btn-part">
         <div class="menu-btn js-menu-btn">
-            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            <i class="fa fa-bars" aria-hidden="true"></i>
         </div>
         <div class="search-btn">
             <i class="fa fa-search" aria-hidden="true"></i>
@@ -488,7 +488,7 @@ use frontend\modules\user\widgets\menu\UserMenu;
             ) ?>
 
             <a href="javascript:void(0);" class="close-mobile-menu js-close-mobile-menu">
-                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
             </a>
 
         </div>
