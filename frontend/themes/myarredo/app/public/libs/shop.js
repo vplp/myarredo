@@ -58,6 +58,7 @@ $('.add-to-notepad').on('click', function () {
         setTimeout(function () {
             ourElem.removeAttr('data-toggle');
             $('.header').find('.my-notebook').find('.for-price').text(+noteBok + 1);
+            $('.mobmenu-wishlistbox').find('.for-price').text(+noteBok + 1);
         }, 400);
     }
     else {

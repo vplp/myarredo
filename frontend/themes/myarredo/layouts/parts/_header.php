@@ -412,48 +412,75 @@ use frontend\modules\user\widgets\menu\UserMenu;
     </div>
 </div>
 <div class="mobile-header">
-    <div class="left-info-part">
-        <div class="logo-num">
-            <a href="/" class="logo">
-                <img src="<?= $bundle->baseUrl ?>/img/logo.svg" alt="">
-            </a>
-            <div class="phone-container">
-                <a href="tel:<?= Yii::$app->partner->getPartnerPhone() ?>" class="phone-num">
-                    <?= Yii::$app->partner->getPartnerPhone() ?>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="right-btn-part">
-        <div class="menu-btn js-menu-btn">
+    <div class="left-info-part mobmenu-part">
+        <div class="menu-btn js-menu-btn mobmenu-panel">
             <i class="fa fa-bars" aria-hidden="true"></i>
         </div>
-        <div class="search-btn">
-            <i class="fa fa-search" aria-hidden="true"></i>
+        <div class="logo-num">
+            <a href="/" class="logo">
+                <img src="<?= $bundle->baseUrl ?>/img/logo_myarredo.svg" alt="">
+            </a>
         </div>
     </div>
+    <div class="right-btn-part mobmenu-part">
+        
+        <!-- <div class="search-btn">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </div> -->
+        <div class="adress-container">
+            <span class="for-map-icon">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+            </span>
+            <span class="for-adress-icon">Запорожье</span>
+        </div>
+        <div class="mobmenu-right-box">
+            <?php
+            if ((Yii::$app->getUser()->isGuest)) {
+                echo Html::a(
+                    '<i class="fa fa-sign-in" aria-hidden="true"></i>',
+                    ['/user/login/index'],
+                    ['class' => 'mobile-btn btn-siginout',
+                        'rel' => 'nofollow']
+                );
+            } else {
+                echo Html::a(
+                    '<i class="fa fa-sign-out" aria-hidden="true"></i>',
+                    ['/user/logout/index'],
+                    ['class' => 'mobile-btn btn-siginout',
+                        'rel' => 'nofollow']
+                );
+            } ?>
 
-    <div class="mobsearch-box">
+            <div class="mobmenu-wishlistbox">
+                <?= Cart::widget(['view' => 'short']) ?>
+            </div>
+        </div>
+        <div class="phone-container">
+            <a href="tel:<?= Yii::$app->partner->getPartnerPhone() ?>" class="phone-num">
+                <?= Yii::$app->partner->getPartnerPhone() ?>
+            </a>
+        </div>
+    </div>
+    <div class="mobmenu-serch-part">
         <?php $form = ActiveForm::begin(['action' => ['/catalog/elastic-search/search'],
             'method' => 'get',
             'options' => ['class' => 'mobsearch-form'],]); ?>
 
-        <div class="mobsearch-group">
-            <?= Html::input(
-                'text',
-                'search',
-                null,
-                ['class' => 'form-control mobsearch-fld',
-                    'placeholder' => Yii::t('app', 'Поиск'),]
-            ) ?>
-            <?= Html::submitButton(
-                'Поиск',
-                ['class' => 'btn-mobsearch']
-            ) ?>
-        </div>
+            <div class="mobsearch-group">
+                <?= Html::input(
+                    'text',
+                    'search',
+                    null,
+                    ['class' => 'form-control mobsearch-fld',
+                        'placeholder' => Yii::t('app', 'Поиск'),]
+                ) ?>
+                <?= Html::submitButton(
+                    '<i class="fa fa-search" aria-hidden="true"></i>',
+                    ['class' => 'btn-mobsearch']
+                ) ?>
+            </div>
 
         <?php ActiveForm::end(); ?>
-
     </div>
 
     <div class="mobile-menu js-mobile-menu">
