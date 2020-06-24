@@ -395,18 +395,38 @@ See https://github.com/adobe-type-tools/cmap-resources
 
 </div> <!-- outerContainer -->
 <div id="printContainer"></div>
+<style>
+#download {
+    display: none;
+}
+</style>
 
 <script>
     // Автоматическая активация поиска если есть поисковый запрос
     const urlParams = new URLSearchParams(window.location.search);
     const schParam = urlParams.get('search');
     if (schParam) {
-    window.onload = function() {
-        // document.getElementById("viewFind").click();
-        var input = document.getElementById("findInput");
-        input.value=schParam;
-        document.getElementById("findNext").click();
-    }
+        var setIntVal;
+        window.onload = function() {
+            // откритие поисковой панели по дефолту
+            // document.getElementById("viewFind").click();
+            // Вставляем посковое слово в поле поиска
+            document.getElementById("findInput").value=schParam;
+            // Включаем чекбокс - выделить все
+            document.getElementById("findHighlightAll").click();
+            
+            // Проверяем и ждем когда PDF страница полностью готова к работе
+            setIntVal = setInterval(function() {
+                if (PDFViewerApplication.downloadComplete) {
+                    stopChek();
+                }
+            }, 1000);
+            // Функция для активации поиска
+            function stopChek() {
+                clearInterval(setIntVal);
+                document.getElementById("findNext").click();
+            }
+        }
     }
 </script>
 
