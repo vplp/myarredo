@@ -150,11 +150,16 @@ $this->title = $this->context->title;
                                             <td>
                                                 <?php
                                                 $array = [];
+                                                $paramsUrl = [];
                                                 foreach ($model['subTypes'] as $item) {
                                                     $array[] = $item['lang']['title'];
+                                                    $paramsUrl[$keys['subtypes']][] = $item['alias'];
                                                 }
 
-                                                echo implode('; ', $array);
+                                                echo Html::a(
+                                                    implode('; ', $array),
+                                                    Yii::$app->catalogFilter->createUrl($paramsUrl)
+                                                );
                                                 ?>
                                             </td>
                                         </tr>
