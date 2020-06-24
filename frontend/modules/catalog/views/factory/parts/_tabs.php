@@ -5,7 +5,7 @@ use yii\helpers\{
 };
 use frontend\modules\shop\models\Order;
 use frontend\modules\catalog\models\{
-    Product, Factory, FactoryCatalogsFiles, FactoryPricesFiles, Samples, CountriesFurniture
+    Product, Factory, FactoryCatalogsFiles, FactoryPricesFiles, Samples, CountriesFurniture, ItalianProduct
 };
 
 /**
@@ -20,10 +20,19 @@ $route = $model->producing_country_id == 4
     ? ['/catalog/category/list']
     : ['/catalog/countries-furniture/list'];
 
+$ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
 
 ?>
 
 <ul class="nav nav-tabs">
+    <?php if ($ItalianProductGrezzo) { ?>
+        <li>
+            <a data-toggle="tab" href="#all-grezzo">
+                Мебель со сроком производства от ... до ...
+            </a>
+        </li>
+    <?php } ?>
+
     <li class="active">
         <a data-toggle="tab" href="#all-product">
             <?= Yii::t('app', 'Все предметы мебели') ?>
@@ -87,6 +96,22 @@ $route = $model->producing_country_id == 4
 </ul>
 
 <div class="tab-content">
+    <?php if ($ItalianProductGrezzo) { ?>
+        <div id="all-grezzo" class="tab-pane fade">
+            <ul class="list">
+                <?php foreach ($ItalianProductGrezzo as $item) {
+                    echo Html::beginTag('li') .
+                        Html::a(
+                            Html::tag('span', $item['lang']['title'], ['class' => 'for-catalog-list']),
+                            ItalianProduct::getUrl($item['alias']),
+                            ['target' => '_blank']
+                        ) .
+                        Html::endTag('li');
+                } ?>
+            </ul>
+        </div>
+    <?php } ?>
+
     <div id="all-product" class="tab-pane fade in active">
         <ul class="list">
             <?php
@@ -164,10 +189,10 @@ $route = $model->producing_country_id == 4
                 foreach ($model->catalogsFiles as $catalogFile) {
                     echo Html::beginTag('li') .
                         Html::a(
-                            /*($catalogFile->image_link
-                                ? Html::img($catalogFile->getImageLink())
-                                : ''
-                            ) .*/
+                        /*($catalogFile->image_link
+                            ? Html::img($catalogFile->getImageLink())
+                            : ''
+                        ) .*/
                             Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
                             $catalogFile->getFileLink(),
                             ['target' => '_blank', 'class' => 'click-on-factory-file', 'data-id' => $catalogFile->id]

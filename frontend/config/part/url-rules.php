@@ -128,6 +128,7 @@ return [
     'sale-italy-product/<alias:[\w\-]+>' => 'catalog/sale-italy/view',
     'catalog/sale-italy/ajax-get-filter' => 'catalog/sale-italy/ajax-get-filter',
     'catalog/sale-italy/ajax-get-filter-sizes' => 'catalog/sale-italy/ajax-get-filter-sizes',
+
     //
     'italian-product' => 'catalog/italian-product/list',
     'italian-product/completed' => 'catalog/italian-product/completed',
@@ -145,6 +146,24 @@ return [
     'catalog/italian-product/filedelete' => 'catalog/italian-product/filedelete',
     'catalog/italian-product/one-file-upload' => 'catalog/italian-product/one-file-upload',
     'catalog/italian-product/one-file-delete' => 'catalog/italian-product/one-file-delete',
+
+    //GREZZO
+    'italian-product-grezzo' => 'catalog/italian-product-grezzo/list',
+    'italian-product-grezzo/completed' => 'catalog/italian-product-grezzo/completed',
+    'italian-product-grezzo/free-create' => 'catalog/italian-product-grezzo/free-create',
+    'italian-product-grezzo/interest-payment/<id:[\d\-]+>' => 'catalog/italian-product-grezzo/interest-payment',
+    'italian-product-grezzo/payment' => 'catalog/italian-product-grezzo/payment',
+    'italian-product-grezzo/update/<id:[\d\-]+>/<step:(photo|check|payment|promotion)>' => 'catalog/italian-product-grezzo/update',
+    'italian-product-grezzo/update/<id:[\d\-]+>' => 'catalog/italian-product-grezzo/update',
+    'italian-product-grezzo/is-sold/<id:[\d\-]+>' => 'catalog/italian-product-grezzo/is-sold',
+    'italian-product-grezzo/on-moderation/<id:[\d\-]+>' => 'catalog/italian-product-grezzo/on-moderation',
+    'italian-product-grezzo/intrash/<id:[\d\-]+>' => 'catalog/italian-product-grezzo/intrash',
+    'italian-product-grezzo/change-tariff/<id:[\d\-]+>' => 'catalog/italian-product-grezzo/change-tariff',
+
+    'catalog/italian-product-grezzo/fileupload' => 'catalog/italian-product-grezzo/fileupload',
+    'catalog/italian-product-grezzo/filedelete' => 'catalog/italian-product-grezzo/filedelete',
+    'catalog/italian-product-grezzo/one-file-upload' => 'catalog/italian-product-grezzo/one-file-upload',
+    'catalog/italian-product-grezzo/one-file-delete' => 'catalog/italian-product-grezzo/one-file-delete',
 
     // Factory promotion
     'factory-promotion' => 'catalog/factory-promotion/list',
