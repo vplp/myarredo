@@ -68,6 +68,8 @@ use common\modules\shop\models\{
  * @property string $language_editing
  * @property integer $status
  * @property string $create_mode
+ * @property string $isGrezzo
+ * @property string $production_time
  *
  * @property ItalianProductLang $lang
  * @property ItalianProductRelCategory[] $category
@@ -173,6 +175,7 @@ class ItalianProduct extends ActiveRecord
                     'mark1',
                     'mark2',
                     'mark3',
+                    'isGrezzo'
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
@@ -202,6 +205,7 @@ class ItalianProduct extends ActiveRecord
                     'image_link',
                     'file_link',
                     'production_year',
+                    'production_time'
                 ],
                 'string',
                 'max' => 255
@@ -283,6 +287,8 @@ class ItalianProduct extends ActiveRecord
                 'category_ids',
                 'subtypes_ids',
                 'colors_ids',
+                'isGrezzo',
+                'production_time'
             ],
             'frontend' => [
                 'country_id',
@@ -317,6 +323,8 @@ class ItalianProduct extends ActiveRecord
                 'category_ids',
                 'subtypes_ids',
                 'colors_ids',
+                'isGrezzo',
+                'production_time'
             ]
         ];
     }
@@ -369,6 +377,8 @@ class ItalianProduct extends ActiveRecord
             'category_ids' => Yii::t('app', 'Category'),
             'subtypes_ids' => Yii::t('app', 'Типы'),
             'colors_ids' => Yii::t('app', 'Colors'),
+            'isGrezzo',
+            'production_time' => 'дата производства ( от ... до ... дней)'
         ];
     }
 
@@ -379,7 +389,7 @@ class ItalianProduct extends ActiveRecord
      */
     public function beforeSave($insert)
     {
-        if (in_array($this->scenario, ['backend', 'frontend'])) {
+        if ($this->alias == '' && in_array($this->scenario, ['backend', 'frontend'])) {
             $this->alias = (!empty($this->types) ? $this->types->alias : '')
                 . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
                 . (($this->article) ? ' ' . $this->article : ' ' . uniqid());
