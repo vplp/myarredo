@@ -311,7 +311,7 @@ class Sale extends ActiveRecord
      */
     public function beforeSave($insert)
     {
-        if (in_array($this->scenario, ['backend', 'frontend'])) {
+        if ($this->alias == '' && in_array($this->scenario, ['backend', 'frontend'])) {
             $this->alias = (!empty($this->types) ? $this->types->alias : '') .
                 (!empty($this->factory) ? ' ' . $this->factory->alias : '') .
                 (($this->article) ? ' ' . $this->article : ' ' . uniqid());

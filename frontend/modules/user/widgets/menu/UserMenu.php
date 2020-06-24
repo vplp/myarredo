@@ -130,6 +130,10 @@ class UserMenu extends Widget
                     'url' => ['/catalog/italian-product/list']
                 ],
                 [
+                    'label' => Yii::t('app', 'Занести Гредзо'),
+                    'url' => ['/catalog/italian-product-grezzo/list']
+                ],
+                [
                     'label' => Yii::t('app', 'My goods'),
                     'url' => ['/catalog/factory-product/list']
                 ],

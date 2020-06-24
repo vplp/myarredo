@@ -5,6 +5,7 @@ namespace frontend\modules\catalog\models;
 use frontend\modules\location\models\Currency;
 use Yii;
 use yii\helpers\Url;
+
 //
 use frontend\components\ImageResize;
 
@@ -37,11 +38,19 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
         $query = parent::findBase();
 
         if (!Yii::$app->getUser()->isGuest &&
+            Yii::$app->controller->id == 'italian-product-grezzo' &&
+            in_array(Yii::$app->user->identity->group->role, ['factory'])) {
+            $query
+                ->andWhere([self::tableName() . '.user_id' => Yii::$app->user->identity->id])
+                ->andWhere([self::tableName() . '.isGrezzo' => '1'])
+                ->undeleted();
+        } elseif (!Yii::$app->getUser()->isGuest &&
             Yii::$app->controller->id == 'italian-product' &&
             Yii::$app->controller->action->id != 'completed' &&
             in_array(Yii::$app->user->identity->group->role, ['factory', 'partner'])) {
             $query
                 ->andWhere([self::tableName() . '.user_id' => Yii::$app->user->identity->id])
+                ->andWhere([self::tableName() . '.isGrezzo' => '0'])
                 ->undeleted();
         } elseif (!Yii::$app->getUser()->isGuest &&
             Yii::$app->controller->id == 'italian-product' &&
@@ -49,14 +58,30 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
             in_array(Yii::$app->user->identity->group->role, ['factory', 'partner'])) {
             $query
                 ->andWhere([self::tableName() . '.user_id' => Yii::$app->user->identity->id])
+                ->andWhere([self::tableName() . '.isGrezzo' => '0'])
                 ->andWhere(['<=', self::tableName() . '.published_date_to', time()])
                 ->enabled();
         } else {
             $query
+                ->andWhere([self::tableName() . '.isGrezzo' => '0'])
                 ->enabled();
         }
 
         return $query;
+    }
+
+    /**
+     * @param $factory_id
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getGrezzo($factory_id)
+    {
+        return parent::findBase()
+            ->andWhere([self::tableName() . '.isGrezzo' => '1'])
+            //->andWhere([self::tableName() . '.factory_id' => $factory_id])
+            ->all();
     }
 
     /**
