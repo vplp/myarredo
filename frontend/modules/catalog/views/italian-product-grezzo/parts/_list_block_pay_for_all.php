@@ -28,20 +28,6 @@ foreach ($dataProvider->getModels() as $model) {
     }
 } ?>
 
-    <p>
-        <?= Yii::t(
-            'app',
-            'Размещено товаров: {paidCount} платно - {paidCost}, {freeCount} бесплатно ({percentages}% - {freeCost})',
-            [
-                'paidCount' => $paidCount,
-                'paidCost' => $paidCost . ' RUB',
-                'percentages' => 22,
-                'freeCount' => $freeCount,
-                'freeCost' => $freeCost . ' RUB'
-            ]
-        ); ?>
-    </p>
-
 <?php
 $paidCount = $freeCount = $count = 0;
 foreach ($dataProvider->getModels() as $model) {

@@ -7,8 +7,10 @@ use yii\helpers\{
     ArrayHelper, Html, Url
 };
 use yii\web\JsExpression;
+
 //
 use thread\widgets\editors\Editor;
+
 //
 use kartik\switchinput\SwitchInput;
 use kartik\widgets\{
@@ -147,19 +149,18 @@ class Form extends \yii\bootstrap\ActiveField
                 'initialPreview' => $imagePreview,
             ],
             'pluginEvents' => [
-                'filebatchselected' => 'function(event, files) {
-                        }',
+                'filebatchselected' => 'function(event, files) {}',
                 'filebatchuploadsuccess' => 'function(event, data, previewId, index){
-                                var response = data.response;
-                                $("input[name=\'' . $inputName . '\']").val(response.name);
-                        }',
+                    var response = data.response;
+                    $("input[name=\'' . $inputName . '\']").val(response.name);
+                }',
                 'fileuploaded' => 'function(event, data, previewId, index){
-                                var response = data.response;
-                                $("input[name=\'' . $inputName . '\']").val(response.name);
-                        }',
+                    var response = data.response;
+                    $("input[name=\'' . $inputName . '\']").val(response.name);
+                }',
                 'fileclear' => 'function(event){
-                            $("input[name=\'' . $inputName . '\']").val("");
-                        }',
+                    $("input[name=\'' . $inputName . '\']").val("");
+                }',
             ]
         ]);
         return $this;
