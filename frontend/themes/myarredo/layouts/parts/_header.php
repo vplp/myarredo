@@ -431,7 +431,7 @@ use frontend\modules\user\widgets\menu\UserMenu;
             <span class="for-map-icon">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
             </span>
-            <span class="for-adress-icon">Запорожье</span>
+            <span class="for-adress-icon"><?= Yii::$app->city->getCitytitle() ?></span>
         </div>
         <div class="mobmenu-right-box">
             <?php
