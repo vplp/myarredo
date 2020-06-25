@@ -12,9 +12,6 @@ h1 {
 .container-wrap {
   max-width: 1600px;
   margin: 0 auto; }
-
-.fixed-header {
-  padding-top: 46px; }
   .fixed-header .top-header {
     position: fixed;
     background: #FFFFFF;
@@ -435,8 +432,8 @@ h1 {
   position: relative; }
   .mobile-header .left-info-part {
     width: calc( 100% - 42px);
-    padding: 9px;
-    border-bottom: 1px solid #BDBCB3; }
+    padding: 10px 0px; 
+  }
   .mobile-header .right-btn-part {
     width: 42px; }
   .mobile-header .menu-btn {
@@ -456,13 +453,93 @@ h1 {
     align-items: center;
     color: #FFFFFF; }
   .mobile-header .logo {
-    width: 200px;
+    width: 100%;
     display: block; 
   }
   .mobile-header .logo img {
     display: block;
     width: 100%;
+    max-width: 50px;
     height: auto; 
+  }
+  .mobmenu-panel {
+    max-width: 42px;
+    min-width: 42px;
+  }
+  .mobile-header .mobmenu-part .menu-btn {
+    background-color: transparent;
+    color: #41403e;
+  }
+  .mobile-header .mobmenu-part .menu-btn .fa {
+    font-size: 25px;
+  }
+  .mobile-header .left-info-part.mobmenu-part {
+    width: 103px;
+    max-height: 50px;
+    display: flex;
+    align-items: center;
+  }
+  .mobile-header .right-btn-part.mobmenu-part {
+    width: calc(100% - 103px);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 5px 14px 0px 0;
+  }
+  .adress-container {
+    width: calc(100% - 45px);
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    padding-right: 6px;
+  }
+  .adress-container .for-map-icon {
+    color: #BDBCB3;
+    font-size: 23px;
+  }
+  .adress-container .for-adress-icon {
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    color: #444444;
+    padding-left: 8px;
+  }
+  .mobmenu-right-box {
+    min-width: 45px;
+    max-width: 45px;
+    text-align: right;
+    display: flex;
+    align-items: center;
+  }
+  .mobmenu-serch-part {
+    width: 100%;
+    padding: 10px 8px 10px;
+  }
+  .mobmenu-wishlistbox {
+    font-size: 18px;
+    margin-left: 4px;
+    background-color: #448339;
+    padding: 1px 5px;
+    position: relative;
+  }
+  .mobmenu-wishlistbox a {
+    color: #ffffff;
+  }
+  .mobmenu-wishlistbox .my-notebook.wishlist .inscription .for-nt-text,
+  .mobmenu-wishlistbox .my-notebook.wishlist .inscription .for-nt-arr {
+    display: none;
+  }
+  .mobmenu-wishlistbox .my-notebook.wishlist .inscription .for-price {
+    width: 14px;
+    text-align: center;
+    color: #BDBCB3;
+    position: absolute;
+    top: 5px;
+    left: 7px;
+    font-size: 12px;
+    font-weight: 900;
   }
 
   /* --------------Стили для новогоднего украшения логотипа (для применения раскоментировать)-------------- */
@@ -506,15 +583,16 @@ h1 {
    /* ----------------конец Стили для новогоднего украшения логотипа----------------- */
 
   .mobile-header .phone-container {
-    padding-left: 35px;
-    position: relative; }
+    padding-left: 22px;
+    position: relative; 
+  }
     .mobile-header .phone-container:before {
       content: "\f095";
       font-size: 23px;
       color: #BDBCB3;
       font-family: "FontAwesome";
       position: absolute;
-      left: 7px;
+      left: -3px;
       top: 50%;
       transform: translateY(-50%); }
   .mobile-header .phone-num {
@@ -688,6 +766,59 @@ h1 {
       display: flex;
       align-items: center;
       height: 100%; }
+
+/* New Mobile Menu Style */
+.mobile-menu .navigation {
+  padding: 20px 10px;
+}
+.mobile-menu .navigation li {
+  list-style: none;
+}
+.mobile-menu .navigation>li>a {
+  display: block;
+  text-decoration: none;
+  color: #41403e;
+  font-size: 18px;
+  padding: 6px 25px 6px 0;
+  position: relative;
+}
+.mobile-menu .navigation li .list-level-wrap {
+  display: none;
+}
+.mobile-menu .navigation li.js-has-list>a:after {
+  font-family: 'FontAwesome';
+  content: "\f107";
+  position: absolute;
+  top: 3px;
+  right: 10px;
+  transition: 0.3s;
+}
+.mobile-menu .navigation li.js-has-list>a.open:after {
+  transform: rotate(180deg);
+}
+.mobile-menu .navigation li.js-has-list .list-level {
+  padding: 2px 10px 6px;
+}
+.mobile-menu .navigation li.js-has-list .list-level>li {
+  display: flex;
+  align-items: center;
+}
+.mobile-menu .navigation li.js-has-list .list-level>li>a {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  text-decoration: none;
+  color: #676767;
+  padding: 6px 6px 6px 0px;
+}
+.mobile-menu .navigation li.js-has-list .list-level>li>a .img-cont {
+  margin-right: 4px;
+}
+.mobile-menu .navigation li.js-has-list .list-level>li .count {
+  font-size: 14px;
+  font-style: italic;
+  color: #777777;
+}
 
 .footer {
   background: #F3F2F0; }
@@ -1059,6 +1190,9 @@ h1 {
       background-position: center center;
       background-size: cover;
       min-height: 560px;
+    }
+    .fixed-header {
+      padding-top: 46px; 
     }
   }
     .home-main .top-home-img img {
@@ -7681,6 +7815,10 @@ h1 {
 }
 .factory-tiles {
   justify-content: flex-start;
+}
+.btn-siginout {
+  font-size: 23px;
+  color: #BDBCB3;
 }
 /* стили для встроеного виджета - заказать звонок */
 .comagic-o-rack {
