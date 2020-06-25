@@ -5,9 +5,8 @@ namespace frontend\modules\seo\controllers;
 use Yii;
 use yii\helpers\Url;
 use yii\filters\VerbFilter;
-//
 use frontend\modules\catalog\models\{
-    Category, Types, Specification, Factory, Colors
+    Category, Types, SubTypes, Specification, Factory, Colors
 };
 
 /**
@@ -23,6 +22,7 @@ class SitemapHtmlController extends \frontend\components\BaseController
 
     protected $category = [];
     protected $types = [];
+    protected $subtypes = [];
     protected $style = [];
     protected $colors = [];
     protected $factory = [];
@@ -93,6 +93,26 @@ class SitemapHtmlController extends \frontend\components\BaseController
         }
 
         /**
+         * SubTypes list
+         */
+
+        $this->subtypes = SubTypes::getWithProduct([]);
+
+        $subtypes = [];
+
+        foreach ($this->subtypes as $key => $obj) {
+            $params = [];
+            $params[$keys['subtypes']] = [$obj['alias']];
+
+            $link = Yii::$app->catalogFilter->createUrl($params, $route);
+
+            $subtypes[$key] = [
+                'link' => $link,
+                'title' => $obj['lang']['title'],
+            ];
+        }
+
+        /**
          * STYLE LIST
          */
 
@@ -156,6 +176,7 @@ class SitemapHtmlController extends \frontend\components\BaseController
         return $this->render('index', [
             'category' => $category,
             'types' => $types,
+            'subtypes' => $subtypes,
             'style' => $style,
             'colors' => $colors,
             'factory' => $factory,

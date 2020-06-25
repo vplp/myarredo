@@ -3,7 +3,12 @@
 use yii\helpers\Html;
 
 /**
- * @var $model \frontend\modules\page\models\Page
+ * @var $category
+ * @var $types
+ * @var $subtypes
+ * @var $style
+ * @var $colors
+ * @var $factory
  */
 
 $this->title = $this->context->title;
@@ -45,6 +50,28 @@ $this->title = $this->context->title;
                             'class' => 'list sitemap-list'
                         ]);
                         foreach ($types as $item) {
+                            echo Html::tag(
+                                'li',
+                                Html::a(
+                                    '<i class="icon-right-open"></i>' . $item['title'],
+                                    $item['link']
+                                )
+                            );
+                        }
+                        echo Html::endTag('ul');
+                    }
+                    ?>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <?= Html::tag('h2', Yii::t('app', 'Типы')); ?>
+                <div class="text">
+
+                    <?php if ($subtypes) {
+                        echo Html::beginTag('ul', [
+                            'class' => 'list sitemap-list'
+                        ]);
+                        foreach ($subtypes as $item) {
                             echo Html::tag(
                                 'li',
                                 Html::a(
