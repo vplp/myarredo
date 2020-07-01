@@ -5,7 +5,9 @@ use yii\helpers\{
 };
 use frontend\modules\shop\models\Order;
 use frontend\modules\shop\models\OrderItem;
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\{
+    Product, Factory
+};
 
 /* @var $this yii\web\View */
 /* @var $modelOrder Order */

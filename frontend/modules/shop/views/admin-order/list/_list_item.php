@@ -7,7 +7,9 @@ use yii\widgets\ActiveForm;
 use frontend\modules\shop\models\{
     Order, OrderItem
 };
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\{
+    Product, Factory
+};
 
 /* @var $this yii\web\View */
 /* @var $modelOrder Order */
