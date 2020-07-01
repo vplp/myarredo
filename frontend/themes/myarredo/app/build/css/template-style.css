@@ -489,9 +489,18 @@ h1 {
   .adress-container {
     width: calc(100% - 45px);
     min-height: 38px;
+    padding-right: 6px;
     display: flex;
     align-items: center;
-    padding-right: 6px;
+    position: relative;
+  }
+  /* .adress-container .js-select-city.opened+.js-list-container {
+    display: block;
+  } */
+  .adress-container .js-toggle-list {
+    width: 100%;
+    display: flex;
+    align-items: center;
   }
   .adress-container .for-map-icon {
     color: #BDBCB3;
@@ -505,6 +514,14 @@ h1 {
     font-weight: 600;
     color: #444444;
     padding-left: 8px;
+  }
+  .adress-container .mobile-city-list {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    z-index: 999;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
   }
   .mobmenu-right-box {
     min-width: 45px;
