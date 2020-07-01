@@ -46,7 +46,12 @@ use frontend\modules\catalog\models\Product;
                         </tr>
                         <tr>
                             <td><?= Yii::t('app', 'Factory') ?></td>
-                            <td><?= $orderItem->product['factory']['title'] ?></td>
+                            <td>
+                                <?= Html::a(
+                                    $orderItem->product['factory']['title'],
+                                    Factory::getUrl($orderItem->product['factory']['alias'])
+                                ); ?>
+                            </td>
                         </tr>
                         <tr>
                             <td><?= Yii::t('app', 'Цена для клиента') ?></td>

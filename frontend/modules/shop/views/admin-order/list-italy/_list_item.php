@@ -52,7 +52,16 @@ use frontend\modules\catalog\models\ItalianProduct;
                     </tr>
                     <tr>
                         <td><?= Yii::t('app', 'Factory') ?></td>
-                        <td><?= $orderItem->product['factory']['title'] ?? $orderItem->product['factory_name'] ?></td>
+                        <td>
+                            <?php if ($orderItem->product['factory']['title']) {
+                                echo Html::a(
+                                    $orderItem->product['factory']['title'],
+                                    Factory::getUrl($orderItem->product['factory']['alias'])
+                                );
+                            } else {
+                                echo $orderItem->product['factory_name'];
+                            } ?>
+                        </td>
                     </tr>
                     <tr>
                         <td><?= Yii::t('app', 'Region') ?></td>

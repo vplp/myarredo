@@ -75,7 +75,10 @@ if ($user->profile->getPossibilityToAnswer($modelOrder->country_id)) { ?>
                         </tr>
                         <tr>
                             <td colspan="2" class="spec-pad2">
-                                <?= $orderItem->product['factory']['title'] ?>
+                                <?= Html::a(
+                                    $orderItem->product['factory']['title'],
+                                    Factory::getUrl($orderItem->product['factory']['alias'])
+                                ); ?>
                             </td>
                         </tr>
                         <tr class="noborder">
