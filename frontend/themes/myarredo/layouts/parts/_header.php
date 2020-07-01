@@ -7,7 +7,7 @@ use yii\bootstrap\ActiveForm;
 
 use frontend\modules\sys\widgets\lang\LangSwitch;
 use frontend\modules\catalog\widgets\menu\CatalogMenu;
-// use frontend\modules\catalog\widgets\menu_mobile\CatalogMenuMobile;
+use frontend\modules\catalog\widgets\menu_mobile\CatalogMenuMobile;
 use frontend\modules\shop\widgets\cart\Cart;
 use frontend\modules\location\widgets\{
     ChangeCity, ChangeCurrency
@@ -527,8 +527,8 @@ use frontend\modules\user\widgets\menu\UserMenu;
             echo UserMenu::widget(['view' => 'user_menu_mobile']);
         } else {
             echo UserMenu::widget(['view' => 'user_menu_mobile']);
-            // echo CatalogMenuMobile::widget([]);
-            echo CatalogMenu::widget([]);
+            echo CatalogMenuMobile::widget([]);
+            // echo CatalogMenu::widget([]);
         } ?>
 
         <div class="bot-list">
