@@ -3,9 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
-//
 use yii\widgets\ActiveForm;
-//
 use frontend\modules\payment\models\Payment;
 use frontend\modules\location\models\Currency;
 use frontend\modules\catalog\models\{
@@ -24,7 +22,7 @@ $modelPayment->setScenario('frontend');
 $modelPayment->user_id = Yii::$app->user->id;
 $modelPayment->type = 'italian_item';
 
-$modelCostProduct = ItalianProduct::getCostPlacementProduct();
+$modelCostProduct = ItalianProduct::getCostPlacementProduct(1, true);
 $modelPayment->amount = $modelCostProduct['amount'];
 $modelPayment->currency = $modelCostProduct['currency'];
 
@@ -84,7 +82,7 @@ $modelPayment->currency = $modelCostProduct['currency'];
                                 </td>
                                 <td>1</td>
                                 <?php if ($model->create_mode == 'free' && $modelCostProduct['discount_percent']) { ?>
-                                    <td><?= ItalianProduct::getFreeCostPlacementProduct($model)['amount'] ?></td>
+                                    <td><?= ItalianProduct::getFreeCostPlacementProduct($model, true)['amount'] ?></td>
                                 <?php } ?>
                                 <td><?= $modelCostProduct['total'] ?></td>
                                 <td><?= $modelCostProduct['currency'] ?></td>

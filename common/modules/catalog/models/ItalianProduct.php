@@ -8,11 +8,8 @@ use yii\helpers\{
     ArrayHelper
 };
 use yii\behaviors\AttributeBehavior;
-//
 use voskobovich\behaviors\ManyToManyBehavior;
-//
 use thread\app\base\models\ActiveRecord;
-//
 use common\helpers\Inflector;
 use common\modules\location\models\{
     City, Country, Region
@@ -69,7 +66,8 @@ use common\modules\shop\models\{
  * @property integer $status
  * @property string $create_mode
  * @property string $isGrezzo
- * @property string $production_time
+ * @property string $production_time_from
+ * @property string $production_time_to
  *
  * @property ItalianProductLang $lang
  * @property ItalianProductRelCategory[] $category
@@ -205,7 +203,8 @@ class ItalianProduct extends ActiveRecord
                     'image_link',
                     'file_link',
                     'production_year',
-                    'production_time'
+                    'production_time_from',
+                    'production_time_to'
                 ],
                 'string',
                 'max' => 255
@@ -288,7 +287,8 @@ class ItalianProduct extends ActiveRecord
                 'subtypes_ids',
                 'colors_ids',
                 'isGrezzo',
-                'production_time'
+                'production_time_from',
+                'production_time_to',
             ],
             'frontend' => [
                 'country_id',
@@ -324,7 +324,8 @@ class ItalianProduct extends ActiveRecord
                 'subtypes_ids',
                 'colors_ids',
                 'isGrezzo',
-                'production_time'
+                'production_time_from',
+                'production_time_to',
             ]
         ];
     }
@@ -378,7 +379,8 @@ class ItalianProduct extends ActiveRecord
             'subtypes_ids' => Yii::t('app', 'Типы'),
             'colors_ids' => Yii::t('app', 'Colors'),
             'isGrezzo',
-            'production_time' => 'дата производства ( от ... до ... дней)'
+            'production_time_from' => Yii::t('app', 'от'),
+            'production_time_to' => Yii::t('app', 'до'),
         ];
     }
 

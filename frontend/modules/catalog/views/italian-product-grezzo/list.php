@@ -6,7 +6,6 @@ use yii\helpers\{
 use yii\data\Pagination;
 use yii\widgets\Pjax;
 use kartik\grid\GridView;
-//
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
     ItalianProduct, Factory
@@ -156,11 +155,11 @@ $this->title = $this->context->title;
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
                                                 if (isset(Yii::$app->user->identity->profile->factory) && Yii::$app->user->identity->profile->factory->producing_country_id != 4) {
-                                                    $modelCostProduct = ItalianProduct::getCostPlacementProduct();
+                                                    $modelCostProduct = ItalianProduct::getCostPlacementProduct(1, true);
                                                 } elseif ($model->create_mode == 'paid') {
-                                                    $modelCostProduct = ItalianProduct::getCostPlacementProduct();
+                                                    $modelCostProduct = ItalianProduct::getCostPlacementProduct(1, true);
                                                 } elseif ($model->create_mode == 'free') {
-                                                    $modelCostProduct = ItalianProduct::getFreeCostPlacementProduct($model);
+                                                    $modelCostProduct = ItalianProduct::getFreeCostPlacementProduct($model, true);
                                                 }
 
                                                 return $modelCostProduct['amount'] . ' ' . $modelCostProduct['currency'];
@@ -238,7 +237,7 @@ $this->title = $this->context->title;
                                                     $status = '';
 
                                                     if (!$model->payment || $model->payment->payment_status != 'success') {
-                                                        $status .= Html::tag('div', Yii::t('app', 'Долг') . ':' . ItalianProduct::getFreeCostPlacementProduct($model)['amount']) .
+                                                        $status .= Html::tag('div', Yii::t('app', 'Долг') . ':' . ItalianProduct::getFreeCostPlacementProduct($model, true)['amount']) .
                                                             Html::a(
                                                                 Yii::t('app', 'Оплатить'),
                                                                 ['/catalog/italian-product-grezzo/interest-payment', 'id' => $model->id],

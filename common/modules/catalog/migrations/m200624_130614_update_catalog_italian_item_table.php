@@ -5,15 +5,14 @@ use common\modules\catalog\Catalog as ParentModule;
 
 class m200624_130614_update_catalog_italian_item_table extends Migration
 {
-
     /**
-    * @var string
-    */
+     * @var string
+     */
     public $table = '{{%catalog_italian_item}}';
 
     /**
-    *
-    */
+     *
+     */
     public function init()
     {
         $this->db = ParentModule::getDb();
