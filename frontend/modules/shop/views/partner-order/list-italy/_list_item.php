@@ -4,11 +4,12 @@ use yii\helpers\{
     Html, Url
 };
 use yii\widgets\ActiveForm;
-//
 use frontend\modules\shop\models\{
     Order, OrderItem, OrderAnswer
 };
-use frontend\modules\catalog\models\ItalianProduct;
+use frontend\modules\catalog\models\{
+    ItalianProduct, Factory
+};
 
 /* @var $this yii\web\View */
 
@@ -76,7 +77,14 @@ use frontend\modules\catalog\models\ItalianProduct;
                     </tr>
                     <tr>
                         <td colspan="2" class="spec-pad2">
-                            <?= $orderItem->product['factory']['title'] ?>
+                            <?php if ($orderItem->product['factory']['title']) {
+                                echo Html::a(
+                                    $orderItem->product['factory']['title'],
+                                    Factory::getUrl($orderItem->product['factory']['alias'])
+                                );
+                            } else {
+                                echo $orderItem->product['factory_name'];
+                            } ?>
                         </td>
                     </tr>
                     <tr class="noborder">

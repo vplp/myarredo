@@ -4,11 +4,13 @@ use yii\helpers\{
     Html, Url
 };
 use kartik\widgets\Select2;
+
 //
 use frontend\modules\location\models\Region;
 use frontend\modules\catalog\models\{
     Category, Factory, Types, SubTypes, Specification, Colors, ItalianProduct, ItalianProductLang
 };
+
 //
 use backend\app\bootstrap\ActiveForm;
 
@@ -265,33 +267,31 @@ $Specifications = Specification::findBase()->all();
 
         <?= Html::activeHiddenInput($model, 'isGrezzo', ['value' => 1]) ?>
 
-        <?= $form->field(
-            $model,
-            'production_time',
-            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
-        ) ?>
-
-        <?php if (isset(Yii::$app->user->identity->profile->factory) && Yii::$app->user->identity->profile->factory->producing_country_id == 4) {
-            echo $form
-                ->field($model, 'region_id')
-                ->widget(Select2::class, [
-                    'data' => [0 => '--'] + Region::dropDownList(4),
-                    'options' => [
-                        'placeholder' => Yii::t('app', 'Select option'),
-                    ],
-                ]);
-        } ?>
-
-        <?php
-        $model->phone = $model->isNewRecord
-            ? Yii::$app->user->identity->profile->phone
-            : $model->phone;
-
-        echo $form->field(
-            $model,
-            'phone',
-            ['template' => "{label}<div class=\"col-sm-4\">{input}</div>\n{hint}\n{error}"]
-        ) ?>
+        <div class="form-group row">
+            <div class="col-sm-3">
+                <label><?= Yii::t('app', 'Дата производства')?></label>
+            </div>
+            <?= $form
+                ->field(
+                    $model,
+                    'production_time_from',
+                    [
+                        'template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}",
+                        'options' => ['class' => '']
+                    ]
+                )
+                ->label($model->getAttributeLabel('production_time_from'), ['class' => 'col-sm-1']) ?>
+            <?= $form
+                ->field(
+                    $model,
+                    'production_time_to',
+                    [
+                        'template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}",
+                        'options' => ['class' => '']
+                    ]
+                )
+                ->label($model->getAttributeLabel('production_time_to'), ['class' => 'col-sm-1']) ?>
+        </div>
 
         <?php
         $model->email = $model->isNewRecord
@@ -306,13 +306,6 @@ $Specifications = Specification::findBase()->all();
         <?php if ($model->create_mode == 'paid') {
             echo Html::tag('p', Yii::t('app', 'Обращаем внимание, что цена для клиента увеличится на {nds} % с учетом НДС.<br> Из практики это увеличит время продажи.', ['nds' => 22]));
         } ?>
-
-        <?= $form
-            ->field(
-                $model,
-                'price',
-                ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
-            )->label(Yii::t('app', 'Price') . $nds) ?>
 
         <?= $form
             ->field(

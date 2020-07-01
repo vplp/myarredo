@@ -376,15 +376,24 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
 
     /**
      * @param int $count
+     * @param $isGrezzo
      * @return array
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getCostPlacementProduct($count = 1)
+    public static function getCostPlacementProduct($count = 1, $isGrezzo = false)
     {
         if (isset(Yii::$app->user->identity->profile->factory) && Yii::$app->user->identity->profile->factory->producing_country_id == 2) {
             $cost = 1000;
             $amount = $cost;
+        } elseif ($isGrezzo) {
+            /**
+             * cost 1 product = 30 EUR
+             * conversion to RUB
+             */
+            $currency = Currency::findByCode2('EUR');
+            $cost = 30 * $currency['course'];
+            $amount = $cost + ($cost * 0.02);
         } else {
             /**
              * cost 1 product = 100 EUR
@@ -417,19 +426,27 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
 
     /**
      * @param $model
+     * @param bool $isGrezzo
      * @return array
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getFreeCostPlacementProduct($model)
+    public static function getFreeCostPlacementProduct($model, $isGrezzo = false)
     {
-        /**
-         * cost 1 product = 100 EUR
-         * conversion to RUB
-         */
         $currency = Currency::findByCode2($model['currency']);
-
-        $cost = ($model['price_new'] / 100) * 22 * $currency['course'];
+        if ($isGrezzo) {
+            /**
+             * cost 1 product = 30 EUR
+             * conversion to RUB
+             */
+            $cost = ($model['price_new'] / 30) * 22 * $currency['course'];
+        } else {
+            /**
+             * cost 1 product = 100 EUR
+             * conversion to RUB
+             */
+            $cost = ($model['price_new'] / 100) * 22 * $currency['course'];
+        }
 
         $amount = number_format($cost, 2, '.', '');
 

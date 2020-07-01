@@ -8,7 +8,9 @@ use yii\widgets\ActiveForm;
 use frontend\modules\shop\models\{
     Order, OrderItem, OrderAnswer
 };
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\{
+    Product, Factory
+};
 
 /* @var $this yii\web\View */
 /* @var $modelOrder Order */
@@ -75,7 +77,10 @@ if ($user->profile->getPossibilityToAnswer($modelOrder->country_id)) { ?>
                         </tr>
                         <tr>
                             <td colspan="2" class="spec-pad2">
-                                <?= $orderItem->product['factory']['title'] ?>
+                                <?= Html::a(
+                                    $orderItem->product['factory']['title'],
+                                    Factory::getUrl($orderItem->product['factory']['alias'])
+                                ); ?>
                             </td>
                         </tr>
                         <tr class="noborder">

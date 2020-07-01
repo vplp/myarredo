@@ -21,10 +21,10 @@ $paidCount = $freeCount = $paidCost = $freeCost = 0;
 foreach ($dataProvider->getModels() as $model) {
     if ($model->create_mode == 'paid') {
         ++$paidCount;
-        $paidCost = $paidCost + ItalianProduct::getCostPlacementProduct()['amount'];
+        $paidCost = $paidCost + ItalianProduct::getCostPlacementProduct(1, true)['amount'];
     } elseif ($model->create_mode == 'free') {
         ++$freeCount;
-        $freeCost = $freeCost + ItalianProduct::getFreeCostPlacementProduct($model)['amount'];
+        $freeCost = $freeCost + ItalianProduct::getFreeCostPlacementProduct($model, true)['amount'];
     }
 } ?>
 
@@ -39,7 +39,7 @@ foreach ($dataProvider->getModels() as $model) {
 }
 $count = $paidCount + $freeCount;
 if ($count) {
-    $modelCostProduct = ItalianProduct::getCostPlacementProduct($paidCount + $freeCount);
+    $modelCostProduct = ItalianProduct::getCostPlacementProduct($paidCount + $freeCount, true);
     ?>
     <div class="total-box">
         <div>

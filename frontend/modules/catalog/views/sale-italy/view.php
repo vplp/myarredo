@@ -3,8 +3,6 @@
 use yii\helpers\{
     Html, Url
 };
-
-//
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{Factory, ItalianProduct, ItalianProductLang, Product};
 use frontend\themes\myarredo\assets\AppAsset;
@@ -103,10 +101,13 @@ $this->title = $this->context->title;
                                     ) ?>
                                 <?php }*/ ?>
 
-                                <div class="alert" role="alert">
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                    <?= Yii::t('app', 'Доставка товара от 20 дней') ?>
-                                </div>
+                                <?php if (!$model['isGrezzo']) { ?>
+                                    <div class="alert" role="alert">
+                                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                        <?= Yii::t('app', 'Доставка товара от 20 дней') ?>
+                                    </div>
+                                <?php } ?>
+
                             </div>
 
                             <table class="info-table itproduct-table" width="100%">

@@ -7,7 +7,9 @@ use yii\widgets\ActiveForm;
 use frontend\modules\shop\models\{
     Order, OrderItem
 };
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\{
+    Product, Factory
+};
 
 /* @var $this yii\web\View */
 /* @var $modelOrder Order */
@@ -46,7 +48,12 @@ use frontend\modules\catalog\models\Product;
                         </tr>
                         <tr>
                             <td><?= Yii::t('app', 'Factory') ?></td>
-                            <td><?= $orderItem->product['factory']['title'] ?></td>
+                            <td>
+                                <?= Html::a(
+                                    $orderItem->product['factory']['title'],
+                                    Factory::getUrl($orderItem->product['factory']['alias'])
+                                ); ?>
+                            </td>
                         </tr>
                         <tr>
                             <td><?= Yii::t('app', 'Цена для клиента') ?></td>

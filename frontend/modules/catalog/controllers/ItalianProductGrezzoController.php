@@ -91,7 +91,7 @@ class ItalianProductGrezzoController extends BaseController
 
             $count = count($models);
 
-            $modelCostProduct = ItalianProduct::getCostPlacementProduct($count);
+            $modelCostProduct = ItalianProduct::getCostPlacementProduct($count, true);
 
             $modelPayment->amount = $modelCostProduct['amount'];
             $modelPayment->currency = $modelCostProduct['currency'];
@@ -135,7 +135,7 @@ class ItalianProductGrezzoController extends BaseController
         $modelPayment->user_id = Yii::$app->user->id;
         $modelPayment->type = 'italian_item';
 
-        $modelCostProduct = ItalianProduct::getFreeCostPlacementProduct($model);
+        $modelCostProduct = ItalianProduct::getFreeCostPlacementProduct($model, true);
 
         $modelPayment->amount = $modelCostProduct['amount'];
         $modelPayment->currency = $modelCostProduct['currency'];
