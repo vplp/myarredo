@@ -147,7 +147,7 @@ class Product extends ProductModel
             $query
                 ->innerJoinWith(["specificationValue diameter"])
                 ->andFilterWhere(['diameter.specification_id' => 42])
-                ->andFilterWhere(['BETWEEN', 'diameter.val', $min, $max]);
+                ->andFilterWhere(['BETWEEN', 'diameter.val', $min - 1, $max + 1]);
         }
 
         if (isset($params[$keys['width']])) {
