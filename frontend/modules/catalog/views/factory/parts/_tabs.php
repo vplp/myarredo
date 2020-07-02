@@ -25,14 +25,6 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
 ?>
 
 <ul class="nav nav-tabs">
-    <?php if ($ItalianProductGrezzo) { ?>
-        <li>
-            <a data-toggle="tab" href="#all-grezzo">
-                Мебель со сроком производства от ... до ...
-            </a>
-        </li>
-    <?php } ?>
-
     <li class="active">
         <a data-toggle="tab" href="#all-product">
             <?= Yii::t('app', 'Все предметы мебели') ?>
@@ -86,6 +78,14 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         );
     } ?>
 
+    <?php if ($ItalianProductGrezzo) { ?>
+        <li>
+            <a data-toggle="tab" href="#all-grezzo">
+                <?= Yii::t('app', 'Мебель со сроком производства от ... до ...') ?>
+            </a>
+        </li>
+    <?php } ?>
+
     <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') { ?>
         <li>
             <a data-toggle="tab" href="#orders">
@@ -96,22 +96,6 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
 </ul>
 
 <div class="tab-content">
-    <?php if ($ItalianProductGrezzo) { ?>
-        <div id="all-grezzo" class="tab-pane fade">
-            <ul class="list">
-                <?php foreach ($ItalianProductGrezzo as $item) {
-                    echo Html::beginTag('li') .
-                        Html::a(
-                            Html::tag('span', $item['lang']['title'], ['class' => 'for-catalog-list']),
-                            ItalianProduct::getUrl($item['alias']),
-                            ['target' => '_blank']
-                        ) .
-                        Html::endTag('li');
-                } ?>
-            </ul>
-        </div>
-    <?php } ?>
-
     <div id="all-product" class="tab-pane fade in active">
         <ul class="list">
             <?php
@@ -238,6 +222,22 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                             Html::tag('span', $priceFile->title, ['class' => 'for-catalog-list']),
                             $priceFile->getFileLink(),
                             ['target' => '_blank', 'class' => 'click-on-factory-file', 'data-id' => $priceFile->id]
+                        ) .
+                        Html::endTag('li');
+                } ?>
+            </ul>
+        </div>
+    <?php } ?>
+
+    <?php if ($ItalianProductGrezzo) { ?>
+        <div id="all-grezzo" class="tab-pane fade">
+            <ul class="list">
+                <?php foreach ($ItalianProductGrezzo as $item) {
+                    echo Html::beginTag('li') .
+                        Html::a(
+                            Html::tag('span', $item['lang']['title'], ['class' => 'for-catalog-list']),
+                            ItalianProduct::getUrl($item['alias']),
+                            ['target' => '_blank']
                         ) .
                         Html::endTag('li');
                 } ?>

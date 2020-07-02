@@ -1,8 +1,7 @@
 <?php
 
 use yii\db\Migration;
-//
-use common\modules\forms\Forms as FormsModule;
+use common\modules\forms\FormsModule;
 
 class m170718_140604_create_forms_feedback_table extends Migration
 {

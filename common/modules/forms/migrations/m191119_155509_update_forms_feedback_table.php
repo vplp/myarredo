@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 //
-use common\modules\forms\Forms as FormsModule;
+use common\modules\forms\FormsModule;
 
 class m191119_155509_update_forms_feedback_table extends Migration
 {

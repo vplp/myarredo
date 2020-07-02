@@ -65,7 +65,7 @@ $bundle = AppAsset::register($this);
                     </div>
 
                     <ul class="nav ftr-nav">
-                        <li><?= FormFeedback::widget(); ?></li>
+                        <li><?= FormFeedback::widget(['view' => 'ajax_form_feedback']); ?></li>
                         <?php if (in_array(Yii::$app->language, ['ru-RU', 'uk-UA'])) { ?>
                             <li>
                                 <?= Html::a(

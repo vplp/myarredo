@@ -3,11 +3,12 @@
 namespace frontend\modules\forms\controllers;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\log\Logger;
 use yii\base\Exception;
+use yii\web\Response;
 use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
-//
 use frontend\components\BaseController;
 use frontend\modules\forms\models\FormsFeedback;
 
@@ -33,11 +34,31 @@ class FormsController extends BaseController
                 'actions' => [
                     'feedback' => ['post', 'get'],
                     'feedback-partner' => ['post'],
+                    'ajax-get-form-feedback' => ['post'],
                 ],
             ],
         ];
     }
 
+    /**
+     * @return array
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionAjaxGetFormFeedback()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            $model = new FormsFeedback(['scenario' => 'frontend']);
+
+            $html = $this->renderPartial('ajax_form_feedback', [
+                'model' => $model,
+            ]);
+
+            return ['success' => 1, 'html' => $html];
+        }
+    }
     /**
      * @return string|\yii\web\Response
      */

@@ -578,9 +578,9 @@ class CatalogFilter extends Component
                 preg_replace("/[^0-9]/", '', $data[1])
             ];
 
-            if ($_data[0] >= $_data[1]) {
+            /*if ($_data[0] >= $_data[1]) {
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
-            }
+            }*/
 
             self::$_parameters[self::$keys['length']] = $_data;
         }

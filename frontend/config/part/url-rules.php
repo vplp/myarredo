@@ -220,6 +220,7 @@ return [
     // Module [[Forms]]
     'forms/feedback' => 'forms/forms/feedback',
     'forms/feedback-partner' => 'forms/forms/feedback-partner',
+    'forms/ajax-get-form-feedback' => '/forms/forms/ajax-get-form-feedback',
     'forms/click-on-become-partner' => 'forms/click-on-become-partner/index',
 
     // Module [[SEO]]

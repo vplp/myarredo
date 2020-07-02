@@ -3,17 +3,19 @@
 namespace common\modules\forms\models;
 
 use Yii;
-//
 use thread\app\base\models\ActiveRecord;
-//
 use common\modules\forms\FormsModule;
 use common\modules\user\models\User;
+use common\modules\location\models\City;
 
 /**
  * Class Forms
  *
  * @property integer $id
  * @property integer $partner_id
+ * @property integer $city_id
+ * @property string $country
+ * @property string $subject
  * @property string $name
  * @property string $email
  * @property string $phone
@@ -26,6 +28,7 @@ use common\modules\user\models\User;
  * @property string attachment
  *
  * @property User $partner
+ * @property City $city
  *
  * @package common\modules\forms\models
  */
@@ -53,9 +56,9 @@ class FormsFeedback extends ActiveRecord
         return [
             [['name', 'email', 'phone', 'comment'], 'required'],
             [['user_agreement', 'reCaptcha'], 'required', 'on' => 'frontend'],
-            [['name', 'phone'], 'string', 'max' => 255],
+            [['name', 'phone', 'country', 'subject'], 'string', 'max' => 255],
             [['comment'], 'string', 'max' => 2048],
-            [['partner_id'], 'integer'],
+            [['partner_id', 'city_id'], 'integer'],
             [['email'], 'email'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['created_at', 'updated_at', 'published', 'deleted'], 'integer'],
@@ -85,10 +88,13 @@ class FormsFeedback extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['name', 'email', 'phone', 'comment', 'published'],
+            'backend' => ['name', 'city_id', 'country', 'subject', 'email', 'phone', 'comment', 'published'],
             'frontend' => [
                 'partner_id',
+                'city_id',
                 'name',
+                'country',
+                'subject',
                 'email',
                 'phone',
                 'comment',
@@ -106,6 +112,9 @@ class FormsFeedback extends ActiveRecord
     {
         return [
             'partner_id' => Yii::t('app', 'Partner'),
+            'city_id' => Yii::t('app', 'City'),
+            'country' => Yii::t('app', 'Country'),
+            'subject' => Yii::t('app', 'Subject'),
             'name' => Yii::t('app', 'Name'),
             'email' => Yii::t('app', 'Email'),
             'phone' => Yii::t('app', 'Phone'),
@@ -129,6 +138,14 @@ class FormsFeedback extends ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCity()
+    {
+        return $this->hasOne(City::class, ['id' => 'city_id']);
+    }
+
+    /**
      * @return string
      */
     public function getPublishedTime()
@@ -143,5 +160,15 @@ class FormsFeedback extends ActiveRecord
     public static function findBase()
     {
         return self::find()->orderBy(self::tableName() . '.id DESC');
+    }
+
+    public static function getSubjectRange()
+    {
+        return [
+            Yii::t('app', 'Замечания по работе сайта') => Yii::t('app', 'Замечания по работе сайта'),
+            Yii::t('app', 'Пожелания') => Yii::t('app', 'Пожелания'),
+            Yii::t('app', 'Ассортимент каталога') => Yii::t('app', 'Ассортимент каталога'),
+            Yii::t('app', 'Покупка и доставка') => Yii::t('app', 'Покупка и доставка')
+        ];
     }
 }
