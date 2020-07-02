@@ -3,8 +3,9 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-//
-use forntend\modules\forms\models\FormsFeedback;
+use frontend\modules\forms\models\FormsFeedback;
+use frontend\modules\location\models\City;
+
 /**
  * @var $model FormsFeedback
  */
@@ -15,6 +16,28 @@ use forntend\modules\forms\models\FormsFeedback;
     'method' => 'post',
     'action' => Url::toRoute(['/forms/forms/feedback'], true)
 ]); ?>
+
+<?php if (in_array(Yii::$app->city->domain, ['ru', 'ua', 'by'])) {
+    $model->city_id = Yii::$app->city->getCityId();
+    echo $form
+        ->field($model, 'city_id')
+        ->dropDownList(
+            City::dropDownList(Yii::$app->city->getCountryId()),
+            ['class' => 'selectpicker1']
+        );
+} else {
+    echo $form
+        ->field($model, 'country')
+        ->input('text', ['placeholder' => Yii::t('app', 'Country')])
+        ->label(false);
+} ?>
+
+<?= $form
+    ->field($model, 'subject')
+    ->dropDownList(
+        FormsFeedback::getSubjectRange(),
+        ['class' => 'selectpicker1']
+    ) ?>
 
 <?= $form
     ->field($model, 'email')
@@ -51,7 +74,7 @@ use forntend\modules\forms\models\FormsFeedback;
     ->field($model, 'reCaptcha')
     ->widget(
         \himiklab\yii2\recaptcha\ReCaptcha2::class
-        //['action' => 'feedback']
+    //['action' => 'feedback']
     )
     ->label(false) ?>
 
