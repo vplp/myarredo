@@ -43,6 +43,7 @@ class AppAsset extends AssetBundle
      */
     public $js = [
         // 'https://use.fontawesome.com/35f65baac5.js',
+        'libs/vue/vue.min.js',
         'libs/bootstrap-select/js/bootstrap-select.min.js',
         'libs/slick-1.6/slick.min.js',
         'libs/nouislider/nouislider.min.js',

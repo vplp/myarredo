@@ -4,10 +4,9 @@ use yii\helpers\{
     Html, Url
 };
 use yii\bootstrap\ActiveForm;
-
 use frontend\modules\sys\widgets\lang\LangSwitch;
 use frontend\modules\catalog\widgets\menu\CatalogMenu;
-// use frontend\modules\catalog\widgets\menu_mobile\CatalogMenuMobile;
+use frontend\modules\catalog\widgets\menu_mobile\CatalogMenuMobile;
 use frontend\modules\shop\widgets\cart\Cart;
 use frontend\modules\location\widgets\{
     ChangeCity, ChangeCurrency
@@ -428,11 +427,15 @@ use frontend\modules\user\widgets\menu\UserMenu;
             <i class="fa fa-search" aria-hidden="true"></i>
         </div> -->
         <div class="adress-container">
-            <span class="for-map-icon">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
-            </span>
-            <span class="for-adress-icon"><?= Yii::$app->city->getCitytitle() ?></span>
+            <div class="js-toggle-list">
+                <span class="for-map-icon">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                </span>
+                <span class="for-adress-icon"><?= Yii::$app->city->getCitytitle() ?></span>
+            </div>
+            <?= ChangeCity::widget(['view' => 'select_city_mobile']) ?>
         </div>
+    
         <div class="mobmenu-right-box">
             <?php
             if ((Yii::$app->getUser()->isGuest)) {
@@ -527,20 +530,10 @@ use frontend\modules\user\widgets\menu\UserMenu;
             echo UserMenu::widget(['view' => 'user_menu_mobile']);
         } else {
             echo UserMenu::widget(['view' => 'user_menu_mobile']);
-            // echo CatalogMenuMobile::widget([]);
-            echo CatalogMenu::widget([]);
+            echo CatalogMenu::widget(['view' => 'catalog_menu_mobile']);
         } ?>
 
         <div class="bot-list">
-            <div class="one-list-cont">
-                <div class="one-list js-toggle-list">
-                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                    <?= Yii::$app->city->getCountryTitle() ?> | <?= Yii::$app->city->getCitytitle() ?>
-                </div>
-
-                <?= ChangeCity::widget(['view' => 'select_city_mobile']) ?>
-
-            </div>
             <div class="one-list-cont">
                 <?= LangSwitch::widget(['view' => 'lang_switch_mobile']) ?>
             </div>
