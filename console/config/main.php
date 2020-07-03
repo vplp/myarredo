@@ -4,7 +4,7 @@ defined('DOMAIN') or define('DOMAIN', 'ru');
 
 use yii\helpers\ArrayHelper;
 use frontend\modules\catalog\models\{
-    Category, Types
+    Category, Types, SubTypes
 };
 use console\models\{
     Product, Factory, Sale, ItalianProduct
@@ -190,6 +190,17 @@ return ArrayHelper::merge(
                             }
                         ],
                         [
+                            'class' => SubTypes::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/catalog/c--t--s--f--c--country--colors--' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
+                        ],
+                        [
                             'class' => Product::class,
                             'dataClosure' => function ($model) {
                                 return [
@@ -232,6 +243,12 @@ return ArrayHelper::merge(
                         'changefreq' => 'daily',
                         'priority' => 0.5
                     ],
+                    [
+                        'loc' => '/page/sitemap/',
+                        'lastmod' => date('c', time()),
+                        'changefreq' => 'daily',
+                        'priority' => 0.5
+                    ],
                 ]
             ],
             'sitemap-sale' => [
@@ -259,6 +276,17 @@ return ArrayHelper::merge(
                                     'priority' => 0.8
                                 ];
                             },
+                        ],
+                        [
+                            'class' => SubTypes::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale/c--t--s--f--c--country--colors--' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
                         ],
                         [
                             'class' => Sale::class,
@@ -289,6 +317,17 @@ return ArrayHelper::merge(
                             'dataClosure' => function ($model) {
                                 return [
                                     'loc' => '/sale/c--' . $model['alias2'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
+                        ],
+                        [
+                            'class' => SubTypes::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale/c--t--s--f--c--country--colors--' . $model['alias'] . '/',
                                     'lastmod' => date('c', $model['updated_at']),
                                     'changefreq' => 'daily',
                                     'priority' => 0.8
@@ -336,6 +375,17 @@ return ArrayHelper::merge(
                             },
                         ],
                         [
+                            'class' => SubTypes::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale-italy/c--t--s--f--c--country--colors--' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
+                        ],
+                        [
                             'class' => ItalianProduct::class,
                             'dataClosure' => function ($model) {
                                 return [
@@ -364,6 +414,17 @@ return ArrayHelper::merge(
                             'dataClosure' => function ($model) {
                                 return [
                                     'loc' => '/sale-italy/c--' . $model['alias2'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
+                        ],
+                        [
+                            'class' => SubTypes::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale-italy/c--t--s--f--c--country--colors--' . $model['alias'] . '/',
                                     'lastmod' => date('c', $model['updated_at']),
                                     'changefreq' => 'daily',
                                     'priority' => 0.8
