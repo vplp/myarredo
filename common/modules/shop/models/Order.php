@@ -4,8 +4,6 @@ namespace common\modules\shop\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-
-//
 use common\modules\location\models\{
     City, Country
 };
@@ -229,6 +227,8 @@ class Order extends \thread\modules\shop\models\Order
             in_array(Yii::$app->user->identity->group->role, ['partner']) &&
             Yii::$app->user->identity->profile->city_id == $this->city_id) {
             $isArchive = false;
+        } elseif (date_diff(new \DateTime(), new \DateTime(date(DATE_ATOM, $this->created_at)))->days >= 5) {
+            $isArchive = true;
         } elseif (count($this->orderAnswers) >= 3) {
             $isArchive = true;
         }

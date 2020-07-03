@@ -5,7 +5,6 @@ namespace console\controllers;
 use Yii;
 use yii\helpers\Console;
 use yii\console\Controller;
-//
 use frontend\modules\location\models\City;
 use frontend\modules\catalog\models\{Category, Product, Types, Factory};
 use frontend\modules\seo\modules\directlink\models\Directlink;

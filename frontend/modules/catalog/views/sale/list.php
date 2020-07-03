@@ -4,8 +4,6 @@ use yii\helpers\{
     Html, Url
 };
 use yii\data\Pagination;
-
-//
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
     Sale, SaleLang
@@ -19,6 +17,8 @@ use frontend\modules\catalog\widgets\product\ViewedProducts;
 
 $this->title = $this->context->title;
 
+$keys = Yii::$app->catalogFilter->keys;
+$params = Yii::$app->catalogFilter->params;
 ?>
 
     <main>
@@ -55,13 +55,25 @@ $this->title = $this->context->title;
                                             } ?>
 
                                         </div>
-                                        <div class="pagi-wrap">
 
-                                            <?= frontend\components\LinkPager::widget([
-                                                'pagination' => $pages,
-                                            ]) ?>
+                                        <?php if ($pages->totalCount < $pages->defaultPageSize && !empty($params[$keys['type']]) && !empty($params[$keys['factory']])) {
+                                            $paramsNew = $params;
+                                            unset($paramsNew[$keys['factory']]);
 
-                                        </div>
+                                            echo Html::a(
+                                                Yii::t('app', 'Показать все'),
+                                                Yii::$app->catalogFilter->createUrl($paramsNew, ['/catalog/sale/list']),
+                                                ['class' => 'show-more']
+                                            );
+                                        } ?>
+
+                                        <?php if ($pages->totalCount > $pages->defaultPageSize) { ?>
+                                            <div class="pagi-wrap">
+                                                <?= frontend\components\LinkPager::widget([
+                                                    'pagination' => $pages,
+                                                ]) ?>
+                                            </div>
+                                        <?php } ?>
                                     </div>
 
                                 </div>
@@ -74,11 +86,9 @@ $this->title = $this->context->title;
                             </div>
                         </div>
 
-                        <?= ViewedProducts::widget([
-                            'modelClass' => Sale::class,
+                        <?= ViewedProducts::widget(['modelClass' => Sale::class,
                             'modelLangClass' => SaleLang::class,
-                            'cookieName' => 'viewed_sale'
-                        ]) ?>
+                            'cookieName' => 'viewed_sale']) ?>
 
                     </div>
                 </div>

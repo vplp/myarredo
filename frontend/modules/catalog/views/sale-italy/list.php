@@ -3,7 +3,6 @@
 use yii\helpers\{
     Html, Url
 };
-//
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\widgets\product\ViewedProducts;
 use frontend\modules\catalog\models\{
@@ -17,72 +16,86 @@ use frontend\modules\catalog\models\{
 
 $this->title = $this->context->title;
 
+$keys = Yii::$app->catalogFilter->keys;
+$params = Yii::$app->catalogFilter->params;
 ?>
 
-<main>
-    <div class="page category-page">
-        <div class="container-wrap">
-            <div class="container large-container">
-                <div class="row">
-
-                    <?= Html::tag('h1', (Yii::$app->metatag->seo_h1 != '')
-                        ? Yii::$app->metatag->seo_h1
-                        : Yii::t('app', 'Sale in Italy')); ?>
-
-                    <?= Breadcrumbs::widget([
-                        'links' => $this->context->breadcrumbs,
-                    ]) ?>
-
-                </div>
-                <div class="cat-content">
+    <main>
+        <div class="page category-page">
+            <div class="container-wrap">
+                <div class="container large-container">
                     <div class="row">
-                        <div class="col-md-3 col-lg-3 ajax-get-filter"></div>
-                        <div class="col-md-9 col-lg-9">
-                            <div class="cont-area">
 
-                                <div class="cat-prod-wrap">
-                                    <div class="cat-prod">
+                        <?= Html::tag('h1', (Yii::$app->metatag->seo_h1 != '')
+                            ? Yii::$app->metatag->seo_h1
+                            : Yii::t('app', 'Sale in Italy')); ?>
 
-                                        <?php
-                                        if (!empty($models)) {
-                                            foreach ($models as $model) {
-                                                echo $this->render('_list_item', ['model' => $model]);
-                                            }
-                                        } else {
-                                            echo '<p>' . Yii::t('app', 'Не найдено') . '</p>';
+                        <?= Breadcrumbs::widget([
+                            'links' => $this->context->breadcrumbs,
+                        ]) ?>
+
+                    </div>
+                    <div class="cat-content">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 ajax-get-filter"></div>
+                            <div class="col-md-9 col-lg-9">
+                                <div class="cont-area">
+
+                                    <div class="cat-prod-wrap">
+                                        <div class="cat-prod">
+
+                                            <?php
+                                            if (!empty($models)) {
+                                                foreach ($models as $model) {
+                                                    echo $this->render('_list_item', ['model' => $model]);
+                                                }
+                                            } else {
+                                                echo '<p>' . Yii::t('app', 'Не найдено') . '</p>';
+                                            } ?>
+
+                                        </div>
+
+                                        <?php if ($pages->totalCount < $pages->defaultPageSize && !empty($params[$keys['type']]) && !empty($params[$keys['factory']])) {
+                                            $paramsNew = $params;
+                                            unset($paramsNew[$keys['factory']]);
+
+                                            echo Html::a(
+                                                Yii::t('app', 'Показать все'),
+                                                Yii::$app->catalogFilter->createUrl($paramsNew, ['/catalog/sale-italy/list']),
+                                                ['class' => 'show-more']
+                                            );
                                         } ?>
 
+                                        <?php if ($pages->totalCount > $pages->defaultPageSize) { ?>
+                                            <div class="pagi-wrap">
+                                                <?= frontend\components\LinkPager::widget([
+                                                    'pagination' => $pages,
+                                                ]) ?>
+                                            </div>
+                                        <?php } ?>
                                     </div>
-                                    <div class="pagi-wrap">
 
-                                        <?= frontend\components\LinkPager::widget([
-                                            'pagination' => $pages,
-                                        ]) ?>
-
-                                    </div>
                                 </div>
-
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="comp-advanteges">
-                            <?= Yii::$app->metatag->seo_content ?>
+                        <div class="row">
+                            <div class="comp-advanteges">
+                                <?= Yii::$app->metatag->seo_content ?>
+                            </div>
                         </div>
+
+                        <?= ViewedProducts::widget([
+                            'modelClass' => ItalianProduct::class,
+                            'modelLangClass' => ItalianProductLang::class,
+                            'cookieName' => 'viewed_sale_italy'
+                        ]) ?>
+
                     </div>
-
-                    <?= ViewedProducts::widget([
-                        'modelClass' => ItalianProduct::class,
-                        'modelLangClass' => ItalianProductLang::class,
-                        'cookieName' => 'viewed_sale_italy'
-                    ]) ?>
-
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 
 <?php
 

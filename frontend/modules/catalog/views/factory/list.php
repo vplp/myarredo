@@ -69,11 +69,14 @@ $this->title = $this->context->title;
                         ]);
                     } ?>
                 </div>
-                <div class="pagi-wrap">
-                    <?= frontend\components\LinkPager::widget([
-                        'pagination' => $pages,
-                    ]); ?>
-                </div>
+
+                <?php if ($pages->totalCount > $pages->defaultPageSize) { ?>
+                    <div class="pagi-wrap">
+                        <?= frontend\components\LinkPager::widget([
+                            'pagination' => $pages,
+                        ]) ?>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>
