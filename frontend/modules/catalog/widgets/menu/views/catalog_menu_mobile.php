@@ -160,9 +160,16 @@ $MenuDataArray = array(
                             {{ oneItem.text }}
                         </a>
                         <a v-else v-bind:href=oneItem.link>{{ oneItem.text }}</a>
-
+                        
                         <div v-if="oneItem.levelisset" class="list-levelbox">
+                            <transition name="slidemenu">
                             <ul v-show="oneItem.levelopen" class="list-level">
+                                <li>
+                                    <button v-on:click="oneItem.levelopen = !oneItem.levelopen" class="btn-mobitem-close">
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                    {{ oneItem.text }}
+                                </button>
+                                </li>
                                 <li v-for="twoLevel in oneItem.levelData">
                                     <a href="javascript:void(0);"
                                     v-on:click="twoLevel.lopen = !twoLevel.lopen">
@@ -184,7 +191,9 @@ $MenuDataArray = array(
                                     </ul>
                                 </li>
                             </ul>
+                            </transition>
                         </div>
+                        
                     </li>
                 </ul>`
             });

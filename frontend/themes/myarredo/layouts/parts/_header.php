@@ -518,7 +518,7 @@ use frontend\modules\user\widgets\menu\UserMenu;
             ) ?>
 
             <a href="javascript:void(0);" class="close-mobile-menu js-close-mobile-menu">
-                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </a>
 
         </div>

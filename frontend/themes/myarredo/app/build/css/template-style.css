@@ -601,7 +601,8 @@ h1 {
 
   .mobile-header .phone-container {
     padding-left: 22px;
-    position: relative; 
+    position: relative;
+    margin-top: 4px; 
   }
     .mobile-header .phone-container:before {
       content: "\f095";
@@ -622,15 +623,20 @@ h1 {
     text-transform: uppercase;
     font-weight: 600; }
   .mobile-header .mobile-menu {
+    /* display: none; */
     position: absolute;
-    z-index: 9;
-    right: 0;
-    top: 0;
-    width: 285px;
-    border-left: 1px solid #BDBCB3;
-    border-bottom: 1px solid #BDBCB3;
+    z-index: 999;
+    top: 50px;
+    left: -105%;
+    width: 100%;
+    max-width: 330px;
+    border: 1px solid #BDBCB3;
     background: #FFFFFF;
-    display: none; }
+    transition: 0.45s; 
+  }
+  .mobile-header.open .mobile-menu {
+    left: 0;
+  }
     .mobile-header .mobile-menu .stripe {
       height: 40px;
       border-bottom: 1px solid #BDBCB3;
@@ -688,7 +694,7 @@ h1 {
       padding-left: 0;
       padding-top: 10px;
       margin-bottom: 50px; }
-      .mobile-header .mobile-menu .menu-list li {
+      .mobile-header .mobile-menu .menu-list>li {
         /* height: 42px; */
         padding-left: 13px; }
       .mobile-header .mobile-menu .menu-list a {
@@ -787,6 +793,8 @@ h1 {
 /* New Mobile Menu Style */
 .mobile-menu .navigation {
   padding: 20px 10px;
+  /* overflow-x: hidden;
+  overflow-y: visible; */
 }
 .mobile-menu .navigation li {
   list-style: none;
@@ -805,12 +813,16 @@ h1 {
 .mobile-menu .navigation li.js-has-list>a:after,
 .mobile-menu .navigation li.jshaslist>a:after {
   font-family: 'FontAwesome';
-  content: "\f107";
+  content: "\f105";
   position: absolute;
   top: 3px;
   right: 10px;
   transition: 0.07s;
 }
+.mobile-menu .navigation li.js-has-list>a:after {
+  content: "\f107";
+}
+
 .mobile-menu .navigation li.js-has-list>a.open:after,
 .mobile-menu .navigation li.jshaslist>a.open:after {
   transform: rotate(180deg);
@@ -855,11 +867,60 @@ h1 {
   margin: 2px auto;
   background-color: #f3f2f0;
 }
-
+.jshaslist .list-levelbox .list-level {
+  position: absolute;
+  width: calc(100% - 14px);
+  top: 48px;
+  /* right: -105vw; */
+  background-color: #ffffff;
+  z-index: 99;
+  transition: 0.45s;
+}
 .mobile-header .mobile-menu .menu-list .three-llist a {
-  font-size: 13px;
+  font-size: 14px;
   color: #565656;
   padding: 4px 0;
+}
+.slidemenu-enter-active {
+  animation: slideInRight .45s;
+}
+.slidemenu-leave-active {
+  animation: slideInRight .45s reverse;
+}
+@keyframes slideInRight{
+  0%{transform:translate3d(100%,0,0);visibility:hidden;opacity:0;}
+  to{transform:translateZ(0);opacity:1;}
+}
+.btn-mobitem-close {
+  display: block;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border: 1px solid #f3f2f0;
+  background-color: transparent;
+  margin-bottom: 6px;
+  position: relative;
+}
+.btn-mobitem-close:focus {
+  outline: transparent;
+}
+.btn-mobitem-close>.fa {
+  position: absolute;
+  top: 7px;
+  left: 8px;
+}
+@media (max-width: 480px) {
+  .mobile-menu .navigation li.jshaslist .list-level>li>a {
+    font-size: 4.2vw;
+  }
+  .mobile-header .mobile-menu .menu-list a,
+  .btn-mobitem-close {
+    font-size: 5.4vw;
+  }
+  .mobile-header .mobile-menu .menu-list .three-llist a {
+    font-size: 3.7vw;
+  }
 }
 
 .footer {
