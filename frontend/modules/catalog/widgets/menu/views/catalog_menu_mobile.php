@@ -67,20 +67,20 @@ foreach ($categorySaleItaly as $model) {
 $MenuDataArray = array(
     'menulist' => array(
         array(
-            'link' => '/catalog/category/list',
-            'text' => Yii::t('app', 'Catalog of furniture'),
-            'show' => 1,
-            'levelisset' => !empty($categories),
-            'levelopen' => 0,
-            'levelData' => $categories
-        ),
-        array(
             'link' => Url::toRoute(['/catalog/sale/list']),
             'text' => Yii::t('app', 'Sale'),
             'show' => Yii::$app->city->domain != 'com' ? 1 : 0,
             'levelisset' => !empty($categoriesSale),
             'levelopen' => 0,
             'levelData' => $categoriesSale
+        ),
+        array(
+            'link' => '/catalog/category/list',
+            'text' => Yii::t('app', 'Catalog of furniture'),
+            'show' => 1,
+            'levelisset' => !empty($categories),
+            'levelopen' => 1,
+            'levelData' => $categories
         ),
         array(
             'link' => Url::toRoute(['/catalog/sale-italy/list']),
