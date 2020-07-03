@@ -75,20 +75,20 @@ $MenuDataArray = array(
             'levelData' => $categoriesSale
         ),
         array(
-            'link' => '/catalog/category/list',
-            'text' => Yii::t('app', 'Catalog of furniture'),
-            'show' => 1,
-            'levelisset' => !empty($categories),
-            'levelopen' => 1,
-            'levelData' => $categories
-        ),
-        array(
             'link' => Url::toRoute(['/catalog/sale-italy/list']),
             'text' => Yii::t('app', 'Sale in Italy'),
             'show' => 1,
             'levelisset' => !empty($categoriesSaleItaly),
             'levelopen' => 0,
             'levelData' => $categoriesSaleItaly
+        ),
+        array(
+            'link' => '/catalog/category/list',
+            'text' => Yii::t('app', 'Catalog of furniture'),
+            'show' => 1,
+            'levelisset' => !empty($categories),
+            'levelopen' => 1,
+            'levelData' => $categories
         ),
         array(
             'link' => Url::toRoute(['/catalog/factory/list']),
