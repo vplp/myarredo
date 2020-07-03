@@ -123,46 +123,6 @@ $MenuDataArray = array(
     <mob-menu-list></mob-menu-list>
 </div>
 
-<!-- Mobile Menu Template -->
-<script type="text/x-template" id="mob_menu_template">
-    <ul class="menu-list navigation">
-        <li v-for="oneItem in mobdata.menulist" v-if="oneItem.show" v-bind:class="{jshaslist : oneItem.levelisset}">
-            <a v-on:click="oneItem.levelopen = !oneItem.levelopen"
-               v-bind:class="{open: oneItem.levelopen}"
-               v-if="oneItem.levelisset"
-               href="javascript:void(0);">
-                {{ oneItem.text }}
-            </a>
-            <a v-else v-bind:href=oneItem.link>{{ oneItem.text }}</a>
-
-            <div v-if="oneItem.levelisset" class="list-levelbox">
-                <ul v-show="oneItem.levelopen" class="list-level">
-                    <li v-for="twoLevel in oneItem.levelData">
-                        <a href="javascript:void(0);"
-                           v-on:click="twoLevel.lopen = !twoLevel.lopen">
-
-                            <div class="img-cont">
-                                <img v-bind:src=twoLevel.limglink alt="">
-                            </div>
-                            <span class="for-mobm-text">{{ twoLevel.ltext }}</span>
-                            <span class="count">{{ twoLevel.lcount }}</span>
-                        </a>
-
-                        <ul class="three-llist" v-show="twoLevel.lopen">
-                            <li v-for="threelev in twoLevel.ldata">
-                                <a v-bind:href=threelev.link>{{ threelev.text }}</a>
-                            </li>
-                            <li>
-                                <a v-bind:href=twoLevel.llink>Смотреть все</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </li>
-    </ul>
-</script>
-
 <script>
     // document ready
     window.addEventListener('DOMContentLoaded', function () {
@@ -190,7 +150,43 @@ $MenuDataArray = array(
                         mobdata: mobMenuData
                     }
                 },
-                template: '#mob_menu_template'
+                template: 
+                `<ul class="menu-list navigation">
+                    <li v-for="oneItem in mobdata.menulist" v-if="oneItem.show" v-bind:class="{jshaslist : oneItem.levelisset}">
+                        <a v-on:click="oneItem.levelopen = !oneItem.levelopen"
+                        v-bind:class="{open: oneItem.levelopen}"
+                        v-if="oneItem.levelisset"
+                        href="javascript:void(0);">
+                            {{ oneItem.text }}
+                        </a>
+                        <a v-else v-bind:href=oneItem.link>{{ oneItem.text }}</a>
+
+                        <div v-if="oneItem.levelisset" class="list-levelbox">
+                            <ul v-show="oneItem.levelopen" class="list-level">
+                                <li v-for="twoLevel in oneItem.levelData">
+                                    <a href="javascript:void(0);"
+                                    v-on:click="twoLevel.lopen = !twoLevel.lopen">
+
+                                        <div class="img-cont">
+                                            <img v-bind:src=twoLevel.limglink alt="">
+                                        </div>
+                                        <span class="for-mobm-text">{{ twoLevel.ltext }}</span>
+                                        <span class="count">{{ twoLevel.lcount }}</span>
+                                    </a>
+
+                                    <ul class="three-llist" v-show="twoLevel.lopen">
+                                        <li v-for="threelev in twoLevel.ldata">
+                                            <a v-bind:href=threelev.link>{{ threelev.text }}</a>
+                                        </li>
+                                        <li>
+                                            <a v-bind:href=twoLevel.llink>Смотреть все</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>`
             });
 
             // Vue init
