@@ -95,11 +95,14 @@ $params = Yii::$app->catalogFilter->params;
                                                 echo Html::tag('p', Yii::t('app', 'По таким параметрам нет товаров'));
                                             } ?>
                                         </div>
-                                        <div class="pagi-wrap">
 
-                                            <?= frontend\components\LinkPager::widget(['pagination' => $pages]) ?>
-
-                                        </div>
+                                        <?php if ($pages->totalCount > $pages->defaultPageSize) { ?>
+                                            <div class="pagi-wrap">
+                                                <?= frontend\components\LinkPager::widget([
+                                                    'pagination' => $pages,
+                                                ]) ?>
+                                            </div>
+                                        <?php } ?>
                                     </div>
 
                                 </div>
