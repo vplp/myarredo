@@ -1,0 +1,836 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2020-07-06 15:31">
+<shop>
+<name>MyArredoFamily</name>
+<company>MyArredoFamily</company>
+<url>https://sevastopol.myarredo.ru</url>
+<currencies>
+	<currency id="RUR" rate="1"/>
+</currencies>
+<categories>
+	<category id="9">Спальни</category>
+	<category id="1">Кухни</category>
+	<category id="2">Столовые комнаты</category>
+	<category id="12">Детская мебель</category>
+	<category id="6">Мягкая мебель</category>
+	<category id="7">Гостиные</category>
+	<category id="14">Светильники</category>
+	<category id="3">Стулья</category>
+	<category id="5">Кабинеты</category>
+	<category id="4">Прихожие</category>
+	<category id="13">Двери</category>
+	<category id="22">Картины</category>
+	<category id="16">Гардеробные</category>
+	<category id="15">Ванные комнаты</category>
+	<category id="10">Мебель для TV</category>
+	<category id="8">Аксессуары</category>
+	<category id="18">Кованая мебель</category>
+	<category id="11">Мебель для ресторанов</category>
+	<category id="21">Садовая мебель</category>
+</categories>
+<offers>
+	<offer id="8">
+		<name>Спальня Istari Arcan, фабрика SILIK </name>
+		<url>https://sevastopol.myarredo.ru/sale-product/8_8_8_spalnya_istari_komplekt/</url>
+		<price>1251540</price>
+		<oldprice>3128850</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/9b27/78e4/48cd/cbc2/980f/cede/4ec6/c006ef48889c748e6d7d40ff23c34cd7.jpg</picture>
+		<description><![CDATA[<p>Спальня Istari Arcan&nbsp;представлена итальянской фабрикой&nbsp;SILIK. В комплект входят:&nbsp;кровать 185 х 215 х 120 с ортопедическим матрасом 175 х 200; две тумбочки 55 х 40 х 62; комод 127 х 56 х 94 с зеркалом 97 х117; пуф 53 х 38 х 50; банкетка 100 х 50 х 50; кресло 65 х 56 х 79; шкаф 287 х 69 х 223. Мебель изготовлена исключительно из натурального массива дерева с элементами резьбы и золотистой отделки. Пуф, банкетка и кресло обиты высококачественной тканью, наполнение из полиуретана. Цена указана за комплект.</p>]]></description>
+	</offer>
+	<offer id="10">
+		<name> СТОЛ со стульями, модель  Pitti, фабрика ANTONELLI MORAVIO</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/10_stol_antonelli_moravio5ec3d24387283/</url>
+		<price>688500</price>
+		<oldprice>1721250</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/e574/ea8f/21cb/a1e7/f2dd/e863/fcca/f646247f2b57a36a967b0e620185a5ed.jpg</picture>
+		<description><![CDATA[<p>Стол обеденный раскладной,овальный с инкрустацией в комплекте со стульями 8 шт. и креслами 2 шт. представлен итальянской фабрикой&nbsp;ANTONELLI MORAVIO.&nbsp;Комплект изготовлен из массива дерева (орех) в лаковой отделке, мебель также декорирована изящной резьбой, ножки декорированы золотой фольгой. Сидения стульев обиты высококачественной мягкой тканью, наполнение из полиуретана.&nbsp;Размеры стола 210 х 110 см в собранном состоянии, имеет 2 вкладки по 50 см каждая, раздвигается соответственно до 260 или 310 см. Продается комплектом.</p>]]></description>
+	</offer>
+	<offer id="11">
+		<name>Стол и стулья, модель "TAMARA ",фабрика Modenese Gastone </name>
+		<url>https://sevastopol.myarredo.ru/sale-product/11_stol_modenese_gastone5ec3d2207b034/</url>
+		<price>367200</price>
+		<oldprice>918000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/970f/d80f/4be3/227e/1458/3b04/5cd7/e1e3e9e6937bb5bea41d03653c707516.jpg</picture>
+		<description><![CDATA[<p>Стол раскладной 160/260 х 90 , в комплекте со стульями (51х56х100) 4 шт. и стульями с подлокотниками (57х56х100) 2 шт. представлен легендарной итальянской фабрикой&nbsp;MODENESE GASTONE. Комплект изготовлен из массива дерева (черешня) с элементами черной лаковой отделки, мебель также декорирована изящной резьбой. Сидения стульев обиты высококачественной мягкой тканью, наполнение из полиуретана.</p>]]></description>
+	</offer>
+	<offer id="12">
+		<name>Гостиная  Тамара, фабрика Modenese Gastone</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/12_vitrina_modenese_gastone5ec3d0f23f28f/</url>
+		<price>491130</price>
+		<oldprice>1227825</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/7ea6/1987/6e11/47e0/5255/c876/2bb9/ffc88addd4d55d5fdb2934be7650d9d3.jpg</picture>
+		<description><![CDATA[<p>Функциональная и красивая стенка представлена итальянской фабрикой&nbsp;MODENESE GASTONE. Стенка состоит&nbsp;из 2-х витрин размерами 95 х 46 х 202 и TV-тумбы с 2-мя ящиками размером 158 х 51 х 55. Комплект изготовлен из натурального массива дерева в лаковой отделке. Стенка, выполненная в прекрасном классическом стиле, станет главным акцентом в вашей гостиной, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="16">
+		<name>Кухня Maggi Massimo art. 453</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/16_kuhnya_maggi_massimo5ec3d0ca69891/</url>
+		<price>1487466</price>
+		<oldprice>2150492</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>1</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4e23/e4cc/b5d4/2cf5/a96a/63f1/b3a8/5a86e2ce8d124.jpg</picture>
+		<description><![CDATA[<p>Кухня представлена итальянской фабрикой Maggi Massimo коллекции Hard Country. Выполнена в стиле кантри, что является удачным объедением&nbsp;деревенской простоты и шика.&nbsp;Для ее изготовления применяются натуральные материалы, которые&nbsp;гармонично смотрятся&nbsp;с латунной фурнитурой и кухонной техникой в ретро-стиле.&nbsp;В комплект мебели входят: 2 мойки, кран, сифон, духовка, варочная, встроенная вытяжка, посудомоечная машина, подсветка наружная с розеткой и выключателем, текстиль, керамические емкости, скалка.</p>]]></description>
+	</offer>
+	<offer id="18">
+		<name>Стол со стульями Maggi Massimo 483 + 391</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/18_stol_maggi_massimo5ec3d259e7d61/</url>
+		<price>311890</price>
+		<oldprice>467797</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/37d7/d5db/8ec2/fbfe/f076/0b00/0c0c/57e552ecf8f53ed5178fce711793e50e.jpg</picture>
+		<description><![CDATA[<p>&nbsp;</p>
+<p>Комплект мебели&nbsp;представлен итальянской фабрикой Maggi Massimo коллекции Hard Country. Выполнен в стиле кантри, станет великолепным вариантом для создания элегантной обстановки.&nbsp;Мебель изготовлена из массива тополя, столешница - белый мрамор. <br />В комплект входят:</p>
+<p>- стол;</p>
+<p>- 4 стула.</p>
+<p>&nbsp;</p>]]></description>
+	</offer>
+	<offer id="144">
+		<name>Диван BELLINI 555502, арт.  фабрика KEOMA </name>
+		<url>https://sevastopol.myarredo.ru/sale-product/144_divan_keoma5ec3d4ce9ee98/</url>
+		<price>103811</price>
+		<oldprice>259259</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4bcc/5f8b/5d73/30da/6f97/9e5c/24e7/bellini-2p.jpg</picture>
+		<description><![CDATA[<p>Роскошный двухместный диван&nbsp;BELLINI представлен итальянской фабрикой KEOMA. Диван обит роскошной тканью с перламутровыми и бархатными элементами и растительным орнаментом. Мягкие подушки и подлокотники обеспечат комфорт и удобство вам и вашим гостям. Диван, выполненный в прекрасном классическом стиле, станет главным акцентом вашей гостиной и придаст ей особое очарование и уют, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.&nbsp;</p>]]></description>
+	</offer>
+	<offer id="145">
+		<name>Кресло Valeria. Фабрика KEOMA</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/145_kreslo_keoma5ec3d2d4adc52/</url>
+		<price>152235</price>
+		<oldprice>229500</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/cbd5/b671/a081/9b8e/25a4/22ec/cc98/5ae1e4b74c78a.jpg</picture>
+		<description><![CDATA[<p>Удобное кресло&nbsp;Valeria представлено легендарной итальянской фабрикой KEOMA. Кресло изготовлено из массива дерева в золотистой отделке с резьбой, обтянуто высококачественной мягкой тканью. Наполнение кресла выполнено из полиуретана, а подушка наполнена натуральным пухом и пером. Кресло выполнено в прекрасном классическом стиле. Оно может стать изящным акцентом в интерьере гостиной, спальни или кабинета.</p>]]></description>
+	</offer>
+	<offer id="146">
+		<name>Диван Aurora 555501,  фабрика KEOMA </name>
+		<url>https://sevastopol.myarredo.ru/sale-product/146_divan_keoma5ec3d2b0ae709/</url>
+		<price>163940</price>
+		<oldprice>369113</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b698/1ae6/ddb1/a5b4/cc73/8485/4268/olegmbipcom-402.jpg</picture>
+		<description><![CDATA[<p>Роскошный диван&nbsp;Aurora представлен легендарной итальянской фабрикой KEOMA. Удобный диван с пятью мягкими пуховыми подушками, украшенными кристаллами&nbsp;Swarovski, обит замечательной светлой тканью и декорирован бахромой. Диван выполнен в прекрасном классическом стиле. Он может стать изящным акцентом в интерьере гостиной или спальни, а также составить оригинальное сочетание с аксессуарами в классическом стиле или в стиле арт деко.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>]]></description>
+	</offer>
+	<offer id="147">
+		<name>Диван арт. Fiorenza,  фабрика KEOMA</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/147_divan_keoma5ec3d311c4109/</url>
+		<price>227435</price>
+		<oldprice>372173</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/25c3/0af9/3104/1a67/4e1e/4824/c925/olegmbipcom-601.jpg</picture>
+		<description><![CDATA[<p>Невероятно удобный и стильный двухместный диван&nbsp;Fiorenza изогнутой формы представлен легендарной итальянской фабрикой KEOMA. Мягкий диван с наполнителем из пуха и пера обит замечательной светлой тканью с серебристым отливом и растительным орнаментом. Пять мягких и уютных подушек вы можете расположить по своему усмотрению и сделать диван еще удобнее для вас и ваших гостей. Диван выполнен в прекрасном классическом стиле. Он может стать изящным акцентом в интерьере гостиной или спальни.</p>]]></description>
+	</offer>
+	<offer id="148">
+		<name>Диван SISSY, арт. SISSY фабрика KEOMA </name>
+		<url>https://sevastopol.myarredo.ru/sale-product/148_divan_keoma5ec3d2ed3c5e6/</url>
+		<price>201960</price>
+		<oldprice>356490</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/94a9/65f8/ee29/1be3/137a/15a6/2a53/sissy-3p.jpg</picture>
+		<description><![CDATA[<p>Роскошный трехместный диван&nbsp;SISSY на изогнутых ножках&nbsp;представлен легендарной итальянской фабрикой KEOMA. Удобный диван обит замечательной тканью с золотистым отливом и растительным орнаментом. Диван изготовлен из массива дерева и декорирован изящной резьбой.&nbsp;Диван&nbsp;выполнен в прекрасном классическом стиле. Он может стать запоминающимся акцентом в интерьере гостиной, спальни или даже офиса.</p>]]></description>
+	</offer>
+	<offer id="150">
+		<name>Банкетка  арт. LISA 555540, фабрика KEOMA </name>
+		<url>https://sevastopol.myarredo.ru/sale-product/150_banketka_keoma5ec3d5d8af3c3/</url>
+		<price>76500</price>
+		<oldprice>114750</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/ee56/6a66/7927/63b2/7765/d9b0/4f1e/lisa2.jpg</picture>
+		<description><![CDATA[<p>Мягкая и стильная банкетка представлена легендарной итальянской фабрикой KEOMA. Банкетка изготовлена из массива дерева с элементами резьбы и обита высококачественной тканью с капитоне, наполнение из полиуретана. Банкетка выполнена в прекрасном классическом стиле, хотя может сочетаться и с элементами других стилей. Она может стать изящным акцентом в интерьере гостиной или спальни.</p>]]></description>
+	</offer>
+	<offer id="153">
+		<name>Диван арт.FLORENCE_3,  фабрика KEOMA </name>
+		<url>https://sevastopol.myarredo.ru/sale-product/153_divan_keoma5ec3d29858c58/</url>
+		<price>189720</price>
+		<oldprice>316327</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/34cc/d03e/4248/e0bc/d8e1/8a8f/dd50/florence-3p.jpg</picture>
+		<description><![CDATA[<p>Роскошный трехместный диван&nbsp;FLORENCE_3 представлен легендарной итальянской фабрикой KEOMA. Диван обит роскошной велюровой тканью с мягким перламутровым отливом и растительным орнаментом. Мягкие подушки и подлокотники обеспечат комфорт и удобство вам и вашим гостям. Диван, выполненный в прекрасном классическом стиле, станет главным акцентом вашей гостиной и придаст ей особое очарование и уют, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.&nbsp;</p>]]></description>
+	</offer>
+	<offer id="156">
+		<name>Кресло арт. SISSY  555525, фабрика KEOMA</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/156_kreslo_keoma5ec3d277ab444/</url>
+		<price>113985</price>
+		<oldprice>206550</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/81e1/cd3d/f136/3f63/1083/3a82/6e40/sissy.jpg</picture>
+		<description><![CDATA[<p>Мягкое кресло&nbsp;SISSY_1&nbsp; на изогнутых ножках представлено легендарной итальянской фабрикой KEOMA. Кресло изготовлено из массива дерева в серебристой отделке и декорировано резными элементами. Кресло обито роскошной тканью с серебристым отливом. Кресло выполнено в прекрасном стиле арт деко. Оно может стать изящным акцентом в интерьере гостиной, спальни или кабинета. В наличии два кресла.</p>]]></description>
+	</offer>
+	<offer id="158">
+		<name>Радио Maggi Massimo АА294</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/158_aksessuary_maggi_massimo5ec3d3e03492a/</url>
+		<price>64260</price>
+		<oldprice>87134</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/e73b/0dfe/39f8/3be1/161c/a50c/3c80/5a86e9ea0ea76.jpg</picture>
+		<description><![CDATA[<p style="text-align: justify;">Радио от итальянской фабрикой Maggi Massimo в коллекции Hard Country. Выполнено в стиле кантри.&nbsp;Для ее изготовления применяются натуральные материалы, которые&nbsp;гармонично смотрятся&nbsp;с латунной фурнитурой.&nbsp;Тем не менее, не стоит приписывать ему дешевизну, ведь натуральный материал всегда выглядит богато.&nbsp;</p>]]></description>
+	</offer>
+	<offer id="159">
+		<name>Винный шкаф DEC  Maggi Massimo DEC37</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/159_vinnaya_mebel_maggi_massimo5ec3d3ffb0ce8/</url>
+		<price>1129897</price>
+		<oldprice>302940</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/faaa/aa24/5a10/6cfc/d6aa/93a1/9a3d/olegmbipcom-061.jpg</picture>
+		<description><![CDATA[<p style="text-align: justify;">Шикарный&nbsp;винный шкаф&nbsp;представлен итальянской фабрикой Maggi Massimo коллекции Hard Country.&nbsp;&nbsp;Выполнен в стиле кантри. Оборудован двумя&nbsp;выдвижными ящикамии&nbsp;двумя распашными дверями.&nbsp;Изготовлен из массива древесины в авторской лакированой отделке.</p>]]></description>
+	</offer>
+	<offer id="160">
+		<name>Пуф арт. KATERINA 555534,  фабрика KEOMA</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/160_puf_keoma5ec3d42f4c633/</url>
+		<price>47812</price>
+		<oldprice>77648</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/f0ff/6147/435e/e5ce/bbc3/9bf1/2fab/safira-puff.jpg</picture>
+		<description><![CDATA[<p>Большой квадратный пуф&nbsp;KATERINA представлен легендарной итальянской фабрикой KEOMA. Мягкий пуф с наполнением из полиуретана обит высококачественной тканью. Пуф выполнен в прекрасном классическом стиле, но он может дополнить интерьер и в любом другом стиле, придав ему определенный шарм и уют. Он может стать изящным акцентом в интерьере гостиной или спальни.&nbsp;</p>]]></description>
+	</offer>
+	<offer id="165">
+		<name>Диван NAPOLEONE, фабрика KEOMA</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/165_divan_keoma5ec3d4949e5de/</url>
+		<price>209075</price>
+		<oldprice>343179</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/9382/bef6/04a8/5762/9f64/79fa/a7d1/5a86fbafa98a4.jpg</picture>
+		<description><![CDATA[<p>Функциональный двухместный диван-кровать&nbsp;NAPOLEONE1 представлен легендарной итальянской фабрикой KEOMA. Мягкий диван обит замечательной светлой тканью, наполнение из полиуретана, а подушки с наполнением из гусиного пуха. Диван оснащен пружинным механизмом SoftSystem (французская раскладушка) с электросварной решеткой и пружинным матрасом высотой 12 см, спальное место размером 110 х 175+15.&nbsp;</p>
+<p>&nbsp;</p>]]></description>
+	</offer>
+	<offer id="166">
+		<name>Диван арт.MUNA,  фабрика KEOMA</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/166_divan_keoma5ec3d67d6ca49/</url>
+		<price>319158</price>
+		<oldprice>638240</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b5c2/5a0c/8388/872a/4983/eba4/09bc/5ec3d1fa4284c.jpg</picture>
+		<description><![CDATA[<p>Угловая композиция из двух диванов с правым подлокотником&nbsp;MUNA представлена легендарной итальянской фабрикой KEOMA. Каркас дивана изготовлен из массива дерева, обивка - роскошная черная вельветовая ткань с серебристым отливом, наполнение из полиуретана. Металлическая хромированная база и держатели спинки подчеркивают современный дизайн этой модели.Большой и удобный диван также оснащен множеством мягких подушек со стильным урбанистическим принтом. Кроме того, диван имеет полностью съемные чехлы!!! Это значительно облегчает процедуру чистки дивана! Чехлы легко снимаются с каждого элемента дивана, и так же легко одеваются!!! Возможен пошив второго комплекта чехлов, и диван предстанет уже в совсем другом виде!!!  </p> И еще важный момент: угол трансформируется в два дивана!!! и получается уже совсем другая композиция! <p/>
+<p>&nbsp;</p>]]></description>
+	</offer>
+	<offer id="167">
+		<name>Диван арт. Royal,  фабрика KEOMA</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/167_divan_keoma5ec3d51c16d9e/</url>
+		<price>160420</price>
+		<oldprice>269663</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/324f/9c3d/91f7/e44a/70c8/cd9c/e322/img_4643.jpg</picture>
+		<description><![CDATA[<p>Королевский двухместный диван&nbsp;Royal в изящной светлой обивке представлен легендарной итальянской фабрикой KEOMA. Каркас дивана выполнен из качественного массива дерева, подушки сидения набиты полиуретаном, а подушки - легким гусиным пухом. Подлокотники оснащены удобными съемными чехлами. Диван выполнен в прекрасном классическом стиле. Он может стать изящным акцентом в интерьере гостиной или спальни.</p>]]></description>
+	</offer>
+	<offer id="168">
+		<name>Диван арт. MILLENIUM 555515, фабрика KEOMA</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/168_divan_keoma5ec3d4788879a/</url>
+		<price>208845</price>
+		<oldprice>254057</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/7a27/5613/42ec/f386/e2bd/1f04/bef0/img_9769.jpg</picture>
+		<description><![CDATA[<p>Стильный трехместный диван&nbsp;MILLENIUM представлен легендарной итальянской фабрикой KEOMA. Каркас дивана изготовлен из массива дерева высокого качества, обивка выполнена из мягкой ткани приятного оттенка, наполнение из полиуретана. Диван оснащен множеством подушек, которые позволят с комфортом разместиться вам и вашим гостям. Диван выполнен в прекрасном современном стиле. Он может стать изящным акцентом в интерьере гостиной или спальни.</p>
+<p>&nbsp;</p>]]></description>
+	</offer>
+	<offer id="171">
+		<name>Диван арт. KATERINA 555514,  фабрика KEOMA </name>
+		<url>https://sevastopol.myarredo.ru/sale-product/171_divan_keoma5ec3d4e5e49ea/</url>
+		<price>206550</price>
+		<oldprice>516375</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b44c/52f6/617b/972a/e54b/f017/d4c0/img_4600.jpg</picture>
+		<description><![CDATA[<p>Удобный трехместный диван&nbsp;KATERINA2 представлен легендарной итальянской фабрикой KEOMA. Диван обит роскошной тканью с перламутровым отливом и растительным орнаментом, оснащен частично съемными чехлами. Наполнение изготовлено из полиуретана, а подушки наполнены мягким гусиным пухом и оснащены современной системой пружин SoftSystem, что обеспечит потрясающий комфорт вам и вашим гостям. Диван, выполненный в прекрасном классическом стиле, станет главным акцентом вашей гостиной и придаст ей особое очарование и уют, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.&nbsp;</p>
+<p>&nbsp;</p>]]></description>
+	</offer>
+	<offer id="175">
+		<name>Кресло VALERIA  555526, фабрика KEOMA</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/175_kreslo_keoma5ec3d5856381c/</url>
+		<price>152235</price>
+		<oldprice>210299</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4a12/5722/61e3/9b73/ad54/faf5/6d42/img_4606.jpg</picture>
+		<description><![CDATA[<p>Мягкое кресло&nbsp;VALERIA 2 на резных ножках представлено легендарной итальянской фабрикой KEOMA. Кресло изготовлено из массива дерева (ясень) в отделке белый лак с патиной и декорировано резными элементами. Кресло обито роскошной и качественной велюровой тканью. Наполнение кресла изготовлено из полиуретана разной плотности в сочетании с мягким гусиным пухом. Кресло выполнено в прекрасном классическом стиле. Оно может стать изящным акцентом в интерьере гостиной, спальни или кабинета.</p>
+<p>&nbsp;</p>]]></description>
+	</offer>
+	<offer id="177">
+		<name>Кресло VALERIA, фабрика KEOMA</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/177_kreslo_keoma5ec3d56264cf5/</url>
+		<price>144585</price>
+		<oldprice>214200</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/30f5/041f/930d/aa27/ce87/c4e6/ef8a/img_9762.jpg</picture>
+		<description><![CDATA[<p>Удобное кресло&nbsp;Valeria представлено легендарной итальянской фабрикой KEOMA. Кресло изготовлено из массива дерева с элементами резьбы в отделке с использованием серебряной фольги, обтянуто высококачественной мягкой тканью с растительным орнаментом. Наполнение кресла выполнено из полиуретана, а подушка наполнена натуральным мягким гусиным пухом. Кресло выполнено в прекрасном классическом стиле. Оно может стать изящным акцентом в интерьере гостиной, спальни или кабинета.</p>
+<p>&nbsp;</p>]]></description>
+	</offer>
+	<offer id="178">
+		<name>Кресло Magia, фабрика MANTELLASSI</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/178_kreslo_mantellassi5ec3d54aea03e/</url>
+		<price>129667</price>
+		<oldprice>323672</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/c532/538e/b389/10f8/9b08/24e4/75a1/kreslo-mantellassi.jpg</picture>
+		<description><![CDATA[<p>Кресло Magia представлено итальянской фабрикой MANTELLASI. В отделке как на фото. Корпус дерево, отделка - серебряная фольга с патиной. Наполнение - полиуретан. Кресло обито прекрасной тканью шелк-сатин с жемчужным эффектом, что придает изделию дополнительное изящество и роскошь.</p>]]></description>
+	</offer>
+	<offer id="179">
+		<name>Диван EOLO 555505, фабрика KEOMA</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/179_divan_keoma5ec3d4b0e06ca/</url>
+		<price>183600</price>
+		<oldprice>272723</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/d33b/cedd/d34c/997b/8eeb/ba63/07d2/img_9756-2.jpg</picture>
+		<description><![CDATA[<p>Роскошный трехместный диван&nbsp;EOLO&nbsp;представлен легендарной итальянской фабрикой KEOMA. Диван обит роскошной тканью с перламутровыми и бархатными элементами и растительным орнаментом, кормус дивана изготовлен из качественного и долговечного массива дерева. Мягкие подушки и подлокотники обеспечат комфорт и удобство вам и вашим гостям. Диван, выполненный в прекрасном классическом стиле, станет главным акцентом вашей гостиной и придаст ей особое очарование и уют, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>]]></description>
+	</offer>
+	<offer id="181">
+		<name>Диван PEGASO, арт. PEGA83, фабрика DITRE ITALIA</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/181_divan_ditre_italia5ec3d45763e46/</url>
+		<price>229500</price>
+		<oldprice>459000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/ed43/b37c/a657/8bcb/61ed/7ad7/1538/5a86f8b41e5d2.jpg</picture>
+		<description><![CDATA[<p>Стильный и удобный диван-кровать представлен итальянской фабрикой DITre Italia. Каркас дивана изготовлен из массива дерева, обивка дивана и четырех подушек выполнена из мягкой бархатной и атласной тканей, наполнение из полиуретана. Диван оснащен надежными укрепленными механизмами и электросварной решеткой, а также удобным матрасом из полиуретана высотой 9 см и размерами 132х190. Диван, выполненный в прекрасном классическом стиле, станет главным акцентом в вашей гостиной или спальне и подарит здоровый и приятный сон.</p>
+<p>&nbsp;</p>]]></description>
+	</offer>
+	<offer id="182">
+		<name>Диван арт. KATERINA  555513,  фабрика KEOMA</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/182_divan_keoma5ec3d41784e61/</url>
+		<price>183600</price>
+		<oldprice>295137</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b813/3718/6cca/bb3f/f6a7/d40f/6294/img_9793.jpg</picture>
+		<description><![CDATA[<p>Трехместный диван&nbsp;KATERINA0 представлен легендарной итальянской фабрикой KEOMA. Каркас дивана изготовлен из ели и многослойной фанеры тополя, подушки сидения оснащены пружинами системы SoftSystem, подушки спинки из полиуретана и гусиного пуха. Диван обит мягкой вельветовой тканью и для вашего удобства оснащен съемными чехлами, удобные накидки на подлокотники в комплекте. Диван выполнен в прекрасном современном стиле. Он может стать изящным акцентом в интерьере гостиной или спальни.</p>]]></description>
+	</offer>
+	<offer id="185">
+		<name>Пуф SAFIRA 555539, фабрика KEOMA</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/185_puf_keoma5ec3d5a33980b/</url>
+		<price>41310</price>
+		<oldprice>103275</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1608/446e/c212/00df/e8f4/9a04/0884/img_9819.jpg</picture>
+		<description><![CDATA[<p>Мягкий квадратный пуф&nbsp;SAFIRA2 представлен легендарной итальянской фабрикой KEOMA. Пуф обит приятной и качественной кожей Nubuk. Основание изготовлено из массива дерева, а подушка, наполненная полиуретаном, присоединяется к основанию при помощи удобной липучки. Пуф, выполненный в прекрасном современном стиле, станет отличным акцентом вашей гостиной или спальни и придаст ей особое очарование и уют, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>]]></description>
+	</offer>
+	<offer id="187">
+		<name>Туалетный столик CAPRI , арт.3160, фабрика VOLPI </name>
+		<url>https://sevastopol.myarredo.ru/sale-product/187_tualetnyj_stolik_volpi5ec3d5fb927fb/</url>
+		<price>237150</price>
+		<oldprice>336370</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/f33e/47d3/be8f/ccab/2d33/23bf/a59c/volpi_2.jpg</picture>
+		<description><![CDATA[<p>Туалетный столик в комплекте с пуфом итальянской фабрики VOLPI . Изготовлены из массива дерева, Отделка слоновая кость с патиной , декор выполнен в отделке золото и серебро. Ручки в виде элегантных романтических розочек. Стоимость указана за 2 предмета. Артикул - Capri.</p>]]></description>
+	</offer>
+	<offer id="188">
+		<name>Тумбочка CAPRI арт. 2650 ,   фабрика VOLPI                          </name>
+		<url>https://sevastopol.myarredo.ru/sale-product/188_tumbochka_volpi5ec3d614cc16d/</url>
+		<price>107100</price>
+		<oldprice>171850</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/eca3/7fb1/8b1a/49d3/3392/0db3/aab9/img_1669.jpg</picture>
+		<description><![CDATA[<p>Тумбочка прикроватная итальянской фабрики VOLPI. Изготовлена из массива дерева. Отделка - слоновая кость с патиной. Отделка декора - золото и серебро. Элегантные ручки в виде романтических розочек, как на фото. Цена за 1 тумбочку. В наличии есть 2 тумбочки. Артикул - Capri.</p>]]></description>
+	</offer>
+	<offer id="191">
+		<name>Угловой шкаф SALIERI,  фабрика Modenese Gastone</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/191_skaf_modenese_gastone5ec3d662e83ee/</url>
+		<price>374850</price>
+		<oldprice>688500</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>16</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/d8ca/1dfc/6bf1/f544/54a8/951a/4fa3/olegmbipcom-384.jpg</picture>
+		<description><![CDATA[<p>Шкаф угловой представлен легендарной итальянской фабрикой Modenese Gastone. Вместительный шкаф выполнен из натурального массива дерева в цвете орех. Шкаф оснащен тремя распашными дверцами на замке. Угловой шкаф, выполненный в прекрасном классическом стиле, станет отличным дополнением к вашей спальне и поможет разместить все необходимое.</p>]]></description>
+	</offer>
+	<offer id="379">
+		<name>Витрина TREVI 7541/01, фабрика TIFERNO</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/379_vitrina_tiferno5ec3d64d7f8cb/</url>
+		<price>72752</price>
+		<oldprice>142060</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/f2b7/ce06/484c/17a6/5986/63df/7b26/olegmbipcom-664.jpg</picture>
+		<description><![CDATA[<p>Витрина со стеклянной дверью и стеклянными полками представлена итальянской фабрикой TIFERNO. Витрина, оснащенная выдвижным ящичком, изготовлена из массива дерева (орех). Изящная витрина, выполненная в прекрасном классическом стиле, отлично подойдет для кабинета, гостиной или столовой, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="380">
+		<name>Комод угловой SILIK</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/380_komod_silik5ec3d62df231a/</url>
+		<price>191250</price>
+		<oldprice>382500</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1ef9/cd20/86df/f6e2/ffa6/add7/68ad/olegmbipcom-554.jpg</picture>
+		<description><![CDATA[<p>Роскошный угловой комод с двумя дверцами и одним ящичком представлен итальянской фабрикой&nbsp;SILIK. Комод изготовлен из массива дерева, декорированного резьбой, отделка как на фото. Комод, выполненный в прекрасном классическом стиле, отлично дополнит вашу спальню и поможет с легкостью разместить все необходимое.</p>]]></description>
+	</offer>
+	<offer id="383">
+		<name>Подставка артикул 376, фабрика STILARS</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/383_aksessuary5ec3d7288f016/</url>
+		<price>22874</price>
+		<oldprice>57145</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/32ab/89a4/d3ca/19e0/9334/087c/4484/olegmbipcom-523.jpg</picture>
+		<description><![CDATA[<p>Прекрасная круглая подставка представлена итальянской фабрикой&nbsp;Stilars.&nbsp;Артикул 376. Замечательно  подойдет для лампы, телефона или цветов. Изготовлена из массива дерева в лаковой отделке, ножки выполнены из латуни.&nbsp;</p>]]></description>
+	</offer>
+	<offer id="395">
+		<name>Пуф Muna , фабрика KEOMA</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/395_puf_keoma5ec3d5bd5f237/</url>
+		<price>21955</price>
+		<oldprice>57375</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/ba07/e674/ab7c/ba05/b590/a01e/cc4d/olegmbipcom-382.jpg</picture>
+		<description><![CDATA[<p>Мягкий квадратный пуф&nbsp;Muna pouff представлен легендарной итальянской фабрикой KEOMA. Пуф обит приятной и качественной&nbsp;тканью с нежным растительным орнаментом. Основание изготовлено из массива дерева, а подушка со съемным чехлом, наполненная полиуретаном, присоединяется к основанию при помощи удобной липучки. Пуф, выполненный в прекрасном современном стиле, станет отличным акцентом вашей гостиной или спальни и придаст ей особое очарование и уют, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.&nbsp;</p>
+<p>&nbsp;</p>]]></description>
+	</offer>
+	<offer id="631">
+		<name>Бар винный подвесной арт. АА200,фабрика MAGGI MASSIMO </name>
+		<url>https://sevastopol.myarredo.ru/sale-product/631_vinnaya_mebel_maggi_massimo5ec3d37ac0096/</url>
+		<price>109260</price>
+		<oldprice>162639</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/3608/82ff/e5c7/544e/93b0/ace4/2d79/5a86d54dce521.jpg</picture>
+		<description><![CDATA[<p>Бар винный подвесной, 2 керамических бочонка для молодого вина, держатель для 6 бокалов . массив дерева.</p>]]></description>
+	</offer>
+	<offer id="632">
+		<name>пенал арт.465, фабрика MAGGI MASSIMO</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/632_penal_maggi_massimo5ec3d3a003b5b/</url>
+		<price>300000</price>
+		<oldprice>698827</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/8185/9731/397b/b173/87ae/e455/747b/5a86ed2f40c9c.jpg</picture>
+		<description><![CDATA[<p>Пенал кухонный арт.465, со встроенным холодильником. Материал - массив дерева.</p>]]></description>
+	</offer>
+	<offer id="635">
+		<name>Кофемолка  АА254 , фабрика MAGGI MASSIMO, </name>
+		<url>https://sevastopol.myarredo.ru/sale-product/635_posuda_i_aksessuary_maggi_massimo5ec3d748eef9e/</url>
+		<price>625</price>
+		<oldprice>811</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/8de1/a21f/4a39/e83d/f1ff/3f40/0fd2/5a86f80b2ccd2.jpg</picture>
+		<description><![CDATA[<p>Кофемолка с керамическим контейнером для зерен. Механизм металлический. Подставка - дерево - массив. Ручная работа.</p>]]></description>
+	</offer>
+	<offer id="650">
+		<name>Картина арт. AQ 102</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525437255/</url>
+		<price>108375</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4a54/5f01/305e/1a22/7e8f/00d3/f805/5aec535556630.jpg</picture>
+		<description><![CDATA[<p>Картина "Поле", пейзаж. Автор Gianni Piva. Холст, масло. Рама дерево. Размер 60*60</p>]]></description>
+	</offer>
+	<offer id="651">
+		<name>Картина арт. AQ 104</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525437650/</url>
+		<price>83475</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/7a3f/6c1e/fc6b/2f5c/ab3c/21bf/fe4f/5aec559fb5d94.jpg</picture>
+		<description><![CDATA[<p>Картина итальянского художника Gianni Piva. Пейзаж. Холст, масло. Рама дерево. Размер 40*40 Габаритный размер 66*66</p>]]></description>
+	</offer>
+	<offer id="652">
+		<name>Картина арт. AQ 105</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525438084/</url>
+		<price>83475</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/6727/5087/77b0/46a5/47b9/de47/7b15/5aec56e2a8cee.jpg</picture>
+		<description><![CDATA[<p>Картина итальянского художника Джанни Пива. Пейзаж. Холст, масло. Размер полотна 40*40. Размер рамы 66*66. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="653">
+		<name>Картина арт. AQ 47</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525438455/</url>
+		<price>79050</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/9862/9091/7c65/26bd/3d59/6901/f8e6/5aec5803641d4.jpg</picture>
+		<description><![CDATA[<p>Картина известного итальянского пейзажиста Джанни Пива. Холст, масло. Размер полотна 40*40 Размер рамы 66*66. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="654">
+		<name>Картина арт.AG 13-1</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525438799/</url>
+		<price>140775</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/ae0f/23ad/4ddb/0701/c406/e829/08ad/5aec598cd7037.png</picture>
+		<description><![CDATA[<p>Картина "Фламандский пейзаж. Автор неизвестен. Доска, масло. Размер 67*107. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="658">
+		<name>Картина арт. F6</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525439906/</url>
+		<price>85200</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/bffe/acc7/239a/53b2/8fa1/3cca/e5d7/5aec5dce96692.jpg</picture>
+		<description><![CDATA[<p>Картина неизвестного итальянского художника. Пейзаж "В лесу" Холст, масло.</p>]]></description>
+	</offer>
+	<offer id="659">
+		<name>Картина арт.220</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525440227/</url>
+		<price>79650</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/26c4/8fd3/06ff/f009/f592/4de0/19cb/5aec5f372f944.jpg</picture>
+		<description><![CDATA[<p>Картина, пейзаж "Пруд". Автор неизвестен. Холст , масло. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="660">
+		<name>Картина арт.169</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525442136/</url>
+		<price>117300</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/d691/53a6/2aff/97d8/b5be/b9ab/8c3e/5aec669ce977f.jpg</picture>
+		<description><![CDATA[<p>Пейзаж известного современного итальянского художника Tugnoli Giampietro. Холст, масло. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="661">
+		<name>Картина арт. 178</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525442520/</url>
+		<price>159675</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b86d/c46e/093a/32f4/3985/a98c/55d3/5aec67e6afa77.jpg</picture>
+		<description><![CDATA[<p>Картина известного современного итальянского художника Tugnoli Giampietro. Пейзаж "Озеро в горах". Холст, масло. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="662">
+		<name>Картина арт.168</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525442778/</url>
+		<price>93300</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/034f/477d/87a3/9093/5e22/a455/add8/5aec690527376.jpg</picture>
+		<description><![CDATA[<p>Картина Tugnoli Giampietro, известного современного итальянского художника. Пейзаж "Пруд" Холст, масло. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="663">
+		<name>Картина арт.12Е</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525443443/</url>
+		<price>434250</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/9589/6161/1312/a64f/06d3/06f9/52f1/5aec6b82ed95d.jpg</picture>
+		<description><![CDATA[<p>Пейзаж работы известного итальянского современного художника Borzoni. Масло, холст. Размер полотна 30*50. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="664">
+		<name>Картина арт.10Е</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525443668/</url>
+		<price>378975</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1f84/37ce/3552/e26d/7d9b/cfb8/9acd/5aec6c84ae11b.jpg</picture>
+		<description><![CDATA[<p>Пейзаж известного итальянского художника Borzoni. Холст, масло. Полотно размером 42*42. Рама дерево</p>]]></description>
+	</offer>
+	<offer id="665">
+		<name>Картина арт.112E</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525443981/</url>
+		<price>335550</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/d7a5/bcd9/5d50/9c00/a80b/9828/e45e/5aec6dcc7ae63.png</picture>
+		<description><![CDATA[<p>Картина современного итальянского художника Antonio Di Viccaro. Холст, масло. Рама вспененный пенополистирол, покрыт позолотой.</p>]]></description>
+	</offer>
+	<offer id="666">
+		<name>Картина арт. 201</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525444217/</url>
+		<price>59175</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/de85/36e3/1d26/657e/14b2/c8a6/20b4/5aec6e9a575fd.jpg</picture>
+		<description><![CDATA[<p>Пейзаж неизвестного современного итальянского художника. Холст, масло. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="667">
+		<name>Картина арт. 218</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525444452/</url>
+		<price>80100</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4213/e545/cfbb/bf7e/2192/4083/845e/5aec6f91cd125.jpg</picture>
+		<description><![CDATA[<p>Картина неизвестного современного итальянского художника. Пейзаж . Холст, масло. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="668">
+		<name>Картина арт.	AG20</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525444636/</url>
+		<price>43425</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b7bf/12fa/77f1/9eb1/dc7d/9109/d6d5/5aec7061ce258.jpg</picture>
+		<description><![CDATA[<p>Типичный итальянский дворик, пейзаж неизвестного итальянского современного автора. Холст, масло. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="669">
+		<name>Картина арт. AM 2</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525444902/</url>
+		<price>78975</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4b7a/e44c/a98e/a74e/5a52/c576/8dff/5aec715b83856.jpg</picture>
+		<description><![CDATA[<p>Картина "Дом", современный итальянский автор. Холст, масло. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="670">
+		<name>Картина арт.AM 3</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525445115/</url>
+		<price>78975</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/fe23/f5e7/e86f/02c2/8a04/9cd0/5903/5aec72370cd6a.jpg</picture>
+		<description><![CDATA[<p>Картина "Окно" современного неизвестного итальянского художника. Холст, масло. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="671">
+		<name>Картина арт.AM 9</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525445367/</url>
+		<price>78975</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/9085/149c/bcda/e983/df00/7ae0/72bb/5aec732a2fc81.jpg</picture>
+		<description><![CDATA[<p>Картина неизвестного современного итальянского автора. Пейзаж "Дом на скале" Холст, масло. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="672">
+		<name>Картина арт  AM 22.</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525445543/</url>
+		<price>75075</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2466/32ef/8b40/8e90/7839/f4f4/661a/5aec73d05fcb1.jpg</picture>
+		<description><![CDATA[<p>Картина "Quai du Louvre". Масло, холст. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="673">
+		<name>Картина арт. AM 14</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525445890/</url>
+		<price>89250</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/da57/538e/2707/32af/7a47/46ce/e246/5aec75249fe9d.jpg</picture>
+		<description><![CDATA[<p>Картина "Boulevard des capucines" Неизвестный современный художник. Холст, масло. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="675">
+		<name>Картина арт. 198-c</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525446620/</url>
+		<price>56550</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4cbb/8be4/4591/0854/35f1/556e/aa99/5aec77fc2eddc.jpg</picture>
+		<description><![CDATA[<p>Картина "Ирисы в вазе" Современного итальянского автора. Холст, масло. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="676">
+		<name>Картина арт. 169-c</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525446856/</url>
+		<price>9375</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/91b2/26b8/e61e/ff50/9bf0/59fc/69b4/5aec78ea2e3c4.jpg</picture>
+		<description><![CDATA[<p>Картина "Ирисы" в серебряной раме. Холст, масло. Рама дерево. Автор неизвестен.</p>]]></description>
+	</offer>
+	<offer id="680">
+		<name>Картина арт. 15КА</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525448244/</url>
+		<price>485550</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/c6ae/d0e9/14aa/6773/10d4/a4f9/409d/5aec7e62ac5fd.jpg</picture>
+		<description><![CDATA[<p>Картина современного итальянского автора. Холст, масло. Рама дерево. Сюжет взят из мифологии</p>]]></description>
+	</offer>
+	<offer id="681">
+		<name>Картина арт. 32E</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525448750/</url>
+		<price>20550</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/98e6/fa2d/9c5b/7aba/067a/0e6b/cd78/5aec804f62db9.jpg</picture>
+		<description><![CDATA[<p>Натюрморт "Фрукты на столе", работа неизвестного современного итальянского автора. Холст, масло. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="682">
+		<name>Картина арт.67-c</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525694462/</url>
+		<price>42150</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/02e2/2262/212e/03b7/df02/56de/3e14/5af04024b7544.jpg</picture>
+		<description><![CDATA[<p>Картина "Винный погреб", современного итальянского художника. Холст, масло, Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="683">
+		<name>Картина арт.TA198</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525695605/</url>
+		<price>48375</price>
+		<oldprice>0</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/c38e/f2cf/1016/3e49/8af5/c35c/f882/5af0447f0ffea.jpg</picture>
+		<description><![CDATA[<p>Картина "Магнолия" неизвестного современного итальянского художника. Постер, масло. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="684">
+		<name>Картина арт.116</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1525695806/</url>
+		<price>19725</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/28ad/2f84/bf54/7e8a/7e32/3da2/598c/5af074d138545.jpg</picture>
+		<description><![CDATA[<p>Картина неизвестного итальянского автора. Холст,масло. Рама дерево.</p>]]></description>
+	</offer>
+	<offer id="754">
+		<name>Кресло ISTARI art.1718 фабрика  SILIK</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1535017455/</url>
+		<price>1570</price>
+		<oldprice>2577</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2d42/dddb/785c/3447/652d/7ea0/61b4/5b7e822c3ac1d.jpg</picture>
+		<description><![CDATA[<p>Маленькое кресло прекрасно подойдет как для спальни так и для гостиной. Каркас выполнен из массива дерева, основной цвет слоновая кость украшен позолотой. Ткань шелк как на фото.</p>]]></description>
+	</offer>
+	<offer id="755">
+		<name>Пуф ISTARI, art. 1719  фабрика SILIK</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/755_755_755_1535018198/</url>
+		<price>700</price>
+		<oldprice>1030</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/daf2/23ba/d136/c5fe/f829/988c/a0f3/5b7e852ec0b8e.jpg</picture>
+		<description><![CDATA[<p>Пуф в классическом исполнении, выполнен из дерева в цвете слоновая кость, декорирован золотой фольгой. Сиденье - ткань как на фото. Прекрасно подойдет как дополнение для спальни, или к туалетному столику.</p>]]></description>
+	</offer>
+	<offer id="756">
+		<name>Кухня ISABELLA, фабрика VISMAP</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1535021448/</url>
+		<price>6905</price>
+		<oldprice>17000</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>1</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/05c7/934f/66c0/5306/246b/4f6f/96c6/5b7e92f1d7ecb.jpg</picture>
+		<description><![CDATA[<p>Стильный кухонный гарнитур&nbsp;ISABELLA представлен итальянской фабрикой Vismap. Кухня выполнена в стильной и лаконичной серой отделке с серебристыми элементами, придающими особый шарм. Кухня оснащена&nbsp;множеством вместительных ящиков и шкафчиков, благодаря которым все необходимое всегда может быть под рукой. Кухня также оснащена встроенной техникой ведущих брендов: духовка и варочная газовая поверхность Smeg, мойка и смеситель Ellici silgranit grigio. &nbsp;</p>]]></description>
+	</offer>
+	<offer id="757">
+		<name>Банкетка ISTARI,  фабрика SILIK</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1535022776/</url>
+		<price>835</price>
+		<oldprice>1670</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/3bee/522c/8c1d/b76c/3823/0167/ecfa/5b7e96c7e661f.jpg</picture>
+		<description><![CDATA[<p>Банкетка в классическом стиле прекрасно дополнит Вашу спальню. Каркас выполнен из массива дерева. Обивка - ткань.</p>
+<p>Верх сиденья выполнен в технике capitonne'</p>]]></description>
+	</offer>
+	<offer id="807">
+		<name>Статуя Арлекин фабрика CECCARELLI</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1541776286/</url>
+		<price>4545</price>
+		<oldprice>5150</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/3383/204a/9501/db7c/02d7/b5b8/dc2c/5be5a3ad91bc3.png</picture>
+		<description><![CDATA[<p>Керамические изделия Ceramics Ceccarelli сделаны в лучших традициях ремесленных мануфактур Флоренции исключительно вручную. Скульптура Арлекина из итальянской Commedia dell'Arte, изображена в разгар традиционного танца. Статуя установлена на пьедестал с разноцветным геометрическим орнаментом, напоминающем костюм Арлекина. Материал: керамика глазурованная и расписная. Ручная работа. Производство Италия</p>]]></description>
+	</offer>
+	<offer id="1099">
+		<name>Диван угловой CORNICHE</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1560932760/</url>
+		<price>481500</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/410e/6720/77fb/850d/f269/17f8/9eb6/5d09f960753ba.jpg</picture>
+		<description><![CDATA[Модульный угловой диван Corniche представлен в неоклассическом стиле, итальянской фабрикой NIERI. Диван обит тканью серого цвета. Сиденье, подлокотники и заднее сиденье съемные и моющиеся.  Corniche обеспечивает очень высокий комфорт для сидения, который соответствует форме вашего тела. Подходит для любого типа интерьера и благодаря выбору цвета может быть легко вставлен как в классическом, так и в современном интерьере.
+Деревянные элементы - Венге глянец.]]></description>
+	</offer>
+	<offer id="1296">
+		<name>Шкаф в детскую комнату </name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1566906372/</url>
+		<price>138083</price>
+		<oldprice>345397</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>12</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/6b34/4aa7/3cda/5bca/18a1/5b9e/c6d7/5d65181a5d255.jpg</picture>
+		<description><![CDATA[<p>Классическая стенка для детской комнаты коллекция SARA, выполнена из дерева, многослойной фанеры. Внешняя отделка выполнена вручную. Шкафы оборудованы внутренними полками.</p>]]></description>
+	</offer>
+	<offer id="1297">
+		<name>Комод</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1566906808/</url>
+		<price>60741</price>
+		<oldprice>151852</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>12</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4e97/e22a/2c69/4e30/cbac/800d/fef8/5d6519c4236eb.jpg</picture>
+		<description><![CDATA[Комод из коллекции SARA выполнен в классическом стиле. Внешняя отделка выполнена вручную. 
+]]></description>
+	</offer>
+	<offer id="1300">
+		<name>Комод GIUSY </name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1566995383/</url>
+		<price>41157</price>
+		<oldprice>205785</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/7836/3c7a/69db/754d/b01b/bc8f/a168/5d6673c842700.jpg</picture>
+		<description><![CDATA[Комод GIUSY выполнен из дерева, 4 выдвижных ящика, имеет скругленные формы и  декорирован металлическими ручками. Основание выполнено из металла в цвете   как и ручки.
+]]></description>
+	</offer>
+	<offer id="1301">
+		<name>Люстра LONGOBARD</name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1567415648/</url>
+		<price>73807</price>
+		<oldprice>180900</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>14</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/dba7/736f/5a17/5eb9/7533/b4eb/f330/5d6cdd74b3afd.jpg</picture>
+		<description><![CDATA[Итальянская фабрика Longobard, основаннная в 1962 году. Светильник из  кованного железа с яркой позолотой, подчеркивающей пластику формы. Все изделия фабрики Longobard хранят тепло рук мастеров и секреты старинного ремесла. ]]></description>
+	</offer>
+	<offer id="1302">
+		<name>Люстра LONGOBARD </name>
+		<url>https://sevastopol.myarredo.ru/sale-product/1567416085/</url>
+		<price>153960</price>
+		<oldprice>384900</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>0</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/aa5e/6c4f/0006/175d/06ec/f4ce/9819/5d6cdf2112fdc.jpg</picture>
+		<description><![CDATA[Итальянская фабрика Longobard, основаннная в 1962 году.  Люстра из кованного железа с яркой позолотой, подчеркивающей пластику формы и плафоны из цветного  стекла цвета янтаря. Все изделия фабрики Longobard хранят тепло рук мастеров и секреты старинного ремесла.]]></description>
+	</offer>
+</offers>
+</shop>
+</yml_catalog>

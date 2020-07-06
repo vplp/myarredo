@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2020-07-06 15:31">
+<shop>
+<name>MyArredoFamily</name>
+<company>MyArredoFamily</company>
+<url>https://ekaterinburg.myarredo.ru</url>
+<currencies>
+	<currency id="RUR" rate="1"/>
+</currencies>
+<categories>
+	<category id="9">Спальни</category>
+	<category id="1">Кухни</category>
+	<category id="2">Столовые комнаты</category>
+	<category id="12">Детская мебель</category>
+	<category id="6">Мягкая мебель</category>
+	<category id="7">Гостиные</category>
+	<category id="14">Светильники</category>
+	<category id="3">Стулья</category>
+	<category id="5">Кабинеты</category>
+	<category id="4">Прихожие</category>
+	<category id="13">Двери</category>
+	<category id="22">Картины</category>
+	<category id="16">Гардеробные</category>
+	<category id="15">Ванные комнаты</category>
+	<category id="10">Мебель для TV</category>
+	<category id="8">Аксессуары</category>
+	<category id="18">Кованая мебель</category>
+	<category id="11">Мебель для ресторанов</category>
+	<category id="21">Садовая мебель</category>
+</categories>
+<offers>
+	<offer id="1022">
+		<name>WOLF</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560594449/</url>
+		<price>478080</price>
+		<oldprice>796800</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/318b/524d/3186/a84e/300f/c3d5/3888/5d04c8216e8d8.jpg</picture>
+		<description><![CDATA[Угловой диван с оттоманкой выполнен в натуральной коже высокой категории с контрастным декоративным швом в коже по всему периметру, ноги - металл в цвете антрацит подчеркивают его безупречный дизайн, размер 304*160*101 (Н), глубокая посадка дивана обеспечивает невероятный комфорт. В комплект входят дизайнерские подушки - 2 штуки в натуральной коже.]]></description>
+	</offer>
+	<offer id="1023">
+		<name>COUPE</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560594890/</url>
+		<price>349860</price>
+		<oldprice>499800</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/d885/7289/b880/bbfe/2652/7d2d/ea69/5d04c9cfdf55f.jpg</picture>
+		<description><![CDATA[Угловой диван размер 254*173*75Н, угол правый. Диван выполнен в шикарной ткани выскокой категории, ноги - металл (отделка и комплектация дивана как на фото). Диван комфортный и эргономичный.]]></description>
+	</offer>
+	<offer id="1024">
+		<name>WISCONSIN</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560595108/</url>
+		<price>176550</price>
+		<oldprice>235400</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/122e/3383/34e5/76f3/271b/f5e7/b905/5d04caa94731a.jpg</picture>
+		<description><![CDATA[Угловой диван с оттоманкой размер 280*174*96(H)см., диван со спальным местом 132*190 см. и ящиком для хранения. Выполнен в серой ткани как на фото.]]></description>
+	</offer>
+	<offer id="1025">
+		<name>Steve </name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560595284/</url>
+		<price>207870</price>
+		<oldprice>319800</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/3fa0/06da/b00e/09da/528b/9a93/b313/5d04cb59794b2.jpg</picture>
+		<description><![CDATA[Размер 203*112*985 (Н) см., диван со спальным местом 162*197 см., диван в ткани как на фото, все подушки входят в комплект.]]></description>
+	</offer>
+	<offer id="1026">
+		<name>Charlotte</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560595448/</url>
+		<price>131880</price>
+		<oldprice>219800</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/ff99/942b/9b5e/7945/a251/5f24/7e22/5d04cbfc74b79.jpg</picture>
+		<description><![CDATA[Кресло Charlotte итальянской фабрики Gamma Arredamenti. Размер 86*87*77 (Н) см., кресло выполнено в ткани высокой категории.]]></description>
+	</offer>
+	<offer id="1027">
+		<name>AGORA</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560595634/</url>
+		<price>199450</price>
+		<oldprice>398900</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4ef8/4c79/5b5a/ed64/8cfb/0589/1955/5d04ccb751041.jpg</picture>
+		<description><![CDATA[Диван прямой AGORA итальянской фабрики LOIUDICED. Размер 215*105*81/100(Н) см., диван со спальным местом 140*195 см., диван выполнен в "антивандальной" ткани EASY CLEAN, цвет серый, регулируемые подголовники.]]></description>
+	</offer>
+	<offer id="1028">
+		<name>Theo</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560595797/</url>
+		<price>299160</price>
+		<oldprice>498600</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/e475/bb3a/f73a/c3e7/61e4/0736/7311/5d04cd59a52a5.jpg</picture>
+		<description><![CDATA[Диван Theo всемирно известной итальянской фабрики ALBERTA SALOTTI. Угловой диван с оттоманкой выполнен в ткани с контрастным декоративным швом по всему периметру, размер 332*195*82 (Н), глубокая посадка дивана обеспечивает невероятный комфорт. ]]></description>
+	</offer>
+	<offer id="1029">
+		<name>Charlotte</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560595955/</url>
+		<price>160140</price>
+		<oldprice>266900</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/5482/8260/3119/8e11/495a/e0f9/8b11/5d04cdf761e1b.jpg</picture>
+		<description><![CDATA[Кресло Charlotte итальянской фабрики Gamma Arredamenti. Размер 88*82*68 (Н) см., кресло выполнено в винтажной коже высокой категории.]]></description>
+	</offer>
+	<offer id="1030">
+		<name>Living</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560596112/</url>
+		<price>241670</price>
+		<oldprice>322225</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/001d/7670/2cba/39fd/7c24/4d8c/b1ba/5d04ce952c533.jpg</picture>
+		<description><![CDATA[Диван Living итальянской фабрики SAMOA. Диван представлен в белой натуральной коже, в комплект входит два съемных полголовника, размер 203*97*90 (Н) см. 
+
+]]></description>
+	</offer>
+	<offer id="1031">
+		<name>Memphis</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560596685/</url>
+		<price>209916</price>
+		<oldprice>299800</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/641f/417b/4909/8a8a/a83e/f2f2/a108/5d04d0d1888c0.jpg</picture>
+		<description><![CDATA[Прямой диван Memphis итальянской фабрики NIERI с двумя электрическими реклайнерами, размер 210*100*100 (Н) см, диван представлен в "антивандальной ткани" высокой категории (как на фото).]]></description>
+	</offer>
+	<offer id="1032">
+		<name>LOFT</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560596872/</url>
+		<price>424940</price>
+		<oldprice>849880</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b9ea/fc3d/21d8/06e0/add9/6cff/65f9/5d04d18ca7975.jpg</picture>
+		<description><![CDATA[Шикарный диван LOFT итальянской фабрики LOIUDICED. Угловой диван с оттоманкой и двумя независимыми электрическими реклайнерами, размер 304*238*102 (Н), подъемные подголовники и глубокая посадка делает диван невероятно эргономичным и удобным, выполнен в ткани нового поколения Aquaclean. Декоративная строчка по периметру дивана придает индивидуальность.]]></description>
+	</offer>
+	<offer id="1033">
+		<name>Epoque</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560597097/</url>
+		<price>276500</price>
+		<oldprice>395000</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/934e/e717/4738/d573/5233/5acf/d394/5d04d26dbd1aa.jpg</picture>
+		<description><![CDATA[Диван Epoque итальянской фабрики Loiudiced. Диван со спальным местом 160*195 см., размер дивана 236*96*98 (Н) см., диван в ткани со съемными чехлами. 
+
+]]></description>
+	</offer>
+	<offer id="1034">
+		<name>Vanity</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560597280/</url>
+		<price>164000</price>
+		<oldprice>328000</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/80bf/87f3/c701/8135/194f/7901/4bc6/5d04d325db5bb.jpg</picture>
+		<description><![CDATA[Прямой диван Vanity итальянской фабрики Loiudiced. Размер дивана 215*100*83 (H) см., выполнен в шикарной ткани категории L. ]]></description>
+	</offer>
+	<offer id="1037">
+		<name>BUBBLE</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560598759/</url>
+		<price>209510</price>
+		<oldprice>299300</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/bc63/de1a/ca4c/c57f/a4e7/ecc9/6079/5d04d8ec38ca0.jpg</picture>
+		<description><![CDATA[Трансформирумый диван-кровать BUBBLE итальянской фабрики DIENNE. Размер 222*97*79 (Н) см., диван со спальным местом 142*197 см., диван в ткани велюр зеленого цвета, декоративный элемент - светлое дерево.]]></description>
+	</offer>
+	<offer id="1038">
+		<name>ANDRA</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560600787/</url>
+		<price>56966</price>
+		<oldprice>81380</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/966a/0ad0/bace/12fc/8726/5600/54c2/5d04e0db39384.jpg</picture>
+		<description><![CDATA[Журнальный стол ANDRA итальянской фабрики TONIN CASA. Композиция Andra была разработана с вертикальными линиями, и с кругообразным, лакированным металлическим стержнем в качестве «ремня». Металл конструкции размещен вместе с поверхностью из закаленного, матового стекла. Цвет белый (как на фото), размер 90*60*Н30 см.]]></description>
+	</offer>
+	<offer id="1039">
+		<name>Abitare</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560609967/</url>
+		<price>25870</price>
+		<oldprice>39800</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/5cf3/ba86/2284/f616/b69f/c1ab/c80a/5d0504b536982.jpg</picture>
+		<description><![CDATA[Тумба (столик) Abitare итальянской фабрики DOMUS MOBILI. Размер 43*43*71 (Н) см., в наличии 2 шт., отделка белая матовая]]></description>
+	</offer>
+	<offer id="1040">
+		<name>Divine</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560752775/</url>
+		<price>119958</price>
+		<oldprice>199930</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2925/38c1/c677/b7b8/072b/e774/da9b/5d0732945d208.jpg</picture>
+		<description><![CDATA[Кровать Divine итальянской фабрики Rosetto Armobil. Внешний габарит кровати 194*219*102 (Н) см., размер спального места 180*200 см., кровать выпонена в натуральном шпоне как на фото, ортопедическое основание входит в комплект.]]></description>
+	</offer>
+	<offer id="1041">
+		<name>Butterfly</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560753020/</url>
+		<price>27885</price>
+		<oldprice>42900</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1e21/ea0f/c32f/ce04/6e5c/289b/e46d/5d0733835f121.jpg</picture>
+		<description><![CDATA[Настенные часы Butterfly итальянской фабрики Diamantini Domeniconi. Отделка Lacquered and screenprinted metal frame (серебро), размер Ø 40 sp. 2 cm. Цвет как на фото.]]></description>
+	</offer>
+	<offer id="1042">
+		<name>ORME</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560753724/</url>
+		<price>118400</price>
+		<oldprice>236800</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/6378/c47c/4733/df84/1bc8/97ca/1c74/5d0736451702f.jpg</picture>
+		<description><![CDATA[Стеллаж итальянской фабрики ORME. Размер 228*36*186 (Н) см., матовая покраска.]]></description>
+	</offer>
+	<offer id="1043">
+		<name>Paris</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560763180/</url>
+		<price>8946</price>
+		<oldprice>12780</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/c5da/7c67/2ee9/7cff/3b58/ea37/c871/5d075b34895f6.jpg</picture>
+		<description><![CDATA[Настенные часы Париж итальянской фабрики Diamantini Domeniconi. Отделка Lacquered and screenprinted metal frame (черно-белые). Цвет как на фото.]]></description>
+	</offer>
+	<offer id="1044">
+		<name>G1443</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560763363/</url>
+		<price>119920</price>
+		<oldprice>299800</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4c8c/1ab9/1503/65a0/87ab/ee2a/5ee3/5d075beb00f2b.jpg</picture>
+		<description><![CDATA[Буфет G1443 итальянской фабрики ARTE CASA. Размер 160*50*221 (H) см., ручная роспись, массив. ]]></description>
+	</offer>
+	<offer id="1045">
+		<name>Butterfly Pink</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560763497/</url>
+		<price>22685</price>
+		<oldprice>34900</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/91bc/c606/455c/3123/4b6b/0397/1dca/5d075c717315c.jpg</picture>
+		<description><![CDATA[Настенные часы Butterfly Pink итальянской фабрики Diamantini Domeniconi. Отделка Lacquered and screenprinted metal frame (розовые), размер Ø 40 sp. 2 cm. Цвет как на фото.]]></description>
+	</offer>
+	<offer id="1046">
+		<name> Liscia </name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560763697/</url>
+		<price>193550</price>
+		<oldprice>276500</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>16</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/8053/65dc/314a/f564/331f/fe0f/1c9f/5d075d389d140.jpg</picture>
+		<description><![CDATA[Гардероб Liscia с распашными дверями итальянской фабрики Santa Lucia. Размер 201*60*253 (Н) см., отделка как на фото, внутреннее наполнение включено в стоимость.]]></description>
+	</offer>
+	<offer id="1047">
+		<name>Moon</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560763866/</url>
+		<price>11635</price>
+		<oldprice>17900</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/5a4a/fb8a/25eb/e7a4/12f1/97c0/937f/5d075f0b186fd.jpg</picture>
+		<description><![CDATA[Настенные часы Moon итальянской фабрики Diamantini Domeniconi. Отделка Lacquered and screenprinted metal frame (красные), размер Ø 50 sp. 2 cm. Цвет как на фото.]]></description>
+	</offer>
+	<offer id="1048">
+		<name>HIT</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560764319/</url>
+		<price>17100</price>
+		<oldprice>22800</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1c57/7b0c/32b8/7130/e6c3/6c51/df1d/5d075fa67d1d9.jpg</picture>
+		<description><![CDATA[Столик HIT итальянской фабрики ALF. Размер 38*38*50 (Н) см., цвет - антрацит, крашенный металл. ]]></description>
+	</offer>
+	<offer id="1049">
+		<name>Arlecchino</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560764492/</url>
+		<price>18551</price>
+		<oldprice>28540</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2f1c/ccd9/df41/4b27/f632/11b7/930a/5d0760543a469.jpg</picture>
+		<description><![CDATA[Настенные часы Arlecchino итальянской фабрики Diamantini Domeniconi. Отделка муранское стекло, размер Ø 40 sp. 3 cm. Цвет как на фото.]]></description>
+	</offer>
+	<offer id="1050">
+		<name>Arlecchino</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560764615/</url>
+		<price>18551</price>
+		<oldprice>28540</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/db61/83fd/1d1d/1d21/a988/9932/db90/5d0760ce1b4a7.jpg</picture>
+		<description><![CDATA[Настенные часы Arlecchino цветные итальянской фабрики Diamantini Domeniconi. Отделка муранское стекло, размер Ø 40 sp. 3 cm. Цвет как на фото.]]></description>
+	</offer>
+	<offer id="1051">
+		<name>Lollologio</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560764791/</url>
+		<price>19403</price>
+		<oldprice>29850</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/f7f2/8ab2/e5ef/eed4/999d/ed29/6b24/5d07618013c26.jpg</picture>
+		<description><![CDATA[Настенные часы с кукушкой Lollologio итальянской фабрики Diamantini Domeniconi. Отделка крашенный металл, размер 29x53,5x10,5
+cm. Цвет как на фото.]]></description>
+	</offer>
+	<offer id="1052">
+		<name>часы с бабочками</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560764927/</url>
+		<price>8385</price>
+		<oldprice>12900</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/f1e7/d83c/f2a3/77fe/4a85/91f5/7e61/5d0762080cebe.jpg</picture>
+		<description><![CDATA[Настенные часы с бабочками итальянской фабрики Diamantini Domeniconi. Отделка Lacquered and screenprinted metal frame (красные). Цвет как на фото.]]></description>
+	</offer>
+	<offer id="1053">
+		<name>429/В</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560765054/</url>
+		<price>16894</price>
+		<oldprice>25990</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/9565/8ac9/b6e1/9e33/4bb6/0a29/cf49/5d0762854c240.jpg</picture>
+		<description><![CDATA[Настенные часы 429/В итальянской фабрики Diamantini Domeniconi. Цвет как на фото]]></description>
+	</offer>
+	<offer id="1054">
+		<name>Sorrento</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560765218/</url>
+		<price>62090</price>
+		<oldprice>88700</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>3</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/de92/0a5e/d292/6f14/3167/e707/d327/5d076329a5630.jpg</picture>
+		<description><![CDATA[Дизайнерский стул Sorrento итальянской фабрики Tonin Casa. Утонченный стул с подлокотниками выполнен в натуральной коже, размер 65*63*96 (Н) см.]]></description>
+	</offer>
+	<offer id="1055">
+		<name>Tectonic</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560765382/</url>
+		<price>15352</price>
+		<oldprice>20470</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/8621/9ae7/02f8/ab4e/07c7/ae12/7324/5d0763cd94afa.jpg</picture>
+		<description><![CDATA[Дизайнерский журнальный столик Tectonic итальянской фабрики Bonaldo. Крашенный металл, цвета как на фото, размер 51Н43 см.]]></description>
+	</offer>
+	<offer id="1056">
+		<name>SERENE</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560767935/</url>
+		<price>299850</price>
+		<oldprice>399800</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/6214/cee2/cb13/aca1/fc05/d695/af7f/5d076dc6bb94b.jpg</picture>
+		<description><![CDATA[Диван SERENE итальянской фабрики NICOLETTI HOME - идеальный выбор для тех, кто ценит комфорт. Эта модель обладает рядом преимуществ, таких так регулируемая глубина сидения, а также регулируемый подлокотник, cъемные чехлы на посадочных подушках. Размер дивана 289*150/170*88 (Н), глубокая посадка дивана обеспечивает невероятный комфорт, выполнен в шикарной ткани как на фото, поясничные подушки входят в комплект.]]></description>
+	</offer>
+	<offer id="1093">
+		<name>Premium</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560931114/</url>
+		<price>119850</price>
+		<oldprice>159800</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/7ec5/d76f/4082/2920/ba4d/d1cb/37de/5d09eb334b9d7.jpg</picture>
+		<description><![CDATA[Кровать Premium итальянской фабрики SAMOA. Внешний габарит кровати 198*234*98 (Н) см., размер спального места 180*200 см., кровать с ящиком для хранения, выпонена в белой экокоже как на фото, ортопедическое основание входит в комплект.]]></description>
+	</offer>
+	<offer id="1095">
+		<name>Mono</name>
+		<url>https://ekaterinburg.myarredo.ru/sale-product/1560931333/</url>
+		<price>39675</price>
+		<oldprice>52900</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/87aa/a84d/9736/80db/8243/85dd/e6ac/5d09ec0b10781.jpg</picture>
+		<description><![CDATA[Прикроватная тумба Mono итальянской фабрики MARONESE ACF. Размер 62*42*44 (Н) см., в наличии 2 шт., отделка матовая покраска, ручки и столешница - экокожа (как на фото.)]]></description>
+	</offer>
+</offers>
+</shop>
+</yml_catalog>

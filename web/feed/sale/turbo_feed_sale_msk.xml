@@ -1,0 +1,1841 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2020-07-06 15:31">
+<shop>
+<name>MyArredoFamily</name>
+<company>MyArredoFamily</company>
+<url>https://www.myarredo.ru</url>
+<currencies>
+	<currency id="RUR" rate="1"/>
+</currencies>
+<categories>
+	<category id="9">Спальни</category>
+	<category id="1">Кухни</category>
+	<category id="2">Столовые комнаты</category>
+	<category id="12">Детская мебель</category>
+	<category id="6">Мягкая мебель</category>
+	<category id="7">Гостиные</category>
+	<category id="14">Светильники</category>
+	<category id="3">Стулья</category>
+	<category id="5">Кабинеты</category>
+	<category id="4">Прихожие</category>
+	<category id="13">Двери</category>
+	<category id="22">Картины</category>
+	<category id="16">Гардеробные</category>
+	<category id="15">Ванные комнаты</category>
+	<category id="10">Мебель для TV</category>
+	<category id="8">Аксессуары</category>
+	<category id="18">Кованая мебель</category>
+	<category id="11">Мебель для ресторанов</category>
+	<category id="21">Садовая мебель</category>
+</categories>
+<offers>
+	<offer id="24">
+		<name>Картина a001</name>
+		<url>https://www.myarredo.ru/sale-product/kartina_a001/</url>
+		<price>103</price>
+		<oldprice>124</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/8765/ebfa/e3b7/536e/ee99/2e50/aff0/5c64239aa25c3.jpg</picture>
+		<description><![CDATA[<p>Интерьерная живопись призвана сделать вашу комнату эксклюзивной и придать ей особое очарование и уют. У нас представлен широкий выбор неповторимых картин и панно. Морской пейзаж, картина выполнена на натуральном холсте масляными красками, оформлена в багет из массива дерева.</p>]]></description>
+	</offer>
+	<offer id="25">
+		<name>Картина a002</name>
+		<url>https://www.myarredo.ru/sale-product/kartina_a002/</url>
+		<price>160</price>
+		<oldprice>192</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/f317/2a09/17fd/e80a/c64c/ff3f/0285/b423afab3692184212fa2901326f034e.jpg</picture>
+		<description><![CDATA[<p>Интерьерная живопись призвана сделать вашу комнату эксклюзивной и придать ей особое очарование и уют. У нас представлен широкий выбор неповторимых картин и панно. Предлагаемая картина ню выполнена на натуральном холсте масляными красками, оформлена в багет из массива дерева.&nbsp;</p>]]></description>
+	</offer>
+	<offer id="27">
+		<name>Картина a004</name>
+		<url>https://www.myarredo.ru/sale-product/kartina_a004/</url>
+		<price>236</price>
+		<oldprice>284</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/3d2b/f126/cdcf/6b56/cc4d/290d/983e/fa7e84a0a213f1ed8ff63d5ad32594ab.jpg</picture>
+		<description><![CDATA[<p>Интерьерная живопись призвана сделать вашу комнату эксклюзивной и придать ей особое очарование и уют. У нас представлен широкий выбор неповторимых картин и панно. Натюрморт, картина выполнена на натуральном холсте масляными красками, рама выполнена из темного лакированного дерева с позолотой.</p>]]></description>
+	</offer>
+	<offer id="28">
+		<name>Картина a005</name>
+		<url>https://www.myarredo.ru/sale-product/kartina_a005/</url>
+		<price>358</price>
+		<oldprice>429</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1e82/223e/2078/4fca/3309/5116/be45/c4e2d46ece222f240c8aca4421b54a2a.jpg</picture>
+		<description><![CDATA[<p>Интерьерная живопись призвана сделать вашу комнату эксклюзивной и придать ей особое очарование и уют. У нас представлен широкий выбор неповторимых картин и панно. Натюрморт, картина выполнена на натуральном холсте масляными красками, рама выполнена из крашенного дерева.</p>]]></description>
+	</offer>
+	<offer id="30">
+		<name>Картина a007</name>
+		<url>https://www.myarredo.ru/sale-product/kartina_a007/</url>
+		<price>493</price>
+		<oldprice>592</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/73e8/8935/f0b3/b0ad/2c60/733e/75e2/86a84d549a3efb57c91268d29f4fa6bb.jpg</picture>
+		<description><![CDATA[<p>Интерьерная живопись призвана сделать вашу комнату эксклюзивной и придать ей особое очарование и уют. У нас представлен широкий выбор неповторимых картин и панно. Город. Картина выполнена на натуральном холсте масляными красками. Отделка багета состаренное серебро.</p>]]></description>
+	</offer>
+	<offer id="31">
+		<name>Картина a008</name>
+		<url>https://www.myarredo.ru/sale-product/kartina_a008/</url>
+		<price>576</price>
+		<oldprice>691</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/af16/f77e/2e52/f0f3/b3fd/e21f/700b/4a70bd56596d6bb52d1a1be5ebf41aee.jpg</picture>
+		<description><![CDATA[<p>Интерьерная живопись призвана сделать вашу комнату эксклюзивной и придать ей особое очарование и уют. У нас представлен широкий выбор неповторимых картин и панно. Город, картина выполнена на натуральном холсте масляными красками, рама выполнена из резного дерева с позолотой.</p>]]></description>
+	</offer>
+	<offer id="32">
+		<name>Картина a009</name>
+		<url>https://www.myarredo.ru/sale-product/kartina_a009/</url>
+		<price>651</price>
+		<oldprice>781</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/37b4/ea27/faaa/33a6/89d9/2ac8/b593/89bc505da319e0531f235eff2c51735f.jpg</picture>
+		<description><![CDATA[<p>Интерьерная живопись призвана сделать вашу комнату эксклюзивной и придать ей особое очарование и уют. У нас представлен широкий выбор неповторимых картин и панно. Морской пейзаж, картина выполнена на натуральном холсте масляными красками, рама выполнена из резного дерева с серебром.</p>]]></description>
+	</offer>
+	<offer id="33">
+		<name>Картина a010</name>
+		<url>https://www.myarredo.ru/sale-product/kartina_a010/</url>
+		<price>792</price>
+		<oldprice>950</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/7d8b/bb15/a5ac/d115/0458/407a/678c/51a29ee8e30463c0f522c9ba5d0115b5.jpg</picture>
+		<description><![CDATA[<p>Интерьерная живопись призвана сделать вашу комнату эксклюзивной и придать ей особое очарование и уют. У нас представлен широкий выбор неповторимых картин и панно. Натюрморт, картина выполнена на натуральном холсте масляными красками, рама выполнена из резного дерева с позолотой.</p>]]></description>
+	</offer>
+	<offer id="36">
+		<name>Панно</name>
+		<url>https://www.myarredo.ru/sale-product/dekorativnoe_pano/</url>
+		<price>720</price>
+		<oldprice>900</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/a784/b565/e6a3/3057/8022/31e4/d010/11deb2830fed5233b55c9ea6b09932e6.jpg</picture>
+		<description><![CDATA[<p>Интерьерная живопись призвана сделать вашу комнату эксклюзивной и придать ей особое очарование и уют. У нас представлен широкий выбор неповторимых картин и панно. Панно из гипсовых резных капителей и декоративных розеток и барельефных фигур в античном барочном стиле.</p>]]></description>
+	</offer>
+	<offer id="200">
+		<name>Библиотека CAMELIA</name>
+		<url>https://www.myarredo.ru/sale-product/stellazh/</url>
+		<price>1820</price>
+		<oldprice>3640</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>5</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/40d6/7f7f/a507/428e/f66e/67b7/bbb7/bibl1-680x510.jpg</picture>
+		<description><![CDATA[<p>Открытая библиотека&nbsp;CAMELIA с двумя выдвижными ящичками представлена итальянской фабрикой Brunello. Стильная библиотека выполнена из натурального массива дерева в отделке белого цвета с патиной и полками и задней стенкой цвета champagne (светлый состаренный орех). Библиотека, выполненная в прекрасном классическом стиле, подойдет для гостиной, кабинета или даже детской, благодаря своей универсальной отделке. Специальное предложение - СКИДКА 50% в связи со сменой экспозиции!&nbsp;</p>]]></description>
+	</offer>
+	<offer id="334">
+		<name>Кресло ETOILE Halley art.990BOV коллекция Junior</name>
+		<url>https://www.myarredo.ru/sale-product/1495110423/</url>
+		<price>70400</price>
+		<oldprice>140800</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2407/267c/1a6a/fe16/dfac/2936/a09c/information_items_1056.jpg</picture>
+		<description><![CDATA[<p>Кресло с мягкими накладками на подлокотниках&nbsp;ETOILE представлено итальянской фабрикой&nbsp;Halley в коллекции&nbsp;Junior. Кресло изготовлено из натурального массива дерева с резными элементами. Кресло декорировано присборенным воланом, пуговицей на спинке спереди и сзади и атласной лентой на спинке сзади. Кресло, выполненное в прекрасном классическом стиле<span style="font-family: Verdana, sans-serif; font-size: 9pt;">, станет стильным акцентом в вашей гостиной или кабинете, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</span></p>]]></description>
+	</offer>
+	<offer id="335">
+		<name>Комод Halley art.720 коллекция Junior</name>
+		<url>https://www.myarredo.ru/sale-product/1495112447/</url>
+		<price>94000</price>
+		<oldprice>235000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>12</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/9ff4/d089/8db4/9bb3/7d5d/aa02/f6e9/information_items_1163.jpg</picture>
+		<description><![CDATA[<p>Стильный комод представлен итальянской фабрикой&nbsp;HALLEY в коллекции&nbsp;Junior.&nbsp;Комплектация комода: 6 ящиков без направляющих; 8 декоративных ручек в форме сердца; 1 выдвижная полочка 50х38х h.2 см; 1 хромированный ключ и 1 хромированная скважина. Комод полностью изготовлен из натурального массива дерева, что гарантирует износостойкость и долговечность.</p>]]></description>
+	</offer>
+	<offer id="338">
+		<name>Люстра POSSONI art.507/8 -032</name>
+		<url>https://www.myarredo.ru/sale-product/1495116996/</url>
+		<price>38000</price>
+		<oldprice>95000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>14</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/7c89/4c76/924f/0f64/85bc/ca70/4a4f/information_items_928.jpg</picture>
+		<description><![CDATA[<p>Изысканная люстра POSSONI art.507/8 -032 производства Италии выполнена в прекрасном классическом стиле. Каркас люстры изготовлен из металла в роскошной отделке&nbsp;"античная бронза". Люстра оснащена восемью лампами E14 max 42W. Высота 65 см (без учета цепи). Цоколь E14. Мощность ламп 42W, напряжение 220V.</p>]]></description>
+	</offer>
+	<offer id="340">
+		<name>ДВУХСТВОРЧАТЫЙ РАЗДВИЖНОЙ ШКАФ HALLEY art.807 коллекция LoveLove</name>
+		<url>https://www.myarredo.ru/sale-product/1495181984/</url>
+		<price>257120</price>
+		<oldprice>642800</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>16</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/7579/7b71/bd9e/ddc8/a4ca/b61a/a09a/information_items_1065.jpg</picture>
+		<description><![CDATA[<p>Вместительный шкаф с двумя раздвижными зеркальными дверцами представлен итальянской фабрикой&nbsp;HALLEY. Шкаф изготовлен из натурального массива дерева и качественного МДФ, что обеспечит долговечность и износостойкость изделия. Шкаф, выполненный в прекрасном современном стиле, отлично дополнит вашу гостиную или спальню и поможет с легкостью разместить все необходимое.</p>]]></description>
+	</offer>
+	<offer id="341">
+		<name>СТЕНКА С РЕЛЬЕФНЫМ ДЕКОРОМ HALLEY art.650 Коллекция BELLAVITA</name>
+		<url>https://www.myarredo.ru/sale-product/1495184070/</url>
+		<price>14486</price>
+		<oldprice>36213</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/42f8/1f8b/2e77/640d/f154/6852/2e51/information_items_1316.jpg</picture>
+		<description><![CDATA[<p>СТЕНКА С РЕЛЬЕФНЫМ ДЕКОРОМ состоит из: 1 центральная часть; структура,сзади и карниз цвет 72 перламутр; 2 маленькие створки c декором (A) цвет 62; 2 створки для основания c декором (A) цвет 62; 4 ящика для основания c декором (A) цвет 62; 2 вертикальных зеркала для спинки цвет бронзовый; 2 горизонтальных зеркала цвет бронзовый для спинки с прозрачным декором; вставки из дуба; все с открытием push pull. Стенка изготовлена из натурального массива дерева с прекрасными резными элементами, выполнена в стиле арт деко.</p>]]></description>
+	</offer>
+	<offer id="342">
+		<name>Стол HALLEY art.575 коллекция BELLAVITA</name>
+		<url>https://www.myarredo.ru/sale-product/1495185189/</url>
+		<price>3819</price>
+		<oldprice>9546</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1877/9ff6/3231/6c83/16ea/f313/336c/information_items_1315.jpg</picture>
+		<description><![CDATA[<p>Квадратный обеденный стол представлен итальянской фабрикой&nbsp;HALLEY в коллекции&nbsp;BELLAVITA. Стол изготовлен из натурального массива дерева, а столешница выполнена из прочного декорированного стекла толщиной 10 мм.&nbsp;Стол<span style="font-family: Verdana, sans-serif; font-size: 8.5pt;">, выполненный в прекрасном стиле арт деко, отлично дополнит вашу кухню или столовую и поможет с комфортом разместить всех ваших гостей.</span></p>
+<p>&nbsp;</p>]]></description>
+	</offer>
+	<offer id="343">
+		<name>Стул HALLEY art.779 коллекция BELLAVITA</name>
+		<url>https://www.myarredo.ru/sale-product/1495185639/</url>
+		<price>3548</price>
+		<oldprice>11824</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>3</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1877/9ff6/3231/6c83/16ea/f313/336c/information_items_1315.jpg</picture>
+		<description><![CDATA[<p>Стул с рельефным декором спинки&nbsp;<span style="font-family: Verdana, sans-serif; font-size: 8.5pt;">представлен итальянской фабрикой&nbsp;HALLEY в коллекции&nbsp;BELLAVITA. Стул выполнен из массива дерева с изящными резными элементами.&nbsp;</span><span style="font-family: Verdana, sans-serif; font-size: 8.5pt;">Стул</span><span style="font-family: Verdana, sans-serif; font-size: 8.5pt;">, выполненный в прекрасном стиле арт деко, отлично дополнит вашу&nbsp;кухню или&nbsp;столовую. В наличии 4 шт.</span></p>]]></description>
+	</offer>
+	<offer id="344">
+		<name>Комод Halley коллекция BELLAVITA</name>
+		<url>https://www.myarredo.ru/sale-product/1495186691/</url>
+		<price>7520</price>
+		<oldprice>18800</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/14a9/4383/6b23/de7d/0306/6c76/050a/information_items_902.jpg</picture>
+		<description><![CDATA[<p>Изящный комод с рельефным декором&nbsp;<span style="font-family: Verdana, sans-serif; font-size: 8.5pt;">представлен итальянской фабрикой&nbsp;HALLEY в коллекции&nbsp;BELLAVITA. Комод изготовлен из массива дерева, декорированного резными элементами, оснащен вместительными ящиками и дверцами с системой открывания&nbsp;</span>push pull.&nbsp;<span style="font-family: Verdana, sans-serif; font-size: 8.5pt;">Комод</span><span style="font-family: Verdana, sans-serif; font-size: 8.5pt;">, выполненный в прекрасном стиле арт деко, отлично дополнит вашу спальню, гостиную или&nbsp;столовую&nbsp;и поможет с легкостью разместить все необходимое.</span></p>]]></description>
+	</offer>
+	<offer id="345">
+		<name>Зеркало Halley art.455 коллекция BELLAVITA</name>
+		<url>https://www.myarredo.ru/sale-product/1495187484/</url>
+		<price>1351</price>
+		<oldprice>3377</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/14a9/4383/6b23/de7d/0306/6c76/050a/information_items_902.jpg</picture>
+		<description><![CDATA[<p>Прямоугольное настенное зеркало&nbsp;Halley art.455 в кремовой отделке с золотистыми элементами представлено итальянской фабрикой&nbsp;HALLEY. Зеркало оформлено в багет из массива дерева, выполнено в прекрасном стиле арт деко.</p>]]></description>
+	</offer>
+	<offer id="348">
+		<name>Диван №5 art. DIV5GTA</name>
+		<url>https://www.myarredo.ru/sale-product/1495190539/</url>
+		<price>11782</price>
+		<oldprice>29454</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1075/4778/9e32/fba3/bb95/8025/8883/5a256690e1348.jpg</picture>
+		<description><![CDATA[<p>Большой полукруглый диван&nbsp;DIV5GTA представлен итальянской фабрикой&nbsp;HALLEY&nbsp;в коллекции BELLAVITA. Удобный мягкий диван обит высококачественной экокожей в нежной кремовой расцветке. Комплектация: - 1 МОДУЛЬ A (ПР) art. DIV5GTA: ∙ с 2-мя точеными ножками art. GT5; ∙ с 3-мя точеными ножками art. GB5; - 1 ПОДЛОКОТНИК art. BRA5; - 1 МОДУЛЬ B (ПР) art. DIV5GTB: ∙ с 2-мя точеными ножками art. GT5; ∙ с 3 - мя точеными ножками art. GB5; - 1 ПОЛУОСТРОВОК (ПР) art. 946: ∙ с 4-мя точеными ножками; - 1 КРУГЛЫЙ ПУФ art. 949 (нет); - 1 ПУФ OTTY art. 947 (нет).&nbsp;</p>]]></description>
+	</offer>
+	<offer id="349">
+		<name>2 фигурных столика Halley коллекция BELLAVITA</name>
+		<url>https://www.myarredo.ru/sale-product/1495191224/</url>
+		<price>2219</price>
+		<oldprice>5546</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/78bc/85b8/f688/d894/8351/d6c9/a35a/5a25674e35fe7.jpg</picture>
+		<description><![CDATA[<p>Набор стильных декоративный столиков представлен итальянской фабрикой&nbsp;HALLEY.&nbsp;Комплектация: - столик 1: дуб, стеклянная столешница; - столик 2: дуб, столешница с рельефным декором. Столики отлично дополнят вашу гостиную и сделают ваш интерьер изысканным и неповторимым.</p>]]></description>
+	</offer>
+	<offer id="351">
+		<name>Кресло DEPP Halley art.695  коллекция JC</name>
+		<url>https://www.myarredo.ru/sale-product/1495204292/</url>
+		<price>137225</price>
+		<oldprice>274450</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4b4e/b6dd/59ef/0d92/eb52/4dbb/42f1/information_items_1103.jpg</picture>
+		<description><![CDATA[<p>Мягкое и невероятно удобное кресло&nbsp;DEPP Halley art.695 в стильной отделке представлено итальянской фабрикой&nbsp;HALLEY. Каркас кресла изготовлен из качественного массива дерева, комбинированная обивка выполнена из мягкой ткани и натуральной кожи.<span style="font-family: Verdana, sans-serif; font-size: 8.5pt;">&nbsp;Кресло, выполненное в прекрасном современном стиле, станет отличным акцентом в вашей гостиной или кабинете, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</span></p>]]></description>
+	</offer>
+	<offer id="352">
+		<name>Пуф ROTONDO GRANDE Halley art.957 коллекция JC</name>
+		<url>https://www.myarredo.ru/sale-product/1495204611/</url>
+		<price>60000</price>
+		<oldprice>120000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/9f90/e3bc/5a23/470a/fb20/284b/2f1c/information_items_1105.jpg</picture>
+		<description><![CDATA[<p>Мягкий круглый пуф&nbsp;ROTONDO GRANDE art.957 представлен итальянской фабрикой Halley в коллекции JC. Обивка пуфа выполнена из качественной ткани и натуральной мягкой кожи. Пуф, выполненный в прекрасном современном стиле, отлично дополнит вашу спальню или гостиную, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="354">
+		<name>Журнальный стол SPINI</name>
+		<url>https://www.myarredo.ru/sale-product/1495206419/</url>
+		<price>100000</price>
+		<oldprice>200000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/5816/82dc/cc3f/c414/e0a9/7a4a/ede7/information_items_1106.jpg</picture>
+		<description><![CDATA[<p>Прямоугольный журнальный столик&nbsp;на изящных изогнутых ножках представлен итальянской фабрикой&nbsp;SPINI. Столик изготовлен из натурального массива дерева в светлой кремовой отделке с элементами резьбы, столешница выполнена из прочного закаленного стекла. Столик,&nbsp;<span style="font-family: Verdana, sans-serif; font-size: 8.5pt;">выполненный в прекрасном классическом стиле, отлично дополнит вашу гостиную, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</span></p>]]></description>
+	</offer>
+	<offer id="355">
+		<name>Зеркало Halley коллекция JUNIOR</name>
+		<url>https://www.myarredo.ru/sale-product/1495207754/</url>
+		<price>36250</price>
+		<oldprice>91300</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/ec8b/9d83/0fa5/2860/a61b/d2e1/0a9f/img_8318-19-05-17-06-28.jpg</picture>
+		<description><![CDATA[<p>Прямоугольное настенное зеркало представлено итальянской фабрикой&nbsp;HALLEY в коллекции&nbsp;JUNIOR. Зеркало оформлено в рельефный багет из натурального массива дерева в светлой кремовой отделке.</p>]]></description>
+	</offer>
+	<offer id="386">
+		<name>Стул Steelwood</name>
+		<url>https://www.myarredo.ru/sale-product/1500990145/</url>
+		<price>9030</price>
+		<oldprice>30100</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>3</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/d7b9/9e84/d5f1/46ba/73bb/eb97/2f9c/information_items_1081.jpg</picture>
+		<description><![CDATA[<p>Стул с подлокотниками Steelwood представлен итальянской фабрикой&nbsp;MAGIS. Оригинальный стул изготовлен из сочетания натурального массива бука и высококачественной окрашенной&nbsp;стали. Стул отлично подойдет для столовой в современном стиле, а благодаря нейтральной расцветке к стулу можно подобрать стильные подушки или накидки.&nbsp;&nbsp;</p>]]></description>
+	</offer>
+	<offer id="391">
+		<name>Комод HALLEY коллекция LOVELOVE</name>
+		<url>https://www.myarredo.ru/sale-product/1500994686/</url>
+		<price>92460</price>
+		<oldprice>308200</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2390/1034/123a/045e/aefe/07a4/c9c3/information_items_1055.jpg</picture>
+		<description><![CDATA[<p class="MsoNormal"><span style="font-size: 8.5pt; line-height: 115%; font-family: Verdana, sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Стильный комод со строгими линиями&nbsp;представлен итальянской фабрикой&nbsp;HALLEY в коллекции&nbsp;LOVELOVE.&nbsp;Комод с тремя вместительными&nbsp;выдвижными ящиками изготовлен из качественного МДФ в темной отделке, выполнен в современном стиле.</span></p>]]></description>
+	</offer>
+	<offer id="392">
+		<name>Кресло ETOILE Halley art.990BOV коллекция LUXURY BEBE</name>
+		<url>https://www.myarredo.ru/sale-product/1501068794/</url>
+		<price>42150</price>
+		<oldprice>140500</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/a5b0/63c3/0167/ebf3/b6a7/f127/23f4/img_9834-26-07-17-02-23.jpg</picture>
+		<description><![CDATA[<p>Стул&nbsp;ETOILE Halley art.990BOV с мягкой спинкой, сидением и накладками на подлокотники представлен итальянской фабрикой&nbsp;HALLEY в коллекции&nbsp;LUXURY BEBE. Стул изготовлен из качественного МДФ в отделке из золотой фольги, обивка выполнена из натурального льна, наполнение из полиуретана.</p>
+<p>&nbsp;</p>]]></description>
+	</offer>
+	<offer id="396">
+		<name>Консоль c 2-мя выдвижным ящиками MERIDIANI</name>
+		<url>https://www.myarredo.ru/sale-product/1504615244/</url>
+		<price>465</price>
+		<oldprice>1550</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/3806/6784/a07f/73e9/67ef/bae6/64d5/img_0491-05-09-17-03-38.jpg</picture>
+		<description><![CDATA[<p>Строгая прямоугольная консоль в черной отделке представлена итальянской фабрикой&nbsp;MERIDIANI (CROSTI). Консоль изготовлена из качественного шпона, оснащена двумя выдвижными ящичками.</p>]]></description>
+	</offer>
+	<offer id="397">
+		<name>Столик кофейный INTERNA</name>
+		<url>https://www.myarredo.ru/sale-product/1504619789/</url>
+		<price>1356</price>
+		<oldprice>2260</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1044/9285/7aac/5bbd/16b5/629e/2db7/5a256475e56e4.jpg</picture>
+		<description><![CDATA[<p>Компактный круглый кофейный столик представлен итальянской фабрикой INTERNA. Столик полностью выполнен из натурального высококачественного массива дерева, гарантирующего изделию прочность и долговечность. Такой изящный столик станет незаменимым элементом в уютной гостиной.</p>]]></description>
+	</offer>
+	<offer id="398">
+		<name>Каминный портал ZONTA</name>
+		<url>https://www.myarredo.ru/sale-product/1504781371/</url>
+		<price>2080</price>
+		<oldprice>4160</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/da8f/401a/7d27/ba6f/d0f2/7cc3/495f/information_items_790.jpg</picture>
+		<description><![CDATA[<p>Каминный портал представлен итальянской фабрикой&nbsp;ZONTA. Портал изготовлен из качественного шпона в светлой кремовой отделке с резными элементами. Такой камин прекрасно дополнит интерьер в классическом стиле и придаст уют и комфорт помещению.</p>]]></description>
+	</offer>
+	<offer id="399">
+		<name>Стеллаж MOBILIDEA</name>
+		<url>https://www.myarredo.ru/sale-product/1504782564/</url>
+		<price>1782</price>
+		<oldprice>3564</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>5</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/9d25/f655/3ad5/7d08/3b4a/7318/f869/5a25643beca68.jpg</picture>
+		<description><![CDATA[<p>Высокий открытый стеллаж представлен итальянской фабрикой&nbsp;MOBILIDEA. Стеллаж полностью изготовлен из натурального высококачественного массива дерева в матовой отделке. Стеллаж выполнен в классическом стиле, поэтому он отлично подойдет для строгого кабинета как дома, так и в офисе.&nbsp;В наличии 2 шт., цена указана за 1 шт.</p>]]></description>
+	</offer>
+	<offer id="400">
+		<name>Кресло Nino Galimberti</name>
+		<url>https://www.myarredo.ru/sale-product/1504782913/</url>
+		<price>1046</price>
+		<oldprice>1743</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/ee69/ffde/8d8c/ad37/06b8/5cff/5685/information_items_1028.jpg</picture>
+		<description><![CDATA[<p>Стильное кресло с мягким сидением представлено итальянской фабрикой&nbsp;GALIMBERTI NINO. Кресло изготовлено из качественного шпона, сидение обтянуто мягкой тканью, наполнитель из полиуретана.&nbsp;В наличии 2 шт.</p>]]></description>
+	</offer>
+	<offer id="401">
+		<name>Кресло EICHHOLTZ</name>
+		<url>https://www.myarredo.ru/sale-product/1504784820/</url>
+		<price>1180</price>
+		<oldprice>1690</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/5eb5/fb86/3b95/482e/5b81/8757/43c9/information_items_909.jpg</picture>
+		<description><![CDATA[<p>Уютное кресло представлено фабрикой&nbsp;EICHHOLTZ, производитель Голландия. Кресло изготовлено из натурального массива дерева, декорированного изящной резьбой, обивка выполнена из мягкой черной ткани, наполнение из полиуретана. Декоративные подушки продаются отдельно. Кресло, выполненное в прекрасном классическом стиле, отлично подойдет для гостиной или кабинета, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="488">
+		<name>Кухня FAVILLA</name>
+		<url>https://www.myarredo.ru/sale-product/1510221929/</url>
+		<price>1397489</price>
+		<oldprice>1996413</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>1</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/de1a/6a3d/6bef/6250/4cb4/555e/6941/phoca_thumb_l_dsn_9965.jpg</picture>
+		<description><![CDATA[<p>Кухня&nbsp;FAVILLA представлена итальянской фабрикой&nbsp;SCAVOLINI. Кухня изготовлена только из высококачественных материалов, для фасадов используется массив дуба и МДФ под лаком. Кухня оснащена множеством удобных и функциональных полочек, ящичков и ниш, что позволит вам максимально удобно разместить все необходимое и организовать рабочее пространство в соответствии с вашими самыми смелыми пожеланиями.</p>]]></description>
+	</offer>
+	<offer id="494">
+		<name>Кресло Cappelletti S.R.L., арт. OP031, коллекция Opulence</name>
+		<url>https://www.myarredo.ru/sale-product/1510769249/</url>
+		<price>10000</price>
+		<oldprice>16560</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2d88/5320/96ac/1f3e/7584/3a8e/5e97/5a269b2d58c29.jpg</picture>
+		<description><![CDATA[<p>Эксклюзивное кресло, выполненное в роскошном дворцовом стиле. Материалы и отделка: массив дерева, резьба, серебряная и золотая фольга, нубук, латунь, покрытие золото 24К, ручная работа. Компания Cappelletti S.R.L. неоднократно становилась победителем конкурсов на обстановку и декорирование президентских дворцов, посольств, казино, ресторанов и частных домов. Невероятное великолепие и эксклюзивность, высочайшее качество материалов и изготовления - все это принято называть стилем Cappelletti.</p>]]></description>
+	</offer>
+	<offer id="495">
+		<name>Диван Cappelletti S.R.L., арт. OP032, коллекция Opulence</name>
+		<url>https://www.myarredo.ru/sale-product/1510862759/</url>
+		<price>13000</price>
+		<oldprice>21540</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/56bb/31e0/bc8d/9c06/877f/2507/8d5d/5a26bba297425.jpg</picture>
+		<description><![CDATA[<p>Эксклюзивный диван, выполненный в роскошном дворцовом стиле. Материалы и отделка: массив дерева, резьба, серебряная и золотая фольга, нубук, латунь, покрытие золото 24К, ручная работа. Компания Cappelletti S.R.L. неоднократно становилась победителем конкурсов на обстановку и декорирование президентских дворцов, посольств, казино, ресторанов и частных домов. Невероятное великолепие и эксклюзивность, высочайшее качество материалов и изготовления - все это принято называть стилем Cappelletti.</p>]]></description>
+	</offer>
+	<offer id="505">
+		<name>Стол обеденный</name>
+		<url>https://www.myarredo.ru/sale-product/1512640554/</url>
+		<price>0</price>
+		<oldprice>3813</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b897/8c7e/1058/8dd3/5140/5003/7449/5a29104166afd.jpg</picture>
+		<description><![CDATA[<p>Оригинальный прямоугольный обеденный стол представлен итальянской фабрикой&nbsp;NATURE DESIGN (FRANCO MARIO). Стол на фигурных ножках изготовлен из массива дерева в грубой отделке. Обеденный стол, выполненный в прекрасном и неповторимом стиле арт деко, станет главным акцентом в вашей столовой, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="525">
+		<name> Кровать ALF Paganini Capriccio</name>
+		<url>https://www.myarredo.ru/sale-product/1516020189/</url>
+		<price>90000</price>
+		<oldprice>146000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/3df9/8a13/72dc/dffb/3175/38c8/62ad/5a7da602cb27a.jpg</picture>
+		<description><![CDATA[<p style="text-align: justify;">Мягкая&nbsp;и удобная&nbsp;кровать для двух человек выполненная в классическом стиле и оформленная в эксклюзивном цвете "итальянский орех" представлена итальянской фабрикой&nbsp;ALF Group&nbsp;в коллекции&nbsp;Paganini.&nbsp;Кровать&nbsp;прекрасно впишется в интерьер вашей спальной комнаты.&nbsp;Основа данной модели&nbsp;выполнена из&nbsp;массива дерева высокого качества c элементами шпона.&nbsp;В&nbsp;оформлении данной&nbsp;кровати&nbsp;использовано несколько&nbsp;прекрасных дизайнерских решений: изголовье кровати декорировано утонченными и восхитительными&nbsp;резными элементами ручной работы, также дополнительный шарм и утонченность данной модели придаёт инкрустация из ценных пород дерева.&nbsp;</p>]]></description>
+	</offer>
+	<offer id="526">
+		<name> Кровать ALF Capriccio, арт. L5CP , коллекция Paganini </name>
+		<url>https://www.myarredo.ru/sale-product/1516020884/</url>
+		<price>90000</price>
+		<oldprice>146000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/ec4f/9f14/7bf9/5f2e/5eee/8a61/3060/5a5ccf1a4e217.jpg</picture>
+		<description><![CDATA[<p style="text-align: justify;">Мягкая&nbsp;и удобная&nbsp;кровать для двух человек выполненная в классическом стиле и оформленная в эксклюзивном цвете "итальянский орех" представлена итальянской фабрикой&nbsp;ALF Group&nbsp;в коллекции&nbsp;Paganini.&nbsp;Кровать&nbsp;прекрасно впишется в интерьер вашей спальной комнаты.&nbsp;Основа данной модели&nbsp;выполнена из&nbsp;массива дерева высокого качества c элементами шпона.&nbsp;В&nbsp;оформлении данной&nbsp;кровати&nbsp;использовано несколько&nbsp;прекрасных дизайнерских решений: изголовье кровати декорировано утонченными и восхитительными&nbsp;резными элементами ручной работы, также дополнительный шарм и утонченность данной модели придаёт инкрустация из ценных пород дерева.&nbsp;</p>]]></description>
+	</offer>
+	<offer id="527">
+		<name>Кресло Vidal Gold Da Vinci, Испания</name>
+		<url>https://www.myarredo.ru/sale-product/1516021785/</url>
+		<price>230000</price>
+		<oldprice>390000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1a7d/4bee/f9bb/2c1c/259b/f998/5032/5a5cd11ee337b.jpg</picture>
+		<description><![CDATA[<p>Новое интерьерное кожаное кресло элитной испанской фабрики Vidal Gold (Vidal Grau), коллекция Da Vinci. Материалы: каркас - латунь, покрытие золото 24К, подушки - бежевая кожа. Ширина 110 см, глубина 98 см, высота 82 см.</p>]]></description>
+	</offer>
+	<offer id="528">
+		<name>Обеденный стол ALF Group, арт. PVV0600N, коллекция Vivaldi</name>
+		<url>https://www.myarredo.ru/sale-product/1516037840/</url>
+		<price>125000</price>
+		<oldprice>161000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/6682/673d/65a7/488d/db88/e245/56f5/5a5ce7ea64878.jpg</picture>
+		<description><![CDATA[<p style="text-align: justify;">Изысканный раскладной обеденный стол представлен&nbsp;итальянской фабрикой&nbsp;Alf&nbsp;в коллекции Vivaldi.&nbsp;Раскладной&nbsp;стол прекрасно дополнит&nbsp;интерьер&nbsp;Вашей столовой комнаты. Основа данной модели&nbsp;выполнена из&nbsp;массива ореха&nbsp;высокого качества&nbsp;с элементами натурального шпона из&nbsp;ореха в потрясающем&nbsp;коричневом&nbsp;исполнении. В&nbsp;оформлении данного&nbsp;стола&nbsp;присутствует&nbsp;несколько&nbsp;интересных дизайнерских решений: две центральных вставки, за счет которых увеличивается&nbsp;длина&nbsp;данной модели, что позволяет Вам пригласить за один стол всех друзей и близких Вам людей.</p>]]></description>
+	</offer>
+	<offer id="625">
+		<name>Шкаф Dormitorios Coim 7733/2, коллекция Madison, Испания</name>
+		<url>https://www.myarredo.ru/sale-product/1518034424/</url>
+		<price>120000</price>
+		<oldprice>180000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>16</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b074/f172/7c8b/3622/a674/3a99/6518/5a7b5e5fae095.jpg</picture>
+		<description><![CDATA[<p>Новый дизайнерский двухдверный шкаф в современном стиле испанской фабрики Coim, коллекция Madison. Материалы: массив, шпон, алюминий. Цвет темный орех, отделка - декоративные вставки из матированного алюминия. Высота 230 см, ширина 120 см, глубина 60 см. Наполнение (полки, штанги, кассетница) в комплекте.</p>]]></description>
+	</offer>
+	<offer id="626">
+		<name>Шкаф Dall Agnese, арт. 326215/3, коллекция Mozart, Италия</name>
+		<url>https://www.myarredo.ru/sale-product/1518038994/</url>
+		<price>180000</price>
+		<oldprice>325000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>16</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b464/2446/9e1e/b6bf/013a/0ee7/58d0/5a7b7020ec10e.jpg</picture>
+		<description><![CDATA[<p>Новый пятидверный шкаф с тремя зеркалами итальянской фабрики Dall Agnese, модель Mozart. Материалы: массив, шпон вишни. Высота 218 см, длина 280 см, глубина 64 см. Наполнение (полки, штанги) в комплекте.</p>]]></description>
+	</offer>
+	<offer id="627">
+		<name>Зеркало Coim Muebles, модель Byron, Испания</name>
+		<url>https://www.myarredo.ru/sale-product/1518039638/</url>
+		<price>42000</price>
+		<oldprice>67000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>0</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/7589/ad27/7a26/8f92/44b8/55ce/f53b/5a7b72a38595f.jpg</picture>
+		<description><![CDATA[Новое настенное или напольное дизайнерское зеркало испанской фабрики Coim, модель Byron.
+Материалы: массив, цвет венге. 
+Длина 180 см, высота 110 см, глубина 5 см. ]]></description>
+	</offer>
+	<offer id="628">
+		<name>Шкаф Dormitorios Coim 7733/4, коллекция Madison, Испания</name>
+		<url>https://www.myarredo.ru/sale-product/1518040128/</url>
+		<price>210000</price>
+		<oldprice>280000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>16</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/c34c/2c54/2774/0e8b/3d2e/f06f/ebaf/5a7b745806abc.jpg</picture>
+		<description><![CDATA[<p>Новый дизайнерский четырехдверный шкаф в современном стиле испанской фабрики Coim, коллекция Madison. Материалы: массив, шпон, алюминий. Цвет темный орех, отделка - декоративные вставки из матированного алюминия. Высота 230 см, ширина 220 см, глубина 60 см. Наполнение (полки, штанги, кассетница) в комплекте.</p>]]></description>
+	</offer>
+	<offer id="640">
+		<name>Кухонная мебель -Eleonora</name>
+		<url>https://www.myarredo.ru/sale-product/1521127950/</url>
+		<price>450000</price>
+		<oldprice>900000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>1</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/ff5d/324b/9206/4a65/7e74/08d1/9e82/5aaa93ea7feac.jpg</picture>
+		<description><![CDATA[Размер 1450*2900 мм. ЦВЕТ ВИШНЯ.]]></description>
+	</offer>
+	<offer id="641">
+		<name>Пуф круглый AltaModa </name>
+		<url>https://www.myarredo.ru/sale-product/1521128994/</url>
+		<price>115000</price>
+		<oldprice>132000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/25e7/94b2/703f/731b/5bfc/0048/39d7/5aaa9630e88a8.jpg</picture>
+		<description><![CDATA[<p>Пуф большой круглый диам.150 см. фабрики AltaModa выполнен из белой экокожи с декоративными элементами. Может также использоваться как журнальный столик с добавлением столешницы из стекла. Пуф служит отличным элементом любого классического или современного интерьера. Предлагаем мебель - кресла, витрины, бар - для салонов. Итальянская фабрика AltaModa. В белом и черном варианте. Прекрасные дизайнерские акценты в стиле арт-деко. Вы можете приобрести у нас в салоне люстры, торшеры, ковры, картины, подушки и аксессуары фабрики Alta Moda.</p>]]></description>
+	</offer>
+	<offer id="642">
+		<name>Кресло белое AltaModa со стразами Swarovsky mod.Chic</name>
+		<url>https://www.myarredo.ru/sale-product/1521129405/</url>
+		<price>112000</price>
+		<oldprice>224000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/940d/c8dc/9b1b/a2e6/632c/a1c6/db32/5aaa97ce7739c.jpg</picture>
+		<description><![CDATA[<p>Кресло белое со стразами Swarovsky mod.Chic итальянской фабрики AltaModa, ножки и декор выполнены из серебряной фольги. Корпус обшит тонким кружевным полотном. Красивое удобное кресло из белого меха послужит декоративным украшением любого зала, салона и домашнего интерьера как для гостиной, так и для детской комнаты.</p>]]></description>
+	</offer>
+	<offer id="816">
+		<name>Диван угловой</name>
+		<url>https://www.myarredo.ru/sale-product/1547460023/</url>
+		<price>7500</price>
+		<oldprice>10500</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/5883/9141/a5fb/1a27/6e2a/7c0b/80e0/5c3c5e95d4808.jpg</picture>
+		<description><![CDATA[<p>Диван угловой модульный, 350*280 см, 2 модуля и мобильный подлокотник, надставка из дерева для подлокотника съемная. Ткань хлопок+лен, подушки в комплекте</p>]]></description>
+	</offer>
+	<offer id="817">
+		<name>Стол журнальный Muna</name>
+		<url>https://www.myarredo.ru/sale-product/1547461524/</url>
+		<price>730</price>
+		<oldprice>1350</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>0</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/dd28/f0e0/5935/2f0e/be24/cb3e/cdef/5c3c63a79c0cf.jpg</picture>
+		<description><![CDATA[<p>Стол журнальный размером 95*95*42Н, в ткани хлопок+лен, профиль хром, столешница из шпонированного ДСП в отделке глянец.</p>]]></description>
+	</offer>
+	<offer id="818">
+		<name>Диван 3-х местный Gloria с раскладным механизмом</name>
+		<url>https://www.myarredo.ru/sale-product/1547461990/</url>
+		<price>6500</price>
+		<oldprice>8200</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1ba5/b0af/9c48/f12d/4aa6/92fd/aa91/5c3c657bb4d6c.jpg</picture>
+		<description><![CDATA[<p>Диван 3-х местный с раскладным механизмом (матрас в комплекте) в классическом стиле. В комплекте с 5-ю декоративными подушками. Задняя спинка и боковины в простежку</p>]]></description>
+	</offer>
+	<offer id="819">
+		<name>Кресло Ludovica</name>
+		<url>https://www.myarredo.ru/sale-product/1547462536/</url>
+		<price>2800</price>
+		<oldprice>4800</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/d21e/2852/6676/ab0b/4133/3795/6667/5c3c679b3a7ed.jpg</picture>
+		<description><![CDATA[<p>Кресло мягкое в ткани велюр в комплекте с декоративной подушкой. Наличие 2 шт. На подлокотниках вставки из металла.</p>]]></description>
+	</offer>
+	<offer id="820">
+		<name>Стол журнальный Ludovica</name>
+		<url>https://www.myarredo.ru/sale-product/1547463010/</url>
+		<price>1650</price>
+		<oldprice>2500</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>0</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/cd80/cc4e/a622/620f/447d/6296/3ee4/5c3c69cf82841.jpg</picture>
+		<description><![CDATA[<p>Стол журнальный круглый, основание в ткани велюр, столешница мрамор Bianco Carrara.</p>]]></description>
+	</offer>
+	<offer id="821">
+		<name>Банкетка Camilla</name>
+		<url>https://www.myarredo.ru/sale-product/1547463350/</url>
+		<price>900</price>
+		<oldprice>1900</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/c760/414d/8f03/babc/6623/46f5/f23c/5c3c6ac369908.jpg</picture>
+		<description><![CDATA[<p>Банкетка в ткани велюр, основание металл отделка латунь.</p>]]></description>
+	</offer>
+	<offer id="822">
+		<name>Диван 3-х местный Camilla</name>
+		<url>https://www.myarredo.ru/sale-product/1547463630/</url>
+		<price>5800</price>
+		<oldprice>8500</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/f108/4378/d304/e3b1/3c98/8ff6/19b2/5c3c6be2e1cc0.jpg</picture>
+		<description><![CDATA[<p>Диван 3-х местный в ткани велюр. В комплекте с декоративными подушками.</p>]]></description>
+	</offer>
+	<offer id="823">
+		<name>Кресло Camilla</name>
+		<url>https://www.myarredo.ru/sale-product/1547463893/</url>
+		<price>3500</price>
+		<oldprice>5200</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/6119/5aa6/72ec/e05a/100c/c55b/20a4/5c3c6ce30d8cf.jpg</picture>
+		<description><![CDATA[<p>Кресло мягкое в ткани велюр. Наличие 2 шт. подлокотники в прошивку.</p>]]></description>
+	</offer>
+	<offer id="824">
+		<name>Стол журнальный Cristina</name>
+		<url>https://www.myarredo.ru/sale-product/1547465165/</url>
+		<price>980</price>
+		<oldprice>1600</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/c954/a203/ecb5/0312/37da/df7c/8017/5c3c71f4d2817.jpg</picture>
+		<description><![CDATA[<p>Стол журнальный/кофейный с деревянным резным основанием, столешница стекло с фацетом в деревянном обрамлении. Отделка серебро состаренное, вставка в ткани велюр.</p>]]></description>
+	</offer>
+	<offer id="825">
+		<name>Стул Theodore</name>
+		<url>https://www.myarredo.ru/sale-product/1547465642/</url>
+		<price>2500</price>
+		<oldprice>3800</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/e13f/05f9/4948/f29e/67bb/1def/03c8/5c3c73e4ee2c3.jpg</picture>
+		<description><![CDATA[<p>Стул в коже категории Luxury. В наличии 6 шт.</p>]]></description>
+	</offer>
+	<offer id="826">
+		<name>Стол обеденный Clio</name>
+		<url>https://www.myarredo.ru/sale-product/1547465926/</url>
+		<price>16000</price>
+		<oldprice>21000</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/bf3e/6f77/8c55/cecd/20b7/3f5f/0f2f/5c3c76180e073.jpg</picture>
+		<description><![CDATA[<p>Стол обеденный на 2-х основаниях из муранского стекла и металла в отделке хром. Столешница мрамор Calacata Gold</p>]]></description>
+	</offer>
+	<offer id="827">
+		<name>Люстра Spider</name>
+		<url>https://www.myarredo.ru/sale-product/1547466486/</url>
+		<price>4500</price>
+		<oldprice>6000</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>14</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/81c4/710f/f629/95f6/2c37/9c62/9de7/5c3c77253ef4a.jpg</picture>
+		<description><![CDATA[<p>Люстра из муранского стекла со съемными элементами, на металлическом основании в отделке хром. 8 ламп мощность 40 ватт</p>]]></description>
+	</offer>
+	<offer id="828">
+		<name>Консоль Iride</name>
+		<url>https://www.myarredo.ru/sale-product/1547466705/</url>
+		<price>8500</price>
+		<oldprice>12000</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/f30d/a639/06b1/145a/e53d/848a/3982/5c3c77faa0ad8.jpg</picture>
+		<description><![CDATA[<p>Консоль из муранского стекла со съемными элементами. Основание металл в отделке хром. Столешница мрамор Calacata Gold</p>]]></description>
+	</offer>
+	<offer id="829">
+		<name>Кухонная композиция с островом</name>
+		<url>https://www.myarredo.ru/sale-product/1547466930/</url>
+		<price>50000</price>
+		<oldprice>75000</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>1</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/f98e/4a5f/0162/d58b/0d20/3e20/37c3/5c3c78bf104d1.jpg</picture>
+		<description><![CDATA[CASTAGNA CUCINE]]></description>
+	</offer>
+	<offer id="831">
+		<name>Люстра Anima</name>
+		<url>https://www.myarredo.ru/sale-product/1547467662/</url>
+		<price>2500</price>
+		<oldprice>7500</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>14</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/cafd/088b/83e8/1b72/b8f6/b33d/6561/5c3c7b94a6604.jpg</picture>
+		<description><![CDATA[<p>ZONCA</p>]]></description>
+	</offer>
+	<offer id="838">
+		<name>Спальня Istari Arcan, фабрика SILIK</name>
+		<url>https://www.myarredo.ru/sale-product/838_838_838_1548522485/</url>
+		<price>1251540</price>
+		<oldprice>3128850</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/3ad2/5a2e/0776/7234/9772/743c/3f5e/5c4c9400f0f57.jpg</picture>
+		<description><![CDATA[<p>Спальня Istari Arcan представлена итальянской фабрикой SILIK. В комплект входят: кровать 185 х 215 х 120 с ортопедическим матрасом 175 х 200; две тумбочки 55 х 40 х 62; комод 127 х 56 х 94 с зеркалом 97 х117; пуф 53 х 38 х 50; банкетка 100 х 50 х 50; кресло 65 х 56 х 79; шкаф 287 х 69 х 223. Мебель изготовлена исключительно из натурального массива дерева с элементами резьбы и золотистой отделки. Пуф, банкетка и кресло обиты высококачественной тканью, наполнение из полиуретана. Цена указана за комплект.</p>]]></description>
+	</offer>
+	<offer id="839">
+		<name>СТОЛ со стульями, модель Pitti, фабрика ANTONELLI MORAVIO</name>
+		<url>https://www.myarredo.ru/sale-product/1548523393/</url>
+		<price>9000</price>
+		<oldprice>12000</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/41f8/7940/2715/1949/ea4d/3908/70e4/5c4c978d1122d.jpg</picture>
+		<description><![CDATA[<p>Стол обеденный раскладной,овальный с инкрустацией в комплекте со стульями 8 шт. и креслами 2 шт. представлен итальянской фабрикой ANTONELLI MORAVIO. Комплект изготовлен из массива дерева (орех) в лаковой отделке, мебель также декорирована изящной резьбой, ножки декорированы золотой фольгой. Сидения стульев обиты высококачественной мягкой тканью, наполнение из полиуретана. Размеры стола 210 х 110 см в собранном состоянии, имеет 2 вкладки по 50 см каждая, раздвигается соответственно до 260 или 310 см. Продается комплектом.</p>]]></description>
+	</offer>
+	<offer id="840">
+		<name>Стол и стулья, модель "TAMARA ",фабрика Modenese Gastone</name>
+		<url>https://www.myarredo.ru/sale-product/1548523698/</url>
+		<price>4797</price>
+		<oldprice>6854</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/effd/bf6c/2d8a/ff47/4226/a178/2aa3/5c4c98c6891ce.jpg</picture>
+		<description><![CDATA[<p>Стол раскладной 160/260 х 90 , в комплекте со стульями (51х56х100) 4 шт. и стульями с подлокотниками (57х56х100) 2 шт. представлен легендарной итальянской фабрикой MODENESE GASTONE. Комплект изготовлен из массива дерева (черешня) с элементами черной лаковой отделки, мебель также декорирована изящной резьбой. Сидения стульев обиты высококачественной мягкой тканью, наполнение из полиуретана.</p>]]></description>
+	</offer>
+	<offer id="841">
+		<name>Гостиная Тамара, фабрика Modenese Gastone</name>
+		<url>https://www.myarredo.ru/sale-product/1548525014/</url>
+		<price>6423</price>
+		<oldprice>8756</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1109/f485/276b/c852/fd42/c409/32b5/5c4c9e0ed126a.jpg</picture>
+		<description><![CDATA[<p>Функциональная и красивая стенка представлена итальянской фабрикой MODENESE GASTONE. Стенка состоит из 2-х витрин размерами 95 х 46 х 202 и TV-тумбы с 2-мя ящиками размером 158 х 51 х 55. Комплект изготовлен из натурального массива дерева в лаковой отделке. Стенка, выполненная в прекрасном классическом стиле, станет главным акцентом в вашей гостиной, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="842">
+		<name>Кухня Maggi Massimo art. 453</name>
+		<url>https://www.myarredo.ru/sale-product/842_842_1548525449/</url>
+		<price>1487466</price>
+		<oldprice>2150492</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>1</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4555/5585/859a/f889/daac/b766/8944/5c4c9fc3bf83d.jpg</picture>
+		<description><![CDATA[<p>Кухня представлена итальянской фабрикой Maggi Massimo коллекции Hard Country. Выполнена в стиле кантри, что является удачным объедением деревенской простоты и шика. Для ее изготовления применяются натуральные материалы, которые гармонично смотрятся с латунной фурнитурой и кухонной техникой в ретро-стиле. В комплект мебели входят: 2 мойки, кран, сифон, духовка, варочная, встроенная вытяжка, посудомоечная машина, подсветка наружная с розеткой и выключателем, текстиль, керамические емкости, скалка.</p>]]></description>
+	</offer>
+	<offer id="843">
+		<name>Пенал арт.454, фабрика MAGGI MASSIMO</name>
+		<url>https://www.myarredo.ru/sale-product/1548526542/</url>
+		<price>13655</price>
+		<oldprice>15100</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/dedf/27f5/6c65/491c/56ba/00b0/7209/5c4ca3e381e34.jpg</picture>
+		<description><![CDATA[<p>Блок пеналов со встроенным холодильником Liebherr 330 L , кофе-машиной , винным баром. Выполнено из массива ясеня , искусственно состаренного. Цвет орех.</p>]]></description>
+	</offer>
+	<offer id="844">
+		<name>Стол со стульями Maggi Massimo 483 + 391</name>
+		<url>https://www.myarredo.ru/sale-product/1548526733/</url>
+		<price>4077</price>
+		<oldprice>5445</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b671/44bb/d5f1/3560/b437/032d/b604/5c4ca49609b91.jpg</picture>
+		<description><![CDATA[<p>Комплект мебели представлен итальянской фабрикой Maggi Massimo коллекции Hard Country. Выполнен в стиле кантри, станет великолепным вариантом для создания элегантной обстановки. Мебель изготовлена из массива тополя, столешница - белый мрамор. В комплект входят: - стол; - 4 стула.</p>]]></description>
+	</offer>
+	<offer id="845">
+		<name>Диван BELLINI 555502, арт. фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548526890/</url>
+		<price>1357</price>
+		<oldprice>3269</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/a577/8e11/6deb/ddb2/7c51/e301/2ae6/5c4ca52fe75c0.jpg</picture>
+		<description><![CDATA[<p>Роскошный двухместный диван BELLINI представлен итальянской фабрикой KEOMA. Диван обит роскошной тканью с перламутровыми и бархатными элементами и растительным орнаментом. Мягкие подушки и подлокотники обеспечат комфорт и удобство вам и вашим гостям. Диван, выполненный в прекрасном классическом стиле, станет главным акцентом вашей гостиной и придаст ей особое очарование и уют, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="846">
+		<name>Диван Aurora 555501, фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548527094/</url>
+		<price>2143</price>
+		<oldprice>4825</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/aa22/0363/e5f5/af79/26f5/d300/9e26/5c4ca5fdd542e.jpg</picture>
+		<description><![CDATA[<p>Роскошный диван Aurora представлен легендарной итальянской фабрикой KEOMA. Удобный диван с пятью мягкими пуховыми подушками, украшенными кристаллами Swarovski, обит замечательной светлой тканью и декорирован бахромой. Диван выполнен в прекрасном классическом стиле. Он может стать изящным акцентом в интерьере гостиной или спальни, а также составить оригинальное сочетание с аксессуарами в классическом стиле или в стиле арт деко.</p>]]></description>
+	</offer>
+	<offer id="847">
+		<name>Диван арт. Fiorenza, фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548527540/</url>
+		<price>2973</price>
+		<oldprice>4865</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/9cf1/e73d/51ab/ec29/1e47/dbe1/a0db/5c4ca7ba7094b.jpg</picture>
+		<description><![CDATA[<p>Невероятно удобный и стильный двухместный диван Fiorenza изогнутой формы представлен легендарной итальянской фабрикой KEOMA. Мягкий диван с наполнителем из пуха и пера обит замечательной светлой тканью с серебристым отливом и растительным орнаментом. Пять мягких и уютных подушек вы можете расположить по своему усмотрению и сделать диван еще удобнее для вас и ваших гостей. Диван выполнен в прекрасном классическом стиле. Он может стать изящным акцентом в интерьере гостиной или спальни.</p>]]></description>
+	</offer>
+	<offer id="848">
+		<name>Диван SISSY, арт. SISSY фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548527678/</url>
+		<price>2640</price>
+		<oldprice>4660</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/318e/c12c/9860/80b7/522e/05ed/96a1/5c4ca845d4752.jpg</picture>
+		<description><![CDATA[<p>Роскошный трехместный диван SISSY на изогнутых ножках представлен легендарной итальянской фабрикой KEOMA. Удобный диван обит замечательной тканью с золотистым отливом и растительным орнаментом. Диван изготовлен из массива дерева и декорирован изящной резьбой. Диван выполнен в прекрасном классическом стиле. Он может стать запоминающимся акцентом в интерьере гостиной, спальни или даже офиса.</p>]]></description>
+	</offer>
+	<offer id="849">
+		<name>Бар Taverna bar AA262, MAGGI MASSIMO</name>
+		<url>https://www.myarredo.ru/sale-product/1548527805/</url>
+		<price>3700</price>
+		<oldprice>5022</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>1</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/84d7/fe33/b5bf/b933/7f99/3abd/5d1f/5c4ca8d5a6c2e.jpg</picture>
+		<description><![CDATA[<p>Бар представлен итальянской фабрикой Maggi Massimo коллекции Hard Country. Выполнен в стиле кантри. Барный шкаф выполнен из массива дерева, ближе к темному.Текстурированная поверхность придает мебели благородный, состаренный вид. Имеется винотека на 15 бутылок, 3 бочонка для вина с дозаторами, держатели для бокалов.</p>]]></description>
+	</offer>
+	<offer id="850">
+		<name>Диван арт.FLORENCE_3, фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548527959/</url>
+		<price>2480</price>
+		<oldprice>4135</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/80e9/ba8e/b165/a1b3/4987/d681/6171/5c4ca961507a5.jpg</picture>
+		<description><![CDATA[<p>Роскошный трехместный диван FLORENCE_3 представлен легендарной итальянской фабрикой KEOMA. Диван обит роскошной велюровой тканью с мягким перламутровым отливом и растительным орнаментом. Мягкие подушки и подлокотники обеспечат комфорт и удобство вам и вашим гостям. Диван, выполненный в прекрасном классическом стиле, станет главным акцентом вашей гостиной и придаст ей особое очарование и уют, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="851">
+		<name>Банкетка арт. LISA 555540, фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548528050/</url>
+		<price>1000</price>
+		<oldprice>1500</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/7441/beef/6d65/aaf8/efbe/ba46/1d94/5c4ca9bf99d5e.jpg</picture>
+		<description><![CDATA[<p>Мягкая и стильная банкетка представлена легендарной итальянской фабрикой KEOMA. Банкетка изготовлена из массива дерева с элементами резьбы и обита высококачественной тканью с капитоне, наполнение из полиуретана. Банкетка выполнена в прекрасном классическом стиле, хотя может сочетаться и с элементами других стилей. Она может стать изящным акцентом в интерьере гостиной или спальни.</p>]]></description>
+	</offer>
+	<offer id="852">
+		<name>Кресло Valeria. Фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548528162/</url>
+		<price>1990</price>
+		<oldprice>2772</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/c631/7628/4f6a/6896/4688/5ce4/e194/5c4caa3e0cec9.jpg</picture>
+		<description><![CDATA[<p>Удобное кресло Valeria представлено легендарной итальянской фабрикой KEOMA. Кресло изготовлено из массива дерева в золотистой отделке с резьбой, обтянуто высококачественной мягкой тканью. Наполнение кресла выполнено из полиуретана, а подушка наполнена натуральным пухом и пером. Кресло выполнено в прекрасном классическом стиле. Оно может стать изящным акцентом в интерьере гостиной, спальни или кабинета.</p>]]></description>
+	</offer>
+	<offer id="853">
+		<name>Кресло арт. SISSY 555525, фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548528420/</url>
+		<price>1490</price>
+		<oldprice>2084</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2cd9/a8bf/3fa5/0ba7/380c/2e73/922a/5c4cab3938879.jpg</picture>
+		<description><![CDATA[<p>Мягкое кресло SISSY_1 на изогнутых ножках представлено легендарной итальянской фабрикой KEOMA. Кресло изготовлено из массива дерева в серебристой отделке и декорировано резными элементами. Кресло обито роскошной тканью с серебристым отливом. Кресло выполнено в прекрасном стиле арт деко. Оно может стать изящным акцентом в интерьере гостиной, спальни или кабинета. В наличии два кресла.</p>]]></description>
+	</offer>
+	<offer id="854">
+		<name>Винный шкаф DEC Maggi Massimo DEC37</name>
+		<url>https://www.myarredo.ru/sale-product/1548528581/</url>
+		<price>1698</price>
+		<oldprice>2321</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2365/26ac/da36/afb6/2aae/cec3/bac6/5c4cabd555a29.jpg</picture>
+		<description><![CDATA[<p>Шикарный винный шкаф представлен итальянской фабрикой Maggi Massimo коллекции Hard Country. Выполнен в стиле кантри. Оборудован двумя выдвижными ящикамии двумя распашными дверями. Изготовлен из массива древесины в авторской лакированой отделке.</p>]]></description>
+	</offer>
+	<offer id="855">
+		<name>Пуф арт. KATERINA 555534, фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548528693/</url>
+		<price>625</price>
+		<oldprice>1015</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/f79f/db99/37ee/c14b/c7b0/c612/ef0a/5c4cac44f31d0.jpg</picture>
+		<description><![CDATA[<p>Большой квадратный пуф KATERINA представлен легендарной итальянской фабрикой KEOMA. Мягкий пуф с наполнением из полиуретана обит высококачественной тканью. Пуф выполнен в прекрасном классическом стиле, но он может дополнить интерьер и в любом другом стиле, придав ему определенный шарм и уют. Он может стать изящным акцентом в интерьере гостиной или спальни.</p>]]></description>
+	</offer>
+	<offer id="856">
+		<name>Диван NAPOLEONE, фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548528865/</url>
+		<price>2733</price>
+		<oldprice>4486</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/a79b/ad19/4c45/cbe8/26af/e251/0587/5c4cace8a5e65.jpg</picture>
+		<description><![CDATA[<p>Функциональный двухместный диван-кровать NAPOLEONE1 представлен легендарной итальянской фабрикой KEOMA. Мягкий диван обит замечательной светлой тканью, наполнение из полиуретана, а подушки с наполнением из гусиного пуха. Диван оснащен пружинным механизмом SoftSystem (французская раскладушка) с электросварной решеткой и пружинным матрасом высотой 12 см, спальное место размером 110 х 175+15.</p>]]></description>
+	</offer>
+	<offer id="857">
+		<name>Диван арт.MUNA, фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548529094/</url>
+		<price>4172</price>
+		<oldprice>8343</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/9ec7/9717/718b/2c01/32b7/1f81/304f/5c4cade711467.jpg</picture>
+		<description><![CDATA[<p>Угловая композиция из двух диванов с правым подлокотником MUNA представлена легендарной итальянской фабрикой KEOMA. Каркас дивана изготовлен из массива дерева, обивка - роскошная черная вельветовая ткань с серебристым отливом, наполнение из полиуретана. Большой и удобный диван также оснащен множеством мягких подушек со стильным урбанистическим принтом. Диван выполнен в прекрасном современном стиле. Он может стать изящным акцентом в интерьере гостиной или большого кабинета.</p>]]></description>
+	</offer>
+	<offer id="858">
+		<name>Диван арт. Royal, фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548529257/</url>
+		<price>2097</price>
+		<oldprice>3025</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4e00/a72d/8558/5618/1087/8c94/8db2/5c4cae6f24230.jpg</picture>
+		<description><![CDATA[<p>Королевский двухместный диван Royal в изящной светлой обивке представлен легендарной итальянской фабрикой KEOMA. Каркас дивана выполнен из качественного массива дерева, подушки сидения набиты полиуретаном, а подушки - легким гусиным пухом. Подлокотники оснащены удобными съемными чехлами. Диван выполнен в прекрасном классическом стиле. Он может стать изящным акцентом в интерьере гостиной или спальни.</p>]]></description>
+	</offer>
+	<offer id="859">
+		<name>Диван арт. MILLENIUM 555515, фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548529762/</url>
+		<price>2730</price>
+		<oldprice>3321</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/569f/2cb5/6bee/b629/7760/1c77/6312/5c4cb06bb37c7.jpg</picture>
+		<description><![CDATA[<p>Стильный трехместный диван MILLENIUM представлен легендарной итальянской фабрикой KEOMA. Каркас дивана изготовлен из массива дерева высокого качества, обивка выполнена из мягкой ткани приятного оттенка, наполнение из полиуретана. Диван оснащен множеством подушек, которые позволят с комфортом разместиться вам и вашим гостям. Диван выполнен в прекрасном современном стиле. Он может стать изящным акцентом в интерьере гостиной или спальни.</p>]]></description>
+	</offer>
+	<offer id="860">
+		<name>Диван арт. KATERINA 555514, фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548529916/</url>
+		<price>2700</price>
+		<oldprice>5400</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/c013/7881/28cc/661c/7206/7221/18ac/5c4cb11b2cbbd.jpg</picture>
+		<description><![CDATA[<p>Удобный трехместный диван KATERINA2 представлен легендарной итальянской фабрикой KEOMA. Диван обит роскошной тканью с перламутровым отливом и растительным орнаментом, оснащен частично съемными чехлами. Наполнение изготовлено из полиуретана, а подушки наполнены мягким гусиным пухом и оснащены современной системой пружин SoftSystem, что обеспечит потрясающий комфорт вам и вашим гостям. Диван, выполненный в прекрасном классическом стиле, станет главным акцентом вашей гостиной и придаст ей особое очарование и уют, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="861">
+		<name>Кресло VALERIA 555526, фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548530049/</url>
+		<price>1990</price>
+		<oldprice>2746</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4951/0982/98a5/9653/a99d/8c7a/efbb/5c4cb18fa38b6.jpg</picture>
+		<description><![CDATA[<p>Мягкое кресло VALERIA 2 на резных ножках представлено легендарной итальянской фабрикой KEOMA. Кресло изготовлено из массива дерева (ясень) в отделке белый лак с патиной и декорировано резными элементами. Кресло обито роскошной и качественной велюровой тканью. Наполнение кресла изготовлено из полиуретана разной плотности в сочетании с мягким гусиным пухом. Кресло выполнено в прекрасном классическом стиле. Оно может стать изящным акцентом в интерьере гостиной, спальни или кабинета.</p>]]></description>
+	</offer>
+	<offer id="862">
+		<name>Кресло VALERIA, фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548530132/</url>
+		<price>1890</price>
+		<oldprice>2600</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/d3ff/55b5/0760/9f7e/11ec/51df/4e55/5c4cb1fa5ea27.jpg</picture>
+		<description><![CDATA[<p>Удобное кресло Valeria представлено легендарной итальянской фабрикой KEOMA. Кресло изготовлено из массива дерева с элементами резьбы в отделке с использованием серебряной фольги, обтянуто высококачественной мягкой тканью с растительным орнаментом. Наполнение кресла выполнено из полиуретана, а подушка наполнена натуральным мягким гусиным пухом. Кресло выполнено в прекрасном классическом стиле. Оно может стать изящным акцентом в интерьере гостиной, спальни или кабинета.</p>]]></description>
+	</offer>
+	<offer id="863">
+		<name>Кресло Magia, фабрика MANTELLASSI</name>
+		<url>https://www.myarredo.ru/sale-product/1548533054/</url>
+		<price>1695</price>
+		<oldprice>4031</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b76b/9396/2f5a/66b3/aac1/e1fb/a9b2/5c4cbd552b5e3.jpg</picture>
+		<description><![CDATA[<p>Кресло Magia представлено итальянской фабрикой MANTELLASI. В отделке как на фото. Корпус дерево, отделка - серебряная фольга с патиной. Наполнение - полиуретан. Кресло обито прекрасной тканью шелк-сатин с жемчужным эффектом, что придает изделию дополнительное изящество и роскошь.</p>]]></description>
+	</offer>
+	<offer id="864">
+		<name>Диван EOLO 555505, фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548533878/</url>
+		<price>2400</price>
+		<oldprice>3355</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/48bc/7716/8453/4da5/b4a6/1f6c/d8e8/5c4cc07ebd30d.jpg</picture>
+		<description><![CDATA[<p>Роскошный трехместный диван EOLO представлен легендарной итальянской фабрикой KEOMA. Диван обит роскошной тканью с перламутровыми и бархатными элементами и растительным орнаментом, кормус дивана изготовлен из качественного и долговечного массива дерева. Мягкие подушки и подлокотники обеспечат комфорт и удобство вам и вашим гостям. Диван, выполненный в прекрасном классическом стиле, станет главным акцентом вашей гостиной и придаст ей особое очарование и уют, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="865">
+		<name>Диван PEGASO, арт. PEGA83, фабрика DITRE ITALIA</name>
+		<url>https://www.myarredo.ru/sale-product/1548534022/</url>
+		<price>3000</price>
+		<oldprice>5249</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b582/c57e/4e02/bc38/a8ee/b704/1886/5c4cc11f486a1.jpg</picture>
+		<description><![CDATA[<p>Стильный и удобный диван-кровать представлен итальянской фабрикой DITre Italia. Каркас дивана изготовлен из массива дерева, обивка дивана и четырех подушек выполнена из мягкой бархатной и атласной тканей, наполнение из полиуретана. Диван оснащен надежными укрепленными механизмами и электросварной решеткой, а также удобным матрасом из полиуретана высотой 9 см и размерами 132х190. Диван, выполненный в прекрасном классическом стиле, станет главным акцентом в вашей гостиной или спальне и подарит здоровый и приятный сон.</p>]]></description>
+	</offer>
+	<offer id="866">
+		<name>Диван арт. KATERINA 555513, фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548534376/</url>
+		<price>2400</price>
+		<oldprice>3258</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/34cf/6ce8/a81a/8d89/4d60/cf2d/d6c2/5c4cc270171b4.jpg</picture>
+		<description><![CDATA[<p>Трехместный диван KATERINA0 представлен легендарной итальянской фабрикой KEOMA. Каркас дивана изготовлен из ели и многослойной фанеры тополя, подушки сидения оснащены пружинами системы SoftSystem, подушки спинки из полиуретана и гусиного пуха. Диван обит мягкой вельветовой тканью и для вашего удобства оснащен съемными чехлами, удобные накидки на подлокотники в комплекте. Диван выполнен в прекрасном современном стиле. Он может стать изящным акцентом в интерьере гостиной или спальни.</p>]]></description>
+	</offer>
+	<offer id="867">
+		<name>Мобильный бар 3708, фабрика CAPANNI</name>
+		<url>https://www.myarredo.ru/sale-product/1548534535/</url>
+		<price>846</price>
+		<oldprice>901</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>1</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b23f/bc73/6460/9644/829e/12c9/2fc1/5c4cc319ab271.jpg</picture>
+		<description><![CDATA[<p>Мобильный бар как на фото представлен итальянской фабрикой CAPANNI. Бар оснащен откидывающейся столешницей и выдвижным отсеком, а также ножками на удобных колесиках. Бар изготовлен из натурального массива дерева. Передвижной бар, выполненный в прекрасном стиле кантри, удивит ваших гостей и дополнит ваш интерьер.</p>]]></description>
+	</offer>
+	<offer id="868">
+		<name>Пуф SAFIRA 555539, фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548534623/</url>
+		<price>240</price>
+		<oldprice>480</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/56a6/a550/3cab/3395/4c7e/027e/7091/5c4cc36633bc2.jpg</picture>
+		<description><![CDATA[<p>Мягкий квадратный пуф SAFIRA2 представлен легендарной итальянской фабрикой KEOMA. Пуф обит приятной и качественной кожей Nubuk. Основание изготовлено из массива дерева, а подушка, наполненная полиуретаном, присоединяется к основанию при помощи удобной липучки. Пуф, выполненный в прекрасном современном стиле, станет отличным акцентом вашей гостиной или спальни и придаст ей особое очарование и уют, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="869">
+		<name>Туалетный столик CAPRI , арт.3160, фабрика VOLPI</name>
+		<url>https://www.myarredo.ru/sale-product/1548534710/</url>
+		<price>3100</price>
+		<oldprice>3488</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/8474/d083/aca8/ac80/53c7/faf3/e281/5c4cc3ef8d314.jpg</picture>
+		<description><![CDATA[<p>Туалетный столик в комплекте с пуфом итальянской фабрики VOLPI . Изготовлены из массива дерева, Отделка слоновая кость с патиной , декор выполнен в отделке золото и серебро. Ручки в виде элегантных романтических розочек. Стоимость указана за 2 предмета. Артикул - Capri.</p>]]></description>
+	</offer>
+	<offer id="870">
+		<name>Тумбочка CAPRI арт. 2650 , фабрика VOLPI</name>
+		<url>https://www.myarredo.ru/sale-product/1548534860/</url>
+		<price>1400</price>
+		<oldprice>1580</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/39d0/dfb0/bcd8/8de1/f13e/907e/a230/5c4cc45ceb4eb.jpg</picture>
+		<description><![CDATA[<p>Тумбочка прикроватная итальянской фабрики VOLPI. Изготовлена из массива дерева. Отделка - слоновая кость с патиной. Отделка декора - золото и серебро. Элегантные ручки в виде романтических розочек, как на фото. Цена за 1 тумбочку. В наличии есть 2 тумбочки. Артикул - Capri.</p>]]></description>
+	</offer>
+	<offer id="871">
+		<name>Бар "Old bar", art. 435/SMCF, фабрика MAGGI MASSIMO</name>
+		<url>https://www.myarredo.ru/sale-product/1548534970/</url>
+		<price>9499</price>
+		<oldprice>14320</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>1</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/c17e/9c7b/2cbb/f67c/3870/afc6/669a/5c4cc4d13e305.jpg</picture>
+		<description><![CDATA[<p>"Старый бар" выполнен в старинном стиле итальянской фабрикой MaggiMassimo . Бар-буфет изготовлен из массива тополя в цвете орех и искусственно состарен. Поверхность дерева обработана воском для защиты от воды и рассыхания. Топ покрыт стальным листом, столешница из сатинированной нержавеющей стали, в тумбу вмонтирован встроенный холодильник на 123 л. В комплект входит: бар - 1 шт., мини-холодильник для напитков на 123 л - 1 шт, кофемолка - 1 шт, кофе-машина - 1 шт.</p>]]></description>
+	</offer>
+	<offer id="872">
+		<name>Прихожая композиция арт. CAV2, фабрика Modenese Gastone</name>
+		<url>https://www.myarredo.ru/sale-product/1548535085/</url>
+		<price>1619</price>
+		<oldprice>3111</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>4</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/6e9c/0314/dcee/a591/3cea/4d19/6991/5c4cc535c310d.jpg</picture>
+		<description><![CDATA[<p>Оригинальная составная прихожая представлена легендарной итальянской фабрикой MODENESE GASTONE. Прихожая выполнена из натурального массива дерева в стильной черно-белой отделке. Прихожая состоит из зеркала, настенной панели с крючками, верхней панели с подсветкой и небольшого вместительного комода с ящиками и полками. Прихожая, выполненная в прекрасном классическом стиле, поможет вам удобно организовать пространство в вашем доме.</p>]]></description>
+	</offer>
+	<offer id="873">
+		<name>Угловой шкаф SALIERI, фабрика Modenese Gastone</name>
+		<url>https://www.myarredo.ru/sale-product/1548535169/</url>
+		<price>4900</price>
+		<oldprice>5800</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/c55e/fdc7/636f/0da6/65dc/c25e/3fef/5c4cc58b46f01.jpg</picture>
+		<description><![CDATA[<p>Шкаф угловой представлен легендарной итальянской фабрикой Modenese Gastone. Вместительный шкаф выполнен из натурального массива дерева в цвете орех. Шкаф оснащен тремя распашными дверцами на замке. Угловой шкаф, выполненный в прекрасном классическом стиле, станет отличным дополнением к вашей спальне и поможет разместить все необходимое.</p>]]></description>
+	</offer>
+	<offer id="874">
+		<name>Витрина VESPRO арт. 7521/01, фабрика TIFERNO</name>
+		<url>https://www.myarredo.ru/sale-product/1548535268/</url>
+		<price>1180</price>
+		<oldprice>1305</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/bf59/c6fa/6348/35c2/9f6a/6e93/1104/5c4cc5ef2a0e5.jpg</picture>
+		<description><![CDATA[<p>Витрина TREVI E VESPRO с деревянными полками с кружевным декором по краю (2 шт) представлена итальянской фабрикой TIFERNO. Витрина изготовлена из натурального массива дерева, оснащена выдвижным ящиком и распашной дверцей. Изящная витрина, выполненная в прекрасном классическом стиле, отлично подойдет для кабинета, гостиной или столовой, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="875">
+		<name>Витрина TREVI 7541/01, фабрика TIFERNO</name>
+		<url>https://www.myarredo.ru/sale-product/1548535359/</url>
+		<price>951</price>
+		<oldprice>1287</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/52a0/a47f/090c/2b35/44da/2ce5/5507/5c4cc64eb60ec.jpg</picture>
+		<description><![CDATA[<p>Витрина со стеклянной дверью и стеклянными полками представлена итальянской фабрикой TIFERNO. Витрина, оснащенная выдвижным ящичком, изготовлена из массива дерева (орех). Изящная витрина, выполненная в прекрасном классическом стиле, отлично подойдет для кабинета, гостиной или столовой, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="876">
+		<name>Комод угловой SILIK</name>
+		<url>https://www.myarredo.ru/sale-product/1548535494/</url>
+		<price>2500</price>
+		<oldprice>3582</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/47c3/4e4b/01c5/6bb2/b4c9/3655/e46b/5c4cc6cbc1f18.jpg</picture>
+		<description><![CDATA[<p>Роскошный угловой комод с двумя дверцами и одним ящичком представлен итальянской фабрикой SILIK. Комод изготовлен из массива дерева, декорированного резьбой, отделка как на фото. Комод, выполненный в прекрасном классическом стиле, отлично дополнит вашу спальню и поможет с легкостью разместить все необходимое.</p>]]></description>
+	</offer>
+	<offer id="877">
+		<name>Столик кофейный 8815, фабрика Modenese Gastone</name>
+		<url>https://www.myarredo.ru/sale-product/1548535582/</url>
+		<price>225</price>
+		<oldprice>373</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4e4a/da84/7eb2/5795/009d/ef05/70c0/5c4cc72d23851.jpg</picture>
+		<description><![CDATA[<p>Кофейный столик на одной устойчивой ножке представлен легендарной итальянской фабрикой MODENESE GASTONE. Столик изготовлен из натурального массива дерева в лакированной отделке, столешница декорирована интарсио. Столик выполнен в прекрасном классическом стиле.</p>]]></description>
+	</offer>
+	<offer id="878">
+		<name>Подставка артикул 376, фабрика STILARS</name>
+		<url>https://www.myarredo.ru/sale-product/1548535677/</url>
+		<price>299</price>
+		<oldprice>373</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/6ea5/deed/95c6/5663/a737/4b99/dce2/5c4cc78ae0568.jpg</picture>
+		<description><![CDATA[<p>Прекрасная круглая подставка представлена итальянской фабрикой Stilars. Артикул 376. Замечательно подойдет для лампы, телефона или цветов. Изготовлена из массива дерева в лаковой отделке, ножки выполнены из латуни.</p>]]></description>
+	</offer>
+	<offer id="879">
+		<name>Пуф Muna , фабрика KEOMA</name>
+		<url>https://www.myarredo.ru/sale-product/1548535941/</url>
+		<price>287</price>
+		<oldprice>687</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/50a3/4cc3/6415/b896/1c2e/83fe/cbcc/5c4cc89cc9529.jpg</picture>
+		<description><![CDATA[<p>Мягкий квадратный пуф Muna pouff представлен легендарной итальянской фабрикой KEOMA. Пуф обит приятной и качественной тканью с нежным растительным орнаментом. Основание изготовлено из массива дерева, а подушка со съемным чехлом, наполненная полиуретаном, присоединяется к основанию при помощи удобной липучки. Пуф, выполненный в прекрасном современном стиле, станет отличным акцентом вашей гостиной или спальни и придаст ей особое очарование и уют, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="880">
+		<name>Бар винный арт.353 , фабрика MAGGI MASSIMO</name>
+		<url>https://www.myarredo.ru/sale-product/1548536109/</url>
+		<price>1532</price>
+		<oldprice>1990</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>1</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/d520/c80f/4c13/f39b/6a4b/caf0/7dfc/5c4cc939bc63f.jpg</picture>
+		<description><![CDATA[<p>Бар винный 2-х дверный , для хранения 12 бутылок, держатели для бокалов на 12 штук. Выполнен из массива дерева. Ручная работа.</p>]]></description>
+	</offer>
+	<offer id="881">
+		<name>Бар винный подвесной арт. АА200,фабрика MAGGI MASSIMO</name>
+		<url>https://www.myarredo.ru/sale-product/1548536413/</url>
+		<price>1637</price>
+		<oldprice>2126</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>1</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/0e4d/e3a8/6514/4f1f/5991/df6d/7427/5c4cca6a9b40a.jpg</picture>
+		<description><![CDATA[<p>Бар винный подвесной, 2 керамических бочонка для молодого вина, держатель для 6 бокалов . массив дерева.</p>]]></description>
+	</offer>
+	<offer id="882">
+		<name>Пенал арт.465, фабрика MAGGI MASSIMO</name>
+		<url>https://www.myarredo.ru/sale-product/1548536521/</url>
+		<price>7039</price>
+		<oldprice>9135</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/0965/83c7/5a59/de3a/137c/e92c/c0f8/5c4ccbb52d42a.jpg</picture>
+		<description><![CDATA[<p>Пенал кухонный арт.465, со встроенным холодильником. Материал - массив дерева.</p>]]></description>
+	</offer>
+	<offer id="883">
+		<name>Бар с винным бочонком арт. АА258 , фабрика MAGGI MASSIMO</name>
+		<url>https://www.myarredo.ru/sale-product/1548536657/</url>
+		<price>665</price>
+		<oldprice>1090</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>1</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/f4ce/000f/8376/f979/a6ac/dc83/85e6/5c4ccb8aa8fcc.jpg</picture>
+		<description><![CDATA[<p>Бар винный, арт. АА 258, с керамическим бочонком.</p>]]></description>
+	</offer>
+	<offer id="884">
+		<name>Кофемолка АА254 , фабрика MAGGI MASSIMO</name>
+		<url>https://www.myarredo.ru/sale-product/1548537051/</url>
+		<price>625</price>
+		<oldprice>811</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/3ce6/ebc8/f4eb/9d97/bcc9/326e/dd86/5c4ccce98eabc.jpg</picture>
+		<description><![CDATA[<p>Кофемолка с керамическим контейнером для зерен. Механизм металлический. Подставка - дерево - массив. Ручная работа.</p>]]></description>
+	</offer>
+	<offer id="886">
+		<name>Кресло ISTARI art.1718 фабрика SILIK</name>
+		<url>https://www.myarredo.ru/sale-product/1548537318/</url>
+		<price>1570</price>
+		<oldprice>2577</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/82a5/ae8a/19ad/4e63/3d0b/ce49/1c05/5c4ccdf5e2fe2.jpg</picture>
+		<description><![CDATA[<p>Маленькое кресло прекрасно подойдет как для спальни так и для гостиной. Каркас выполнен из массива дерева, основной цвет слоновая кость украшен позолотой. Ткань шелк как на фото.</p>]]></description>
+	</offer>
+	<offer id="887">
+		<name>Кухня ISABELLA, фабрика VISMAP</name>
+		<url>https://www.myarredo.ru/sale-product/1548537428/</url>
+		<price>6904</price>
+		<oldprice>17000</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>1</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/a943/80bf/1c9f/05b2/4c98/1a6e/5634/5c4cce660c76a.jpg</picture>
+		<description><![CDATA[<p>Стильный кухонный гарнитур ISABELLA представлен итальянской фабрикой Vismap. Кухня выполнена в стильной и лаконичной серой отделке с серебристыми элементами, придающими особый шарм. Кухня оснащена множеством вместительных ящиков и шкафчиков, благодаря которым все необходимое всегда может быть под рукой. Кухня также оснащена встроенной техникой ведущих брендов: духовка и варочная газовая поверхность Smeg, мойка и смеситель Ellici silgranit grigio.</p>]]></description>
+	</offer>
+	<offer id="888">
+		<name>Пуф ISTARI, art. 1719 фабрика SILIK</name>
+		<url>https://www.myarredo.ru/sale-product/888_888_888_1548537517/</url>
+		<price>700</price>
+		<oldprice>1030</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/66a6/3c7b/b242/61b8/cb3e/1385/5af1/5c4cceb8226a3.jpg</picture>
+		<description><![CDATA[<p>Пуф в классическом исполнении, выполнен из дерева в цвете слоновая кость, декорирован золотой фольгой. Сиденье - ткань как на фото. Прекрасно подойдет как дополнение для спальни, или к туалетному столику.</p>]]></description>
+	</offer>
+	<offer id="889">
+		<name>NIDO 650 POLTRONA </name>
+		<url>https://www.myarredo.ru/sale-product/1548665905/</url>
+		<price>1391</price>
+		<oldprice>2519</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4209/b6b2/1564/ea99/ba3f/3f44/e749/5c4ec4a0bed8d.png</picture>
+		<description><![CDATA[Кресло в коже Pelle Leather Cuir Leder Piel]]></description>
+	</offer>
+	<offer id="890">
+		<name>XSMAL DIVANO     </name>
+		<url>https://www.myarredo.ru/sale-product/1548666295/</url>
+		<price>6168</price>
+		<oldprice>11164</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1d9a/e34e/e9e4/1a87/4c41/8a84/979b/5c4ec5cb2b5a3.png</picture>
+		<description><![CDATA[Диван в отделке набук, с подушками ]]></description>
+	</offer>
+	<offer id="891">
+		<name>HIM&HER 9350 TAVOLINI</name>
+		<url>https://www.myarredo.ru/sale-product/1548666769/</url>
+		<price>583</price>
+		<oldprice>1057</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/c56c/748c/f0f4/ceb2/7654/5409/c116/5c4ec84979ae7.png</picture>
+		<description><![CDATA[Комплект из двух столиков ]]></description>
+	</offer>
+	<offer id="892">
+		<name>LAMPADE STELO H157    </name>
+		<url>https://www.myarredo.ru/sale-product/1548667236/</url>
+		<price>1157</price>
+		<oldprice>2095</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>14</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/615e/ffea/8bb6/6b98/9ca3/b905/5bcc/5c4ec96a201a1.png</picture>
+		<description><![CDATA[Комлект из 2-х напольных ламп (Ottone Satinato Cablaggio XCE)]]></description>
+	</offer>
+	<offer id="893">
+		<name>E_SPIRIT TERRA LIBRERIA MODULO A </name>
+		<url>https://www.myarredo.ru/sale-product/1548667688/</url>
+		<price>1824</price>
+		<oldprice>3303</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>5</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/5f7a/7dbd/1dbb/706d/7b43/c2e3/07d1/5c4ecb8f5e32f.png</picture>
+		<description><![CDATA[Библиотека - структура из металла, деревянные полочки, основание - мрамор каррара ]]></description>
+	</offer>
+	<offer id="894">
+		<name>CROSS TAVOLO GRANDE</name>
+		<url>https://www.myarredo.ru/sale-product/1548669584/</url>
+		<price>878</price>
+		<oldprice>1590</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/00fc/8e82/da36/a115/b285/a241/7727/5c4ed2a4726ac.png</picture>
+		<description><![CDATA[Журнальный столик VETRO NERO (основание  - латунь, столешница - черное стекло)]]></description>
+	</offer>
+	<offer id="895">
+		<name>CROSS TAVOLO PICCOLO</name>
+		<url>https://www.myarredo.ru/sale-product/1548669729/</url>
+		<price>838</price>
+		<oldprice>1517</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/7909/4a96/17c1/7737/eab9/5b5a/3111/5c4ed37f0d4f9.png</picture>
+		<description><![CDATA[Журнальный столик ORO CALACATTA (основание  - латунь, столешница - мрамор)]]></description>
+	</offer>
+	<offer id="896">
+		<name>A_ROUND POUF GRANDE</name>
+		<url>https://www.myarredo.ru/sale-product/1548670178/</url>
+		<price>651</price>
+		<oldprice>1180</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/bdc3/e384/1a6a/61b9/dd97/f165/3662/5c4ed51081442.png</picture>
+		<description><![CDATA[ Пуф VEGA 126 (CAT EXTRA) 100% Poliester
+Технические характеристики
+Каркас: массивная ель, многослойная и композитная
+древесина
+Внутреннее наполнение : слой формованного полиуретана высокой плотности
+пенопластовое покрытие с подогревом из полиэфирного волокна
+Основание: крышка из ДСП с латунью
+Обивка: несъемный тканевый или кожаный чехол                                                                                      
+]]></description>
+	</offer>
+	<offer id="897">
+		<name>A_ROUND POUF PICCOLO</name>
+		<url>https://www.myarredo.ru/sale-product/1548670497/</url>
+		<price>448</price>
+		<oldprice>812</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/465a/a4f7/37db/60e3/f7b8/eb4c/fd9c/5c4ed62beb817.png</picture>
+		<description><![CDATA[Пуф VEGA 103 (CAT EXTRA) 100% Poliester
+Структура: твердая ель и многослойная древесина со вставками из композитной древесины.
+Начинка: формованные и вспененные полиуретановые листы высокой плотности, покрытые смолой,спаренный бархат
+Основание: из дерева, покрытое медной пластиной
+Обивка: тканевая или кожаная обивка. Несъемный чехол]]></description>
+	</offer>
+	<offer id="898">
+		<name>SWING TAVOLINE OVALE</name>
+		<url>https://www.myarredo.ru/sale-product/1548672030/</url>
+		<price>877</price>
+		<oldprice>1589</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4273/c815/6792/60d5/97d0/84d3/25a2/5c4edc30c6155.png</picture>
+		<description><![CDATA[Журнальный столик  овал, столешница - лак RAL 7044 GRIGIO
+дизайн: Джанлуиджи Ландони                                                               
+Основа: полированный окрашенный металл, полированная латунная крестовина       ]]></description>
+	</offer>
+	<offer id="899">
+		<name>SWING TAVOLINE TONDO</name>
+		<url>https://www.myarredo.ru/sale-product/1548672253/</url>
+		<price>854</price>
+		<oldprice>1546</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/ec9f/24c8/48c0/9ee6/9dd6/0eb2/da1d/5c4edd16427fe.png</picture>
+		<description><![CDATA[Журнальный столик, столешница - мрамор BIANCO CARRARA
+Основа: полированный окрашенный металл, полированная латунная крестовина.
+Мраморный верх: белая каррара 
+]]></description>
+	</offer>
+	<offer id="900">
+		<name>SWING TAVOLINE TONDO</name>
+		<url>https://www.myarredo.ru/sale-product/1548672837/</url>
+		<price>701</price>
+		<oldprice>1270</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1827/da37/58b1/64df/bf54/a08a/9c29/5c4edf768a121.png</picture>
+		<description><![CDATA[Журнальный столик, столешница - черное стекло RAL 9011 NERO GRAFIT
+Основа: полированный лакированный металл, крестовина и наконечники из полированной латуни.
+Столешница черное стекло RAL 9011 NERO GRAFIT]]></description>
+	</offer>
+	<offer id="901">
+		<name>TAVOLO 50 ASTRA ALTA BRONZO</name>
+		<url>https://www.myarredo.ru/sale-product/1548675877/</url>
+		<price>397</price>
+		<oldprice>720</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/285d/f750/76d6/f1af/58e8/9a9b/cb6b/5c4eeb37a43bb.png</picture>
+		<description><![CDATA[Журнальный высокий стол с мраморной столешницей
+Стол имеет стальную конструкцию с отделкой из гальванической бронзы или меди. Столешница в мраморе.                                                                                                                                                                  ]]></description>
+	</offer>
+	<offer id="902">
+		<name>Ковер (TAPPETI)</name>
+		<url>https://www.myarredo.ru/sale-product/1548676132/</url>
+		<price>1432</price>
+		<oldprice>2593</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/9585/4b3e/f55e/405b/8444/b753/0b0e/5c4eec3645713.png</picture>
+		<description><![CDATA[Состав: 100% TENCEL - 100% чистое целлюлозное эко-волокно. Экологическая ткань.
+Формат: см. 200x300.
+В наличии 2 шт ]]></description>
+	</offer>
+	<offer id="926">
+		<name>Диван Domingo salotti модель Malvina</name>
+		<url>https://www.myarredo.ru/sale-product/1550129267/</url>
+		<price>3190</price>
+		<oldprice>7900</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/5f51/3ff5/d6d6/ab24/0208/5b5b/0d59/5c6518f26cb46.jpg</picture>
+		<description><![CDATA[Распродажа из шоу рума фабрики в Италии!!! Доставка в Россию 12-14 дней.  Диван был сделан на заказ по индивидуальным размерам.  ]]></description>
+	</offer>
+	<offer id="927">
+		<name>Письменный стол Bassanart</name>
+		<url>https://www.myarredo.ru/sale-product/1550130283/</url>
+		<price>1000</price>
+		<oldprice>2900</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>5</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/6fcf/078d/ec7a/c6f7/9ae2/6394/4cb2/5c651c790d1ff.jpg</picture>
+		<description><![CDATA[Распродажа из шоу рума фабрики в Италии!!! Доставка в Россию 12-14 дней.  Массив дерева + натуральная кожа. ]]></description>
+	</offer>
+	<offer id="951">
+		<name>Диван 4-х местный Melania</name>
+		<url>https://www.myarredo.ru/sale-product/1551720009/</url>
+		<price>5500</price>
+		<oldprice>9500</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/fbce/38f0/4511/0b66/ed6b/8333/b3db/5c7d5e5a636f0.jpg</picture>
+		<description><![CDATA[Диван 4-х местный в ткани, седушка и спинка в пробивку, в комплекте с 7-ю декоративными подушками]]></description>
+	</offer>
+	<offer id="952">
+		<name>Кресло Melania</name>
+		<url>https://www.myarredo.ru/sale-product/1551720166/</url>
+		<price>2500</price>
+		<oldprice>4500</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/6f7a/8f4c/1b97/67eb/db71/555a/1d34/5c7d5eed88194.jpg</picture>
+		<description><![CDATA[Кресло мягкое в ткани, спинка и седушка в пробивку, в комплекте с 2-мя декоративными подушками]]></description>
+	</offer>
+	<offer id="953">
+		<name>Стол журнальный Melania</name>
+		<url>https://www.myarredo.ru/sale-product/1551720308/</url>
+		<price>1000</price>
+		<oldprice>1600</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/3320/3a6a/bf88/4db3/5f39/c752/2044/5c7d5f7b4c870.jpg</picture>
+		<description><![CDATA[Стол журнальный круглый, основание в ткани, столешница мрамор Bianco Carrara]]></description>
+	</offer>
+	<offer id="957">
+		<name>Набор графинов и стаканов арт. АА230 фабрика MAGGI MASSIMO</name>
+		<url>https://www.myarredo.ru/sale-product/1554192203/</url>
+		<price>595</price>
+		<oldprice>768</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/8cdd/d7e6/5af3/76f8/dfc8/4988/64e7/5ca317597e024.jpg</picture>
+		<description><![CDATA[Графины (3 шт) и рюмки (6 шт) - хрусталь. Набор бар настольный, арт. АА230. Подставка выполнена из массива дерева, ручная обработка. ]]></description>
+	</offer>
+	<offer id="958">
+		<name>Радио Maggi Massimo АА294</name>
+		<url>https://www.myarredo.ru/sale-product/1554192348/</url>
+		<price>840</price>
+		<oldprice>1139</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1633/8f55/6cab/1e3e/9146/a651/4fb0/5ca31821a0abc.jpg</picture>
+		<description><![CDATA[Радио от итальянской фабрикой Maggi Massimo в коллекции Hard Country. Выполнено в стиле кантри. Для ее изготовления применяются натуральные материалы, которые гармонично смотрятся с латунной фурнитурой. ]]></description>
+	</offer>
+	<offer id="959">
+		<name>Итальянская мягкая мебель Trevi фабрики DOMINGO SALOTTI</name>
+		<url>https://www.myarredo.ru/sale-product/1554545500/</url>
+		<price>2800</price>
+		<oldprice>6300</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/74e5/a343/1933/3956/6779/b944/2f6a/5ca87b831bfda.jpg</picture>
+		<description><![CDATA[]]></description>
+	</offer>
+	<offer id="960">
+		<name>Итальянская мягкая мебель Benjamin фабрики DOMINGO SALOTTI</name>
+		<url>https://www.myarredo.ru/sale-product/1554545997/</url>
+		<price>2200</price>
+		<oldprice>3800</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/5db0/db93/408f/166c/c731/48c8/267d/5ca87d705e356.jpg</picture>
+		<description><![CDATA[Итальянский диван со спальным местом.]]></description>
+	</offer>
+	<offer id="963">
+		<name>Итальянская спальня Palazzo Ducale фабрики PRAMA (вишня)</name>
+		<url>https://www.myarredo.ru/sale-product/1554552279/</url>
+		<price>4801</price>
+		<oldprice>0</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/a908/0781/139b/bff7/1aa1/9818/decc/5ca896033dd4a.jpg</picture>
+		<description><![CDATA[Продается итальянская спальня: кровать с подъемным механизмом сп.место 160 *200 см (длина 178 см, глубина 221 см, высота 116 см), 2 прикроватные тумбы (длина 60 см, глубина 42 см, высота 62 см), шкаф-купе (длина 200 см, глубина 68 см, высота 240 см). Стоимость указана за весь комплект мебели.]]></description>
+	</offer>
+	<offer id="964">
+		<name>Итальянская спальня фабрики VACCARI INTERNATIONAL</name>
+		<url>https://www.myarredo.ru/sale-product/1554554015/</url>
+		<price>2600</price>
+		<oldprice>3864</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/9b42/9d62/0cb5/c504/af7e/6b89/0dd5/5ca89ccb25410.jpg</picture>
+		<description><![CDATA[Продается итальянская спальня: кровать, сп. место 160 *200 (длина 184 см, глубина 207 см, высота 130 см), 2 прикроватные тумбы (длина  52 см, глубина 38 см, высота 42 см), банкетка, консоль (длина 110 см, глубина 38 см, высота 80 см). Стоимость указана за весь комплект мебели.]]></description>
+	</offer>
+	<offer id="965">
+		<name>Итальянская кровать Ninfea с тумбами Mono фабрики MARONESE/ACF</name>
+		<url>https://www.myarredo.ru/sale-product/1554555279/</url>
+		<price>2576</price>
+		<oldprice>0</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/45e2/f874/75b9/9913/eb41/96c8/3961/5ca8a1a728d7e.jpg</picture>
+		<description><![CDATA[Продается итальянская спальня: кровать, сп. место 180 *195 (длина 230 см, глубина 222 см, высота 96 см), 2 прикроватные тумбы (длина 62, глубина 42 см, высота 45 см). Стоимость указана за весь комплект мебели.]]></description>
+	</offer>
+	<offer id="966">
+		<name>Итальянская люстра фабрики IRIS CRISTAL</name>
+		<url>https://www.myarredo.ru/sale-product/1554555991/</url>
+		<price>1500</price>
+		<oldprice>3400</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>14</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/5cb8/44d2/9b66/4259/3d7e/c44c/6086/5ca8a46f00786.jpg</picture>
+		<description><![CDATA[]]></description>
+	</offer>
+	<offer id="967">
+		<name>Итальянская люстра фабрики PATAVIUMART</name>
+		<url>https://www.myarredo.ru/sale-product/1554556573/</url>
+		<price>1500</price>
+		<oldprice>4000</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>14</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2914/c07c/fa07/04d2/b96f/4b5b/80f4/5ca8a6b0a6af2.jpg</picture>
+		<description><![CDATA[]]></description>
+	</offer>
+	<offer id="968">
+		<name>Итальянский комод фабрики FERRETTI&FERRETTI</name>
+		<url>https://www.myarredo.ru/sale-product/1554558150/</url>
+		<price>1000</price>
+		<oldprice>1900</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/897d/580d/e3e0/f044/ca72/b2b2/90d0/5ca8ace631e6c.jpg</picture>
+		<description><![CDATA[]]></description>
+	</offer>
+	<offer id="969">
+		<name>Итальянский стул фабрики ARCA</name>
+		<url>https://www.myarredo.ru/sale-product/1554558404/</url>
+		<price>200</price>
+		<oldprice>700</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>3</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/5538/983c/526e/2405/4d2a/a538/9a1a/5ca8adda34cd8.jpg</picture>
+		<description><![CDATA[]]></description>
+	</offer>
+	<offer id="970">
+		<name>Итальянская подставка под цветы фабрики BITOSSI</name>
+		<url>https://www.myarredo.ru/sale-product/1554558716/</url>
+		<price>450</price>
+		<oldprice>1100</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/81ea/eb5f/129a/249b/2fbb/3eb3/0741/5ca8af1e2e6f9.jpg</picture>
+		<description><![CDATA[]]></description>
+	</offer>
+	<offer id="972">
+		<name>Итальянский журнальный стол Bean фабрики ALTA CORTE</name>
+		<url>https://www.myarredo.ru/sale-product/1554559682/</url>
+		<price>450</price>
+		<oldprice>675</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b627/0e05/c90b/3c37/5fcb/6244/a887/5ca8b2da4dab0.jpg</picture>
+		<description><![CDATA[]]></description>
+	</offer>
+	<offer id="973">
+		<name>Итальянский стол со стульями Palazzo Ducale laccato фабрики PRAMA</name>
+		<url>https://www.myarredo.ru/sale-product/1554560125/</url>
+		<price>2263</price>
+		<oldprice>0</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/32d8/7576/f918/db33/82af/fc26/ce9f/5ca8b4a131e3f.jpg</picture>
+		<description><![CDATA[<p>Продается итальянская столовая группа: овальный стол (длина 210/300 см, глубина 110 см, высота 76 см), 4 стула (длина 49 см, глубина 58 см, высота 94 см). Стоимость указана за весь комплект.</p>]]></description>
+	</offer>
+	<offer id="1354">
+		<name>Тумба Portofino San Michele</name>
+		<url>https://www.myarredo.ru/sale-product/1571145713/</url>
+		<price>25000</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/acab/2c17/58ea/67eb/fa7e/8ed1/1a70/5da5c8024bd1d.jpeg</picture>
+		<description><![CDATA[Италия]]></description>
+	</offer>
+	<offer id="1355">
+		<name>Угловая консоль</name>
+		<url>https://www.myarredo.ru/sale-product/1571145854/</url>
+		<price>15500</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/da0d/390d/a7c6/8b59/b6cf/614e/2490/5da5c8a230132.jpeg</picture>
+		<description><![CDATA[2 шт в наличии.15500 за 1шт.Италия]]></description>
+	</offer>
+	<offer id="1356">
+		<name>Стол Stile legno</name>
+		<url>https://www.myarredo.ru/sale-product/1571146190/</url>
+		<price>174000</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/6bbd/df86/5f97/20e6/a61f/aa12/203b/5da5c9f19aceb.jpeg</picture>
+		<description><![CDATA[Италия.Сусальное золото]]></description>
+	</offer>
+	<offer id="1357">
+		<name>Торшер Alta Moda</name>
+		<url>https://www.myarredo.ru/sale-product/1571146318/</url>
+		<price>45000</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2314/37c0/c233/913a/6913/0def/ea2f/5da5ca6737145.jpeg</picture>
+		<description><![CDATA[Италия]]></description>
+	</offer>
+	<offer id="1359">
+		<name>Стол Kartell</name>
+		<url>https://www.myarredo.ru/sale-product/1571146832/</url>
+		<price>55000</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/a707/7d91/9ece/a096/0990/4000/55ae/5da5cc689e7d3.jpeg</picture>
+		<description><![CDATA[Италия]]></description>
+	</offer>
+	<offer id="1362">
+		<name>Барный стул  Modenese Gastone</name>
+		<url>https://www.myarredo.ru/sale-product/1571147865/</url>
+		<price>15000</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>0</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/262a/b0fd/8f3a/ac00/e85b/46c4/afad/5da5d074ea275.jpeg</picture>
+		<description><![CDATA[Италия]]></description>
+	</offer>
+	<offer id="1363">
+		<name>Стол журнальный Bontempi</name>
+		<url>https://www.myarredo.ru/sale-product/1571148006/</url>
+		<price>37000</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/6790/1bc8/d438/ec2f/16cd/2534/4df8/5da5d0f88a821.jpeg</picture>
+		<description><![CDATA[Италия]]></description>
+	</offer>
+	<offer id="1366">
+		<name>Тумбочка Kartell</name>
+		<url>https://www.myarredo.ru/sale-product/1571148562/</url>
+		<price>40000</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/eddb/71e8/7ae2/0afc/d753/8d45/6be1/5da5d3427c257.jpeg</picture>
+		<description><![CDATA[Италия.Прозрачная фиолетовая]]></description>
+	</offer>
+	<offer id="1368">
+		<name>Зеркало и тумба  Cezares</name>
+		<url>https://www.myarredo.ru/sale-product/1571149192/</url>
+		<price>45000</price>
+		<oldprice>65000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>15</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4710/9dd0/60a0/6f0c/f64c/2a78/33fe/5da5d598aad2b.jpeg</picture>
+		<description><![CDATA[Италия ]]></description>
+	</offer>
+	<offer id="1369">
+		<name>Тумбочка Kartell Stone</name>
+		<url>https://www.myarredo.ru/sale-product/1571149335/</url>
+		<price>18000</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/7378/4038/9f0e/7394/cf32/59c2/46ab/5da5d62b5b0da.jpeg</picture>
+		<description><![CDATA[Италия]]></description>
+	</offer>
+	<offer id="1372">
+		<name>Кресло металлическое Kartell</name>
+		<url>https://www.myarredo.ru/sale-product/1571149996/</url>
+		<price>42300</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>3</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/a576/ee89/887d/b43d/bf41/c2e7/95ad/5da5d8e9c1240.jpeg</picture>
+		<description><![CDATA[Италия]]></description>
+	</offer>
+	<offer id="1377">
+		<name>Зеркало Alta Moda</name>
+		<url>https://www.myarredo.ru/sale-product/1571152649/</url>
+		<price>72000</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/6804/dbc2/3b0f/0728/5ff8/5161/e7ad/5da5e32766af6.jpeg</picture>
+		<description><![CDATA[Италия]]></description>
+	</offer>
+	<offer id="1378">
+		<name>Люстра Alta Moda</name>
+		<url>https://www.myarredo.ru/sale-product/1571152955/</url>
+		<price>72000</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>14</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2c3e/c3c5/2ef3/4f69/4dc9/7d7b/2793/5da5e49e5b8ee.jpeg</picture>
+		<description><![CDATA[Италия. В наличии 2 варианта:розовая и золотая]]></description>
+	</offer>
+	<offer id="1379">
+		<name>Картина</name>
+		<url>https://www.myarredo.ru/sale-product/1571153201/</url>
+		<price>9000</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>22</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/3c2f/e0c1/6d3f/d512/8b57/72e2/3a31/5da5e548583c5.jpeg</picture>
+		<description><![CDATA[]]></description>
+	</offer>
+	<offer id="1380">
+		<name>Картина</name>
+		<url>https://www.myarredo.ru/sale-product/1571155157/</url>
+		<price>9000</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>22</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/524a/0a5a/7296/ff24/11c5/bddd/0ceb/5da5ecebd7b8b.jpeg</picture>
+		<description><![CDATA[]]></description>
+	</offer>
+	<offer id="1382">
+		<name>Статуя оленя Alta Moda</name>
+		<url>https://www.myarredo.ru/sale-product/1571155544/</url>
+		<price>56000</price>
+		<oldprice>56000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4d44/3132/21fe/5046/8823/fba7/ba72/5da5ee69958d2.jpeg</picture>
+		<description><![CDATA[Италия]]></description>
+	</offer>
+	<offer id="1384">
+		<name>Барная стойка</name>
+		<url>https://www.myarredo.ru/sale-product/1571155978/</url>
+		<price>171000</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1191/e387/4476/9988/5969/3470/b537/5da5f015ce1f8.jpeg</picture>
+		<description><![CDATA[Всю информацию можно получить у нас в салоне г.Сантк-Петербург, Мосоквский пр, д.61 и на сайте: Работаем без выходных. Цена со скидкой 50%: 342 000 РУБ - по курсу 45 руб! Мебель Италии в Санкт-Петербурге и в регионах России: Архангельск, Великий Новгород, Иркутск, Краснодар, Красноярск, Мурманск, Новосибирск, Омск, Петрозаводск,Псков, Самара, Томск, Череповец, Тюмень, Ханты-Мансийск, Сургут, Мурманск, Северодвинск, Сочи, Симферополь, Севастополь, Ярославль, Хабаровск,Дальний Восток, Дагестан, Ульяновск, Челябинск и др. города РФ и зарубежье. Низкая цена]]></description>
+	</offer>
+	<offer id="1387">
+		<name>Кресло </name>
+		<url>https://www.myarredo.ru/sale-product/1571156821/</url>
+		<price>89000</price>
+		<oldprice>0</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/6328/82da/c1ce/4f8e/ed4c/e2c1/157b/5da5f393e4f50.jpeg</picture>
+		<description><![CDATA[]]></description>
+	</offer>
+	<offer id="1391">
+		<name>Мебель для кабинета</name>
+		<url>https://www.myarredo.ru/sale-product/1571400865/</url>
+		<price>1226400</price>
+		<oldprice>3066000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>5</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/9c32/b2dc/1434/b6d6/9fe8/3b53/8b7c/5dd508d851182.jpg</picture>
+		<description><![CDATA[<p><span style="font-size: 8pt;"><span style="color: #535351; text-transform: none; text-indent: 0px; letter-spacing: normal; font-family: 'Open Sans',sans-serif; font-style: normal; font-weight: 400; word-spacing: 0px; display: inline !important; white-space: normal; orphans: 2; widows: 2; float: none; -webkit-text-stroke-width: 0px; background-color: #ffffff;">Превосходная мебель для кабинета выполнена из массива дерева. Теплые оттенки розового дерева и ясеня мягко сочетаются с натуральной кожей цвета беж на столешнице письменного стола и в отделке кресла и стульев. Резьба и позолота выполнены вручную настоящими мастерами. Декоративные элементы в стиле барокко и отделка сусальным золотом с патиной придают кабинету уникальный оттенок. Шкаф для книг 4-х дверный, как на фото.&nbsp;</span><span style="color: #535351; text-transform: none; text-indent: 0px; letter-spacing: normal; font-family: 'Open Sans',sans-serif; font-style: normal; font-weight: 400; word-spacing: 0px; display: inline !important; white-space: normal; orphans: 2; widows: 2; float: none; -webkit-text-stroke-width: 0px; background-color: #ffffff;"><span style="color: #000000;">В комплекте к столу идут вращающееся кресло из натуральной кожи оттенок беж и 2 стула в аналогичной коже. Все из наличия. На столе и на подлокотнике кресла имеются дефекты.</span></span></span></p>]]></description>
+	</offer>
+	<offer id="1514">
+		<name>Спальня</name>
+		<url>https://www.myarredo.ru/sale-product/1514_1514_1514_1514_1514_1514_1514_1514_1514_1514_1514_tumbochka_giorgio_casa/</url>
+		<price>463</price>
+		<oldprice>925</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/3c3e/7e92/c2e8/f2e6/60de/4418/156c/5e68fe9505aac.jpg</picture>
+		<description><![CDATA[Фабрика GiorgioCasa модель MemoriVeneziana Тумбочка прикроватная L580* P*390*Р74см, арт.1152Y, цвет итальянский орех, отделка золото. В наличии - 2 шт. в комплекте: кровать 160*200, 3х дверный шкаф, комод]]></description>
+	</offer>
+	<offer id="1646">
+		<name>EBAN Tosca Комплект мебели для ванной комнаты</name>
+		<url>https://www.myarredo.ru/sale-product/1646_vannaya_eban_italia/</url>
+		<price>459900</price>
+		<oldprice>465000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>15</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/cd45/629d/b5f8/4014/2ac6/9c67/3aba/5e77e9775c1e1.png</picture>
+		<description><![CDATA[EBAN Tosca Комплект мебели : деревянная тумба под раковину, с белой раковиной и зеркалом золото доводчики Blum, 150х60см. Цвет: Nero Lucido]]></description>
+	</offer>
+	<offer id="1651">
+		<name>Eban Letizia Комплект мебели для ванной комнаты</name>
+		<url>https://www.myarredo.ru/sale-product/1651_vannaya_eban_italia/</url>
+		<price>221900</price>
+		<oldprice>229900</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>15</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/095f/2ccd/e821/7d11/168c/f681/ba5d/5e77ee9a14fee.jpg</picture>
+		<description><![CDATA[<p>Eban Letizia Комплект мебели база под раковину подвесная, с 2 дверцами доводчики Blum, с раковиной и зеркалом, 90х51хh53см, Цвет: Grigio Ardesia</p>]]></description>
+	</offer>
+	<offer id="1652">
+		<name>Eban Pamela Комплект мебели для ванной комнаты</name>
+		<url>https://www.myarredo.ru/sale-product/1652_vannaya_eban_italia/</url>
+		<price>195900</price>
+		<oldprice>203900</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>15</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/767e/34ec/b58b/96da/d883/6698/a43f/5e77ef9f5bc7a.jpg</picture>
+		<description><![CDATA[Eban Pamela Комплект мебели 102 см, база напольная под раковину 1 ящик, 2 дверки , доводчики Blum с раковиной и зеркалом. Цвет: British Green]]></description>
+	</offer>
+	<offer id="1657">
+		<name>Витрина MEDEA 950</name>
+		<url>https://www.myarredo.ru/sale-product/1657_1657_1657_1657_vitrina_medea/</url>
+		<price>9823</price>
+		<oldprice>21830</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/3cea/e368/4ff7/443d/de70/bb98/fb98/5e89d2f40c02a.jpg</picture>
+		<description><![CDATA[Витрина шестидверная с двумя выдвижными ящиками и четырьмя внешними полками по бокам, выполненная из массива натурального дерева представлена фабрикой MEDEA в коллекции Liberty collection. Фасад витрины декорирован художественной резьбой, верхние две дверцы выполнены из стекла, внутренние полки - из дерева. ]]></description>
+	</offer>
+	<offer id="1659">
+		<name>Софа  Medea 921</name>
+		<url>https://www.myarredo.ru/sale-product/1659_1659_1659_1659_divan_medea/</url>
+		<price>1990</price>
+		<oldprice>4420</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1f40/f81e/a870/8507/4f40/33c8/9d96/5e89d73c08dbd.jpg</picture>
+		<description><![CDATA[Правильный выбор для тех покупателей, кто кроме красоты в диване ценит удобство и комфорт. ]]></description>
+	</offer>
+	<offer id="1662">
+		<name>SOFA  Medea 506</name>
+		<url>https://www.myarredo.ru/sale-product/1662_1662_1662_1662_divan_medea/</url>
+		<price>3096</price>
+		<oldprice>6880</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/37fe/8f7a/8c95/5aa5/a3ea/8e2e/fb19/5e89d9a990cf1.jpg</picture>
+		<description><![CDATA[Данный товар представлен в базовой комплектации и имеет разнообразные варианты исполнения и отделки.
+Для более подробной информации Вы можете запросить каталог товара на электронную почту.]]></description>
+	</offer>
+	<offer id="1664">
+		<name>Кресло Medea 505</name>
+		<url>https://www.myarredo.ru/sale-product/1664_1664_1664_1664_1664_1664_1664_1664_1664_kreslo_medea/</url>
+		<price>2450</price>
+		<oldprice>5440</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b354/e0f8/5396/2c88/6912/a5fd/d4f4/5e89de31adbfe.jpg</picture>
+		<description><![CDATA[Кресло на изящных ножках из массива натурального дерева выполнено в классическом стиле. Сиденье и спинка обтянуты мягкой тканью .Нижняя планка и углы кресла декорированы художественной резьбой ручной работы. Мебель из коллекции LIBERTY создаст гармонию и уют в вашем доме.]]></description>
+	</offer>
+	<offer id="1679">
+		<name>Журнальный стол Medea 790</name>
+		<url>https://www.myarredo.ru/sale-product/1679_1679_1679_1679_1679_stol_zurnalnyj/</url>
+		<price>1950</price>
+		<oldprice>4280</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/5ef7/5a5f/793d/f1b2/a9a8/f46c/4248/5e89e1dc4821e.jpg</picture>
+		<description><![CDATA[Журнальный столик 790 от итальянской фабрики Medea, с полочкой, декорированная резными элементами. Столешница и полка выполнены из стекла.]]></description>
+	</offer>
+	<offer id="1685">
+		<name>ДиванMedea 587</name>
+		<url>https://www.myarredo.ru/sale-product/1685_1685_1685_1685_1685_1685_divan_medea/</url>
+		<price>3600</price>
+		<oldprice>6000</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/f28f/426a/d5f6/6014/2efe/c512/e294/5e89e7b72a272.png</picture>
+		<description><![CDATA[Двух-местный диван на каркасе из массива древесины. Входит в коллекцию Liberty, выполненную в стиле ар-нуво (итальянский вариант названия - стиль "либерти"). Опирается на украшенные каннелюрами ножки. Нижний край корпуса оформлен резными "фестонами" (ручная работа). Верхний край прямой спинки дополняет позолоченный рельефный декор. Подлокотники "завернуты" небольшими завитками. Обивка - текстиль. Спинку смягчают небольшие подушки под поясницу.]]></description>
+	</offer>
+	<offer id="1689">
+		<name>Шкаф витрина  Medea 959</name>
+		<url>https://www.myarredo.ru/sale-product/1689_1689_1689_1689_gostinaya_medea/</url>
+		<price>11430</price>
+		<oldprice>12700</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/cf2a/7acf/ac81/eae2/188d/e9d0/101b/5e89f13d516f1.jpg</picture>
+		<description><![CDATA[]]></description>
+	</offer>
+	<offer id="1690">
+		<name>журнальный стол  Medea</name>
+		<url>https://www.myarredo.ru/sale-product/1690_1690_1690_1690_1690_1690_stol_zurnalnyj/</url>
+		<price>740</price>
+		<oldprice>1290</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/859d/ac10/b0f9/d971/980c/64f3/ef67/5e89f49498b83.jpg</picture>
+		<description><![CDATA[]]></description>
+	</offer>
+</offers>
+</shop>
+</yml_catalog>

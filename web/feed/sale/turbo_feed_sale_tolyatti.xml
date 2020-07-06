@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2020-07-06 15:31">
+<shop>
+<name>MyArredoFamily</name>
+<company>MyArredoFamily</company>
+<url>https://tolyatti.myarredo.ru</url>
+<currencies>
+	<currency id="RUR" rate="1"/>
+</currencies>
+<categories>
+	<category id="9">Спальни</category>
+	<category id="1">Кухни</category>
+	<category id="2">Столовые комнаты</category>
+	<category id="12">Детская мебель</category>
+	<category id="6">Мягкая мебель</category>
+	<category id="7">Гостиные</category>
+	<category id="14">Светильники</category>
+	<category id="3">Стулья</category>
+	<category id="5">Кабинеты</category>
+	<category id="4">Прихожие</category>
+	<category id="13">Двери</category>
+	<category id="22">Картины</category>
+	<category id="16">Гардеробные</category>
+	<category id="15">Ванные комнаты</category>
+	<category id="10">Мебель для TV</category>
+	<category id="8">Аксессуары</category>
+	<category id="18">Кованая мебель</category>
+	<category id="11">Мебель для ресторанов</category>
+	<category id="21">Садовая мебель</category>
+</categories>
+<offers>
+	<offer id="974">
+		<name>Housse</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555575228/</url>
+		<price>223700</price>
+		<oldprice>372900</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/02c9/eb96/b2c6/e33d/c244/8db3/1d83/5cb831cbb16f4.jpg</picture>
+		<description><![CDATA[Дизайнерское кресло линейки Housse. супер-cтильное, супер-мягкое, супер-удобное. Широкие подлокотники, мягкое сиденье и комфортная спинка позволят расположиться с комфортом, а поясничная подушка поддержит спину. Обивка - натуральная кожа.
+Материал:	Каркас - пустотелые панели из пихты и тополя. Каркас монолитный. Ножки из бука, тонированного под орех. Наполнитель подушек - полиуретан разной плотности в чехле из акриловых волокон. Поддержка плетенными эластичными лентами, с каучуковым покрытием. Подушки сиденья и подголовника из полиуретана разной плотности и подкладка из акриловых волокон с верхним слоем memofil (мягкий вязкий латекс).
+]]></description>
+	</offer>
+	<offer id="975">
+		<name>Bergere</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555575694/</url>
+		<price>268500</price>
+		<oldprice>447350</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1d19/0692/6476/4651/2cc7/2c2c/8187/5cb833b3d33f4.jpg</picture>
+		<description><![CDATA[Кресла фабрики Baxter - превосходный выбор для любых интерьеров высокого уровня.  Кресло Bergere Baxter удачно впишется как в современный, так и в и классический интерьер. 
+В креслах используются натуральные материалы: массив и сталь в каркасах, ППУ и перо в подушках. Компания использует текстиль высокого уровня, а также эластичную натуральную кожу высшего сорта.
+Монолитный корпус из дерева и пустотелых панелей из пихты и тополя.  Ножки из бука тонированного под орех или покрашены в коричневый цвет. Пенополиуретан разной плотности. Поддержка плетенными эластичными лентами, с каучуковым покрытием. Подушки сиденья и спинки из промытого стерилизованного гусиного пера с пенополиуретановой вставкой разной плотности.
+Кресло Bergere продается в комплекте с пуфом Bergere.]]></description>
+	</offer>
+	<offer id="976">
+		<name>Bergere</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555577626/</url>
+		<price>61600</price>
+		<oldprice>102600</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/cfd7/78c7/5a7f/5ee8/bea6/e876/bd6d/5cb83b26b951a.jpg</picture>
+		<description><![CDATA[Итальянский мебельный бренд Baxter известен качеством отделочных материалов, в первую очередь, кожи. Совместная работа лучших ремесленников и известных дизайнеров рождает на свет предметы интерьера, обладающие неповторимыми чертами.
+Структура - тополь, бук. Наполнение - полиуретан. ]]></description>
+	</offer>
+	<offer id="978">
+		<name>Charlotte</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555580699/</url>
+		<price>316950</price>
+		<oldprice>528200</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/ef12/f62d/b9f0/0cbb/2dcc/c2f5/09d3/5cb9b6614f471.png</picture>
+		<description><![CDATA[Набор из 2 кресел с низкой посадкой Charlotte – настоящая классика мебельного дизайна, которая всегда будет актуальна в любом домашнем или офисном интерьере. Каркас кресла выполнен из древесины бука и тополя. Передние ножки, оснащенные маленькими поворотными колесиками (латунь или хром), также изготовлены из бука и окрашены в цвет дерева грецкого ореха. В качестве наполнения фабрика использует пенополиуретан с покрытием из акрилового волокна. Мягкое глубокое сиденье кресла оснащено пружинами, также покрытыми пенополиуретаном различной плотности. Внешняя отделка – натуральная кожа из собственного ассортимента фабрики. ]]></description>
+	</offer>
+	<offer id="979">
+		<name>Miss R</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555582385/</url>
+		<price>118600</price>
+		<oldprice>197600</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/189f/b259/7bb7/11da/d3b8/01ac/5dc0/5cb84de3c61fc.jpg</picture>
+		<description><![CDATA[Предметы интерьера от Ivano Redaelli — это вещи класса «люкс», созданные, чтобы восхищать и дарить наслаждение.
+Современное кресло из металла со съемным чехлом из ткани можно использовать как арт-объект в интерьере. Наполнитель кресла - пенополиуретан. ]]></description>
+	</offer>
+	<offer id="980">
+		<name>Lady D</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555589528/</url>
+		<price>42775</price>
+		<oldprice>71300</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/5ead/32b9/96d9/02fe/085d/9fac/f151/5cb86a0d72ca9.jpg</picture>
+		<description><![CDATA[Туалетный стол Lady D – отличное решение для консервативных людей, которым по душе традиционные формы, материалы и расцветки. Цвет состаренного ореха дарит стойкое ощущение спокойствия и размеренности, совмещая некую солидность и нежность в «одном флаконе». Изготовлен из шпона и массива. ]]></description>
+	</offer>
+	<offer id="981">
+		<name>Elios </name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555590114/</url>
+		<price>48100</price>
+		<oldprice>80200</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/41e9/7182/eb99/9e91/5f6a/8c60/1fd4/5cb86c2590433.jpg</picture>
+		<description><![CDATA[Комод с 3 выдвижными ящиками из древесины, в матовой отделке, дуб tabacco. ]]></description>
+	</offer>
+	<offer id="982">
+		<name>Versus</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555591525/</url>
+		<price>49350</price>
+		<oldprice>82250</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>5</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4d95/703a/faed/adb5/c062/7651/9d29/5cb87b090326a.jpg</picture>
+		<description><![CDATA[Книжные полки с открытыми отсеками (2 шт. в комплекте) выполнены из натурального дерева. Горизонтальное или вертикальное позиционирование обеспечивают многочисленные возможности применения. Цвет дуб tabacco/ задняя стенка opaco (SX и DX)]]></description>
+	</offer>
+	<offer id="983">
+		<name>IRINA G/1505 </name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555594622/</url>
+		<price>9050</price>
+		<oldprice>15100</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/7f42/6253/9859/6f6f/78da/6a48/d185/5cb87da463bcc.jpg</picture>
+		<description><![CDATA[ Стул с каркасом из натурального бука (цвет-Белый P94), сиденье обито экокожей (цвет- Белый G8B). Материал очень практичен, не пропускает влагу, легко моется, мягкий и приятный на ощупь. Цвет белый.
+В наличии 4 стула. Цена указана за 1 шт.
+]]></description>
+	</offer>
+	<offer id="984">
+		<name>Lusso</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555595188/</url>
+		<price>9000</price>
+		<oldprice>12000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>3</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/020d/e31c/2bc5/dc92/4dd6/d895/8fd2/5cb87fc6cb0e2.jpg</picture>
+		<description><![CDATA[Высокий мягкий стул на металлических хромированных полозьях. Продольные углубления на спинке являются не только элементом дизайна, но и обеспечивают поддержку позвоночника. Сиденье обито экокожей - простым в уходе материалом из хлопка и полиуретана. Цвет сиденья - коричневый (SH11)
+Максимальная нагрузка 100 кг
+В комплекте 6 шт. Цена указана за 1 шт.]]></description>
+	</offer>
+	<offer id="985">
+		<name>A566X</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555595788/</url>
+		<price>25800</price>
+		<oldprice>39800</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/fe92/1fbe/b747/6c43/773b/b976/66cc/5cb88230585be.jpg</picture>
+		<description><![CDATA[Этажерка в классическом стиле выполнена из массива дерева, тонирована в цвет орех.]]></description>
+	</offer>
+	<offer id="986">
+		<name>A570</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555656599/</url>
+		<price>54720</price>
+		<oldprice>109440</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/c231/fda2/b64f/e23b/d58f/c30c/a9de/5cb9701f41e7e.jpg</picture>
+		<description><![CDATA[Витрина из коллекции 2009 итальянской фабрики BL MOBILI 
+выполнена из массива натурального дерева. цвет орех. Поверхность дерева покрыта лаком, защищающим от царапин и повреждений. Боковые стенки витрины дополнены вставками из стекла. Изделие оснащено запирающимися на ключ распашными дверцами, за которыми расположено несколько полок из стекла.  ]]></description>
+	</offer>
+	<offer id="987">
+		<name>Dania</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555659198/</url>
+		<price>250000</price>
+		<oldprice>410400</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/7c34/bbf1/84f9/47b9/daca/f3e0/7e8d/5cb979d06ea5e.jpg</picture>
+		<description><![CDATA[Диван в классическом стиле, благодаря своему облику станет отличным решением обустройства зоны отдыха гостиной, кабинета, библиотеки. Красота облика дивана Dania создана благодаря эффектной фигурной форме спинки изогнутым подлокотникам, добротной обивке из шенилла. Каркас выполнен из добротной древесины, в наполнении сидений и подушек используется качественный полиуретан и система Super Soft System, сохраняющая мягкость пуха и гибкость стальных пружин посредством особой прошивки. Фигурные ножки покрыты листовым серебром, ткань - коричневый шенилл, подушки сиденья и спинки  серебристо-коричневый шенилл.
+Диван оснащен раскладным механизмом в три сложения с ортопедическим матрасом, размер спального места 140*190.]]></description>
+	</offer>
+	<offer id="988">
+		<name>4H0013P</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555664979/</url>
+		<price>45700</price>
+		<oldprice>1002</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/65c6/5c6d/c3f3/09ad/2ecf/49ae/2aa1/5cb990659c7b6.jpg</picture>
+		<description><![CDATA[Туалетный столик с зеркалом выполнен из массива дерева и выкрашен в серый цвет.
+Голландская компания Clayre & Eef, это качество, сельский стиль шебби-шик, воссоздающий романтическую атмосферу “старого бабушкиного дома”, возвращая человека к тёплым воспоминаниям о детстве. Продукты, которые делают дом домом. 
+Мебель шебби-шик отличает ручное производство, имитация потёртости и прочие приёмы состаривания поверхности – очень частые, но не непременные спутники стиля. Представляем Вам актуальную коллекцию в загородном стиле шебби-шик, вдохновленной традициями и жизнью в сельской местности, которая вселяет в Ваш дом спокойствие и приятной теплой атмосферой.
+]]></description>
+	</offer>
+	<offer id="989">
+		<name>Treviso</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555667807/</url>
+		<price>170900</price>
+		<oldprice>3747</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/aec4/d97f/6464/c2f5/eea0/44f5/4ab6/5cb99b7d28d76.jpg</picture>
+		<description><![CDATA[Стол продается в комплекте со стульями (6 шт). Цена указана за комплект. 
+Раздвижной овальный стол (160/240) и стулья от гостиной ТРЕВИЗО (Treviso) фабрики CAMELGROUP - это строгие и элегантные классические формы, элементы декора выполнены в лучших чертах исконно итальянских ремесленных традиций. Массив дерева используется для изготовления карнизов и цоколей. Все панели покрыты шпоном вишни/ясеня. Покраска с шёлковым эффектом с закрытыми порами подчёркивает красоту муаровой структуры дерева вишни. Продукция высочайшего качества по цене, которой ни одна итальянская компания не в состоянии составить конкуренции. Отделка - орех.]]></description>
+	</offer>
+	<offer id="990">
+		<name>Treviso 134SED.01CIMS80</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555668192/</url>
+		<price>12590</price>
+		<oldprice>20976</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/3519/3dfc/a323/7134/559f/0894/3b1f/5cb99e1d68174.jpg</picture>
+		<description><![CDATA[Стулья продаются в комплекте 6 шт. Цена указана за 1 стул. 
+Раздвижной овальный стол (160/240*100*78) и стулья от гостиной ТРЕВИЗО (Treviso) фабрики CAMELGROUP - это строгие и элегантные классические формы, элементы декора выполнены в лучших чертах исконно итальянских ремесленных традиций. Массив дерева используется для изготовления карнизов и цоколей. Все панели покрыты шпоном вишни/ясеня. Покраска с шёлковым эффектом с закрытыми порами подчёркивает красоту муаровой структуры дерева вишни. Продукция высочайшего качества по цене, которой ни одна итальянская компания не в состоянии составить конкуренции. Отделка - орех.]]></description>
+	</offer>
+	<offer id="991">
+		<name>Vittoria CAB923</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1555674554/</url>
+		<price>125000</price>
+		<oldprice>202540</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/a1c1/f10e/340a/f20e/87b0/63bb/a43f/5cb9b5e5019b2.jpg</picture>
+		<description><![CDATA[Шкаф Vittoria в классическом стиле, с 3-мя распашными дверцами, карнизом и зеркалом с фацетом  привлекает внимание красотой дизайна, использованием добротной отделки и отменной функциональностью. Это идеальный выбор для оформления спальни в классическом или традиционном стиле. Внутри 2 полки и 3 штанги. Отделка - ясень, крашеный в белый цвет. Ручки в цвете состаренное золото.]]></description>
+	</offer>
+	<offer id="993">
+		<name>Tiffani</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/993_krovat5ec40465e47ea/</url>
+		<price>180000</price>
+		<oldprice>400000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/26a5/d676/8043/8a3d/6949/6391/fd50/5cc417f4d1827.jpg</picture>
+		<description><![CDATA[Кровать Тиффани с деревянной резьбой на изголовье с изножьем, спальное место 160*200 см. Продается в комплекте с 2 тумбами (W.63   D.47,5   Н.63,5), комодом с 4 выдвижными ящиками (W.135   D.59   Н.100) и зеркалом (W.88   D.8,5   Н.100). ]]></description>
+	</offer>
+	<offer id="994">
+		<name>40218Z</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1556355875/</url>
+		<price>28900</price>
+		<oldprice>48200</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/bd2e/9c59/b184/ab28/fcdc/a48b/e5f3/5cc41cfc5110f.jpg</picture>
+		<description><![CDATA[Консоль в стиле шебби-шик выполнена из массива сосны. В наличии имеется в черном и белом цвете. ]]></description>
+	</offer>
+	<offer id="995">
+		<name>40218Z</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1556356606/</url>
+		<price>28900</price>
+		<oldprice>48200</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2dc9/8ec5/d554/d580/bb2d/3ccc/261c/5cc41e1b02563.jpg</picture>
+		<description><![CDATA[Консоль в стиле шебби-шик выполнена из массива сосны. В наличии имеется в черном и белом цвете. ]]></description>
+	</offer>
+	<offer id="996">
+		<name>Boulogne</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1556357149/</url>
+		<price>55000</price>
+		<oldprice>88500</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4e0c/c599/ba00/32e0/1d38/82f9/0418/5cc42055a8fe5.jpg</picture>
+		<description><![CDATA[Большое напольное зеркало Boulogne Guilded в металлической раме цвета античное золото, выполнено в классическом французском стиле. 
+Высококачественные, надежные, экологичные, безопасные, долговечные, красивые, изящные, стильные – вот те качества, которыми обладают абсолютно все образцы EICHHOLTZ
+Они одинаково уместны как в строгом интерьере, так и в дизайнерских помещениях, где каждая деталь должна иметь свой смысл. Такая универсальность и стала залогом повышенного покупательского внимания к изделиям бренда.]]></description>
+	</offer>
+	<offer id="997">
+		<name>David Ditre JTA01</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1556357727/</url>
+		<price>60800</price>
+		<oldprice>76000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2453/b147/c3d3/2e42/539e/b1ed/cdc4/5cc4226db85c7.jpg</picture>
+		<description><![CDATA[David - кофейный столик со слегка закругленной столешницей, края которой имеют легкие, едва заметные срезы. Столешница выполнена из  мрамора Carrara. ]]></description>
+	</offer>
+	<offer id="998">
+		<name>Kanaha Ditre JSE02</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1556358082/</url>
+		<price>40000</price>
+		<oldprice>45100</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/90f0/aa00/d8c6/4673/f6f0/54e7/7e33/5cc423f2ea28a.jpg</picture>
+		<description><![CDATA[Kanaha - кофейный столик с круглой столешницей, размещенной на трех деревянных ножках, которые, в свою очередь, соединены дополнительными опорами, для лучшей фиксации. Столешница диаметром 50 см выполнена из итальянского мрамора.
+]]></description>
+	</offer>
+	<offer id="999">
+		<name>1752/T/Bl</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1556358790/</url>
+		<price>53200</price>
+		<oldprice>88690</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1421/220b/c201/9845/5275/5f2a/9db2/5cc42730d5af4.jpg</picture>
+		<description><![CDATA[Тумба прикроватная из коллекции La Maison итальянской фабрики BL MOBILI выполнена из массива натурального дерева. 
+Поверхность дерева окрашена и покрыта лаком, защищающим от царапин и повреждений. Цвет белый с патиной.
+Изделие оснащено выдвижным ящиком с металлической фигурной ручкой и дополнительной полочкой. ]]></description>
+	</offer>
+	<offer id="1001">
+		<name>Butler</name>
+		<url>https://tolyatti.myarredo.ru/sale-product/1556367675/</url>
+		<price>13000</price>
+		<oldprice>21000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/d8c6/b1ba/5c96/927e/69c5/c288/279c/5cc449bd3c9cf.jpg</picture>
+		<description><![CDATA[Сервировочная тележка Butler от шведского бренда KWA выполнена из массива сосны, окрашенного в цвет вишня. Удобное и функциональное дополнение к любой обеденной группе. Вы можете снять верхнюю подставку с тележки, используя ее как поднос, на нижней подставке имеются три держателя для бутылок. Тележка имеет колеса для удобства перемещения и складной механизм, позволяющий хранить её, не занимая при этом много места. Габариты в сложенном виде 90*46*13 см
+]]></description>
+	</offer>
+</offers>
+</shop>
+</yml_catalog>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2020-07-06 15:31">
+<shop>
+<name>MyArredoFamily</name>
+<company>MyArredoFamily</company>
+<url>https://irkutsk.myarredo.ru</url>
+<currencies>
+	<currency id="RUR" rate="1"/>
+</currencies>
+<categories>
+	<category id="9">Спальни</category>
+	<category id="1">Кухни</category>
+	<category id="2">Столовые комнаты</category>
+	<category id="12">Детская мебель</category>
+	<category id="6">Мягкая мебель</category>
+	<category id="7">Гостиные</category>
+	<category id="14">Светильники</category>
+	<category id="3">Стулья</category>
+	<category id="5">Кабинеты</category>
+	<category id="4">Прихожие</category>
+	<category id="13">Двери</category>
+	<category id="22">Картины</category>
+	<category id="16">Гардеробные</category>
+	<category id="15">Ванные комнаты</category>
+	<category id="10">Мебель для TV</category>
+	<category id="8">Аксессуары</category>
+	<category id="18">Кованая мебель</category>
+	<category id="11">Мебель для ресторанов</category>
+	<category id="21">Садовая мебель</category>
+</categories>
+<offers>
+	<offer id="1019">
+		<name>диван Hampton Memory L.246 cm. </name>
+		<url>https://irkutsk.myarredo.ru/sale-product/1559812725/</url>
+		<price>150000</price>
+		<oldprice>280000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/6ee4/03c2/0145/a242/dc6a/76a6/1770/5cf8dab2340a9.jpg</picture>
+		<description><![CDATA[Диван. Тканевая обивка.  Размер 246х102. ]]></description>
+	</offer>
+	<offer id="1020">
+		<name>Стол обеденный</name>
+		<url>https://irkutsk.myarredo.ru/sale-product/1559813042/</url>
+		<price>160000</price>
+		<oldprice>400000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/420c/288e/a249/8a6f/9a53/ea73/3234/5cf8dc3721120.jpg</picture>
+		<description><![CDATA[Стол обеденный. Шпон с инкрустацией. Стальное основание.]]></description>
+	</offer>
+</offers>
+</shop>
+</yml_catalog>

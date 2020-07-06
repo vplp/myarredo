@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2020-07-06 15:31">
+<shop>
+<name>MyArredoFamily</name>
+<company>MyArredoFamily</company>
+<url>https://chelyabinsk.myarredo.ru</url>
+<currencies>
+	<currency id="RUR" rate="1"/>
+</currencies>
+<categories>
+	<category id="9">Спальни</category>
+	<category id="1">Кухни</category>
+	<category id="2">Столовые комнаты</category>
+	<category id="12">Детская мебель</category>
+	<category id="6">Мягкая мебель</category>
+	<category id="7">Гостиные</category>
+	<category id="14">Светильники</category>
+	<category id="3">Стулья</category>
+	<category id="5">Кабинеты</category>
+	<category id="4">Прихожие</category>
+	<category id="13">Двери</category>
+	<category id="22">Картины</category>
+	<category id="16">Гардеробные</category>
+	<category id="15">Ванные комнаты</category>
+	<category id="10">Мебель для TV</category>
+	<category id="8">Аксессуары</category>
+	<category id="18">Кованая мебель</category>
+	<category id="11">Мебель для ресторанов</category>
+	<category id="21">Садовая мебель</category>
+</categories>
+<offers>
+	<offer id="320">
+		<name>Диван ALFRED SOFT</name>
+		<url>https://chelyabinsk.myarredo.ru/sale-product/1494918722/</url>
+		<price>7980</price>
+		<oldprice>11400</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/5f04/aae7/c710/4a47/ba63/543b/3c96/img_6030.jpg</picture>
+		<description><![CDATA[<p>Диван ALFRED SOFT с 3-мя подушками&nbsp;<span style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 9pt; line-height: 115%; font-family: Verdana, sans-serif;">представлен итальянской фабрикой&nbsp;BAXTER. Каркас&nbsp;дивана&nbsp;изготовлен из натурального массива дерева, обивка выполнена из нубука, наполнение из полиуретана.&nbsp;Диван</span><span>, выполненный в прекрасном&nbsp;современном&nbsp;стиле</span>, станет стильным акцентом в вашей гостиной или кабинете, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="322">
+		<name>Диван CASABLANCA</name>
+		<url>https://chelyabinsk.myarredo.ru/sale-product/1494919292/</url>
+		<price>8925</price>
+		<oldprice>12750</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1d5c/013b/2c8b/3155/eaa1/a3a5/729c/img_6031.jpg</picture>
+		<description><![CDATA[<p>Мягкий и уютный диван Casablanca фабрики Baxter станет достойным предметом мебели для дома, в котором ценится качественная итальянская продукция. Основание дивана изготовлено из высококачественного МДФ, обивка выполнена из натуральной мягкой кожи, наполнение из полиуретана. Невероятно удобный диван оснащен регуляторами наклона спинки, что придает ему дополнительный комфорт. Диван, выполненный в прекрасном современном стиле, сделает вашу гостиную еще уютнее.</p>]]></description>
+	</offer>
+	<offer id="323">
+		<name>Диван HOUSSE</name>
+		<url>https://chelyabinsk.myarredo.ru/sale-product/1494920181/</url>
+		<price>6950</price>
+		<oldprice>10440</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/9c09/50c2/eae3/ad5d/194e/76ba/46c2/img_6032.jpg</picture>
+		<description><![CDATA[<p>Диван HOUSSE представлен итальянской&nbsp;<span style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 9pt; line-height: 115%; font-family: Verdana, sans-serif;">фабрикой&nbsp;BAXTER. Каркас&nbsp;дивана&nbsp;изготовлен из натурального массива дерева, обивка выполнена из мягкой&nbsp;кожи, наполнение из полиуретана.&nbsp;Диван</span><span>, выполненный в прекрасном&nbsp;современном&nbsp;стиле</span>, станет стильным акцентом в вашей гостиной или кабинете, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="324">
+		<name>Диван BUDAPEST</name>
+		<url>https://chelyabinsk.myarredo.ru/sale-product/1494920956/</url>
+		<price>7950</price>
+		<oldprice>11430</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/faa2/c35e/7b94/ed3c/0275/97b7/3b66/img_6640.jpg</picture>
+		<description><![CDATA[<p>Диван&nbsp;BUDAPEST&nbsp;<span style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 9pt; line-height: 115%; font-family: Verdana, sans-serif;">представлен итальянской фабрикой&nbsp;BAXTER. Каркас дивана изготовлен из натурального массива дерева, обивка выполнена из мягкой кожи, наполнение из полиуретана.&nbsp;Диван</span><span>, выполненный в прекрасном&nbsp;современном&nbsp;стиле</span>, станет стильным акцентом в вашей гостиной или кабинете, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="325">
+		<name>Кресло SORRENTO</name>
+		<url>https://chelyabinsk.myarredo.ru/sale-product/1494921191/</url>
+		<price>4870</price>
+		<oldprice>6820</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/6b52/64ff/b1b0/928d/d8a6/88ab/9768/img_6641.jpg</picture>
+		<description><![CDATA[<p>Мягкое кресло SORRENTO представлено итальянской фабрикой&nbsp;BAXTER. Каркас кресла изготовлен из натурального массива дерева, обивка выполнена из мягкой замши, наполнение из полиуретана.&nbsp;<span style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 9pt; line-height: 115%; font-family: Verdana, sans-serif;">Кресло, выполненное в прекрасном современном стиле</span>, станет стильным акцентом в вашей гостиной или кабинете, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="326">
+		<name>Кресло VERSACE</name>
+		<url>https://chelyabinsk.myarredo.ru/sale-product/1494921862/</url>
+		<price>272000</price>
+		<oldprice>388000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/e4fe/bd78/1ffe/147d/52c0/f1fa/d8ac/img_6485.jpg</picture>
+		<description><![CDATA[<p>Оригинальное кресло&nbsp;SALOME представлено фабрикой&nbsp;VERSACE. Кресло изготовлено из массива дерева в черно-белой отделке с резными элементами, обивка выполнена из ткани, наполнение из полиуретана. Мягкое кресло выглядит невероятно стильно и ярко, хотя и выполнено в монохроме. Кресло, выполненное в прекрасном стиле арт деко, станет смелым акцентом в вашей гостиной или кабинете, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="327">
+		<name>Стулья</name>
+		<url>https://chelyabinsk.myarredo.ru/sale-product/1494922599/</url>
+		<price>18800</price>
+		<oldprice>25100</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>3</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/420c/2441/83af/b5ea/69ce/5e72/1da6/img_6066.jpg</picture>
+		<description><![CDATA[<p>Стул без подлокотников представлен легендарной итальянской фабрикой&nbsp;MODENESE GASTONE. Стул изготовлен из массива дерева и обит высококачественной мягкой тканью, наполнение из полиуретана. Стул декорирован изящным орнаментом в золотистой отделке. Удобный стул, выполненный в прекрасном классическом стиле, отлично дополнит интерьер вашей кухни или гостиной. В наличии 4 шт.</p>]]></description>
+	</offer>
+	<offer id="333">
+		<name>Диван MURILLO BYBLOS CASA</name>
+		<url>https://chelyabinsk.myarredo.ru/sale-product/1495091669/</url>
+		<price>990000</price>
+		<oldprice>1250000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/08c0/9b16/6f65/14fe/330a/d31f/0018/divan-biblos.jpg</picture>
+		<description><![CDATA[<p>Диван MURILLO представлен итальянской фабрикой Byblos Casa, дизайнер Алесандро Мендини. Роскошный диван на изогнутых резных ножках изготовлен из массива дерева в яркой синей отделке с элементами резьбы, обивка выполнена из мягкой высококачественной ткани, наполнение из полиуретана. Удобный диван, выполненный в прекрасном стиле барокко, станет ярким акцентом в вашей гостиной.</p>]]></description>
+	</offer>
+	<offer id="373">
+		<name>Кровать</name>
+		<url>https://chelyabinsk.myarredo.ru/sale-product/1498118111/</url>
+		<price>9540</price>
+		<oldprice>10930</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/5629/db49/3e50/ca2d/094a/67d6/5a88/dsc_0291.jpg</picture>
+		<description><![CDATA[<p>Роскошная двуспальная кровать с высоким мягким изголовьем&nbsp;<span style="font-family: Verdana, sans-serif; font-size: 8.5pt;">представлена итальянской фаб</span>рикой&nbsp;TURRI SRL. Каркас кровати выполнен из натурального массива дерева, изголовье обито высококачественной тканью и декорировано изящным капитоне. Кровать выполнена в прекрасном классическом стиле.</p>]]></description>
+	</offer>
+	<offer id="374">
+		<name>Композиция в ванную комнату</name>
+		<url>https://chelyabinsk.myarredo.ru/sale-product/1498118693/</url>
+		<price>5480</price>
+		<oldprice>6850</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>15</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/755e/47eb/57ba/fead/af50/c67a/27b8/dsc_0172.jpg</picture>
+		<description><![CDATA[<p>Композиция с зеркалом и тумбой с керамической столешницей с раковиной представлена итальянской фабрикой&nbsp;Bagno Piu.&nbsp;Комплект выполнен из натурального массива дерева с влагоотталкивающей&nbsp;обработкой, пространство под раковиной используется функционально благодаря ящичкам и полкам. Комплект выполнен в прекрасном классическом стиле.</p>]]></description>
+	</offer>
+	<offer id="375">
+		<name>Кресло Versace VANITAS</name>
+		<url>https://chelyabinsk.myarredo.ru/sale-product/1498120146/</url>
+		<price>250000</price>
+		<oldprice>350000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/4e9a/2f1a/dffb/84e7/b147/da14/9384/dsc_0275.jpg</picture>
+		<description><![CDATA[<p>Знаменитое культовое кресло VANITAS от Versace может стать неподражаемой частью вашего интерьера. Кресло изготовлено из натурального массива дерева, декорированного изящной резьбой, обивка выполнена из натуральной кожи в серебристой отделке. Кресло, выполненное в прекрасном стиле барокко, станет главным акцентом в вашей комнате, а&nbsp;правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+</offers>
+</shop>
+</yml_catalog>

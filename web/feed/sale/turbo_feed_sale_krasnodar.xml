@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2020-07-06 15:31">
+<shop>
+<name>MyArredoFamily</name>
+<company>MyArredoFamily</company>
+<url>https://krasnodar.myarredo.ru</url>
+<currencies>
+	<currency id="RUR" rate="1"/>
+</currencies>
+<categories>
+	<category id="9">Спальни</category>
+	<category id="1">Кухни</category>
+	<category id="2">Столовые комнаты</category>
+	<category id="12">Детская мебель</category>
+	<category id="6">Мягкая мебель</category>
+	<category id="7">Гостиные</category>
+	<category id="14">Светильники</category>
+	<category id="3">Стулья</category>
+	<category id="5">Кабинеты</category>
+	<category id="4">Прихожие</category>
+	<category id="13">Двери</category>
+	<category id="22">Картины</category>
+	<category id="16">Гардеробные</category>
+	<category id="15">Ванные комнаты</category>
+	<category id="10">Мебель для TV</category>
+	<category id="8">Аксессуары</category>
+	<category id="18">Кованая мебель</category>
+	<category id="11">Мебель для ресторанов</category>
+	<category id="21">Садовая мебель</category>
+</categories>
+<offers>
+	<offer id="288">
+		<name>Комод TIZIANO Italy</name>
+		<url>https://krasnodar.myarredo.ru/sale-product/1481818419/</url>
+		<price>99000</price>
+		<oldprice>141500</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/e4c8/0edb/94a6/44dd/6fd8/b07c/4f62/komod-s-zerkalom.jpg</picture>
+		<description><![CDATA[<p>Комод&nbsp;TIZIANO Italy представлен итальянской фабрикой&nbsp;ARREDO CLASSIC. Вместительный комод с четырьмя выдвижными ящиками изготовлен из высококачественного МДФ в молочной отделке с серебристыми элементами, декорирован резьбой. Комод, выполненный в прекрасном стиле барокко, станет отличным дополнением к вашей спальне, а правильно подобранные аксессуары сделают ваш интерьер неотразимым. Также&nbsp;<span style="font-family: Verdana, sans-serif; font-size: 9pt;">есть возможность подобрать другие предметы из коллекции TIZIANO Italy.&nbsp;</span></p>]]></description>
+	</offer>
+	<offer id="289">
+		<name>Кровать TIZIANO Italy</name>
+		<url>https://krasnodar.myarredo.ru/sale-product/1481819407/</url>
+		<price>147000</price>
+		<oldprice>210000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/ba33/d647/f8b9/1f02/b1c0/bf72/e76c/krovat.jpg</picture>
+		<description><![CDATA[<p>Роскошная двуспальная кровать&nbsp;TIZIANO Italy представлена итальянской фабрикой ARREDO CLASSIC. Кровать с высоким изголовьем изготовлена из высококачественного МДФ в молочной отделке с серебристыми элементами, декорирована резьбой. Кровать выполнена в прекрасном стиле барокко, также есть возможность подобрать другие предметы из коллекции TIZIANO Italy. Ортопедическое основание и матрац входят в комплект.</p>]]></description>
+	</offer>
+	<offer id="290">
+		<name>Прикроватная тумба TIZIANO Italy</name>
+		<url>https://krasnodar.myarredo.ru/sale-product/1481819507/</url>
+		<price>55000</price>
+		<oldprice>79650</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b5a1/d249/188c/873d/c423/9920/a509/tumba.jpg</picture>
+		<description><![CDATA[<p>Роскошная прикроватная тумбочка&nbsp;TIZIANO Italy представлена итальянской фабрикой ARREDO CLASSIC. Тумбочка с резными элементами выполнена из высококачественного МДФ в молочной отделке с серебристыми элементами, оснащена тремя выдвижными ящичками. Тумбочка выполнена в прекрасном стиле барокко. В комплекте 2 штуки.</p>]]></description>
+	</offer>
+	<offer id="291">
+		<name>Зеркало TIZIANO Italy</name>
+		<url>https://krasnodar.myarredo.ru/sale-product/1481819771/</url>
+		<price>36000</price>
+		<oldprice>52500</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/ef72/6c13/c148/44e9/66af/5cb9/eb66/zerkalo.jpg</picture>
+		<description><![CDATA[<p>Фигурное настенное зеркало&nbsp;TIZIANO Italy представлено итальянской фабрикой&nbsp;ARREDO CLASSIC. Зеркало оформлено в резной багет из&nbsp;высококачественного МДФ в белой отделке с резными серебристыми элементами. Зеркало выполнено в прекрасном стиле барокко, к нему также можно подобрать другие предметы из коллекции TIZIANO Italy.</p>]]></description>
+	</offer>
+</offers>
+</shop>
+</yml_catalog>

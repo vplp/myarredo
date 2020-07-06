@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2020-07-06 15:31">
+<shop>
+<name>MyArredoFamily</name>
+<company>MyArredoFamily</company>
+<url>https://kursk.myarredo.ru</url>
+<currencies>
+	<currency id="RUR" rate="1"/>
+</currencies>
+<categories>
+	<category id="9">Спальни</category>
+	<category id="1">Кухни</category>
+	<category id="2">Столовые комнаты</category>
+	<category id="12">Детская мебель</category>
+	<category id="6">Мягкая мебель</category>
+	<category id="7">Гостиные</category>
+	<category id="14">Светильники</category>
+	<category id="3">Стулья</category>
+	<category id="5">Кабинеты</category>
+	<category id="4">Прихожие</category>
+	<category id="13">Двери</category>
+	<category id="22">Картины</category>
+	<category id="16">Гардеробные</category>
+	<category id="15">Ванные комнаты</category>
+	<category id="10">Мебель для TV</category>
+	<category id="8">Аксессуары</category>
+	<category id="18">Кованая мебель</category>
+	<category id="11">Мебель для ресторанов</category>
+	<category id="21">Садовая мебель</category>
+</categories>
+<offers>
+	<offer id="808">
+		<name>MAUGERI</name>
+		<url>https://kursk.myarredo.ru/sale-product/1542103828/</url>
+		<price>250000</price>
+		<oldprice>390000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/18e8/b2f7/21ca/35e7/be69/f203/1f90/5beaa42ea6d17.jpg</picture>
+		<description><![CDATA[<p>Диван "Maugeri" пр-во Италия. L 225 h 96 P 106, ткань, механизм трансформации для сна 185х160, матрас 14см.</p>]]></description>
+	</offer>
+	<offer id="809">
+		<name>MONET</name>
+		<url>https://kursk.myarredo.ru/sale-product/1542104890/</url>
+		<price>395000</price>
+		<oldprice>525000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/7914/b540/eede/0218/2187/1cc9/a363/5beaa81c9c207.jpg</picture>
+		<description><![CDATA[<p>Спальный гарнитур MONET. В комплект входит: кровать (спальное место 180х205), тумба прикроватная - 2ш., туалетный столик, зеркало, матрац "Помпадур" 180х200х30</p>]]></description>
+	</offer>
+	<offer id="810">
+		<name>Gold Elite</name>
+		<url>https://kursk.myarredo.ru/sale-product/1542108596/</url>
+		<price>230000</price>
+		<oldprice>325000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>1</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/a506/a46a/904b/29e4/ab92/ab2d/24c3/5beab5fec4c86.jpg</picture>
+		<description><![CDATA[<p>Итальянский кухонный гарнитур L 300, h 240 Массив ясеня</p>]]></description>
+	</offer>
+</offers>
+</shop>
+</yml_catalog>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2020-07-06 15:31">
+<shop>
+<name>MyArredoFamily</name>
+<company>MyArredoFamily</company>
+<url>https://blagoveshchensk.myarredo.ru</url>
+<currencies>
+	<currency id="RUR" rate="1"/>
+</currencies>
+<categories>
+	<category id="9">Спальни</category>
+	<category id="1">Кухни</category>
+	<category id="2">Столовые комнаты</category>
+	<category id="12">Детская мебель</category>
+	<category id="6">Мягкая мебель</category>
+	<category id="7">Гостиные</category>
+	<category id="14">Светильники</category>
+	<category id="3">Стулья</category>
+	<category id="5">Кабинеты</category>
+	<category id="4">Прихожие</category>
+	<category id="13">Двери</category>
+	<category id="22">Картины</category>
+	<category id="16">Гардеробные</category>
+	<category id="15">Ванные комнаты</category>
+	<category id="10">Мебель для TV</category>
+	<category id="8">Аксессуары</category>
+	<category id="18">Кованая мебель</category>
+	<category id="11">Мебель для ресторанов</category>
+	<category id="21">Садовая мебель</category>
+</categories>
+<offers>
+	<offer id="504">
+		<name>Люстра PASSERI</name>
+		<url>https://blagoveshchensk.myarredo.ru/sale-product/1512466685/</url>
+		<price>399</price>
+		<oldprice>1920</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>14</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/bc4a/034f/42f7/e607/2fcc/c51e/d376/5c6cb32b92f6c.jpg</picture>
+		<description><![CDATA[ВНИМАНИЕ!!! ЦЕНА СНИЖЕНА!!!
+Люстра Sotto una luce Toscana представлена итальянской фабрикой PASSERI. Артикул L.4340/12 Люстра выполнена из металла в бело-зеленой отделке с патиной и декорирована вручную. Люстра, выполненная в классическом стиле, прекрасно осветит большую комнату и придаст ей уют и тепло.]]></description>
+	</offer>
+	<offer id="936">
+		<name>Библиотека </name>
+		<url>https://blagoveshchensk.myarredo.ru/sale-product/936_skaf5ec45fe44ebb3/</url>
+		<price>800</price>
+		<oldprice>15000</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>0</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/917f/c380/f58e/f3ab/9461/b89e/0dbd/5c6cb55dc23b4.jpg</picture>
+		<description><![CDATA[Библиотека Ca'd'Oro, выполнена на заказ, натуральное дерево, ручная работа]]></description>
+	</offer>
+	<offer id="945">
+		<name>Люстра Axo Light</name>
+		<url>https://blagoveshchensk.myarredo.ru/sale-product/1550630896/</url>
+		<price>115</price>
+		<oldprice>671</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>14</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/83d9/2f31/ac49/ec45/a937/d247/93f9/5c6cc1cd69bd7.jpg</picture>
+		<description><![CDATA[Люстра Axo Light SP NAFIR3 chromo bianco]]></description>
+	</offer>
+</offers>
+</shop>
+</yml_catalog>

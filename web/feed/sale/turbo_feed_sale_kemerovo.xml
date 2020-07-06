@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2020-07-06 15:31">
+<shop>
+<name>MyArredoFamily</name>
+<company>MyArredoFamily</company>
+<url>https://kemerovo.myarredo.ru</url>
+<currencies>
+	<currency id="RUR" rate="1"/>
+</currencies>
+<categories>
+	<category id="9">Спальни</category>
+	<category id="1">Кухни</category>
+	<category id="2">Столовые комнаты</category>
+	<category id="12">Детская мебель</category>
+	<category id="6">Мягкая мебель</category>
+	<category id="7">Гостиные</category>
+	<category id="14">Светильники</category>
+	<category id="3">Стулья</category>
+	<category id="5">Кабинеты</category>
+	<category id="4">Прихожие</category>
+	<category id="13">Двери</category>
+	<category id="22">Картины</category>
+	<category id="16">Гардеробные</category>
+	<category id="15">Ванные комнаты</category>
+	<category id="10">Мебель для TV</category>
+	<category id="8">Аксессуары</category>
+	<category id="18">Кованая мебель</category>
+	<category id="11">Мебель для ресторанов</category>
+	<category id="21">Садовая мебель</category>
+</categories>
+<offers>
+	<offer id="436">
+		<name>КРЕСЛО ARTHUR PIEDI</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1506479245/</url>
+		<price>765</price>
+		<oldprice>1530</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/dfe5/e52d/a8b6/e49c/9530/516b/e028/domingo-salotti-kreslo.jpg</picture>
+		<description><![CDATA[<p>Кресло Arthur piedi от Domingo Salotti выполнено в ткани приятного и благородного цвета бордо. Сиденье кресла и спинку украшает принт в золотистую полоску. Такой цвет позволяет вписать кресло в интерьер практически любой гостиной. Декоративная подушка в комплекте.</p>]]></description>
+	</offer>
+	<offer id="457">
+		<name>Зеркало SQUARE</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507799159/</url>
+		<price>111.5</price>
+		<oldprice>223</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/00e7/6005/548e/f323/d513/9034/615c/zerkalo-square.png</picture>
+		<description><![CDATA[<p>Прямоугольное настенное зеркало&nbsp;SQUARE&nbsp;с рамой из лакированного стекла чёрного цвета представлено итальянской фабрикой BONTEMPI CASA. Зеркало выполнено в современном, даже несколько минималистичном стиле, а благодаря своим четким и строгим линиям оно сможет отлично вписаться почти в любой интерьер.</p>]]></description>
+	</offer>
+	<offer id="458">
+		<name>Комплект кресла и пуф BEA</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507799805/</url>
+		<price>518</price>
+		<oldprice>740</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/c50f/6c63/2344/0e2a/73a6/0744/52f5/puf-i-kreslo-bea_na-sait.png</picture>
+		<description><![CDATA[<p>Дизайнерские кресла (в количестве 2 шт.) и пуф Bea от фабрики Porada без подлокотников. Мягкое сиденье обито тканью нежно-сиреневого цвета. Размер кресел - 70*84 h70, размер пуфа - 70*55 h37</p>]]></description>
+	</offer>
+	<offer id="460">
+		<name>ТУМБА ПРИКРОВАТНАЯ COLLETTO</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507868852/</url>
+		<price>420</price>
+		<oldprice>601</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/e52c/f9c2/8c17/5390/5d89/0bf7/aa6f/tumba-prikrovainaya-lago.png</picture>
+		<description><![CDATA[<p>Оригинальная прикроватная тумба&nbsp;COLLETTO представлена итальянской фабрикой&nbsp;LAGO. Прикроватная тумба со стеклянным топом декорирована тканью, каркас изготовлен из металла.</p>]]></description>
+	</offer>
+	<offer id="461">
+		<name>СТОЛ COMFORT TABLE</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507869123/</url>
+		<price>1255</price>
+		<oldprice>1792</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/776a/b40f/fd37/5e09/4ddd/a932/081c/stol-comfort-table.png</picture>
+		<description><![CDATA[<p>Обеденный прямоугольный стол с гибкой столешницей. Обеденный стол Сomfort состоит из металлического каркаса, к которому крепится гибкая пластина из поликарбоната и синтетической кожи. Пластина крепится с помощью липучки, что позволяет легко снимать её с основания и также легко закреплять обратно.</p>]]></description>
+	</offer>
+	<offer id="462">
+		<name>КОМПОЗИЦИЯ СТЕНКИ WALL UNIT</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507869401/</url>
+		<price>3021</price>
+		<oldprice>5035</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/7c3f/ab9d/5378/e698/7885/eb81/6374/kompoziciya-stenki-wall-unit_1.jpg</picture>
+		<description><![CDATA[<p>Удобная и функциональная стенка&nbsp;WALL UNIT представлена итальянской фабрикой&nbsp;CREATIVITY LINE. Стенка изготовлена из натурального массива дерева в темной отделке. Стенка, выполненная в прекрасном классическом стиле, поможет отлично организовать пространство в вашей гостиной.</p>]]></description>
+	</offer>
+	<offer id="463">
+		<name>КРЕСЛО LORD</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507872241/</url>
+		<price>1246</price>
+		<oldprice>1780</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/f0ae/c3c1/412d/35e7/7091/93e4/b55e/kreslo-lord_na-sait.jpg</picture>
+		<description><![CDATA[<p>Мягкое кресло&nbsp;LORD представлено итальянской фабрикой&nbsp;ELLESALOTTI. Каркас кресла изготовлен из качественного массива дерева, обивка выполнена из мягкой и приятной на ощупь натуральной кожи, наполнение из полиуретана.&nbsp;</p>]]></description>
+	</offer>
+	<offer id="464">
+		<name>ЛАМПА НАСТОЛЬНАЯ ROMEO MOON</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507872451/</url>
+		<price>270</price>
+		<oldprice>450</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>14</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/bffe/779f/d8f4/55b9/f256/7df9/ba4b/lampa-nastolnaya-romeo-moon.png</picture>
+		<description><![CDATA[<p>Настольная лампа&nbsp;ROMEO MOON представлена итальянской фабрикой&nbsp;FLOS. Регулируемая ножка лампы изготовлена из металла, абажур выполнен из темной ткани, слегка приглушающей яркий свет. Лампа, выполненная в прекрасном современном стиле, отлично подойдет для спальни, кабинета или детской комнаты, и даст достаточно света и уюта для любых занятий.</p>]]></description>
+	</offer>
+	<offer id="465">
+		<name>СТОЛ ЖУРНАЛЬНЫЙ</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507872615/</url>
+		<price>400</price>
+		<oldprice>800</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/de9a/fcad/4b68/a2a4/1290/5cf4/00c2/stol-zhurnalnyi-art-18051_na-sait.png</picture>
+		<description><![CDATA[<p>Стильный прямоугольный журнальный столик со стеклянной столешницей изготовлен из натурального массива дерева. Столик на массивных устойчивых ножках выполнен в уютном стиле кантри, который всегда ассоциируется с уютом, теплом и приятными вечерами в кругу семьи. В наличии также есть множество предметов мебели и аксессуаров в том же стиле.</p>]]></description>
+	</offer>
+	<offer id="466">
+		<name>ДИВАН РАСКЛАДНОЙ TRIO </name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507873048/</url>
+		<price>1395</price>
+		<oldprice>1992</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/ba7b/d47b/5cf7/d8d6/61f8/c65a/6c7d/divan-2-raskladnoi-trio_na-sait.png</picture>
+		<description><![CDATA[<p>Раскладной двухместный диван из коллекции TRIO представлен фабрикой&nbsp;POHJANMAAN KALUSTE. Диван изготовлен из массива дерева с металлическими механизмами, обивка выполнена из ткани в сдержанной светло-серой расцветке с цветочным орнаментом. Диван, выполненный&nbsp;<span style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; font-size: 9pt; line-height: 115%; font-family: Verdana, sans-serif;">в прекрасном современном стиле, отлично подойдет для гостиной или кабинета,&nbsp;</span>а&nbsp;правильно подобранные аксессуары сделают ваш интерьер неотразимым. Также в наличии есть кресло из коллекции TRIO.</p>]]></description>
+	</offer>
+	<offer id="467">
+		<name>КРЕСЛО ARIEL</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507873189/</url>
+		<price>1230</price>
+		<oldprice>1758</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b8d2/3f72/f1b3/e812/561f/0bef/f50e/kreslo-ariel_na-sait.png</picture>
+		<description><![CDATA[<p>Мягкое и удобное кресло&nbsp;ARIEL представлено фабрикой&nbsp;POHJANMAAN KALUSTE. Каркас кресла изготовлен из массива дерева, обивка выполнена из натуральной кожи в светлой бежевой отделке, наполнение из полиуретана. Кресло, выполненное в прекрасном классическом стиле, станет отличным акцентом в вашей гостиной или кабинете, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="468">
+		<name>КРЕСЛО ROYAL</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507873345/</url>
+		<price>676</price>
+		<oldprice>966</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/fd19/25c8/a62e/7a68/d5b5/d1e9/8c83/kreslo-royal.jpg</picture>
+		<description><![CDATA[<p>Мягкое и удобное кресло&nbsp;ROYAL представлено фабрикой&nbsp;POHJANMAAN KALUSTE. Каркас кресла полностью изготовлен из массива дерева, обивка выполнена из мягкой ткани с очень домашним узором в клетку. Кресло, выполненное в прекрасном стиле кантри, отлично подойдет для гостиной или кабинета,&nbsp;а&nbsp;правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="469">
+		<name>КОМПЛЕКТ МЯГКОЙ МЕБЕЛИ RITZ</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507873741/</url>
+		<price>1848</price>
+		<oldprice>3080</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/0fbb/8162/d4e6/3c19/584a/5a11/9a2c/komplekt-myagkoi-mebeli-3+1+1-ritz.jpg</picture>
+		<description><![CDATA[<p>Комплект мягкой мебели&nbsp;RITZ состоит из двух кресел и дивана, представлен фабрикой POHJANMAAN KALUSTE. Комплект изготовлен из массива дерева в приятной мягкой обивке стильной расцветки, наполнение из полиуретана. Благодаря мягким подушкам вы и ваши гости сможете удобно разместиться на диване и в креслах, поэтому этот комплект идеально подойдет для гостиной в современном стиле.</p>]]></description>
+	</offer>
+	<offer id="470">
+		<name>СТУЛ ALTERNA</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507879501/</url>
+		<price>170</price>
+		<oldprice>244</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>3</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/55fb/053e/9771/0ee9/21d7/2c96/11cb/stul-alterna.jpg</picture>
+		<description><![CDATA[<p>Alterna - отличный выбор для кухонь и столовых комнат. Материал каркаса &ndash; металл, материал задней спинки и сидения &ndash; дерево. Отличительной чертой данной модели является задняя спинка, которая сделана с помощью специальной технологии для придания ее дополнительной легкости и прочности.</p>]]></description>
+	</offer>
+	<offer id="471">
+		<name>Стол-трансформер MAGIC-J</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507879825/</url>
+		<price>1087.8</price>
+		<oldprice>1554</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/3944/8400/9329/b8c2/a29c/5bc8/3c0c/stol-magic-j_na-sait.png</picture>
+		<description><![CDATA[<p>Удобный прямоугольный стол-трансформер&nbsp;MAGIC-J представлен итальянской фабрикой&nbsp;CALLIGARIS. Оригинальный стол изготовлен из металла, столешница выполнена из натурального массива дерева. Стильный и функциональный стол, выполненный в прекрасном современном стиле, поможет объединить гостиную и столовую, так как он может служить и журнальным столиком, и отличным обеденным столом.</p>]]></description>
+	</offer>
+	<offer id="472">
+		<name>СТОЛ ЖУРНАЛЬНЫЙ PARTY MECH</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507880081/</url>
+		<price>1321</price>
+		<oldprice>2642</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2601/b9ca/50d0/4995/a59f/1dea/2304/stol-zhurnalnyi-party-mech_na-sait.png</picture>
+		<description><![CDATA[<p>Стильный квадратный журнальный столик&nbsp;PARTY MECH представлен итальянской фабрикой&nbsp;NIERI. Столешница выполнена из темного полупрозрачного стекла, а стенки декорированы натуральной кожей в роскошной золотисто-кремовой расцветке. Журнальный столик, выполненный в прекрасном современном стиле, станет ярким акцентом в вашей гостиной, а&nbsp;правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="473">
+		<name>КРЕСЛО ORCHIDEA </name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507880286/</url>
+		<price>1435</price>
+		<oldprice>2045</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/ca40/96a7/d61f/2ac2/8dc8/43fa/08fd/kreslo-orchidea-new_na-sait.png</picture>
+		<description><![CDATA[<p>Мягкое и уютное кресло представлено итальянской фабрикой NIERI. Каркас кресла выполнен из качественного массива дерева, а обивка - из натуральной мягкой кожи высшей категории в приятном кремовом оттенке, наполнение полиуретан. Обивка обладает важными качествами в использовании: мягкостью, износостойкостью, влагонепроницаемостью.&nbsp; Кресло, выполненное в прекрасном классическом стиле, станет отличным акцентом в вашей гостиной или кабинете, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.&nbsp;</p>]]></description>
+	</offer>
+	<offer id="474">
+		<name>ДИВАН LESTER</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507880695/</url>
+		<price>2050</price>
+		<oldprice>4101</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/fcee/0d2e/12f2/313b/04c2/3056/6d7a/5a9cc8bfe0cc9.png</picture>
+		<description><![CDATA[<p>Модель выполнена из массива дерева. Обивка - текстиль.</p>]]></description>
+	</offer>
+	<offer id="476">
+		<name>ТУМБА ПРИКРОВАТНАЯ BRIO</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507880888/</url>
+		<price>344</price>
+		<oldprice>491</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/1f65/fafe/db9e/6207/bf3a/41b6/7524/tumba-prikrovatnaya-brio.png</picture>
+		<description><![CDATA[<p>Стильная прикроватная тумбочка&nbsp;BRIO представлена итальянской фабрикой&nbsp;SMA. Тумбочка полностью выполнена из натурального массива дерева, оснащена двумя вместительными выдвижными ящиками.&nbsp;Оригинальная прикроватная тумбочка, выполненная в прекрасном современном стиле, отлично подойдет для вашей спальни, а&nbsp;правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="477">
+		<name>МЕБЕЛЬ ДЛЯ ПРИХОЖЕЙ DINAMIKA</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507881185/</url>
+		<price>928</price>
+		<oldprice>1325</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>4</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/5895/59f7/fa16/d5e8/3402/7979/2a60/mebel-dlya-prihozhei-dinamika.jpg</picture>
+		<description><![CDATA[<p>Стильная прихожая&nbsp;DINAMIKA со строгими линиями представлена итальянской фабрикой&nbsp;LA PRIMAVERA. Прихожая выполнена из натурального массива дерева в светлой отделке, оснащена зеркалом. Прихожая полностью выполнена в современном стиле, а благодаря простоте своего исполнения она позволяет подобрать множество аксессуаров.</p>]]></description>
+	</offer>
+	<offer id="478">
+		<name>ЗЕРКАЛО MIU</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507881447/</url>
+		<price>111</price>
+		<oldprice>221</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/ff90/a43a/b1d7/692d/1668/aaed/5fe1/zerkalo-miu.png</picture>
+		<description><![CDATA[<p>Прямоугольное настенное зеркало&nbsp;MIU представлено итальянской фабрикой&nbsp;BIESSE. Зеркало оформлено в багет из массива дерева. Зеркало, выполненное в прекрасном современном стиле, отлично подойдет для любой комнаты в доме.</p>]]></description>
+	</offer>
+	<offer id="479">
+		<name>ЗЕРКАЛО ДЛЯ БУФЕТА MILADY</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507881563/</url>
+		<price>210</price>
+		<oldprice>349</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/18fe/ee03/24f5/f43f/34a5/f902/9c30/zerkalo-dlya-bufeta-milady.jpg</picture>
+		<description><![CDATA[<p class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; text-align: justify; line-height: normal;">Изящное зеркало для буфета на устойчивой и широкой ножке выполненное в&nbsp;классическом стиле представлено итальянской фабрикой&nbsp;CamelGroup в коллекции Milady.&nbsp;Зеркало&nbsp;в деревянном багете&nbsp; прекрасно впишется в интерьер любой Вашей комнаты. Основа данной модели&nbsp;выполнена из&nbsp;массива дерева высокого качества и оформлено в благородном&nbsp;коричневом цвете. В&nbsp;оформлении данного&nbsp;зеркало&nbsp;использовано несколько&nbsp;прекрасных дизайнерских решений: стиль и размер данного зеркала делают его универсальным в использовании, что дает Вам возможность поставить его в любой комнате&nbsp;и оно будет гармонировать с другими элементами комнаты.</p>]]></description>
+	</offer>
+	<offer id="480">
+		<name>ЗЕРКАЛО MATISSE</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507881681/</url>
+		<price>695</price>
+		<oldprice>989</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>8</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/f874/093d/8118/b3fe/2b6f/01e1/1749/zerkalo-matisse.png</picture>
+		<description><![CDATA[<p>Фигурное настенное зеркало&nbsp;MATISSE представлено итальянской фабрикой&nbsp;LINEA B. Зеркало, выполненное в классическом стиле, оформлено в прекрасный резной багет из натурального массива дерева.</p>]]></description>
+	</offer>
+	<offer id="481">
+		<name>Пуф i4 MARIANI</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507883477/</url>
+		<price>308</price>
+		<oldprice>615</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/607b/44f9/60b2/7d99/1387/8717/d3b7/puf-mariani.png</picture>
+		<description><![CDATA[<p>Яркий квадратный пуф на металлических ножках представлен итальянской фабрикой&nbsp;i4 MARIANI. Пуф со съемной подушкой обит мягкой тканью в яркой желтой расцветке, наполнение из полиуретана, выполнен в прекрасном современном стиле.</p>]]></description>
+	</offer>
+	<offer id="482">
+		<name>СТОЛ ЖУРНАЛЬНЫЙ KONX</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507883683/</url>
+		<price>931</price>
+		<oldprice>1862</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>7</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b9ee/9b59/14b6/5321/c091/abe2/f0ae/stol-zhurnalnyi-fiam_na-sait.png</picture>
+		<description><![CDATA[<p>Стильный прямоугольный журнальный столик&nbsp;KONX представлен итальянской фабрикой&nbsp;FIAM. Прямые ножки столика изготовлены из металла, прозрачная столешница выполнена из стекла. Оригинальный журнальный столик, выполненный в прекрасном современном стиле, прекрасно подойдет для вашей гостиной, а&nbsp;правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="483">
+		<name>ПОЛКА OSAKA</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507883985/</url>
+		<price>60</price>
+		<oldprice>120</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>2</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2d6f/2daf/1ef8/8f16/8194/6d33/a273/polka-osaka.jpg</picture>
+		<description><![CDATA[<p>Даже незначительные на первый взгляд элементы придают интерьеру индивидуальность. Минималистичная полка&nbsp;OSAKA из дымчатого белого стекла представлена итальянской фабрикой BON TEMPI CASA. Полка, выполненная в современном стиле, отлично подойдет для любой комнаты: столовой, ванной или гостиной.&nbsp;</p>]]></description>
+	</offer>
+	<offer id="484">
+		<name>КРЕСЛО TRIO</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507884182/</url>
+		<price>540</price>
+		<oldprice>897</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/2262/c117/1499/60dc/c800/62b2/a2c5/kreslo-trio_na-sait.png</picture>
+		<description><![CDATA[<p>Мягкое и глубокое кресло&nbsp;TRIO представлено фабрикой&nbsp;POHJANMAAN KALUSTE. Каркас кресла изготовлен из натурального массива дерева, обивка выполнена из приятной ткани в сдержанной светло-серой расцветке с цветочным узором.&nbsp;Уютное кресло, выполненное в прекрасном&nbsp;современном&nbsp;стиле, отлично подойдет для&nbsp;гостиной, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+	<offer id="485">
+		<name>СТУЛ AMBRA</name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1507884364/</url>
+		<price>215</price>
+		<oldprice>432</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>3</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/f812/658d/2ece/af10/f29d/f111/329f/stul-ambra.jpg</picture>
+		<description><![CDATA[<p>Стул&nbsp;AMBRA представлен итальянской фабрикой&nbsp;BON TEMPI CASA. Каркас стула изготовлен из металла, обивка выполнена из натуральной кожи в универсальной коричневой расцветке. Стул, выполненный в прекрасном современном стиле, отлично подойдет для гостиной, столовой или кабинета, в том числе с классическим интерьером, а также для кафе и ресторанов.</p>]]></description>
+	</offer>
+	<offer id="692">
+		<name>Шкаф ARKEOS </name>
+		<url>https://kemerovo.myarredo.ru/sale-product/1528882549/</url>
+		<price>500000</price>
+		<oldprice>1275000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>16</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/bc7b/820c/90df/b2b6/bd12/93b5/2b2b/5b20e708ce3de.jpg</picture>
+		<description><![CDATA[<p>Гардероб Eos означает &laquo;заря&raquo;. декоративный мотив, характеризующий данную коллекцию, представляет непрекращающийся процесс обновления и становления. Как зарождение нового дня, как круговое движение планет Вселенной. Eos представляет собой зарождение новой дизайн-концепции.</p>]]></description>
+	</offer>
+</offers>
+</shop>
+</yml_catalog>

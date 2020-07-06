@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2020-07-06 15:31">
+<shop>
+<name>MyArredoFamily</name>
+<company>MyArredoFamily</company>
+<url>https://belgorod.myarredo.ru</url>
+<currencies>
+	<currency id="RUR" rate="1"/>
+</currencies>
+<categories>
+	<category id="9">Спальни</category>
+	<category id="1">Кухни</category>
+	<category id="2">Столовые комнаты</category>
+	<category id="12">Детская мебель</category>
+	<category id="6">Мягкая мебель</category>
+	<category id="7">Гостиные</category>
+	<category id="14">Светильники</category>
+	<category id="3">Стулья</category>
+	<category id="5">Кабинеты</category>
+	<category id="4">Прихожие</category>
+	<category id="13">Двери</category>
+	<category id="22">Картины</category>
+	<category id="16">Гардеробные</category>
+	<category id="15">Ванные комнаты</category>
+	<category id="10">Мебель для TV</category>
+	<category id="8">Аксессуары</category>
+	<category id="18">Кованая мебель</category>
+	<category id="11">Мебель для ресторанов</category>
+	<category id="21">Садовая мебель</category>
+</categories>
+<offers>
+	<offer id="1290">
+		<name>Кухонный гарнитур Eva color</name>
+		<url>https://belgorod.myarredo.ru/sale-product/1561650561/</url>
+		<price>250000</price>
+		<oldprice>490000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>1</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/727c/4c4d/3a51/e215/4542/5548/e682/5d14e5d7b4c1b.jpg</picture>
+		<description><![CDATA[Классическая кухня - это всегда красиво, стильно и добротно. Кухонный гарнитур Eva Color от итальянской фабрики VISMAP CUCINE располагает, создаёт особый уют и расслабляющую атмосферу. Никаких кричащих расцветок, только мягкие спокойные тона, плавные линии, простота и удобство в эксплуатации. Создавайте свои кулинарные шедевры вместе с кухнями VISMAP CUCINE!
+
+В стоимость включены: база под мойку, база с 3-мя выдвижными ящиками - 2 шт., выдвижные бутылочницы - 2 шт., база под встраиваемый духовой шкаф и варочную поверхность, колонна под встраиваемый холодильник, навесной шкаф с сушкой для посуды с LED-подсветкой, навесной шкаф со стеклянными фасадами и стеклянными полками и встроенной подсветкой - 2 шт., вытяжка, декоративные полки - 2 шт., реллинг, столешница из ламината с кромкой из массива в тон фасадов, боковины всех видимых модулей - шпонированные
+
+Внимание: стоимость духового шкафа - не включена в стоимость кухонной композиции.
+
+Независимый электрический духовой шкаф ILVE, арт. 600-CMP/AY (цвет - antique white, ручки бронза)
+
+Розничная цена: 86 000 ₽
+
+Скидка: – 50%
+
+Цена со скидкой: 43 000 ₽
+
+ИТОГО общая стоимость за комплект: 293 000 ₽]]></description>
+	</offer>
+	<offer id="1291">
+		<name>Кресло Epoca</name>
+		<url>https://belgorod.myarredo.ru/sale-product/1561651739/</url>
+		<price>165000</price>
+		<oldprice>236950</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>5</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/e190/b406/7fbc/b97e/47d8/96a3/eda0/5d14ea4900295.jpg</picture>
+		<description><![CDATA[Кресло Epoca из коллекции Privilege итальянской фабрики FIMES выполнено в стиле ар-деко и в полной мере отображает концепцию современного изысканного дизайна. Каркас сделан из массива дерева, украшен декоративной резьбой.]]></description>
+	</offer>
+	<offer id="1292">
+		<name>Диван-кровать Airon</name>
+		<url>https://belgorod.myarredo.ru/sale-product/1561652009/</url>
+		<price>262500</price>
+		<oldprice>350000</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/68d2/6a88/6582/64d3/5202/0d9a/0682/5d14eb4eb7b4f.jpg</picture>
+		<description><![CDATA[Благодаря своему универсальному облику стильный диван-кровать Airon от итальянского производителя BIBA SALOTTI станет идеальным интерьерным дополнением для любой зоны отдыха.
+
+Диван оснащен раскладным механизмом с матрасом высотой 160 мм, который позволяет в мгновение трансформировать его в полноценную удобную кровать, создавая дополнительное спальное место размером 1600 х 2000 мм. Каркас изготавливается из массива древесины, обработанной с помощью специальной техники и пропитки, что наделяет мебель особой прочностью, надежностью и долговечностью. Полиуретановый наполнитель, пружинные блоки и дакрон позволяют сохранять упругость на долгие годы, а для необыкновенно мягких подушек мастера используют гусиный пух и пенополиуретан. В качестве обивки используется добротный текстиль. Категория ткани: Super VIP. Чехлы полностью съёмные. ]]></description>
+	</offer>
+</offers>
+</shop>
+</yml_catalog>

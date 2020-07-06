@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="2020-07-06 15:31">
+<shop>
+<name>MyArredoFamily</name>
+<company>MyArredoFamily</company>
+<url>https://stavropol.myarredo.ru</url>
+<currencies>
+	<currency id="RUR" rate="1"/>
+</currencies>
+<categories>
+	<category id="9">Спальни</category>
+	<category id="1">Кухни</category>
+	<category id="2">Столовые комнаты</category>
+	<category id="12">Детская мебель</category>
+	<category id="6">Мягкая мебель</category>
+	<category id="7">Гостиные</category>
+	<category id="14">Светильники</category>
+	<category id="3">Стулья</category>
+	<category id="5">Кабинеты</category>
+	<category id="4">Прихожие</category>
+	<category id="13">Двери</category>
+	<category id="22">Картины</category>
+	<category id="16">Гардеробные</category>
+	<category id="15">Ванные комнаты</category>
+	<category id="10">Мебель для TV</category>
+	<category id="8">Аксессуары</category>
+	<category id="18">Кованая мебель</category>
+	<category id="11">Мебель для ресторанов</category>
+	<category id="21">Садовая мебель</category>
+</categories>
+<offers>
+	<offer id="201">
+		<name>Спальня Napoleone</name>
+		<url>https://stavropol.myarredo.ru/sale-product/krovat_antonelli_moravio/</url>
+		<price>1896200</price>
+		<oldprice>2370200</oldprice>
+		<currencyId>RUR</currencyId>
+		<categoryId>9</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/367e/1ec3/d673/5bcb/e3a2/8550/a144/dsc03354.jpg</picture>
+		<description><![CDATA[<p>Спальня&nbsp;Napoleone представлена легендарной итальянской фабрикой&nbsp;ANTONELLI MORAVIO.&nbsp;В комплект входит кровать art 8106/KS (сп.м. 180*200), 2 тумбы прикроватных art 8112B, четырехдверный шкаф c 2 зеркалами art 8108 , комод с рибалтой art 8112 и зеркало овальное art 205/L. Спальня изготовлена из натурального массива дерева в золотисто-кремовой отделке, декорирована резными элементами.&nbsp;</p>]]></description>
+	</offer>
+	<offer id="202">
+		<name>Кресло руководителя</name>
+		<url>https://stavropol.myarredo.ru/sale-product/kreslo/</url>
+		<price>2152</price>
+		<oldprice>2898</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>5</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/b8f7/9c40/fd94/bc23/276d/104b/0a06/dsc03346.jpg</picture>
+		<description><![CDATA[<p>Стул для кабинета руководителя или домашнего кабинета. На колесиках, опора на 5 колёсах, регулируется высота сидения. Изготовлено из кожи лакированной и покрыто золотой поталью. В декоре используются гвозди и стразы.</p>]]></description>
+	</offer>
+	<offer id="245">
+		<name>Пуф Матильда 1133</name>
+		<url>https://stavropol.myarredo.ru/sale-product/puf_volpi/</url>
+		<price>354</price>
+		<oldprice>708</oldprice>
+		<currencyId>EUR</currencyId>
+		<categoryId>6</categoryId>
+		<picture>https://img.myarredo.ru/uploads/images/9eab/0061/3648/6167/1373/656a/8b7f/img_0465.jpg</picture>
+		<description><![CDATA[<p>Пуф с мягким сиденьем Матильда представлен итальянской фабрикой&nbsp;VOLPI. Каркас пуфа изготовлен из массива дерева, обит мягкой велюровой тканью в отделке N05 noce antiquariato classe 1. Пуф, выполненный в прекрасном классическом стиле,&nbsp;станет ярким акцентом в вашей гостиной или спальне, а правильно подобранные аксессуары сделают ваш интерьер неотразимым.</p>]]></description>
+	</offer>
+</offers>
+</shop>
+</yml_catalog>
