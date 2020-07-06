@@ -16,7 +16,7 @@ use console\models\{Sale};
  */
 class YandexTurboFeedSaleController extends Controller
 {
-    public $filePath = '@root/web/feed/sale/';
+    public $filePath = '@root/web/turbo-feed/sale/';
 
     /**
      * Create

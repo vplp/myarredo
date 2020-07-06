@@ -16,7 +16,7 @@ use console\models\{Product};
  */
 class YandexTurboFeedProductController extends Controller
 {
-    public $filePath = '@root/web/feed/product/';
+    public $filePath = '@root/web/turbo-feed/product/';
 
     /**
      * Create
