@@ -24,7 +24,7 @@ $params = Yii::$app->catalogFilter->params;
         <div class="page category-page">
             <div class="container-wrap">
                 <div class="container large-container">
-                    <div class="row">
+                    <div>
 
                         <?= Html::tag('h1', (Yii::$app->metatag->seo_h1 != '')
                             ? Yii::$app->metatag->seo_h1
@@ -36,7 +36,7 @@ $params = Yii::$app->catalogFilter->params;
 
                     </div>
                     <div class="cat-content">
-                        <div class="row">
+                        <div>
                             <div class="col-md-3 col-lg-3 ajax-get-filter"></div>
                             <div class="col-md-9 col-lg-9">
                                 <div class="cont-area">
@@ -58,12 +58,13 @@ $params = Yii::$app->catalogFilter->params;
                                         <?php if ($pages->totalCount < $pages->defaultPageSize && !empty($params[$keys['type']]) && !empty($params[$keys['factory']])) {
                                             $paramsNew = $params;
                                             unset($paramsNew[$keys['factory']]);
-
-                                            echo Html::a(
-                                                Yii::t('app', 'Показать все'),
-                                                Yii::$app->catalogFilter->createUrl($paramsNew, ['/catalog/sale-italy/list']),
-                                                ['class' => 'show-more']
-                                            );
+                                            echo Html::tag('div', 
+                                                Html::a(
+                                                    Yii::t('app', 'Показать все'),
+                                                    Yii::$app->catalogFilter->createUrl($paramsNew, ['/catalog/sale-italy/list']),
+                                                    ['class' => 'show-more btn-showmore']
+                                                )
+                                            , ['class' => 'showmore-panel']);
                                         } ?>
 
                                         <?php if ($pages->totalCount > $pages->defaultPageSize) { ?>
