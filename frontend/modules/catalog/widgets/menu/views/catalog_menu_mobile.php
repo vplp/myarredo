@@ -154,8 +154,12 @@ $MenuDataArray = array(
                     openTwolevel: function(item) {
                         item = !item; 
                         if (item) {
-                            if (window.pageYOffset > 180) {
-                                window.scrollTo(pageXOffset, 0);
+                            if (window.pageYOffset > 120) {
+                                // window.scrollTo(pageXOffset, 0);
+                                const el = document.getElementsByClassName('mobile-header');
+                                setTimeout(function() {
+                                    el[0].scrollIntoView({behavior: "smooth"});
+                                },550);
                             }
                         }
 
