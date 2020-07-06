@@ -104,13 +104,13 @@ class YandexTurboFeedProductController extends Controller
                 $url = City::getSubDomainUrl($city) . '/sale-italy-product/' . $offer['alias'] . '/';
 
                 $str = "\t<offer id=\"" . $offer['id'] . "\">" . PHP_EOL .
-                    "\t\t<name>" . $offer->getTitle() . "</name>" . PHP_EOL .
+                    "\t\t<name>" . htmlspecialchars($offer->getTitle()) . "</name>" . PHP_EOL .
                     "\t\t<url>" . $url . "</url>" . PHP_EOL .
                     "\t\t<price>" . $offer['price_from'] . "</price>" . PHP_EOL .
                     "\t\t<currencyId>" . ($offer['currency'] == 'RUB' ? 'RUR' : $offer['currency']) . "</currencyId>" . PHP_EOL .
                     "\t\t<categoryId>" . ($offer['category'] ? $offer['category'][0]['id'] : 0) . "</categoryId>" . PHP_EOL .
                     "\t\t<picture>" . Product::getImageThumb($offer['image_link']) . "</picture>" . PHP_EOL .
-                    "\t\t<description><![CDATA[" . $offer['lang']['description'] . "]]></description>" . PHP_EOL;
+                    "\t\t<description><![CDATA[" . strip_tags($offer['lang']['description']) . "]]></description>" . PHP_EOL;
 
 //                $array = [];
 //                foreach ($offer['specificationValue'] as $item) {
