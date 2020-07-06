@@ -208,12 +208,15 @@ h1 {
     margin-right: 5px;
   }
 
-    .header .sign-in .fa {
-      margin-right: 5px;
-      color: #BDBCB3;
-      font-size: 20px;
-      position: relative;
-      top: 2px; }
+  .header .sign-in .fa {
+    margin-right: 5px;
+    color: #BDBCB3;
+    font-size: 20px;
+    position: relative;
+    top: 2px; }
+  .header .sign-in .fa.fa-user-o {
+    margin-top: -3px;
+  }
   .header .bot-header {
     height: 94px;
     border-bottom: 1px solid #BDBCB3; }

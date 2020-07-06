@@ -287,7 +287,7 @@ use frontend\modules\user\widgets\menu\UserMenu;
                     <div class="right-part">
 
                         <?= Html::a(
-                            '<i class="fa fa-sign-in" aria-hidden="true"></i>' .
+                            '<i class="fa fa-user-o" aria-hidden="true"></i>' .
                             Yii::t('app', 'Sign In'),
                             ['/user/login/index'],
                             [
