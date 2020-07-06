@@ -49,7 +49,7 @@ class YandexTurboFeedProductController extends Controller
             ->andFilterWhere([
                 Product::tableName() . '.removed' => '0'
             ])
-            ->orderBy(self::tableName() . '.updated_at DESC')
+            ->orderBy(Product::tableName() . '.updated_at DESC')
             ->enabled()
             ->asArray()
             ->all();
@@ -57,6 +57,7 @@ class YandexTurboFeedProductController extends Controller
         /** @var $city City */
         foreach ($cities as $city) {
             $this->createFeed($city, $categories, $offers);
+            break;
         }
 
         $this->stdout("YandexTurboFeed: end create. \n", Console::FG_GREEN);
@@ -113,7 +114,7 @@ class YandexTurboFeedProductController extends Controller
                 $url = City::getSubDomainUrl($city) . '/sale-italy-product/' . $offer['alias'] . '/';
 
                 $str = "\t<offer id=\"" . $offer['id'] . "\">" . PHP_EOL .
-                    "\t\t<name>" . htmlspecialchars($offer->getTitle()) . "</name>" . PHP_EOL .
+                    "\t\t<name>" . htmlspecialchars($offer['lang']['title']) . "</name>" . PHP_EOL .
                     "\t\t<url>" . $url . "</url>" . PHP_EOL .
                     "\t\t<price>" . $offer['price_from'] . "</price>" . PHP_EOL .
                     "\t\t<currencyId>" . ($offer['currency'] == 'RUB' ? 'RUR' : $offer['currency']) . "</currencyId>" . PHP_EOL .
