@@ -43,7 +43,16 @@ class YandexTurboFeedProductController extends Controller
 
         $categories = Category::findBase()->all();
 
-        $offers = Product::findBase()->all();
+        $offers = Product::find()
+            ->innerJoinWith(['lang'])
+            ->innerJoinWith(['factory'], false)
+            ->andFilterWhere([
+                Product::tableName() . '.removed' => '0'
+            ])
+            ->orderBy(self::tableName() . '.updated_at DESC')
+            ->enabled()
+            ->asArray()
+            ->all();
 
         /** @var $city City */
         foreach ($cities as $city) {
