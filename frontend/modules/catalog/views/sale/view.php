@@ -3,7 +3,6 @@
 use yii\helpers\{
     Html, Url
 };
-//
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{Factory, Sale, Product, SaleLang};
 use frontend\modules\catalog\widgets\sale\{

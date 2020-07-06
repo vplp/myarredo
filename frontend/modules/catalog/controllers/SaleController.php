@@ -22,7 +22,8 @@ use frontend\modules\catalog\models\{Sale,
     Types,
     SubTypes,
     Specification,
-    Colors};
+    Colors
+};
 use frontend\modules\catalog\widgets\filter\{
     SaleFilter, ProductFilterSizes
 };
