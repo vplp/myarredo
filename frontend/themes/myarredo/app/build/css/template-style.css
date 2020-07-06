@@ -7923,6 +7923,10 @@ h1 {
   font-size: 23px;
   color: #BDBCB3;
 }
+.mobile-btn.btn-siginout {
+  margin-left: -3px;
+  margin-right: 3px;
+}
 /* стили для встроеного виджета - заказать звонок */
 .comagic-o-rack {
   bottom: 15px;

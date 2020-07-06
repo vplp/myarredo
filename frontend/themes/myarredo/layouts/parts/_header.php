@@ -440,7 +440,7 @@ use frontend\modules\user\widgets\menu\UserMenu;
             <?php
             if ((Yii::$app->getUser()->isGuest)) {
                 echo Html::a(
-                    '<i class="fa fa-sign-in" aria-hidden="true"></i>',
+                    '<i class="fa fa-user-o" aria-hidden="true"></i>',
                     ['/user/login/index'],
                     ['class' => 'mobile-btn btn-siginout',
                         'rel' => 'nofollow']
