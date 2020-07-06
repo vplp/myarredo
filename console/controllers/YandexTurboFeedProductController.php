@@ -43,7 +43,16 @@ class YandexTurboFeedProductController extends Controller
 
         $categories = Category::findBase()->all();
 
-        $offers = Product::findBase()->all();
+        $query = Product::findBase();
+
+        $offers = [];
+        foreach ($query->batch(100) as $models) {
+            foreach ($models as $item) {
+                $offers[] = $item;
+            }
+        }
+
+        //$offers = Product::findBase()->all();
 
         /** @var $city City */
         foreach ($cities as $city) {
@@ -104,7 +113,7 @@ class YandexTurboFeedProductController extends Controller
                 $url = City::getSubDomainUrl($city) . '/sale-italy-product/' . $offer['alias'] . '/';
 
                 $str = "\t<offer id=\"" . $offer['id'] . "\">" . PHP_EOL .
-                    "\t\t<name>" . htmlspecialchars($offer->getTitle()) . "</name>" . PHP_EOL .
+                    "\t\t<name>" . htmlspecialchars($offer['lang']['title']) . "</name>" . PHP_EOL .
                     "\t\t<url>" . $url . "</url>" . PHP_EOL .
                     "\t\t<price>" . $offer['price_from'] . "</price>" . PHP_EOL .
                     "\t\t<currencyId>" . ($offer['currency'] == 'RUB' ? 'RUR' : $offer['currency']) . "</currencyId>" . PHP_EOL .
