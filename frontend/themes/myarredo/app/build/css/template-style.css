@@ -9587,6 +9587,33 @@ h1 {
   text-align: center;
 }
 
+.showmore-panel {
+  padding: 40px 0;
+  text-align: center;
+}
+.btn-showmore {
+  display: inline-block;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #f2f2f2;
+  /* background-color: #545451; */
+  background-color: #448339;
+  /* background-image: linear-gradient(#545451, #448339); */
+  background-image: linear-gradient(#448339, #429633);
+  padding: 6px 12px;
+  border: 1px solid #448339;
+  border-radius: 0.5px;
+  transition: 0.3s;
+}
+.btn-showmore:hover,
+.btn-showmore:focus {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #448339;
+  /* background-image: linear-gradient(#448339, #545451); */
+  background-image: linear-gradient(#429633, #448339);
+}
+
 /* --------------------Стили для боковых баннеров------------------------ */
 .fone-poster-box {
   display: none;
