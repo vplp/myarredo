@@ -43,21 +43,20 @@ class YandexTurboFeedProductController extends Controller
 
         $categories = Category::findBase()->all();
 
-        $offers = Product::find()
-            ->innerJoinWith(['lang', 'category'])
-            ->innerJoinWith(['factory'], false)
-            ->andFilterWhere([
-                Product::tableName() . '.removed' => '0'
-            ])
-            ->orderBy(Product::tableName() . '.updated_at DESC')
-            ->enabled()
-            ->asArray()
-            ->all();
+        $query = Product::findBase();
+
+        $offers = [];
+        foreach ($query->batch(100) as $models) {
+            foreach ($models as $item) {
+                $offers[] = $item;
+            }
+        }
+
+        //$offers = Product::findBase()->all();
 
         /** @var $city City */
         foreach ($cities as $city) {
             $this->createFeed($city, $categories, $offers);
-            break;
         }
 
         $this->stdout("YandexTurboFeed: end create. \n", Console::FG_GREEN);
