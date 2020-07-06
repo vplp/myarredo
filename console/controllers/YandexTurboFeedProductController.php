@@ -44,7 +44,7 @@ class YandexTurboFeedProductController extends Controller
         $categories = Category::findBase()->all();
 
         $offers = Product::find()
-            ->innerJoinWith(['lang'])
+            ->innerJoinWith(['lang', 'category'])
             ->innerJoinWith(['factory'], false)
             ->andFilterWhere([
                 Product::tableName() . '.removed' => '0'
