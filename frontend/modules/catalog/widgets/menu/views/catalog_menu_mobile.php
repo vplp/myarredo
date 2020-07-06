@@ -150,6 +150,18 @@ $MenuDataArray = array(
                         mobdata: mobMenuData
                     }
                 },
+                methods: {
+                    openTwolevel: function(item) {
+                        item = !item; 
+                        if (item) {
+                            if (window.pageYOffset > 180) {
+                                window.scrollTo(pageXOffset, 0);
+                            }
+                        }
+
+                        return item;
+                    }
+                },
                 template: 
                 `<ul class="menu-list navigation">
                     <li v-for="oneItem in mobdata.menulist" v-if="oneItem.show" v-bind:class="{jshaslist : oneItem.levelisset}">
@@ -162,17 +174,11 @@ $MenuDataArray = array(
                         <a v-else v-bind:href=oneItem.link>{{ oneItem.text }}</a>
                         
                         <div v-if="oneItem.levelisset" class="list-levelbox">
-                            <transition name="slidemenu">
+                            
                             <ul v-show="oneItem.levelopen" class="list-level">
-                                <li>
-                                    <button v-on:click="oneItem.levelopen = !oneItem.levelopen" class="btn-mobitem-close">
-                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
-                                    {{ oneItem.text }}
-                                </button>
-                                </li>
-                                <li v-for="twoLevel in oneItem.levelData">
+                                <li v-for="twoLevel in oneItem.levelData" v-bind:class="{open: twoLevel.lopen}">
                                     <a href="javascript:void(0);"
-                                    v-on:click="twoLevel.lopen = !twoLevel.lopen">
+                                    v-on:click="twoLevel.lopen = openTwolevel(twoLevel.lopen)">
 
                                         <div class="img-cont">
                                             <img v-bind:src=twoLevel.limglink alt="">
@@ -180,18 +186,30 @@ $MenuDataArray = array(
                                         <span class="for-mobm-text">{{ twoLevel.ltext }}</span>
                                         <span class="count">{{ twoLevel.lcount }}</span>
                                     </a>
-
-                                    <ul class="three-llist" v-show="twoLevel.lopen">
-                                        <li v-for="threelev in twoLevel.ldata">
-                                            <a v-bind:href=threelev.link>{{ threelev.text }}</a>
-                                        </li>
-                                        <li>
-                                            <a v-bind:href=twoLevel.llink>Смотреть все</a>
-                                        </li>
-                                    </ul>
+                                    <transition name="slidemenu">
+                                        <ul class="three-llist" v-show="twoLevel.lopen">
+                                            <li>
+                                                <button v-on:click="twoLevel.lopen = !twoLevel.lopen" class="btn-mobitem-close">
+                                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                                    <span class="for-onelevel-text"> 
+                                                        {{ oneItem.text }}
+                                                    </span>
+                                                    <span class="for-twolevel-text"> 
+                                                        {{ twoLevel.ltext }}
+                                                    </span>
+                                                </button>
+                                            </li>
+                                            <li v-for="threelev in twoLevel.ldata">
+                                                <a v-bind:href=threelev.link>{{ threelev.text }}</a>
+                                            </li>
+                                            <li>
+                                                <a v-bind:href=twoLevel.llink class="viewall-link">Смотреть все</a>
+                                            </li>
+                                        </ul>
+                                    </transition>
                                 </li>
                             </ul>
-                            </transition>
+                            
                         </div>
                         
                     </li>

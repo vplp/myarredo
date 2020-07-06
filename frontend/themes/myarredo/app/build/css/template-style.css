@@ -816,14 +816,11 @@ h1 {
 .mobile-menu .navigation li.js-has-list>a:after,
 .mobile-menu .navigation li.jshaslist>a:after {
   font-family: 'FontAwesome';
-  content: "\f105";
+  content: "\f107";
   position: absolute;
   top: 3px;
   right: 10px;
   transition: 0.07s;
-}
-.mobile-menu .navigation li.js-has-list>a:after {
-  content: "\f107";
 }
 
 .mobile-menu .navigation li.js-has-list>a.open:after,
@@ -851,6 +848,20 @@ h1 {
   color: #676767;
   padding: 6px 6px 6px 0px;
 }
+.mobile-menu .navigation li.jshaslist .list-level>li>a {
+  position: relative;
+}
+.mobile-menu .navigation li.jshaslist .list-level>li>a:after {
+  font-family: 'FontAwesome';
+  content: "\f105";
+  position: absolute;
+  top: 6px;
+  right: -12px;
+  transition: 0.3s;
+}
+.mobile-menu .navigation li.jshaslist .list-level>li.open>a:after {
+  transform: rotate(180deg);
+}
 .mobile-menu .navigation li.js-has-list .list-level>li>a .img-cont,
 .mobile-menu .navigation li.jshaslist .list-level>li>a .img-cont {
   margin-right: 4px;
@@ -865,19 +876,19 @@ h1 {
   padding-left: 4px;
 }
 .three-llist {
-  width: 100%;
   padding: 5px 20px;
   margin: 2px auto;
-  background-color: #f3f2f0;
-}
-.jshaslist .list-levelbox .list-level {
-  position: absolute;
-  width: calc(100% - 14px);
-  top: 48px;
-  /* right: -105vw; */
   background-color: #ffffff;
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 170px);
+  top: 38px;
+  left: 0;
   z-index: 99;
   transition: 0.45s;
+}
+.jshaslist .list-levelbox .list-level {
+  background-color: #ffffff;
 }
 .mobile-header .mobile-menu .menu-list .three-llist a {
   font-size: 14px;
@@ -889,6 +900,10 @@ h1 {
 }
 .slidemenu-leave-active {
   animation: slideInRight .45s reverse;
+}
+.viewall-link {
+  color: #676767;
+  font-weight: bold;
 }
 @keyframes slideInRight{
   0%{transform:translate3d(100%,0,0);visibility:hidden;opacity:0;}
@@ -910,19 +925,29 @@ h1 {
 }
 .btn-mobitem-close>.fa {
   position: absolute;
-  top: 7px;
+  top: 16px;
   left: 8px;
+}
+.btn-mobitem-close .for-onelevel-text {
+  display: block;
+  width: 100%;
+  font-size: 12px;
+  font-style: italic;
+  color: #898989;
+  line-height: 14px;
 }
 @media (max-width: 480px) {
   .mobile-menu .navigation li.jshaslist .list-level>li>a {
     font-size: 4.2vw;
   }
-  .mobile-header .mobile-menu .menu-list a,
-  .btn-mobitem-close {
+  .mobile-header .mobile-menu .menu-list a {
     font-size: 5.4vw;
   }
+  .btn-mobitem-close {
+    font-size: 5.1vw;
+  }
   .mobile-header .mobile-menu .menu-list .three-llist a {
-    font-size: 3.7vw;
+    font-size: 4.2vw;
   }
 }
 
