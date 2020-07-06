@@ -104,7 +104,7 @@ class YandexTurboFeedSaleController extends Controller
                 $url = City::getSubDomainUrl($city) . '/sale-product/' . $offer['alias'] . '/';
 
                 $str = "\t<offer id=\"" . $offer['id'] . "\">" . PHP_EOL .
-                    "\t\t<name>" . $offer->getTitle() . "</name>" . PHP_EOL .
+                    "\t\t<name>" . htmlspecialchars($offer->getTitle()) . "</name>" . PHP_EOL .
                     "\t\t<url>" . $url . "</url>" . PHP_EOL .
                     "\t\t<price>" . $offer['price_new'] . "</price>" . PHP_EOL .
                     "\t\t<oldprice>" . $offer['price'] . "</oldprice>" . PHP_EOL .
