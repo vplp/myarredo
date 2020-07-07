@@ -131,6 +131,8 @@ class YandexTurboFeedProductController extends Controller
 
                     if ($offer['lang']['description']) {
                         $str .= "\t\t<description><![CDATA[" . strip_tags($offer['lang']['description']) . "]]></description>" . PHP_EOL;
+                    } else {
+                        $str .= "\t\t<description><![CDATA[" . htmlspecialchars($offer->getTitle()) . "]]></description>" . PHP_EOL;
                     }
 
 //                $array = [];
