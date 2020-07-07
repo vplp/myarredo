@@ -628,11 +628,11 @@ h1 {
   .mobile-header .mobile-menu {
     /* display: none; */
     position: absolute;
-    z-index: 999;
+    z-index: 999999;
     top: 50px;
     left: -105%;
     width: 100%;
-    max-width: 330px;
+    max-width: 340px;
     border: 1px solid #BDBCB3;
     background: #FFFFFF;
     transition: 0.45s; 
@@ -695,8 +695,9 @@ h1 {
       margin: 0;
       list-style: none;
       padding-left: 0;
-      padding-top: 10px;
-      margin-bottom: 50px; }
+      padding-top: 0;
+      margin-bottom: 50px; 
+    }
       .mobile-header .mobile-menu .menu-list>li {
         /* height: 42px; */
         padding-left: 13px; }
@@ -802,12 +803,18 @@ h1 {
 .mobile-menu .navigation li {
   list-style: none;
 }
+.mobile-menu .navigation li {
+  border-bottom: 1px solid #bed3db;
+}
+/* .mobile-menu .navigation>li:last-child {
+  border-bottom: 1px solid #bed3db;
+} */
 .mobile-menu .navigation>li>a {
   display: block;
   text-decoration: none;
   color: #41403e;
   font-size: 18px;
-  padding: 6px 25px 6px 0;
+  padding: 10px 25px 10px 0;
   position: relative;
 }
 .mobile-menu .navigation li .list-level-wrap {
@@ -818,7 +825,7 @@ h1 {
   font-family: 'FontAwesome';
   content: "\f107";
   position: absolute;
-  top: 3px;
+  top: 10px;
   right: 10px;
   transition: 0.07s;
 }
@@ -850,12 +857,13 @@ h1 {
 }
 .mobile-menu .navigation li.jshaslist .list-level>li>a {
   position: relative;
+  padding: 8px 0;
 }
 .mobile-menu .navigation li.jshaslist .list-level>li>a:after {
   font-family: 'FontAwesome';
   content: "\f105";
   position: absolute;
-  top: 6px;
+  top: 9px;
   right: -12px;
   transition: 0.3s;
 }
@@ -881,7 +889,7 @@ h1 {
   background-color: #ffffff;
   position: absolute;
   width: 100%;
-  height: calc(100% - 170px);
+  min-height: calc(100% - 170px);
   top: 38px;
   left: 0;
   z-index: 99;
@@ -893,7 +901,7 @@ h1 {
 .mobile-header .mobile-menu .menu-list .three-llist a {
   font-size: 14px;
   color: #565656;
-  padding: 4px 0;
+  padding: 8px 0;
 }
 .slidemenu-enter-active {
   animation: slideInRight .45s;
@@ -948,6 +956,17 @@ h1 {
   }
   .mobile-header .mobile-menu .menu-list .three-llist a {
     font-size: 4.2vw;
+  }
+}
+@media (max-width: 380px) {
+  .mobile-header .mobile-menu .menu-list a {
+    font-size: 5.5vw;
+  }
+  .mobile-menu .navigation li.jshaslist .list-level>li>a {
+    font-size: 4.8vw;
+  }
+  .mobile-header .mobile-menu .menu-list .three-llist a {
+    font-size: 5vw;
   }
 }
 
