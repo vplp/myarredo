@@ -32,14 +32,16 @@ $this->title = $this->context->title;
                     <div class="letter-nav">
                         <div class="container large-container">
                             <ul class="letter-select">
-                                <?php foreach (Factory::getListLetters() as $letter) {
+                                <?php 
+                                $currentLetter = strtoupper(explode('/' ,$_SERVER['REQUEST_URI'])[2]);
+                                foreach (Factory::getListLetters() as $letter) {
                                     echo Html::beginTag('li') .
                                         Html::a(
                                             $letter['first_letter'],
                                             Url::toRoute([
                                                 '/catalog/factory/list',
                                                 'letter' => strtolower($letter['first_letter'])
-                                            ])
+                                            ]), $currentLetter == $letter['first_letter'] ? ['class' => 'active'] : ['class' => 'fct-link']
                                         ) .
                                         Html::endTag('li');
                                 } ?>
