@@ -42,25 +42,53 @@ foreach ($category as $model) {
 
 $categoriesSale = [];
 foreach ($categorySale as $model) {
+    $keys = Yii::$app->catalogFilter->keys;
+    $types = Types::getWithSale([$keys['category'] => Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2']]);
+
+    $ldata = [];
+    foreach ($types as $type) {
+        $params = [];
+        $params[$keys['category']] = Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'];
+        $params[$keys['type']][] = Yii::$app->city->domain != 'com' ? $type['alias'] : $type['alias2'];
+        $ldata[] = [
+            'link' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale/list'),
+            'text' => $type['lang']['title']
+        ];
+    }
+
     $categoriesSale[] = [
         'llink' => Category::getUrl(Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'], '/catalog/sale/list'),
         'ltext' => $model['lang']['title'],
         'limglink' => Category::getImage($model['image_link3']),
         'lcount' => $model['count'],
         'lopen' => 0,
-        'ldata' => []
+        'ldata' => $ldata
     ];
 }
 
 $categoriesSaleItaly = [];
 foreach ($categorySaleItaly as $model) {
+    $keys = Yii::$app->catalogFilter->keys;
+    $types = Types::getWithItalianProduct([$keys['category'] => Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2']]);
+
+    $ldata = [];
+    foreach ($types as $type) {
+        $params = [];
+        $params[$keys['category']] = Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'];
+        $params[$keys['type']][] = Yii::$app->city->domain != 'com' ? $type['alias'] : $type['alias2'];
+        $ldata[] = [
+            'link' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale-italy/list'),
+            'text' => $type['lang']['title']
+        ];
+    }
+
     $categoriesSaleItaly[] = [
         'llink' => Category::getUrl(Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'], '/catalog/sale-italy/list'),
         'ltext' => $model['lang']['title'],
         'limglink' => Category::getImage($model['image_link3']),
         'lcount' => $model['count'],
         'lopen' => 0,
-        'ldata' => []
+        'ldata' => $ldata
     ];
 }
 
