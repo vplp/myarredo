@@ -31,7 +31,7 @@ class Product extends ProductModel implements BaseBackendSearchModel
         return [
             [['id', 'category', 'factory_id'], 'integer'],
             [['alias', 'title', 'image_link'], 'string', 'max' => 255],
-            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [['published', 'removed', 'novelty'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
 
@@ -75,7 +75,9 @@ class Product extends ProductModel implements BaseBackendSearchModel
 
         $query
             ->andFilterWhere(['like', self::tableName() . '.alias', $this->alias])
-            ->andFilterWhere(['=', self::tableName() . '.published', $this->published]);
+            ->andFilterWhere(['=', self::tableName() . '.published', $this->published])
+            ->andFilterWhere(['=', self::tableName() . '.novelty', $this->novelty])
+            ->andFilterWhere(['=', self::tableName() . '.removed', $this->removed]);
 
         $query
             ->andFilterWhere(['like', ProductLang::tableName() . '.title', $this->title]);
