@@ -48,7 +48,9 @@ class YandexTurboFeedItalianProductController extends Controller
 
         /** @var $city City */
         foreach ($cities as $city) {
-            $this->createFeed($city, $categories, $offers);
+            if ($city['id'] == 4) {
+                $this->createFeed($city, $categories, $offers);
+            }
         }
 
         $this->stdout("YandexTurboFeed: end create. \n", Console::FG_GREEN);

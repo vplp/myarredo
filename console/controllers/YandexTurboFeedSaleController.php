@@ -46,9 +46,11 @@ class YandexTurboFeedSaleController extends Controller
 
         /** @var $city City */
         foreach ($cities as $city) {
-            $offers = Sale::findBase()->andWhere(['city_id' => $city['id']])->all();
+            if ($city['id'] == 4) {
+                $offers = Sale::findBase()->andWhere(['city_id' => $city['id']])->all();
 
-            $this->createFeed($city, $categories, $offers);
+                $this->createFeed($city, $categories, $offers);
+            }
         }
 
         $this->stdout("YandexTurboFeed: end create. \n", Console::FG_GREEN);
