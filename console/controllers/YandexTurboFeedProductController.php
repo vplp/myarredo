@@ -125,8 +125,11 @@ class YandexTurboFeedProductController extends Controller
                         "\t\t<price>" . $offer['price_from'] . "</price>" . PHP_EOL .
                         "\t\t<currencyId>" . ($offer['currency'] == 'RUB' ? 'RUR' : $offer['currency']) . "</currencyId>" . PHP_EOL .
                         "\t\t<categoryId>" . ($offer['category'] ? $offer['category'][0]['id'] : 0) . "</categoryId>" . PHP_EOL .
-                        "\t\t<picture>" . Product::getImageThumb($offer['image_link']) . "</picture>" . PHP_EOL .
-                        "\t\t<description><![CDATA[" . strip_tags($offer['lang']['description']) . "]]></description>" . PHP_EOL;
+                        "\t\t<picture>" . Product::getImageThumb($offer['image_link']) . "</picture>" . PHP_EOL;
+
+                    if ($offer['lang']['description']) {
+                        $str .= "\t\t<description><![CDATA[" . strip_tags($offer['lang']['description']) . "]]></description>" . PHP_EOL;
+                    }
 
 //                $array = [];
 //                foreach ($offer['specificationValue'] as $item) {
