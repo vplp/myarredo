@@ -8,7 +8,7 @@ use yii\helpers\Console;
 use yii\console\Controller;
 use frontend\modules\location\models\City;
 use frontend\modules\catalog\models\{Category};
-use console\models\{Product};
+use console\models\{Product, Factory};
 
 /**
  * Class YandexTurboFeedProductController
@@ -44,7 +44,13 @@ class YandexTurboFeedProductController extends Controller
 
         $categories = Category::findBase()->all();
 
-        $query = Product::findBase();
+        $query = Product::findBase()
+            ->andFilterWhere([
+                Product::tableName() . '.removed' => '0',
+                Factory::tableName() . '.published' => '1',
+                Factory::tableName() . '.deleted' => '0',
+                Factory::tableName() . '.show_for_ru' => '1',
+            ]);
 
         $offers = [];
         foreach ($query->batch(100) as $models) {
@@ -52,8 +58,6 @@ class YandexTurboFeedProductController extends Controller
                 $offers[] = $item;
             }
         }
-
-        //$offers = Product::findBase()->all();
 
         /** @var $city City */
         foreach ($cities as $city) {
