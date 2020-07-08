@@ -561,7 +561,17 @@ h1 {
     font-size: 12px;
     font-weight: 900;
   }
-
+  .mobmenu-bottom-part {
+    width: 100%;
+    color: #535351;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 10px 1px;
+  }
+  .feedback-container {
+    font-weight: 600;
+  }
   /* --------------Стили для новогоднего украшения логотипа (для применения раскоментировать)-------------- */
   /* .header .logo {
     position: relative;
@@ -605,7 +615,6 @@ h1 {
   .mobile-header .phone-container {
     padding-left: 22px;
     position: relative;
-    margin-top: 4px; 
   }
     .mobile-header .phone-container:before {
       content: "\f095";
@@ -9665,6 +9674,57 @@ h1 {
   background-image: linear-gradient(#429633, #448339);
 }
 
+/* Стили для формы обратной связи */
+#ajaxFormFeedbackModal .selectpicker1,
+#ajaxFormFeedbackModal .selectpicker1-search {
+  width: 100%;
+  max-width: 280px;
+}
+#ajaxFormFeedbackModal .control-label {
+  min-width: 50px;
+}
+#ajaxFormFeedbackModal .jq-selectbox ul {
+  max-height: 300px;
+}
+#ajaxFormFeedbackModal form {
+  max-width: 460px;
+}
+#ajaxFormFeedbackModal.modal .modal-dialog {
+  transform: translate(105%,0);
+  transition: transform .6s ease-out;
+  margin: 0 -20px 0 auto;
+  min-width: 46%;
+}
+#ajaxFormFeedbackModal.modal.in .modal-dialog {
+  transform: translate(0,0);
+}
+#ajaxFormFeedbackModal.modal .modal-dialog .modal-content {
+  min-height: 100vh;
+}
+#ajaxFormFeedbackModal .modal-header .close {
+  margin-top: 0px;
+  margin-right: 14px;
+  font-size: 32px;
+  opacity: 0.4;
+}
+#ajaxFormFeedbackModal .modal-header .close>span {
+  color: #dc3545;
+}
+.fdback-title {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+@media(min-width: 1900px) {
+  #ajaxFormFeedbackModal.modal .modal-dialog {
+    margin-top: 45px;
+  }
+}
+@media(max-width: 767px) {
+  #ajaxFormFeedbackModal.modal .modal-dialog {
+    margin: 0 auto;
+  }
+}
+
 /* --------------------Стили для боковых баннеров------------------------ */
 .fone-poster-box {
   display: none;
@@ -9947,6 +10007,9 @@ body>.modal-backdrop.fade.in{
 }
 .mt25 {
   margin-top: 25px;
+}
+.mt15 {
+  margin-top: 15px;
 }
 .for-cicon {
   display: inline-block;

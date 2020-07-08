@@ -457,6 +457,12 @@ use frontend\modules\user\widgets\menu\UserMenu;
                 <?= Cart::widget(['view' => 'short']) ?>
             </div>
         </div>
+    </div>
+    <div class="mobmenu-bottom-part">
+        <div class="feedback-container">
+            <span class="for-fcicon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+            <span class="for-fctext">Напишите нам</span>
+        </div>
         <div class="phone-container">
             <a href="tel:<?= Yii::$app->partner->getPartnerPhone() ?>" class="phone-num">
                 <?= Yii::$app->partner->getPartnerPhone() ?>
