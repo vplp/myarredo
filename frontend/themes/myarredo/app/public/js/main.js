@@ -142,6 +142,19 @@ function slickInit() {
 
 }
 
+// Инициализация элементов формы обратной связи
+// info - https://github.com/Dimox/jQueryFormStyler
+function feedbackFormElInit() {
+    if ($('.selectpicker1').length > 0) {
+        $('.selectpicker1').styler();
+    }
+    if ($('.selectpicker1-search').length > 0) {
+        $('.selectpicker1-search').styler({
+            selectSearch: true
+        });
+    }
+} 
+
 $(document).ready(function () {
 
     // удаляем прелоадер
