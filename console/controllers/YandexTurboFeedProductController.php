@@ -27,14 +27,16 @@ class YandexTurboFeedProductController extends Controller
         $password = 'Msk_1234';
 
         /* try to connect */
-        $inbox = imap_open($hostname, $username, $password) or die('Cannot connect to Yandex: ' . imap_last_error());
+        $inbox = imap_open($hostname . 'INBOX', $username, $password) or die('Cannot connect to Yandex: ' . imap_last_error());
 
-        $list = imap_list($inbox, '{imap.yandex.ru:993/imap/ssl}', '*');
+//        $list = imap_list($inbox, $hostname, '*');
+//        foreach ($list as $value) {
+//            //var_dump($value);
+//            var_dump(mb_convert_encoding($value, 'UTF-8', 'UTF7-IMAP'));
+//        }
 
-        foreach ($list as $value) {
-            var_dump($value);
-            var_dump(mb_convert_encoding($value, 'UTF-8', 'UTF7-IMAP'));
-        }
+        $some = imap_search($inbox, 'SUBJECT "Jumbo group" SINCE "8-5-2020"', SE_UID);
+        var_dump(mb_convert_encoding($some, 'UTF-8', 'UTF7-IMAP'));
     }
 
     /**
