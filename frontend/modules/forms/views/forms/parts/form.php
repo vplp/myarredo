@@ -23,7 +23,7 @@ use frontend\modules\location\models\City;
         ->field($model, 'city_id')
         ->dropDownList(
             City::dropDownList(Yii::$app->city->getCountryId()),
-            ['class' => 'selectpicker1']
+            ['class' => 'selectpicker1-search']
         );
 } else {
     echo $form

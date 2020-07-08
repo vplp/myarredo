@@ -44,9 +44,9 @@ use frontend\modules\location\models\City;
                     skype: <?= Html::a('daniellalazareva123', 'skype:daniellalazareva123?chat') ?></p>
             <?php } ?>
 
-            <h4 class="mt25"><?= Yii::t('app', 'Заполните форму') ?></h4>
+            <h4 class="fdback-title"><?= Yii::t('app', 'Заполните форму') ?></h4>
 
-            <?= $this->render('@app/modules/forms/views/forms/parts/form', [
+            <?= $this->renderAjax('@app/modules/forms/views/forms/parts/form', [
                 'model' => $model
             ]) ?>
 
