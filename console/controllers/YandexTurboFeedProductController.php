@@ -66,13 +66,7 @@ class YandexTurboFeedProductController extends Controller
 
         $categories = Category::findBase()->all();
 
-        $query = Product::findBase()
-            ->andFilterWhere([
-                Product::tableName() . '.removed' => '0',
-                Factory::tableName() . '.published' => '1',
-                Factory::tableName() . '.deleted' => '0',
-                Factory::tableName() . '.show_for_ru' => '1',
-            ]);
+        $query = Product::findBase();
 
         $offers = [];
         foreach ($query->batch(100) as $models) {
