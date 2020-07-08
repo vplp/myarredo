@@ -24,7 +24,7 @@ class YandexTurboFeedProductController extends Controller
     public function actionParser()
     {
         /* connect to yandex */
-        $hostname = '{imap.yandex.ru:993/imap/ssl}INBOX';
+        $hostname = '{imap.yandex.ru:993/imap/ssl}';
         $username = 'msk@myarredo.ru';
         $password = 'Msk_1234';
 
