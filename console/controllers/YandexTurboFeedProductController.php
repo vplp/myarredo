@@ -8,7 +8,7 @@ use yii\helpers\Console;
 use yii\console\Controller;
 use frontend\modules\location\models\City;
 use frontend\modules\catalog\models\{Category};
-use console\models\{Product};
+use console\models\{Product, Factory};
 
 /**
  * Class YandexTurboFeedProductController
@@ -18,6 +18,26 @@ use console\models\{Product};
 class YandexTurboFeedProductController extends Controller
 {
     public $filePath = '@root/web/turbo-feed/product/';
+
+    public function actionParser()
+    {
+        /* connect to yandex */
+        $hostname = '{imap.yandex.ru:993/imap/ssl}INBOX';
+        $username = 'msk@myarredo.ru';
+        $password = 'Msk_1234';
+
+        /* try to connect */
+        $inbox = imap_open($hostname . 'INBOX', $username, $password) or die('Cannot connect to Yandex: ' . imap_last_error());
+
+//        $list = imap_list($inbox, $hostname, '*');
+//        foreach ($list as $value) {
+//            //var_dump($value);
+//            var_dump(mb_convert_encoding($value, 'UTF-8', 'UTF7-IMAP'));
+//        }
+
+        $some = imap_search($inbox, 'SUBJECT "Jumbo group"');
+        var_dump(mb_convert_encoding($some, 'UTF-8', 'UTF7-IMAP'));
+    }
 
     /**
      * Create
@@ -44,7 +64,13 @@ class YandexTurboFeedProductController extends Controller
 
         $categories = Category::findBase()->all();
 
-        $query = Product::findBase();
+        $query = Product::findBase()
+            ->andFilterWhere([
+                Product::tableName() . '.removed' => '0',
+                Factory::tableName() . '.published' => '1',
+                Factory::tableName() . '.deleted' => '0',
+                Factory::tableName() . '.show_for_ru' => '1',
+            ]);
 
         $offers = [];
         foreach ($query->batch(100) as $models) {
@@ -52,8 +78,6 @@ class YandexTurboFeedProductController extends Controller
                 $offers[] = $item;
             }
         }
-
-        //$offers = Product::findBase()->all();
 
         /** @var $city City */
         foreach ($cities as $city) {
