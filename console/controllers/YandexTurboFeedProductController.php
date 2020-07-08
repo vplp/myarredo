@@ -35,7 +35,7 @@ class YandexTurboFeedProductController extends Controller
 //            var_dump(mb_convert_encoding($value, 'UTF-8', 'UTF7-IMAP'));
 //        }
 
-        $some = imap_search($inbox, 'SUBJECT "Jumbo group" SINCE "8-5-2020"', SE_UID);
+        $some = imap_search($inbox, 'SUBJECT "Jumbo group"');
         var_dump(mb_convert_encoding($some, 'UTF-8', 'UTF7-IMAP'));
     }
 
