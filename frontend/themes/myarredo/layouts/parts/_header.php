@@ -6,7 +6,6 @@ use yii\helpers\{
 use yii\bootstrap\ActiveForm;
 use frontend\modules\sys\widgets\lang\LangSwitch;
 use frontend\modules\catalog\widgets\menu\CatalogMenu;
-use frontend\modules\catalog\widgets\menu_mobile\CatalogMenuMobile;
 use frontend\modules\shop\widgets\cart\Cart;
 use frontend\modules\location\widgets\{
     ChangeCity, ChangeCurrency
