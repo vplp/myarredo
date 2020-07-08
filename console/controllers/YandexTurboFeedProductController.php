@@ -37,13 +37,17 @@ class YandexTurboFeedProductController extends Controller
 //            var_dump(mb_convert_encoding($value, 'UTF-8', 'UTF7-IMAP'));
 //        }
 
-        $MC = imap_check($inbox);
 
-        // Получим обзор всех писем в INBOX
-        $result = imap_fetch_overview($inbox, "1:{$MC->Nmsgs}", 0);
-        foreach ($result as $overview) {
-            echo "#{$overview->msgno} ({$overview->date}) - From: {$overview->from} {$overview->subject}\n";
-        }
+        $some = imap_search($inbox, 'SUBJECT "Jumbo group" SINCE "8-5-2020"', SE_UID);
+        var_dump(mb_convert_encoding($some, 'UTF-8', 'UTF7-IMAP'));
+
+//        $MC = imap_check($inbox);
+//
+//        // Получим обзор всех писем в INBOX
+//        $result = imap_fetch_overview($inbox, "1:{$MC->Nmsgs}", 0);
+//        foreach ($result as $overview) {
+//            echo "#{$overview->msgno} ({$overview->date}) - From: {$overview->from} {$overview->subject}\n";
+//        }
         imap_close($inbox);
     }
 
