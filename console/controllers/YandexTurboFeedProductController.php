@@ -118,7 +118,7 @@ class YandexTurboFeedProductController extends Controller
 
             foreach ($offers as $offer) {
                 /** @var $offer Product */
-                if (!empty($offer['category'])) {
+                if (!empty($offer['category']) && Product::isImage($offer['image_link'])) {
                     $url = City::getSubDomainUrl($city) . '/sale-italy-product/' . $offer['alias'] . '/';
 
                     $str = "\t<offer id=\"" . $offer['id'] . "\">" . PHP_EOL .
