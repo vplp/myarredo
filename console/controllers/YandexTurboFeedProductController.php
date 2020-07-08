@@ -64,6 +64,8 @@ class YandexTurboFeedProductController extends Controller
             ->andFilterWhere(['IN', 'country_id', [2]])
             ->all();
 
+        $currencies = Currency::findBase()->all();
+
         $categories = Category::findBase()->all();
 
         $query = Product::findBase();
@@ -78,7 +80,7 @@ class YandexTurboFeedProductController extends Controller
         /** @var $city City */
         foreach ($cities as $city) {
             if ($city['id'] == 4) {
-                $this->createFeed($city, $categories, $offers);
+                $this->createFeed($city, $currencies, $categories, $offers);
             }
         }
 
@@ -87,10 +89,11 @@ class YandexTurboFeedProductController extends Controller
 
     /**
      * @param $city
+     * @param $currencies
      * @param $categories
      * @param $offers
      */
-    protected function createFeed($city, $categories, $offers)
+    protected function createFeed($city, $currencies, $categories, $offers)
     {
         if ($offers) {
             $count = count($offers);
@@ -110,8 +113,6 @@ class YandexTurboFeedProductController extends Controller
                     "<company>MyArredoFamily</company>" . PHP_EOL .
                     "<url>" . City::getSubDomainUrl($city) . "</url>" . PHP_EOL
                 );
-
-                $currencies = Currency::findBase()->all();
 
                 fwrite($handle, "<currencies>" . PHP_EOL);
                 foreach ($currencies as $currency) {
