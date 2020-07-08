@@ -19,6 +19,8 @@ class YandexTurboFeedProductController extends Controller
 {
     public $filePath = '@root/web/turbo-feed/product/';
 
+    public $countOffersInFeed = 20000;
+
     public function actionParser()
     {
         /* connect to yandex */
@@ -97,67 +99,72 @@ class YandexTurboFeedProductController extends Controller
     protected function createFeed($city, $categories, $offers)
     {
         if ($offers) {
-            $filePath = Yii::getAlias($this->filePath . '/turbo_feed_product_' . $city['alias'] . '.xml');
+            $count = count($offers);
+            $countFiles = ceil($count / $this->countOffersInFeed);
 
-            $handle = fopen($filePath, "w");
+            for ($i = 0; $i < $countFiles; $i++) {
+                $filePath = Yii::getAlias($this->filePath . '/turbo_feed_product_' . $city['alias'] . '_' . $i . '.xml');
 
-            fwrite(
-                $handle,
-                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" . PHP_EOL .
-                "<yml_catalog date=\"" . date('Y-m-d H:i') . "\">" . PHP_EOL .
-                "<shop>" . PHP_EOL .
-                "<name>MyArredoFamily</name>" . PHP_EOL .
-                "<company>MyArredoFamily</company>" . PHP_EOL .
-                "<url>" . City::getSubDomainUrl($city) . "</url>" . PHP_EOL
-            );
+                $handle = fopen($filePath, "w");
 
-            $currencies = Currency::findBase()->all();
-
-            fwrite($handle, "<currencies>" . PHP_EOL);
-            foreach ($currencies as $currency) {
                 fwrite(
                     $handle,
-                    "\t<currency id=\"" . ($currency['code2'] == 'RUB' ? 'RUR' : $currency['code2']) . "\" rate=\"" . $currency['course'] . "\"/>" . PHP_EOL
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" . PHP_EOL .
+                    "<yml_catalog date=\"" . date('Y-m-d H:i') . "\">" . PHP_EOL .
+                    "<shop>" . PHP_EOL .
+                    "<name>MyArredoFamily</name>" . PHP_EOL .
+                    "<company>MyArredoFamily</company>" . PHP_EOL .
+                    "<url>" . City::getSubDomainUrl($city) . "</url>" . PHP_EOL
                 );
-            }
-            fwrite($handle, "</currencies>" . PHP_EOL);
 
-            fwrite(
-                $handle,
-                "<categories>" . PHP_EOL
-            );
-            foreach ($categories as $category) {
+                $currencies = Currency::findBase()->all();
+
+                fwrite($handle, "<currencies>" . PHP_EOL);
+                foreach ($currencies as $currency) {
+                    fwrite(
+                        $handle,
+                        "\t<currency id=\"" . ($currency['code2'] == 'RUB' ? 'RUR' : $currency['code2']) . "\" rate=\"" . $currency['course'] . "\"/>" . PHP_EOL
+                    );
+                }
+                fwrite($handle, "</currencies>" . PHP_EOL);
+
                 fwrite(
                     $handle,
-                    "\t<category id=\"" . $category['id'] . "\">" .
-                    strip_tags($category['lang']['title']) .
-                    "</category>" . PHP_EOL
+                    "<categories>" . PHP_EOL
                 );
-            }
-            fwrite(
-                $handle,
-                "</categories>" . PHP_EOL .
-                "<offers>" . PHP_EOL
-            );
+                foreach ($categories as $category) {
+                    fwrite(
+                        $handle,
+                        "\t<category id=\"" . $category['id'] . "\">" .
+                        strip_tags($category['lang']['title']) .
+                        "</category>" . PHP_EOL
+                    );
+                }
+                fwrite(
+                    $handle,
+                    "</categories>" . PHP_EOL .
+                    "<offers>" . PHP_EOL
+                );
 
-            foreach ($offers as $offer) {
-                /** @var $offer Product */
-                if (!empty($offer['category']) && Product::isImage($offer['image_link'])) {
-                    $url = City::getSubDomainUrl($city) . '/sale-italy-product/' . $offer['alias'] . '/';
+                for ($j = $i * $this->countOffersInFeed; $j <= ($i + 1) * $this->countOffersInFeed; $j++) {
+                    /** @var $offer Product */
+                    if (isset($offers[$j]) && !empty($offers[$j]['category']) && Product::isImage($offers[$j]['image_link'])) {
+                        $offer = $offers[$j];
+                        $url = City::getSubDomainUrl($city) . '/sale-italy-product/' . $offer['alias'] . '/';
 
-                    $str = "\t<offer id=\"" . $offer['id'] . "\">" . PHP_EOL .
-                        "\t\t<name>" . htmlspecialchars($offer['lang']['title']) . "</name>" . PHP_EOL .
-                        "\t\t<url>" . $url . "</url>" . PHP_EOL .
-                        "\t\t<price>" . $offer['price_from'] . "</price>" . PHP_EOL .
-                        "\t\t<currencyId>" . ($offer['currency'] == 'RUB' ? 'RUR' : $offer['currency']) . "</currencyId>" . PHP_EOL .
-                        "\t\t<categoryId>" . ($offer['category'] ? $offer['category'][0]['id'] : 0) . "</categoryId>" . PHP_EOL .
-                        "\t\t<picture>" . Product::getImageThumb($offer['image_link']) . "</picture>" . PHP_EOL;
+                        $str = "\t<offer id=\"" . $offer['id'] . "\">" . PHP_EOL .
+                            "\t\t<name>" . htmlspecialchars($offer['lang']['title']) . "</name>" . PHP_EOL .
+                            "\t\t<url>" . $url . "</url>" . PHP_EOL .
+                            "\t\t<price>" . $offer['price_from'] . "</price>" . PHP_EOL .
+                            "\t\t<currencyId>" . ($offer['currency'] == 'RUB' ? 'RUR' : $offer['currency']) . "</currencyId>" . PHP_EOL .
+                            "\t\t<categoryId>" . ($offer['category'] ? $offer['category'][0]['id'] : 0) . "</categoryId>" . PHP_EOL .
+                            "\t\t<picture>" . Product::getImageThumb($offer['image_link']) . "</picture>" . PHP_EOL;
 
-                    if ($offer['lang']['description']) {
-                        $str .= "\t\t<description><![CDATA[" . strip_tags($offer['lang']['description']) . "]]></description>" . PHP_EOL;
-                    } else {
-                        $str .= "\t\t<description><![CDATA[" . htmlspecialchars($offer->getTitle()) . "]]></description>" . PHP_EOL;
-                    }
+                        if ($offer['lang']['description']) {
+                            $str .= "\t\t<description><![CDATA[" . strip_tags($offer['lang']['description']) . "]]></description>" . PHP_EOL;
+                        } else {
+                            $str .= "\t\t<description><![CDATA[" . htmlspecialchars($offer->getTitle()) . "]]></description>" . PHP_EOL;
+                        }
 
 //                $array = [];
 //                foreach ($offer['specificationValue'] as $item) {
@@ -193,21 +200,22 @@ class YandexTurboFeedProductController extends Controller
 //                    $str .= "\t\t<param name=\"Цвет\">" . implode(', ', $array) . "</param>" . PHP_EOL;
 //                }
 
-                    $str .= "\t</offer>" . PHP_EOL;
+                        $str .= "\t</offer>" . PHP_EOL;
 
-                    fwrite($handle, $str);
+                        fwrite($handle, $str);
+                    }
                 }
+
+                fwrite(
+                    $handle,
+                    "</offers>" . PHP_EOL .
+                    "</shop>" . PHP_EOL .
+                    "</yml_catalog>"
+                );
+
+                fclose($handle);
+                chmod($filePath, 0777);
             }
-
-            fwrite(
-                $handle,
-                "</offers>" . PHP_EOL .
-                "</shop>" . PHP_EOL .
-                "</yml_catalog>"
-            );
-
-            fclose($handle);
-            chmod($filePath, 0777);
         }
     }
 }
