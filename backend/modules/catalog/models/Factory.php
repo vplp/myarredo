@@ -4,9 +4,7 @@ namespace backend\modules\catalog\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-//
 use thread\app\model\interfaces\BaseBackendModel;
-//
 use common\modules\catalog\models\Factory as CommonFactoryModel;
 use common\actions\upload\UploadBehavior;
 

@@ -4,13 +4,11 @@ namespace backend\modules\catalog\controllers;
 
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
-//
 use common\actions\upload\{
     DeleteAction, UploadAction
 };
 use thread\app\base\controllers\BackendController;
 use thread\actions\AttributeSwitch;
-//
 use backend\modules\catalog\models\{
     Factory, FactoryLang, search\Factory as filterFactory
 };
@@ -62,22 +60,28 @@ class FactoryController extends BackendController
     public function actions()
     {
         return ArrayHelper::merge(parent::actions(), [
-            'popular' => [
+            'show_for_ru' => [
                 'class' => AttributeSwitch::class,
                 'modelClass' => $this->model,
-                'attribute' => 'popular',
+                'attribute' => 'show_for_ru',
                 'redirect' => $this->defaultAction,
             ],
-            'popular_by' => [
+            'show_for_by' => [
                 'class' => AttributeSwitch::class,
                 'modelClass' => $this->model,
-                'attribute' => 'popular_by',
+                'attribute' => 'show_for_by',
                 'redirect' => $this->defaultAction,
             ],
-            'popular_ua' => [
+            'show_for_ua' => [
                 'class' => AttributeSwitch::class,
                 'modelClass' => $this->model,
-                'attribute' => 'popular_ua',
+                'attribute' => 'show_for_ua',
+                'redirect' => $this->defaultAction,
+            ],
+            'show_for_com' => [
+                'class' => AttributeSwitch::class,
+                'modelClass' => $this->model,
+                'attribute' => 'show_for_com',
                 'redirect' => $this->defaultAction,
             ],
             'fileupload' => [

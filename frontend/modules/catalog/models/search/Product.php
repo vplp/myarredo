@@ -205,6 +205,8 @@ class Product extends ProductModel
             $order[] = self::tableName() . '.price_from ASC';
         } elseif (isset($params['sort']) && $params['sort'] == 'desc') {
             $order[] = self::tableName() . '.price_from DESC';
+        } elseif (isset($params['sort']) && $params['sort'] == 'novelty') {
+            $order[] = self::tableName() . '.novelty DESC';
         }
 
         if (!isset($params['object'])) {
