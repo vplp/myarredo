@@ -47,12 +47,6 @@ echo GridView::widget([
         ],
         [
             'class' => ActionStatusColumn::class,
-            'attribute' => 'show_for_by',
-            'action' => 'show_for_by',
-            'visible' => $visible
-        ],
-        [
-            'class' => ActionStatusColumn::class,
             'attribute' => 'show_for_ua',
             'action' => 'show_for_ua',
             'visible' => $visible
