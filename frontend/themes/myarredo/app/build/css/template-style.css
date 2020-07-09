@@ -628,7 +628,8 @@ h1 {
   .mobile-header .phone-num {
     font-size: 18px;
     color: #535351;
-    text-decoration: none; }
+    text-decoration: none; 
+  }
   .mobile-header .after-num {
     font-size: 9px;
     color: #c4242e;
@@ -10320,6 +10321,10 @@ body>.modal-backdrop.fade.in{
   .factory-page .text iframe {
     width: 100% !important;
   }
+  #ajaxFormFeedbackModal .btn-success.big {
+    min-width: 220px;
+    padding: 8px 8px;
+  }
 }
 @media (max-width: 760px) {
   .welcome-box {
@@ -10516,5 +10521,11 @@ body>.modal-backdrop.fade.in{
   .nav>li>a.btn-gopartner,
   .btn-inpdf {
     font-size: 12px;
+  }
+}
+/* max 339px */
+@media(max-width: 339px) {
+  .mobile-header .phone-num {
+    font-size: 16px;
   }
 }
