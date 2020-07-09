@@ -155,7 +155,7 @@ class YandexTurboFeedProductController extends Controller
                     /** @var $offer Product */
                     if (isset($offers[$j]) && !empty($offers[$j]['category']) && Product::isImage($offers[$j]['image_link'])) {
                         $offer = $offers[$j];
-                        $url = City::getSubDomainUrl($city) . '/sale-italy-product/' . $offer['alias'] . '/';
+                        $url = City::getSubDomainUrl($city) . '/product/' . $offer['alias'] . '/';
 
                         $str = "\t<offer id=\"" . $offer['id'] . "\">" . PHP_EOL .
                             "\t\t<name>" . htmlspecialchars($offer['lang']['title']) . "</name>" . PHP_EOL .
