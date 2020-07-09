@@ -176,6 +176,10 @@ class Factory extends ActiveRecord
             'popular_ua' => ['popular_ua'],
             'setImages' => ['image_link'],
             'product_count' => ['product_count'],
+            'show_for_ru' => ['show_for_ru'],
+            'show_for_by' => ['show_for_by'],
+            'show_for_ua' => ['show_for_ua'],
+            'show_for_com' => ['show_for_com'],
             'backend' => [
                 'user_id',
                 'producing_country_id',

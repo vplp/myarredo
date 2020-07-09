@@ -3,7 +3,6 @@
 use thread\widgets\grid\{
     ActionStatusColumn, GridViewFilter
 };
-//
 use backend\app\bootstrap\ActiveForm;
 use backend\widgets\GridView\{
     GridView, gridColumns\ActionColumn
@@ -19,9 +18,7 @@ use backend\modules\location\models\Country;
  * @var $form ActiveForm
  */
 
-$visible = in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])
-    ? true
-    : false;
+$visible = in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor']) ? true : false;
 
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
@@ -36,25 +33,40 @@ echo GridView::widget([
         [
             'attribute' => Yii::t('app', 'Producing country'),
             'value' => 'producingCountry.title',
-            'filter' => GridViewFilter::selectOne($filter, 'producing_country_id', Country::dropDownListForRegistration()),
+            'filter' => GridViewFilter::selectOne(
+                $filter,
+                'producing_country_id',
+                Country::dropDownListForRegistration()
+            ),
         ],
         [
             'class' => ActionStatusColumn::class,
-            'attribute' => 'popular',
-            'action' => 'popular',
+            'attribute' => 'show_for_ru',
+            'action' => 'show_for_ru',
             'visible' => $visible
         ],
         [
             'class' => ActionStatusColumn::class,
-            'attribute' => 'popular_by',
-            'action' => 'popular_by',
+            'attribute' => 'show_for_by',
+            'action' => 'show_for_by',
             'visible' => $visible
         ],
         [
             'class' => ActionStatusColumn::class,
-            'attribute' => 'popular_ua',
-            'action' => 'popular_ua',
+            'attribute' => 'show_for_ua',
+            'action' => 'show_for_ua',
             'visible' => $visible
+        ],
+        [
+            'class' => ActionStatusColumn::class,
+            'attribute' => 'show_for_com',
+            'action' => 'show_for_com',
+            'visible' => $visible
+        ],
+        [
+            'class' => ActionStatusColumn::class,
+            'attribute' => 'published',
+            'action' => 'published'
         ],
         [
             'class' => ActionColumn::class,
