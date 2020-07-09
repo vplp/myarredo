@@ -102,13 +102,13 @@ $bundle = AppAsset::register($this);
 
                             <?php if (Yii::$app->city->domain == 'by') { ?>
                                 2013 - <?= date('Y'); ?> (с)
-                                <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_BY')); ?></br>
+                                <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_BY')); ?><br>
                             <?php } elseif (Yii::$app->city->domain == 'ua') { ?>
                                 2013 - <?= date('Y'); ?> (с)
-                                <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_UA')); ?></br>
+                                <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_UA')); ?><br>
                             <?php } else { ?>
                                 2013 - <?= date('Y'); ?> (с)
-                                <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_RU')); ?></br>
+                                <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_RU')); ?><br>
                             <?php } ?>
 
                             <?= Yii::t('app', 'Программирование сайта') ?> -
@@ -130,11 +130,11 @@ $bundle = AppAsset::register($this);
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"></div>
 
 <?php if (Yii::$app->city->domain == 'ru' && Yii::$app->getUser()->isGuest) { ?>
-    <script type="text/javascript">
+    <script>
         var __cs = __cs || [];
         __cs.push(["setCsAccount", "UmbSor8qhGbovgqKXcAqTSVMMinwFmSy"]);
     </script>
-    <script type="text/javascript" async src="https://app.uiscom.ru/static/cs.min.js"></script>
+    <script async src="https://app.uiscom.ru/static/cs.min.js"></script>
 <?php } ?>
 
 <script type="application/ld+json">

@@ -12,7 +12,7 @@ use frontend\modules\banner\models\BannerItem;
 ?>
 
 <?php if (!empty($bannerLeft) && !empty($bannerRight)) { ?>
-    <div class="fone-poster-box" style="background-color:<?= $background ?>;">
+    <div class="fone-poster-box" style="background-color:<?= $background ? $background : 'transparent' ?>;">
 
         <div class="fone-poster-left">
             <?php if ($bannerLeft['lang']['link'] != '') {
