@@ -199,7 +199,8 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 <div class="mobile-header">
     <div class="left-info-part mobmenu-part">
         <div class="menu-btn js-menu-btn mobmenu-panel">
-            <i class="fa fa-bars" aria-hidden="true"></i>
+            <span class="for-mobmenu-barsicon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+            <span class="for-mob-menu-barstext">Меню</span>
         </div>
         <div class="logo-num">
             <a href="/" class="logo">
@@ -242,6 +243,13 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
             <div class="mobmenu-wishlistbox">
                 <?= Cart::widget(['view' => 'short']) ?>
+            </div>
+            <div class="mobmenu-fabrics">
+                <a href="<?= Url::toRoute(['/catalog/factory/list'])?>" class="mob-fabrics-link">
+                    <span class="for-mobmenu-fabicon"><i class="fa fa-industry" aria-hidden="true"></i></span>
+                    <span class="for-mobmenu-fabtext"><?= Yii::t('app', 'Фабрики')?></span>
+                    
+                </a>
             </div>
         </div>
     </div>
