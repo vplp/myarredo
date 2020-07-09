@@ -166,7 +166,8 @@ class FactoryController extends BaseController
             'defaultPageSize' => 20,
             $keys['factory'] => [
                 $model['alias']
-            ]
+            ],
+            'sort' => 'novelty'
         ]);
 
         $modelSale = new Sale();
