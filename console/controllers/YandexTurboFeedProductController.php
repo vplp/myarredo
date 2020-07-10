@@ -163,7 +163,7 @@ class YandexTurboFeedProductController extends Controller
 
                 for ($j = $i * $this->countOffersInFeed; $j <= ($i + 1) * $this->countOffersInFeed; $j++) {
                     /** @var $offer Product */
-                    if (isset($offers[$j]) && !empty($offers[$j]['category']) && Product::isImage($offers[$j]['image_link'])) {
+                    if (isset($offers[$j]) && !empty($offers[$j]['category'])/* && Product::isImage($offers[$j]['image_link'])*/) {
                         $offer = $offers[$j];
                         $url = City::getSubDomainUrl($city) . '/product/' . $offer['alias'] . '/';
 
@@ -184,29 +184,29 @@ class YandexTurboFeedProductController extends Controller
                         // Предмет
                         $array = [];
                         if ($offer['types'] != null) {
-                            $str .= "\t\t<param name=\"Предмет\">" . $offer['types']['lang']['title'] . "</param>" . PHP_EOL;
+                            $str .= "\t\t<param name=\"Предмет\">" . htmlspecialchars($offer['types']['lang']['title']) . "</param>" . PHP_EOL;
                         }
 
                         // Артикул
                         if (!$offer['is_composition']) {
-                            $str .= "\t\t<param name=\"Артикул\">" . $offer['article'] . "</param>" . PHP_EOL;
+                            $str .= "\t\t<param name=\"Артикул\">" . htmlspecialchars($offer['article']) . "</param>" . PHP_EOL;
                         }
 
                         // Фабрика
                         if ($offer['factory'] != null) {
-                            $str .= "\t\t<param name=\"Фабрика\">" . $offer['factory']['title'] . "</param>" . PHP_EOL;
+                            $str .= "\t\t<param name=\"Фабрика\">" . htmlspecialchars($offer['factory']['title']) . "</param>" . PHP_EOL;
                         }
 
                         // Коллекция
                         if ($offer['collections_id']) {
-                            $str .= "\t\t<param name=\"Коллекция\">" . $offer['collection']['title'] . "</param>" . PHP_EOL;
+                            $str .= "\t\t<param name=\"Коллекция\">" . htmlspecialchars($offer['collection']['title']) . "</param>" . PHP_EOL;
                         }
 
                         // Материал
                         $array = [];
                         foreach ($offer['specificationValue'] as $item) {
                             if ($item['specification']['parent_id'] == 2) {
-                                $array[] = $item['specification']['lang']['title'];
+                                $array[] = htmlspecialchars($item['specification']['lang']['title']);
                             }
                         }
                         if ($array) {
@@ -217,7 +217,7 @@ class YandexTurboFeedProductController extends Controller
                         $array = [];
                         foreach ($offer['specificationValue'] as $item) {
                             if ($item['specification']['parent_id'] == 9) {
-                                $array[] = $item['specification']['lang']['title'];
+                                $array[] = htmlspecialchars($item['specification']['lang']['title']);
                             }
                         }
                         if ($array) {
