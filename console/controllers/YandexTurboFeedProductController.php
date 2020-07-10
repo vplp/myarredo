@@ -174,12 +174,7 @@ class YandexTurboFeedProductController extends Controller
                         // Предмет
                         $array = [];
                         if ($offer['types'] != null) {
-                            foreach ($offer['types'] as $item) {
-                                $array[] = $item['lang']['title'];
-                            }
-                        }
-                        if ($array) {
-                            $str .= "\t\t<param name=\"Предмет\">" . implode(', ', $array) . "</param>" . PHP_EOL;
+                            $str .= "\t\t<param name=\"Предмет\">" . $offer['types']['lang']['title'] . "</param>" . PHP_EOL;
                         }
 
                         // Артикул
