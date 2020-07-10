@@ -95,10 +95,13 @@ class YandexTurboFeedArticlesController extends Controller
                     $offer = $offers[$j];
                     $url = City::getSubDomainUrl($city) . '/articles/' . $offer['alias'] . '/';
 
+                    $content = "<header><h1>" . $offer['lang']['title'] . "</h1></header>" .
+                        "<article>" . $offer['lang']['content'] . "</article>";
+
                     $str = "\t<item turbo=\"true\">" . PHP_EOL .
                         "\t\t<link>" . $url . "</link>" . PHP_EOL .
                         //"\t\t<pubDate>" . ($offer['published_time'] ? date(DATE_RFC822, $offer['published_time']) : '') . "</pubDate>" . PHP_EOL .
-                        "\t\t<turbo:content><![CDATA[" . strip_tags($offer['lang']['description']) . "]]></turbo:content>" . PHP_EOL .
+                        "\t\t<turbo:content><![CDATA[" . $content . "]]></turbo:content>" . PHP_EOL .
                         "\t</item>" . PHP_EOL;
 
                     fwrite($handle, $str);
