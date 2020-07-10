@@ -174,6 +174,14 @@ $this->title = $this->context->title;
 
                                                 foreach ($model['specificationValue'] as $item) {
                                                     if ($item['specification']['parent_id'] == 9) {
+                                                        $paramsUrl = [];
+
+                                                        if ($model['types']) {
+                                                            $paramsUrl[$keys['type']][] = Yii::$app->city->domain != 'com'
+                                                                ? $model['types']['alias']
+                                                                : $model['types']['alias2'];
+                                                        }
+
                                                         $paramsUrl[$keys['style']][] = Yii::$app->city->domain != 'com'
                                                             ? $item['specification']['alias']
                                                             : $item['specification']['alias2'];
@@ -183,12 +191,6 @@ $this->title = $this->context->title;
                                                             Yii::$app->catalogFilter->createUrl($paramsUrl)
                                                         );
                                                     }
-                                                }
-
-                                                if ($model['types']) {
-                                                    $paramsUrl[$keys['type']][] = Yii::$app->city->domain != 'com'
-                                                        ? $model['types']['alias']
-                                                        : $model['types']['alias2'];
                                                 }
 
                                                 echo implode('; ', $array) ?>
