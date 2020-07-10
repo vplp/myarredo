@@ -171,39 +171,68 @@ class YandexTurboFeedProductController extends Controller
                             $str .= "\t\t<description><![CDATA[" . htmlspecialchars($offer->getTitle()) . "]]></description>" . PHP_EOL;
                         }
 
-//                $array = [];
-//                foreach ($offer['specificationValue'] as $item) {
-//                    if ($item['specification']['parent_id'] == 2) {
-//                        $array[] = $item['specification']['lang']['title'];
-//                    }
-//                }
-//                if ($array) {
-//                    $str .= "\t\t<param name=\"Материал\">" . implode(', ', $array) . "</param>" . PHP_EOL;
-//                }
-//
-//                $array = [];
-//                foreach ($offer['specificationValue'] as $item) {
-//                    if ($item['specification']['parent_id'] == 9) {
-//                        $array[] = $item['specification']['lang']['title'];
-//                    }
-//                }
-//                if ($array) {
-//                    $str .= "\t\t<param name=\"Стиль\">" . implode(', ', $array) . "</param>" . PHP_EOL;
-//                }
-//
-//                foreach ($offer['specificationValue'] as $item) {
-//                    if ($item['specification']['parent_id'] == 4) {
-//                        $str .= "\t\t<param name=\"" . $item['specification']['lang']['title'] . " (см)\">" . $item['val'] . "</param>" . PHP_EOL;
-//                    }
-//                }
-//
-//                if (!empty($offer['colors'])) {
-//                    $array = [];
-//                    foreach ($offer['colors'] as $item) {
-//                        $array[] = $item['lang']['title'];
-//                    }
-//                    $str .= "\t\t<param name=\"Цвет\">" . implode(', ', $array) . "</param>" . PHP_EOL;
-//                }
+                        // Предмет
+                        $array = [];
+                        if ($offer['types'] != null) {
+                            foreach ($offer['types'] as $item) {
+                                $array[] = $item['lang']['title'];
+                            }
+                        }
+                        if ($array) {
+                            $str .= "\t\t<param name=\"Предмет\">" . implode(', ', $array) . "</param>" . PHP_EOL;
+                        }
+
+                        // Артикул
+                        if (!$offer['is_composition']) {
+                            $str .= "\t\t<param name=\"Коллекция\">" . $offer['article'] . "</param>" . PHP_EOL;
+                        }
+
+                        // Фабрика
+                        if ($offer['factory'] != null) {
+                            $str .= "\t\t<param name=\"Фабрика\">" . $offer['factory']['title'] . "</param>" . PHP_EOL;
+                        }
+
+                        // Коллекция
+                        if ($offer['collections_id']) {
+                            $str .= "\t\t<param name=\"Коллекция\">" . $offer['collection']['title'] . "</param>" . PHP_EOL;
+                        }
+
+                        // Материал
+                        $array = [];
+                        foreach ($offer['specificationValue'] as $item) {
+                            if ($item['specification']['parent_id'] == 2) {
+                                $array[] = $item['specification']['lang']['title'];
+                            }
+                        }
+                        if ($array) {
+                            $str .= "\t\t<param name=\"Материал\">" . implode(', ', $array) . "</param>" . PHP_EOL;
+                        }
+
+                        // Стиль
+                        $array = [];
+                        foreach ($offer['specificationValue'] as $item) {
+                            if ($item['specification']['parent_id'] == 9) {
+                                $array[] = $item['specification']['lang']['title'];
+                            }
+                        }
+                        if ($array) {
+                            $str .= "\t\t<param name=\"Стиль\">" . implode(', ', $array) . "</param>" . PHP_EOL;
+                        }
+
+                        // Размеры
+                        foreach ($offer['specificationValue'] as $item) {
+                            if ($item['specification']['parent_id'] == 4) {
+                                $str .= "\t\t<param name=\"" . $item['specification']['lang']['title'] . "\" unit=\"(см)\">" . $item['val'] . "</param>" . PHP_EOL;
+                            }
+                        }
+
+                        if (!empty($offer['colors'])) {
+                            $array = [];
+                            foreach ($offer['colors'] as $item) {
+                                $array[] = $item['lang']['title'];
+                            }
+                            $str .= "\t\t<param name=\"Цвет\">" . implode(', ', $array) . "</param>" . PHP_EOL;
+                        }
 
                         $str .= "\t</offer>" . PHP_EOL;
 
