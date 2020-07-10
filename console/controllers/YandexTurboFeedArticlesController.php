@@ -73,7 +73,7 @@ class YandexTurboFeedArticlesController extends Controller
         $countFiles = ceil($count / $this->countOffersInFeed);
 
         for ($i = 0; $i < $countFiles; $i++) {
-            $filePath = Yii::getAlias($this->filePath . '/turbo_feed_product_' . $i . '.xml');
+            $filePath = Yii::getAlias($this->filePath . '/turbo_feed_articles_' . $i . '.xml');
 
             $handle = fopen($filePath, "w");
 
