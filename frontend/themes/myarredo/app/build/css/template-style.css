@@ -860,6 +860,9 @@ h1 {
 .mobile-menu .navigation li {
   border-bottom: 1px solid #bed3db;
 }
+.mobile-menu .navigation li.tl-panel {
+  border-bottom: 0;
+}
 /* .mobile-menu .navigation>li:last-child {
   border-bottom: 1px solid #bed3db;
 } */
@@ -899,6 +902,9 @@ h1 {
 }
 .mobile-menu .navigation li.jshaslist .list-level>li {
   flex-wrap: wrap;
+}
+.mobile-menu .navigation li.jshaslist .list-level>li:last-child {
+  border-bottom: 0;
 }
 .mobile-menu .navigation li.js-has-list .list-level>li>a,
 .mobile-menu .navigation li.jshaslist .list-level>li>a {

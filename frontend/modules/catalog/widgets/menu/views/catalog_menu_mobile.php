@@ -93,6 +93,9 @@ foreach ($categorySaleItaly as $model) {
 }
 
 $MenuDataArray = array(
+    'transtexts' => array(
+        'allwiewText' => Yii::t('app', 'Смотреть все')
+    ),
     'menulist' => array(
         array(
             'link' => Url::toRoute(['/catalog/sale/list']),
@@ -220,7 +223,7 @@ $MenuDataArray = array(
                                     </a>
                                     <transition name="slidemenu">
                                         <ul class="three-llist" v-show="twoLevel.lopen">
-                                            <li>
+                                            <li class="tl-panel">
                                                 <button v-on:click="twoLevel.lopen = !twoLevel.lopen" class="btn-mobitem-close">
                                                     <i class="fa fa-angle-left" aria-hidden="true"></i>
                                                     <span class="for-onelevel-text"> 
@@ -235,7 +238,7 @@ $MenuDataArray = array(
                                                 <a v-bind:href=threelev.link>{{ threelev.text }}</a>
                                             </li>
                                             <li>
-                                                <a v-bind:href=twoLevel.llink class="viewall-link">Смотреть все</a>
+                                                <a v-bind:href=twoLevel.llink class="viewall-link">{{ mobdata.transtexts.allwiewText }}</a>
                                             </li>
                                         </ul>
                                     </transition>
