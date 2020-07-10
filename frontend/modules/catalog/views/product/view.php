@@ -171,14 +171,17 @@ $this->title = $this->context->title;
                                             <td>
                                                 <?php
                                                 $array = [];
-                                                $paramsUrl = [];
+
                                                 foreach ($model['specificationValue'] as $item) {
                                                     if ($item['specification']['parent_id'] == 9) {
-                                                        $array[] = $item['specification']['lang']['title'];
-
                                                         $paramsUrl[$keys['style']][] = Yii::$app->city->domain != 'com'
                                                             ? $item['specification']['alias']
                                                             : $item['specification']['alias2'];
+
+                                                        $array[] = Html::a(
+                                                            $item['specification']['lang']['title'],
+                                                            Yii::$app->catalogFilter->createUrl($paramsUrl)
+                                                        );
                                                     }
                                                 }
 
@@ -188,10 +191,7 @@ $this->title = $this->context->title;
                                                         : $model['types']['alias2'];
                                                 }
 
-                                                echo Html::a(
-                                                    implode('; ', $array),
-                                                    Yii::$app->catalogFilter->createUrl($paramsUrl)
-                                                ) ?>
+                                                echo implode('; ', $array) ?>
                                             </td>
                                         </tr>
                                     <?php } ?>
