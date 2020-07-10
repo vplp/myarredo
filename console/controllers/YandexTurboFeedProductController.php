@@ -2,11 +2,10 @@
 
 namespace console\controllers;
 
-use frontend\modules\location\models\Currency;
 use Yii;
 use yii\helpers\Console;
 use yii\console\Controller;
-use frontend\modules\location\models\City;
+use frontend\modules\location\models\{City, Currency};
 use frontend\modules\catalog\models\{Category};
 use console\models\{Product, Factory};
 
@@ -87,8 +86,8 @@ class YandexTurboFeedProductController extends Controller
                 'specificationValue.specification',
                 'specificationValue.specification.lang',
                 'collection',
-                'colors',
-                'colors.lang',
+                //'colors',
+                //'colors.lang',
             ]);
 
         $offers = [];
@@ -232,13 +231,13 @@ class YandexTurboFeedProductController extends Controller
                             }
                         }
 
-                        if (!empty($offer['colors'])) {
+                        /*if (!empty($offer['colors'])) {
                             $array = [];
                             foreach ($offer['colors'] as $item) {
                                 $array[] = $item['lang']['title'];
                             }
                             $str .= "\t\t<param name=\"Цвет\">" . implode(', ', $array) . "</param>" . PHP_EOL;
-                        }
+                        }*/
 
                         $str .= "\t</offer>" . PHP_EOL;
 
