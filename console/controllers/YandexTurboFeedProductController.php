@@ -78,7 +78,18 @@ class YandexTurboFeedProductController extends Controller
 
         $categories = Category::findBase()->all();
 
-        $query = Product::findBase();
+        $query = Product::findBaseArray()
+            ->innerJoinWith([
+                'category',
+                'types',
+                'types.lang',
+                'specificationValue',
+                'specificationValue.specification',
+                'specificationValue.specification.lang',
+                'collection',
+                'colors',
+                'colors.lang',
+            ]);
 
         $offers = [];
         foreach ($query->batch(100) as $models) {
@@ -168,7 +179,7 @@ class YandexTurboFeedProductController extends Controller
                         if ($offer['lang']['description']) {
                             $str .= "\t\t<description><![CDATA[" . strip_tags($offer['lang']['description']) . "]]></description>" . PHP_EOL;
                         } else {
-                            $str .= "\t\t<description><![CDATA[" . htmlspecialchars($offer->getTitle()) . "]]></description>" . PHP_EOL;
+                            $str .= "\t\t<description></description>" . PHP_EOL;
                         }
 
                         // Предмет
