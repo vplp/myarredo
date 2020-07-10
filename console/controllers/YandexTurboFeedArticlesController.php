@@ -97,7 +97,7 @@ class YandexTurboFeedArticlesController extends Controller
 
                     $str = "\t<item turbo=\"true\">" . PHP_EOL .
                         "\t\t<link>" . $url . "</link>" . PHP_EOL .
-                        "\t\t<pubDate>" . date(DATE_RFC822, $offer['published_time']) . "</pubDate>" . PHP_EOL .
+                        "\t\t<pubDate>" . ($offer['published_time'] ? date(DATE_RFC822, $offer['published_time']) : '' . "</pubDate>" . PHP_EOL .
                         "\t\t<turbo:content><![CDATA[" . strip_tags($offer['lang']['description']) . "]]></turbo:content>" . PHP_EOL .
                         "\t</item>" . PHP_EOL;
 
