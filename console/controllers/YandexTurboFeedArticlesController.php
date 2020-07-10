@@ -85,8 +85,8 @@ class YandexTurboFeedArticlesController extends Controller
                 "<title>MyArredoFamily</title>" . PHP_EOL .
                 "<link>" . City::getSubDomainUrl($city) . "</link>" . PHP_EOL .
                 "<description>MyArredoFamily</description>" . PHP_EOL .
-                "<language>ru</language>" . PHP_EOL .
-                "<turbo:analytics></turbo:analytics>" . PHP_EOL
+                //"<turbo:analytics></turbo:analytics>" . PHP_EOL .
+                "<language>ru</language>" . PHP_EOL
             );
 
             for ($j = $i * $this->countOffersInFeed; $j <= ($i + 1) * $this->countOffersInFeed; $j++) {
