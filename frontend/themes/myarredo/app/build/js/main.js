@@ -861,17 +861,19 @@ $(document).ready(function () {
     /*--Фиксированный хедер--*/
     if ($('.js-fixed-header').length) {
         $(window).on('scroll', function () {
-            var headerHeight = $('.js-fixed-header').outerHeight();
-            if ($(window).scrollTop() > headerHeight) {
-                $('body').addClass('fixed-header');
-                $('.js-main').css({
-                    'padding-top': headerHeight + 'px'
-                });
-            } else {
-                $('body').removeClass('fixed-header');
-                $('.js-main').css({
-                    'padding-top': 0 + 'px'
-                });
+            if (window.screen.width >= 769) {
+                var headerHeight = $('.js-fixed-header').outerHeight();
+                if ($(window).scrollTop() > headerHeight) {
+                    $('body').addClass('fixed-header');
+                    $('.js-main').css({
+                        'padding-top': headerHeight + 'px'
+                    });
+                } else {
+                    $('body').removeClass('fixed-header');
+                    $('.js-main').css({
+                        'padding-top': 0 + 'px'
+                    });
+                }
             }
         });
     }
