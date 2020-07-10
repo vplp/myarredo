@@ -179,7 +179,7 @@ class YandexTurboFeedProductController extends Controller
 
                         // Артикул
                         if (!$offer['is_composition']) {
-                            $str .= "\t\t<param name=\"Коллекция\">" . $offer['article'] . "</param>" . PHP_EOL;
+                            $str .= "\t\t<param name=\"Артикул\">" . $offer['article'] . "</param>" . PHP_EOL;
                         }
 
                         // Фабрика
@@ -217,7 +217,7 @@ class YandexTurboFeedProductController extends Controller
                         // Размеры
                         foreach ($offer['specificationValue'] as $item) {
                             if ($item['specification']['parent_id'] == 4) {
-                                $str .= "\t\t<param name=\"" . $item['specification']['lang']['title'] . "\" unit=\"(см)\">" . $item['val'] . "</param>" . PHP_EOL;
+                                $str .= "\t\t<param name=\"" . $item['specification']['lang']['title'] . "\" unit=\"см\">" . $item['val'] . "</param>" . PHP_EOL;
                             }
                         }
 
