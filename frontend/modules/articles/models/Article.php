@@ -161,7 +161,7 @@ class Article extends \common\modules\articles\models\Article
         $image = null;
 
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-            $image = Yii::$app->getRequest()->hostInfo . $url . '/' . $image_link;
+            $image = $url . '/' . $image_link;
         }
 
         return $image;

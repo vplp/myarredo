@@ -96,7 +96,7 @@ class YandexTurboFeedArticlesController extends Controller
                         "<h1>" . $offer['lang']['title'] . "</h1>";
 
                     if (Article::isImage($offers[$j]['image_link'])) {
-                        $content .= "<figure><img src=\"" . Article::getImageThumb($offer['image_link']) . "\"/></figure>";
+                        $content .= "<figure><img src=\"" . City::getSubDomainUrl($city) . Article::getImageThumb($offer['image_link']) . "\"/></figure>";
                     }
 
                     $content .= "</header>" . "<article>" . $offer['lang']['content'] . "</article>";
