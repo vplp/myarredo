@@ -92,14 +92,13 @@ class YandexTurboFeedArticlesController extends Controller
                     /** @var $offer Article */
                     $url = City::getSubDomainUrl($city) . '/articles/' . $offer['alias'] . '/';
 
-                    $content = "<header>" .
-                        "<h1>" . $offer['lang']['title'] . "</h1>";
+                    $content = "<header>" . "<h1>" . $offer['lang']['title'] . "</h1>" . "</header>";
 
                     if (Article::isImage($offers[$j]['image_link'])) {
                         $content .= "<figure><img src=\"" . City::getSubDomainUrl($city) . Article::getImageThumb($offer['image_link']) . "\"/></figure>";
                     }
 
-                    $content .= "</header>" . "<article>" . $offer['lang']['content'] . "</article>";
+                    $content .= "<article>" . $offer['lang']['content'] . "</article>";
 
                     $str = "\t<item turbo=\"true\">" . PHP_EOL .
                         "\t\t<link>" . $url . "</link>" . PHP_EOL .
