@@ -188,8 +188,8 @@ class YandexTurboFeedProductController extends Controller
                         }
 
                         // Артикул
-                        if ($offer['article'] && $offer['article'] != '') {
-                            //$str .= "\t\t<param name=\"Артикул\">" . htmlspecialchars($offer['article']) . "</param>" . PHP_EOL;
+                        if ($offer['article'] != '') {
+                            $str .= "\t\t<param name=\"Артикул\">" . htmlspecialchars($offer['article']) . "</param>" . PHP_EOL;
                         }
 
                         // Фабрика
