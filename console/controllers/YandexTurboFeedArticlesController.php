@@ -6,8 +6,6 @@ use Yii;
 use yii\helpers\Console;
 use yii\console\Controller;
 use frontend\modules\location\models\{City, Currency};
-use frontend\modules\catalog\models\{Category};
-use console\models\{Product, Factory};
 use frontend\modules\articles\models\Article;
 
 /**
@@ -85,17 +83,19 @@ class YandexTurboFeedArticlesController extends Controller
                 "<title>MyArredoFamily</title>" . PHP_EOL .
                 "<link>" . City::getSubDomainUrl($city) . "</link>" . PHP_EOL .
                 "<description>MyArredoFamily</description>" . PHP_EOL .
-                //"<turbo:analytics></turbo:analytics>" . PHP_EOL .
                 "<language>ru</language>" . PHP_EOL
             );
 
             for ($j = $i * $this->countOffersInFeed; $j <= ($i + 1) * $this->countOffersInFeed; $j++) {
-                /** @var $offer Product */
                 if (isset($offers[$j])) {
                     $offer = $offers[$j];
+                    /** @var $offer Article */
                     $url = City::getSubDomainUrl($city) . '/articles/' . $offer['alias'] . '/';
 
-                    $content = "<header><h1>" . $offer['lang']['title'] . "</h1></header>" .
+                    $content = "<header>" .
+                        "<h1>" . $offer['lang']['title'] . "</h1>" .
+                        "<figure><img src=\"" . Article::getImage($offer['image_link']) . "\"/></figure>" .
+                        "</header>" .
                         "<article>" . $offer['lang']['content'] . "</article>";
 
                     $str = "\t<item turbo=\"true\">" . PHP_EOL .
