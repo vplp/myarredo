@@ -244,24 +244,4 @@ class Article extends ActiveRecord
 
         return $image;
     }
-
-    /**
-     * @param string $image_link
-     * @return string|null
-     */
-    public static function getImage($image_link = '')
-    {
-        $module = Yii::$app->getModule('articles');
-
-        $path = $module->getArticleUploadPath();
-        $url = $module->getArticleUploadUrl();
-
-        $image = null;
-
-        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-            $image = Yii::$app->getRequest()->hostInfo . $url . '/' . $image_link;
-        }
-
-        return $image;
-    }
 }

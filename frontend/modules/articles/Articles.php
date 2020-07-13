@@ -7,7 +7,8 @@ namespace frontend\modules\articles;
  *
  * @package frontend\modules\articles
  */
-class Articles extends \common\modules\articles\Articles {
+class Articles extends \common\modules\articles\Articles
+{
     /**
      * Number of elements in GridView
      * @var int

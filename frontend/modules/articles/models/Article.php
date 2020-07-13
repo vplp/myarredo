@@ -127,4 +127,43 @@ class Article extends \common\modules\articles\models\Article
     {
         return (new search\Article())->search($params);
     }
+
+    /**
+     * @param string $image_link
+     * @return bool
+     */
+    public static function isImage($image_link = '')
+    {
+        $module = Yii::$app->getModule('articles');
+
+        $path = $module->getArticleUploadPath();
+
+        $image = false;
+
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = true;
+        }
+
+        return $image;
+    }
+
+    /**
+     * @param string $image_link
+     * @return string|null
+     */
+    public static function getImageThumb($image_link = '')
+    {
+        $module = Yii::$app->getModule('articles');
+
+        $path = $module->getArticleUploadPath();
+        $url = $module->getArticleUploadUrl();
+
+        $image = null;
+
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = Yii::$app->getRequest()->hostInfo . $url . '/' . $image_link;
+        }
+
+        return $image;
+    }
 }
