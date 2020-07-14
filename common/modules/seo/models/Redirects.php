@@ -3,9 +3,7 @@
 namespace common\modules\seo\models;
 
 use Yii;
-//
 use thread\app\base\models\ActiveRecord;
-//
 use common\modules\seo\Seo as SeoModule;
 
 /**
