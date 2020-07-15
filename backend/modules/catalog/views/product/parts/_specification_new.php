@@ -24,8 +24,8 @@ echo $form->text_line($model, 'volume');
             </tr>
             <?php foreach (Specification::findBase()->andWhere(['parent_id' => $spec['id']])->undeleted()->all() as $parentSpec) { ?>
                 <tr>
-                    <td><span style="padding-left: 20px;"><?= $parentSpec['lang']['title'] ?></span></td>
-                    <td>
+                    <td><span><?= $parentSpec['lang']['title'] ?></span></td>
+                    <td class="form-inline">
                         <?php
                         $relationModel = ProductRelSpecification::findBase()
                             ->andWhere([
@@ -39,7 +39,7 @@ echo $form->text_line($model, 'volume');
                                 'text',
                                 'SpecificationValue[' . $parentSpec->id . '][val]',
                                 (isset($relationModel)) ? $relationModel->val : '',
-                                ['class' => 'form-control i-checks']
+                                ['class' => 'form-control i-checks', 'style' => 'width: 70px;']
                             );
 
                             for ($n = 2; $n <= 10; $n++) {
@@ -49,7 +49,7 @@ echo $form->text_line($model, 'volume');
                                     'text',
                                     'SpecificationValue[' . $parentSpec->id . '][' . $field . ']',
                                     (isset($relationModel)) ? $relationModel->$field : '',
-                                    ['class' => 'form-control i-checks']
+                                    ['class' => 'form-control i-checks', 'style' => 'width: 70px;']
                                 );
                             }
                         } elseif ($parentSpec['type'] == 1) {
@@ -57,7 +57,7 @@ echo $form->text_line($model, 'volume');
                                 'text',
                                 'SpecificationValue[' . $parentSpec->id . ']',
                                 (isset($relationModel)) ? $relationModel->val : '',
-                                ['class' => 'form-control i-checks']
+                                ['class' => 'form-control i-checks', 'style' => 'width: 70px;']
                             );
                         } else {
                             echo Html::checkbox(
