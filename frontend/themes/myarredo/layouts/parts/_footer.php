@@ -9,6 +9,8 @@ use frontend\modules\location\widgets\Cities;
 use frontend\modules\user\widgets\topBarInfo\topBarInfo;
 use frontend\modules\user\widgets\partner\PartnerInfo;
 use frontend\modules\forms\widgets\FormFeedback;
+use frontend\modules\sys\widgets\lang\LangSwitch;
+use frontend\modules\location\widgets\ChangeCurrency;
 
 $bundle = AppAsset::register($this);
 
@@ -51,6 +53,20 @@ $bundle = AppAsset::register($this);
         } else if (Yii::$app->city->domain != 'com') {
             echo Cities::widget();
         } ?>
+
+        <div class="footer-navpanel">
+            <div class="bot-list">
+                <div class="one-list-cont lang-cont">
+                    <?= LangSwitch::widget(['view' => 'lang_switch_mobile']) ?>
+                </div>
+
+                <?php if (in_array(Yii::$app->city->domain, ['ru'])) { ?>
+                    <div class="one-list-cont curency-cont">
+                        <?= ChangeCurrency::widget(['view' => 'change_currency_mobile']) ?>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
 
         <div class="bot-footer">
             <div class="container large-container">
