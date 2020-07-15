@@ -155,10 +155,22 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
         }
 
         $result = self::getDb()->cache(function ($db) use ($query) {
+            $minArrayVal[] = 'MIN(case when ' . self::tableName() . '.val = 0 then 9999 else ' . self::tableName() . '.val end)';
+            for ($n = 2; $n <= 10; $n++) {
+                $field = "val$n";
+                $minArrayVal[] = 'MIN(case when ' . self::tableName() . '.' . $field . ' = 0 then 9999 else ' . self::tableName() . '.' . $field . ' end)';
+            }
+
+            $maxArrayVal[] = 'MAX(' . self::tableName() . '.val)';
+            for ($n = 2; $n <= 10; $n++) {
+                $field = "val$n";
+                $maxArrayVal[] = 'MAX(' . self::tableName() . '.' . $field . ')';
+            }
+
             return $query
                 ->select([
-                    'max(' . self::tableName() . '.val) as max',
-                    'min(' . self::tableName() . '.val) as min'
+                    'GREATEST(' . implode(', ', $maxArrayVal) . ') as max',
+                    'LEAST(' . implode(', ', $minArrayVal) . ') as min'
                 ])
                 ->asArray()
                 ->one();
