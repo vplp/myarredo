@@ -70,7 +70,7 @@ $params = Yii::$app->catalogFilter->params;
                             'javascript:void(0);',
                             ['class' => 'js-filter-btn']
                         ) ?>
-                        <div class="clearfix">
+                        <div class="row-mob clearfix">
                             <div class="col-md-3 col-lg-3 js-filter-modal ajax-get-filter"></div>
                             <div class="col-md-9 col-lg-9">
                                 <div class="cont-area">

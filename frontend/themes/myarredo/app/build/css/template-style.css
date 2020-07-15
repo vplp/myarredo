@@ -6761,7 +6761,8 @@ h1 {
   .sale .left-side, .sale .right-side {
     width: 100%; }
   .container {
-    width: 300px; }
+    width: 100%; 
+  }
   .container.mob-fulwidth {
     width: 100%;
   }
@@ -7409,6 +7410,10 @@ h1 {
   }
   .cart-modal .modal-footer .btn-goods {
     max-width: 194px;
+  }
+  .row-mob {
+    margin-left: -15px;
+    margin-right: -15px;
   }
 }
 .tomassy-page .fact-slider {
