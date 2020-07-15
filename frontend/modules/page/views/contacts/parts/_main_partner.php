@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+
 //
 use frontend\modules\forms\widgets\FormFeedback;
 use frontend\modules\user\widgets\partner\MainPartnerMap;
@@ -24,9 +25,25 @@ $mainPartner = array_shift($partners);
     <div class="adress-mainpart">
         <div class="partner-adressbox">
             <?php if (isset($mainPartner->profile->lang->address) && $mainPartner->profile->lang->address != '') { ?>
-                <div class="adres"  itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                <div class="adres" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
                     <span class="for-adress"><?= Yii::t('app', 'Address') ?>:</span>
-                    <span itemprop="streetAddress"><?= $mainPartner->profile->lang->address ?? '' ?></span>
+                    <?php if ($mainPartner->profile->latitude && $mainPartner->profile->longitude) {
+                        echo Html::a(
+                            Html::tag(
+                                'span',
+                                $mainPartner->profile->lang->address ?? '',
+                                ['class' => 'streetAddress']
+                            ),
+                            'http://www.google.com/maps/place/' . $mainPartner->profile->latitude . ',' . $mainPartner->profile->longitude,
+                            ['target' => '_blank']
+                        );
+                    } else {
+                        echo Html::tag(
+                            'span',
+                            $mainPartner->profile->lang->address ?? '',
+                            ['class' => 'streetAddress']
+                        );
+                    } ?>
                     <br>
                     <span itemprop="addressLocality">
                         <?= isset($mainPartner->profile->city)
@@ -62,7 +79,23 @@ $mainPartner = array_shift($partners);
 
                 <div class="adres" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
                     <span class="for-adress"><?= Yii::t('app', 'Address') ?>:</span>
-                    <span itemprop="streetAddress"><?= $mainPartner->profile->lang->address2 ?? '' ?></span>
+                    <?php if ($mainPartner->profile->latitude2 && $mainPartner->profile->longitude2) {
+                        echo Html::a(
+                            Html::tag(
+                                'span',
+                                $mainPartner->profile->lang->address2 ?? '',
+                                ['class' => 'streetAddress']
+                            ),
+                            'http://www.google.com/maps/place/' . $mainPartner->profile->latitude2 . ',' . $mainPartner->profile->longitude2,
+                            ['target' => '_blank']
+                        );
+                    } else {
+                        echo Html::tag(
+                            'span',
+                            $mainPartner->profile->lang->address2 ?? '',
+                            ['class' => 'streetAddress']
+                        );
+                    } ?>
                     <br>
                     <span itemprop="addressLocality">
                         <?= isset($mainPartner->profile->city)

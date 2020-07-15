@@ -7,7 +7,6 @@ use yii\filters\AccessControl;
 use yii\helpers\{
     ArrayHelper, Url
 };
-//
 use thread\app\base\controllers\BackendController;
 use thread\actions\{
     Update, Create
@@ -124,6 +123,14 @@ class FactoryCatalogsFilesController extends BackendController
                 'unique' => false
             ],
             'one-file-delete' => [
+                'class' => DeleteAction::class,
+                'path' => $this->module->getFactoryCatalogsFilesUploadPath()
+            ],
+            'fileupload' => [
+                'class' => UploadAction::class,
+                'path' => $this->module->getFactoryCatalogsFilesUploadPath()
+            ],
+            'filedelete' => [
                 'class' => DeleteAction::class,
                 'path' => $this->module->getFactoryCatalogsFilesUploadPath()
             ],

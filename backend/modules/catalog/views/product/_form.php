@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html
 };
+
 //
 use backend\widgets\Tabs;
 use backend\app\bootstrap\ActiveForm;
@@ -57,9 +58,17 @@ use backend\modules\catalog\models\{
                 'modelLang' => $modelLang
             ])
         ],
+//        [
+//            'label' => 'Характеристики',
+//            'content' => $this->render('parts/_specification', [
+//                'form' => $form,
+//                'model' => $model,
+//                'modelLang' => $modelLang
+//            ])
+//        ],
         [
             'label' => 'Характеристики',
-            'content' => $this->render('parts/_specification', [
+            'content' => $this->render('parts/_specification_new', [
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang

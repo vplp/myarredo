@@ -403,7 +403,15 @@ class Product extends ActiveRecord implements iProduct
                         $model->setScenario('backend');
                         $model->catalog_item_id = $this->id;
                         $model->specification_id = $specification_id;
-                        $model->val = $val;
+
+                        if (in_array($specification_id, [6, 7, 8, 42]) && is_array($val)) {
+                            foreach ($val as $k => $v) {
+                                $model->{$k} = $v;
+                            }
+                        } else {
+                            $model->val = $val;
+                        }
+
                         $model->save();
                     }
                 }

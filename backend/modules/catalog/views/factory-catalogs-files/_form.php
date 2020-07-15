@@ -25,6 +25,8 @@ $this->context->actionListLinkStatus = Url::to(
 
 <?= Html::tag('h2', Yii::t('app', 'Catalogs')); ?>
 
+<?= $form->field($model, 'image_link')->imageOne($model->getImageLink()) ?>
+
 <?= $form->field($model, 'file_link')->fileInputWidget(
     $model->getFileLink(),
     ['accept' => 'application/pdf', 'maxFileSize' => 0]

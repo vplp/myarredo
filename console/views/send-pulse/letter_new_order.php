@@ -50,7 +50,7 @@ if (in_array($order->lang, ['ru-RU'])) {
                 if (Product::isImage($item->product['image_link'])) {
                     echo Html::img(
                         Product::getImage($item->product['image_link']),
-                        ['class' => 'width: 140px; max-height: 100px;']
+                        ['style' => 'width: 140px; max-height: 100px;']
                     );
                 }
 

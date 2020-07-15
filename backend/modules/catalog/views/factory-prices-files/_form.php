@@ -3,9 +3,8 @@
 use yii\helpers\{
     Html, Url
 };
-use backend\app\bootstrap\ActiveForm;
-
 use kartik\file\FileInput;
+use backend\app\bootstrap\ActiveForm;
 
 /**
  * @var $form \backend\app\bootstrap\ActiveForm
@@ -26,6 +25,8 @@ $this->context->actionListLinkStatus = Url::to(
 <?= $form->submit($model, $this) ?>
 
 <?= Html::tag('h2', Yii::t('app', 'Prices')); ?>
+
+<?= $form->field($model, 'image_link')->imageOne($model->getImageLink()) ?>
 
 <?= $form->field($model, 'file_link')->fileInputWidget(
     $model->getFileLink(),
