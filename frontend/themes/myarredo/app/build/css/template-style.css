@@ -849,31 +849,38 @@ h1 {
 .footer-navpanel .curency-cont .one-list:after {
   right: 18px;
 }
-  .mobile-header .mobile-city-list {
-    margin: 0;
-    padding: 10px 0 10px 0;
-    list-style: none;
-    max-height: 350px;
-    overflow-y: auto;
-    display: none; }
-    .mobile-header .mobile-city-list li {
-      height: 25px;
-      padding-left: 15px; }
-      .mobile-header .mobile-city-list li.active a {
-        color: #448339;
-        position: relative; }
-        .mobile-header .mobile-city-list li.active a:after {
-          content: "\f00c";
-          font-family: "FontAwesome";
-          position: absolute;
-          top: 4px;
-          right: 15px; }
-    .mobile-header .mobile-city-list a {
-      color: #535351;
-      display: flex;
-      align-items: center;
-      height: 100%;
-      padding-right: 35px; }
+.mobile-header .mobile-city-list {
+  margin: 0;
+  padding: 10px 0 10px 0;
+  list-style: none;
+  max-height: 350px;
+  overflow-y: auto;
+  display: none; 
+}
+.mobile-header .mobile-city-list li {
+  min-height: 25px;
+  padding-left: 15px; 
+  padding-top: 3px;
+}
+.mobile-header .mobile-city-list li.active a {
+  color: #448339;
+  position: relative; 
+}
+.mobile-header .mobile-city-list li.active a:after {
+  content: "\f00c";
+  font-family: "FontAwesome";
+  position: absolute;
+  top: 4px;
+  right: 15px; 
+}
+.mobile-header .mobile-city-list a {
+  color: #535351;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-right: 35px; 
+}
 .mobile-header .mobile-lang-list,
 .footer-navpanel .mobile-lang-list {
   margin: 0;
@@ -887,10 +894,12 @@ h1 {
 .footer-navpanel .curency-cont .mobile-lang-list {
   position: absolute;
   top: 52px;
-  left: 0;
   z-index: 99;
   background-color: #ffffff;
   padding-right: 14px;
+}
+.footer-navpanel .lang-cont .mobile-lang-list {
+  right: 10px;
 }
 .footer-navpanel .curency-cont .mobile-lang-list {
   left: 2px;
