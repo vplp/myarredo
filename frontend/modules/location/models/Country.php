@@ -4,6 +4,7 @@ namespace frontend\modules\location\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+
 //
 use frontend\modules\catalog\models\{
     Sale, Product, ItalianProduct, Factory
@@ -63,6 +64,10 @@ class Country extends \common\modules\location\models\Country
      */
     public function getCities()
     {
+        $order[] = City::tableName() . '.`id` = 4 DESC';
+        $order[] = City::tableName() . '.`id` = 5 DESC';
+        $order[] = CityLang::tableName() . '.`title`';
+
         return $this
             ->hasMany(City::class, ['country_id' => 'id'])
             ->andFilterWhere([
@@ -70,7 +75,7 @@ class Country extends \common\modules\location\models\Country
                 City::tableName() . '.deleted' => '0',
             ])
             ->innerJoinWith(['lang'])
-            ->orderBy(CityLang::tableName() . '.title');
+            ->orderBy(implode(',', $order));
     }
 
     /**

@@ -88,9 +88,13 @@ class City extends \thread\modules\location\models\City
      */
     public static function findBase()
     {
+        $order[] = self::tableName() . '.`id` = 4 DESC';
+        $order[] = self::tableName() . '.`id` = 5 DESC';
+        $order[] = CityLang::tableName() . '.`title`';
+
         return self::find()
             ->joinWith(['lang'])
-            ->orderBy(CityLang::tableName() . '.title');
+            ->orderBy(implode(',', $order));
     }
 
     /**

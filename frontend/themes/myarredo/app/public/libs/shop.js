@@ -3,7 +3,7 @@ var baseUrl = $("base").attr("href");
 /**
  * Кнопка запросить цену
  */
-$('.request-price').on('click', function () {
+$('.ajax-request-price').on('click', function () {
     var product_id = $(this).data('id'),
         count = 1;
 
