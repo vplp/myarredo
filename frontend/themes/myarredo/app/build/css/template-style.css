@@ -656,6 +656,10 @@ h1 {
   } */
    /* ----------------конец Стили для новогоднего украшения логотипа----------------- */
 
+   .mobile-header.open {
+     z-index: 1000;
+     background-color: #ffffff;
+   }
   .mobile-header .phone-container {
     padding-left: 22px;
     position: relative;
@@ -750,7 +754,7 @@ h1 {
       list-style: none;
       padding-left: 0;
       padding-top: 0;
-      margin-bottom: 50px; 
+      margin-bottom: 30px; 
     }
       .mobile-header .mobile-menu .menu-list>li {
         /* height: 42px; */
@@ -772,37 +776,79 @@ h1 {
         max-width: 100%;
         height: auto;
         width: auto; }
-  .mobile-header .one-list-cont {
-    border-bottom: 1px solid #FFFFFF; }
-    .mobile-header .one-list-cont:last-child {
-      border-bottom: none; }
-  .mobile-header .one-list {
-    background: #EEECE4;
-    height: 63px;
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
-    font-size: 16px;
-    position: relative; }
-    .mobile-header .one-list .fa {
-      margin-right: 13px;
-      color: #BDBCB3;
-      font-size: 18px; }
-    .mobile-header .one-list .fa-map-marker {
-      font-size: 23px; }
-    .mobile-header .one-list .fa-chevron-down {
-      color: #448339;
-      font-size: 14px; }
-    .mobile-header .one-list:after {
-      content: "\f078";
-      color: #448339;
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: "FontAwesome";
-      font-size: 13px;
-      transition: all 0.2s ease-out; }
+.mobile-header .one-list-cont {
+  border-bottom: 1px solid #FFFFFF; 
+}
+.mobile-header .one-list-cont:last-child {
+  border-bottom: none; 
+}
+.mobile-header .one-list,
+.footer-navpanel .one-list {
+  background: #EEECE4;
+  height: 63px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  font-size: 16px;
+  position: relative; 
+}
+.footer-navpanel .one-list {
+  background-color: #E3E2E0;
+}
+.footer-navpanel .lang-cont .one-list {
+  padding-right: 26px;
+  justify-content: flex-end;
+}
+.footer-navpanel .curency-cont .one-list {
+  max-width: 78px;
+  padding-left: 10px;
+}
+.footer-navpanel .lang-cont .one-list:before {
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 38px;
+  background-color: #BDBCB3;
+  position: absolute;
+  top: 12px;
+  right: 0;
+}
+.mobile-header .one-list .fa,
+.footer-navpanel .one-list .fa {
+  margin-right: 13px;
+  color: #BDBCB3;
+  font-size: 18px; 
+}
+.footer-navpanel .lang-cont .one-list .fa {
+  margin-right: 6px;
+}
+.mobile-header .one-list .fa-map-marker,
+.footer-navpanel .one-list .fa-map-marker {
+  font-size: 23px; 
+}
+.mobile-header .one-list .fa-chevron-down,
+.footer-navpanel .one-list .fa-chevron-down {
+  color: #448339;
+  font-size: 14px; 
+}
+.mobile-header .one-list:after,
+.footer-navpanel .one-list:after {
+  content: "\f078";
+  color: #448339;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: "FontAwesome";
+  font-size: 13px;
+  transition: all 0.2s ease-out; 
+}
+.footer-navpanel .lang-cont .one-list:after {
+  right: 8px;
+}
+.footer-navpanel .curency-cont .one-list:after {
+  right: 18px;
+}
   .mobile-header .mobile-city-list {
     margin: 0;
     padding: 10px 0 10px 0;
@@ -828,25 +874,45 @@ h1 {
       align-items: center;
       height: 100%;
       padding-right: 35px; }
-  .mobile-header .mobile-lang-list {
-    margin: 0;
-    padding-left: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    list-style: none;
-    display: none; }
-    .mobile-header .mobile-lang-list .fa {
-      color: #BDBCB3;
-      font-size: 18px;
-      margin-right: 10px; }
-    .mobile-header .mobile-lang-list li {
-      height: 30px;
-      padding-left: 15px; }
-    .mobile-header .mobile-lang-list a {
-      color: #535351;
-      display: flex;
-      align-items: center;
-      height: 100%; }
+.mobile-header .mobile-lang-list,
+.footer-navpanel .mobile-lang-list {
+  margin: 0;
+  padding-left: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  list-style: none;
+  display: none; 
+}
+.footer-navpanel .lang-cont .mobile-lang-list,
+.footer-navpanel .curency-cont .mobile-lang-list {
+  position: absolute;
+  top: 52px;
+  left: 0;
+  z-index: 99;
+  background-color: #ffffff;
+  padding-right: 14px;
+}
+.footer-navpanel .curency-cont .mobile-lang-list {
+  left: 2px;
+}
+.mobile-header .mobile-lang-list .fa,
+.footer-navpanel .mobile-lang-list .fa {
+  color: #BDBCB3;
+  font-size: 18px;
+  margin-right: 10px; 
+}
+.mobile-header .mobile-lang-list li,
+.footer-navpanel .mobile-lang-list li {
+  height: 30px;
+  padding-left: 15px; 
+}
+.mobile-header .mobile-lang-list a,
+.footer-navpanel .mobile-lang-list a {
+  color: #535351;
+  display: flex;
+  align-items: center;
+  height: 100%; 
+}
 
 /* New Mobile Menu Style */
 .mobile-menu .navigation {
@@ -1004,6 +1070,19 @@ h1 {
   color: #898989;
   line-height: 14px;
 }
+.mobile-openbg {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 999;
+}
+.mobile-header.open+.mobile-openbg {
+  display: block;
+}
 @media (max-width: 480px) {
   .mobile-menu .navigation li.jshaslist .list-level>li>a {
     font-size: 4.2vw;
@@ -1035,14 +1114,33 @@ h1 {
   .footer .cont-flex {
     height: 660px;
     display: flex; }
-  .footer .cont-info {
-    width: 620px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-image: url("../img/cont-bg.jpg");
-    padding-top: 80px; 
-  }
+.footer .cont-info {
+  width: 620px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("../img/cont-bg.jpg");
+  padding-top: 80px; 
+}
+.footer-navpanel {
+  display: none;
+  background-color: #E3E2E0;
+  padding-top: 15px;
+}
+.footer-navpanel .lang-cont,
+.footer-navpanel .curency-cont {
+  position: relative;
+}
+.footer-navpanel>.bot-list {
+  display: flex;
+  justify-content: center;
+  background-color: #E3E2E0;
+  max-width: 270px;
+  margin: 0 auto;
+}
+.footer-navpanel>.bot-list .one-list-cont {
+  min-width: 50%;
+}
   .footer .cont-info.feedback-container {
     padding-top: 35px;
   }
@@ -1190,10 +1288,11 @@ h1 {
     .footer .cities-list .list-of-cities {
       padding-bottom: 50px;
       border-bottom: 1px solid #BDBCB3; }
-  .footer .bot-footer {
-    padding-top: 35px;
-    padding-bottom: 40px;
-    background: #E3E2E0; }
+.footer .bot-footer {
+  padding-top: 35px;
+  padding-bottom: 40px;
+  background: #E3E2E0; 
+}
   .footer .footer-cont {
     display: flex;
     align-items: flex-start;
@@ -6575,7 +6674,14 @@ h1 {
     .about-main .partners-best .one-item .item-text {
       width: 320px;
       margin-left: auto;
-      margin-right: auto; } }
+      margin-right: auto; } 
+    .footer .bot-footer {
+      padding-top: 15px;
+    }
+    .footer-navpanel {
+      display: block;
+    }
+  }
 
 @media screen and (max-width: 540px) {
   header div.city-select-cont .links-cont li {

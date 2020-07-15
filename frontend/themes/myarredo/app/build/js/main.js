@@ -782,7 +782,7 @@ $(document).ready(function () {
 
     $('.js-toggle-list').on('click', function () {
         $(this).toggleClass('opened');
-        $(this).parent().find('.js-list-container').slideToggle();
+        $(this).parent().find('.js-list-container').toggle();
     });
 
     $('.js-select-city').on('click', function () {

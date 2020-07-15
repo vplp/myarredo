@@ -333,16 +333,6 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             echo CatalogMenu::widget(['view' => 'catalog_menu_mobile']);
         } ?>
 
-        <div class="bot-list">
-            <div class="one-list-cont">
-                <?= LangSwitch::widget(['view' => 'lang_switch_mobile']) ?>
-            </div>
-
-            <?php if (in_array(Yii::$app->city->domain, ['ru'])) { ?>
-                <div class="one-list-cont">
-                    <?= ChangeCurrency::widget(['view' => 'change_currency_mobile']) ?>
-                </div>
-            <?php } ?>
-        </div>
     </div>
 </div>
+<div class="mobile-openbg"></div>
