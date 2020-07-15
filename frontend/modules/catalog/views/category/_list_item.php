@@ -58,9 +58,9 @@ use frontend\modules\catalog\models\{
     <?php } ?>
 
     <object class="btn-block">
-        <div class="ajax-request-price more-info" data-id=<?= $model['id'] ?>>
+        <button class="ajax-request-price more-info" data-id=<?= $model['id'] ?>>
             <?= Yii::t('app', 'Уточнить цену') ?>
-        </div>
+        </button>
     </object>
 </div>
 
