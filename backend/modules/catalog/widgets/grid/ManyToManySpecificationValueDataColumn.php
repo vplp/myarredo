@@ -2,9 +2,8 @@
 
 namespace backend\modules\catalog\widgets\grid;
 
-use yii\grid\DataColumn;
 use yii\helpers\Html;
-//
+use yii\grid\DataColumn;
 use backend\modules\catalog\models\Specification;
 
 /**
@@ -92,9 +91,18 @@ class ManyToManySpecificationValueDataColumn extends DataColumn
         if ($model->parent_id == 0) {
             return null;
         } elseif ($model->type == 1) {
-            return Html::input('text', 'SpecificationValue['.$model->id.']', (isset($relationModel)) ? $relationModel->{$this->attributeRow} : '', $dataAttributes);
+            return Html::input(
+                'text',
+                'SpecificationValue[' . $model->id . ']',
+                (isset($relationModel)) ? $relationModel->{$this->attributeRow} : '',
+                $dataAttributes
+            );
         } else {
-            return Html::checkbox('SpecificationValue['.$model->id.']', (isset($relationModel)) ? $relationModel->{$this->attributeRow} : '', $dataAttributes);
+            return Html::checkbox(
+                'SpecificationValue[' . $model->id . ']',
+                (isset($relationModel)) ? $relationModel->{$this->attributeRow} : '',
+                $dataAttributes
+            );
         }
     }
 }

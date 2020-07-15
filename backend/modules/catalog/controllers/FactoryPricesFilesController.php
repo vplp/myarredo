@@ -7,7 +7,6 @@ use yii\filters\AccessControl;
 use yii\helpers\{
     ArrayHelper, Url
 };
-//
 use thread\app\base\controllers\BackendController;
 use thread\actions\{
     Update, Create
@@ -126,6 +125,14 @@ class FactoryPricesFilesController extends BackendController
             'one-file-delete' => [
                 'class' => DeleteAction::class,
                 'path' => $this->module->getFactoryPricesFilesUploadPath()
+            ],
+            'fileupload' => [
+                'class' => UploadAction::class,
+                'path' => $this->module->getFactoryPricesFilesUploadPath() . '/thumb'
+            ],
+            'filedelete' => [
+                'class' => DeleteAction::class,
+                'path' => $this->module->getFactoryPricesFilesUploadPath() . '/thumb'
             ],
         ]);
     }

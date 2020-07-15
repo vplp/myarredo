@@ -1,11 +1,10 @@
 <?php
 
+use backend\widgets\TreeGrid;
 use backend\modules\catalog\models\{
     ProductRelSpecification, Specification
 };
 use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;
-//
-use backend\widgets\TreeGrid;
 
 /**
  * @var \backend\modules\catalog\models\Product $model
@@ -13,13 +12,10 @@ use backend\widgets\TreeGrid;
  * @var \backend\app\bootstrap\ActiveForm $form
  */
 
-?>
+echo $form->text_line($model, 'volume');
 
-<?= $form->text_line($model, 'volume') ?>
-
-<?php if (!$model->isNewRecord): ?>
-
-    <?= TreeGrid::widget([
+if (!$model->isNewRecord) {
+    echo TreeGrid::widget([
         'dataProvider' => (new Specification())->search(Yii::$app->request->queryParams),
         'keyColumnName' => 'id',
         'parentColumnName' => 'parent_id',
@@ -40,6 +36,5 @@ use backend\widgets\TreeGrid;
                 'namespace' => ProductRelSpecification::class,
             ],
         ]
-    ]); ?>
-
-<?php endif; ?>
+    ]);
+}

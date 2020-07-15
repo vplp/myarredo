@@ -108,7 +108,7 @@ class FactoryFile extends ActiveRecord
             'discount' => Yii::t('app', 'Discount'),
             'title' => Yii::t('app', 'Title'),
             'file_link' => Yii::t('app', 'File'),
-            'image_link',
+            'image_link' => Yii::t('app', 'Image link'),
             'file_type',
             'file_size',
             'position' => Yii::t('app', 'Position'),

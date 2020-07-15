@@ -108,8 +108,8 @@ class FactoryPricesFiles extends FactoryFile
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
 
-        $path = $module->getFactoryCatalogsFilesUploadPath();
-        $url = $module->getFactoryCatalogsFilesUploadUrl();
+        $path = $module->getFactoryPricesFilesUploadPath();
+        $url = $module->getFactoryPricesFilesUploadUrl();
 
         $image = null;
 
