@@ -173,10 +173,10 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                 foreach ($model->catalogsFiles as $catalogFile) {
                     echo Html::beginTag('li') .
                         Html::a(
-                        /*($catalogFile->image_link
-                            ? Html::img($catalogFile->getImageLink())
-                            : ''
-                        ) .*/
+                            ($catalogFile->image_link
+                                ? Html::img($catalogFile->getImageLink())
+                                : ''
+                            ) .
                             Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
                             $catalogFile->getFileLink(),
                             ['target' => '_blank', 'class' => 'click-on-factory-file', 'data-id' => $catalogFile->id]
