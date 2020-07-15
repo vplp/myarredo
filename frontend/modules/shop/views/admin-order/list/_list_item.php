@@ -19,8 +19,8 @@ use frontend\modules\catalog\models\{
 
 <div class="hidden-order-in">
     <div class="flex-product">
-        <?php if ($modelOrder->items) { ?>
-            <?php foreach ($modelOrder->items as $orderItem) { ?>
+        <?php if ($modelOrder->items) {
+            foreach ($modelOrder->items as $orderItem) { ?>
                 <div class="basket-item-info">
 
                     <div class="img-cont">
@@ -100,8 +100,10 @@ use frontend\modules\catalog\models\{
                         <?php } ?>
                     </div>
                 </div>
-            <?php } ?>
-        <?php } ?>
+            <?php }
+        } else {
+            echo Yii::t('app', 'Клиент оставил данную заявку, так как не нашел то что искал на сайте.');
+        }  ?>
 
         <?php if ($modelOrder->image_link) { ?>
             <div class="basket-item-info">

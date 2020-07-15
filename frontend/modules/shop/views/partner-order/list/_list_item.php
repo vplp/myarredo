@@ -4,6 +4,7 @@ use yii\helpers\{
     Html, Url
 };
 use yii\widgets\ActiveForm;
+
 //
 use frontend\modules\shop\models\{
     Order, OrderItem, OrderAnswer
@@ -30,139 +31,142 @@ if ($user->profile->getPossibilityToAnswer($modelOrder->country_id)) { ?>
     <div class="hidden-order-in ordersanswer-box">
         <div class="flex-product orderanswer-cont">
 
-            <?php foreach ($modelOrder->items as $orderItem) {
-                $dealers_can_answer[] = $orderItem->product->factory
-                    ? $orderItem->product->factory->dealers_can_answer
-                    : 0;
+            <?php if ($modelOrder->items) {
+                foreach ($modelOrder->items as $orderItem) {
+                    $dealers_can_answer[] = $orderItem->product->factory
+                        ? $orderItem->product->factory->dealers_can_answer
+                        : 0;
 
-                $factoryDealersId = $orderItem->product->factory
-                    ? array_merge($factoryDealersId, $orderItem->product->factory->getFactoryDealersIds())
-                    : $factoryDealersId;
-                ?>
-                <div class="basket-item-info">
+                    $factoryDealersId = $orderItem->product->factory
+                        ? array_merge($factoryDealersId, $orderItem->product->factory->getFactoryDealersIds())
+                        : $factoryDealersId;
+                    ?>
+                    <div class="basket-item-info">
 
-                    <div class="img-cont">
-                        <?= Html::a(
-                            Html::img(Product::getImageThumb($orderItem->product['image_link'])),
-                            Product::getUrl($orderItem->product['alias']),
-                            ['target' => '_blank']
-                        ); ?>
-                    </div>
-                    <table class="char" width="100%">
-                        <tr>
-                            <td colspan="2">
-                                <?= Html::a(
-                                    $orderItem->product['lang']['title'],
-                                    Product::getUrl($orderItem->product['alias']),
-                                    ['class' => 'productlink']
-                                ); ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
+                        <div class="img-cont">
+                            <?= Html::a(
+                                Html::img(Product::getImageThumb($orderItem->product['image_link'])),
+                                Product::getUrl($orderItem->product['alias']),
+                                ['target' => '_blank']
+                            ); ?>
+                        </div>
+                        <table class="char" width="100%">
+                            <tr>
+                                <td colspan="2">
+                                    <?= Html::a(
+                                        $orderItem->product['lang']['title'],
+                                        Product::getUrl($orderItem->product['alias']),
+                                        ['class' => 'productlink']
+                                    ); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                 <span class="for-ordertable">
                                     <?= Yii::t('app', 'Артикул') ?>
                                 </span>
-                            </td>
-                            <td>
-                                <?= $orderItem->product['article'] ?>
-                            </td>
-                        </tr>
-                        <tr class="noborder">
-                            <td colspan="2" class="spec-pad">
+                                </td>
+                                <td>
+                                    <?= $orderItem->product['article'] ?>
+                                </td>
+                            </tr>
+                            <tr class="noborder">
+                                <td colspan="2" class="spec-pad">
                                 <span class="for-ordertable">
                                     <?= Yii::t('app', 'Factory') ?>
                                 </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" class="spec-pad2">
-                                <?= Html::a(
-                                    $orderItem->product['factory']['title'],
-                                    Factory::getUrl($orderItem->product['factory']['alias'])
-                                ); ?>
-                            </td>
-                        </tr>
-                        <tr class="noborder">
-                            <td colspan="2" class="spec-pad">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="spec-pad2">
+                                    <?= Html::a(
+                                        $orderItem->product['factory']['title'],
+                                        Factory::getUrl($orderItem->product['factory']['alias'])
+                                    ); ?>
+                                </td>
+                            </tr>
+                            <tr class="noborder">
+                                <td colspan="2" class="spec-pad">
                             <span class="for-ordertable">
                                 <?= Yii::t('app', 'Цена для клиента') ?>
                             </span>
-                            </td>
-                        </tr>
-                        <tr class="orderlist-price-tr">
-                            <td colspan="2">
-                                <?= $form
-                                    ->field($orderItem->orderItemPrice, 'product_id')
-                                    ->input('hidden', [
-                                        'name' => 'OrderItemPrice[' . $orderItem->product_id . '][product_id]',
-                                        'class' => 'order-productid-hfield'
-                                    ])
-                                    ->label(false);
-                                ?>
-                                <?= $form
-                                    ->field($orderItem->orderItemPrice, 'price')
-                                    ->input('text', [
-                                        'name' => 'OrderItemPrice[' . $orderItem->product_id . '][price]',
-                                        'value' => $orderItem->orderItemPrice->price ?? 0,
-                                        'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true,
-                                        'class' => 'orderlist-price-field'
-                                    ])
-                                    ->label(false);
-                                ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" class="order-list-td">
-                                <?= $form
-                                    ->field($orderItem->orderItemPrice, 'out_of_production')
-                                    ->checkbox([
-                                        'id' => 'orderitemprice-out_of_production' . $orderItem->id,
-                                        'name' => 'OrderItemPrice[' . $orderItem->product_id . '][out_of_production]',
-                                        'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true,
-                                        'class' => 'field-orderitemprice-out_of_production outof-prod-checkbox'
-                                    ], false);
-                                ?>
-                            </td>
-                        </tr>
-                    </table>
+                                </td>
+                            </tr>
+                            <tr class="orderlist-price-tr">
+                                <td colspan="2">
+                                    <?= $form
+                                        ->field($orderItem->orderItemPrice, 'product_id')
+                                        ->input('hidden', [
+                                            'name' => 'OrderItemPrice[' . $orderItem->product_id . '][product_id]',
+                                            'class' => 'order-productid-hfield'
+                                        ])
+                                        ->label(false);
+                                    ?>
+                                    <?= $form
+                                        ->field($orderItem->orderItemPrice, 'price')
+                                        ->input('text', [
+                                            'name' => 'OrderItemPrice[' . $orderItem->product_id . '][price]',
+                                            'value' => $orderItem->orderItemPrice->price ?? 0,
+                                            'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true,
+                                            'class' => 'orderlist-price-field'
+                                        ])
+                                        ->label(false);
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="order-list-td">
+                                    <?= $form
+                                        ->field($orderItem->orderItemPrice, 'out_of_production')
+                                        ->checkbox([
+                                            'id' => 'orderitemprice-out_of_production' . $orderItem->id,
+                                            'name' => 'OrderItemPrice[' . $orderItem->product_id . '][out_of_production]',
+                                            'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true,
+                                            'class' => 'field-orderitemprice-out_of_production outof-prod-checkbox'
+                                        ], false);
+                                    ?>
+                                </td>
+                            </tr>
+                        </table>
 
-                    <?php if (!Yii::$app->getUser()->isGuest && $user->profile->isPdfAccess()) { ?>
-                        <div class="downloads">
+                        <?php if (!Yii::$app->getUser()->isGuest && $user->profile->isPdfAccess()) { ?>
+                            <div class="downloads">
 
-                            <?php
-                            $pricesFiles = [];
-                            if (isset($orderItem->product->factoryPricesFiles)) {
-                                $pricesFiles = $orderItem->product->factoryPricesFiles;
-                            } else if (isset($orderItem->product->factory->pricesFiles)) {
-                                $pricesFiles = $orderItem->product->factory->pricesFiles;
-                            }
+                                <?php
+                                $pricesFiles = [];
+                                if (isset($orderItem->product->factoryPricesFiles)) {
+                                    $pricesFiles = $orderItem->product->factoryPricesFiles;
+                                } else if (isset($orderItem->product->factory->pricesFiles)) {
+                                    $pricesFiles = $orderItem->product->factory->pricesFiles;
+                                }
 
-                            if (!empty($pricesFiles)) { ?>
-                                <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
-                                <ul>
-                                    <?php foreach ($pricesFiles as $priceFile) {
-                                        if ($fileLink = $priceFile->getFileLink()) { ?>
-                                            <li>
-                                                <?= Html::a(
-                                                    $priceFile->title,
-                                                    $fileLink,
-                                                    [
-                                                        'target' => '_blank',
-                                                        'class' => 'click-on-factory-file',
-                                                        'data-id' => $priceFile->id
-                                                    ]
-                                                ) ?>
-                                            </li>
-                                        <?php }
-                                    } ?>
-                                </ul>
-                            <?php } ?>
-                        </div>
-                    <?php } ?>
-                </div>
-            <?php } ?>
-
+                                if (!empty($pricesFiles)) { ?>
+                                    <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
+                                    <ul>
+                                        <?php foreach ($pricesFiles as $priceFile) {
+                                            if ($fileLink = $priceFile->getFileLink()) { ?>
+                                                <li>
+                                                    <?= Html::a(
+                                                        $priceFile->title,
+                                                        $fileLink,
+                                                        [
+                                                            'target' => '_blank',
+                                                            'class' => 'click-on-factory-file',
+                                                            'data-id' => $priceFile->id
+                                                        ]
+                                                    ) ?>
+                                                </li>
+                                            <?php }
+                                        } ?>
+                                    </ul>
+                                <?php } ?>
+                            </div>
+                        <?php } ?>
+                    </div>
+                <?php }
+            } else {
+                echo Yii::t('app', 'Клиент оставил данную заявку, так как не нашел то что искал на сайте.');
+            } ?>
 
             <?php if ($modelOrder->image_link) { ?>
                 <div class="basket-item-info">

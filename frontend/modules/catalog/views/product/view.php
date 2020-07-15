@@ -242,12 +242,21 @@ $this->title = $this->context->title;
                                             $array = [];
                                             foreach ($model['specificationValue'] as $item) {
                                                 if ($item['specification']['parent_id'] == 4 && $item['val']) {
+                                                    $str = '';
+                                                    for ($n = 2; $n <= 10; $n++) {
+                                                        $field = "val$n";
+                                                        if ($item[$field]) {
+                                                            $str .= '; ' . $item[$field];
+                                                        }
+                                                    }
+
                                                     $array[] = Html::beginTag('div') .
                                                         $item['specification']['lang']['title'] .
                                                         ' (' . Yii::t('app', 'см') . ')' .
                                                         ': ' .
-                                                        $item['val'] .
+                                                        $item['val'] . $str .
                                                         Html::endTag('div');
+
                                                 }
                                             }
                                             if (!empty($array)) { ?>
