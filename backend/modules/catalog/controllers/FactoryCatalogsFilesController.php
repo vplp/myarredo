@@ -128,11 +128,11 @@ class FactoryCatalogsFilesController extends BackendController
             ],
             'fileupload' => [
                 'class' => UploadAction::class,
-                'path' => $this->module->getFactoryCatalogsFilesUploadPath()
+                'path' => $this->module->getFactoryCatalogsFilesUploadPath() . '/thumb'
             ],
             'filedelete' => [
                 'class' => DeleteAction::class,
-                'path' => $this->module->getFactoryCatalogsFilesUploadPath()
+                'path' => $this->module->getFactoryCatalogsFilesUploadPath() . '/thumb'
             ],
         ]);
     }

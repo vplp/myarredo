@@ -5,7 +5,6 @@ use yii\helpers\{
     Url, Html
 };
 use thread\widgets\grid\ActionStatusColumn;
-//
 use backend\modules\catalog\models\FactoryCatalogsFiles;
 use backend\app\bootstrap\ActiveForm;
 use backend\modules\catalog\models\{
@@ -29,6 +28,16 @@ echo GridView::widget([
             'attribute' => 'title',
             'value' => 'title',
             'label' => Yii::t('app', 'Title'),
+        ],
+        [
+            'attribute' => 'image_link',
+            'value' => function ($model) {
+                /** @var $model FactoryCatalogsFiles */
+                return Html::img($model->getImageLink(), ['width' => 50]);
+            },
+            'label' => Yii::t('app', 'Image'),
+            'format' => 'raw',
+            'filter' => false
         ],
         [
             'attribute' => 'updated_at',
