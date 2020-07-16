@@ -26,6 +26,17 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
+            [
+                [
+                    'show_for_ru',
+                    'show_for_by',
+                    'show_for_ua',
+                    'show_for_com',
+                    'show_for_de',
+                ],
+                'in',
+                'range' => array_keys(static::statusKeyRange())
+            ],
             [['producing_country_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
@@ -68,6 +79,13 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
 
         $query->andFilterWhere(['=', self::tableName() . '.producing_country_id', $this->producing_country_id]);
         $query->andFilterWhere(['=', self::tableName() . '.published', $this->published]);
+
+        $query->andFilterWhere(['=', self::tableName() . '.show_for_ru', $this->show_for_ru]);
+        $query->andFilterWhere(['=', self::tableName() . '.show_for_by', $this->show_for_by]);
+        $query->andFilterWhere(['=', self::tableName() . '.show_for_ua', $this->show_for_ua]);
+        $query->andFilterWhere(['=', self::tableName() . '.show_for_com', $this->show_for_com]);
+        $query->andFilterWhere(['=', self::tableName() . '.show_for_de', $this->show_for_de]);
+
         $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
