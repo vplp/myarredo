@@ -5,7 +5,6 @@ namespace frontend\modules\sys\widgets\lang;
 use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
-//
 use frontend\modules\sys\models\Language;
 
 /**
@@ -69,7 +68,9 @@ class LangSwitch extends Widget
             /**
              * $url
              */
-            if (in_array($lang['alias'], ['it', 'en'])) {
+            if (in_array($lang['alias'], ['de'])) {
+                $url = 'https://www.myarredo.de';
+            } elseif (in_array($lang['alias'], ['it', 'en'])) {
                 $url = 'https://www.myarredo.com';
             } elseif (!in_array($lang['alias'], ['it', 'en']) && Yii::$app->city->domain == 'com') {
                 $url = 'https://www.myarredo.ru';
