@@ -16,12 +16,18 @@ use frontend\modules\shop\models\Order;
 
 $this->title = $this->context->title;
 ?>
-
 <main>
     <div class="page adding-product-page">
         <div class="largex-container">
 
             <?= Html::tag('h1', $this->context->title); ?>
+
+            <div class="text-center">
+                <video width="640" height="360" controls>
+                    <source src="/uploads/video/2_my_arredo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
 
             <?= $this->render('_form_filter', [
                 'model' => $model,
