@@ -4,7 +4,6 @@ namespace frontend\modules\location\components;
 
 use Yii;
 use yii\base\Component;
-//
 use frontend\modules\location\models\Currency;
 
 /**
@@ -26,8 +25,7 @@ class CurrencyComponent extends Component
         /**
          * Get current currency
          */
-        if ($session->has('currency') &&
-            array_key_exists($session->get('currency'), Currency::getMapCode2Course())) {
+        if ($session->has('currency') && array_key_exists($session->get('currency'), Currency::getMapCode2Course())) {
             $this->model = Currency::findByCode2($session->get('currency'));
         }
     }

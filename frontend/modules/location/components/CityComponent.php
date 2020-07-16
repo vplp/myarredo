@@ -4,7 +4,6 @@ namespace frontend\modules\location\components;
 
 use Yii;
 use yii\base\Component;
-//
 use frontend\modules\location\models\City;
 
 /**
@@ -121,6 +120,12 @@ class CityComponent extends Component
                 '+39 (9999) 999-999',
                 '+39 (9999) 999-9999'
             ],
+            'de' => [
+                '+39 (99) 999-999',
+                '+39 (999) 999-999',
+                '+39 (9999) 999-999',
+                '+39 (9999) 999-9999'
+            ],
         ];
 
         if (in_array($key, array_keys($mask))) {
@@ -157,7 +162,7 @@ class CityComponent extends Component
         $exp_host = explode('myarredo.', $_SERVER["HTTP_HOST"]);
 
         // set domain
-        $this->domain = (in_array($exp_host[1], ['ru', 'ua', 'by', 'com'])) ? $exp_host[1] : 'ru';
+        $this->domain = (in_array($exp_host[1], ['ru', 'ua', 'by', 'com', 'de'])) ? $exp_host[1] : 'ru';
 
         $exp_host = explode('.', $_SERVER['HTTP_HOST']);
 
@@ -171,10 +176,10 @@ class CityComponent extends Component
             $_SERVER["HTTP_HOST"]
         );
 
-        if ($cityAlias && $this->domain != 'com') {
+        if ($cityAlias && !in_array($this->domain, ['com', 'de'])) {
             $this->city = City::findByAlias($cityAlias);
 
-            if ($this->city == null || in_array($this->city['id'], [1, 2, 4, 159])) {
+            if ($this->city == null || in_array($this->city['id'], [1, 2, 4, 159, 160])) {
                 Yii::$app->response->redirect(
                     'https://' . 'www.myarredo.' . $this->domain . Yii::$app->request->url,
                     301
@@ -210,6 +215,9 @@ class CityComponent extends Component
         } elseif (in_array($this->domain, ['com'])) {
             // rome
             $this->defaultCityId = 159;
+        } elseif (in_array($this->domain, ['de'])) {
+            // berlin
+            $this->defaultCityId = 160;
         } else {
             // msk
             $this->defaultCityId = 4;
