@@ -70,11 +70,11 @@ class LangSwitch extends Widget
              */
             if (in_array($lang['alias'], ['it', 'en'])) {
                 $url = 'https://www.myarredo.com';
-            } elseif (!in_array($lang['alias'], ['it', 'en']) && Yii::$app->city->domain == 'com') {
+            } elseif (!in_array($lang['alias'], ['it', 'en', 'de']) && Yii::$app->city->domain == 'com') {
                 $url = 'https://www.myarredo.ru';
             } elseif (in_array($lang['alias'], ['de'])) {
                 $url = 'https://www.myarredo.de';
-            } elseif (!in_array($lang['alias'], ['de']) && Yii::$app->city->domain == 'de') {
+            } elseif (!in_array($lang['alias'], ['it', 'en', 'de']) && Yii::$app->city->domain == 'de') {
                 $url = 'https://www.myarredo.ru';
             } else {
                 $url = Yii::$app->request->hostInfo;
