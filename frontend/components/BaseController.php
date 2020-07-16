@@ -38,13 +38,13 @@ abstract class BaseController extends Controller
         $lang = substr(Yii::$app->language, 0, 2);
 
         // de domain
-        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && Yii::$app->city->domain == 'de' && !in_array($lang, ['de'])) {
-            Yii::$app->response->redirect('https://' . 'www.myarredo.de/de/', 301);
-            yii::$app->end();
-        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(Yii::$app->city->domain, ['ru', 'ua', 'by', 'com']) && in_array($lang, ['de'])) {
-            Yii::$app->response->redirect('https://' . 'www.myarredo.de/de/', 301);
-            yii::$app->end();
-        }
+//        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && Yii::$app->city->domain == 'de' && !in_array($lang, ['de'])) {
+//            Yii::$app->response->redirect('https://' . 'www.myarredo.de/de/', 301);
+//            yii::$app->end();
+//        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(Yii::$app->city->domain, ['ru', 'ua', 'by', 'com']) && in_array($lang, ['de'])) {
+//            Yii::$app->response->redirect('https://' . 'www.myarredo.de/de/', 301);
+//            yii::$app->end();
+//        }
 
         // com domain
         if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && Yii::$app->city->domain == 'com' && !in_array($lang, ['it', 'en'])) {
