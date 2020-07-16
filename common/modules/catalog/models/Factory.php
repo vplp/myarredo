@@ -2,19 +2,17 @@
 
 namespace common\modules\catalog\models;
 
-use voskobovich\behaviors\ManyToManyBehavior;
 use Yii;
 use yii\helpers\{
     ArrayHelper
 };
 use yii\behaviors\AttributeBehavior;
-//
 use thread\app\base\models\ActiveRecord;
-//
+use common\helpers\Inflector;
 use common\modules\catalog\Catalog;
 use common\modules\user\models\User;
 use common\modules\location\models\Country;
-use common\helpers\Inflector;
+use voskobovich\behaviors\ManyToManyBehavior;
 
 /**
  * Class Factory
@@ -47,6 +45,7 @@ use common\helpers\Inflector;
  * @property boolean $show_for_by
  * @property boolean $show_for_ua
  * @property boolean $show_for_com
+ * @property boolean $show_for_de
  * @property integer $product_count
  * @property boolean $dealers_can_answer
  *
@@ -138,6 +137,7 @@ class Factory extends ActiveRecord
                     'show_for_by',
                     'show_for_ua',
                     'show_for_com',
+                    'show_for_de',
                     'dealers_can_answer'
                 ],
                 'in',
@@ -180,6 +180,7 @@ class Factory extends ActiveRecord
             'show_for_by' => ['show_for_by'],
             'show_for_ua' => ['show_for_ua'],
             'show_for_com' => ['show_for_com'],
+            'show_for_de' => ['show_for_de'],
             'backend' => [
                 'user_id',
                 'producing_country_id',
@@ -206,6 +207,7 @@ class Factory extends ActiveRecord
                 'show_for_by',
                 'show_for_ua',
                 'show_for_com',
+                'show_for_de',
                 'dealers_ids',
                 'dealers_can_answer'
             ],
@@ -245,6 +247,7 @@ class Factory extends ActiveRecord
             'show_for_by' => 'Показывать на by',
             'show_for_ua' => 'Показывать на ua',
             'show_for_com' => 'Показывать на com',
+            'show_for_de' => 'Показывать на de',
             'product_count' => 'product_count',
             'dealers_ids' => Yii::t('app', 'Dealers'),
             'dealers_can_answer' => Yii::t('app', 'Dealers can answer'),
@@ -434,6 +437,7 @@ class Factory extends ActiveRecord
             $model->show_for_by = 1;
             $model->show_for_ua = 1;
             $model->show_for_com = 1;
+            $model->show_for_de = 1;
 
             Yii::$app->session->setFlash('success', Yii::t('app', 'Создана новая фабрика'));
 

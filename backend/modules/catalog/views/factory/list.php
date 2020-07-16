@@ -59,6 +59,12 @@ echo GridView::widget([
         ],
         [
             'class' => ActionStatusColumn::class,
+            'attribute' => 'show_for_de',
+            'action' => 'show_for_de',
+            'visible' => $visible
+        ],
+        [
+            'class' => ActionStatusColumn::class,
             'attribute' => 'published',
             'action' => 'published'
         ],
