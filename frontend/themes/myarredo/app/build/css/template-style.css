@@ -3575,14 +3575,15 @@ h1 {
       margin-left: auto;
       margin-right: auto;
       font-weight: 700; }
-    .concact-page .one-cont h4,
-    .concact-page .one-cont h2 {
-      font-size: 21px;
-      line-height: 28px;
-      font-family: 'Palatino';
-      text-align: center;
-      min-height: 45px;
-      margin: 0; }
+.concact-page .one-cont h4,
+.concact-page .one-cont h2 {
+  font-size: 21px;
+  line-height: 28px;
+  font-family: 'Palatino';
+  text-align: center;
+  min-height: 30px;
+  margin: 0; 
+}
     .concact-page .one-cont .ico {
       width: 31px;
       height: 23px;
@@ -5630,8 +5631,9 @@ h1 {
     font-size: 14px; }
   .concact-page .one-cont {
     width: calc(33.33% - 16px); }
-    .concact-page .one-cont.double-cont {
-      width: calc(66.66% - 16px); }
+/* .concact-page .one-cont.double-cont {
+  width: calc(66.66% - 16px); 
+} */
   .factory-list-page .section-header {
     min-height: 100px; }
   .factory-list-page h1 {
@@ -9775,9 +9777,6 @@ h1 {
 .partner-formbox .feedback-box .field-formsfeedback-recaptcha {
   margin-left: 0;
 }
-.concact-page .map-cont.contact-mapbox #map {
-  height: 100%;
-}
 .adress-mainpart {
   margin: 0 auto 12px;
 }
@@ -10227,6 +10226,37 @@ body>.modal-backdrop.fade.in{
   background-color: transparent;
   border: 1px solid #11883B;
 }
+.cont-info-row {
+  display: flex;
+  justify-content: center;
+}
+body .concact-page .one-cont .cont-info-row a {
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+.concact-page .one-cont .cont-info-row .ico {
+  margin: 0 0 2px;
+}
+.contact-partner-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+.show-more-partners {
+  padding-bottom: 20px;
+  margin: 0 auto;
+}
+.btn-morepartners {
+  font-weight: 600;
+  background-color: transparent;
+  border: 1px dashed #BDBCB3;
+  white-space: normal;
+}
+.btn-morepartners:focus {
+  outline: transparent;
+}
+.mobile-dropbox {
+  display: none;
+}
 
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
@@ -10297,6 +10327,17 @@ body>.modal-backdrop.fade.in{
   }
   .add-itprod-rules {
     border-left: 1px dotted #535351;
+  }
+}
+@media(min-width: 993px) {
+  .concact-page .map-cont.contact-mapbox #map {
+    height: 100%;
+  }
+  .show-more-partners {
+    display: none;
+  }
+  .mobile-dropbox {
+    display: block !important;
   }
 }
 @media (min-width: 768px) {
@@ -10517,6 +10558,7 @@ body>.modal-backdrop.fade.in{
     margin-bottom: 30px;
   }
 }
+/* max 768 */
 @media (min-width: 768px) {
   #italian-product-grid-container table.table {
     margin: 0 -1px;

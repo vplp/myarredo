@@ -745,6 +745,10 @@ $(document).ready(function () {
             $('.lang-selector').removeClass('opened');
         }
     });
+
+    $('.btn-morepartners').on('click', function() {
+        $(this).parent('.show-more-partners').siblings('.mobile-dropbox').slideToggle(1200);
+    });
 });
 /*--------------------------------------------------------*/
 $(document).ready(function () {
