@@ -72,7 +72,7 @@ class LangSwitch extends Widget
                 $url = 'https://www.myarredo.de';
             } elseif (in_array($lang['alias'], ['it', 'en'])) {
                 $url = 'https://www.myarredo.com';
-            } elseif (!in_array($lang['alias'], ['it', 'en']) && Yii::$app->city->domain == 'com') {
+            } elseif (!in_array($lang['alias'], ['it', 'en', 'de']) && !in_array(Yii::$app->city->domain, ['com', 'de'])) {
                 $url = 'https://www.myarredo.ru';
             } else {
                 $url = Yii::$app->request->hostInfo;
