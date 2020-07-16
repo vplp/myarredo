@@ -37,22 +37,35 @@ abstract class BaseController extends Controller
 
         $lang = substr(Yii::$app->language, 0, 2);
 
+        // de domain
+        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && Yii::$app->city->domain == 'de' && !in_array($lang, ['de'])) {
+            Yii::$app->response->redirect('https://' . 'www.myarredo.de/de/', 301);
+            yii::$app->end();
+        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(Yii::$app->city->domain, ['ru', 'ua', 'by', 'com']) && in_array($lang, ['de'])) {
+            Yii::$app->response->redirect('https://' . 'www.myarredo.de/de/', 301);
+            yii::$app->end();
+        }
+
+        // com domain
         if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && Yii::$app->city->domain == 'com' && !in_array($lang, ['it', 'en'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.com/it/', 301);
             yii::$app->end();
-        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(Yii::$app->city->domain, ['ru', 'ua', 'by']) && in_array($lang, ['it', 'en'])) {
+        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(Yii::$app->city->domain, ['ru', 'ua', 'by', 'de']) && in_array($lang, ['it', 'en'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.com/it/', 301);
             yii::$app->end();
-        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && Yii::$app->city->domain != 'ua' && in_array($lang, ['uk'])) {
+        }
+
+        // ua domain
+        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && Yii::$app->city->domain != 'ua' && in_array($lang, ['uk'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.ua/ua/', 301);
             yii::$app->end();
         }
 
-        if (preg_match('!/{2,}!', $_SERVER['REQUEST_URI'])) {
-            $url = preg_replace('!/{2,}!', '/', $_SERVER['REQUEST_URI']);
-            header('Location: ' . $url, false, 301);
-            exit();
-        }
+//        if (preg_match('!/{2,}!', $_SERVER['REQUEST_URI'])) {
+//            $url = preg_replace('!/{2,}!', '/', $_SERVER['REQUEST_URI']);
+//            header('Location: ' . $url, false, 301);
+//            exit();
+//        }
 
         if (!in_array(Yii::$app->controller->id, ['contacts'])) {
             $this->getAlternateHreflang();
