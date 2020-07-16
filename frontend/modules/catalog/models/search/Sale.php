@@ -196,7 +196,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
 
         /** orderBy */
 
-        if (in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159])) {
+        if (in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159, 160])) {
             $query
                 ->innerJoinWith(['city'])
                 ->andFilterWhere(['NOT IN', City::tableName() . '.id', [5]]);

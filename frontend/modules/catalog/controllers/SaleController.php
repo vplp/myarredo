@@ -118,7 +118,7 @@ class SaleController extends BaseController
 
         $queryParams['country'] = Yii::$app->city->getCountryId();
 
-        if (!in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159])) {
+        if (!in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159, 160])) {
             $queryParams['city'] = Yii::$app->city->getCityId();
         }
 

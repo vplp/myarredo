@@ -171,10 +171,10 @@ class CityComponent extends Component
             $_SERVER["HTTP_HOST"]
         );
 
-        if ($cityAlias && $this->domain != 'com') {
+        if (!in_array($cityAlias && $this->domain, ['com', 'de'])) {
             $this->city = City::findByAlias($cityAlias);
 
-            if ($this->city == null || in_array($this->city['id'], [1, 2, 4, 159])) {
+            if ($this->city == null || in_array($this->city['id'], [1, 2, 4, 159, 160])) {
                 Yii::$app->response->redirect(
                     'https://' . 'www.myarredo.' . $this->domain . Yii::$app->request->url,
                     301
