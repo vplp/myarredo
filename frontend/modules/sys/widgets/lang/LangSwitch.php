@@ -68,7 +68,7 @@ class LangSwitch extends Widget
             /**
              * $url
              */
-            if (!in_array($lang['alias'], ['it', 'en', 'de']) && !in_array(Yii::$app->city->domain, ['com', 'de'])) {
+            if (in_array($lang['alias'], ['it', 'en', 'de']) && in_array(Yii::$app->city->domain, ['com', 'de'])) {
                 $url = 'https://www.myarredo.ru';
             } elseif (in_array($lang['alias'], ['de'])) {
                 $url = 'https://www.myarredo.de';
