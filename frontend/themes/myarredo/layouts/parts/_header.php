@@ -11,11 +11,13 @@ use frontend\modules\location\widgets\{
     ChangeCity, ChangeCurrency
 };
 use frontend\modules\user\widgets\menu\UserMenu;
+
 $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone());
+
 ?>
 
 <!-- preloader start -->
-<div id="preload_box" class="preloader-container" title="Подождите">
+<div id="preload_box" class="preloader-container" title="">
     <div class="preloaderbox">
         <div class="item-1"></div>
         <div class="item-2"></div>
@@ -34,7 +36,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                 <div class="container large-container">
 
                     <div class="left-part">
-                        <?php if (Yii::$app->city->domain != 'com' && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+                        <?php if (!in_array(Yii::$app->city->domain, ['com', 'de']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
                             <a href="tel:+<?= $clearPhoneNumb ?>" class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
@@ -49,7 +51,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             <?= Yii::t('app', 'Feedback form') ?>
                         </a> */ ?>
 
-                        <?php if (Yii::$app->city->domain != 'com') { ?>
+                        <?php if (!in_array(Yii::$app->city->domain, ['com', 'de'])) { ?>
                             <div class="select-city">
                                 <a href="javascript:void(0)" class="js-select-city">
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -209,7 +211,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
         </div>
     </div>
     <div class="right-btn-part mobmenu-part">
-        
+
         <!-- <div class="search-btn">
             <i class="fa fa-search" aria-hidden="true"></i>
         </div> -->
@@ -222,7 +224,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             </div>
             <?= ChangeCity::widget(['view' => 'select_city_mobile']) ?>
         </div>
-    
+
         <div class="mobmenu-right-box">
             <?php
             if ((Yii::$app->getUser()->isGuest)) {
@@ -245,10 +247,10 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                 <?= Cart::widget(['view' => 'short']) ?>
             </div>
             <div class="mobmenu-fabrics">
-                <a href="<?= Url::toRoute(['/catalog/factory/list'])?>" class="mob-fabrics-link">
+                <a href="<?= Url::toRoute(['/catalog/factory/list']) ?>" class="mob-fabrics-link">
                     <span class="for-mobmenu-fabicon"><i class="fa fa-industry" aria-hidden="true"></i></span>
-                    <span class="for-mobmenu-fabtext"><?= Yii::t('app', 'Фабрики')?></span>
-                    
+                    <span class="for-mobmenu-fabtext"><?= Yii::t('app', 'Фабрики') ?></span>
+
                 </a>
             </div>
         </div>
@@ -269,19 +271,19 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             'method' => 'get',
             'options' => ['class' => 'mobsearch-form'],]); ?>
 
-            <div class="mobsearch-group">
-                <?= Html::input(
-                    'text',
-                    'search',
-                    null,
-                    ['class' => 'form-control mobsearch-fld',
-                        'placeholder' => Yii::t('app', 'Поиск'),]
-                ) ?>
-                <?= Html::submitButton(
-                    '<i class="fa fa-search" aria-hidden="true"></i>',
-                    ['class' => 'btn-mobsearch']
-                ) ?>
-            </div>
+        <div class="mobsearch-group">
+            <?= Html::input(
+                'text',
+                'search',
+                null,
+                ['class' => 'form-control mobsearch-fld',
+                    'placeholder' => Yii::t('app', 'Поиск'),]
+            ) ?>
+            <?= Html::submitButton(
+                '<i class="fa fa-search" aria-hidden="true"></i>',
+                ['class' => 'btn-mobsearch']
+            ) ?>
+        </div>
 
         <?php ActiveForm::end(); ?>
     </div>
@@ -318,7 +320,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             ) ?>
 
             <a href="javascript:void(0);" class="close-mobile-menu js-close-mobile-menu">
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </a>
 
         </div>
