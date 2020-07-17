@@ -3,7 +3,6 @@
 namespace frontend\modules\catalog\widgets\product;
 
 use yii\base\Widget;
-//
 use frontend\modules\catalog\models\{
     Product, ProductLang
 };
@@ -39,7 +38,8 @@ class ProductsNoveltiesOnMain extends Widget
                 Product::tableName() . '.bestseller',
                 ProductLang::tableName() . '.title',
             ])
-            ->andWhere([Product::tableName() . '.onmain' => '1'])
+            ->andWhere([Product::tableName() . '.novelty' => '1'])
+            ->orderBy(self::tableName() . '.updated_at DESC')
             ->cache(7200)
             ->all();
 

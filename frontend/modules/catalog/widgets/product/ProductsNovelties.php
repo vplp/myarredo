@@ -5,7 +5,6 @@ namespace frontend\modules\catalog\widgets\product;
 use Yii;
 use yii\base\Exception;
 use yii\base\Widget;
-//
 use frontend\modules\catalog\models\Category;
 
 /**
