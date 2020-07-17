@@ -39,7 +39,7 @@ class ProductsNoveltiesOnMain extends Widget
                 ProductLang::tableName() . '.title',
             ])
             ->andWhere([Product::tableName() . '.novelty' => '1'])
-            ->orderBy(self::tableName() . '.updated_at DESC')
+            ->orderBy(Product::tableName() . '.updated_at DESC')
             ->cache(7200)
             ->all();
 
