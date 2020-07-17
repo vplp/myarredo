@@ -2226,7 +2226,6 @@ h1 {
     z-index: 5; }
     .category-page .cat-prod .one-prod-tile:hover .tile-prod-name {
       height: auto;
-      min-height: 40px;
      }
     .category-page .cat-prod .one-prod-tile:hover .one-prod-tile-in {
       border-color: #BDBCB3;
@@ -5278,6 +5277,9 @@ h1 {
 #checkout-form.form-getprice textarea.form-control {
   min-height: 95px;
 }
+#checkout-form.form-getprice .btn.btn-success {
+  min-width: 200px;
+}
 /*-- -----------------------------------------------------------Новые стили------------------------------------------------------------------------------ --*/
 @media screen and (max-width: 1200px) {
   .header .top-header .phone {
@@ -7140,8 +7142,12 @@ h1 {
     height: auto; }
   .category-page .cat-prod .btn-block {
     opacity: 1; }
-  .category-page .cat-prod .tile-prod-name {
-    height: auto !important; }
+.category-page .cat-prod .tile-prod-name {
+  height: auto !important; 
+}
+.category-page .cat-prod .one-prod-tile .prod-pricebox {
+  margin-top: 5px;
+}
   .category-page .filters .one-filter {
     margin-left: 0;
     margin-right: 0; }
@@ -10566,6 +10572,11 @@ body .concact-page .one-cont .cont-info-row a {
   #italian-product-grid-container table.table td {
     min-width: 72px;
     vertical-align: middle;
+  }
+}
+@media(min-width: 541px) {
+  .category-page .cat-prod .one-prod-tile:hover .tile-prod-name {
+    min-height: 40px;
   }
 }
 @media (max-width: 767px) {
