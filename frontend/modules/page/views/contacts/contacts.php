@@ -3,7 +3,6 @@
 use yii\helpers\{
     Html, Url
 };
-//
 use frontend\themes\myarredo\assets\AppAsset;
 
 $this->title = $this->context->title;
@@ -29,42 +28,45 @@ $bundle = AppAsset::register($this);
                             echo $this->render('parts/_no_main_partner', []);
                         } ?>
                         <div class="show-more-partners">
-                            <button class="btn btn-morepartners">Другие офисы продаж в городе <?= Yii::$app->city->getCitytitle(); ?></button>
+                            <button class="btn btn-morepartners">
+                                <?= Yii::t('app', 'Другие офисы продаж в городе') . ' ' . Yii::$app->city->getCitytitle(); ?>
+                            </button>
                         </div>
                         <div class="mobile-dropbox">
                             <div class="contact-partner-box">
-                            <?php foreach ($partners as $partner) {
-                                if ($partner['profile']['partner_in_city'] == 0) { ?>
-                                    <div class="one-cont" itemscope itemtype="http://schema.org/Organization">
+                                <?php foreach ($partners as $partner) {
+                                    if ($partner['profile']['partner_in_city'] == 0) { ?>
+                                        <div class="one-cont" itemscope itemtype="http://schema.org/Organization">
 
-                                        <?= Html::tag(
-                                            'h2',
-                                            $partner->profile->getNameCompany(),
-                                            ['itemprop' => 'name']
-                                        ); ?>
-                                        <div class="cont-info-row">
-                                            <div class="ico">
-                                                <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
+                                            <?= Html::tag(
+                                                'h2',
+                                                $partner->profile->getNameCompany(),
+                                                ['itemprop' => 'name']
+                                            ); ?>
+                                            <div class="cont-info-row">
+                                                <div class="ico">
+                                                    <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
+                                                </div>
+
+                                                <?= Html::a(
+                                                    $partner->profile->phone,
+                                                    'tel:' . $partner->profile->phone,
+                                                    ['itemprop' => 'telephone']
+                                                ) ?>
                                             </div>
 
-                                            <?= Html::a(
-                                                $partner->profile->phone,
-                                                'tel:' . $partner->profile->phone,
-                                                ['itemprop' => 'telephone']
-                                            ) ?>
-                                        </div>
-
-                                        <div class="adres" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                                            <span itemprop="streetAddress"><?= $partner->profile->lang->address ?? '' ?></span><br>
-                                            <span itemprop="addressLocality">
+                                            <div class="adres" itemprop="address" itemscope
+                                                 itemtype="http://schema.org/PostalAddress">
+                                                <span itemprop="streetAddress"><?= $partner->profile->lang->address ?? '' ?></span><br>
+                                                <span itemprop="addressLocality">
                                                 <?= isset($partner->profile->city)
                                                     ? $partner->profile->city->getTitle() . ', ' . $partner->profile->country->getTitle()
                                                     : '' ?>
                                             </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                <?php }
-                            } ?>
+                                    <?php }
+                                } ?>
                             </div>
 
                             <div class="warning">
