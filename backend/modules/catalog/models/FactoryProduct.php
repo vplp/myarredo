@@ -3,7 +3,6 @@
 namespace backend\modules\catalog\models;
 
 use thread\app\model\interfaces\BaseBackendModel;
-//
 use common\modules\catalog\models\Product;
 use backend\modules\user\models\Group as UserGroup;
 

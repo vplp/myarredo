@@ -1,7 +1,6 @@
 <?php
 
 use kartik\widgets\Select2;
-//
 use backend\app\bootstrap\ActiveForm;
 use backend\modules\catalog\models\{
     Category, Types, TypesLang
@@ -19,23 +18,29 @@ use backend\modules\catalog\models\{
 <?= $form->text_line_lang($modelLang, 'plural_name') ?>
 
 <div class="row control-group">
-    <div class="col-md-6">
+    <div class="col-md-3">
         <?= $form->text_line($model, 'alias') ?>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-3">
         <?= $form->text_line($model, 'alias2') ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->text_line($model, 'alias_it') ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->text_line($model, 'alias_de') ?>
     </div>
 </div>
 
 <?= $form
-        ->field($model, 'category_ids')
-        ->widget(Select2::class, [
-            'data' => Category::dropDownList(),
-            'options' => [
-                'placeholder' => Yii::t('app', 'Select option'),
-                'multiple' => true
-            ],
-        ]) ?>
+    ->field($model, 'category_ids')
+    ->widget(Select2::class, [
+        'data' => Category::dropDownList(),
+        'options' => [
+            'placeholder' => Yii::t('app', 'Select option'),
+            'multiple' => true
+        ],
+    ]) ?>
 
 <div class="row control-group">
     <div class="col-md-3">

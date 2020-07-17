@@ -1,9 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-//
 use backend\widgets\GridView\GridView;
-//
 use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
 };

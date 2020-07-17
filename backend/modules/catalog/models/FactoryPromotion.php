@@ -3,7 +3,6 @@
 namespace backend\modules\catalog\models;
 
 use thread\app\model\interfaces\BaseBackendModel;
-//
 use common\modules\catalog\models\FactoryPromotion as CommonFactoryPromotionModel;
 
 /**

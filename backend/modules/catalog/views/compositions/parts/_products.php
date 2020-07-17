@@ -4,7 +4,6 @@ use yii\helpers\{
     Html, ArrayHelper
 };
 use kartik\widgets\Select2;
-//
 use backend\modules\catalog\models\{
     Factory, Types
 };

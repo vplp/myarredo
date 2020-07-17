@@ -6,9 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
-//
 use thread\app\base\controllers\BackendController;
-//
 use backend\modules\catalog\models\{
     Types, SubTypes, SubTypesLang, search\SubTypes as filterSubTypes
 };

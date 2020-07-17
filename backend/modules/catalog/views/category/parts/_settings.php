@@ -1,7 +1,6 @@
 <?php
 
 use kartik\widgets\Select2;
-//
 use backend\app\bootstrap\ActiveForm;
 use backend\modules\catalog\models\{
     Types, Category, CategoryLang
@@ -19,11 +18,17 @@ use backend\modules\catalog\models\{
 <?= $form->text_line_lang($modelLang, 'composition_title') ?>
 
 <div class="row control-group">
-    <div class="col-md-6">
+    <div class="col-md-3">
         <?= $form->text_line($model, 'alias') ?>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-3">
         <?= $form->text_line($model, 'alias2') ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->text_line($model, 'alias_it') ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->text_line($model, 'alias_de') ?>
     </div>
 </div>
 

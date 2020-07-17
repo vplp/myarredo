@@ -3,7 +3,6 @@
 namespace common\modules\catalog\models;
 
 use common\modules\catalog\Catalog;
-//
 use thread\app\base\models\ActiveRecord;
 
 /**

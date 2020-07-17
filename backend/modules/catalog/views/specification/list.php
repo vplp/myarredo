@@ -1,7 +1,6 @@
 <?php
 
 use thread\widgets\grid\ActionStatusColumn;
-//
 use backend\widgets\TreeGrid;
 
 echo TreeGrid::widget([

@@ -1,7 +1,6 @@
 <?php
 
 use kartik\widgets\Select2;
-//
 use backend\widgets\GridView\GridView;
 use backend\modules\catalog\models\{
     CountriesFurniture, Category, Factory

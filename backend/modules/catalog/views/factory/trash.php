@@ -3,7 +3,6 @@
 use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
 };
-//
 use backend\app\bootstrap\ActiveForm;
 use backend\widgets\GridView\GridView;
 use backend\modules\catalog\models\{

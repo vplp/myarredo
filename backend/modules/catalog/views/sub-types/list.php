@@ -1,13 +1,11 @@
 <?php
 
 use yii\helpers\Url;
-//
 use backend\widgets\GridView\gridColumns\ActionColumn;
 use backend\widgets\GridView\GridView;
 use backend\modules\catalog\models\{
     SubTypes, search\SubTypes as filterSubTypes
 };
-//
 use thread\widgets\grid\{
     ActionStatusColumn
 };

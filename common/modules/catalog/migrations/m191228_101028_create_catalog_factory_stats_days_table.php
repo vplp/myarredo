@@ -1,7 +1,6 @@
 <?php
 
 use yii\db\Migration;
-//
 use common\modules\catalog\Catalog;
 
 /**

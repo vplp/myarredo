@@ -3,9 +3,7 @@
 namespace backend\modules\catalog\models;
 
 use yii\helpers\ArrayHelper;
-//
 use common\modules\catalog\models\Colors as CommonColorsModel;
-//
 use thread\app\model\interfaces\BaseBackendModel;
 
 /**

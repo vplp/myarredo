@@ -3,7 +3,6 @@
 use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
 };
-//
 use backend\widgets\GridView\GridView;
 use backend\modules\catalog\models\{
     SubTypes, search\SubTypes as filterSubTypes

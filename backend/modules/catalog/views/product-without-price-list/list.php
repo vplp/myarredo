@@ -1,13 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-//
 use backend\widgets\GridView\GridView;
-//
 use backend\modules\catalog\models\{
     Product, Category, Factory
 };
-//
 use backend\widgets\GridView\gridColumns\ActionColumn;
 use thread\widgets\grid\{
     ActionStatusColumn, GridViewFilter

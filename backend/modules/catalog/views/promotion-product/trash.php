@@ -8,7 +8,6 @@ use thread\widgets\grid\{
 use backend\modules\catalog\models\{
     Factory, FactoryPromotion, Sale
 };
-//
 use thread\widgets\grid\{
     GridViewFilter
 };

@@ -3,9 +3,7 @@
 namespace backend\modules\catalog\models;
 
 use Yii;
-//
 use common\modules\catalog\models\ItalianProduct as CommonItalianProductModel;
-//
 use thread\app\model\interfaces\BaseBackendModel;
 
 /**

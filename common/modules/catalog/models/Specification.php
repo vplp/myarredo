@@ -16,6 +16,8 @@ use common\modules\catalog\Catalog;
  * @property integer $parent_id
  * @property string $alias
  * @property string $alias2
+ * @property string $alias_it
+ * @property string $alias_de
  * @property integer $type
  * @property integer $created_at
  * @property integer $updated_at
@@ -66,11 +68,11 @@ class Specification extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias', 'alias2'], 'required'],
+            [['alias', 'alias2', 'alias_it', 'alias_de'], 'required'],
             [['parent_id', 'created_at', 'updated_at', 'position'], 'integer'],
             [['type', 'published', 'deleted', 'readonly'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['alias', 'alias2'], 'string', 'max' => 255],
-            [['alias', 'alias2'], 'unique'],
+            [['alias', 'alias2', 'alias_it', 'alias_de'], 'string', 'max' => 255],
+            [['alias', 'alias2', 'alias_it', 'alias_de'], 'unique'],
             [['position'], 'default', 'value' => '0']
         ];
     }
@@ -84,7 +86,7 @@ class Specification extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'position' => ['position'],
-            'backend' => ['parent_id', 'alias', 'alias2', 'type', 'position', 'published', 'deleted'],
+            'backend' => ['parent_id', 'alias', 'alias2', 'alias_it', 'alias_de', 'type', 'position', 'published', 'deleted'],
         ];
     }
 
@@ -97,7 +99,9 @@ class Specification extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'parent_id' => Yii::t('app', 'Parent'),
             'alias' => Yii::t('app', 'Alias'),
-            'alias2' => Yii::t('app', 'Alias for .com'),
+            'alias2' => 'Alias for en',
+            'alias_it' => 'Alias for it',
+            'alias_de' => 'Alias for de',
             'type' => 'Текстовое поле',
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),

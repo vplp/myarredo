@@ -3,9 +3,7 @@
 namespace backend\modules\catalog\controllers;
 
 use yii\filters\AccessControl;
-//
 use thread\app\base\controllers\BackendController;
-//
 use backend\modules\catalog\models\{
     Types, TypesLang, search\Types as filterTypes
 };

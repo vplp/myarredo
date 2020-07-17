@@ -3,8 +3,6 @@
 use yii\helpers\{
     Html
 };
-
-//
 use backend\widgets\Tabs;
 use backend\app\bootstrap\ActiveForm;
 use backend\modules\catalog\models\{

@@ -4,12 +4,10 @@ namespace backend\modules\catalog\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-//
 use backend\modules\catalog\models\{
     Product,
     search\Product as filterProduct
 };
-//
 use thread\actions\ListModel;
 use thread\app\base\controllers\BackendController;
 

@@ -4,11 +4,9 @@ namespace backend\modules\catalog\models\search;
 
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
-//
 use backend\modules\catalog\models\{
     Colors as ColorsModel, ColorsLang
 };
-//
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 
 /**

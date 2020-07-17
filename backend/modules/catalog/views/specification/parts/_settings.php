@@ -19,11 +19,17 @@ use backend\modules\catalog\models\{
 <?= $form->text_line_lang($modelLang, 'title') ?>
 
 <div class="row control-group">
-    <div class="col-md-6">
-        <?= $form->field($model, 'alias')->input('text', ['disabled' => ($model->readonly == '1') ? true : false]) ?>
+    <div class="col-md-3">
+        <?= $form->text_line($model, 'alias')->input('text', ['disabled' => ($model->readonly == '1') ? true : false]) ?>
     </div>
-    <div class="col-md-6">
-        <?= $form->field($model, 'alias2')->input('text', ['disabled' => ($model->readonly == '1') ? true : false]) ?>
+    <div class="col-md-3">
+        <?= $form->text_line($model, 'alias2')->input('text', ['disabled' => ($model->readonly == '1') ? true : false]) ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->text_line($model, 'alias_it')->input('text', ['disabled' => ($model->readonly == '1') ? true : false]) ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->text_line($model, 'alias_de')->input('text', ['disabled' => ($model->readonly == '1') ? true : false]) ?>
     </div>
 </div>
 

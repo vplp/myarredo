@@ -4,7 +4,6 @@ namespace backend\modules\catalog\controllers;
 
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
-//
 use thread\actions\{
     Create, Update
 };

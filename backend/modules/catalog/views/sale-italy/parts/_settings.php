@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use kartik\widgets\Select2;
-//
 use backend\app\bootstrap\ActiveForm;
 use backend\modules\catalog\models\{
     Category, Factory, Types, SubTypes

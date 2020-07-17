@@ -7,9 +7,7 @@ use yii\behaviors\AttributeBehavior;
 use yii\helpers\{
     ArrayHelper
 };
-//
 use thread\app\base\models\ActiveRecord;
-//
 use common\helpers\Inflector;
 use common\modules\catalog\Catalog;
 

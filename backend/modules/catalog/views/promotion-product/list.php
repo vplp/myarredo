@@ -5,7 +5,6 @@ use backend\widgets\GridView\GridView;
 use backend\modules\catalog\models\{
     Factory, FactoryPromotion, Sale
 };
-//
 use thread\widgets\grid\{
     ActionStatusColumn, GridViewFilter
 };

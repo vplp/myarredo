@@ -1,12 +1,13 @@
 <?php
 
+use backend\modules\catalog\models\Category;
 use backend\widgets\GridView\GridView;
 use thread\widgets\grid\{
     ActionStatusColumn
 };
 
 /**
- * @var \backend\modules\catalog\models\Category $model
+ * @var Category $model
  */
 
 echo GridView::widget([

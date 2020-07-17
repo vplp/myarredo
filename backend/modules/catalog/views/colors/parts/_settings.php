@@ -1,7 +1,6 @@
 <?php
 
 use kartik\color\ColorInput;
-//
 use backend\app\bootstrap\ActiveForm;
 use backend\modules\catalog\models\{
     Colors, ColorsLang
@@ -18,7 +17,20 @@ use backend\modules\catalog\models\{
 <?= $form->text_line_lang($modelLang, 'title') ?>
 <?= $form->text_line_lang($modelLang, 'plural_title') ?>
 
-<?= $form->text_line($model, 'alias') ?>
+<div class="row control-group">
+    <div class="col-md-3">
+        <?= $form->text_line($model, 'alias') ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->text_line($model, 'alias_en') ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->text_line($model, 'alias_it') ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->text_line($model, 'alias_de') ?>
+    </div>
+</div>
 
 <div class="row control-group">
     <div class="col-md-3">
