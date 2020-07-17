@@ -1,7 +1,6 @@
 <?php
 
 use kartik\widgets\Select2;
-//
 use backend\modules\catalog\models\{
     Category, Collection, Factory
 };
@@ -79,5 +78,17 @@ $this->registerJs($script);
     </div>
     <div class="col-md-3">
         <?= $form->text_line($model, 'position') ?>
+    </div>
+</div>
+<div class="row control-group">
+    <div class="col-md-3">
+        <?= $form
+            ->field($model, 'created_at')
+            ->textInput(['disabled' => true, 'value' => date('d.m.Y H:i', $model->created_at)]) ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form
+            ->field($model, 'updated_at')
+            ->textInput(['disabled' => true, 'value' => date('d.m.Y H:i', $model->updated_at)]) ?>
     </div>
 </div>
