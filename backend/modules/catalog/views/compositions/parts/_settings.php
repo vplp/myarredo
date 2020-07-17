@@ -76,9 +76,6 @@ $this->registerJs($script);
     <div class="col-md-3">
         <?= $form->switcher($model, 'published') ?>
     </div>
-    <div class="col-md-3">
-        <?= $form->text_line($model, 'position') ?>
-    </div>
 </div>
 <div class="row control-group">
     <div class="col-md-3">

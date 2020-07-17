@@ -4,7 +4,6 @@ use yii\helpers\{
     Html, Url
 };
 use kartik\widgets\Select2;
-//
 use backend\modules\catalog\models\{
     Category, Factory, Collection, Types, SubTypes
 };
@@ -156,9 +155,6 @@ $this->registerJs($script);
     </div>
     <div class="col-md-3">
         <?= $form->switcher($model, 'in_stock') ?>
-    </div>
-    <div class="col-md-3">
-        <?= $form->text_line($model, 'position') ?>
     </div>
 </div>
 
