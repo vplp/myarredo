@@ -461,7 +461,7 @@ h1 {
   .mobile-header .logo img {
     display: block;
     width: 100%;
-    max-width: 50px;
+    max-width: 75px;
     height: auto; 
   }
   .mobmenu-panel {
@@ -474,37 +474,38 @@ h1 {
   }
   .mobmenu-panel .for-mob-menu-barstext {
     display: block;
-    font-size: 8px;
+    font-size: 9px;
     font-weight: 600;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: -.3px;
     position: absolute;
-    bottom: -5px;
-    left: 8px;
+    bottom: -8px;
+    left: 6px;
   }
   .mobile-header .mobmenu-part .menu-btn {
     background-color: transparent;
     color: #41403e;
+    margin: 0 12px 0 8px;
   }
   .mobile-header .mobmenu-part .menu-btn .fa {
-    font-size: 25px;
+    font-size: 40px;
+    font-weight: 600;
   }
   .mobile-header .left-info-part.mobmenu-part {
-    width: 103px;
-    max-height: 50px;
+    width: 150px;
     display: flex;
     align-items: center;
   }
   .mobile-header .right-btn-part.mobmenu-part {
-    width: calc(100% - 103px);
+    width: calc(100% - 150px);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     padding: 5px 14px 0px 0;
   }
   .adress-container {
-    width: calc(100% - 88px);
+    width: calc(100% - 155px);
     min-height: 38px;
     padding-right: 6px;
     display: flex;
@@ -518,15 +519,16 @@ h1 {
     width: 100%;
     display: flex;
     align-items: center;
+    margin-left: 6px;
   }
   .adress-container .for-map-icon {
     color: #BDBCB3;
-    font-size: 23px;
+    font-size: 42px;
   }
   .adress-container .for-adress-icon {
     white-space: nowrap;
     overflow: hidden;
-    display: block;
+    display: none;
     font-size: 20px;
     font-weight: 600;
     color: #444444;
@@ -534,15 +536,15 @@ h1 {
   }
   .adress-container .mobile-city-list {
     position: absolute;
-    top: 40px;
-    left: 0;
+    top: 52px;
+    left: -40px;
     z-index: 999;
     background-color: #ffffff;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
   }
   .mobmenu-right-box {
-    min-width: 88px;
-    max-width: 88px;
+    min-width: 155px;
+    max-width: 155px;
     text-align: right;
     display: flex;
     align-items: center;
@@ -553,27 +555,26 @@ h1 {
     padding: 10px 8px 10px;
   }
   .mobmenu-wishlistbox {
-    font-size: 18px;
-    margin-left: 4px;
-    background-color: #448339;
+    font-size: 38px;
+    background-color: transparent;
     padding: 1px 5px;
     position: relative;
   }
   .mobmenu-wishlistbox a {
-    color: #ffffff;
+    color: #BDBCB3;
   }
   .mobmenu-wishlistbox .my-notebook.wishlist .inscription .for-nt-text,
   .mobmenu-wishlistbox .my-notebook.wishlist .inscription .for-nt-arr {
     display: none;
   }
   .mobmenu-wishlistbox .my-notebook.wishlist .inscription .for-price {
-    width: 14px;
+    width: 22px;
     text-align: center;
-    color: #BDBCB3;
+    color: #fff;
     position: absolute;
-    top: 5px;
-    left: 7px;
-    font-size: 12px;
+    top: 15px;
+    left: 13px;
+    font-size: 18px;
     font-weight: 900;
   }
   .mobmenu-bottom-part {
@@ -582,9 +583,16 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 3px 10px 1px;
+    padding: 5px 10px 1px;
   }
   .feedback-container {
+    font-weight: 600;
+  }
+  .feedback-container .for-fcicon {
+    color: #e60000;
+  }
+  .feedback-container .for-fcicon .fa {
+    font-size: 16px;
     font-weight: 600;
   }
   .mob-fabrics-link {
@@ -593,7 +601,6 @@ h1 {
     color: #41403e;
     text-decoration: none;
     position: relative;
-    padding: 0 0 0 8px;
   }
   .mob-fabrics-link:hover,
   .mob-fabrics-link:focus {
@@ -601,20 +608,22 @@ h1 {
   }
   .mob-fabrics-link .for-mobmenu-fabicon {
     display: block;
-    font-size: 19px;
-    padding-bottom: 7px;
+  }
+  .mob-fabrics-link .for-mobmenu-fabicon .fa {
+    font-size: 42px;
+    font-weight: 600;
   }
   .mob-fabrics-link .for-mobmenu-fabtext {
     display: block;
     color: #41403e;
-    font-size: 8px;
+    font-size: 9px;
     font-weight: 600;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: -0.3px;
     position: absolute;
-    bottom: 1px;
-    left: 0;
+    bottom: -9px;
+    left: -3px;
   }
   /* --------------Стили для новогоднего украшения логотипа (для применения раскоментировать)-------------- */
   /* .header .logo {
@@ -664,19 +673,20 @@ h1 {
     padding-left: 22px;
     position: relative;
   }
-    .mobile-header .phone-container:before {
-      content: "\f095";
-      font-size: 23px;
-      color: #BDBCB3;
-      font-family: "FontAwesome";
-      position: absolute;
-      left: -3px;
-      top: 50%;
-      transform: translateY(-50%); }
+.mobile-header .phone-container:before {
+  content: "\f095";
+  font-size: 20px;
+  font-family: FontAwesome;
+  position: absolute;
+  left: 2px;
+  top: 55%;
+  transform: translateY(-50%);
+}
   .mobile-header .phone-num {
-    font-size: 18px;
+    font-size: 14px;
     color: #535351;
     text-decoration: none; 
+    font-weight: 900;
   }
   .mobile-header .after-num {
     font-size: 9px;
@@ -687,7 +697,7 @@ h1 {
     /* display: none; */
     position: absolute;
     z-index: 999999;
-    top: 50px;
+    top: 61px;
     left: -105%;
     width: 100%;
     max-width: 340px;
@@ -7726,9 +7736,9 @@ h1 {
   font-weight: bold;
   font-size: 16px;
   padding: 5px 20px;
-  background-color: #448339;
+  background-color: #bdbcb3;
   color: #ffffff;
-  border: 1px solid #448339;
+  border: 1px solid #bdbcb3;
 
 }
 .btn-mobsearch:focus {
@@ -8169,7 +8179,7 @@ h1 {
   justify-content: flex-start;
 }
 .btn-siginout {
-  font-size: 23px;
+  font-size: 40px;
   color: #BDBCB3;
 }
 /* стили для встроеного виджета - заказать звонок */
@@ -10383,6 +10393,13 @@ body .concact-page .one-cont .cont-info-row a {
     width: 20%;
   }
 }
+/* min 350px */
+@media(min-width: 350px) {
+  .feedback-container {
+    min-width: 50%;
+    border-right: 3px solid #bdbcb3;
+  }
+}
 
 /* max-width styles */
 
@@ -10771,8 +10788,15 @@ body .concact-page .one-cont .cont-info-row a {
   .adress-container .for-adress-icon {
     padding-left: 6px;
   }
-  .mobile-header .left-info-part.mobmenu-part {
-    width: 100px;
+}
+/* max 369px */
+@media(max-width: 369px) {
+  .mobmenu-right-box {
+    min-width: 145px;
+    max-width: 145px;
+  }
+  .adress-container {
+    width: calc(100% - 145px);
   }
 }
 @media (max-width: 355px) {
@@ -10789,6 +10813,22 @@ body .concact-page .one-cont .cont-info-row a {
   .nav>li>a.btn-gopartner,
   .btn-inpdf {
     font-size: 12px;
+  }
+  .mobile-header .left-info-part.mobmenu-part {
+    width: 142px;
+  }
+  .mobile-header .mobmenu-part .menu-btn {
+    margin-right: 10px;
+  }
+  .mobile-header .right-btn-part.mobmenu-part {
+    width: calc(100% - 142px);
+  }
+  .mobmenu-right-box {
+    min-width: 125px;
+    max-width: 125px;
+  }
+  .adress-container {
+    width: calc(100% - 125px);
   }
 }
 /* max 339px */
