@@ -40,6 +40,7 @@ class ProductsNoveltiesOnMain extends Widget
             ])
             ->andWhere([Product::tableName() . '.novelty' => '1'])
             ->orderBy(Product::tableName() . '.updated_at DESC')
+            ->limit(100)
             ->cache(7200)
             ->all();
 
