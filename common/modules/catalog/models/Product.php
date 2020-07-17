@@ -28,6 +28,9 @@ use common\modules\user\models\{
  * @property integer $collections_id
  * @property integer $is_composition
  * @property string $alias
+ * @property string $alias_en
+ * @property string $alias_it
+ * @property string $alias_de
  * @property string $article
  * @property float $price
  * @property float $volume
@@ -167,10 +170,10 @@ class Product extends ActiveRecord implements iProduct
                 'in',
                 'range' => array_keys(static::statusKeyRange())
             ],
-            [['country_code', 'user', 'alias', 'default_title', 'image_link'], 'string', 'max' => 255],
+            [['country_code', 'user', 'alias', 'alias_en', 'alias_it', 'alias_de', 'default_title', 'image_link'], 'string', 'max' => 255],
             [['gallery_image'], 'string', 'max' => 1024],
             [['article'], 'string', 'max' => 100],
-            [['alias'], 'unique'],
+            [['alias', 'alias_en', 'alias_it', 'alias_de'], 'unique'],
             [['catalog_type_id', 'collections_id', 'position'], 'default', 'value' => '0'],
             [['country_code'], 'default', 'value' => '//'],
             [['article'], 'default', 'value' => ''],
@@ -247,6 +250,9 @@ class Product extends ActiveRecord implements iProduct
                 'country_code',
                 'user',
                 'alias',
+                'alias_en',
+                'alias_it',
+                'alias_de',
                 'default_title',
                 'article',
                 'category_ids',
@@ -272,6 +278,9 @@ class Product extends ActiveRecord implements iProduct
         return [
             'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
+            'alias_en' => 'Alias for en',
+            'alias_it' => 'Alias for it',
+            'alias_de' => 'Alias for de',
             'country_code' => 'Показывать для страны',
             'article' => Yii::t('app', 'Артикул'),
             //'price' => Yii::t('app', 'Price'),
