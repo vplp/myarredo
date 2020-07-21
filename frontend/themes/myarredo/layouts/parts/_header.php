@@ -248,7 +248,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             </div>
             <div class="mobmenu-fabrics">
                 <a href="<?= Url::toRoute(['/catalog/factory/list']) ?>" class="mob-fabrics-link">
-                    <span class="for-mobmenu-fabicon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+                    <span class="for-mobmenu-fabicon"><i class="fa fa-industry" aria-hidden="true"></i></span>
                     <span class="for-mobmenu-fabtext"><?= Yii::t('app', 'Фабрики') ?></span>
 
                 </a>
