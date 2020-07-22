@@ -10713,6 +10713,7 @@ body .concact-page .one-cont .cont-info-row a {
   }
   .letter-nav>.container .letter-select li {
     margin-right: 8px;
+    width: 6%;
   }
   .factory-list-page .title-mark .letter-nav>.container .letter-select a {
     font-size: 20px;
