@@ -8525,9 +8525,13 @@ h1 {
 }
 .about-content {
   padding-bottom: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 .aboutbox .about-content>p {
   padding: 0 20px;
+  font-size: 16px;
+  color: #565656;
 }
 @media(max-width: 1200px) {
   .largex-container.about-container {
@@ -10277,6 +10281,13 @@ body .concact-page .one-cont .cont-info-row a {
 .mobile-dropbox {
   display: none;
   width: 100%;
+}
+.info-alertbox {
+  max-width: 1400px;
+  margin: 0 auto;
+  font-size: 24px;
+  color: #dc3545;
+  padding: 10px;
 }
 
 /* --------------------------------------------------------------------------------------------------------- */

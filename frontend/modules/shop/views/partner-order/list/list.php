@@ -46,7 +46,7 @@ use frontend\modules\shop\models\Order;
                 } ?>
 
                 <?php if (!Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
-                    <div style="color:red; font-size: 24px;">
+                    <div class="info-alertbox">
                         <?= Yii::t('app', 'Вы сможете ответить на Заявки покупателей после размещения небольшого кода на Вашем сайте.') ?>
                         <u>
                             <?= Html::a(
