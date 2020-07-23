@@ -84,6 +84,21 @@ $(document).ready(function () {
         var errorEmtySubmitMess = 'Messaggio non inviato Non tutti i campi sono riempiti!';
         var errorSubmitMess = 'Messaggio non inviato Impossibile contattare il server!';
     }
+    else {
+        var reqNameMess = 'Required - Name';
+        var shortNameMess = 'At least 2 characters';
+        var reqEmailMess = 'You need to fill in the email';
+        var correctEmailMess = 'Wrong email address';
+        var reqRegMess = 'Required - Region';
+        var reqPhoneMess = 'Required - Telephone';
+        var numberMess = "Invalid number";
+        var reqSiteMess = 'Required - Site';
+        var urlMess = 'The link to the site is incorrect';
+        var reqTextareaMess = 'Enter the message text';
+        var succesSubmitMess = 'The message has been successfully sent! We will reply as soon as possible';
+        var errorEmtySubmitMess = 'Message not sent Not all fields are filled!';
+        var errorSubmitMess = 'Message not sent Unable to contact the server!';
+    }
 
     // Validation and submit form
     // Функционал для валидации и отправки формы
