@@ -10767,6 +10767,11 @@ body .concact-page .one-cont .cont-info-row a {
     max-height: 100%;
   }
 }
+@media(max-width: 524px) {
+  #comp-slider.mw-item .item {
+    min-width: 100vw;
+  }
+}
 @media (max-width: 480px) {
   .progress-steps-box {
     margin-left: -20px;
