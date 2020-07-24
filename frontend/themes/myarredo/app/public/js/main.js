@@ -762,26 +762,26 @@ $(document).ready(function () {
         $(this).closest('.post-content').toggleClass('opened');
     });
 
+    // Открыть/Закрыть мобильное меню
     $('.js-menu-btn').on('click', function () {
         // $('.js-mobile-menu').fadeIn(120);
         var mobHeader = $(this).closest('.mobile-header');
         if (mobHeader.hasClass('open')) {
             mobHeader.removeClass('open');
+            $('body').removeClass('stop-scrolling');
         }
         else {
             mobHeader.addClass('open');
+            $('body').addClass('stop-scrolling');
         }
     });
 
+    // Закрыть мобильное меню
     $('.js-close-mobile-menu').on('click', function () {
         // $('.js-mobile-menu').fadeOut(120);
         var mobHeader = $(this).closest('.mobile-header');
-        if (mobHeader.hasClass('open')) {
-            mobHeader.removeClass('open');
-        }
-        else {
-            mobHeader.addClass('open');
-        }
+        mobHeader.removeClass('open');
+        $('body').removeClass('stop-scrolling');
     });
 
     $('.js-toggle-list').on('click', function () {
