@@ -139,7 +139,8 @@ use frontend\modules\catalog\models\Category;
         </div>
     <?php } ?>
 
-    <?php if ($factory) { ?>
+
+    <?php if ($factory && !in_array(Yii::$app->controller->id, ['template-factory'])) { ?>
         <div class="one-filter">
             <?= Html::a(
                 Yii::t('app', 'Фабрики'),

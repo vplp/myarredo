@@ -2,25 +2,27 @@
 
 namespace frontend\modules\catalog\controllers;
 
+use frontend\modules\catalog\widgets\filter\ProductFilter;
+use frontend\modules\catalog\widgets\filter\ProductFilterSizes;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\components\BaseController;
-use frontend\modules\catalog\models\{
-    Collection,
+use frontend\modules\catalog\models\{Collection,
     Colors,
     Product,
     Category,
     Factory,
+    ProductRelSpecification,
     ProductStats,
     Sale,
     SaleStats,
     SubTypes,
     Types,
-    Specification
-};
+    Specification};
 use frontend\modules\user\models\User;
+use yii\web\Response;
 
 /**
  * Class TemplateFactoryController
@@ -306,5 +308,44 @@ class TemplateFactoryController extends BaseController
         return $this->render('/sale/view', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function actionAjaxGetFilter()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            return [
+                'success' => 1,
+                'html' => ProductFilter::widget([
+                    'route' => Yii::$app->getRequest()->post('link'),
+                    'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
+                ])
+            ];
+        }
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function actionAjaxGetFilterSizes()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            return [
+                'success' => 1,
+                'html' => ProductFilterSizes::widget([
+                    'modelProductRelSpecificationClass' => ProductRelSpecification::class,
+                    'route' => Yii::$app->getRequest()->post('link'),
+                    'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
+                ])
+            ];
+        }
     }
 }

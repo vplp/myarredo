@@ -91,6 +91,8 @@ return [
     'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/sale' => 'catalog/template-factory/sale',
     'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/product/<product:[\w\-]+>' => 'catalog/template-factory/product',
     'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/sale-product/<product:[\w\-]+>' => 'catalog/template-factory/sale-product',
+    'factory/template-factory/ajax-get-filter' => 'catalog/template-factory/ajax-get-filter',
+    'factory/template-factory/ajax-get-filter-sizes' => 'catalog/template-factory/ajax-get-filter-sizes',
 
     // Factory product
     'factory-collections' => 'catalog/factory-collections/list',
