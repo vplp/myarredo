@@ -4,7 +4,6 @@ namespace frontend\modules\catalog\controllers;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-//
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
     ElasticSearchProduct, ElasticSearchSale, ElasticSearchItalianProduct
