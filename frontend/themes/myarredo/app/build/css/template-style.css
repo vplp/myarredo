@@ -10419,6 +10419,15 @@ body .concact-page .one-cont .cont-info-row a {
     width: 20%;
   }
 }
+/* min 359px */
+@media(min-width: 359px) {
+  .feedback-container {
+    font-size: 17.7px;
+  }
+  .mobile-header .phone-num {
+    font-size: 16px;
+  }
+}
 /* min 350px */
 @media(min-width: 350px) {
   .feedback-container {
