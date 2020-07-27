@@ -1,11 +1,19 @@
 <?php
 
 use yii\helpers\Html;
-//
-use frontend\modules\catalog\models\ElasticSearchProduct;
+use frontend\modules\catalog\models\{
+    ElasticSearchProduct,
+    ElasticSearchSale,
+    ElasticSearchItalianProduct
+};
 
 /**
+ * @var $models ElasticSearchProduct[]
  * @var $model ElasticSearchProduct
+ * @var $modelsSale ElasticSearchSale[]
+ * @var $modelSale ElasticSearchSale
+ * @var $modelsItalianProduct ElasticSearchItalianProduct[]
+ * @var $modelItalianProduct ElasticSearchItalianProduct
  */
 
 $this->title = $this->context->title;

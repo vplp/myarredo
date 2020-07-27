@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-//
 use frontend\modules\catalog\models\{
     Product, Factory
 };
@@ -16,6 +15,14 @@ use frontend\modules\catalog\models\{
     'class' => 'one-prod-tile',
 ]) ?>
 <div class="one-prod-tile-in">
+
+    <?php if ($model['bestseller']) { ?>
+        <div class="prod-bestseller"><?= Yii::t('app', 'Bestseller') ?></div>
+    <?php } ?>
+
+    <?php if ($model['novelty']) { ?>
+        <div class="prod-bestseller"><?= Yii::t('app', 'Novelty') ?></div>
+    <?php } ?>
 
     <?php
     /*
