@@ -7,7 +7,7 @@ use frontend\modules\catalog\models\{
 
 /** @var $model Product */
 /** @var $factory Factory */
-/* !!! */ echo  '<pre style="color:red;">'; print_r($model); echo '</pre>'; /* !!! */
+
 ?>
 
 <?= Html::beginTag('a', [
