@@ -5,8 +5,6 @@ namespace console\controllers;
 use Yii;
 use yii\console\Controller;
 use yii\helpers\Console;
-
-//
 use frontend\modules\location\models\Country;
 use frontend\modules\user\models\{
     User, Group, Profile
@@ -187,6 +185,8 @@ class SendPulseController extends Controller
                 $bookId = $modelOrder->city->country->bookId;
             } else if (in_array($modelOrder->lang, ['en-EN', 'it-IT'])) {
                 $bookId = '88910536';
+            } else if ($modelOrder->city && in_array($modelOrder->lang, ['uk-UA'])) {
+                $bookId = $modelOrder->city->country->bookId;
             }
 
             $currentLanguage = Yii::$app->language;
