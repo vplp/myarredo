@@ -4,7 +4,6 @@ namespace frontend\modules\catalog\models;
 
 use Yii;
 use yii\helpers\Url;
-//
 use frontend\components\ImageResize;
 
 /**

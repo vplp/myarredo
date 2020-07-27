@@ -6,9 +6,9 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-//
 use frontend\components\BaseController;
-use frontend\modules\catalog\models\{Collection,
+use frontend\modules\catalog\models\{
+    Collection,
     Colors,
     Product,
     Category,
@@ -18,7 +18,8 @@ use frontend\modules\catalog\models\{Collection,
     SaleStats,
     SubTypes,
     Types,
-    Specification};
+    Specification
+};
 use frontend\modules\user\models\User;
 
 /**
@@ -138,6 +139,8 @@ class TemplateFactoryController extends BaseController
 
         if (!isset(Yii::$app->catalogFilter->params[$keys['factory']])) {
             Yii::$app->catalogFilter->setParam($keys['factory'], $factory['alias']);
+        } else if (count(Yii::$app->catalogFilter->params[$keys['factory']]) > 1) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
         $queryParams = Yii::$app->catalogFilter->params;
@@ -147,7 +150,10 @@ class TemplateFactoryController extends BaseController
         $this->title = Yii::t('app', 'Каталог итальянской мебели') . ' ' .
             $factory['title'] . '. ' .
             (Yii::$app->city->domain != 'com' ? Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere() . ' ' . Yii::t('app', 'по лучшей цене') : '');
-
+        /* !!! */
+        echo '<pre style="color:red;">';
+        print_r(Yii::$app->catalogFilter->params[$keys['factory']]);
+        echo '</pre>'; /* !!! */
         return $this->render('catalog', [
             'factory' => $factory,
             'models' => $models->getModels(),
