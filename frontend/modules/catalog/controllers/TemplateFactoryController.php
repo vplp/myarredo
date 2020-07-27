@@ -150,10 +150,7 @@ class TemplateFactoryController extends BaseController
         $this->title = Yii::t('app', 'Каталог итальянской мебели') . ' ' .
             $factory['title'] . '. ' .
             (Yii::$app->city->domain != 'com' ? Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere() . ' ' . Yii::t('app', 'по лучшей цене') : '');
-        /* !!! */
-        echo '<pre style="color:red;">';
-        print_r(Yii::$app->catalogFilter->params[$keys['factory']]);
-        echo '</pre>'; /* !!! */
+
         return $this->render('catalog', [
             'factory' => $factory,
             'models' => $models->getModels(),
