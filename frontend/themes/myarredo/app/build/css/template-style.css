@@ -6905,8 +6905,6 @@ h1 {
       padding-top: 0; }
   #panel1 .col-md-12 {
     padding: 0; }
-  #panel1 .slick-prev, #panel1 .slick-next {
-    display: none !important; }
   .prod-card-page .nav-tabs li {
     margin: 0;
     width: 100%; }
@@ -9877,6 +9875,14 @@ h1 {
   /* background-image: linear-gradient(#448339, #545451); */
   background-image: linear-gradient(#429633, #448339);
 }
+.factory-det .fact-img {
+  margin-bottom: 15px;
+}
+.nosearch-panel {
+  text-align: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
 
 /* Стили для формы обратной связи */
 #ajaxFormFeedbackModal .selectpicker1,
@@ -10616,7 +10622,7 @@ body .concact-page .one-cont .cont-info-row a {
     margin-bottom: 30px;
   }
 }
-/* max 768 */
+/* min 768 */
 @media (min-width: 768px) {
   #italian-product-grid-container table.table {
     margin: 0 -1px;
@@ -10629,6 +10635,13 @@ body .concact-page .one-cont .cont-info-row a {
 @media(min-width: 541px) {
   .category-page .cat-prod .one-prod-tile:hover .tile-prod-name {
     min-height: 40px;
+  }
+}
+/* max 768px */
+@media(max-width: 768px) {
+  .nosearch-panel {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 @media (max-width: 767px) {
@@ -10787,8 +10800,21 @@ body .concact-page .one-cont .cont-info-row a {
   }
 }
 @media(max-width: 524px) {
-  #comp-slider.mw-item .item {
+  /* #comp-slider.mw-item .item {
     min-width: 100vw;
+  } */
+  #comp-slider {
+    margin: 0;
+  }
+  #comp-slider .slick-prev,
+  #comp-slider .slick-next {
+    width: 16px;
+    font-size: 44px;
+    color: #B2B2B2;
+    background-color: transparent;
+  }
+  #comp-slider .background {
+    background-color: #ffffff;
   }
 }
 @media (max-width: 480px) {

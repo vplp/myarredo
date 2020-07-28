@@ -209,8 +209,6 @@
       padding-top: 0; }
   #panel1 .col-md-12 {
     padding: 0; }
-  #panel1 .slick-prev, #panel1 .slick-next {
-    display: none !important; }
   .prod-card-page .nav-tabs li {
     margin: 0;
     width: 100%; }

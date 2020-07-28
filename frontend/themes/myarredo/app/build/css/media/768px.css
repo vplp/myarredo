@@ -357,6 +357,10 @@
     width: 150px;
     margin-left: auto;
     margin-right: auto; }
+  .nosearch-panel {
+    margin-left: auto;
+    margin-right: auto;
+  }
   .factory-page .col-xs-12 {
     width: 100%; }
   .factory-page .bread-crumbs li {
