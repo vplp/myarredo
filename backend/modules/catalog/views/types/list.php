@@ -2,13 +2,11 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-//
 use backend\widgets\GridView\gridColumns\ActionColumn;
 use backend\widgets\GridView\GridView;
 use backend\modules\catalog\models\{
     Category, Types, search\Types as filterTypes
 };
-//
 use thread\widgets\grid\{
     ActionStatusColumn, GridViewFilter
 };

@@ -4,7 +4,6 @@ use yii\helpers\{
     Html, Url
 };
 use yii\widgets\ActiveForm;
-//
 use frontend\modules\catalog\models\ItalianProduct;
 use frontend\modules\payment\models\Payment;
 
@@ -45,31 +44,32 @@ $this->title = $this->context->title;
                             </thead>
                             <tbody>
 
-                                <tr>
-                                    <th>1</th>
-                                    <td class="cell-img-and-descr">
-                                        <?= $model->getTitle() .
-                                        Html::input(
-                                            'hidden',
-                                            'Payment[items_ids][]',
-                                            $model->id
-                                        ) .
-                                        Html::img(
-                                            ItalianProduct::getImageThumb($model['image_link']),
-                                            ['width' => 50]
-                                        ) ?>
-                                    </td>
-                                    <td>1</td>
-                                    <td><?= $modelPayment->amount ?></td>
-                                    <td><?= $modelPayment->currency ?></td>
-                                </tr>
+                            <tr>
+                                <th>1</th>
+                                <td class="cell-img-and-descr">
+                                    <?= $model->getTitle() .
+                                    Html::input(
+                                        'hidden',
+                                        'Payment[items_ids][]',
+                                        $model->id
+                                    ) .
+                                    Html::img(
+                                        ItalianProduct::getImageThumb($model['image_link']),
+                                        ['width' => 50]
+                                    ) ?>
+                                </td>
+                                <td>1</td>
+                                <td><?= $modelPayment->amount ?></td>
+                                <td><?= $modelPayment->currency ?></td>
+                            </tr>
 
                             </tbody>
                         </table>
                     </div>
                     <div class="total-box">
                         <div>
-                            <span class="for-total"><?= Yii::t('app', 'Всего к оплате') ?> :</span> <span class="for-styles"><?= $modelPayment->amount . ' ' . $modelPayment->currency ?></span>
+                            <span class="for-total"><?= Yii::t('app', 'Всего к оплате') ?> :</span> <span
+                                    class="for-styles"><?= $modelPayment->amount . ' ' . $modelPayment->currency ?></span>
                         </div>
                     </div>
 

@@ -8,7 +8,6 @@ use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Response;
 use yii\web\ForbiddenHttpException;
-//
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
     Category,
@@ -18,7 +17,6 @@ use frontend\modules\catalog\models\{
     FactoryProductLang,
     search\FactoryProduct as filterFactoryProductModel
 };
-//
 use thread\actions\{
     CreateWithLang, ListModel, AttributeSwitch, UpdateWithLang
 };

@@ -3,7 +3,6 @@
 namespace backend\modules\catalog\controllers;
 
 use yii\helpers\ArrayHelper;
-//
 use backend\modules\catalog\models\{
     FactoryProduct, FactoryProductLang, search\FactoryProduct as filterFactoryProduct
 };

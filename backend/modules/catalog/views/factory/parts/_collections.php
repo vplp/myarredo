@@ -4,7 +4,6 @@ use yii\grid\GridView;
 use yii\helpers\{
     Url, Html
 };
-//
 use backend\app\bootstrap\ActiveForm;
 use backend\modules\catalog\models\Collection;
 

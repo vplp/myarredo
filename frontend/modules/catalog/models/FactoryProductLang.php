@@ -4,7 +4,6 @@ namespace frontend\modules\catalog\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-//
 use common\modules\catalog\models\ProductLang as CommonProductLang;
 
 /**

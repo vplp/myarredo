@@ -5,7 +5,6 @@ namespace frontend\modules\catalog\models\search;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
-//
 use frontend\modules\catalog\models\{
     SubTypes as SubTypesModel
 };

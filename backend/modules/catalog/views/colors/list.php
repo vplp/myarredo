@@ -1,13 +1,11 @@
 <?php
 
 use yii\helpers\Html;
-//
 use backend\widgets\GridView\GridView;
 use backend\widgets\GridView\gridColumns\ActionColumn;
 use backend\modules\catalog\models\{
     Colors, ColorsLang
 };
-//
 use thread\widgets\grid\{
     ActionStatusColumn
 };
@@ -22,7 +20,6 @@ echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
-        'alias',
         [
             'attribute' => 'color_code',
             'value' => function ($model) {

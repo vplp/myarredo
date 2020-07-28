@@ -5,7 +5,6 @@ namespace frontend\modules\catalog\models\search;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
-//
 use frontend\modules\catalog\models\{
     Types as TypesModel
 };
@@ -63,7 +62,6 @@ class Types extends TypesModel
         }
 
         $query->andFilterWhere(['like', 'alias', $this->alias]);
-        //
         $query->andFilterWhere(['like', TypesLang::tableName() . '.title', $this->title]);
 
         self::getDb()->cache(function ($db) use ($dataProvider) {

@@ -1,11 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-//
 use frontend\modules\catalog\models\{
     ItalianProduct, ItalianProductLang
 };
-//
 use backend\app\bootstrap\ActiveForm;
 
 /**

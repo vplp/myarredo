@@ -8,7 +8,6 @@ use yii\helpers\{
 };
 use yii\base\Component;
 use yii\web\NotFoundHttpException;
-//
 use frontend\modules\catalog\models\{
     Category,
     Factory,

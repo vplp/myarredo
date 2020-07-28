@@ -8,12 +8,10 @@ use yii\filters\AccessControl;
 use yii\web\{
     ForbiddenHttpException, NotFoundHttpException
 };
-//
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
     FactoryCollection, search\Collection as filterCollectionModel
 };
-//
 use thread\actions\{
     Create, Update, ListModel
 };

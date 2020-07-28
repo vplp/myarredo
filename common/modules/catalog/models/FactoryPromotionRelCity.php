@@ -3,7 +3,6 @@
 namespace common\modules\catalog\models;
 
 use thread\app\base\models\ActiveRecord;
-//
 use common\modules\catalog\Catalog;
 use common\modules\location\models\City;
 

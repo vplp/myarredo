@@ -3,7 +3,6 @@
 use yii\helpers\{
     Html, Url
 };
-//
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{Factory, Product, ProductLang};
 use frontend\themes\myarredo\assets\AppAsset;

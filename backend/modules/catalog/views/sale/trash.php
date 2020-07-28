@@ -8,7 +8,6 @@ use backend\modules\location\models\{
     City
 };
 use backend\modules\user\models\User;
-//
 use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn, GridViewFilter
 };

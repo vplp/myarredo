@@ -4,14 +4,10 @@ use yii\helpers\{
     Html, Url
 };
 use kartik\widgets\Select2;
-
-//
 use frontend\modules\location\models\Region;
 use frontend\modules\catalog\models\{
     Category, Factory, Types, SubTypes, Specification, Colors, ItalianProduct, ItalianProductLang
 };
-
-//
 use backend\app\bootstrap\ActiveForm;
 
 /**
@@ -269,7 +265,7 @@ $Specifications = Specification::findBase()->all();
 
         <div class="form-group row">
             <div class="col-sm-3">
-                <label><?= Yii::t('app', 'Дата производства')?></label>
+                <label><?= Yii::t('app', 'Дата производства') ?></label>
             </div>
             <?= $form
                 ->field(

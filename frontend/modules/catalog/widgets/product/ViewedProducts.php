@@ -3,7 +3,6 @@
 namespace frontend\modules\catalog\widgets\product;
 
 use Yii;
-//
 use yii\base\Exception;
 use yii\base\Widget;
 

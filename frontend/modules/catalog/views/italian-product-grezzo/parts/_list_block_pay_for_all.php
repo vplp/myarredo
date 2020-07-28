@@ -4,7 +4,6 @@ use yii\helpers\{ArrayHelper, Html, Url};
 use yii\data\Pagination;
 use yii\widgets\Pjax;
 use kartik\grid\GridView;
-//
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
     ItalianProduct, Factory

@@ -5,7 +5,6 @@ namespace frontend\modules\catalog\models\search;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
-//
 use frontend\modules\catalog\models\{
     Colors as ColorsModel
 };
@@ -63,7 +62,6 @@ class Colors extends ColorsModel
         }
 
         $query->andFilterWhere(['like', 'alias', $this->alias]);
-        //
         $query->andFilterWhere(['like', ColorsLang::tableName() . '.title', $this->title]);
 
         self::getDb()->cache(function ($db) use ($dataProvider) {

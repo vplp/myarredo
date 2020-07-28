@@ -1,7 +1,6 @@
 <?php
 
 use kartik\widgets\Select2;
-//
 use backend\modules\catalog\models\Samples;
 
 /**
@@ -9,8 +8,7 @@ use backend\modules\catalog\models\Samples;
  * @var \backend\modules\catalog\models\ProductLang $modelLang
  * @var \backend\app\bootstrap\ActiveForm $form
  */
-
- ?>
+?>
 
 <p>Отделка зависит от выбранной фабрики</p>
 

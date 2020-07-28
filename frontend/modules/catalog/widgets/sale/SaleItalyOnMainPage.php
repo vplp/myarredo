@@ -3,7 +3,6 @@
 namespace frontend\modules\catalog\widgets\sale;
 
 use yii\base\Widget;
-//
 use frontend\modules\catalog\models\{
     ItalianProduct, ItalianProductLang
 };

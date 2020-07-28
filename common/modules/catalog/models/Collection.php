@@ -6,9 +6,7 @@ use Yii;
 use yii\helpers\{
     ArrayHelper
 };
-//
 use thread\app\base\models\ActiveRecord;
-//
 use common\modules\catalog\Catalog;
 
 /**

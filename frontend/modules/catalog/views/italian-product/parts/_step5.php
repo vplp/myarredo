@@ -4,7 +4,6 @@ use yii\helpers\{
     Html, Url
 };
 use yii\widgets\ActiveForm;
-//
 use frontend\modules\payment\models\Payment;
 use frontend\modules\location\models\Currency;
 use frontend\modules\catalog\models\{

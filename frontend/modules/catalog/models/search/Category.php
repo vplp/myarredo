@@ -4,7 +4,6 @@ namespace frontend\modules\catalog\models\search;
 
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
-//
 use frontend\modules\catalog\models\{
     Category as CategoryModel
 };
@@ -56,7 +55,6 @@ class Category extends CategoryModel
         }
 
         $query->andFilterWhere(['like', 'alias', $this->alias]);
-        //
         $query->andFilterWhere(['like', CategoryLang::tableName() . '.title', $this->title]);
 
         self::getDb()->cache(function ($db) use ($dataProvider) {

@@ -10,15 +10,12 @@ use yii\helpers\{
 use yii\web\{
     ForbiddenHttpException, NotFoundHttpException
 };
-//
 use thread\actions\{
     Create, Update, ListModel
 };
-//
 use common\actions\upload\{
     DeleteAction, UploadAction
 };
-//
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
     FactoryCatalogsFiles,

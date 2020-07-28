@@ -4,11 +4,9 @@ use yii\helpers\{
     Html, Url
 };
 use kartik\widgets\Select2;
-//
 use frontend\modules\catalog\models\{
     Category, Types, Specification, Collection, FactoryProduct, FactoryProductLang, ProductRelSpecification
 };
-//
 use backend\app\bootstrap\ActiveForm;
 use backend\widgets\TreeGrid;
 use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;

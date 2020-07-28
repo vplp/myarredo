@@ -4,14 +4,11 @@ namespace backend\modules\catalog\controllers;
 
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
-//
 use common\actions\upload\{
     DeleteAction, UploadAction
 };
-//
 use thread\app\base\controllers\BackendController;
 use thread\actions\AttributeSwitch;
-//
 use backend\modules\catalog\models\{
     ItalianProduct, ItalianProductLang, search\ItalianProduct as filterItalianProduct
 };

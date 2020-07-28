@@ -2,7 +2,7 @@
 
 return [
     'params' => [],
-    //Migration
+    // Migration
     'controllerMap' => [
         'migrate' => [
             'class' => \yii\console\controllers\MigrateController::class,

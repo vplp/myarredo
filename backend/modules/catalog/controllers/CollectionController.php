@@ -8,7 +8,6 @@ use yii\helpers\{
     ArrayHelper, Url
 };
 use yii\web\NotFoundHttpException;
-//
 use thread\actions\{
     Create, Update
 };

@@ -5,7 +5,6 @@ namespace frontend\modules\catalog\widgets\sale;
 use Yii;
 use yii\base\Widget;
 use yii\db\mssql\PDO;
-//
 use frontend\modules\catalog\models\{
     ItalianProduct, ItalianProductRequest
 };
