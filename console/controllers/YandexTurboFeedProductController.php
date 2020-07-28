@@ -75,7 +75,6 @@ class YandexTurboFeedProductController extends Controller
 
         $currencies = Currency::findBase()->all();
 
-        //$categories = Category::findBase()->all();
         $types = Types::findBase()->all();
 
         $query = Product::findBaseArray()
@@ -173,7 +172,6 @@ class YandexTurboFeedProductController extends Controller
                             "\t\t<url>" . $url . "</url>" . PHP_EOL .
                             "\t\t<price>" . $offer['price_from'] . "</price>" . PHP_EOL .
                             "\t\t<currencyId>" . ($offer['currency'] == 'RUB' ? 'RUR' : $offer['currency']) . "</currencyId>" . PHP_EOL .
-                            //"\t\t<categoryId>" . ($offer['category'] ? $offer['category'][0]['id'] : 0) . "</categoryId>" . PHP_EOL .
                             "\t\t<categoryId>" . ($offer['catalog_type_id'] ?? 0) . "</categoryId>" . PHP_EOL .
                             "\t\t<picture>" . Product::getImageThumb($offer['image_link']) . "</picture>" . PHP_EOL;
 
@@ -181,12 +179,6 @@ class YandexTurboFeedProductController extends Controller
                             $str .= "\t\t<description><![CDATA[" . strip_tags($offer['lang']['description']) . "]]></description>" . PHP_EOL;
                         } else {
                             $str .= "\t\t<description></description>" . PHP_EOL;
-                        }
-
-                        // Предмет
-                        $array = [];
-                        if ($offer['types'] != null) {
-                            $str .= "\t\t<param name=\"Предмет\">" . htmlspecialchars($offer['types']['lang']['title']) . "</param>" . PHP_EOL;
                         }
 
                         // Артикул
