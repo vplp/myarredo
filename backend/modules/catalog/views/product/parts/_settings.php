@@ -16,7 +16,6 @@ use backend\modules\catalog\models\{
 
 ?>
 
-
 <?= $form->text_line($model, 'alias') ?>
 
 <?= $form->text_line($model, 'alias_en') ?>
@@ -24,7 +23,6 @@ use backend\modules\catalog\models\{
 <?= $form->text_line($model, 'alias_it') ?>
 
 <?= $form->text_line($model, 'alias_de') ?>
-
 
 <?= $form->text_line($model, 'article') ?>
 
