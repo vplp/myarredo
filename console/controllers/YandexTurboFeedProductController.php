@@ -6,7 +6,7 @@ use Yii;
 use yii\helpers\Console;
 use yii\console\Controller;
 use frontend\modules\location\models\{City, Currency};
-use frontend\modules\catalog\models\{Category};
+use frontend\modules\catalog\models\{Category, Types};
 use console\models\{Product, Factory};
 
 /**
@@ -75,7 +75,8 @@ class YandexTurboFeedProductController extends Controller
 
         $currencies = Currency::findBase()->all();
 
-        $categories = Category::findBase()->all();
+        //$categories = Category::findBase()->all();
+        $types = Types::findBase()->all();
 
         $query = Product::findBaseArray()
             ->innerJoinWith([
@@ -100,7 +101,7 @@ class YandexTurboFeedProductController extends Controller
         /** @var $city City */
         foreach ($cities as $city) {
             if ($city['id'] == 4) {
-                $this->createFeed($city, $currencies, $categories, $offers);
+                $this->createFeed($city, $currencies, $types, $offers);
             }
         }
 
@@ -110,10 +111,10 @@ class YandexTurboFeedProductController extends Controller
     /**
      * @param $city
      * @param $currencies
-     * @param $categories
+     * @param $types
      * @param $offers
      */
-    protected function createFeed($city, $currencies, $categories, $offers)
+    protected function createFeed($city, $currencies, $types, $offers)
     {
         if ($offers) {
             $count = count($offers);
@@ -147,11 +148,11 @@ class YandexTurboFeedProductController extends Controller
                     $handle,
                     "<categories>" . PHP_EOL
                 );
-                foreach ($categories as $category) {
+                foreach ($types as $type) {
                     fwrite(
                         $handle,
-                        "\t<category id=\"" . $category['id'] . "\">" .
-                        strip_tags($category['lang']['title']) .
+                        "\t<category id=\"" . $type['id'] . "\">" .
+                        strip_tags($type['lang']['title']) .
                         "</category>" . PHP_EOL
                     );
                 }
@@ -163,7 +164,7 @@ class YandexTurboFeedProductController extends Controller
 
                 for ($j = $i * $this->countOffersInFeed; $j <= ($i + 1) * $this->countOffersInFeed; $j++) {
                     /** @var $offer Product */
-                    if (isset($offers[$j]) && !empty($offers[$j]['category']) && Product::isImage($offers[$j]['image_link'])) {
+                    if (isset($offers[$j]) && !empty($offers[$j]['catalog_type_id']) && Product::isImage($offers[$j]['image_link'])) {
                         $offer = $offers[$j];
                         $url = City::getSubDomainUrl($city) . '/product/' . $offer['alias'] . '/';
 
@@ -172,7 +173,8 @@ class YandexTurboFeedProductController extends Controller
                             "\t\t<url>" . $url . "</url>" . PHP_EOL .
                             "\t\t<price>" . $offer['price_from'] . "</price>" . PHP_EOL .
                             "\t\t<currencyId>" . ($offer['currency'] == 'RUB' ? 'RUR' : $offer['currency']) . "</currencyId>" . PHP_EOL .
-                            "\t\t<categoryId>" . ($offer['category'] ? $offer['category'][0]['id'] : 0) . "</categoryId>" . PHP_EOL .
+                            //"\t\t<categoryId>" . ($offer['category'] ? $offer['category'][0]['id'] : 0) . "</categoryId>" . PHP_EOL .
+                            "\t\t<categoryId>" . ($offer['catalog_type_id'] ?? 0) . "</categoryId>" . PHP_EOL .
                             "\t\t<picture>" . Product::getImageThumb($offer['image_link']) . "</picture>" . PHP_EOL;
 
                         if ($offer['lang']['description']) {
