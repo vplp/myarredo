@@ -346,6 +346,18 @@ class Product extends ActiveRecord implements iProduct
             }
         }
 
+        if ($this->alias_en == '' && in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+            $this->alias_en = $this->alias;
+        }
+
+        if ($this->alias_it == '' && in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+            $this->alias_it = $this->alias;
+        }
+
+        if ($this->alias_de == '' && in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+            $this->alias_de = $this->alias;
+        }
+
         if (in_array($this->scenario, ['frontend', 'backend'])) {
             $this->mark = '0';
             $this->language_editing = Yii::$app->language;
