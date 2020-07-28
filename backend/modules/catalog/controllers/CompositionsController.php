@@ -6,7 +6,6 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Response;
-//
 use common\actions\upload\{
     DeleteAction, UploadAction
 };

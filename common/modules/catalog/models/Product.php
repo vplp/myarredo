@@ -337,9 +337,25 @@ class Product extends ActiveRecord implements iProduct
                 . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
                 . (($this->article) ? ' ' . $this->article : ' ' . uniqid());
 
+            $this->alias_en = $this->alias;
+            $this->alias_it = $this->alias;
+            $this->alias_de = $this->alias;
+
             if ($this->id) {
                 $this->alias = $this->id . ' ' . $this->alias;
             }
+        }
+
+        if ($this->alias_en == '' && in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+            $this->alias_en = $this->alias;
+        }
+
+        if ($this->alias_it == '' && in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+            $this->alias_it = $this->alias;
+        }
+
+        if ($this->alias_de == '' && in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+            $this->alias_de = $this->alias;
         }
 
         if (in_array($this->scenario, ['frontend', 'backend'])) {
