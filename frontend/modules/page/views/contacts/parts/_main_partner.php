@@ -3,8 +3,6 @@
 use yii\helpers\{
     Html, Url
 };
-
-//
 use frontend\modules\forms\widgets\FormFeedback;
 use frontend\modules\user\widgets\partner\MainPartnerMap;
 
@@ -172,7 +170,7 @@ $mainPartner = array_shift($partners);
     </div>
 </div>
 <div class="one-cont double-cont map-cont contact-mapbox">
-    <?= MainPartnerMap::widget(['id' => $mainPartner->id]) ?>
+    <?= MainPartnerMap::widget(['id' => $mainPartner->id, 'city' => Yii::$app->city->getCity()]) ?>
 </div>
 <!-- end main partner -->
 

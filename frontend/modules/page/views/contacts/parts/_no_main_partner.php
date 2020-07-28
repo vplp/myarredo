@@ -3,8 +3,6 @@
 use yii\helpers\{
     Html, Url
 };
-
-//
 use frontend\modules\user\widgets\partner\PartnerMap;
 
 ?>
