@@ -16,7 +16,7 @@ $model->user_agreement = 1;
     Yii::t('app', 'Не нашли то что искали? Оставьте заявку тут'),
     'javascript:void(0);',
     [
-        'class' => 'add-to-notepad-product btn btn-success big',
+        'class' => 'add-to-notepad-product btn btn-showmore',
         'data-toggle' => 'modal',
         'data-target' => '#formRequestNotFoundModal'
     ]
