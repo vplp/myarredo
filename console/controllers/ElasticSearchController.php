@@ -5,11 +5,9 @@ namespace console\controllers;
 use Yii;
 use yii\helpers\Console;
 use yii\console\Controller;
-//
 use frontend\modules\catalog\models\{
     ElasticSearchProduct, ElasticSearchSale, ElasticSearchItalianProduct
 };
-//
 use common\modules\catalog\models\{
     Product, Sale, ItalianProduct
 };

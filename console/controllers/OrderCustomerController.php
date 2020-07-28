@@ -6,7 +6,6 @@ use Yii;
 use yii\console\Controller;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Console;
-//
 use frontend\modules\catalog\models\Factory;
 use frontend\modules\location\models\{
     Country, City

@@ -6,7 +6,6 @@ use Yii;
 use yii\db\Exception;
 use yii\helpers\Console;
 use yii\console\Controller;
-//
 use frontend\modules\sys\models\Language;
 use common\modules\catalog\models\{
     ItalianProduct, ItalianProductLang

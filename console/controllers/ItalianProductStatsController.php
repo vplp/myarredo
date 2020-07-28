@@ -5,7 +5,6 @@ namespace console\controllers;
 use Yii;
 use yii\helpers\Console;
 use yii\console\Controller;
-//
 use frontend\modules\catalog\models\{
     ItalianProductStats, ItalianProductStatsDays
 };

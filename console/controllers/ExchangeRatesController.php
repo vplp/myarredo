@@ -2,13 +2,10 @@
 
 namespace console\controllers;
 
-use Yii;
 use SoapClient;
 use SimpleXMLElement;
-//
 use yii\helpers\Console;
 use yii\console\Controller;
-//
 use common\modules\location\models\Currency;
 
 /**
