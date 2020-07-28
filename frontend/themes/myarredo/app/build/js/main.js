@@ -135,9 +135,6 @@ function slickInit() {
                 }
             ]
         });
-        setTimeout(function() {
-            $('#comp-slider').slick('slickNext');
-        }, 300);
     }
 
 }
@@ -156,6 +153,8 @@ function feedbackFormElInit() {
 } 
 
 $(document).ready(function () {
+
+    slickInit();
 
     // удаляем прелоадер
     $('#preload_box').hide();
@@ -580,8 +579,6 @@ $(document).ready(function () {
     })();
     /*--конец Галерея Карточка товара --*/
 
-    slickInit();
-
     if ($('.std-slider').length > 0) {
         // если ширина экрана меньше 540px (это мобильный)
         if (window.screen.width <= 540) {
@@ -668,7 +665,21 @@ $(document).ready(function () {
     $(document).on('click', '.link-composition', function() {
         if ($('#comp-slider').length > 0) { 
             $('#comp-slider').addClass('mw-item');
-            // $('#comp-slider').slick('slickNext');
+
+            // Ожидаем инициализацию слайдера и перемотываем на один слайд вперед чтобы убрать баг который возникает из за табов на телефонах
+            var count = 0;
+            var runSliderComp = setInterval(function() {
+                if (count > 120) {
+                    clearInterval(runSliderComp);
+                }
+                try {
+                    $('#comp-slider').slick('slickNext');
+                    clearInterval(runSliderComp);
+                } catch (e) {
+                    count++;
+                    return false;
+                }
+            }, 100);
         }
     });
 });
