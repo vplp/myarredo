@@ -91,9 +91,9 @@ class CompositionsController extends BackendController
                 $response['category'] = Category::dropDownList(['type_id' => $selectedArray['typeF']]);
             }
 
-            $model1 = Product::findBaseArray()->byID($selected_val_tovars)->all();
+            $model1 = Product::findBase()->asArray()->byID($selected_val_tovars)->all();
 
-            $query = Product::findBaseArray();
+            $query = Product::findBase()->asArray();
 
             if ($selectedArray['factoryF']) {
                 $query->andFilterWhere([Product::tableName() . '.factory_id' => $selectedArray['factoryF']]);
