@@ -80,6 +80,7 @@ class YandexTurboFeedProductController extends Controller
         $query = Product::findBaseArray()
             ->innerJoinWith([
                 'category',
+                'category.lang',
                 'types',
                 'types.lang',
                 'specificationValue',
