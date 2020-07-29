@@ -220,7 +220,7 @@ class YandexTurboFeedProductController extends Controller
 
                         // Размеры
                         foreach ($offer['specificationValue'] as $item) {
-                            if ($item['specification']['parent_id'] == 4) {
+                            if ($item['specification']['parent_id'] == 4 && $item['val']) {
                                 $str .= "\t\t<param name=\"" . $item['specification']['lang']['title'] . "\" unit=\"см\">" . $item['val'] . "</param>" . PHP_EOL;
                             }
                         }
