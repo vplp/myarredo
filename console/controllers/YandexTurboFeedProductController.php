@@ -191,9 +191,9 @@ class YandexTurboFeedProductController extends Controller
                             $str .= "\t\t<param name=\"Фабрика\">" . htmlspecialchars($offer['factory']['title']) . "</param>" . PHP_EOL;
                         }
 
-                        // Ктегория
+                        // Категория
                         if ($offer['category'] != null) {
-                            $str .= "\t\t<param name=\"Ктегория\">" . htmlspecialchars($offer['category'][0]['lang']['title']) . "</param>" . PHP_EOL;
+                            $str .= "\t\t<param name=\"Категория\">" . htmlspecialchars($offer['category'][0]['lang']['title']) . "</param>" . PHP_EOL;
                         }
 
                         // Коллекция
