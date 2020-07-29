@@ -86,6 +86,11 @@ class HomeController extends BaseController
     {
         if ($action->id == 'error') {
             $this->layout = '/error';
+
+            Yii::$app->view->registerMetaTag([
+                'name' => 'robots',
+                'content' => 'noindex, nofollow',
+            ]);
         }
 
         return parent::beforeAction($action);
