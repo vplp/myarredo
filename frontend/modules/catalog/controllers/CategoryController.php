@@ -488,7 +488,7 @@ class CategoryController extends BaseController
         } elseif (Yii::$app->getRequest()->get('page')) {
             Yii::$app->view->registerMetaTag([
                 'name' => 'robots',
-                'content' => 'index, follow',
+                'content' => 'noindex, follow',
             ]);
         }
 
@@ -752,7 +752,7 @@ class CategoryController extends BaseController
         } elseif (Yii::$app->getRequest()->get('page')) {
             Yii::$app->view->registerMetaTag([
                 'name' => 'robots',
-                'content' => 'index, follow',
+                'content' => 'noindex, follow',
             ]);
         }
 

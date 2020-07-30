@@ -491,7 +491,7 @@ class CountriesFurnitureController extends BaseController
         } elseif (Yii::$app->getRequest()->get('page')) {
             Yii::$app->view->registerMetaTag([
                 'name' => 'robots',
-                'content' => 'index, follow',
+                'content' => 'noindex, follow',
             ]);
         }
 
@@ -755,7 +755,7 @@ class CountriesFurnitureController extends BaseController
         } elseif (Yii::$app->getRequest()->get('page')) {
             Yii::$app->view->registerMetaTag([
                 'name' => 'robots',
-                'content' => 'index, follow',
+                'content' => 'noindex, follow',
             ]);
         }
 

@@ -301,7 +301,7 @@ class MetaTag extends Component
         } elseif (Yii::$app->getRequest()->get('page') && !in_array(Yii::$app->controller->id, ['sale', 'category'])) {
             $view->registerMetaTag([
                 'name' => 'robots',
-                'content' => 'index, follow',
+                'content' => 'noindex, follow',
             ]);
         }
 
