@@ -124,7 +124,7 @@ $bundle = AppAsset::register($this);
                 </div>
             </div>
 
-            <?php if (Yii::$app->city->domain == 'com') {
+            <?php if (DOMAIN_TYPE == 'com') {
                 echo SaleItalyOnMainPage::widget();
             } else {
                 echo SaleOnMainPage::widget();
@@ -142,7 +142,7 @@ $bundle = AppAsset::register($this);
                 </div>
             </div>
 
-            <?php if (in_array(Yii::$app->city->domain, ['ru']) && Yii::$app->city->getCityId() == 4) {
+            <?php if (in_array(DOMAIN_TYPE, ['ru']) && Yii::$app->city->getCityId() == 4) {
                 echo ArticlesList::widget(['view' => 'articles_on_main', 'limit' => 4]);
             } ?>
 

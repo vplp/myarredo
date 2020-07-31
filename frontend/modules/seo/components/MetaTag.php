@@ -363,7 +363,7 @@ class MetaTag extends Component
             'content' => $this->seo_image_url,
         ]);
 
-        $locale = $lang . '_' . strtoupper(Yii::$app->city->domain);
+        $locale = $lang . '_' . strtoupper(DOMAIN_TYPE);
 
         // og_locale_register
         $view->registerMetaTag([
@@ -434,7 +434,7 @@ class MetaTag extends Component
         ]);
 
         $lang = substr(Yii::$app->language, 0, 2);
-        $locale = $lang . '_' . strtoupper(Yii::$app->city->domain);
+        $locale = $lang . '_' . strtoupper(DOMAIN_TYPE);
 
         $view->registerMetaTag([
             'property' => 'og:locale',

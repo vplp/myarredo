@@ -8,7 +8,7 @@ use yii\web\View;
  * Global site tag (gtag.js) - Google Analytics
  */
 
-if (Yii::$app->city->domain == 'ru') {
+if (DOMAIN_TYPE == 'ru') {
     $script = <<<JS
 (function () {
     var id = 'UA-54015829-1';
@@ -44,7 +44,7 @@ if (Yii::$app->city->domain == 'ru') {
 JS;
 
     $this->registerJs($script, View::POS_END);
-} elseif (Yii::$app->city->domain == 'by') {
+} elseif (DOMAIN_TYPE == 'by') {
     $script = <<<JS
 (function () {
     var id = 'UA-54015829-4';
@@ -80,7 +80,7 @@ JS;
 JS;
 
     $this->registerJs($script, View::POS_END);
-} elseif (Yii::$app->city->domain == 'ua') {
+} elseif (DOMAIN_TYPE == 'ua') {
     $script = <<<JS
 (function () {
     var id = 'UA-54015829-3';
@@ -116,7 +116,7 @@ JS;
 JS;
 
     $this->registerJs($script, View::POS_END);
-} elseif (Yii::$app->city->domain == 'com') {
+} elseif (DOMAIN_TYPE == 'com') {
     $script = <<<JS
 (function () {
     var id = 'UA-54015829-2';

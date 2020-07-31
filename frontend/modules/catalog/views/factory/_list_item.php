@@ -38,7 +38,7 @@ $keys = Yii::$app->catalogFilter->keys;
                     $item['title'],
                     Yii::$app->catalogFilter->createUrl(
                         Yii::$app->catalogFilter->params +
-                        [$keys['category'] => Yii::$app->city->domain != 'com' ? $item['alias'] : $item['alias2']] +
+                        [$keys['category'] => DOMAIN_TYPE != 'com' ? $item['alias'] : $item['alias2']] +
                         [$keys['factory'] => $model['alias']]
                     )
                 ) .

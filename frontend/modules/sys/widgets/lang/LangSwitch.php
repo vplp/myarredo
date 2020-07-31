@@ -57,7 +57,7 @@ class LangSwitch extends Widget
             /**
              * ua only for domain ua
              */
-            if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && !in_array(Yii::$app->city->domain, ['ua', 'de']) && in_array($lang['alias'], ['ua', 'de'])) {
+            if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && !in_array(DOMAIN_TYPE, ['ua', 'de']) && in_array($lang['alias'], ['ua', 'de'])) {
                 continue;
             }
 
@@ -72,9 +72,9 @@ class LangSwitch extends Widget
                 $url = 'https://www.myarredo.com';
             } elseif (in_array($lang['alias'], ['de'])) {
                 $url = 'https://www.myarredo.de';
-            } elseif (!in_array($lang['alias'], ['it', 'en', 'de']) && Yii::$app->city->domain == 'com') {
+            } elseif (!in_array($lang['alias'], ['it', 'en', 'de']) && DOMAIN_TYPE == 'com') {
                 $url = 'https://www.myarredo.ru';
-            } elseif (!in_array($lang['alias'], ['it', 'en', 'de']) && Yii::$app->city->domain == 'de') {
+            } elseif (!in_array($lang['alias'], ['it', 'en', 'de']) && DOMAIN_TYPE == 'de') {
                 $url = 'https://www.myarredo.ru';
             } else {
                 $url = Yii::$app->request->hostInfo;
@@ -83,10 +83,10 @@ class LangSwitch extends Widget
             /**
              * $path
              */
-            if (in_array($lang['alias'], ['it', 'en']) && Yii::$app->city->domain != 'com' && in_array(Yii::$app->controller->id, ['category', 'sale', 'sale-italy']) &&
+            if (in_array($lang['alias'], ['it', 'en']) && DOMAIN_TYPE != 'com' && in_array(Yii::$app->controller->id, ['category', 'sale', 'sale-italy']) &&
                 Yii::$app->controller->action->id == 'list') {
                 $path = '/';
-            } elseif (!in_array($lang['alias'], ['it', 'en']) && Yii::$app->city->domain == 'com' && in_array(Yii::$app->controller->id, ['category', 'sale', 'sale-italy']) &&
+            } elseif (!in_array($lang['alias'], ['it', 'en']) && DOMAIN_TYPE == 'com' && in_array(Yii::$app->controller->id, ['category', 'sale', 'sale-italy']) &&
                 Yii::$app->controller->action->id == 'list') {
                 $path = '/';
             } else {

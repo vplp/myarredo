@@ -1,6 +1,7 @@
 <?php
 
-defined('DOMAIN') or define('DOMAIN', 'ru');
+defined('DOMAIN_NAME') or define('DOMAIN_NAME', 'myarredo');
+defined('DOMAIN_TYPE') or define('DOMAIN_TYPE', 'ru');
 
 use yii\helpers\ArrayHelper;
 use frontend\modules\catalog\models\{

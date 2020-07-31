@@ -62,7 +62,7 @@ class Product extends \common\modules\catalog\models\Product
                 Product::tableName() . '.removed' => '0',
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
-                Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
+                Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
             ])
             ->enabled()
             ->orderBy(self::tableName() . '.updated_at DESC');
@@ -79,7 +79,7 @@ class Product extends \common\modules\catalog\models\Product
                 Product::tableName() . '.removed' => '0',
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
-                Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
+                Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
             ])
             ->enabled()
             ->orderBy(self::tableName() . '.updated_at DESC');
@@ -264,7 +264,7 @@ class Product extends \common\modules\catalog\models\Product
         $image = null;
 
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-            $image = 'https://img.myarredo.' . DOMAIN . $url . '/' . $image_link;
+            $image = 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $url . '/' . $image_link;
         } else {
             $image = 'https://www.myarredo.ru/uploads/images/' . $image_link;
         }
@@ -304,7 +304,7 @@ class Product extends \common\modules\catalog\models\Product
 
             // resize
             $ImageResize = new ImageResize();
-            $image = 'https://img.myarredo.' . DOMAIN . $ImageResize->getThumb($image, $width, $height);
+            $image = 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $ImageResize->getThumb($image, $width, $height);
         } else {
             $image = 'https://img.myarredo.ru/uploads/images/' . $image_link;
         }
@@ -338,7 +338,7 @@ class Product extends \common\modules\catalog\models\Product
         foreach ($images as $image) {
             if (is_file($path . '/' . $image)) {
                 $imagesSources[] = [
-                    'img' => 'https://img.myarredo.' . DOMAIN . $url . '/' . $image,
+                    'img' => 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $url . '/' . $image,
                     'thumb' => self::getImageThumb($image, 600, 600)
                 ];
             } else {
@@ -561,7 +561,7 @@ class Product extends \common\modules\catalog\models\Product
                 ->innerJoinWith(["category"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
+                    DOMAIN_TYPE != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
                     $params[$keys['category']]
                 ]);
         }
@@ -571,7 +571,7 @@ class Product extends \common\modules\catalog\models\Product
                 ->innerJoinWith(["types"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    DOMAIN_TYPE != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
                     $params[$keys['type']]
                 ]);
         }
@@ -587,7 +587,7 @@ class Product extends \common\modules\catalog\models\Product
                 ->innerJoinWith(["specification"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? Specification::tableName() . '.alias' : Specification::tableName() . '.alias2',
+                    DOMAIN_TYPE != 'com' ? Specification::tableName() . '.alias' : Specification::tableName() . '.alias2',
                     $params[$keys['style']]
                 ]);
         }

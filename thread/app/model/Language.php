@@ -9,7 +9,6 @@ namespace thread\app\model;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-
 class Language implements interfaces\LanguageModel
 {
     /**
@@ -34,12 +33,24 @@ class Language implements interfaces\LanguageModel
             'local' => 'ru-RU',
             'label' => 'Русский',
         ],
+        'it-IT' => [
+            'by_default' => false,
+            'alias' => 'it',
+            'local' => 'it-IT',
+            'label' => 'Italian',
+        ],
+        'de-DE' => [
+            'by_default' => false,
+            'alias' => 'de',
+            'local' => 'de-DE',
+            'label' => 'German',
+        ],
     ];
 
     /**
      * @return array
      */
-    public function getLanguages():array
+    public function getLanguages(): array
     {
         return $this->items;
     }
@@ -47,7 +58,7 @@ class Language implements interfaces\LanguageModel
     /**
      * @return array
      */
-    public function getCurrent():array
+    public function getCurrent(): array
     {
         return $this->items[\Yii::$app->language];
     }

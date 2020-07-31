@@ -85,7 +85,7 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
                 ->innerJoinWith(["category"])
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
+                    DOMAIN_TYPE != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
                     $params[$keys['category']]
                 ]);
         }
@@ -95,7 +95,7 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
                 ->innerJoinWith(["types"])
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    DOMAIN_TYPE != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
                     $params[$keys['type']]
                 ]);
         }
@@ -111,7 +111,7 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
                 ->innerJoinWith(["specification"])
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? Specification::tableName() . '.alias' : Specification::tableName() . '.alias2',
+                    DOMAIN_TYPE != 'com' ? Specification::tableName() . '.alias' : Specification::tableName() . '.alias2',
                     $params[$keys['style']]
                 ]);
         }

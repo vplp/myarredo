@@ -43,7 +43,7 @@ class ItalianProductRelSpecification extends \common\modules\catalog\models\Ital
                 ->innerJoinWith(["italianProduct.category italianProductCategory"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'italianProductCategory.alias' : 'italianProductCategory.alias2',
+                    DOMAIN_TYPE != 'com' ? 'italianProductCategory.alias' : 'italianProductCategory.alias2',
                     $params[$keys['category']]
                 ]);
         }
@@ -53,7 +53,7 @@ class ItalianProductRelSpecification extends \common\modules\catalog\models\Ital
                 ->innerJoinWith(["italianProduct.types italianProductTypes"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'italianProductTypes.alias' : 'italianProductTypes.alias2',
+                    DOMAIN_TYPE != 'com' ? 'italianProductTypes.alias' : 'italianProductTypes.alias2',
                     $params[$keys['type']]
                 ]);
         }
@@ -69,7 +69,7 @@ class ItalianProductRelSpecification extends \common\modules\catalog\models\Ital
                 ->innerJoinWith(["italianProduct.specification italianProductSpecification"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'italianProductSpecification.alias' : 'italianProductSpecification.alias2',
+                    DOMAIN_TYPE != 'com' ? 'italianProductSpecification.alias' : 'italianProductSpecification.alias2',
                     $params[$keys['style']]
                 ]);
         }

@@ -174,14 +174,14 @@ $this->title = $this->context->title;
                                                     if ($item['specification']['parent_id'] == 9) {
                                                         $array[] = $item['specification']['lang']['title'];
 
-                                                        $paramsUrl[$keys['style']][] = Yii::$app->city->domain != 'com'
+                                                        $paramsUrl[$keys['style']][] = DOMAIN_TYPE != 'com'
                                                             ? $item['specification']['alias']
                                                             : $item['specification']['alias2'];
                                                     }
                                                 }
 
                                                 if ($model['types']) {
-                                                    $paramsUrl[$keys['type']][] = Yii::$app->city->domain != 'com'
+                                                    $paramsUrl[$keys['type']][] = DOMAIN_TYPE != 'com'
                                                         ? $model['types']['alias']
                                                         : $model['types']['alias2'];
                                                 }

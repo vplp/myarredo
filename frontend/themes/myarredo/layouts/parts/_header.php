@@ -36,7 +36,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                 <div class="container large-container">
 
                     <div class="left-part">
-                        <?php if (!in_array(Yii::$app->city->domain, ['com', 'de']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+                        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
                             <a href="tel:+<?= $clearPhoneNumb ?>" class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
@@ -51,7 +51,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             <?= Yii::t('app', 'Feedback form') ?>
                         </a> */ ?>
 
-                        <?php if (!in_array(Yii::$app->city->domain, ['com', 'de'])) { ?>
+                        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de'])) { ?>
                             <div class="select-city">
                                 <a href="javascript:void(0)" class="js-select-city">
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -63,10 +63,13 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             </div>
                         <?php } ?>
 
-                        <div class="lang-selector">
-                            <?= LangSwitch::widget() ?>
-                        </div>
-                        <?php if (in_array(Yii::$app->city->domain, ['ru'])) { ?>
+                        <?php if (DOMAIN_NAME != 'myarredofamily') { ?>
+                            <div class="lang-selector">
+                                <?= LangSwitch::widget() ?>
+                            </div>
+                        <?php } ?>
+
+                        <?php if (in_array(DOMAIN_TYPE, ['ru'])) { ?>
                             <div class="lang-selector">
                                 <?= ChangeCurrency::widget() ?>
                             </div>
@@ -94,10 +97,12 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                 <div class="container large-container">
 
                     <div class="left-part">
-                        <div class="lang-selector">
-                            <?= LangSwitch::widget() ?>
-                        </div>
-                        <?php if (in_array(Yii::$app->city->domain, ['ru'])) { ?>
+                        <?php if (DOMAIN_NAME != 'myarredofamily') { ?>
+                            <div class="lang-selector">
+                                <?= LangSwitch::widget() ?>
+                            </div>
+                        <?php } ?>
+                        <?php if (in_array(DOMAIN_TYPE, ['ru'])) { ?>
                             <div class="lang-selector">
                                 <?= ChangeCurrency::widget() ?>
                             </div>
@@ -215,15 +220,18 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
         <!-- <div class="search-btn">
             <i class="fa fa-search" aria-hidden="true"></i>
         </div> -->
-        <div class="adress-container">
-            <div class="js-toggle-list">
+
+        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de'])) { ?>
+            <div class="adress-container">
+                <div class="js-toggle-list">
                 <span class="for-map-icon">
                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                 </span>
-                <span class="for-adress-icon"><?= Yii::$app->city->getCitytitle() ?></span>
+                    <span class="for-adress-icon"><?= Yii::$app->city->getCitytitle() ?></span>
+                </div>
+                <?= ChangeCity::widget(['view' => 'select_city_mobile']) ?>
             </div>
-            <?= ChangeCity::widget(['view' => 'select_city_mobile']) ?>
-        </div>
+        <?php } ?>
 
         <div class="mobmenu-right-box">
             <?php

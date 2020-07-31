@@ -139,7 +139,7 @@ $this->title = $this->context->title;
                                         if ($item['specification']['parent_id'] == 9) {
                                             $keys = Yii::$app->catalogFilter->keys;
                                             $params = Yii::$app->catalogFilter->params;
-                                            $params[$keys['style']] = Yii::$app->city->domain != 'com' ? $item['specification']['alias'] : $item['specification']['alias2'];
+                                            $params[$keys['style']] = DOMAIN_TYPE != 'com' ? $item['specification']['alias'] : $item['specification']['alias2'];
 
                                             ($model['catalogFactory']) ? $params[$keys['factory']] = $model['catalogFactory']['alias'] : null;
 

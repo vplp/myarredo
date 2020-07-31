@@ -109,14 +109,14 @@ class Specification extends \common\modules\catalog\models\Specification
                 return self::findBase()
                     ->andWhere([
                         'IN',
-                        Yii::$app->city->domain != 'com' ? self::tableName() . '.alias' : self::tableName() . '.alias2',
+                        DOMAIN_TYPE != 'com' ? self::tableName() . '.alias' : self::tableName() . '.alias2',
                         $alias
                     ])
                     ->all();
             } else {
                 return self::findBase()
                     ->andWhere(
-                        Yii::$app->city->domain != 'com' ? self::tableName() . '.alias = :alias' : self::tableName() . '.alias2 = :alias',
+                        DOMAIN_TYPE != 'com' ? self::tableName() . '.alias = :alias' : self::tableName() . '.alias2 = :alias',
                         [':alias' => $alias]
                     )
                     ->one();
@@ -171,7 +171,7 @@ class Specification extends \common\modules\catalog\models\Specification
                 Product::tableName() . '.removed' => '0',
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
-                Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
+                Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
             ]);
 
         if ($isCountriesFurniture) {
@@ -185,7 +185,7 @@ class Specification extends \common\modules\catalog\models\Specification
                 ->innerJoinWith(["product.category productCategory"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'productCategory.alias' : 'productCategory.alias2',
+                    DOMAIN_TYPE != 'com' ? 'productCategory.alias' : 'productCategory.alias2',
                     $params[$keys['category']]
                 ]);
         }
@@ -195,7 +195,7 @@ class Specification extends \common\modules\catalog\models\Specification
                 ->innerJoinWith(["product.types productTypes"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'productTypes.alias' : 'productTypes.alias2',
+                    DOMAIN_TYPE != 'com' ? 'productTypes.alias' : 'productTypes.alias2',
                     $params[$keys['type']]
                 ]);
         }
@@ -323,7 +323,7 @@ class Specification extends \common\modules\catalog\models\Specification
                 ->innerJoinWith(["sale.category saleCategory"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'saleCategory.alias' : 'saleCategory.alias2',
+                    DOMAIN_TYPE != 'com' ? 'saleCategory.alias' : 'saleCategory.alias2',
                     $params[$keys['category']]
                 ]);
         }
@@ -333,7 +333,7 @@ class Specification extends \common\modules\catalog\models\Specification
                 ->innerJoinWith(["sale.types saleTypes"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'saleTypes.alias' : 'saleTypes.alias2',
+                    DOMAIN_TYPE != 'com' ? 'saleTypes.alias' : 'saleTypes.alias2',
                     $params[$keys['type']]
                 ]);
         }
@@ -412,7 +412,7 @@ class Specification extends \common\modules\catalog\models\Specification
                 ->innerJoinWith(["italianProduct.category italianProductCategory"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'italianProductCategory.alias' : 'italianProductCategory.alias2',
+                    DOMAIN_TYPE != 'com' ? 'italianProductCategory.alias' : 'italianProductCategory.alias2',
                     $params[$keys['category']]
                 ]);
         }
@@ -422,7 +422,7 @@ class Specification extends \common\modules\catalog\models\Specification
                 ->innerJoinWith(["italianProduct.types italianProductTypes"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'italianProductTypes.alias' : 'italianProductTypes.alias2',
+                    DOMAIN_TYPE != 'com' ? 'italianProductTypes.alias' : 'italianProductTypes.alias2',
                     $params[$keys['type']]
                 ]);
         }

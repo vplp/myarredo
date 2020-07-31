@@ -26,13 +26,13 @@ use frontend\modules\catalog\models\{
                 <?= Html::a(
                     Html::img('/', [
                         'class' => 'lazy',
-                        'data-src' => Category::getImage(Yii::$app->city->domain != 'com' ? $model['image_link'] : $model['image_link_com'])
+                        'data-src' => Category::getImage(DOMAIN_TYPE != 'com' ? $model['image_link'] : $model['image_link_com'])
                     ])
                     . Html::img('/', [
                         'class' => 'is-hover lazy',
-                        'data-src' => Category::getImage(Yii::$app->city->domain != 'com' ? $model['image_link2'] : $model['image_link2_com'])
+                        'data-src' => Category::getImage(DOMAIN_TYPE != 'com' ? $model['image_link2'] : $model['image_link2_com'])
                     ]),
-                    Category::getUrl(Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2']),
+                    Category::getUrl(DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2']),
                     ['class' => 'img-cont']
                 ) ?>
                 <ul class="cat-list">
@@ -40,7 +40,7 @@ use frontend\modules\catalog\models\{
                     $keys = Yii::$app->catalogFilter->keys;
                     $params = Yii::$app->catalogFilter->params;
 
-                    $params[$keys['category']] = Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'];
+                    $params[$keys['category']] = DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2'];
 
                     $link = Yii::$app->catalogFilter->createUrl($params, ['/catalog/category/list']);
 
@@ -51,8 +51,8 @@ use frontend\modules\catalog\models\{
                     foreach ($types as $item) {
                         $params = Yii::$app->catalogFilter->params;
 
-                        $params[$keys['category']] = Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'];
-                        $params[$keys['type']][] = Yii::$app->city->domain != 'com' ? $item['alias'] : $item['alias2'];
+                        $params[$keys['category']] = DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2'];
+                        $params[$keys['type']][] = DOMAIN_TYPE != 'com' ? $item['alias'] : $item['alias2'];
                         $link = Yii::$app->catalogFilter->createUrl($params, ['/catalog/category/list']);
 
                         echo '<li>' . Html::a($item['lang']['title'], $link) . '<span>' . $item['count'] . '</span></li>';
@@ -61,7 +61,7 @@ use frontend\modules\catalog\models\{
                 </ul>
                 <?= Html::a(
                     Yii::t('app', 'Смотреть все'),
-                    Category::getUrl(Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2']),
+                    Category::getUrl(DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2']),
                     ['class' => 'view-all']
                 ) ?>
             </div>

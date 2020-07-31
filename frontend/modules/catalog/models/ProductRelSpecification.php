@@ -39,7 +39,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
                 Product::tableName() . '.removed' => '0',
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
-                Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
+                Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
             ]);
 
         if (isset($params[$keys['category']])) {
@@ -47,7 +47,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
                 ->innerJoinWith(["product.category productCategory"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'productCategory.alias' : 'productCategory.alias2',
+                    DOMAIN_TYPE != 'com' ? 'productCategory.alias' : 'productCategory.alias2',
                     $params[$keys['category']]
                 ]);
         }
@@ -57,7 +57,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
                 ->innerJoinWith(["product.types productTypes"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'productTypes.alias' : 'productTypes.alias2',
+                    DOMAIN_TYPE != 'com' ? 'productTypes.alias' : 'productTypes.alias2',
                     $params[$keys['type']]
                 ]);
         }
@@ -73,7 +73,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
                 ->innerJoinWith(["product.specification productSpecification"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'productSpecification.alias' : 'productSpecification.alias2',
+                    DOMAIN_TYPE != 'com' ? 'productSpecification.alias' : 'productSpecification.alias2',
                     $params[$keys['style']]
                 ]);
         }

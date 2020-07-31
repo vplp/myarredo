@@ -214,7 +214,7 @@ class Sale extends \common\modules\catalog\models\Sale
         $image = null;
 
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-            $image = 'https://img.myarredo.' . DOMAIN . $url . '/' . $image_link;
+            $image = 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $url . '/' . $image_link;
         }
 
         return $image;
@@ -252,7 +252,7 @@ class Sale extends \common\modules\catalog\models\Sale
 
             // resize
             $ImageResize = new ImageResize();
-            $image = 'https://img.myarredo.' . DOMAIN . $ImageResize->getThumb($image, $width, $height);
+            $image = 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $ImageResize->getThumb($image, $width, $height);
         } else {
             $image = 'https://img.myarredo.ru/uploads/images/' . $image_link;
         }
@@ -294,7 +294,7 @@ class Sale extends \common\modules\catalog\models\Sale
         foreach ($images as $image) {
             if (is_file($path . '/' . $image)) {
                 $imagesSources[] = [
-                    'img' => 'https://img.myarredo.' . DOMAIN . $url . '/' . $image,
+                    'img' => 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $url . '/' . $image,
                     'thumb' => self::getImageThumb($image, 600, 600)
                 ];
             } else {
@@ -379,7 +379,7 @@ class Sale extends \common\modules\catalog\models\Sale
                 ->innerJoinWith(["category"])
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
+                    DOMAIN_TYPE != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
                     $params[$keys['category']]
                 ]);
         }
@@ -389,7 +389,7 @@ class Sale extends \common\modules\catalog\models\Sale
                 ->innerJoinWith(["types"])
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    DOMAIN_TYPE != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
                     $params[$keys['type']]
                 ]);
         }
@@ -405,7 +405,7 @@ class Sale extends \common\modules\catalog\models\Sale
                 ->innerJoinWith(["specification"])
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? Specification::tableName() . '.alias' : Specification::tableName() . '.alias2',
+                    DOMAIN_TYPE != 'com' ? Specification::tableName() . '.alias' : Specification::tableName() . '.alias2',
                     $params[$keys['style']]
                 ]);
         }

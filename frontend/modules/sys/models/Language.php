@@ -4,7 +4,6 @@ namespace frontend\modules\sys\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-//
 use frontend\modules\sys\Sys;
 
 class Language extends \common\modules\sys\models\Language

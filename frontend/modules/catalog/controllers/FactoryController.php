@@ -108,7 +108,7 @@ class FactoryController extends BaseController
             $pageDescription[] = Yii::t('app', 'название на букву') . ' ' . strtoupper(Yii::$app->request->get('letter'));
         }
 
-        if (Yii::$app->city->domain !== 'com') {
+        if (DOMAIN_TYPE !== 'com') {
             $pageTitle[] = Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
             $pageDescription[] = Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
         }
@@ -236,7 +236,7 @@ class FactoryController extends BaseController
 
         $this->breadcrumbs[] = [
             'label' => $model['title'] .
-                (Yii::$app->city->domain == 'com' ? ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere() : ''),
+                (DOMAIN_TYPE == 'com' ? ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere() : ''),
             'url' => ['/catalog/factory/view', 'alias' => $model['alias']]
         ];
 
@@ -245,13 +245,13 @@ class FactoryController extends BaseController
         $this->title = Yii::$app->metatag->seo_title
             ? Yii::$app->metatag->seo_title
             : $model['title'] .
-            (Yii::$app->city->domain == 'com' ? ' - ' . Yii::t('app', 'мебели из Италии в') . ' ' . Yii::$app->city->getCityTitleWhere() : '');
+            (DOMAIN_TYPE == 'com' ? ' - ' . Yii::t('app', 'мебели из Италии в') . ' ' . Yii::$app->city->getCityTitleWhere() : '');
 
         if (!Yii::$app->metatag->seo_description) {
             Yii::$app->view->registerMetaTag([
                 'name' => 'description',
                 'content' => Yii::t('app', 'Каталог итальянской мебели от фабрики') . ' ' . $model['title'] .
-                    (Yii::$app->city->domain == 'com' ? ' ' . Yii::t('app', 'в интернет-магазине Myarredo. Заказать мебель из Италии в') . ' ' . Yii::$app->city->getCityTitleWhere() : ''),
+                    (DOMAIN_TYPE == 'com' ? ' ' . Yii::t('app', 'в интернет-магазине Myarredo. Заказать мебель из Италии в') . ' ' . Yii::$app->city->getCityTitleWhere() : ''),
             ]);
         }
 

@@ -53,7 +53,7 @@ class PartnerComponent extends Component
             return ($this->partner['profile']['additional_phone'] != '')
                 ? $this->partner['profile']['additional_phone']
                 : $this->partner['profile']['phone'];
-        } elseif (Yii::$app->city->domain == 'ru') {
+        } elseif (DOMAIN_TYPE == 'ru') {
             return '8 (800) 302 92 95';
         }
 

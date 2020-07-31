@@ -86,7 +86,7 @@ class Samples extends \common\modules\catalog\models\Samples
         $image = null;
 
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-            $image = 'https://img.myarredo.' . DOMAIN . $url . '/' . $image_link;
+            $image = 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $url . '/' . $image_link;
         }
 
         return $image;

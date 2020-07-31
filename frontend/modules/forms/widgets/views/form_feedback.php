@@ -59,14 +59,14 @@ use frontend\modules\forms\models\FormsFeedback;
                     <h4><?= Yii::t('app', 'Contacts') ?></h4>
 
                     <?php
-                    if (Yii::$app->city->domain == 'com') {
+                    if (DOMAIN_TYPE == 'com') {
                         $phone = '<a href="tel:+3904221500215">+39 (0422) 150-02-15</a>';
-                    } elseif (Yii::$app->city->domain == 'ua') {
+                    } elseif (DOMAIN_TYPE == 'ua') {
                         $phone = '<a href="tel:+3904221500215">+39 (0422) 150-02-15</a>';
                     } else {
                         $phone = '<a href="tel:+79683533636">+7 968 353 36 36</a>';
                     }
-                    $email = (Yii::$app->city->domain == 'ua') ? '<a href="mailto:help@myarredo.ua">help@myarredo.ua</a>' : '<a href="mailto:help@myarredo.ru">help@myarredo.ru</a>';
+                    $email = (DOMAIN_TYPE == 'ua') ? '<a href="mailto:help@myarredo.ua">help@myarredo.ua</a>' : '<a href="mailto:help@myarredo.ru">help@myarredo.ru</a>';
                     ?>
 
                     <p><i class="fa fa-phone" aria-hidden="true"></i> <?= $phone ?></p>

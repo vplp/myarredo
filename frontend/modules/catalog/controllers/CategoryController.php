@@ -84,7 +84,7 @@ class CategoryController extends BaseController
 
         Yii::$app->metatag
             ->render()
-            ->setImageUrl('https://img.myarredo.' . DOMAIN . '/uploads/myarredo-ico.jpg')
+            ->setImageUrl('https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . '/uploads/myarredo-ico.jpg')
             ->renderGraph();
 
         if (!empty($models->getModels()) && !empty($queryParams[$keys['colors']])) {
@@ -121,7 +121,7 @@ class CategoryController extends BaseController
 
             $types = ArrayHelper::map(
                 Types::getWithProduct($params),
-                Yii::$app->city->domain != 'com' ? 'alias' : 'alias2',
+                DOMAIN_TYPE != 'com' ? 'alias' : 'alias2',
                 'lang.title'
             );
 
@@ -147,9 +147,9 @@ class CategoryController extends BaseController
                 Category::findBase()
                     ->innerJoinWith(["types"])
                     ->andFilterWhere([
-                        Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2' => Yii::$app->getRequest()->post('type_alias')])
+                        DOMAIN_TYPE != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2' => Yii::$app->getRequest()->post('type_alias')])
                     ->all(),
-                (Yii::$app->city->domain != 'com' ? 'alias' : 'alias2'),
+                (DOMAIN_TYPE != 'com' ? 'alias' : 'alias2'),
                 'lang.title'
             );
 
@@ -456,7 +456,7 @@ class CategoryController extends BaseController
             ' ' .
             implode(' ', $pageTitle);
 
-        if (Yii::$app->city->domain != 'com') {
+        if (DOMAIN_TYPE != 'com') {
             $seo_title .= Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
             $pageDescription[] = Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere() . '? ';
         }
@@ -525,7 +525,7 @@ class CategoryController extends BaseController
             ];
         }
 
-        if (Yii::$app->city->domain != 'com') {
+        if (DOMAIN_TYPE != 'com') {
             $pageDescription[] = Yii::$app->city->getCityTitle() . ': ' . Yii::t('app', 'Заказать');
         }
 
@@ -721,7 +721,7 @@ class CategoryController extends BaseController
          * set options
          */
 
-        if (Yii::$app->city->domain != 'com') {
+        if (DOMAIN_TYPE != 'com') {
             $pageTitle[] = Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
         }
 

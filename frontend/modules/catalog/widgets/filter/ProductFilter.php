@@ -115,7 +115,7 @@ class ProductFilter extends Widget
         foreach ($this->category as $key => $obj) {
             $params = $this->catalogFilterParams;
 
-            $alias = Yii::$app->city->domain != 'com'
+            $alias = DOMAIN_TYPE != 'com'
                 ? $obj['alias']
                 : $obj['alias2'];
 
@@ -147,7 +147,7 @@ class ProductFilter extends Widget
         foreach ($this->types as $key => $obj) {
             $params = $this->catalogFilterParams;
 
-            $alias = Yii::$app->city->domain != 'com'
+            $alias = DOMAIN_TYPE != 'com'
                 ? $obj['alias']
                 : $obj['alias2'];
 
@@ -211,7 +211,7 @@ class ProductFilter extends Widget
         foreach ($this->style as $key => $obj) {
             $params = $this->catalogFilterParams;
 
-            $alias = Yii::$app->city->domain != 'com'
+            $alias = DOMAIN_TYPE != 'com'
                 ? $obj['alias']
                 : $obj['alias2'];
 

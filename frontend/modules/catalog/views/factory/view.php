@@ -28,7 +28,7 @@ $bundle = AppAsset::register($this);
 $h1 = Yii::$app->metatag->seo_h1
     ? Yii::$app->metatag->seo_h1
     : Yii::t('app', 'Мебель') . ' ' . $model['title'];
-$h1 .= !Yii::$app->metatag->seo_h1 && Yii::$app->city->domain != 'com'
+$h1 .= !Yii::$app->metatag->seo_h1 && DOMAIN_TYPE != 'com'
     ? ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere()
     : '';
 
@@ -123,7 +123,7 @@ $route = $model->producing_country_id == 4
                                     $params = Yii::$app->catalogFilter->params;
 
                                     $params[$keys['factory']][] = $model['alias'];
-                                    $params[$keys['category']][] = Yii::$app->city->domain != 'com' ? $item['alias'] : $item['alias2'];
+                                    $params[$keys['category']][] = DOMAIN_TYPE != 'com' ? $item['alias'] : $item['alias2'];
 
                                     ?>
                                     <li>

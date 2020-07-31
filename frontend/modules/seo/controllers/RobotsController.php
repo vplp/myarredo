@@ -46,7 +46,7 @@ class RobotsController extends Controller
 
         $city = Yii::$app->city->getCity();
 
-        if (Yii::$app->city->domain == 'com') {
+        if (DOMAIN_TYPE == 'com') {
             echo 'Sitemap: https://' . Yii::$app->request->hostName . '/sitemap/sitemap.xml' . PHP_EOL;
         } else {
             echo 'Sitemap: https://' . Yii::$app->request->hostName . '/sitemap/sitemap_' . $city['alias'] . '.xml' . PHP_EOL;

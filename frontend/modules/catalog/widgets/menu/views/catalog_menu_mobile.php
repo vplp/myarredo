@@ -17,13 +17,13 @@ use frontend\modules\catalog\models\{
 $categories = [];
 foreach ($category as $model) {
     $keys = Yii::$app->catalogFilter->keys;
-    $types = Types::getWithProduct([$keys['category'] => Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2']]);
+    $types = Types::getWithProduct([$keys['category'] => DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2']]);
 
     $ldata = [];
     foreach ($types as $type) {
         $params = [];
-        $params[$keys['category']] = Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'];
-        $params[$keys['type']][] = Yii::$app->city->domain != 'com' ? $type['alias'] : $type['alias2'];
+        $params[$keys['category']] = DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2'];
+        $params[$keys['type']][] = DOMAIN_TYPE != 'com' ? $type['alias'] : $type['alias2'];
         $ldata[] = [
             'link' => Yii::$app->catalogFilter->createUrl($params),
             'text' => $type['lang']['title']
@@ -31,7 +31,7 @@ foreach ($category as $model) {
     }
 
     $categories[] = [
-        'llink' => Category::getUrl(Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2']),
+        'llink' => Category::getUrl(DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2']),
         'ltext' => $model['lang']['title'],
         'limglink' => Category::getImage($model['image_link3']),
         'lcount' => $model['count'],
@@ -43,13 +43,13 @@ foreach ($category as $model) {
 $categoriesSale = [];
 foreach ($categorySale as $model) {
     $keys = Yii::$app->catalogFilter->keys;
-    $types = Types::getWithSale([$keys['category'] => Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2']]);
+    $types = Types::getWithSale([$keys['category'] => DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2']]);
 
     $ldata = [];
     foreach ($types as $type) {
         $params = [];
-        $params[$keys['category']] = Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'];
-        $params[$keys['type']][] = Yii::$app->city->domain != 'com' ? $type['alias'] : $type['alias2'];
+        $params[$keys['category']] = DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2'];
+        $params[$keys['type']][] = DOMAIN_TYPE != 'com' ? $type['alias'] : $type['alias2'];
         $ldata[] = [
             'link' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale/list'),
             'text' => $type['lang']['title']
@@ -57,7 +57,7 @@ foreach ($categorySale as $model) {
     }
 
     $categoriesSale[] = [
-        'llink' => Category::getUrl(Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'], '/catalog/sale/list'),
+        'llink' => Category::getUrl(DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2'], '/catalog/sale/list'),
         'ltext' => $model['lang']['title'],
         'limglink' => Category::getImage($model['image_link3']),
         'lcount' => $model['count'],
@@ -69,13 +69,13 @@ foreach ($categorySale as $model) {
 $categoriesSaleItaly = [];
 foreach ($categorySaleItaly as $model) {
     $keys = Yii::$app->catalogFilter->keys;
-    $types = Types::getWithItalianProduct([$keys['category'] => Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2']]);
+    $types = Types::getWithItalianProduct([$keys['category'] => DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2']]);
 
     $ldata = [];
     foreach ($types as $type) {
         $params = [];
-        $params[$keys['category']] = Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'];
-        $params[$keys['type']][] = Yii::$app->city->domain != 'com' ? $type['alias'] : $type['alias2'];
+        $params[$keys['category']] = DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2'];
+        $params[$keys['type']][] = DOMAIN_TYPE != 'com' ? $type['alias'] : $type['alias2'];
         $ldata[] = [
             'link' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale-italy/list'),
             'text' => $type['lang']['title']
@@ -83,7 +83,7 @@ foreach ($categorySaleItaly as $model) {
     }
 
     $categoriesSaleItaly[] = [
-        'llink' => Category::getUrl(Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'], '/catalog/sale-italy/list'),
+        'llink' => Category::getUrl(DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2'], '/catalog/sale-italy/list'),
         'ltext' => $model['lang']['title'],
         'limglink' => Category::getImage($model['image_link3']),
         'lcount' => $model['count'],
@@ -100,7 +100,7 @@ $MenuDataArray = array(
         array(
             'link' => Url::toRoute(['/catalog/sale/list']),
             'text' => Yii::t('app', 'Sale'),
-            'show' => Yii::$app->city->domain != 'com' ? 1 : 0,
+            'show' => DOMAIN_TYPE != 'com' ? 1 : 0,
             'levelisset' => !empty($categoriesSale),
             'levelopen' => 0,
             'levelData' => $categoriesSale

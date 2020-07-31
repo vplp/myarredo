@@ -8,7 +8,7 @@ use yii\web\View;
  * Yandex.Metrika counter
  */
 
-if (Yii::$app->city->domain == 'ru') {
+if (DOMAIN_TYPE == 'ru') {
     $script = <<<JS
 (function () {
     var d = document;
@@ -52,7 +52,7 @@ JS;
     <noscript>
         <div><img src="https://mc.yandex.ru/watch/24814823" alt=""/></div>
     </noscript>
-<?php } elseif (Yii::$app->city->domain == 'by') {
+<?php } elseif (DOMAIN_TYPE == 'by') {
     $script = <<<JS
 (function () {
     var d = document;
@@ -95,7 +95,7 @@ JS;
     <noscript>
         <div><img src="https://mc.yandex.ru/watch/24880844" alt=""/></div>
     </noscript>
-<?php } elseif (Yii::$app->city->domain == 'ua') {
+<?php } elseif (DOMAIN_TYPE == 'ua') {
     $script = <<<JS
 (function () {
     var d = document;
@@ -138,7 +138,7 @@ JS;
     <noscript>
         <div><img src="https://mc.yandex.ru/watch/39354035" alt=""/></div>
     </noscript>
-<?php } elseif (Yii::$app->city->domain == 'com') {
+<?php } elseif (DOMAIN_TYPE == 'com') {
     $script = <<<JS
 (function () {
     var d = document;

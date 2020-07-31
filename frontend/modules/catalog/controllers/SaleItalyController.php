@@ -119,7 +119,7 @@ class SaleItalyController extends BaseController
 
         Yii::$app->metatag
             ->render()
-            ->setImageUrl('https://img.myarredo.' . DOMAIN . '/uploads/myarredo-ico.jpg')
+            ->setImageUrl('https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . '/uploads/myarredo-ico.jpg')
             ->renderGraph();
 
         if (!empty($models->getModels())) {
@@ -164,7 +164,7 @@ class SaleItalyController extends BaseController
 
         if (isset($model['category'][0])) {
             $params = Yii::$app->catalogFilter->params;
-            $params[$keys['category']] = Yii::$app->city->domain != 'com'
+            $params[$keys['category']] = DOMAIN_TYPE != 'com'
                 ? $model['category'][0]['alias']
                 : $model['category'][0]['alias2'];
 
@@ -187,12 +187,12 @@ class SaleItalyController extends BaseController
         $pageTitle[] = Yii::t('app', 'Sale') . ' ' .
             $model['lang']['title'] . ' ' .
             Yii::t('app', 'в наличии') .
-            (Yii::$app->city->domain != 'com' ? ' ' . Yii::$app->city->getCityTitle() : '') . ' MyArredo';
+            (DOMAIN_TYPE != 'com' ? ' ' . Yii::$app->city->getCityTitle() : '') . ' MyArredo';
 
         $pageDescription[] = Yii::t('app', 'Купить') . ' ' .
             $model['lang']['title'] . ' ' .
             Yii::t('app', 'со скидкой на распродаже') .
-            (Yii::$app->city->domain != 'com' ? ' ' . Yii::$app->city->getCityTitle() : '') . ' MyArredo';
+            (DOMAIN_TYPE != 'com' ? ' ' . Yii::$app->city->getCityTitle() : '') . ' MyArredo';
 
         // [Товар из ХК]
         $array = [];
@@ -369,11 +369,11 @@ class SaleItalyController extends BaseController
          */
 
         $pageTitle[] = Yii::t('app', 'из Италии в наличии') .
-            (Yii::$app->city->domain != 'com' ? ' ' . Yii::$app->city->getCityTitle() : '') . ' | ' .
+            (DOMAIN_TYPE != 'com' ? ' ' . Yii::$app->city->getCityTitle() : '') . ' | ' .
             Yii::t('app', 'MyArredo итальянская мебель со скидками');
 
         $pageDescription[] = Yii::t('app', 'со скидкой') .
-            (Yii::$app->city->domain != 'com' ? ' ' . Yii::$app->city->getCityTitle() : '') . '. ' .
+            (DOMAIN_TYPE != 'com' ? ' ' . Yii::$app->city->getCityTitle() : '') . '. ' .
             Yii::t(
                 'app',
                 'Воспользуйтесь возможностью приобрести мебель из Италии с экспозиции в салонах-партнерах Myarredo - портал проверенных поставщиков итальянской мебели.'

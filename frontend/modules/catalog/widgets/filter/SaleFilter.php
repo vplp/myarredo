@@ -105,7 +105,7 @@ class SaleFilter extends Widget
         foreach ($this->category as $key => $obj) {
             $params = $this->catalogFilterParams;
 
-            $alias = Yii::$app->city->domain != 'com'
+            $alias = DOMAIN_TYPE != 'com'
                 ? $obj['alias']
                 : $obj['alias2'];
 
@@ -139,7 +139,7 @@ class SaleFilter extends Widget
         foreach ($this->types as $key => $obj) {
             $params = $this->catalogFilterParams;
 
-            $alias = Yii::$app->city->domain != 'com'
+            $alias = DOMAIN_TYPE != 'com'
                 ? $obj['alias']
                 : $obj['alias2'];
 
@@ -207,7 +207,7 @@ class SaleFilter extends Widget
         foreach ($this->style as $key => $obj) {
             $params = $this->catalogFilterParams;
 
-            $alias = Yii::$app->city->domain != 'com'
+            $alias = DOMAIN_TYPE != 'com'
                 ? $obj['alias']
                 : $obj['alias2'];
 
@@ -344,13 +344,13 @@ class SaleFilter extends Widget
             $city = City::findByAlias($obj['alias']);
 
             if ($city == null || in_array($city['id'], [1, 2, 4, 159])) {
-                $baseUrl = 'https://' . 'www.myarredo.' . Yii::$app->city->domain;
+                $baseUrl = 'https://' . 'www.' . DOMAIN_NAME . '.' . DOMAIN_TYPE;
             } else {
-                $baseUrl = 'https://' . $city['alias'] . '.myarredo.' . Yii::$app->city->domain;
+                $baseUrl = 'https://' . $city['alias'] . '.' . DOMAIN_NAME . '.' . DOMAIN_TYPE;
             }
 
-            if ($city['country']['alias'] != Yii::$app->city->domain) {
-                $baseUrl = 'https://' . $city['alias'] . '.myarredo.' . $city['country']['alias'];
+            if ($city['country']['alias'] != DOMAIN_TYPE) {
+                $baseUrl = 'https://' . $city['alias'] . '.' . DOMAIN_NAME . '.' . $city['country']['alias'];
             }
 
             $link = $baseUrl . Yii::$app->catalogFilter->createUrl($params, [$this->route]);

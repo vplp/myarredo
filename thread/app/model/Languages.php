@@ -5,12 +5,10 @@ namespace thread\app\model;
 use yii\base\{
     ErrorException, Component, BootstrapInterface
 };
-
 use thread\app\model\interfaces\{
     LanguageModel as iLanguageModel,
     Languages as iLanguages
 };
-
 
 /**
  * class Languages
@@ -68,7 +66,8 @@ class Languages extends Component implements iLanguages, BootstrapInterface
     }
 
     /**
-     * @param $app
+     * @param \yii\base\Application $app
+     * @throws ErrorException
      */
     public function bootstrap($app)
     {

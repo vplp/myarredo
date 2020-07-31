@@ -4,7 +4,7 @@ use yii\web\View;
 
 /** @var $this \yii\web\View */
 
-if (Yii::$app->getUser()->isGuest && Yii::$app->city->domain == 'ru' &&
+if (Yii::$app->getUser()->isGuest && DOMAIN_TYPE == 'ru' &&
     !in_array(Yii::$app->controller->id, ['sale', 'sale-italy']) &&
     !in_array(Yii::$app->controller->module->id, ['user']) &&
     !in_array(Yii::$app->city->getCityId(), [4])
@@ -12,7 +12,7 @@ if (Yii::$app->getUser()->isGuest && Yii::$app->city->domain == 'ru' &&
     <script src="//code.jivosite.com/widget/bdFHrCDC3S" async></script>
 <?php }
 
-if (Yii::$app->getUser()->isGuest && Yii::$app->city->domain == 'ru' &&
+if (Yii::$app->getUser()->isGuest && DOMAIN_TYPE == 'ru' &&
     !in_array(Yii::$app->controller->id, ['sale', 'sale-italy']) &&
     !in_array(Yii::$app->controller->module->id, ['user'])
 ) {

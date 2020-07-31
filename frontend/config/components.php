@@ -2,12 +2,12 @@
 
 return [
     'languages' => [
-        'class' => \thread\app\model\Languages::class,
+        'class' => \frontend\modules\sys\components\Languages::class,
         'languageModel' => \frontend\modules\sys\models\Language::class,
     ],
     'session' => [
         'cookieParams' => [
-            'domain' => '.myarredo.' . DOMAIN,
+            'domain' => '.' . DOMAIN_NAME . '.' . DOMAIN_TYPE,
             //'httpOnly' => true,
             'path' => '/',
         ],
@@ -17,7 +17,7 @@ return [
         'enableAutoLogin' => false,
         'identityCookie' => [
             'name' => '_identity',
-            'domain' => '.myarredo.' . DOMAIN,
+            'domain' => '.' . DOMAIN_NAME . '.' . DOMAIN_TYPE,
             //'httpOnly' => true,
             'path' => '/',
         ],
@@ -37,7 +37,7 @@ return [
         'csrfCookie' => [
             'name' => '_csrf',
             'path' => '/',
-            'domain' => '.myarredo.' . DOMAIN,
+            'domain' => '.' . DOMAIN_NAME . '.' . DOMAIN_TYPE,
         ],
     ],
     'view' => [
@@ -55,7 +55,7 @@ return [
         //потрібно для верстальника
         //обовязково очистити директорію /frontend/assets
         //'linkAssets' => true,
-        //'baseUrl' =>  $_SERVER['REQUEST_SCHEME'] . '://css.myarredo.' . DOMAIN . '/assets',
+        //'baseUrl' =>  $_SERVER['REQUEST_SCHEME'] . '://css.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . '/assets',
         'bundles' => [
             'yii\web\YiiAsset' => [
                 'cssOptions' => [

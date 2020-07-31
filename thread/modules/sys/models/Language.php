@@ -4,7 +4,6 @@ namespace thread\modules\sys\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-//
 use thread\app\base\models\{
     ActiveRecord
 };

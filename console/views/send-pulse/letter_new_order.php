@@ -69,7 +69,7 @@ if (in_array($order->lang, ['ru-RU'])) {
         } else {
             echo Html::tag('p', $order->comment);
             if ($order->image_link) {
-                echo Html::tag('p', Html::img('https://img.myarredo.' . DOMAIN . $order->getImageLink(), ['style' => 'width: 140px; max-height: 100px;']));
+                echo Html::tag('p', Html::img('https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $order->getImageLink(), ['style' => 'width: 140px; max-height: 100px;']));
             }
         }
 

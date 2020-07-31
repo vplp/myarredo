@@ -19,7 +19,7 @@ $bundle = AppAsset::register($this);
 <div class="footer">
     <div class="container-wrap">
 
-        <?php if (Yii::$app->city->domain != 'com' && !in_array(Yii::$app->controller->id, ['sale'])) { ?>
+        <?php if (DOMAIN_TYPE != 'com' && !in_array(Yii::$app->controller->id, ['sale'])) { ?>
             <div class="contacts">
                 <div class="cont-flex">
                     <?php if (!in_array(Yii::$app->controller->id, ['sale-italy'])) {
@@ -50,17 +50,19 @@ $bundle = AppAsset::register($this);
 
         <?php
         if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
-        } else if (!in_array(Yii::$app->city->domain, ['com', 'de'])) {
+        } else if (!in_array(DOMAIN_TYPE, ['com', 'de'])) {
             echo Cities::widget();
         } ?>
 
         <div class="footer-navpanel">
             <div class="bot-list">
-                <div class="one-list-cont lang-cont">
-                    <?= LangSwitch::widget(['view' => 'lang_switch_mobile']) ?>
-                </div>
+                <?php if (DOMAIN_NAME != 'myarredofamily') { ?>
+                    <div class="one-list-cont lang-cont">
+                        <?= LangSwitch::widget(['view' => 'lang_switch_mobile']) ?>
+                    </div>
+                <?php } ?>
 
-                <?php if (in_array(Yii::$app->city->domain, ['ru'])) { ?>
+                <?php if (in_array(DOMAIN_TYPE, ['ru'])) { ?>
                     <div class="one-list-cont curency-cont">
                         <?= ChangeCurrency::widget(['view' => 'change_currency_mobile']) ?>
                     </div>
@@ -86,7 +88,7 @@ $bundle = AppAsset::register($this);
                             <li>
                                 <?= Html::a(
                                     Yii::t('app', 'Стать главным партнером в городе') . '<i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
-                                    'https://www.myarredo.' . DOMAIN . '/uploads/myarredofamily-for-partners.pdf',
+                                    'https://www.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . '/uploads/myarredofamily-for-partners.pdf',
                                     ['class' => 'btn btn-gopartner click-on-become-partner', 'target' => '_blank']
                                 ); ?>
                             </li>
@@ -98,11 +100,11 @@ $bundle = AppAsset::register($this);
                         <?php
                         if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
                             echo '';
-                        } elseif (!in_array(DOMAIN, ['com', 'de'])) {
+                        } elseif (!in_array(DOMAIN_TYPE, ['com', 'de'])) {
                             echo Menu::widget(['alias' => 'footer']);
-                        } elseif (in_array(DOMAIN, ['com', 'de'])) {
+                        } elseif (in_array(DOMAIN_TYPE, ['com', 'de'])) {
                             echo Menu::widget(['alias' => 'footer-com']);
-                        }?>
+                        } ?>
 
                     </div>
                     <div class="soc-copy">
@@ -116,15 +118,18 @@ $bundle = AppAsset::register($this);
                         </div>
                         <div class="copyright">
 
-                            <?php if (Yii::$app->city->domain == 'by') { ?>
+                            <?php if (DOMAIN_TYPE == 'by') { ?>
                                 2013 - <?= date('Y'); ?> (с)
-                                <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_BY')); ?><br>
-                            <?php } elseif (Yii::$app->city->domain == 'ua') { ?>
+                                <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_BY')); ?>
+                                <br>
+                            <?php } elseif (DOMAIN_TYPE == 'ua') { ?>
                                 2013 - <?= date('Y'); ?> (с)
-                                <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_UA')); ?><br>
+                                <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_UA')); ?>
+                                <br>
                             <?php } else { ?>
                                 2013 - <?= date('Y'); ?> (с)
-                                <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_RU')); ?><br>
+                                <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_RU')); ?>
+                                <br>
                             <?php } ?>
 
                             <?= Yii::t('app', 'Программирование сайта') ?> -
@@ -145,7 +150,7 @@ $bundle = AppAsset::register($this);
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"></div>
 
-<?php if (Yii::$app->city->domain == 'ru' && Yii::$app->getUser()->isGuest) { ?>
+<?php if (DOMAIN_TYPE == 'ru' && Yii::$app->getUser()->isGuest) { ?>
     <script>
         var __cs = __cs || [];
         __cs.push(["setCsAccount", "UmbSor8qhGbovgqKXcAqTSVMMinwFmSy"]);
@@ -157,15 +162,16 @@ $bundle = AppAsset::register($this);
 {
     "@context": "http://schema.org",
     "@type": "Organization",
-    "url": "https://www.myarredo.<?= DOMAIN ?>",
+    "url": "https://www.<?= DOMAIN_NAME . '.' . DOMAIN_TYPE ?>",
     "name": "MyArredoFamily",
     "email": "info@myarredo.ru",
-    "logo": "<?= 'https://img.myarredo.' . DOMAIN ?>/uploads/myarredo-ico.jpg",
+    "logo": "<?= 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE ?>/uploads/myarredo-ico.jpg",
     "sameAs": [
         "https://www.facebook.com/Myarredo/",
         "https://www.instagram.com/my_arredo_family/"
     ]
 }
+
 
 
 

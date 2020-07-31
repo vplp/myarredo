@@ -93,7 +93,7 @@ class ProductController extends BaseController
         if (isset($model['category'][0])) {
             $params = Yii::$app->catalogFilter->params;
 
-            $params[$keys['category']] = Yii::$app->city->domain != 'com'
+            $params[$keys['category']] = DOMAIN_TYPE != 'com'
                 ? $model['category'][0]['alias']
                 : $model['category'][0]['alias2'];
 
@@ -164,7 +164,7 @@ class ProductController extends BaseController
             $pageDescription[] = implode(', ', $array);
         }
 
-        if (Yii::$app->city->domain != 'com') {
+        if (DOMAIN_TYPE != 'com') {
             $pageTitle[] = Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
             $pageDescription[] = Yii::t('app', 'Купить в интернет-магазине Myarredo в') .
                 ' ' . Yii::$app->city->getCityTitleWhere();

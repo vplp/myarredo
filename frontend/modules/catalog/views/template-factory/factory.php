@@ -41,7 +41,7 @@ $this->title = $this->context->title;
             <?= Html::tag(
                 'h3',
                 $model['title'] .
-                (Yii::$app->city->domain != 'com' ? ' | ' . Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere() : '')
+                (DOMAIN_TYPE != 'com' ? ' | ' . Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere() : '')
             ); ?>
 
             <div class="submenu">

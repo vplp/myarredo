@@ -52,7 +52,7 @@ $model->user_agreement = 1;
                     ->input('text', ['placeholder' => Yii::t('app', 'Name')])
                     ->label(false) ?>
 
-                <?php if (Yii::$app->city->domain == 'com' || in_array(substr(Yii::$app->language, 0, 2), ['it', 'en'])) {
+                <?php if (DOMAIN_TYPE == 'com' || in_array(substr(Yii::$app->language, 0, 2), ['it', 'en'])) {
                     $model->city_id = 0;
                     $model->country_code = Yii::$app->city->getCountryCode();
 

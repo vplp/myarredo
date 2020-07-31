@@ -86,7 +86,7 @@ class Product extends ProductModel
                 ->innerJoinWith(["category"])
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
+                    DOMAIN_TYPE != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
                     $params[$keys['category']]
                 ]);
         }
@@ -96,7 +96,7 @@ class Product extends ProductModel
                 ->innerJoinWith(["types"])
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    DOMAIN_TYPE != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
                     $params[$keys['type']]
                 ]);
         }
@@ -112,7 +112,7 @@ class Product extends ProductModel
                 ->innerJoinWith(["specification"])
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? Specification::tableName() . '.alias' : Specification::tableName() . '.alias2',
+                    DOMAIN_TYPE != 'com' ? Specification::tableName() . '.alias' : Specification::tableName() . '.alias2',
                     $params[$keys['style']]
                 ]);
         }
@@ -297,7 +297,7 @@ class Product extends ProductModel
                 ->innerJoinWith(["category"])
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
+                    DOMAIN_TYPE != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
                     $params[$keys['category']]
                 ]);
         }
@@ -307,7 +307,7 @@ class Product extends ProductModel
                 ->innerJoinWith(["types"])
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    DOMAIN_TYPE != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
                     $params[$keys['types']]
                 ]);
         }
@@ -323,7 +323,7 @@ class Product extends ProductModel
                 ->innerJoinWith(["specification"])
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? Specification::tableName() . '.alias' : Specification::tableName() . '.alias2',
+                    DOMAIN_TYPE != 'com' ? Specification::tableName() . '.alias' : Specification::tableName() . '.alias2',
                     $params[$keys['style']]
                 ]);
         }

@@ -17,7 +17,7 @@ use frontend\modules\location\models\City;
     'action' => Url::toRoute(['/forms/forms/feedback'], true)
 ]); ?>
 
-<?php if (in_array(Yii::$app->city->domain, ['ru', 'ua', 'by'])) {
+<?php if (in_array(DOMAIN_TYPE, ['ru', 'ua', 'by'])) {
     $model->city_id = Yii::$app->city->getCityId();
     echo $form
         ->field($model, 'city_id')

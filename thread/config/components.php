@@ -17,7 +17,7 @@ return [
     ],
     'languages' => [
         'class' => \thread\app\model\Languages::class,
-        'languageModel' => \thread\app\model\Language::class,
+        'languageModel' => \thread\modules\sys\models\Language::class,
     ],
     //DEFAULT CACHE
     'cache' => [

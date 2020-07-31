@@ -22,7 +22,7 @@ use frontend\modules\catalog\models\Category;
 
                 <?php foreach ($category as $model) { ?>
                     <li>
-                        <a href="<?= Category::getUrl(Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2']) ?>">
+                        <a href="<?= Category::getUrl(DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2']) ?>">
                             <div class="img-cont">
                                 <?= Html::img(Category::getImage($model['image_link3'])); ?>
                             </div>
@@ -38,7 +38,7 @@ use frontend\modules\catalog\models\Category;
         </div>
     </li>
 
-    <?php if (Yii::$app->city->domain != 'com') { ?>
+    <?php if (DOMAIN_TYPE != 'com') { ?>
         <li <?= (Yii::$app->controller->id == 'sale') ? ' class="js-has-list has-list second-link"' : ' class="js-has-list second-link"' ?>>
             <?= Html::a(
                 Yii::t('app', 'Sale'),
@@ -50,7 +50,7 @@ use frontend\modules\catalog\models\Category;
 
                     <?php foreach ($categorySale as $model) { ?>
                         <li>
-                            <a href="<?= Category::getUrl(Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'], '/catalog/sale/list') ?>">
+                            <a href="<?= Category::getUrl(DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2'], '/catalog/sale/list') ?>">
                                 <div class="img-cont">
                                     <?= Html::img(Category::getImage($model['image_link3'])); ?>
                                 </div>
@@ -78,7 +78,7 @@ use frontend\modules\catalog\models\Category;
 
                 <?php foreach ($categorySaleItaly as $model) { ?>
                     <li>
-                        <a href="<?= Category::getUrl(Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'], '/catalog/sale-italy/list') ?>">
+                        <a href="<?= Category::getUrl(DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2'], '/catalog/sale-italy/list') ?>">
                             <div class="img-cont">
                                 <?= Html::img(Category::getImage($model['image_link3'])); ?>
                             </div>
@@ -101,7 +101,7 @@ use frontend\modules\catalog\models\Category;
         ) ?>
     </li>
 
-    <?php if (Yii::$app->city->domain != 'com') { ?>
+    <?php if (DOMAIN_TYPE != 'com') { ?>
         <li <?= (Yii::$app->controller->id == 'contacts') ? ' class="has-list"' : '' ?>>
             <?= Html::a(
                 Yii::t('app', 'Где купить'),

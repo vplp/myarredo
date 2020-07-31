@@ -38,25 +38,25 @@ abstract class BaseController extends Controller
         $lang = substr(Yii::$app->language, 0, 2);
 
         // de domain
-        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && Yii::$app->city->domain == 'de' && !in_array($lang, ['de'])) {
-            Yii::$app->response->redirect('https://' . 'www.myarredo.de/de/', 301);
+        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && DOMAIN_TYPE == 'de' && !in_array($lang, ['de'])) {
+            Yii::$app->response->redirect('https://' . 'www.myarredo.de/', 301);
             yii::$app->end();
-        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(Yii::$app->city->domain, ['ru', 'ua', 'by', 'com']) && in_array($lang, ['de'])) {
-            Yii::$app->response->redirect('https://' . 'www.myarredo.de/de/', 301);
+        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(DOMAIN_TYPE, ['ru', 'ua', 'by', 'com']) && in_array($lang, ['de'])) {
+            Yii::$app->response->redirect('https://' . 'www.myarredo.de/', 301);
             yii::$app->end();
         }
 
         // com domain
-        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && Yii::$app->city->domain == 'com' && !in_array($lang, ['it', 'en'])) {
+        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && DOMAIN_TYPE == 'com' && !in_array($lang, ['it', 'en'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.com/it/', 301);
             yii::$app->end();
-        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(Yii::$app->city->domain, ['ru', 'ua', 'by', 'de']) && in_array($lang, ['it', 'en'])) {
+        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(DOMAIN_TYPE, ['ru', 'ua', 'by', 'de']) && in_array($lang, ['it', 'en'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.com/it/', 301);
             yii::$app->end();
         }
 
         // ua domain
-        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && Yii::$app->city->domain != 'ua' && in_array($lang, ['uk'])) {
+        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && DOMAIN_TYPE != 'ua' && in_array($lang, ['uk'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.ua/ua/', 301);
             yii::$app->end();
         }
@@ -101,7 +101,7 @@ abstract class BaseController extends Controller
          */
         $lang = substr(Yii::$app->language, 0, 2);
 
-        if (in_array(Yii::$app->city->domain, ['ua', 'by', 'com', 'de'])) {
+        if (in_array(DOMAIN_TYPE, ['ua', 'by', 'com', 'de'])) {
             $session->set('currency', 'EUR');
         } elseif (!$session->has('currency') && $lang == 'ru') {
             $session->set('currency', 'RUB');
@@ -119,14 +119,14 @@ abstract class BaseController extends Controller
         $current_url = Yii::$app->request->url;
 
         foreach ($languages as $alternate) {
-            if (Yii::$app->city->domain == 'com' && in_array($alternate['alias'], ['it', 'en'])) {
+            if (DOMAIN_TYPE == 'com' && in_array($alternate['alias'], ['it', 'en'])) {
                 $alternatePages[$alternate['local']] = [
                     'href' => 'https://www.myarredo.com' . '/' . $alternate['alias'] .
                         str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
                     'lang' => substr($alternate['local'], 0, 2),
                     'current' => (Yii::$app->language == $alternate['local']) ? true : false
                 ];
-            } elseif (!in_array(Yii::$app->controller->id, ['category', 'sale', 'articles']) && Yii::$app->city->domain == 'com' && in_array($alternate['alias'], ['ru'])) {
+            } elseif (!in_array(Yii::$app->controller->id, ['category', 'sale', 'articles']) && DOMAIN_TYPE == 'com' && in_array($alternate['alias'], ['ru'])) {
                 $alternatePages[$alternate['local']] = [
                     'href' => 'https://www.myarredo.ru' .
                         str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),

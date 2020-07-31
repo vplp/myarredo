@@ -19,9 +19,6 @@ class CityComponent extends Component
     /** @var object */
     private $city;
 
-    /** @var object */
-    private $domain;
-
     /**
      * @inheritdoc
      */
@@ -91,14 +88,6 @@ class CityComponent extends Component
     }
 
     /**
-     * @return string
-     */
-    public function getDomain()
-    {
-        return $this->domain;
-    }
-
-    /**
      * @param null $key
      * @return mixed
      */
@@ -136,9 +125,9 @@ class CityComponent extends Component
             return $mask['ru'] + $mask['it'];
         } elseif (Yii::$app->language == 'it-IT') {
             return $mask['it'];
-        } elseif (in_array($this->domain, ['by'])) {
+        } elseif (in_array(DOMAIN_TYPE, ['by'])) {
             return $mask['by'];
-        } elseif (in_array($this->domain, ['ua'])) {
+        } elseif (in_array(DOMAIN_TYPE, ['ua'])) {
             return $mask['ua'];
         } else {
             return $mask['ru'];
@@ -158,12 +147,6 @@ class CityComponent extends Component
      */
     private function setup()
     {
-        // get domain name
-        $exp_host = explode('myarredo.', $_SERVER["HTTP_HOST"]);
-
-        // set domain
-        $this->domain = (in_array($exp_host[1], ['ru', 'ua', 'by', 'com', 'de'])) ? $exp_host[1] : 'ru';
-
         $exp_host = explode('.', $_SERVER['HTTP_HOST']);
 
         // get city name
@@ -176,20 +159,20 @@ class CityComponent extends Component
             $_SERVER["HTTP_HOST"]
         );
 
-        if ($cityAlias && !in_array($this->domain, ['com', 'de'])) {
+        if ($cityAlias && !in_array(DOMAIN_TYPE, ['com', 'de'])) {
             $this->city = City::findByAlias($cityAlias);
 
             if ($this->city == null || in_array($this->city['id'], [1, 2, 4, 159, 160])) {
                 Yii::$app->response->redirect(
-                    'https://' . 'www.myarredo.' . $this->domain . Yii::$app->request->url,
+                    'https://' . 'www.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . Yii::$app->request->url,
                     301
                 );
                 Yii::$app->end();
             }
 
-            if ($this->city['country']['alias'] != $this->domain) {
+            if ($this->city['country']['alias'] != DOMAIN_TYPE) {
                 Yii::$app->response->redirect(
-                    'https://' . $this->city['alias'] . '.myarredo.' .
+                    'https://' . $this->city['alias'] . '.' . DOMAIN_NAME . '.' .
                     $this->city['country']['alias'] . Yii::$app->request->url,
                     301
                 );
@@ -206,16 +189,16 @@ class CityComponent extends Component
      */
     private function getDefaultCityId()
     {
-        if (in_array($this->domain, ['by'])) {
+        if (in_array(DOMAIN_TYPE, ['by'])) {
             // minsk
             $this->defaultCityId = 2;
-        } elseif (in_array($this->domain, ['ua'])) {
+        } elseif (in_array(DOMAIN_TYPE, ['ua'])) {
             // kiev
             $this->defaultCityId = 1;
-        } elseif (in_array($this->domain, ['com'])) {
+        } elseif (in_array(DOMAIN_TYPE, ['com'])) {
             // rome
             $this->defaultCityId = 159;
-        } elseif (in_array($this->domain, ['de'])) {
+        } elseif (in_array(DOMAIN_TYPE, ['de'])) {
             // berlin
             $this->defaultCityId = 160;
         } else {

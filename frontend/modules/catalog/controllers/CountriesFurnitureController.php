@@ -83,7 +83,7 @@ class CountriesFurnitureController extends BaseController
 
         Yii::$app->metatag
             ->render()
-            ->setImageUrl('https://img.myarredo.' . DOMAIN . '/uploads/myarredo-ico.jpg')
+            ->setImageUrl('https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . '/uploads/myarredo-ico.jpg')
             ->renderGraph();
 
         if (!empty($models->getModels()) && !empty($queryParams[$keys['colors']])) {
@@ -132,7 +132,7 @@ class CountriesFurnitureController extends BaseController
         if (isset($model['category'][0])) {
             $params = Yii::$app->catalogFilter->params;
 
-            $params[$keys['category']] = Yii::$app->city->domain != 'com'
+            $params[$keys['category']] = DOMAIN_TYPE != 'com'
                 ? $model['category'][0]['alias']
                 : $model['category'][0]['alias2'];
 
@@ -187,7 +187,7 @@ class CountriesFurnitureController extends BaseController
             $pageDescription[] = implode(', ', $array);
         }
 
-        if (Yii::$app->city->domain != 'com') {
+        if (DOMAIN_TYPE != 'com') {
             $pageTitle[] = Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
             $pageDescription[] = Yii::t('app', 'Купить в интернет-магазине Myarredo в') .
                 ' ' . Yii::$app->city->getCityTitleWhere();
@@ -459,7 +459,7 @@ class CountriesFurnitureController extends BaseController
             ' ' .
             implode(' ', $pageTitle);
 
-        if (Yii::$app->city->domain != 'com') {
+        if (DOMAIN_TYPE != 'com') {
             $seo_title .= Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
             $pageDescription[] = Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere() . '? ';
         }
@@ -528,7 +528,7 @@ class CountriesFurnitureController extends BaseController
             ];
         }
 
-        if (Yii::$app->city->domain != 'com') {
+        if (DOMAIN_TYPE != 'com') {
             $pageDescription[] = Yii::$app->city->getCityTitle() . ': ' . Yii::t('app', 'Заказать');
         }
 
@@ -724,7 +724,7 @@ class CountriesFurnitureController extends BaseController
          * set options
          */
 
-        if (Yii::$app->city->domain != 'com') {
+        if (DOMAIN_TYPE != 'com') {
             $pageTitle[] = Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
         }
 

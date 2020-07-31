@@ -126,7 +126,7 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
                 Product::tableName() . '.removed' => '0',
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
-                Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
+                Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
             ]);
 
         if ($isCountriesFurniture) {
@@ -140,7 +140,7 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
                 ->innerJoinWith(["product.category productCategory"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'productCategory.alias' : 'productCategory.alias2',
+                    DOMAIN_TYPE != 'com' ? 'productCategory.alias' : 'productCategory.alias2',
                     $params[$keys['category']]
                 ]);
         }
@@ -150,7 +150,7 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
                 ->innerJoinWith(["product.types productTypes"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'productTypes.alias' : 'productTypes.alias2',
+                    DOMAIN_TYPE != 'com' ? 'productTypes.alias' : 'productTypes.alias2',
                     $params[$keys['type']]
                 ]);
         }
@@ -160,7 +160,7 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
                 ->innerJoinWith(["product.specification productSpecification"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'productSpecification.alias' : 'productSpecification.alias2',
+                    DOMAIN_TYPE != 'com' ? 'productSpecification.alias' : 'productSpecification.alias2',
                     $params[$keys['style']]
                 ]);
         }
@@ -278,7 +278,7 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
                 ->innerJoinWith(["sale.category saleCategory"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'saleCategory.alias' : 'saleCategory.alias2',
+                    DOMAIN_TYPE != 'com' ? 'saleCategory.alias' : 'saleCategory.alias2',
                     $params[$keys['category']]
                 ]);
         }
@@ -288,7 +288,7 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
                 ->innerJoinWith(["sale.types saleTypes"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'saleTypes.alias' : 'saleTypes.alias2',
+                    DOMAIN_TYPE != 'com' ? 'saleTypes.alias' : 'saleTypes.alias2',
                     $params[$keys['type']]
                 ]);
         }
@@ -298,7 +298,7 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
                 ->innerJoinWith(["sale.specification saleSpecification"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'saleSpecification.alias' : 'saleSpecification.alias2',
+                    DOMAIN_TYPE != 'com' ? 'saleSpecification.alias' : 'saleSpecification.alias2',
                     $params[$keys['style']]
                 ]);
         }
@@ -368,7 +368,7 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
                 ->innerJoinWith(["italianProduct.category italianProductCategory"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'italianProductCategory.alias' : 'italianProductCategory.alias2',
+                    DOMAIN_TYPE != 'com' ? 'italianProductCategory.alias' : 'italianProductCategory.alias2',
                     $params[$keys['category']]
                 ]);
         }
@@ -378,7 +378,7 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
                 ->innerJoinWith(["italianProduct.types italianProductTypes"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'italianProductTypes.alias' : 'italianProductTypes.alias2',
+                    DOMAIN_TYPE != 'com' ? 'italianProductTypes.alias' : 'italianProductTypes.alias2',
                     $params[$keys['type']]
                 ]);
         }
@@ -388,7 +388,7 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
                 ->innerJoinWith(["italianProduct.specification italianProductSpecification"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'italianProductSpecification.alias' : 'italianProductSpecification.alias2',
+                    DOMAIN_TYPE != 'com' ? 'italianProductSpecification.alias' : 'italianProductSpecification.alias2',
                     $params[$keys['style']]
                 ]);
         }

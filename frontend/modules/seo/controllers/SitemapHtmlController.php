@@ -122,7 +122,7 @@ class SitemapHtmlController extends \frontend\components\BaseController
 
         foreach ($this->style as $key => $obj) {
             $params = [];
-            $params[$keys['style']] = [Yii::$app->city->domain != 'com' ? $obj['alias'] : $obj['alias2']];
+            $params[$keys['style']] = [DOMAIN_TYPE != 'com' ? $obj['alias'] : $obj['alias2']];
 
             $link = Yii::$app->catalogFilter->createUrl($params, $route);
 

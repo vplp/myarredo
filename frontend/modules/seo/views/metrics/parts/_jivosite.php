@@ -1,5 +1,5 @@
 <?php
-if (Yii::$app->getUser()->isGuest && Yii::$app->city->domain == 'ru' &&
+if (Yii::$app->getUser()->isGuest && DOMAIN_TYPE == 'ru' &&
     !in_array(Yii::$app->controller->id, ['sale']) &&
     !in_array(Yii::$app->controller->module->id, ['user'])
 ) { ?>

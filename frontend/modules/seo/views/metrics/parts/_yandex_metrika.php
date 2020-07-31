@@ -1,4 +1,4 @@
-<?php if (Yii::$app->city->domain == 'ru') { ?>
+<?php if (DOMAIN_TYPE == 'ru') { ?>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function (m, e, t, r, i, k, a) {
@@ -22,7 +22,7 @@
         <div><img src="https://mc.yandex.ru/watch/24814823" style="position:absolute; left:-9999px;" alt=""/></div>
     </noscript>
     <!-- /Yandex.Metrika counter -->
-<?php } elseif (Yii::$app->city->domain == 'by') { ?>
+<?php } elseif (DOMAIN_TYPE == 'by') { ?>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function (m, e, t, r, i, k, a) {
@@ -45,7 +45,7 @@
         <div><img src="https://mc.yandex.ru/watch/24880844" style="position:absolute; left:-9999px;" alt=""/></div>
     </noscript>
     <!-- /Yandex.Metrika counter -->
-<?php } elseif (Yii::$app->city->domain == 'ua') { ?>
+<?php } elseif (DOMAIN_TYPE == 'ua') { ?>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function (m, e, t, r, i, k, a) {

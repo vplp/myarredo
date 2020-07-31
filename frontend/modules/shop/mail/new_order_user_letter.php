@@ -84,7 +84,7 @@ if (in_array($order->lang, ['ru-RU'])) {
     <?php if ($order->image_link) { ?>
         <div style="clear: both; height: 100px;">
             <div style="float: left;">
-                <?= Html::img('https://img.myarredo.' . DOMAIN . $order->getImageLink(), ['style' => 'width: 140px; max-height: 100px;']); ?>
+                <?= Html::img('https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $order->getImageLink(), ['style' => 'width: 140px; max-height: 100px;']); ?>
             </div>
         </div>
     <?php } ?>

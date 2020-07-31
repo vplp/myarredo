@@ -269,7 +269,7 @@ class CatalogFilter extends Component
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
-            $alias = Yii::$app->city->domain != 'com'
+            $alias = DOMAIN_TYPE != 'com'
                 ? $model['alias']
                 : $model['alias2'];
 
@@ -282,11 +282,11 @@ class CatalogFilter extends Component
             $model = Types::findBase()
                 ->andWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    DOMAIN_TYPE != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
                     self::$_structure['type']
                 ])
                 ->indexBy('id')
-                ->orderBy(Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2')
+                ->orderBy(DOMAIN_TYPE != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2')
                 ->all();
 
             if (count(self::$_structure['type']) != count($model) || $model == null) {
@@ -296,7 +296,7 @@ class CatalogFilter extends Component
             // sort value
 
             foreach ($model as $obj) {
-                self::setParam(self::$keys['type'], Yii::$app->city->domain != 'com' ? $obj['alias'] : $obj['alias2']);
+                self::setParam(self::$keys['type'], DOMAIN_TYPE != 'com' ? $obj['alias'] : $obj['alias2']);
             }
 
             // check value
@@ -339,7 +339,7 @@ class CatalogFilter extends Component
         /** Style */
 
         if (!empty(self::$_structure['style'])) {
-            $aliasField = Yii::$app->city->domain != 'com' ? 'alias' : 'alias2';
+            $aliasField = DOMAIN_TYPE != 'com' ? 'alias' : 'alias2';
             $model = Specification::findBase()
                 ->andFilterWhere([
                     'IN',
@@ -431,7 +431,7 @@ class CatalogFilter extends Component
         if (!empty(self::$_structure['city'])) {
             $model = City::findBase()
                 ->innerJoinWith(["country as country"], false)
-                ->andFilterWhere(['IN', 'country.alias', Yii::$app->city->domain])
+                ->andFilterWhere(['IN', 'country.alias', DOMAIN_TYPE])
                 ->andFilterWhere(['IN', City::tableName() . '.alias', self::$_structure['city']])
                 ->indexBy('id')
                 ->all();

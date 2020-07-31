@@ -72,7 +72,7 @@ class HomeController extends BaseController
     {
         Yii::$app->metatag
             ->render()
-            ->setImageUrl('https://img.myarredo.' . DOMAIN . '/uploads/myarredo-ico.jpg')
+            ->setImageUrl('https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . '/uploads/myarredo-ico.jpg')
             ->renderGraph();
 
         return $this->render('index');

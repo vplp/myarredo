@@ -72,13 +72,13 @@ class TemplateFactoryController extends BaseController
 
         $this->breadcrumbs[] = [
             'label' => $model['title'] .
-                (Yii::$app->city->domain != 'com' ? ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere() : ''),
+                (DOMAIN_TYPE != 'com' ? ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere() : ''),
             'url' => ['/catalog/factory/view', 'alias' => $model['alias']]
         ];
 
         $this->title = Yii::t('app', 'Итальянская мебель') . ' ' .
             $model['title'] . '. ' .
-            (Yii::$app->city->domain != 'com' ? Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere() . ' ' . Yii::t('app', 'по лучшей цене') : '');
+            (DOMAIN_TYPE != 'com' ? Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere() . ' ' . Yii::t('app', 'по лучшей цене') : '');
 
         $this->factory = $model;
 
@@ -151,7 +151,7 @@ class TemplateFactoryController extends BaseController
 
         $this->title = Yii::t('app', 'Каталог итальянской мебели') . ' ' .
             $factory['title'] . '. ' .
-            (Yii::$app->city->domain != 'com' ? Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere() . ' ' . Yii::t('app', 'по лучшей цене') : '');
+            (DOMAIN_TYPE != 'com' ? Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere() . ' ' . Yii::t('app', 'по лучшей цене') : '');
 
         return $this->render('catalog', [
             'factory' => $factory,
@@ -197,7 +197,7 @@ class TemplateFactoryController extends BaseController
 
         if (isset($model['category'][0])) {
             $params = Yii::$app->catalogFilter->params;
-            $params[$keys['category']] = Yii::$app->city->domain != 'com'
+            $params[$keys['category']] = DOMAIN_TYPE != 'com'
                 ? $model['category'][0]['alias']
                 : $model['category'][0]['alias2'];
 
@@ -218,7 +218,7 @@ class TemplateFactoryController extends BaseController
         }
 
         $this->title = $model['lang']['title'] . '. ' .
-            (Yii::$app->city->domain != 'com' ? Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere() : '');
+            (DOMAIN_TYPE != 'com' ? Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere() : '');
 
         return $this->render('/product/view', [
             'model' => $model,
