@@ -18,9 +18,6 @@ class RobotsController extends Controller
     public function actionIndex()
     {
         echo 'User-agent: *' . PHP_EOL;
-        echo 'User-agent: Yandex' . PHP_EOL;
-        echo 'User-agent: Googlebot' . PHP_EOL;
-
         echo 'Disallow: *?view' . PHP_EOL;
         echo 'Disallow: /partner/' . PHP_EOL;
         echo 'Disallow: /*openstat*' . PHP_EOL;
@@ -42,7 +39,13 @@ class RobotsController extends Controller
         echo 'Disallow: *price=*' . PHP_EOL;
         echo 'Disallow: /user/' . PHP_EOL;
         echo 'Disallow: /shop/' . PHP_EOL;
-        echo 'Allow: /catalog/*?page=*' . PHP_EOL;
+        echo 'Allow: /catalog/*?page=*' . PHP_EOL . PHP_EOL;
+
+        echo 'User-agent: Yandex' . PHP_EOL;
+        echo 'Disallow: *.svg' . PHP_EOL . PHP_EOL;
+
+        echo 'User-agent: Googlebot' . PHP_EOL;
+        echo 'Disallow: *.svg' . PHP_EOL;
 
         echo PHP_EOL . 'Host: https://' . Yii::$app->request->serverName . PHP_EOL;
 
