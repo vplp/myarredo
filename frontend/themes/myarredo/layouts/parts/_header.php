@@ -153,10 +153,10 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                 ) ?>
 
                 <?php if (
-                !Yii::$app->getUser()->isGuest &&
+                    !Yii::$app->getUser()->isGuest &&
                     Yii::$app->user->identity->group->role == 'partner' &&
                     Yii::$app->user->identity->profile->country_id == 4
-) { ?>
+                ) { ?>
                     <div class="header-addprodbox">
                         <?= Html::a(
                             '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Free add'),
@@ -166,13 +166,10 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                     </div>
                 <?php } ?>
 
-                <?php if (
-                !Yii::$app->getUser()->isGuest &&
-                    (
+                <?php if (!Yii::$app->getUser()->isGuest && (
                         (Yii::$app->user->identity->group->role == 'partner' && Yii::$app->user->identity->profile->country_id == 4) ||
                         Yii::$app->user->identity->group->role == 'factory'
-                    )
-) {
+                    )) {
                 } else { ?>
                     <?= CatalogMenu::widget([]); ?>
 
