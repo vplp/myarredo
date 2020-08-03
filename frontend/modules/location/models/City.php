@@ -160,7 +160,7 @@ class City extends \common\modules\location\models\City
                 ->innerJoinWith(["sale.category saleCategory"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'saleCategory.alias' : 'saleCategory.alias2',
+                    'saleCategory.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['category']]
                 ]);
         }
@@ -170,7 +170,7 @@ class City extends \common\modules\location\models\City
                 ->innerJoinWith(["sale.types saleTypes"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'saleTypes.alias' : 'saleTypes.alias2',
+                    'saleTypes.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['type']]
                 ]);
         }
@@ -186,7 +186,7 @@ class City extends \common\modules\location\models\City
                 ->innerJoinWith(["sale.specification saleSpecification"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'saleSpecification.alias' : 'saleSpecification.alias2',
+                    'saleSpecification.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['style']]
                 ]);
         }

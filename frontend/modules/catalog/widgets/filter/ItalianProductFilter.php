@@ -114,9 +114,7 @@ class ItalianProductFilter extends Widget
         foreach ($this->category as $key => $obj) {
             $params = $this->catalogFilterParams;
 
-            $alias = DOMAIN_TYPE != 'com'
-                ? $obj['alias']
-                : $obj['alias2'];
+            $alias = $obj[Yii::$app->languages->getDomainAlias()];
 
             if (!empty($params[$keys['category']]) && in_array($alias, $params[$keys['category']])) {
                 $checked = 1;
@@ -149,9 +147,7 @@ class ItalianProductFilter extends Widget
         foreach ($this->types as $key => $obj) {
             $params = $this->catalogFilterParams;
 
-            $alias = DOMAIN_TYPE != 'com'
-                ? $obj['alias']
-                : $obj['alias2'];
+            $alias = $obj[Yii::$app->languages->getDomainAlias()];
 
             if (!empty($params[$keys['type']]) &&
                 in_array($alias, $params[$keys['type']])
@@ -221,9 +217,7 @@ class ItalianProductFilter extends Widget
         foreach ($this->style as $key => $obj) {
             $params = $this->catalogFilterParams;
 
-            $alias = DOMAIN_TYPE != 'com'
-                ? $obj['alias']
-                : $obj['alias2'];
+            $alias = $obj[Yii::$app->languages->getDomainAlias()];
 
             if (!empty($params[$keys['style']]) &&
                 in_array($alias, $params[$keys['style']])

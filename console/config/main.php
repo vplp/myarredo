@@ -172,7 +172,7 @@ return ArrayHelper::merge(
                             'class' => Category::class,
                             'dataClosure' => function ($model) {
                                 return [
-                                    'loc' => '/catalog/' . $model['alias2'] . '/',
+                                    'loc' => '/catalog/' . $model['alias_en'] . '/',
                                     'lastmod' => date('c', $model['updated_at']),
                                     'changefreq' => 'daily',
                                     'priority' => 0.8
@@ -183,7 +183,7 @@ return ArrayHelper::merge(
                             'class' => Types::class,
                             'dataClosure' => function ($model) {
                                 return [
-                                    'loc' => '/catalog/c--' . $model['alias2'] . '/',
+                                    'loc' => '/catalog/c--' . $model['alias_en'] . '/',
                                     'lastmod' => date('c', $model['updated_at']),
                                     'changefreq' => 'daily',
                                     'priority' => 0.8
@@ -306,7 +306,7 @@ return ArrayHelper::merge(
                             'class' => Category::class,
                             'dataClosure' => function ($model) {
                                 return [
-                                    'loc' => '/sale/' . $model['alias2'] . '/',
+                                    'loc' => '/sale/' . $model['alias_en'] . '/',
                                     'lastmod' => date('c', $model['updated_at']),
                                     'changefreq' => 'daily',
                                     'priority' => 0.8
@@ -317,7 +317,7 @@ return ArrayHelper::merge(
                             'class' => Types::class,
                             'dataClosure' => function ($model) {
                                 return [
-                                    'loc' => '/sale/c--' . $model['alias2'] . '/',
+                                    'loc' => '/sale/c--' . $model['alias_en'] . '/',
                                     'lastmod' => date('c', $model['updated_at']),
                                     'changefreq' => 'daily',
                                     'priority' => 0.8
@@ -403,7 +403,7 @@ return ArrayHelper::merge(
                             'class' => Category::class,
                             'dataClosure' => function ($model) {
                                 return [
-                                    'loc' => '/sale-italy/' . $model['alias2'] . '/',
+                                    'loc' => '/sale-italy/' . $model['alias_en'] . '/',
                                     'lastmod' => date('c', $model['updated_at']),
                                     'changefreq' => 'daily',
                                     'priority' => 0.8
@@ -414,7 +414,7 @@ return ArrayHelper::merge(
                             'class' => Types::class,
                             'dataClosure' => function ($model) {
                                 return [
-                                    'loc' => '/sale-italy/c--' . $model['alias2'] . '/',
+                                    'loc' => '/sale-italy/c--' . $model['alias_en'] . '/',
                                     'lastmod' => date('c', $model['updated_at']),
                                     'changefreq' => 'daily',
                                     'priority' => 0.8

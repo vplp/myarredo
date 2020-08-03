@@ -172,9 +172,7 @@ class SaleController extends BaseController
 
         if (isset($model['category'][0])) {
             $params = Yii::$app->catalogFilter->params;
-            $params[$keys['category']] = DOMAIN_TYPE != 'com'
-                ? $model['category'][0]['alias']
-                : $model['category'][0]['alias2'];
+            $params[$keys['category']] = $model['category'][0][Yii::$app->languages->getDomainAlias()];
 
             $this->breadcrumbs[] = [
                 'label' => $model['category'][0]['lang']['title'],

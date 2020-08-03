@@ -93,9 +93,7 @@ class ProductController extends BaseController
         if (isset($model['category'][0])) {
             $params = Yii::$app->catalogFilter->params;
 
-            $params[$keys['category']] = DOMAIN_TYPE != 'com'
-                ? $model['category'][0]['alias']
-                : $model['category'][0]['alias2'];
+            $params[$keys['category']] = $model['category'][0][Yii::$app->languages->getDomainAlias()];
 
             if ($model['is_composition']) {
                 $pageTitle[] = $model['category'][0]['lang']['composition_title'];
@@ -109,7 +107,7 @@ class ProductController extends BaseController
 
         if (isset($model['types'])) {
             $params = Yii::$app->catalogFilter->params;
-            $params[$keys['type']] = $model['types']['alias'];
+            $params[$keys['type']] = $model['types'][Yii::$app->languages->getDomainAlias()];
 
             if ($model['is_composition']) {
                 $pageTitle[] = $model['types']['lang']['title'];

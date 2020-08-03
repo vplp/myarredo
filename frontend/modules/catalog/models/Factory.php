@@ -254,7 +254,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->innerJoinWith(["product.category productCategory"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'productCategory.alias' : 'productCategory.alias2',
+                    'productCategory.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['category']]
                 ]);
         }
@@ -264,7 +264,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->innerJoinWith(["product.types productTypes"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'productTypes.alias' : 'productTypes.alias2',
+                    'productTypes.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['type']]
                 ]);
         }
@@ -280,7 +280,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->innerJoinWith(["product.specification productSpecification"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'productSpecification.alias' : 'productSpecification.alias2',
+                    'productSpecification.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['style']]
                 ]);
         }
@@ -396,7 +396,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->innerJoinWith(["sale.category saleCategory"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'saleCategory.alias' : 'saleCategory.alias2',
+                    'saleCategory.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['category']]
                 ]);
         }
@@ -406,7 +406,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->innerJoinWith(["sale.types saleTypes"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'saleTypes.alias' : 'saleTypes.alias2',
+                    'saleTypes.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['type']]
                 ]);
         }
@@ -422,7 +422,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->innerJoinWith(["sale.specification saleSpecification"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'saleSpecification.alias' : 'saleSpecification.alias2',
+                    'saleSpecification.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['style']]
                 ]);
         }
@@ -492,7 +492,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->innerJoinWith(["italianProduct.category italianProductCategory"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'italianProductCategory.alias' : 'italianProductCategory.alias2',
+                    'italianProductCategory.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['category']]
                 ]);
         }
@@ -502,7 +502,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->innerJoinWith(["italianProduct.types italianProductTypes"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'italianProductTypes.alias' : 'italianProductTypes.alias2',
+                    'italianProductTypes.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['type']]
                 ]);
         }
@@ -518,7 +518,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->innerJoinWith(["italianProduct.specification italianProductSpecification"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'italianProductSpecification.alias' : 'italianProductSpecification.alias2',
+                    'italianProductSpecification.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['style']]
                 ]);
         }

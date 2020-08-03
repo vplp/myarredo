@@ -105,9 +105,7 @@ class SaleFilter extends Widget
         foreach ($this->category as $key => $obj) {
             $params = $this->catalogFilterParams;
 
-            $alias = DOMAIN_TYPE != 'com'
-                ? $obj['alias']
-                : $obj['alias2'];
+            $alias = $obj[Yii::$app->languages->getDomainAlias()];
 
             if (!empty($params[$keys['category']]) && in_array($alias, $params[$keys['category']])) {
                 $checked = 1;
@@ -139,9 +137,7 @@ class SaleFilter extends Widget
         foreach ($this->types as $key => $obj) {
             $params = $this->catalogFilterParams;
 
-            $alias = DOMAIN_TYPE != 'com'
-                ? $obj['alias']
-                : $obj['alias2'];
+            $alias = $obj[Yii::$app->languages->getDomainAlias()];
 
             if (!empty($params[$keys['type']]) && in_array($alias, $params[$keys['type']])) {
                 $checked = 1;
@@ -207,9 +203,7 @@ class SaleFilter extends Widget
         foreach ($this->style as $key => $obj) {
             $params = $this->catalogFilterParams;
 
-            $alias = DOMAIN_TYPE != 'com'
-                ? $obj['alias']
-                : $obj['alias2'];
+            $alias = $obj[Yii::$app->languages->getDomainAlias()];
 
             if (!empty($params[$keys['style']]) && in_array($alias, $params[$keys['style']])) {
                 $checked = 1;

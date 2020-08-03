@@ -121,7 +121,7 @@ class CategoryController extends BaseController
 
             $types = ArrayHelper::map(
                 Types::getWithProduct($params),
-                DOMAIN_TYPE != 'com' ? 'alias' : 'alias2',
+                Yii::$app->languages->getDomainAlias(),
                 'lang.title'
             );
 
@@ -147,9 +147,9 @@ class CategoryController extends BaseController
                 Category::findBase()
                     ->innerJoinWith(["types"])
                     ->andFilterWhere([
-                        DOMAIN_TYPE != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2' => Yii::$app->getRequest()->post('type_alias')])
+                        Types::tableName() . '.' . Yii::$app->languages->getDomainAlias() => Yii::$app->getRequest()->post('type_alias')])
                     ->all(),
-                (DOMAIN_TYPE != 'com' ? 'alias' : 'alias2'),
+                Yii::$app->languages->getDomainAlias(),
                 'lang.title'
             );
 
@@ -175,6 +175,9 @@ class CategoryController extends BaseController
                 ->select([
                     Product::tableName() . '.id',
                     Product::tableName() . '.alias',
+                    Product::tableName() . '.alias_en',
+                    Product::tableName() . '.alias_it',
+                    Product::tableName() . '.alias_de',
                     Product::tableName() . '.image_link',
                     Product::tableName() . '.factory_id',
                     Product::tableName() . '.removed',
@@ -214,8 +217,8 @@ class CategoryController extends BaseController
         if (Yii::$app->request->isAjax) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
-            $category = ArrayHelper::map(Category::findBase()->all(), 'alias', 'lang.title');
-            $types = ArrayHelper::map(Types::getWithProduct([]), 'alias', 'lang.title');
+            $category = ArrayHelper::map(Category::findBase()->all(), Yii::$app->languages->getDomainAlias(), 'lang.title');
+            $types = ArrayHelper::map(Types::getWithProduct([]), Yii::$app->languages->getDomainAlias(), 'lang.title');
 
             $html = $this->renderPartial('ajax_get_filter', [
                 'category' => $category,

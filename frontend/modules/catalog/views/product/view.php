@@ -177,14 +177,10 @@ $this->title = $this->context->title;
                                                         $paramsUrl = [];
 
                                                         if ($model['types']) {
-                                                            $paramsUrl[$keys['type']][] = DOMAIN_TYPE != 'com'
-                                                                ? $model['types']['alias']
-                                                                : $model['types']['alias2'];
+                                                            $paramsUrl[$keys['type']][] = $model['types'][Yii::$app->languages->getDomainAlias()];
                                                         }
 
-                                                        $paramsUrl[$keys['style']][] = DOMAIN_TYPE != 'com'
-                                                            ? $item['specification']['alias']
-                                                            : $item['specification']['alias2'];
+                                                        $paramsUrl[$keys['style']][] = $item['specification'][Yii::$app->languages->getDomainAlias()];
 
                                                         $array[] = Html::a(
                                                             $item['specification']['lang']['title'],

@@ -47,7 +47,9 @@ class CategoryOnMainPage extends Widget
                 ->select([
                     Category::tableName() . '.id',
                     Category::tableName() . '.alias',
-                    Category::tableName() . '.alias2',
+                    Category::tableName() . '.alias_en',
+                    Category::tableName() . '.alias_it',
+                    Category::tableName() . '.alias_de',
                     Category::tableName() . '.image_link',
                     Category::tableName() . '.image_link2',
                     Category::tableName() . '.image_link3',

@@ -17,7 +17,7 @@ use common\modules\catalog\Catalog;
  *
  * @property integer $id
  * @property string $alias
- * @property string $alias2
+ * @property string $alias_en
  * @property string $alias_it
  * @property string $alias_de
  * @property integer $position
@@ -84,11 +84,11 @@ class Types extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias', 'alias2', 'alias_it', 'alias_de'], 'required'],
+            [['alias', 'alias_en', 'alias_it', 'alias_de'], 'required'],
             [['created_at', 'updated_at', 'position'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['alias', 'alias2', 'alias_it', 'alias_de'], 'string', 'max' => 255],
-            [['alias', 'alias2', 'alias_it', 'alias_de'], 'unique'],
+            [['alias', 'alias_en', 'alias_it', 'alias_de'], 'string', 'max' => 255],
+            [['alias', 'alias_en', 'alias_it', 'alias_de'], 'unique'],
             [['position'], 'default', 'value' => '0'],
             [['category_ids'], 'each', 'rule' => ['integer']],
         ];
@@ -103,7 +103,7 @@ class Types extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'position' => ['position'],
-            'backend' => ['alias', 'alias2', 'alias_it', 'alias_de', 'position', 'published', 'deleted', 'category_ids'],
+            'backend' => ['alias', 'alias_en', 'alias_it', 'alias_de', 'position', 'published', 'deleted', 'category_ids'],
         ];
     }
 
@@ -115,7 +115,7 @@ class Types extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
-            'alias2' => 'Alias for en',
+            'alias_en' => 'Alias for en',
             'alias_it' => 'Alias for it',
             'alias_de' => 'Alias for de',
             'position' => Yii::t('app', 'Position'),

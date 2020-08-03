@@ -23,7 +23,7 @@ use backend\modules\catalog\models\{
         <?= $form->text_line($model, 'alias')->input('text', ['disabled' => ($model->readonly == '1') ? true : false]) ?>
     </div>
     <div class="col-md-3">
-        <?= $form->text_line($model, 'alias2')->input('text', ['disabled' => ($model->readonly == '1') ? true : false]) ?>
+        <?= $form->text_line($model, 'alias_en')->input('text', ['disabled' => ($model->readonly == '1') ? true : false]) ?>
     </div>
     <div class="col-md-3">
         <?= $form->text_line($model, 'alias_it')->input('text', ['disabled' => ($model->readonly == '1') ? true : false]) ?>

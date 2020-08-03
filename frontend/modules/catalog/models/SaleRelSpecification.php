@@ -42,7 +42,7 @@ class SaleRelSpecification extends \common\modules\catalog\models\SaleRelSpecifi
                 ->innerJoinWith(["sale.category saleCategory"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'saleCategory.alias' : 'saleCategory.alias2',
+                    'saleCategory.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['category']]
                 ]);
         }
@@ -52,7 +52,7 @@ class SaleRelSpecification extends \common\modules\catalog\models\SaleRelSpecifi
                 ->innerJoinWith(["sale.types saleTypes"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'saleTypes.alias' : 'saleTypes.alias2',
+                    'saleTypes.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['type']]
                 ]);
         }
@@ -68,7 +68,7 @@ class SaleRelSpecification extends \common\modules\catalog\models\SaleRelSpecifi
                 ->innerJoinWith(["sale.specification saleSpecification"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'saleSpecification.alias' : 'saleSpecification.alias2',
+                    'saleSpecification.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['style']]
                 ]);
         }

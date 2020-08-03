@@ -91,7 +91,7 @@ class ProductsNovelties extends Widget
                 ->innerJoinWith(["category"])
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
+                    Category::tableName() . '.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['category']]
                 ]);
         }

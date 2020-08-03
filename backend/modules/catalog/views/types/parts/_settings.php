@@ -22,7 +22,7 @@ use backend\modules\catalog\models\{
         <?= $form->text_line($model, 'alias') ?>
     </div>
     <div class="col-md-3">
-        <?= $form->text_line($model, 'alias2') ?>
+        <?= $form->text_line($model, 'alias_en') ?>
     </div>
     <div class="col-md-3">
         <?= $form->text_line($model, 'alias_it') ?>

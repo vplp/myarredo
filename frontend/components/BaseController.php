@@ -31,9 +31,17 @@ abstract class BaseController extends Controller
      */
     public $breadcrumbs = [];
 
+    /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws \yii\base\ExitException
+     * @throws \yii\web\BadRequestHttpException
+     */
     public function beforeAction($action)
     {
         Redirects::findRedirect();
+
+        //$this->enableCsrfValidation = false;
 
         $lang = substr(Yii::$app->language, 0, 2);
 

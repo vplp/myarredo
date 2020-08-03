@@ -161,4 +161,20 @@ class Languages extends Component implements iLanguages, BootstrapInterface
         }
         return $curr_lang;
     }
+
+    /**
+     * @return string
+     */
+    public function getDomainAlias()
+    {
+        $alias = 'alias';
+
+        $lang = substr(Yii::$app->language, 0, 2);
+
+        if (!in_array($lang, ['ru', 'ua'])) {
+            $alias = 'alias_' . $lang;
+        }
+
+        return $alias;
+    }
 }

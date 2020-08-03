@@ -17,13 +17,13 @@ use frontend\modules\catalog\models\{
 $categories = [];
 foreach ($category as $model) {
     $keys = Yii::$app->catalogFilter->keys;
-    $types = Types::getWithProduct([$keys['category'] => DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2']]);
+    $types = Types::getWithProduct([$keys['category'] =>$model[Yii::$app->languages->getDomainAlias()]]);
 
     $ldata = [];
     foreach ($types as $type) {
         $params = [];
-        $params[$keys['category']] = DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2'];
-        $params[$keys['type']][] = DOMAIN_TYPE != 'com' ? $type['alias'] : $type['alias2'];
+        $params[$keys['category']] = $model[Yii::$app->languages->getDomainAlias()];
+        $params[$keys['type']][] = $type[Yii::$app->languages->getDomainAlias()];
         $ldata[] = [
             'link' => Yii::$app->catalogFilter->createUrl($params),
             'text' => $type['lang']['title']
@@ -31,7 +31,7 @@ foreach ($category as $model) {
     }
 
     $categories[] = [
-        'llink' => Category::getUrl(DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2']),
+        'llink' => Category::getUrl($model[Yii::$app->languages->getDomainAlias()]),
         'ltext' => $model['lang']['title'],
         'limglink' => Category::getImage($model['image_link3']),
         'lcount' => $model['count'],
@@ -43,13 +43,13 @@ foreach ($category as $model) {
 $categoriesSale = [];
 foreach ($categorySale as $model) {
     $keys = Yii::$app->catalogFilter->keys;
-    $types = Types::getWithSale([$keys['category'] => DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2']]);
+    $types = Types::getWithSale([$keys['category'] => $model[Yii::$app->languages->getDomainAlias()]]);
 
     $ldata = [];
     foreach ($types as $type) {
         $params = [];
-        $params[$keys['category']] = DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2'];
-        $params[$keys['type']][] = DOMAIN_TYPE != 'com' ? $type['alias'] : $type['alias2'];
+        $params[$keys['category']] = $model[Yii::$app->languages->getDomainAlias()];
+        $params[$keys['type']][] = $type[Yii::$app->languages->getDomainAlias()];
         $ldata[] = [
             'link' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale/list'),
             'text' => $type['lang']['title']
@@ -57,7 +57,7 @@ foreach ($categorySale as $model) {
     }
 
     $categoriesSale[] = [
-        'llink' => Category::getUrl(DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2'], '/catalog/sale/list'),
+        'llink' => Category::getUrl( $model[Yii::$app->languages->getDomainAlias()], '/catalog/sale/list'),
         'ltext' => $model['lang']['title'],
         'limglink' => Category::getImage($model['image_link3']),
         'lcount' => $model['count'],
@@ -69,13 +69,13 @@ foreach ($categorySale as $model) {
 $categoriesSaleItaly = [];
 foreach ($categorySaleItaly as $model) {
     $keys = Yii::$app->catalogFilter->keys;
-    $types = Types::getWithItalianProduct([$keys['category'] => DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2']]);
+    $types = Types::getWithItalianProduct([$keys['category'] => $model[Yii::$app->languages->getDomainAlias()]]);
 
     $ldata = [];
     foreach ($types as $type) {
         $params = [];
-        $params[$keys['category']] = DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2'];
-        $params[$keys['type']][] = DOMAIN_TYPE != 'com' ? $type['alias'] : $type['alias2'];
+        $params[$keys['category']] = $model[Yii::$app->languages->getDomainAlias()];
+        $params[$keys['type']][] = $type[Yii::$app->languages->getDomainAlias()];
         $ldata[] = [
             'link' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale-italy/list'),
             'text' => $type['lang']['title']
@@ -83,7 +83,7 @@ foreach ($categorySaleItaly as $model) {
     }
 
     $categoriesSaleItaly[] = [
-        'llink' => Category::getUrl(DOMAIN_TYPE != 'com' ? $model['alias'] : $model['alias2'], '/catalog/sale-italy/list'),
+        'llink' => Category::getUrl($model[Yii::$app->languages->getDomainAlias()], '/catalog/sale-italy/list'),
         'ltext' => $model['lang']['title'],
         'limglink' => Category::getImage($model['image_link3']),
         'lcount' => $model['count'],

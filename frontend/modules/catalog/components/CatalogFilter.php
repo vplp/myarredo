@@ -269,9 +269,7 @@ class CatalogFilter extends Component
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
-            $alias = DOMAIN_TYPE != 'com'
-                ? $model['alias']
-                : $model['alias2'];
+            $alias = $model[Yii::$app->languages->getDomainAlias()];
 
             self::$_parameters[self::$keys['category']][] = $alias;
         }
@@ -282,11 +280,11 @@ class CatalogFilter extends Component
             $model = Types::findBase()
                 ->andWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    Types::tableName() . '.' . Yii::$app->languages->getDomainAlias(),
                     self::$_structure['type']
                 ])
                 ->indexBy('id')
-                ->orderBy(DOMAIN_TYPE != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2')
+                ->orderBy(Types::tableName() . '.' . Yii::$app->languages->getDomainAlias())
                 ->all();
 
             if (count(self::$_structure['type']) != count($model) || $model == null) {
@@ -296,7 +294,7 @@ class CatalogFilter extends Component
             // sort value
 
             foreach ($model as $obj) {
-                self::setParam(self::$keys['type'], DOMAIN_TYPE != 'com' ? $obj['alias'] : $obj['alias2']);
+                self::setParam(self::$keys['type'], $obj[Yii::$app->languages->getDomainAlias()]);
             }
 
             // check value
@@ -339,7 +337,7 @@ class CatalogFilter extends Component
         /** Style */
 
         if (!empty(self::$_structure['style'])) {
-            $aliasField = DOMAIN_TYPE != 'com' ? 'alias' : 'alias2';
+            $aliasField = Yii::$app->languages->getDomainAlias();
             $model = Specification::findBase()
                 ->andFilterWhere([
                     'IN',

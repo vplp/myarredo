@@ -54,7 +54,7 @@ $this->title = $this->context->title;
                     $params = Yii::$app->catalogFilter->params;
 
                     $params[$keys['factory']][] = $model['alias'];
-                    $params[$keys['category']][] = $item['alias'];
+                    $params[$keys['category']][] = $item[Yii::$app->languages->getDomainAlias()];
 
                     echo Html::a(
                         $item['title'],
@@ -77,7 +77,7 @@ $this->title = $this->context->title;
                     'смотреть полный<div>Каталог</div>',
                     Yii::$app->catalogFilter->createUrl(
                         [],
-                        ['/catalog/template-factory/catalog', 'alias' => $model['alias']]
+                        ['/catalog/template-factory/catalog', 'alias' => $model[Yii::$app->languages->getDomainAlias()]]
                     ),
                     ['class' => 'full-cat']
                 ); ?>

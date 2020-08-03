@@ -123,7 +123,7 @@ $route = $model->producing_country_id == 4
                                     $params = Yii::$app->catalogFilter->params;
 
                                     $params[$keys['factory']][] = $model['alias'];
-                                    $params[$keys['category']][] = DOMAIN_TYPE != 'com' ? $item['alias'] : $item['alias2'];
+                                    $params[$keys['category']][] = $item[Yii::$app->languages->getDomainAlias()];
 
                                     ?>
                                     <li>

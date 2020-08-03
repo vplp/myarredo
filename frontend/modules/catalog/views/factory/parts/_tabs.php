@@ -105,7 +105,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                 $params = Yii::$app->catalogFilter->params;
 
                 $params[$keys['factory']][] = $model['alias'];
-                $params[$keys['type']][] = DOMAIN_TYPE != 'com' ? $item['alias'] : $item['alias2'];
+                $params[$keys['type']][] = $item[Yii::$app->languages->getDomainAlias()];
 
                 echo Html::beginTag('li') .
                     Html::a(

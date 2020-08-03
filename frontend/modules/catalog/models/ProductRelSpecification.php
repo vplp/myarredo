@@ -47,7 +47,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
                 ->innerJoinWith(["product.category productCategory"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'productCategory.alias' : 'productCategory.alias2',
+                    'productCategory.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['category']]
                 ]);
         }
@@ -57,7 +57,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
                 ->innerJoinWith(["product.types productTypes"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'productTypes.alias' : 'productTypes.alias2',
+                    'productTypes.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['type']]
                 ]);
         }
@@ -73,7 +73,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
                 ->innerJoinWith(["product.specification productSpecification"], false)
                 ->andFilterWhere([
                     'IN',
-                    DOMAIN_TYPE != 'com' ? 'productSpecification.alias' : 'productSpecification.alias2',
+                    'productSpecification.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['style']]
                 ]);
         }
