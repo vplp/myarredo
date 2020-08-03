@@ -17,35 +17,39 @@ class RobotsController extends Controller
      */
     public function actionIndex()
     {
-        echo 'User-agent: *' . PHP_EOL;
-        echo 'Disallow: *?view' . PHP_EOL;
-        echo 'Disallow: /partner/' . PHP_EOL;
-        echo 'Disallow: /*openstat*' . PHP_EOL;
-        echo 'Disallow: /*utm*' . PHP_EOL;
-        echo 'Disallow: /search/' . PHP_EOL;
-        echo 'Disallow: /orders/' . PHP_EOL;
-        echo 'Disallow: *three=*' . PHP_EOL;
-        echo 'Disallow: *sort=*' . PHP_EOL;
-        echo 'Disallow: *object=*' . PHP_EOL;
-        echo 'Disallow: *partner=*' . PHP_EOL;
-        echo 'Disallow: *?three*' . PHP_EOL;
-        echo 'Disallow: /type/' . PHP_EOL;
-        echo 'Disallow: /style/' . PHP_EOL;
-        echo 'Disallow: *login*' . PHP_EOL;
-        echo 'Disallow: *notepad*' . PHP_EOL;
-        echo 'Disallow: *=novelty*' . PHP_EOL;
-        echo 'Disallow: *=bestseller*' . PHP_EOL;
-        echo 'Disallow: /catalog/*?' . PHP_EOL;
-        echo 'Disallow: *price=*' . PHP_EOL;
-        echo 'Disallow: /user/' . PHP_EOL;
-        echo 'Disallow: /shop/' . PHP_EOL;
-        echo 'Allow: /catalog/*?page=*' . PHP_EOL . PHP_EOL;
+        $items = [
+            'User-agent: *',
+            'User-agent: Yandex',
+            'User-agent: Googlebot'
+        ];
 
-        echo 'User-agent: Yandex' . PHP_EOL;
-        echo 'Disallow: *.svg' . PHP_EOL . PHP_EOL;
-
-        echo 'User-agent: Googlebot' . PHP_EOL;
-        echo 'Disallow: *.svg' . PHP_EOL;
+        foreach ($items as $item) {
+            echo $item . PHP_EOL;
+            echo 'Disallow: *?view' . PHP_EOL;
+            echo 'Disallow: /partner/' . PHP_EOL;
+            echo 'Disallow: /*openstat*' . PHP_EOL;
+            echo 'Disallow: /*utm*' . PHP_EOL;
+            echo 'Disallow: /search/' . PHP_EOL;
+            echo 'Disallow: /orders/' . PHP_EOL;
+            echo 'Disallow: *three=*' . PHP_EOL;
+            echo 'Disallow: *sort=*' . PHP_EOL;
+            echo 'Disallow: *object=*' . PHP_EOL;
+            echo 'Disallow: *partner=*' . PHP_EOL;
+            echo 'Disallow: *?three*' . PHP_EOL;
+            echo 'Disallow: /type/' . PHP_EOL;
+            echo 'Disallow: /style/' . PHP_EOL;
+            echo 'Disallow: *login*' . PHP_EOL;
+            echo 'Disallow: *notepad*' . PHP_EOL;
+            echo 'Disallow: *=novelty*' . PHP_EOL;
+            echo 'Disallow: *=bestseller*' . PHP_EOL;
+            echo 'Disallow: /catalog/*?' . PHP_EOL;
+            echo 'Disallow: *price=*' . PHP_EOL;
+            echo 'Disallow: /user/' . PHP_EOL;
+            echo 'Disallow: /shop/' . PHP_EOL;
+            echo 'Allow: /catalog/*?page=*' . PHP_EOL;
+            echo 'Disallow: *.svg' . PHP_EOL;
+            echo 'Disallow: /uploads/banner/' . PHP_EOL . PHP_EOL;
+        }
 
         echo PHP_EOL . 'Host: https://' . Yii::$app->request->serverName . PHP_EOL;
 
