@@ -83,11 +83,15 @@ class LangSwitch extends Widget
             /**
              * $path
              */
-            if (in_array($lang['alias'], ['it', 'en']) && DOMAIN_TYPE != 'com' && in_array(Yii::$app->controller->id, ['category', 'sale', 'sale-italy']) &&
-                Yii::$app->controller->action->id == 'list') {
+            if (
+                in_array($lang['alias'], ['it', 'en']) && DOMAIN_TYPE != 'com' && in_array(Yii::$app->controller->id, ['category', 'sale', 'sale-italy']) &&
+                Yii::$app->controller->action->id == 'list'
+            ) {
                 $path = '/';
-            } elseif (!in_array($lang['alias'], ['it', 'en']) && DOMAIN_TYPE == 'com' && in_array(Yii::$app->controller->id, ['category', 'sale', 'sale-italy']) &&
-                Yii::$app->controller->action->id == 'list') {
+            } elseif (
+                !in_array($lang['alias'], ['it', 'en']) && DOMAIN_TYPE == 'com' && in_array(Yii::$app->controller->id, ['category', 'sale', 'sale-italy']) &&
+                Yii::$app->controller->action->id == 'list'
+            ) {
                 $path = '/';
             } else {
                 $path = Yii::$app->request->url;
