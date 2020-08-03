@@ -63,7 +63,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             </div>
                         <?php } ?>
 
-                        <?php if (DOMAIN_NAME != 'myarredofamily') { ?>
+                        <?php if (DOMAIN_NAME == 'myarredo' && in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com'])) { ?>
                             <div class="lang-selector">
                                 <?= LangSwitch::widget() ?>
                             </div>
@@ -97,7 +97,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                 <div class="container large-container">
 
                     <div class="left-part">
-                        <?php if (DOMAIN_NAME != 'myarredofamily') { ?>
+                        <?php if (DOMAIN_NAME == 'myarredo' && in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com'])) { ?>
                             <div class="lang-selector">
                                 <?= LangSwitch::widget() ?>
                             </div>
@@ -152,9 +152,11 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                     ['class' => 'logo']
                 ) ?>
 
-                <?php if (!Yii::$app->getUser()->isGuest &&
+                <?php if (
+                !Yii::$app->getUser()->isGuest &&
                     Yii::$app->user->identity->group->role == 'partner' &&
-                    Yii::$app->user->identity->profile->country_id == 4) { ?>
+                    Yii::$app->user->identity->profile->country_id == 4
+) { ?>
                     <div class="header-addprodbox">
                         <?= Html::a(
                             '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Free add'),
@@ -164,12 +166,13 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                     </div>
                 <?php } ?>
 
-                <?php if (!Yii::$app->getUser()->isGuest &&
+                <?php if (
+                !Yii::$app->getUser()->isGuest &&
                     (
                         (Yii::$app->user->identity->group->role == 'partner' && Yii::$app->user->identity->profile->country_id == 4) ||
                         Yii::$app->user->identity->group->role == 'factory'
                     )
-                ) {
+) {
                 } else { ?>
                     <?= CatalogMenu::widget([]); ?>
 
@@ -334,7 +337,8 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
         </div>
 
         <?php
-        if (!Yii::$app->getUser()->isGuest &&
+        if (
+            !Yii::$app->getUser()->isGuest &&
             Yii::$app->user->identity->group->role == 'factory'
         ) {
             echo UserMenu::widget(['view' => 'user_menu_mobile']);
