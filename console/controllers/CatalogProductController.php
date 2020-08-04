@@ -748,7 +748,7 @@ class CatalogProductController extends Controller
      * @throws Exception
      * @throws \yii\base\InvalidConfigException
      */
-    public function actionTranslateMessage($lang1 = 'ru-RU', $lang2 = 'uk-UA')
+    public function actionTranslateMessage($lang1 = 'ru-RU', $lang2 = 'de-DE')
     {
         $this->stdout("Translate Message: start. \n", Console::FG_GREEN);
 
