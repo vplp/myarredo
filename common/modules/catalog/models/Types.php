@@ -75,6 +75,36 @@ class Types extends ActiveRecord
                     return Inflector::slug($this->alias);
                 },
             ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias_en',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_en',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias_en);
+                },
+            ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias_it',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_it',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias_it);
+                },
+            ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias_de',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_de',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias_de);
+                },
+            ],
         ]);
     }
 
@@ -103,7 +133,16 @@ class Types extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'position' => ['position'],
-            'backend' => ['alias', 'alias_en', 'alias_it', 'alias_de', 'position', 'published', 'deleted', 'category_ids'],
+            'backend' => [
+                'alias',
+                'alias_en',
+                'alias_it',
+                'alias_de',
+                'position',
+                'published',
+                'deleted',
+                'category_ids'
+            ],
         ];
     }
 

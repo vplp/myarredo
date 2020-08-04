@@ -86,7 +86,17 @@ class Specification extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'position' => ['position'],
-            'backend' => ['parent_id', 'alias', 'alias_en', 'alias_it', 'alias_de', 'type', 'position', 'published', 'deleted'],
+            'backend' => [
+                'parent_id',
+                'alias',
+                'alias_en',
+                'alias_it',
+                'alias_de',
+                'type',
+                'position',
+                'published',
+                'deleted'
+            ],
         ];
     }
 

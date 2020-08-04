@@ -122,6 +122,36 @@ class Product extends ActiveRecord implements iProduct
                     return Inflector::slug($this->alias, '_');
                 },
             ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias_en',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_en',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias_en, '_');
+                },
+            ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias_it',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_it',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias_it, '_');
+                },
+            ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias_de',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_de',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias_de, '_');
+                },
+            ],
         ]);
     }
 
@@ -342,16 +372,34 @@ class Product extends ActiveRecord implements iProduct
             }
         }
 
-        if ($this->alias_en == '' && in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
-            $this->alias_en = $this->alias;
+        if (/*$this->alias_en == '' && */in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+            $this->alias_en = (!empty($this->types) ? $this->types->alias_en : '')
+                . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
+                . (($this->article) ? ' ' . $this->article : ' ' . uniqid());
+
+            if ($this->id) {
+                $this->alias_en = $this->id . ' ' . $this->alias_en;
+            }
         }
 
-        if ($this->alias_it == '' && in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
-            $this->alias_it = $this->alias;
+        if (/*$this->alias_it == '' && */in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+            $this->alias_it = (!empty($this->types) ? $this->types->alias_it : '')
+                . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
+                . (($this->article) ? ' ' . $this->article : ' ' . uniqid());
+
+            if ($this->id) {
+                $this->alias_it = $this->id . ' ' . $this->alias_it;
+            }
         }
 
-        if ($this->alias_de == '' && in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
-            $this->alias_de = $this->alias;
+        if (/*$this->alias_de == '' && */in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+            $this->alias_de = (!empty($this->types) ? $this->types->alias_de : '')
+                . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
+                . (($this->article) ? ' ' . $this->article : ' ' . uniqid());
+
+            if ($this->id) {
+                $this->alias_de = $this->id . ' ' . $this->alias_de;
+            }
         }
 
         if (in_array($this->scenario, ['frontend', 'backend'])) {

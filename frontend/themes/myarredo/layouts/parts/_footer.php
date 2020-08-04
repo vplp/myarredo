@@ -158,7 +158,7 @@ $bundle = AppAsset::register($this);
     <script async src="https://app.uiscom.ru/static/cs.min.js"></script>
 <?php } ?>
 
-<?php if (!in_array(Yii::$app->city->getCityId(), [5])) { ?>
+<?php if (in_array(Yii::$app->city->getCityId(), [5]) && Yii::$app->getUser()->isGuest) { ?>
     <script src="//code.jivosite.com/widget/yG6Q733QpB" async></script>
 <?php } ?>
 
