@@ -583,7 +583,9 @@ class Factory extends \common\modules\catalog\models\Factory
                 category.id AS category_id,
                 category.image_link3 as image_link3,
                 category.alias AS alias,
-                category.alias2 AS alias2,
+                category.alias_en AS alias_en,
+                category.alias_it AS alias_it,
+                category.alias_de AS alias_de,
                 categoryLang.title AS title
             FROM
                 " . self::tableName() . " factory
@@ -625,7 +627,9 @@ class Factory extends \common\modules\catalog\models\Factory
                 COUNT(types.id) as count, 
                 types.id, 
                 types.alias,
-                types.alias2,
+                types.alias_en,
+                types.alias_it,
+                types.alias_de,
                 typesLang.title AS title
             FROM
                 " . Types::tableName() . " types

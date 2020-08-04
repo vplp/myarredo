@@ -103,7 +103,7 @@ class Types extends \common\modules\catalog\models\Types
             } else {
                 return self::findBase()
                     ->andWhere(
-                        DOMAIN_TYPE != 'com' ? self::tableName() . '.alias = :alias' : self::tableName() . '.alias2 = :alias',
+                        self::tableName() . '.' . Yii::$app->languages->getDomainAlias() . ' = :alias',
                         [':alias' => $alias]
                     )
                     ->one();
