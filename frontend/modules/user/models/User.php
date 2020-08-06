@@ -48,7 +48,10 @@ class User extends \common\modules\user\models\User
 
         $query->andFilterWhere([Profile::tableName() . '.show_contacts' => '1']);
 
-        $query->orderBy(Profile::tableName() . '.partner_in_city DESC');
+        $query->orderBy([
+            Profile::tableName() . '.partner_in_city' => SORT_DESC,
+            ProfileLang::tableName() . '.name_company' => SORT_ASC
+        ]);
 
         return $query->all();
     }

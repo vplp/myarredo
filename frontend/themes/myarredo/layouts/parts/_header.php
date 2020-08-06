@@ -207,7 +207,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
     <div class="left-info-part mobmenu-part">
         <div class="menu-btn js-menu-btn mobmenu-panel">
             <span class="for-mobmenu-barsicon"><i class="fa fa-bars" aria-hidden="true"></i></span>
-            <span class="for-mob-menu-barstext">Меню</span>
+            <span class="for-mob-menu-barstext"><?= Yii::t('app', 'Menu') ?></span>
         </div>
         <div class="logo-num">
             <a href="/" class="logo">
