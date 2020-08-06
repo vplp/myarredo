@@ -251,7 +251,7 @@ class Order extends \thread\modules\shop\models\Order
      */
     public function getBaseUploadPath()
     {
-        return Yii::$app->getModule('shop')->getShopBaseUploadPath('order', $this);
+        return Yii::$app->getModule('shop')->getShopBaseUploadPath('order');
     }
 
     /**
@@ -259,7 +259,7 @@ class Order extends \thread\modules\shop\models\Order
      */
     public function getBaseUploadUrl()
     {
-        return Yii::$app->getModule('shop')->getShopBaseUploadUrl('order', $this);
+        return Yii::$app->getModule('shop')->getShopBaseUploadUrl('order');
     }
 
     /**
