@@ -2,9 +2,6 @@
 
 namespace frontend\modules\shop;
 
-use Yii;
-use yii\db\ActiveRecord;
-
 /**
  * Class Shop
  *
