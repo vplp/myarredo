@@ -33,6 +33,9 @@ class ProductsNoveltiesOnMain extends Widget
             ->select([
                 Product::tableName() . '.id',
                 Product::tableName() . '.alias',
+                Product::tableName() . '.alias_en',
+                Product::tableName() . '.alias_it',
+                Product::tableName() . '.alias_de',
                 Product::tableName() . '.image_link',
                 Product::tableName() . '.factory_id',
                 Product::tableName() . '.bestseller',
