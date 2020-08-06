@@ -6,7 +6,6 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
-//
 use frontend\modules\catalog\models\{
     Product, ProductStats
 };
@@ -72,6 +71,31 @@ class ProductController extends BaseController
         $model = Product::findByAlias($alias);
 
         if ($model == null) {
+            $model = Product::find()
+                ->andFilterWhere([
+                    'OR',
+                    [Product::tableName() . '.alias' => $alias],
+                    [Product::tableName() . '.alias_en' => $alias],
+                    [Product::tableName() . '.alias_it' => $alias],
+                    [Product::tableName() . '.alias_de' => $alias],
+                ])
+                ->enabled()
+                ->one();
+
+            if ($model != null && $model['alias'] == $alias) {
+                Yii::$app->response->redirect('https://' . 'www.myarredo.ru/product/' . $alias . '/', 301);
+                yii::$app->end();
+            } elseif ($model != null && $model['alias_en'] == $alias) {
+                Yii::$app->response->redirect('https://' . 'www.myarredo.com/en/product/' . $alias . '/', 301);
+                yii::$app->end();
+            } elseif ($model != null && $model['alias_it'] == $alias) {
+                Yii::$app->response->redirect('https://' . 'www.myarredo.com/it/product/' . $alias . '/', 301);
+                yii::$app->end();
+            } elseif ($model != null && $model['alias_de'] == $alias) {
+                Yii::$app->response->redirect('https://' . 'www.myarredo.de/product/' . $alias . '/', 301);
+                yii::$app->end();
+            }
+
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 

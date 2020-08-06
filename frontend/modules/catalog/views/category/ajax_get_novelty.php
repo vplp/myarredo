@@ -40,7 +40,7 @@ use yii\helpers\Url;
                                                         Product::getImageThumb($model['image_link']),
                                                         ['alt' => Product::getStaticTitle($model)]
                                                     ),
-                                                    Product::getUrl($model['alias']),
+                                                    Product::getUrl($model[Yii::$app->languages->getDomainAlias()]),
                                                     ['class' => 'large']
                                                 );
                                             }
@@ -57,7 +57,7 @@ use yii\helpers\Url;
                                                     'class' => 'lazy',
                                                     'data-src' => Product::getImageThumb($model['image_link'])
                                                 ]),
-                                                Product::getUrl($model['alias']),
+                                                Product::getUrl($model[Yii::$app->languages->getDomainAlias()]),
                                                 ['class' => 'smaller']
                                             );
                                         }
@@ -72,7 +72,7 @@ use yii\helpers\Url;
                                                     'class' => 'lazy',
                                                     'data-src' => Product::getImageThumb($model['image_link'])
                                                 ]),
-                                                Product::getUrl($model['alias']),
+                                                Product::getUrl($model[Yii::$app->languages->getDomainAlias()]),
                                                 ['class' => 'smaller']
                                             );
                                         }

@@ -26,7 +26,7 @@ use frontend\modules\catalog\models\{
                     <div class="img-cont">
                         <?= Html::a(
                             Html::img(Product::getImageThumb($orderItem->product['image_link'])),
-                            Product::getUrl($orderItem->product['alias']),
+                            Product::getUrl($orderItem->product[Yii::$app->languages->getDomainAlias()]),
                             ['target' => '_blank']
                         ); ?>
                     </div>
@@ -36,7 +36,7 @@ use frontend\modules\catalog\models\{
                             <td>
                                 <?= Html::a(
                                     $orderItem->product['lang']['title'],
-                                    Product::getUrl($orderItem->product['alias'])
+                                    Product::getUrl($orderItem->product[Yii::$app->languages->getDomainAlias()])
                                 ); ?>
                             </td>
                         </tr>

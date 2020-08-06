@@ -68,7 +68,7 @@ $this->title = $this->context->title;
                                                     'td',
                                                     Html::a(
                                                         $item->product->lang->title,
-                                                        $item->product::getUrl($item->product->alias),
+                                                        $item->product::getUrl($item->product[Yii::$app->languages->getDomainAlias()]),
                                                         ['target' => '_blank']
                                                     )
                                                 ) . Html::tag(

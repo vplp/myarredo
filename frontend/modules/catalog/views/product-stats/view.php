@@ -56,7 +56,7 @@ $js_data_requests = implode(',', $dataRequests);
                         <div>
                             <?= Html::a(
                                 Html::img(Product::getImageThumb($model['image_link']), ['style' => 'height: 320px;']),
-                                Product::getUrl($model['alias']),
+                                Product::getUrl($model[Yii::$app->languages->getDomainAlias()]),
                                 ['target' => '_blank']
                             ) ?>
                         </div>

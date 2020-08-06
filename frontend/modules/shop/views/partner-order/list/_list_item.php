@@ -46,7 +46,7 @@ if ($user->profile->getPossibilityToAnswer($modelOrder->country_id)) { ?>
                         <div class="img-cont">
                             <?= Html::a(
                                 Html::img(Product::getImageThumb($orderItem->product['image_link'])),
-                                Product::getUrl($orderItem->product['alias']),
+                                Product::getUrl($orderItem->product[Yii::$app->languages->getDomainAlias()]),
                                 ['target' => '_blank']
                             ); ?>
                         </div>
@@ -55,7 +55,7 @@ if ($user->profile->getPossibilityToAnswer($modelOrder->country_id)) { ?>
                                 <td colspan="2">
                                     <?= Html::a(
                                         $orderItem->product['lang']['title'],
-                                        Product::getUrl($orderItem->product['alias']),
+                                        Product::getUrl($orderItem->product[Yii::$app->languages->getDomainAlias()]),
                                         ['class' => 'productlink']
                                     ); ?>
                                 </td>

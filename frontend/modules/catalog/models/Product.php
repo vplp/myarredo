@@ -105,8 +105,8 @@ class Product extends \common\modules\catalog\models\Product
         $result = self::getDb()->cache(function ($db) use ($alias) {
             return self::find()
                 ->innerJoinWith(['lang', 'factory'])
-                ->orderBy('position DESC')
-                ->byAlias($alias)
+                ->andWhere([self::tableName() . '.' . Yii::$app->languages->getDomainAlias() => $alias])
+                //->byAlias($alias)
                 ->enabled()
                 ->one();
         }, 60 * 60);

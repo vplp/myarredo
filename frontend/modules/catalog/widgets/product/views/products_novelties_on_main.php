@@ -41,7 +41,7 @@ use frontend\modules\catalog\models\Product;
                                                         Product::getImageThumb($model['image_link']),
                                                         ['alt' => Product::getStaticTitle($model)]
                                                     ),
-                                                    Product::getUrl($model['alias']),
+                                                    Product::getUrl($model[Yii::$app->languages->getDomainAlias()]),
                                                     ['class' => 'large']
                                                 );
                                             }
@@ -59,7 +59,7 @@ use frontend\modules\catalog\models\Product;
                                                             'class' => 'lazy',
                                                             'data-src' => Product::getImageThumb($model['image_link'])
                                                         ]),
-                                                        Product::getUrl($model['alias']),
+                                                        Product::getUrl($model[Yii::$app->languages->getDomainAlias()]),
                                                         ['class' => 'smaller']
                                                     );
                                                 }
@@ -74,7 +74,7 @@ use frontend\modules\catalog\models\Product;
                                                                 'class' => 'lazy',
                                                                 'data-src' => Product::getImageThumb($model['image_link'])
                                                             ]),
-                                                        Product::getUrl($model['alias']),
+                                                        Product::getUrl($model[Yii::$app->languages->getDomainAlias()]),
                                                         ['class' => 'smaller']
                                                     );
                                                 }

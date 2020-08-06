@@ -11,7 +11,7 @@ use frontend\modules\catalog\models\{
 ?>
 
 <?= Html::beginTag('a', [
-    'href' => Product::getUrl($model['alias']),
+    'href' => Product::getUrl($model[Yii::$app->languages->getDomainAlias()]),
     'class' => 'one-prod-tile',
 ]) ?>
 <div class="one-prod-tile-in">

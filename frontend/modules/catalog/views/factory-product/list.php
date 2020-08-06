@@ -188,7 +188,7 @@ $this->title = $this->context->title;
                                                     /** @var $model FactoryProduct */
                                                     return ($model->published && !$model->deleted) ? Html::a(
                                                         '<span class="glyphicon glyphicon-eye-open"></span>',
-                                                        Product::getUrl($model['alias']),
+                                                        Product::getUrl($model[Yii::$app->languages->getDomainAlias()]),
                                                         [
                                                             'class' => 'btn btn-default btn-xs',
                                                             'target' => '_blank'

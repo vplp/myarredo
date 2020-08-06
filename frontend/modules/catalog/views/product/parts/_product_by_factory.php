@@ -36,7 +36,7 @@ $keys = Yii::$app->catalogFilter->keys;
                             <?= Html::beginTag(
                                 'a',
                                 [
-                                    'href' => Product::getUrl($model['alias']),
+                                    'href' => Product::getUrl($model[Yii::$app->languages->getDomainAlias()]),
                                     'class' => 'tile',
                                     'target' => '_blank'
                                 ]

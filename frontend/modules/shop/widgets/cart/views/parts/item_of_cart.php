@@ -22,7 +22,7 @@ use yii\helpers\Html;
             <div class="img-cont">
                 <?= Html::a(
                     Html::img($product::getImageThumb($product['image_link'])),
-                    $product::getUrl($product['alias'])
+                    $product::getUrl($product[Yii::$app->languages->getDomainAlias()])
                 ) ?>
             </div>
             <table width="100%">

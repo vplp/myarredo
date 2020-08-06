@@ -156,7 +156,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                     Html::a(
                         '<span class="for-allprod">' . $item['article'] . '</span>',
                         $model->producing_country_id == 4
-                            ? Product::getUrl($item['alias'])
+                            ? Product::getUrl($item[Yii::$app->languages->getDomainAlias()])
                             : CountriesFurniture::getUrl($item['alias'])
                     ) .
                     Html::endTag('li');

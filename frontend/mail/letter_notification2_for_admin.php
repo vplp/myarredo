@@ -46,7 +46,7 @@ use frontend\modules\catalog\models\{
             <?php
             $result = [];
             foreach ($model->products as $product) {
-                $result[] = Html::a($product->lang->title, Product::getUrl($product['alias']));
+                $result[] = Html::a($product->lang->title, Product::getUrl($product[Yii::$app->languages->getDomainAlias()]));
             }
             echo implode(', ', $result);
             ?>

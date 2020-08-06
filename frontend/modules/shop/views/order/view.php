@@ -27,7 +27,7 @@ use frontend\modules\catalog\models\Product;
                                     <div class="img-cont">
                                         <?= Html::a(
                                             Html::img(Product::getImageThumb($item->product['image_link'])),
-                                            Product::getUrl($item->product['alias'])
+                                            Product::getUrl($item->product[Yii::$app->languages->getDomainAlias()])
                                         ) ?>
                                     </div>
                                     <table width="100%">
