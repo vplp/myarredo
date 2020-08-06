@@ -12,50 +12,40 @@ use Yii;
 class Shop extends \thread\modules\shop\Shop
 {
     /**
+     * Product upload path
      * @return string
      */
     public function getOrderUploadPath()
     {
-        return $this->getShopBaseUploadPath('order');
-    }
-
-    /**
-     * @return string
-     */
-    public function getOrderUploadUrl()
-    {
-        return $this->getShopBaseUploadUrl('order');
-    }
-
-    /**
-     * @param $key
-     * @return string
-     */
-    public function getShopBaseUploadPath($key = 'order')
-    {
-        $item = [
-            'order' => Yii::getAlias('@uploads') . '/shop/order/',
-        ];
-
-        $dir = $item[$key];
-
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
+        $dir = $this->getBaseUploadPath() . '/shop/order';
 
         return $dir;
     }
 
     /**
-     * @param $key
+     * Product upload URL
      * @return string
      */
-    public function getShopBaseUploadUrl($key = 'order')
+    public function getOrderUploadUrl()
     {
-        $item = [
-            'order' => '/uploads/shop/order/',
-        ];
+        return $this->getBaseUploadUrl() . '/shop/order';
+    }
 
-        return $item[$key];
+    /**
+     * Image upload path
+     * @return string
+     */
+    public function getBaseUploadPath()
+    {
+        return Yii::getAlias('@uploads');
+    }
+
+    /**
+     * Base upload URL
+     * @return string
+     */
+    public function getBaseUploadUrl()
+    {
+        return '/uploads';
     }
 }
