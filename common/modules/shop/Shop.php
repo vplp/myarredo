@@ -31,7 +31,7 @@ class Shop extends \thread\modules\shop\Shop
      * @param $key
      * @return string
      */
-    public function getShopBaseUploadPath($key)
+    public function getShopBaseUploadPath($key = 'order')
     {
         $item = [
             'order' => Yii::getAlias('@uploads') . '/shop/order/',
@@ -50,7 +50,7 @@ class Shop extends \thread\modules\shop\Shop
      * @param $key
      * @return string
      */
-    public function getShopBaseUploadUrl($key)
+    public function getShopBaseUploadUrl($key = 'order')
     {
         $item = [
             'order' => '/uploads/shop/order/',
