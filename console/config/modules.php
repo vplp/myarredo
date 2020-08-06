@@ -2,10 +2,10 @@
 
 return [
     'catalog' => [
-        'class' => \frontend\modules\catalog\Catalog::class,
+        'class' => frontend\modules\catalog\Catalog::class,
     ],
     'articles' => [
-        'class' => \frontend\modules\articles\Articles::class,
+        'class' => frontend\modules\articles\Articles::class,
     ],
     'menu' => [
         'class' => thread\modules\menu\Menu::class
