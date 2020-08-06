@@ -10,4 +10,7 @@ return [
     'menu' => [
         'class' => thread\modules\menu\Menu::class
     ],
+    'shop' => [
+        'class' => frontend\modules\shop\Shop::class
+    ],
 ];
