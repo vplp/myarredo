@@ -12,21 +12,19 @@ use yii\db\ActiveRecord;
 class Shop extends \thread\modules\shop\Shop
 {
     /**
-     * @param ActiveRecord $model
      * @return string
      */
-    public function getOrderUploadPath($model)
+    public function getOrderUploadPath()
     {
-        return $this->getShopBaseUploadPath('order', $model);
+        return $this->getShopBaseUploadPath('order');
     }
 
     /**
-     * @param ActiveRecord $model
      * @return string
      */
-    public function getOrderUploadUrl($model)
+    public function getOrderUploadUrl()
     {
-        return $this->getShopBaseUploadUrl('order', $model);
+        return $this->getShopBaseUploadUrl('order');
     }
 
     /**

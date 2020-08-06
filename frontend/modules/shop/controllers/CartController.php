@@ -55,7 +55,7 @@ class CartController extends BaseController
             $file = UploadedFile::getInstance($customerForm, 'image_link');
 
             if ($file && $file->error == UPLOAD_ERR_OK) {
-                $path = Yii::$app->getModule('shop')->getOrderUploadPath($order);
+                $path = Yii::$app->getModule('shop')->getOrderUploadPath();
 
                 @mkdir($path, 0777, true);
 

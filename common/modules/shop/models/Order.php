@@ -247,29 +247,19 @@ class Order extends \thread\modules\shop\models\Order
     }
 
     /**
-     * @return mixed
-     */
-    public function getBaseUploadPath()
-    {
-        return Yii::$app->getModule('shop')->getShopBaseUploadPath('order');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBaseUploadUrl()
-    {
-        return Yii::$app->getModule('shop')->getShopBaseUploadUrl('order');
-    }
-
-    /**
      * @return null|string
      */
     public function getImageLink()
     {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('shop');
+
+        $path = $module->getOrderUploadPath();
+        $url = $module->getOrderUploadUrl();
+
         $image = null;
-        if (!empty($this->image_link) && is_file($this->getBaseUploadPath() . '/' . $this->image_link)) {
-            $image = $this->getBaseUploadUrl() . '/' . $this->image_link;
+        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
+            $image = 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $url . '/' . $this->image_link;
         }
         return $image;
     }
