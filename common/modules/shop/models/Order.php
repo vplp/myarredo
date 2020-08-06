@@ -259,7 +259,7 @@ class Order extends \thread\modules\shop\models\Order
 
         $image = null;
         if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
-            $image = 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $url . '/' . $this->image_link;
+            $image = $url . '/' . $this->image_link;
         }
         return $image;
     }
