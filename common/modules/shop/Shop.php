@@ -2,7 +2,7 @@
 
 namespace common\modules\shop;
 
-use yii\db\ActiveRecord;
+use Yii;
 
 /**
  * Class Shop
