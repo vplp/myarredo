@@ -252,7 +252,7 @@ class Order extends \thread\modules\shop\models\Order
     public function getImageLink()
     {
         /** @var Catalog $module */
-        $module = Yii::$app->getModule('catalog');
+        $module = Yii::$app->getModule('shop');
 
         $path = $module->getShopBaseUploadPath('order');
         $url = $module->getShopBaseUploadUrl('order');
