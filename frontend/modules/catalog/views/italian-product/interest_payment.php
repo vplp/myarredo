@@ -55,7 +55,7 @@ $this->title = $this->context->title;
                                     ) .
                                     Html::img(
                                         ItalianProduct::getImageThumb($model['image_link']),
-                                        ['width' => 100]
+                                        ['width' => 200]
                                     ) ?>
                                 </td>
                                 <td>1</td>

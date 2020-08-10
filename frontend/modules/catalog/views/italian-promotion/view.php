@@ -41,7 +41,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                         <?php foreach ($model->italianProducts as $product) :
                             echo '<div class="list-product-item">' .
                                     '<div class="list-product-img">' .
-                                        Html::img(IalianProduct::getImageThumb($product['image_link']), ['width' => 100]) .
+                                        Html::img(IalianProduct::getImageThumb($product['image_link']), ['width' => 200]) .
                                     '</div>' .
                                     '<div class="product-list-descr">' . 
                                         $product->lang->title .

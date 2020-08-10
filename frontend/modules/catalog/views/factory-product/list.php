@@ -105,7 +105,7 @@ $this->title = $this->context->title;
                                             'attribute' => 'image_link',
                                             'value' => function ($model) {
                                                 /** @var $model FactoryProduct */
-                                                return Html::img(Product::getImageThumb($model['image_link']), ['width' => 100]);
+                                                return Html::img(Product::getImageThumb($model['image_link']), ['width' => 200]);
                                             },
                                             'headerOptions' => ['class' => 'col-sm-1'],
                                             'contentOptions' => ['class' => 'text-center'],
