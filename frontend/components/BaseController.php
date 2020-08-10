@@ -41,8 +41,6 @@ abstract class BaseController extends Controller
     {
         Redirects::findRedirect();
 
-        //$this->enableCsrfValidation = false;
-
         $lang = substr(Yii::$app->language, 0, 2);
 
         // de domain

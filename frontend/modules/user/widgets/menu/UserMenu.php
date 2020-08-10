@@ -124,7 +124,7 @@ class UserMenu extends Widget
         } elseif (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
             $this->menuItems = [
                 [
-                    'label' => Yii::$app->user->identity->profile->factory->producing_country_id == 4
+                    'label' => isset(Yii::$app->user->identity->profile->factory) && Yii::$app->user->identity->profile->factory->producing_country_id == 4
                         ? Yii::t('app', 'Furniture in Italy')
                         : Yii::t('app', 'Наличие на складе'),
                     'url' => ['/catalog/italian-product/list']
@@ -158,7 +158,7 @@ class UserMenu extends Widget
                     'url' => ['/shop/factory-order/list']
                 ],
                 [
-                    'label' => Yii::$app->user->identity->profile->factory->producing_country_id == 4
+                    'label' => isset(Yii::$app->user->identity->profile->factory) && Yii::$app->user->identity->profile->factory->producing_country_id == 4
                         ? Yii::t('app', 'Orders italy')
                         : Yii::t('app', 'Заявки на наличие на складе'),
                     'url' => ['/shop/factory-order/list-italy']
@@ -168,7 +168,7 @@ class UserMenu extends Widget
                     'url' => ['/catalog/product-stats/list']
                 ],
                 [
-                    'label' => Yii::$app->user->identity->profile->factory->producing_country_id == 4
+                    'label' => isset(Yii::$app->user->identity->profile->factory) && Yii::$app->user->identity->profile->factory->producing_country_id == 4
                         ? Yii::t('app', 'Sale in Italy statistics')
                         : Yii::t('app', 'Статистка на наличие на складе'),
                     'url' => ['/catalog/sale-italy-stats/list']

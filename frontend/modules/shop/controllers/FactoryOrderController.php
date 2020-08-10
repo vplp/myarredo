@@ -160,7 +160,7 @@ class FactoryOrderController extends BaseController
 
         $models = $model->search($params);
 
-        $this->title = Yii::$app->user->identity->profile->factory->producing_country_id == 4
+        $this->title = isset(Yii::$app->user->identity->profile->factory) && Yii::$app->user->identity->profile->factory->producing_country_id == 4
             ? Yii::t('app', 'Orders italy')
             : Yii::t('app', 'Заявки на наличие на складе');
 

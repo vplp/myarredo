@@ -1,5 +1,7 @@
 <?php
 
+$exp = explode('.', $_SERVER['HTTP_HOST']);
+
 return [
     'languages' => [
         'class' => \frontend\modules\sys\components\Languages::class,
@@ -7,7 +9,7 @@ return [
     ],
     'session' => [
         'cookieParams' => [
-            'domain' => '.' . DOMAIN_NAME . '.' . DOMAIN_TYPE,
+            'domain' => '.' . DOMAIN_NAME . '.' . $exp[2],
             //'httpOnly' => true,
             'path' => '/',
         ],
@@ -17,7 +19,7 @@ return [
         'enableAutoLogin' => false,
         'identityCookie' => [
             'name' => '_identity',
-            'domain' => '.' . DOMAIN_NAME . '.' . DOMAIN_TYPE,
+            'domain' => '.' . DOMAIN_NAME . '.' . $exp[2],
             //'httpOnly' => true,
             'path' => '/',
         ],
@@ -37,7 +39,7 @@ return [
         'csrfCookie' => [
             'name' => '_csrf',
             'path' => '/',
-            'domain' => '.' . DOMAIN_NAME . '.' . DOMAIN_TYPE,
+            'domain' => '.' . DOMAIN_NAME . '.' . $exp[2],
         ],
     ],
     'view' => [
