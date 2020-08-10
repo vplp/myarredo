@@ -47,7 +47,7 @@ $this->title = $this->context->title;
                                             /** @var $model OrderItem */
                                             return Html::img(
                                                 ItalianProduct::getImageThumb($model['product']['image_link']),
-                                                ['width' => 50]
+                                                ['width' => 100]
                                             );
                                         },
                                         'headerOptions' => ['class' => 'col-sm-2'],

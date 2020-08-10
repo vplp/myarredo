@@ -5,11 +5,9 @@ use yii\helpers\{
 };
 use kartik\grid\GridView;
 use frontend\components\Breadcrumbs;
-//
 use frontend\modules\catalog\models\{
     Category, Product, FactoryProduct
 };
-//
 use thread\widgets\grid\{
     GridViewFilter
 };
@@ -107,7 +105,7 @@ $this->title = $this->context->title;
                                             'attribute' => 'image_link',
                                             'value' => function ($model) {
                                                 /** @var $model FactoryProduct */
-                                                return Html::img(Product::getImageThumb($model['image_link']), ['width' => 50]);
+                                                return Html::img(Product::getImageThumb($model['image_link']), ['width' => 100]);
                                             },
                                             'headerOptions' => ['class' => 'col-sm-1'],
                                             'contentOptions' => ['class' => 'text-center'],

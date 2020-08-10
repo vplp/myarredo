@@ -65,7 +65,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                                     'attribute' => 'image_link',
                                                     'value' => function ($model) {
                                                         /** @var $model FactoryProduct */
-                                                        return Html::img(Product::getImageThumb($model['image_link']), ['width' => 50]);
+                                                        return Html::img(Product::getImageThumb($model['image_link']), ['width' => 100]);
                                                     },
                                                     'headerOptions' => ['class' => 'col-sm-1'],
                                                     'contentOptions' => ['class' => 'text-center'],
@@ -159,7 +159,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                             'data-id' => $product->id
                                         ]
                                     ) . '<div class="list-product-img">' .
-                                    Html::img(Product::getImageThumb($product['image_link']), ['width' => 50]) .
+                                    Html::img(Product::getImageThumb($product['image_link']), ['width' => 100]) .
                                     '</div>' .
                                     '<div class="product-list-descr">' .
                                     $product->lang->title .

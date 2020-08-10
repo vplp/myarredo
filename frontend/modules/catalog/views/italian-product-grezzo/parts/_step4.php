@@ -77,7 +77,7 @@ $modelPayment->currency = $modelCostProduct['currency'];
                                     ) .
                                     Html::img(
                                         ItalianProduct::getImageThumb($model['image_link']),
-                                        ['width' => 50]
+                                        ['width' => 100]
                                     ) ?>
                                 </td>
                                 <td>1</td>

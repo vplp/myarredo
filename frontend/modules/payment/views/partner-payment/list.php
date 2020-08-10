@@ -93,7 +93,7 @@ $this->title = Yii::t('app', 'Платежная информация');
                                                     $arr[] = Html::a(
                                                         Html::img(
                                                             ItalianProduct::getImageThumb($item['image_link']),
-                                                            ['width' => 50]
+                                                            ['width' => 100]
                                                         ),
                                                         Url::toRoute(
                                                             ['/catalog/italian-product/update', 'id' => $item->id]

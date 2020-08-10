@@ -64,7 +64,7 @@ $this->title = $this->context->title;
                                         'attribute' => 'image_link',
                                         'value' => function ($model) {
                                             /** @var $model Sale */
-                                            return Html::img(Sale::getImageThumb($model['image_link']), ['width' => 50]);
+                                            return Html::img(Sale::getImageThumb($model['image_link']), ['width' => 100]);
                                         },
                                         'headerOptions' => ['class' => 'col-sm-1'],
                                         'contentOptions' => ['class' => 'text-center'],

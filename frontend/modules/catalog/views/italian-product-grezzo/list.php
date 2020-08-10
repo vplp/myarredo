@@ -92,7 +92,7 @@ $this->title = $this->context->title;
                                                     Html::a(
                                                         Html::img(
                                                             ItalianProduct::getImageThumb($model['image_link']),
-                                                            ['width' => 50]
+                                                            ['width' => 100]
                                                         ),
                                                         Url::toRoute(
                                                             ['/catalog/italian-product-grezzo/update', 'id' => $model->id]
