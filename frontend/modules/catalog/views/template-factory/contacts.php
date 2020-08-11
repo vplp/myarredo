@@ -50,7 +50,6 @@ $this->title = $this->context->title;
 
                 </div>
             </div>
-
         </div>
     </div>
 </main>
