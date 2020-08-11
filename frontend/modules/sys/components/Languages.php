@@ -171,7 +171,7 @@ class Languages extends Component implements iLanguages, BootstrapInterface
 
         $lang = substr(Yii::$app->language, 0, 2);
 
-        if (!in_array($lang, ['ru', 'ua'])) {
+        if (!in_array($lang, ['ru', 'uk'])) {
             $alias = 'alias_' . $lang;
         }
 

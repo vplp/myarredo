@@ -6,7 +6,10 @@ use Yii;
 use yii\helpers\Console;
 use yii\console\Controller;
 use frontend\modules\location\models\City;
-use frontend\modules\catalog\models\{Category, Product, Types, Factory};
+use console\models\{
+    Product
+};
+use frontend\modules\catalog\models\{Category, Types, Factory};
 use frontend\modules\seo\modules\directlink\models\Directlink;
 use console\models\{
     Sale
@@ -48,20 +51,35 @@ class SitemapController extends Controller
         // delete files
         array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
 
-        // list of cities
+        // ru ua by
         $cities = City::findBase()
             ->joinWith(['country', 'country.lang'])
             ->andFilterWhere(['IN', 'country_id', [1, 2, 3]])
             ->all();
 
-        // urls
-        $urls = self::getUrls();
-
         foreach ($cities as $city) {
-            $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
+            if ($city['country_id'] == 1) {
+                $this->createSitemapFile(self::getUrls('ru-RU'), City::getSubDomainUrl($city) . '/ua', $city);
+            } else {
+                $this->createSitemapFile(self::getUrls('ru-RU'), City::getSubDomainUrl($city), $city);
+            }
         }
 
-        $this->createSitemapFile($urls, 'https://' . 'www.myarredo.com', false);
+        // rome
+        $city = City::findById(159);
+        $this->createSitemapFile(self::getUrls('it-IT', 'com'), 'https://' . 'www.myarredo.com/it', $city);
+
+        // berlin
+        $city = City::findById(160);
+        $this->createSitemapFile(self::getUrls('de-DE', 'de'), 'https://' . 'www.myarredo.de', $city);
+
+        // washington
+        $city = City::findById(161);
+        $this->createSitemapFile(self::getUrls('en-EN', 'com'), 'https://' . 'www.myarredofamily.com', $city);
+
+        // london
+        $city = City::findById(162);
+        $this->createSitemapFile(self::getUrls('en-EN', 'com'), 'https://' . 'www.myarredo.com/en', $city);
 
         $this->stdout("Sitemap: end create. \n", Console::FG_GREEN);
     }
@@ -73,25 +91,6 @@ class SitemapController extends Controller
      */
     private function createSitemapFile(array $urls, string $baseUrl, $city = false)
     {
-        if ($city == false) {
-            $urls = [];
-            $urlsIt = self::getUrls('it-IT', 'com');
-            foreach ($urlsIt as $url) {
-                $urls[] = array_merge($url, ['loc' => "/it" . $url['loc']]);
-            }
-
-            $urlsEn = self::getUrls('en-EN', 'com');
-            foreach ($urlsEn as $url) {
-                $urls[] = array_merge($url, ['loc' => "/en" . $url['loc']]);
-            }
-        }
-
-        if ($city['country_id'] == 1) {
-            foreach ($urls as $url) {
-                $urls[] = array_merge($url, ['loc' => "/ua" . $url['loc']]);
-            }
-        }
-
         $count = count($urls);
         $count_files = ceil($count / $this->countUrlInSitemap);
         $this->stdout("count = " . $count . " \n", Console::FG_GREEN);
@@ -145,7 +144,6 @@ class SitemapController extends Controller
         }
 
         // create the main sitemap file
-
         $filePath = Yii::getAlias($this->filePath . '/sitemap' . $templateName . '.xml');
         $handle = fopen($filePath, "w");
 
@@ -212,7 +210,9 @@ class SitemapController extends Controller
         $currentLanguage = Yii::$app->language;
         Yii::$app->language = $language;
 
-        $languageModels = ($language == 'ru-RU') ? $this->models['ru'] : $this->models['en'];
+        $lang = substr(Yii::$app->language, 0, 2);
+
+        $languageModels = $this->models[$lang];
 
         foreach ($languageModels as $modelName) {
             if (is_array($modelName)) {
@@ -243,6 +243,8 @@ class SitemapController extends Controller
                     $model::tableName() . '.id',
                     $model::tableName() . '.alias',
                     $model::tableName() . '.alias_en',
+                    $model::tableName() . '.alias_it',
+                    $model::tableName() . '.alias_de',
                     $model::tableName() . '.updated_at',
                 ]);
             } elseif ($model::className() == Directlink::className()) {
@@ -261,6 +263,15 @@ class SitemapController extends Controller
                     ->andFilterWhere([
                         self::tableName() . '.show_for_' . $domain => '1',
                     ]);
+            } elseif (in_array($model::className(), [Product::className()])) {
+                $query->select([
+                    $model::tableName() . '.id',
+                    $model::tableName() . '.alias',
+                    $model::tableName() . '.alias_en',
+                    $model::tableName() . '.alias_it',
+                    $model::tableName() . '.alias_de',
+                    $model::tableName() . '.updated_at',
+                ]);
             } else {
                 $query->select([
                     $model::tableName() . '.id',

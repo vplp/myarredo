@@ -205,7 +205,7 @@ return ArrayHelper::merge(
                             'class' => Product::class,
                             'dataClosure' => function ($model) {
                                 return [
-                                    'loc' => '/product/' . $model['alias'] . '/',
+                                    'loc' => '/product/' . $model['alias_en'] . '/',
                                     'lastmod' => date('c', $model['updated_at']),
                                     'changefreq' => 'daily',
                                     'priority' => 0.5
@@ -224,6 +224,120 @@ return ArrayHelper::merge(
                             }
                         ]
                     ],
+                    'it' => [
+                        [
+                            'class' => Category::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/catalog/' . $model['alias_it'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
+                        ],
+                        [
+                            'class' => Types::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/catalog/c--' . $model['alias_it'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
+                        ],
+                        [
+                            'class' => SubTypes::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/catalog/c--t--s--f--c--country--colors--' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
+                        ],
+                        [
+                            'class' => Product::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/product/' . $model['alias_it'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            }
+                        ],
+                        [
+                            'class' => Factory::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/factory/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            }
+                        ]
+                    ],
+                    'de' => [
+                        [
+                            'class' => Category::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/catalog/' . $model['alias_de'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
+                        ],
+                        [
+                            'class' => Types::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/catalog/c--' . $model['alias_de'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
+                        ],
+                        [
+                            'class' => SubTypes::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/catalog/c--t--s--f--c--country--colors--' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
+                        ],
+                        [
+                            'class' => Product::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/product/' . $model['alias_de'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            }
+                        ],
+                        [
+                            'class' => Factory::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/factory/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            }
+                        ]
+                    ]
                 ],
                 'urls' => [
                     [
