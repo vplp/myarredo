@@ -20,7 +20,8 @@ use frontend\modules\catalog\models\{Collection,
     SaleStats,
     SubTypes,
     Types,
-    Specification};
+    Specification
+};
 use frontend\modules\user\models\User;
 use yii\web\Response;
 
@@ -345,5 +346,53 @@ class TemplateFactoryController extends BaseController
                 ])
             ];
         }
+    }
+
+    /**
+     * @param string $alias
+     * @return string
+     * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionCatalogsFiles(string $alias)
+    {
+        $factory = Factory::findByAlias($alias);
+
+        if ($factory == null) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        }
+
+        $this->factory = $factory;
+
+        $this->title = Yii::t('app', 'Каталоги') . ' ' . $factory['title'];
+
+        return $this->render('catalogs_files', [
+            'factory' => $factory,
+        ]);
+    }
+
+    /**
+     * @param string $alias
+     * @return string
+     * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionPricesFiles(string $alias)
+    {
+        $factory = Factory::findByAlias($alias);
+
+        if ($factory == null) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        }
+
+        $this->factory = $factory;
+
+        $this->title = Yii::t('app', 'Прайс листы') . ' ' . $factory['title'];
+
+        return $this->render('prices_files', [
+            'factory' => $factory,
+        ]);
     }
 }

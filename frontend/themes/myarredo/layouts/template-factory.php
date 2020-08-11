@@ -3,7 +3,6 @@
 use yii\helpers\{
     Url, Html
 };
-//
 use frontend\themes\myarredo\assets\TemplateFactoryAsset;
 use frontend\widgets\Alert;
 use frontend\modules\catalog\models\Factory;
@@ -72,6 +71,16 @@ $this->beginPage()
                         ['/catalog/template-factory/sale', 'alias' => $this->context->factory['alias']]
                     );
                 } ?>
+
+                <?= Html::a(
+                    Yii::t('app', 'Каталоги'),
+                    ['/catalog/template-factory/catalogs-files', 'alias' => $this->context->factory['alias']]
+                ) ?>
+                
+                <?= Html::a(
+                    Yii::t('app', 'Прайс листы'),
+                    ['/catalog/template-factory/prices-files', 'alias' => $this->context->factory['alias']]
+                ) ?>
 
                 <?= Html::a(
                     Yii::t('app', 'Contacts'),

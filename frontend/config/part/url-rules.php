@@ -85,6 +85,8 @@ return [
     'factory-stats' => 'catalog/factory-stats/list',
     'factory-stats/<alias:[\w\-]+>' => 'catalog/factory-stats/view',
 
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/catalogs-files' => 'catalog/template-factory/catalogs-files',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/prices-files' => 'catalog/template-factory/prices-files',
     'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/contacts' => 'catalog/template-factory/contacts',
     'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/catalog/<filter:[\=\;\-\w\d]+>' => 'catalog/template-factory/catalog',
     'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/catalog' => 'catalog/template-factory/catalog',
