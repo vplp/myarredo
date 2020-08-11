@@ -10147,6 +10147,7 @@ body>.modal-backdrop.fade.in{
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 }
 .btn-gopartner .fa,
 .btn-inpdf .fa {
@@ -10306,6 +10307,12 @@ body .concact-page .one-cont .cont-info-row a {
   font-size: 24px;
   color: #dc3545;
   padding: 10px;
+}
+.factory-catlist {
+  padding-left: 0;
+}
+.factory-catlist li {
+  list-style: none;
 }
 
 /* --------------------------------------------------------------------------------------------------------- */

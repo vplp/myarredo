@@ -22,7 +22,7 @@ $this->title = $this->context->title;
                 <?= Html::tag('h1', $this->context->title); ?>
 
                 <?php if (!empty($factory->pricesFiles)) { ?>
-                    <ul class="list">
+                    <ul class="list factory-catlist">
                         <?php foreach ($factory->pricesFiles as $priceFile) {
                             echo Html::beginTag('li') .
                                 Html::a(
@@ -30,9 +30,10 @@ $this->title = $this->context->title;
                                         ? Html::img($priceFile->getImageLink())
                                         : ''
                                     ) .
+                                    Html::tag('i', '', ['class' => 'fa fa-file-pdf-o']) .
                                     Html::tag('span', $priceFile->title, ['class' => 'for-catalog-list']),
                                     $priceFile->getFileLink(),
-                                    ['target' => '_blank', 'class' => 'click-on-factory-file', 'data-id' => $priceFile->id]
+                                    ['target' => '_blank', 'class' => 'click-on-factory-file btn-inpdf', 'data-id' => $priceFile->id]
                                 ) .
                                 Html::endTag('li');
                         } ?>
