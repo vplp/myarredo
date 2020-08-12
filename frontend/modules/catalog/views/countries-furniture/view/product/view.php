@@ -102,7 +102,7 @@ $this->title = $this->context->title;
                                             <meta itemprop="availability" content="PreOrder"/>
                                         <?php } ?>
                                         <meta itemprop="priceValidUntil" content="<?= date('Y-m-d') ?>"/>
-                                        <meta itemprop="url" content="<?= Product::getUrl($model[Yii::$app->languages->getDomainAlias()]) ?>"/>
+                                        <link itemprop="url" href="<?= Product::getUrl($model[Yii::$app->languages->getDomainAlias()]) ?>"/>
                                     </div>
 
                                     <?php if (!in_array(Yii::$app->controller->action->id, ['product'])) {
