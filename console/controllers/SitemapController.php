@@ -57,11 +57,12 @@ class SitemapController extends Controller
             ->andFilterWhere(['IN', 'country_id', [1, 2, 3]])
             ->all();
 
+        $urls = self::getUrls('ru-RU');
         foreach ($cities as $city) {
             if ($city['country_id'] == 1) {
-                $this->createSitemapFile(self::getUrls('ru-RU'), City::getSubDomainUrl($city) . '/ua', $city);
+                $this->createSitemapFile($urls, City::getSubDomainUrl($city) . '/ua', $city);
             } else {
-                $this->createSitemapFile(self::getUrls('ru-RU'), City::getSubDomainUrl($city), $city);
+                $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
             }
         }
 
