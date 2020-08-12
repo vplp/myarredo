@@ -54,10 +54,13 @@ class LangSwitch extends Widget
         $items = [];
 
         foreach ($this->items as $lang) {
-            /**
-             * ua only for domain ua
-             */
-            if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && !in_array(DOMAIN_TYPE, ['ua', 'de']) && in_array($lang['alias'], ['ua', 'de'])) {
+            // ua only for domain ua
+            if (!in_array(DOMAIN_TYPE, ['ua']) && in_array($lang['alias'], ['ua'])) {
+                continue;
+            }
+
+            // ua only for domain ua
+            if (in_array($lang['alias'], ['de'])) {
                 continue;
             }
 

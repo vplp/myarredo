@@ -4,8 +4,6 @@ use yii\helpers\{
     Html, Url
 };
 use frontend\components\Breadcrumbs;
-
-//
 use frontend\modules\catalog\models\{Product, ItalianProduct, ItalianProductLang, ProductLang};
 use frontend\modules\catalog\widgets\filter\{
     ProductSorting
