@@ -57,11 +57,13 @@ class SitemapController extends Controller
             ->andFilterWhere(['IN', 'country_id', [1, 2, 3]])
             ->all();
 
+        $urls = self::getUrls('ru-RU');
+
         foreach ($cities as $city) {
             if ($city['country_id'] == 1) {
-                $this->createSitemapFile(self::getUrls('ru-RU'), City::getSubDomainUrl($city) . '/ua', $city);
+                $this->createSitemapFile($urls, City::getSubDomainUrl($city) . '/ua', $city);
             } else {
-                $this->createSitemapFile(self::getUrls('ru-RU'), City::getSubDomainUrl($city), $city);
+                $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
             }
         }
 
@@ -96,19 +98,18 @@ class SitemapController extends Controller
      * @param $baseUrl
      * @param $city
      */
-    private function createSitemapFile(array $urls, string $baseUrl, $city = false)
+    private function createSitemapFile(array $urls, string $baseUrl, array $city)
     {
         $count = count($urls);
         $count_files = ceil($count / $this->countUrlInSitemap);
         $this->stdout("count = " . $count . " \n", Console::FG_GREEN);
         $this->stdout("count = " . $count_files . " \n", Console::FG_GREEN);
-        $templateName = ($city) ? '_' . $city['alias'] : '';
+        $templateName = !empty($city) ? '_' . $city['alias'] : '';
 
         /** @var $city City */
         // create multiple sitemap files
         for ($i = 0; $i < $count_files; $i++) {
             $filePath = Yii::getAlias($this->filePath . '/sitemap' . $templateName . '_' . $i . '.xml');
-
             $handle = fopen($filePath, "w");
 
             fwrite(

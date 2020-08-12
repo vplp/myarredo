@@ -34,6 +34,40 @@ class SitemapSaleController extends Controller
     /** @var array */
     private $urls = [];
 
+    /**
+     * Create
+     */
+    public function actionCreate()
+    {
+        $this->stdout("SitemapSale: start create. \n", Console::FG_GREEN);
+
+        ini_set("memory_limit", "-1");
+        set_time_limit(0);
+
+        if (!is_dir(Yii::getAlias($this->filePath))) {
+            mkdir(Yii::getAlias($this->filePath), 0777, true);
+        }
+
+        // delete files
+        array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
+
+        // list of cities
+        $cities = City::findBase()
+            ->joinWith(['country', 'country.lang'])
+            ->andFilterWhere(['IN', 'country_id', [1, 2, 3]])
+            ->all();
+
+        foreach ($cities as $city) {
+            if ($city['country_id'] == 1) {
+                $this->createSitemapFile(self::getUrls($city, 'ru-RU'), City::getSubDomainUrl($city) . '/ua', $city);
+            } else {
+                $this->createSitemapFile(self::getUrls($city, 'ru-RU'), City::getSubDomainUrl($city), $city);
+            }
+        }
+
+        $this->stdout("SitemapSale: end create. \n", Console::FG_GREEN);
+    }
+
     private function getUrls($city, $language = 'ru-RU')
     {
         $_urls = $this->urls;
@@ -41,7 +75,8 @@ class SitemapSaleController extends Controller
         $currentLanguage = Yii::$app->language;
         Yii::$app->language = $language;
 
-        $languageModels = ($language == 'ru-RU') ? $this->models['ru'] : $this->models['en'];
+        $lang = substr(Yii::$app->language, 0, 2);
+        $languageModels = $this->models[$lang];
 
         foreach ($languageModels as $modelName) {
             if (is_array($modelName)) {
@@ -75,6 +110,8 @@ class SitemapSaleController extends Controller
                     $model::tableName() . '.id',
                     $model::tableName() . '.alias',
                     $model::tableName() . '.alias_en',
+                    $model::tableName() . '.alias_it',
+                    $model::tableName() . '.alias_de',
                     $model::tableName() . '.updated_at',
                 ]);
             } else {
@@ -103,72 +140,37 @@ class SitemapSaleController extends Controller
         return $_urls;
     }
 
-    /**
-     * Create
-     */
-    public function actionCreate()
+    private function createSitemapFile(array $urls, string $baseUrl, array $city)
     {
-        $this->stdout("SitemapSale: start create. \n", Console::FG_GREEN);
+        if ($urls) {
+            $templateName = !empty($city) ? '_' . $city['alias'] : '';
 
-        ini_set("memory_limit", "-1");
-        set_time_limit(0);
+            $filePath = Yii::getAlias($this->filePath . '/sitemap_sale' . $templateName . '.xml');
+            $handle = fopen($filePath, "w");
 
-        if (!is_dir(Yii::getAlias($this->filePath))) {
-            mkdir(Yii::getAlias($this->filePath), 0777, true);
-        }
+            fwrite(
+                $handle,
+                '<?xml version="1.0" encoding="UTF-8"?>' .
+                PHP_EOL .
+                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL
+            );
 
-        // delete files
-        array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
+            for ($i = 0; $i < count($urls); $i++) {
+                $url = $urls[$i];
 
-        // list of cities
-        $cities = City::findBase()
-            ->joinWith(['country', 'country.lang'])
-            ->andFilterWhere(['IN', 'country_id', [1, 2, 3]])
-            ->all();
+                $str = PHP_EOL . "\t<url>" . PHP_EOL .
+                    "\t\t<loc>" . $baseUrl . $url['loc'] . "</loc>" . PHP_EOL .
+                    "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
+                    "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
+                    "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
+                    "\t</url>";
 
-        /** @var $city City */
-        foreach ($cities as $city) {
-            // urls
-            $urls = self::getUrls($city);
-
-            if ($city['country_id'] == 1) {
-                foreach ($urls as $url) {
-                    $urls[] = array_merge($url, ['loc' => "/ua" . $url['loc']]);
-                }
+                fwrite($handle, $str);
             }
 
-            // create the sitemap file
-            if ($urls) {
-                $filePath = Yii::getAlias($this->filePath . '/sitemap_sale_' . $city['alias'] . '.xml');
-                $handle = fopen($filePath, "w");
-
-                fwrite(
-                    $handle,
-                    '<?xml version="1.0" encoding="UTF-8"?>' .
-                    PHP_EOL .
-                    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL
-                );
-
-
-                for ($i = 0; $i < count($urls); $i++) {
-                    $url = $urls[$i];
-
-                    $str = PHP_EOL . "\t<url>" . PHP_EOL .
-                        "\t\t<loc>" . City::getSubDomainUrl($city) . $url['loc'] . "</loc>" . PHP_EOL .
-                        "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
-                        "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
-                        "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
-                        "\t</url>";
-
-                    fwrite($handle, $str);
-                }
-
-                fwrite($handle, PHP_EOL . '</urlset>');
-                fclose($handle);
-                chmod($filePath, 0777);
-            }
+            fwrite($handle, PHP_EOL . '</urlset>');
+            fclose($handle);
+            chmod($filePath, 0777);
         }
-
-        $this->stdout("SitemapSale: end create. \n", Console::FG_GREEN);
     }
 }

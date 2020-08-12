@@ -31,6 +31,64 @@ class SitemapItalianProductController extends Controller
     /** @var array */
     private $urls = [];
 
+    /**
+     * Create
+     */
+    public function actionCreate()
+    {
+        $this->stdout("SitemapItalianProduct: start create. \n", Console::FG_GREEN);
+
+        ini_set("memory_limit", "-1");
+        set_time_limit(0);
+
+        if (!is_dir(Yii::getAlias($this->filePath))) {
+            mkdir(Yii::getAlias($this->filePath), 0777, true);
+        }
+
+        // delete files
+        array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
+
+        // list of cities
+        $cities = City::findBase()
+            ->joinWith(['country', 'country.lang'])
+            ->andFilterWhere(['IN', 'country_id', [1, 2, 3]])
+            ->all();
+
+        foreach ($cities as $city) {
+            $urls = self::getUrls('ru-RU');
+            if ($city['country_id'] == 1) {
+                $this->createSitemapFile($urls, City::getSubDomainUrl($city) . '/ua', $city);
+            } else {
+                $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
+            }
+        }
+
+        // berlin
+        $city = City::findById(160);
+        $this->createSitemapFile(self::getUrls('de-DE'), 'https://' . 'www.myarredo.de', $city);
+
+        // washington
+        $city = City::findById(161);
+        $this->createSitemapFile(self::getUrls('en-EN'), 'https://' . 'www.myarredofamily.com', $city);
+
+        $urls = [];
+        $urlsIt = self::getUrls('it-IT');
+        foreach ($urlsIt as $url) {
+            $urls[] = array_merge($url, ['loc' => "/it" . $url['loc']]);
+        }
+
+        $urlsEn = self::getUrls('en-EN');
+        foreach ($urlsEn as $url) {
+            $urls[] = array_merge($url, ['loc' => "/en" . $url['loc']]);
+        }
+
+        // rome
+        $city = City::findById(159);
+        $this->createSitemapFile($urls, 'https://' . 'www.myarredo.com', $city);
+
+        $this->stdout("SitemapItalianProduct: end create. \n", Console::FG_GREEN);
+    }
+
     private function getUrls($language = 'ru-RU')
     {
         $_urls = $this->urls;
@@ -38,7 +96,8 @@ class SitemapItalianProductController extends Controller
         $currentLanguage = Yii::$app->language;
         Yii::$app->language = $language;
 
-        $languageModels = ($language == 'ru-RU') ? $this->models['ru'] : $this->models['en'];
+        $lang = substr(Yii::$app->language, 0, 2);
+        $languageModels = $this->models[$lang];
 
         foreach ($languageModels as $modelName) {
             if (is_array($modelName)) {
@@ -64,6 +123,8 @@ class SitemapItalianProductController extends Controller
                     $model::tableName() . '.id',
                     $model::tableName() . '.alias',
                     $model::tableName() . '.alias_en',
+                    $model::tableName() . '.alias_it',
+                    $model::tableName() . '.alias_de',
                     $model::tableName() . '.updated_at',
                 ]);
             } else {
@@ -87,66 +148,33 @@ class SitemapItalianProductController extends Controller
     }
 
     /**
-     * Create
-     */
-    public function actionCreate()
-    {
-        $this->stdout("SitemapItalianProduct: start create. \n", Console::FG_GREEN);
-
-        ini_set("memory_limit", "-1");
-        set_time_limit(0);
-
-        if (!is_dir(Yii::getAlias($this->filePath))) {
-            mkdir(Yii::getAlias($this->filePath), 0777, true);
-        }
-
-        // delete files
-        array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
-
-        // list of cities
-        $cities = City::findBase()
-            ->joinWith(['country', 'country.lang'])
-            ->andFilterWhere(['IN', 'country_id', [1, 2, 3]])
-            ->all();
-
-        // urls
-        $urls = self::getUrls();
-
-        /** @var $city City */
-        foreach ($cities as $city) {
-            $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
-        }
-
-        $this->createSitemapFile($urls, 'https://' . 'www.myarredo.com', false);
-
-        $this->stdout("SitemapItalianProduct: end create. \n", Console::FG_GREEN);
-    }
-
-    /**
      * @param array $urls
      * @param string $baseUrl
      * @param bool $city
      */
-    private function createSitemapFile(array $urls, string $baseUrl, $city = false)
+    private function createSitemapFile(array $urls, string $baseUrl, array $city)
     {
-        if ($city == false) {
-            $urls = [];
-            $urlsIt = self::getUrls('it-IT');
-            foreach ($urlsIt as $url) {
-                $urls[] = array_merge($url, ['loc' => "/it" . $url['loc']]);
-            }
+//        if ($city == false) {
+//            $urls = [];
+//            $urlsIt = self::getUrls('it-IT');
+//            foreach ($urlsIt as $url) {
+//                $urls[] = array_merge($url, ['loc' => "/it" . $url['loc']]);
+//            }
+//
+//            $urlsEn = self::getUrls('en-EN');
+//            foreach ($urlsEn as $url) {
+//                $urls[] = array_merge($url, ['loc' => "/en" . $url['loc']]);
+//            }
+//
+//            $templateName = '';
+//        } else {
+//            $templateName = '_' . $city['alias'];
+//        }
 
-            $urlsEn = self::getUrls('en-EN');
-            foreach ($urlsEn as $url) {
-                $urls[] = array_merge($url, ['loc' => "/en" . $url['loc']]);
-            }
-
-            $templateName = '';
-        } else {
-            $templateName = '_' . $city['alias'];
-        }
 
         if ($urls) {
+            $templateName = !empty($city) ? '_' . $city['alias'] : '';
+
             $filePath = Yii::getAlias($this->filePath . '/sitemap_italian_product' . $templateName . '.xml');
             $handle = fopen($filePath, "w");
 
