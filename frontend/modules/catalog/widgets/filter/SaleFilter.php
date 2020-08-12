@@ -81,7 +81,7 @@ class SaleFilter extends Widget
 
         $queryParams['country'] = Yii::$app->city->getCountryId();
 
-        if (!in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159, 160, 161, 162])) {
+        if (!in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159, 160, 161])) {
             $queryParams['city'] = Yii::$app->city->getCityId();
         }
 
@@ -337,7 +337,7 @@ class SaleFilter extends Widget
 
             $city = City::findByAlias($obj['alias']);
 
-            if ($city == null || in_array($city['id'], [1, 2, 4, 159, 160, 161, 162])) {
+            if ($city == null || in_array($city['id'], [1, 2, 4, 159, 160, 161])) {
                 $baseUrl = 'https://' . 'www.' . DOMAIN_NAME . '.' . DOMAIN_TYPE;
             } else {
                 $baseUrl = 'https://' . $city['alias'] . '.' . DOMAIN_NAME . '.' . DOMAIN_TYPE;

@@ -65,10 +65,6 @@ class SitemapController extends Controller
             }
         }
 
-        // rome
-        $city = City::findById(159);
-        $this->createSitemapFile(self::getUrls('it-IT', 'com'), 'https://' . 'www.myarredo.com/it', $city);
-
         // berlin
         $city = City::findById(160);
         $this->createSitemapFile(self::getUrls('de-DE', 'de'), 'https://' . 'www.myarredo.de', $city);
@@ -77,9 +73,20 @@ class SitemapController extends Controller
         $city = City::findById(161);
         $this->createSitemapFile(self::getUrls('en-EN', 'com'), 'https://' . 'www.myarredofamily.com', $city);
 
-        // london
-        $city = City::findById(162);
-        $this->createSitemapFile(self::getUrls('en-EN', 'com'), 'https://' . 'www.myarredo.com/en', $city);
+        $urls = [];
+        $urlsIt = self::getUrls('it-IT', 'com');
+        foreach ($urlsIt as $url) {
+            $urls[] = array_merge($url, ['loc' => "/it" . $url['loc']]);
+        }
+
+        $urlsEn = self::getUrls('en-EN', 'com');
+        foreach ($urlsEn as $url) {
+            $urls[] = array_merge($url, ['loc' => "/en" . $url['loc']]);
+        }
+
+        // rome
+        $city = City::findById(159);
+        $this->createSitemapFile($urls, 'https://' . 'www.myarredo.com', $city);
 
         $this->stdout("Sitemap: end create. \n", Console::FG_GREEN);
     }
