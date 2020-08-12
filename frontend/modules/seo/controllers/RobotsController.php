@@ -54,13 +54,8 @@ class RobotsController extends Controller
         echo PHP_EOL . 'Host: https://' . Yii::$app->request->serverName . PHP_EOL;
 
         $city = Yii::$app->city->getCity();
-        $lang = substr(Yii::$app->language, 0, 2);
 
-        if (DOMAIN_TYPE == 'com' && in_array($lang, ['it', 'en'])) {
-            echo 'Sitemap: https://' . Yii::$app->request->hostName . '/' . $lang . '/sitemap/sitemap.xml' . PHP_EOL;
-        } else {
-            echo 'Sitemap: https://' . Yii::$app->request->hostName . '/sitemap/sitemap_' . $city['alias'] . '.xml' . PHP_EOL;
-        }
+        echo 'Sitemap: https://' . Yii::$app->request->hostName . '/sitemap/sitemap_' . $city['alias'] . '.xml' . PHP_EOL;
 
         $response = Yii::$app->response;
         $response->format = yii\web\Response::FORMAT_RAW;
