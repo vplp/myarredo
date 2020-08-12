@@ -67,8 +67,8 @@ class SitemapController extends Controller
         }
 
         // berlin
-        $city = City::find()->byId(160)->one();
-        $this->createSitemapFile(self::getUrls('de-DE', 'de'), 'https://' . 'www.myarredo.de', $city);
+//        $city = City::find()->byId(160)->one();
+//        $this->createSitemapFile(self::getUrls('de-DE', 'de'), 'https://' . 'www.myarredo.de', $city);
 
         // washington
         $city = City::find()->byId(161)->one();
