@@ -87,8 +87,8 @@ class SitemapController extends Controller
             } elseif ($city['country_id'] == 85) {
                 // germany
                 $this->createSitemapFile(self::getUrls('de-DE', 'de'), 'https://' . 'www.myarredo.de', $city);
-            } elseif ($city['country_id'] == 1) {
-                $this->createSitemapFile($urls, City::getSubDomainUrl($city) . '/ua', $city);
+//            } elseif ($city['country_id'] == 1) {
+//                $this->createSitemapFile($urls, City::getSubDomainUrl($city) . '/ua', $city);
             } else {
                 $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
             }

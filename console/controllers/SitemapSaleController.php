@@ -58,11 +58,11 @@ class SitemapSaleController extends Controller
             ->all();
 
         foreach ($cities as $city) {
-            if ($city['country_id'] == 1) {
-                $this->createSitemapFile(self::getUrls($city, 'ru-RU'), City::getSubDomainUrl($city) . '/ua', $city);
-            } else {
+//            if ($city['country_id'] == 1) {
+//                $this->createSitemapFile(self::getUrls($city, 'ru-RU'), City::getSubDomainUrl($city) . '/ua', $city);
+//            } else {
                 $this->createSitemapFile(self::getUrls($city, 'ru-RU'), City::getSubDomainUrl($city), $city);
-            }
+//            }
         }
 
         $this->stdout("SitemapSale: end create. \n", Console::FG_GREEN);
