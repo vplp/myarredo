@@ -51,27 +51,12 @@ class SitemapController extends Controller
         // delete files
         array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
 
-        // ru ua by
-        $cities = City::findBase()
-            ->joinWith(['country', 'country.lang'])
-            ->andFilterWhere(['IN', 'country_id', [1, 2, 3]])
-            ->all();
-
-        $urls = self::getUrls('ru-RU');
-        foreach ($cities as $city) {
-            if ($city['country_id'] == 1) {
-                $this->createSitemapFile($urls, City::getSubDomainUrl($city) . '/ua', $city);
-            } else {
-                $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
-            }
-        }
-
         // berlin
-        $city = City::find()->asArray()->byId(160)->one();
+        $city = City::findBase()->byId(160)->one();
         $this->createSitemapFile(self::getUrls('de-DE', 'de'), 'https://' . 'www.myarredo.de', $city);
 
         // washington
-        $city = City::find()->asArray()->byId(161)->one();
+        $city = City::findBase()->byId(161)->one();
         $this->createSitemapFile(self::getUrls('en-EN', 'com'), 'https://' . 'www.myarredofamily.com', $city);
 
         $urls = [];
@@ -86,8 +71,23 @@ class SitemapController extends Controller
         }
 
         // rome
-        $city = City::find()->asArray()->byId(159)->one();
+        $city = City::findBase()->byId(159)->one();
         $this->createSitemapFile($urls, 'https://' . 'www.myarredo.com', $city);
+
+        // ru ua by
+        $cities = City::findBase()
+            ->joinWith(['country', 'country.lang'])
+            ->andFilterWhere(['IN', 'country_id', [1, 2, 3]])
+            ->all();
+
+        $urls = self::getUrls('ru-RU');
+        foreach ($cities as $city) {
+            if ($city['country_id'] == 1) {
+                $this->createSitemapFile($urls, City::getSubDomainUrl($city) . '/ua', $city);
+            } else {
+                $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
+            }
+        }
 
         $this->stdout("Sitemap: end create. \n", Console::FG_GREEN);
     }
