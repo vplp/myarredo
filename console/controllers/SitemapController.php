@@ -65,7 +65,9 @@ class SitemapController extends Controller
             ->andFilterWhere(['IN', 'country_id', [1, 2, 3, 4, 5, 85]])
             ->all();
 
-        $urls = self::getUrls('ru-RU');
+        $urlsRu = self::getUrls('ru-RU');
+        $urlsUa = self::getUrls('uk-UA');
+
         foreach ($cities as $city) {
             if ($city['country_id'] == 4) {
                 // italy
@@ -87,10 +89,14 @@ class SitemapController extends Controller
             } elseif ($city['country_id'] == 85) {
                 // germany
                 $this->createSitemapFile(self::getUrls('de-DE', 'de'), 'https://' . 'www.myarredo.de', $city);
-//            } elseif ($city['country_id'] == 1) {
-//                $this->createSitemapFile($urls, City::getSubDomainUrl($city) . '/ua', $city);
-            } else {
+            } elseif ($city['country_id'] == 1) {
+                $urls  = $urlsRu;
+                foreach ($urlsUa as $url) {
+                    $urls[] = array_merge($url, ['loc' => "/ua" . $url['loc']]);
+                }
                 $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
+            } else {
+                $this->createSitemapFile($urlsRu, City::getSubDomainUrl($city), $city);
             }
         }
 
