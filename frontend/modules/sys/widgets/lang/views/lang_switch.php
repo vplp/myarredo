@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-//
 use frontend\modules\sys\models\Language;
 
 /** @var $current Language */
@@ -18,8 +17,7 @@ use frontend\modules\sys\models\Language;
 ) ?>
 
 <ul class="lang-drop-down">
-    <?php
-    foreach ($models as $model) {
+    <?php foreach ($models as $model) {
         if ($model['alias'] == $current['alias']) {
             continue;
         }

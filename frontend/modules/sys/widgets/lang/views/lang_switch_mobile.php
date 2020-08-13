@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-//
 use frontend\modules\sys\models\Language;
 
 /** @var $current Language */
@@ -13,8 +12,7 @@ use frontend\modules\sys\models\Language;
     <?= $current['image'] . '&nbsp;' . $current['label'] ?>
 </div>
 <ul class="mobile-lang-list js-list-container">
-    <?php
-    foreach ($models as $model) {
+    <?php foreach ($models as $model) {
         if ($model['alias'] == $current['alias']) {
             continue;
         }

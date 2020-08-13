@@ -59,7 +59,7 @@ class LangSwitch extends Widget
                 continue;
             }
 
-            // ua only for domain ua
+            // do no show de
             if (in_array($lang['alias'], ['de'])) {
                 continue;
             }
