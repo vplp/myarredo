@@ -52,37 +52,42 @@ class SitemapController extends Controller
         array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
 
         // berlin
-        $city = City::findBase()->byId(160)->one();
-        $this->createSitemapFile(self::getUrls('de-DE', 'de'), 'https://' . 'www.myarredo.de', $city);
-
-        // washington
-        $city = City::findBase()->byId(161)->one();
-        $this->createSitemapFile(self::getUrls('en-EN', 'com'), 'https://' . 'www.myarredofamily.com', $city);
-
-        $urls = [];
-        $urlsIt = self::getUrls('it-IT', 'com');
-        foreach ($urlsIt as $url) {
-            $urls[] = array_merge($url, ['loc' => "/it" . $url['loc']]);
-        }
-
-        $urlsEn = self::getUrls('en-EN', 'com');
-        foreach ($urlsEn as $url) {
-            $urls[] = array_merge($url, ['loc' => "/en" . $url['loc']]);
-        }
-
-        // rome
-        $city = City::findBase()->byId(159)->one();
-        $this->createSitemapFile($urls, 'https://' . 'www.myarredo.com', $city);
+//        $city = City::findBase()->byId(160)->one();
+//        $this->createSitemapFile(self::getUrls('de-DE', 'de'), 'https://' . 'www.myarredo.de', $city);
+//
+//        // washington
+//        $city = City::findBase()->byId(161)->one();
+//        $this->createSitemapFile(self::getUrls('en-EN', 'com'), 'https://' . 'www.myarredofamily.com', $city);
 
         // ru ua by
         $cities = City::findBase()
             ->joinWith(['country', 'country.lang'])
-            ->andFilterWhere(['IN', 'country_id', [1, 2, 3]])
+            ->andFilterWhere(['IN', 'country_id', [1, 2, 3, 4, 5, 85]])
             ->all();
 
         $urls = self::getUrls('ru-RU');
         foreach ($cities as $city) {
-            if ($city['country_id'] == 1) {
+            if ($city['country_id'] == 4) {
+                // italy
+                $urls = [];
+                $urlsIt = self::getUrls('it-IT', 'com');
+                foreach ($urlsIt as $url) {
+                    $urls[] = array_merge($url, ['loc' => "/it" . $url['loc']]);
+                }
+
+                $urlsEn = self::getUrls('en-EN', 'com');
+                foreach ($urlsEn as $url) {
+                    $urls[] = array_merge($url, ['loc' => "/en" . $url['loc']]);
+                }
+
+                $this->createSitemapFile($urls, 'https://' . 'www.myarredo.com', $city);
+            } elseif ($city['country_id'] == 5) {
+                // usa
+                $this->createSitemapFile(self::getUrls('en-EN', 'com'), 'https://' . 'www.myarredofamily.com', $city);
+            } elseif ($city['country_id'] == 85) {
+                // usa
+                $this->createSitemapFile(self::getUrls('de-DE', 'de'), 'https://' . 'www.myarredo.de', $city);
+            } elseif ($city['country_id'] == 1) {
                 $this->createSitemapFile($urls, City::getSubDomainUrl($city) . '/ua', $city);
             } else {
                 $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
