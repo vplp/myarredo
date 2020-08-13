@@ -167,6 +167,63 @@ return ArrayHelper::merge(
                             },
                         ]
                     ],
+                    'uk' => [
+                        [
+                            'class' => Category::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/catalog/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => Types::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/catalog/c--' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => Directlink::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => $model['url'],
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => Product::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/product/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => Factory::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/factory/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            },
+                        ]
+                    ],
                     'en' => [
                         [
                             'class' => Category::class,
@@ -415,6 +472,52 @@ return ArrayHelper::merge(
                             }
                         ],
                     ],
+                    'uk' => [
+                        [
+                            'class' => Category::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => Types::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale/c--' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => SubTypes::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale/c--t--s--f--c--country--colors--' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
+                        ],
+                        [
+                            'class' => Sale::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale-product/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            }
+                        ],
+                    ],
                     'en' => [
                         [
                             'class' => Category::class,
@@ -559,6 +662,52 @@ return ArrayHelper::merge(
                 'class' => \console\controllers\SitemapItalianProductController::class,
                 'models' => [
                     'ru' => [
+                        [
+                            'class' => Category::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale-italy/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => Types::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale-italy/c--' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => SubTypes::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale-italy/c--t--s--f--c--country--colors--' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
+                        ],
+                        [
+                            'class' => ItalianProduct::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale-italy-product/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            }
+                        ],
+                    ],
+                    'uk' => [
                         [
                             'class' => Category::class,
                             'dataClosure' => function ($model) {
