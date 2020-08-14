@@ -51,7 +51,7 @@ class SitemapItalianProductController extends Controller
         // list of cities
         $cities = City::findBase()
             ->joinWith(['country', 'country.lang'])
-            ->andFilterWhere(['IN', 'country_id', [1, 2, 3]])
+            ->andFilterWhere(['IN', 'country_id', [1, 2, 3, 4, 5, 85]])
             ->all();
 
         $urlsRu = self::getUrls('ru-RU');
