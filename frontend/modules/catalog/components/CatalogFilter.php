@@ -148,7 +148,6 @@ class CatalogFilter extends Component
         ksort($paramsUrl, SORT_STRING);
 
         // Видалення пустих елементів з кінця масиву
-
         $reversed = array_reverse($paramsUrl);
 
         foreach ($reversed as $key => $val) {
@@ -207,8 +206,10 @@ class CatalogFilter extends Component
                 (($res[$k]) ? $res[$k] : ((!empty($labelEmptyKey[$k])) ? $labelEmptyKey[$k] : ''));
         }
 
-        if ($url !== '') {
+        if (!empty($route) && $url !== '') {
             return Url::toRoute($route) . $url . '/';
+        } elseif (empty($route) && $url !== '') {
+            return $url . '/';
         } else {
             return Url::toRoute($route);
         }

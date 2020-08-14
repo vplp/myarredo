@@ -6,6 +6,9 @@ use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
 use frontend\modules\sys\models\Language;
+use frontend\modules\catalog\models\{
+    Types, Category, Specification, Colors, Product
+};
 
 /**
  * Class LangSwitch
@@ -47,6 +50,8 @@ class LangSwitch extends Widget
      */
     public function run()
     {
+        $keys = Yii::$app->catalogFilter->keys;
+
         $this->current['image'] = Language::isImage($this->current['img_flag'])
             ? Html::img(Language::getImage($this->current['img_flag']))
             : '<i class="fa fa-globe" aria-hidden="true"></i>';
@@ -68,36 +73,164 @@ class LangSwitch extends Widget
                 ? Html::img(Language::getImage($lang['img_flag']))
                 : '<i class="fa fa-globe" aria-hidden="true"></i>';
 
-            /**
-             * $url
-             */
+            // $url and $path
             if (in_array($lang['alias'], ['it', 'en'])) {
                 $url = 'https://www.myarredo.com';
+                $path = Yii::$app->request->url;
+
+                $params = Yii::$app->catalogFilter->params;
+
+                if (!empty($params)) {
+                    if (!empty($params[$keys['category']])) {
+                        $model = Category::findByAlias($params[$keys['category']][0]);
+                        $params[$keys['category']] = $model['alias_' . $lang['alias']];
+                    }
+
+                    if (!empty($params[$keys['type']])) {
+                        $models = Types::findByAlias($params[$keys['type']]);
+                        $items = [];
+                        foreach ($models as $model) {
+                            $items[] = $model['alias_' . $lang['alias']];
+                        }
+                        $params[$keys['type']] = $items;
+                    }
+
+                    if (!empty($params[$keys['style']])) {
+                        $models = Specification::findByAlias($params[$keys['style']]);
+                        $items = [];
+                        foreach ($models as $model) {
+                            $items[] = $model['alias_' . $lang['alias']];
+                        }
+                        $params[$keys['style']] = $items;
+                    }
+
+                    if (!empty($params[$keys['colors']])) {
+                        $models = Colors::findByAlias($params[$keys['colors']]);
+                        $items = [];
+                        foreach ($models as $model) {
+                            $items[] = $model['alias_' . $lang['alias']];
+                        }
+                        $params[$keys['colors']] = $items;
+                    }
+
+                    $path = Yii::$app->catalogFilter->createUrl(
+                        $params,
+                        ['/catalog/' . Yii::$app->controller->id . '/list']
+                    );
+                }
+
+                if (Yii::$app->controller->id == 'product') {
+                    $model = Product::findByAlias(Yii::$app->request->get('alias'));
+                    $path = Product::getUrl($model['alias_' . $lang['alias']], false);
+                }
+
+                $path = str_replace('/' . $this->current['alias'], '', $path);
             } elseif (in_array($lang['alias'], ['de'])) {
                 $url = 'https://www.myarredo.de';
             } elseif (!in_array($lang['alias'], ['it', 'en', 'de']) && DOMAIN_TYPE == 'com') {
                 $url = 'https://www.myarredo.ru';
+                $path = Yii::$app->request->url;
+
+                $params = Yii::$app->catalogFilter->params;
+
+                if (!empty($params)) {
+                    if (!empty($params[$keys['category']])) {
+                        $model = Category::findByAlias($params[$keys['category']][0]);
+                        $params[$keys['category']] = $model['alias'];
+                    }
+
+                    if (!empty($params[$keys['type']])) {
+                        $models = Types::findByAlias($params[$keys['type']]);
+                        $items = [];
+                        foreach ($models as $model) {
+                            $items[] = $model['alias'];
+                        }
+                        $params[$keys['type']] = $items;
+                    }
+
+                    if (!empty($params[$keys['style']])) {
+                        $models = Specification::findByAlias($params[$keys['style']]);
+                        $items = [];
+                        foreach ($models as $model) {
+                            $items[] = $model['alias'];
+                        }
+                        $params[$keys['style']] = $items;
+                    }
+
+                    if (!empty($params[$keys['colors']])) {
+                        $models = Colors::findByAlias($params[$keys['colors']]);
+                        $items = [];
+                        foreach ($models as $model) {
+                            $items[] = $model['alias'];
+                        }
+                        $params[$keys['colors']] = $items;
+                    }
+
+                    $path = Yii::$app->catalogFilter->createUrl(
+                        $params,
+                        ['/catalog/' . Yii::$app->controller->id . '/list']
+                    );
+                }
+
+                if (Yii::$app->controller->id == 'product') {
+                    $model = Product::findByAlias(Yii::$app->request->get('alias'));
+                    $path = Product::getUrl($model['alias'], false);
+                }
+
+                $path = str_replace('/' . $this->current['alias'], '', $path);
             } elseif (!in_array($lang['alias'], ['it', 'en', 'de']) && DOMAIN_TYPE == 'de') {
                 $url = 'https://www.myarredo.ru';
             } else {
-                $url = Yii::$app->request->hostInfo;
-            }
-
-            /**
-             * $path
-             */
-            if (
-                in_array($lang['alias'], ['it', 'en']) && DOMAIN_TYPE != 'com' && in_array(Yii::$app->controller->id, ['category', 'sale', 'sale-italy']) &&
-                Yii::$app->controller->action->id == 'list'
-            ) {
-                $path = '/';
-            } elseif (
-                !in_array($lang['alias'], ['it', 'en']) && DOMAIN_TYPE == 'com' && in_array(Yii::$app->controller->id, ['category', 'sale', 'sale-italy']) &&
-                Yii::$app->controller->action->id == 'list'
-            ) {
-                $path = '/';
-            } else {
+                $url = 'https://www.myarredo.ru';
                 $path = Yii::$app->request->url;
+
+                $params = Yii::$app->catalogFilter->params;
+
+                if (!empty($params)) {
+                    if (!empty($params[$keys['category']])) {
+                        $model = Category::findByAlias($params[$keys['category']][0]);
+                        $params[$keys['category']] = $model['alias'];
+                    }
+
+                    if (!empty($params[$keys['type']])) {
+                        $models = Types::findByAlias($params[$keys['type']]);
+                        $items = [];
+                        foreach ($models as $model) {
+                            $items[] = $model['alias'];
+                        }
+                        $params[$keys['type']] = $items;
+                    }
+
+                    if (!empty($params[$keys['style']])) {
+                        $models = Specification::findByAlias($params[$keys['style']]);
+                        $items = [];
+                        foreach ($models as $model) {
+                            $items[] = $model['alias'];
+                        }
+                        $params[$keys['style']] = $items;
+                    }
+
+                    if (!empty($params[$keys['colors']])) {
+                        $models = Colors::findByAlias($params[$keys['colors']]);
+                        $items = [];
+                        foreach ($models as $model) {
+                            $items[] = $model['alias'];
+                        }
+                        $params[$keys['colors']] = $items;
+                    }
+
+                    $path = Yii::$app->catalogFilter->createUrl(
+                        $params,
+                        ['/catalog/' . Yii::$app->controller->id . '/list']
+                    );
+                }
+
+                if (Yii::$app->controller->id == 'product') {
+                    $model = Product::findByAlias(Yii::$app->request->get('alias'));
+                    $path = Product::getUrl($model['alias'], false);
+                }
+
+                $path = str_replace('/' . $this->current['alias'], '', $path);
             }
 
             if ($lang['local'] == Yii::$app->language) {

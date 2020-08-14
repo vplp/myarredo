@@ -353,22 +353,23 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
-     * @param string $alias
+     * @param $alias
+     * @param bool $scheme
      * @return string
      */
-    public static function getUrl($alias)
+    public static function getUrl($alias, $scheme = true)
     {
         if (isset(Yii::$app->controller->factory)) {
             return Url::toRoute([
                 '/catalog/template-factory/product',
                 'alias' => Yii::$app->controller->factory->alias,
                 'product' => $alias
-            ], true);
+            ], $scheme);
         } else {
             return Url::toRoute([
                 '/catalog/product/view',
                 'alias' => $alias
-            ], true);
+            ], $scheme);
         }
     }
 
