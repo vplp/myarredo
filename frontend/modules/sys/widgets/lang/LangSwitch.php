@@ -261,7 +261,7 @@ class LangSwitch extends Widget
                 ];
             }
         }
-//* !!! */ echo  '<pre style="color:red;">'; print_r($items); echo '</pre>'; /* !!! */
+
         return $this->render($this->view, [
             'models' => $items,
             'current' => $this->current,

@@ -72,9 +72,20 @@ class Colors extends \common\modules\catalog\models\Colors
     {
         $result = self::getDb()->cache(function ($db) use ($alias) {
             if (is_array($alias)) {
-                return self::findBase()->byAlias($alias)->all();
+                return self::findBase()
+                    ->andWhere([
+                        'IN',
+                        self::tableName() . '.' . Yii::$app->languages->getDomainAlias(),
+                        $alias
+                    ])
+                    ->all();
             } else {
-                return self::findBase()->byAlias($alias)->one();
+                return self::findBase()
+                    ->andWhere(
+                        self::tableName() . '.' . Yii::$app->languages->getDomainAlias() . ' = :alias',
+                        [':alias' => $alias]
+                    )
+                    ->one();
             }
         }, 60 * 60);
 
