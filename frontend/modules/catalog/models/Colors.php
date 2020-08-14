@@ -235,6 +235,9 @@ class Colors extends \common\modules\catalog\models\Colors
                 ->select([
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
+                    self::tableName() . '.alias_en',
+                    self::tableName() . '.alias_it',
+                    self::tableName() . '.alias_de',
                     self::tableName() . '.position',
                     self::tableName() . '.color_code',
                     'count(' . self::tableName() . '.id) as count',
@@ -331,6 +334,9 @@ class Colors extends \common\modules\catalog\models\Colors
                 ->select([
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
+                    self::tableName() . '.alias_en',
+                    self::tableName() . '.alias_it',
+                    self::tableName() . '.alias_de',
                     self::tableName() . '.position',
                     self::tableName() . '.color_code',
                     'count(' . self::tableName() . '.id) as count',
@@ -422,6 +428,9 @@ class Colors extends \common\modules\catalog\models\Colors
                 ->select([
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
+                    self::tableName() . '.alias_en',
+                    self::tableName() . '.alias_it',
+                    self::tableName() . '.alias_de',
                     self::tableName() . '.position',
                     self::tableName() . '.color_code',
                     'count(' . self::tableName() . '.id) as count',

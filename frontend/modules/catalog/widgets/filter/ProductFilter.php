@@ -323,12 +323,14 @@ class ProductFilter extends Widget
         foreach ($this->colors as $key => $obj) {
             $params = $this->catalogFilterParams;
 
-            if (!empty($params[$keys['colors']]) && in_array($obj['alias'], $params[$keys['colors']])) {
+            $alias = $obj[Yii::$app->languages->getDomainAlias()];
+
+            if (!empty($params[$keys['colors']]) && in_array($obj[$alias], $params[$keys['colors']])) {
                 $checked = 1;
-                $params[$keys['colors']] = array_diff($params[$keys['colors']], [$obj['alias']]);
+                $params[$keys['colors']] = array_diff($params[$keys['colors']], [$obj[$alias]]);
             } else {
                 $checked = 0;
-                $params[$keys['colors']][] = $obj['alias'];
+                $params[$keys['colors']][] = $obj[$alias];
             }
 
             // sort value
@@ -342,7 +344,7 @@ class ProductFilter extends Widget
                 'link' => $link,
                 'title' => $obj['lang']['title'],
                 'count' => $obj['count'],
-                'alias' => $obj['alias'],
+                'alias' => $obj[$alias],
                 'color_code' => $obj['color_code'],
             ];
         }

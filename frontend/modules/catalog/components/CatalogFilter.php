@@ -458,8 +458,9 @@ class CatalogFilter extends Component
         /** Colors */
 
         if (!empty(self::$_structure['colors'])) {
+            $aliasField = Yii::$app->languages->getDomainAlias();
             $model = Colors::findBase()
-                ->andWhere(['IN', Colors::tableName() . '.alias', self::$_structure['colors']])
+                ->andWhere(['IN', Colors::tableName() . '.' . $aliasField, self::$_structure['colors']])
                 ->indexBy('id')
                 ->all();
 
@@ -470,7 +471,7 @@ class CatalogFilter extends Component
             // sort value
 
             foreach ($model as $obj) {
-                self::setParam(self::$keys['colors'], $obj['alias']);
+                self::setParam(self::$keys['colors'], $obj[$aliasField]);
             }
 
             // check value

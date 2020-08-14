@@ -135,9 +135,12 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
         if (isset($params[$keys['colors']])) {
             $query
                 ->innerJoinWith(["colors"])
-                ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Colors::tableName() . '.' . Yii::$app->languages->getDomainAlias(),
+                    $params[$keys['colors']]
+                ]);
         }
-
 
         if (isset($params[$keys['diameter']])) {
             $min = $params[$keys['diameter']][0];
