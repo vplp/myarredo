@@ -88,29 +88,29 @@ class LangSwitch extends Widget
 
                     if (!empty($params[$keys['type']])) {
                         $models = Types::findByAlias($params[$keys['type']]);
-                        $items = [];
+                        $arr = [];
                         foreach ($models as $model) {
-                            $items[] = $model['alias_' . $lang['alias']];
+                            $arr[] = $model['alias_' . $lang['alias']];
                         }
-                        $params[$keys['type']] = $items;
+                        $params[$keys['type']] = $arr;
                     }
 
                     if (!empty($params[$keys['style']])) {
                         $models = Specification::findByAlias($params[$keys['style']]);
-                        $items = [];
+                        $arr = [];
                         foreach ($models as $model) {
-                            $items[] = $model['alias_' . $lang['alias']];
+                            $arr[] = $model['alias_' . $lang['alias']];
                         }
-                        $params[$keys['style']] = $items;
+                        $params[$keys['style']] = $arr;
                     }
 
                     if (!empty($params[$keys['colors']])) {
                         $models = Colors::findByAlias($params[$keys['colors']]);
-                        $items = [];
+                        $arr = [];
                         foreach ($models as $model) {
-                            $items[] = $model['alias_' . $lang['alias']];
+                            $arr[] = $model['alias_' . $lang['alias']];
                         }
-                        $params[$keys['colors']] = $items;
+                        $params[$keys['colors']] = $arr;
                     }
 
                     $path = Yii::$app->catalogFilter->createUrl(
@@ -141,29 +141,29 @@ class LangSwitch extends Widget
 
                     if (!empty($params[$keys['type']])) {
                         $models = Types::findByAlias($params[$keys['type']]);
-                        $items = [];
+                        $arr = [];
                         foreach ($models as $model) {
-                            $items[] = $model['alias'];
+                            $arr[] = $model['alias'];
                         }
-                        $params[$keys['type']] = $items;
+                        $params[$keys['type']] = $arr;
                     }
 
                     if (!empty($params[$keys['style']])) {
                         $models = Specification::findByAlias($params[$keys['style']]);
-                        $items = [];
+                        $arr = [];
                         foreach ($models as $model) {
-                            $items[] = $model['alias'];
+                            $arr[] = $model['alias'];
                         }
-                        $params[$keys['style']] = $items;
+                        $params[$keys['style']] = $arr;
                     }
 
                     if (!empty($params[$keys['colors']])) {
                         $models = Colors::findByAlias($params[$keys['colors']]);
-                        $items = [];
+                        $arr = [];
                         foreach ($models as $model) {
-                            $items[] = $model['alias'];
+                            $arr[] = $model['alias'];
                         }
-                        $params[$keys['colors']] = $items;
+                        $params[$keys['colors']] = $arr;
                     }
 
                     $path = Yii::$app->catalogFilter->createUrl(
@@ -194,29 +194,29 @@ class LangSwitch extends Widget
 
                     if (!empty($params[$keys['type']])) {
                         $models = Types::findByAlias($params[$keys['type']]);
-                        $items = [];
+                        $arr = [];
                         foreach ($models as $model) {
-                            $items[] = $model['alias'];
+                            $arr[] = $model['alias'];
                         }
-                        $params[$keys['type']] = $items;
+                        $params[$keys['type']] = $arr;
                     }
 
                     if (!empty($params[$keys['style']])) {
                         $models = Specification::findByAlias($params[$keys['style']]);
-                        $items = [];
+                        $arr = [];
                         foreach ($models as $model) {
-                            $items[] = $model['alias'];
+                            $arr[] = $model['alias'];
                         }
-                        $params[$keys['style']] = $items;
+                        $params[$keys['style']] = $arr;
                     }
 
                     if (!empty($params[$keys['colors']])) {
                         $models = Colors::findByAlias($params[$keys['colors']]);
-                        $items = [];
+                        $arr = [];
                         foreach ($models as $model) {
-                            $items[] = $model['alias'];
+                            $arr[] = $model['alias'];
                         }
-                        $params[$keys['colors']] = $items;
+                        $params[$keys['colors']] = $arr;
                     }
 
                     $path = Yii::$app->catalogFilter->createUrl(
@@ -261,7 +261,7 @@ class LangSwitch extends Widget
                 ];
             }
         }
-
+//* !!! */ echo  '<pre style="color:red;">'; print_r($items); echo '</pre>'; /* !!! */
         return $this->render($this->view, [
             'models' => $items,
             'current' => $this->current,
