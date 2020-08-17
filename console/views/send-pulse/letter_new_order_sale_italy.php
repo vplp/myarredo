@@ -66,7 +66,7 @@ if (in_array($order->lang, ['ru-RU'])) {
         }
 
         // phone
-        $phone = ($order->city->country->alias == 'ua') ? '+39 (0422) 150-02-15' : '+7 968 353 36 36';
+        $phone = ($order->city && $order->city->country->alias == 'ua') ? '+39 (0422) 150-02-15' : '+7 968 353 36 36';
         ?>
 
         <div style="text-align: left; padding-left: 20px;">
