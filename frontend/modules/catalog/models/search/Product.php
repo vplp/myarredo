@@ -230,46 +230,37 @@ class Product extends ProductModel
                 ->andFilterWhere($arr);
         }
 
-        /**
-         * orderBy
-         */
-
-        $order = [];
-
-        /**
-         * Promotion
-         */
-        if (!isset($params[$keys['category']])) {
-            $order[] = self::tableName() . '.time_promotion_in_catalog DESC';
-        } else {
-            $order[] = self::tableName() . '.time_promotion_in_category DESC';
-        }
-
-        if (isset($params['sort']) && $params['sort'] == 'asc') {
-            $order[] = self::tableName() . '.price_from ASC';
-        } elseif (isset($params['sort']) && $params['sort'] == 'desc') {
-            $order[] = self::tableName() . '.price_from DESC';
-        } elseif (isset($params['sort']) && $params['sort'] == 'novelty') {
-            $order[] = self::tableName() . '.novelty DESC';
-        }
-
-        if (!isset($params['object'])) {
-            $order[] = self::tableName() . '.is_composition DESC';
-        }
-
         if (isset($params['show']) && $params['show'] == 'in_stock') {
             $query->andWhere([
                 self::tableName() . '.in_stock' => '1'
             ]);
         }
 
-        $order[] = self::tableName() . '.updated_at DESC';
+        /** orderBy */
 
-        $query->orderBy(implode(',', $order));
+        if (!isset($params[$keys['category']])) {
+            $order[self::tableName() . '.time_promotion_in_catalog'] = SORT_DESC;
+        } else {
+            $order[self::tableName() . '.time_promotion_in_category'] = SORT_DESC;
+        }
 
-        /**
-         * cache
-         */
+        if (isset($params['sort']) && $params['sort'] == 'asc') {
+            $order[self::tableName() . '.price_from'] = SORT_ASC;
+        } elseif (isset($params['sort']) && $params['sort'] == 'desc') {
+            $order[self::tableName() . '.price_from'] = SORT_DESC;
+        } elseif (isset($params['sort']) && $params['sort'] == 'novelty') {
+            $order[self::tableName() . '.novelty'] = SORT_DESC;
+        }
+
+        if (!isset($params['object'])) {
+            $order[self::tableName() . '.is_composition'] = SORT_DESC;
+        }
+
+        $order[self::tableName() . '.updated_at'] = SORT_DESC;
+
+        $query->orderBy($order);
+
+        /** cache */
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();

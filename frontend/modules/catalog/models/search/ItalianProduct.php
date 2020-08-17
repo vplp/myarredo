@@ -189,6 +189,18 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
 
         $query->andFilterWhere(['like', ItalianProductLang::tableName() . '.title', $this->title]);
 
+        /** orderBy */
+
+        if (!empty(Yii::$app->partner)) {
+            $order['FIELD (' . self::tableName() . '.user_id, ' . Yii::$app->partner->id . ')'] = SORT_DESC;
+        }
+
+        $order[self::tableName() . '.updated_at'] = SORT_DESC;
+
+        $query->orderBy($order);
+
+        /** cache */
+
         if (Yii::$app->controller->id == 'sale-italy') {
             self::getDb()->cache(function ($db) use ($dataProvider) {
                 $dataProvider->prepare();

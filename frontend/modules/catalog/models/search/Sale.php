@@ -131,7 +131,6 @@ class Sale extends SaleModel implements BaseBackendSearchModel
                 ]);
         }
 
-
         if (isset($params[$keys['diameter']])) {
             $min = $params[$keys['diameter']][0];
             $max = $params[$keys['diameter']][1];
@@ -200,15 +199,21 @@ class Sale extends SaleModel implements BaseBackendSearchModel
 
         /** orderBy */
 
+        if (!empty(Yii::$app->partner)) {
+            $order['FIELD (' . self::tableName() . '.user_id, ' . Yii::$app->partner->id . ')'] = SORT_DESC;
+        }
+
         if (in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159, 160, 161])) {
             $query
                 ->innerJoinWith(['city'])
                 ->andFilterWhere(['NOT IN', City::tableName() . '.id', [5]]);
-            $order[] = City::tableName() . '.id ASC';
+
+            $order[City::tableName() . '.id'] = SORT_ASC;
         }
 
-        $order[] = self::tableName() . '.updated_at DESC';
-        $query->orderBy(implode(',', $order));
+        $order[self::tableName() . '.updated_at'] = SORT_DESC;
+
+        $query->orderBy($order);
 
         /** cache */
 
