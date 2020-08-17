@@ -23,7 +23,7 @@ class SendPulseController extends Controller
      */
     public function actionImportEmails()
     {
-        $this->stdout("SendPulse: start import emails. \n", Console::FG_GREEN);
+        $this->stdout("SendPulse: start actionImportEmails. \n", Console::FG_GREEN);
 
         /**
          * Import by country
@@ -90,7 +90,7 @@ class SendPulseController extends Controller
             Yii::$app->sendPulse->addEmails($bookId, $emails);
         }
 
-        $this->stdout("SendPulse: end import emails. \n", Console::FG_GREEN);
+        $this->stdout("SendPulse: end actionImportEmails. \n", Console::FG_GREEN);
     }
 
     /**
@@ -98,7 +98,7 @@ class SendPulseController extends Controller
      */
     public function actionRemoveEmails()
     {
-        $this->stdout("SendPulse: start remove emails. \n", Console::FG_GREEN);
+        $this->stdout("SendPulse: start actionRemoveEmails. \n", Console::FG_GREEN);
 
         /**
          * Remove by country
@@ -156,7 +156,7 @@ class SendPulseController extends Controller
             Yii::$app->sendPulse->removeEmails($bookId, $emails);
         }
 
-        $this->stdout("SendPulse: end remove emails. \n", Console::FG_GREEN);
+        $this->stdout("SendPulse: end actionRemoveEmails. \n", Console::FG_GREEN);
     }
 
     /**
@@ -164,7 +164,7 @@ class SendPulseController extends Controller
      */
     public function actionSendCampaign()
     {
-        $this->stdout("SendPulse: start send test campaign. \n", Console::FG_GREEN);
+        $this->stdout("SendPulse: start actionSendCampaign. \n", Console::FG_GREEN);
 
         /**
          * get order
@@ -228,7 +228,7 @@ class SendPulseController extends Controller
             }
         }
 
-        $this->stdout("SendPulse: end send test campaign. \n", Console::FG_GREEN);
+        $this->stdout("SendPulse: end actionSendCampaign. \n", Console::FG_GREEN);
     }
 
     /**
@@ -236,7 +236,7 @@ class SendPulseController extends Controller
      */
     public function actionSendCampaignSaleItaly()
     {
-        $this->stdout("SendPulse: start send test campaign. \n", Console::FG_GREEN);
+        $this->stdout("SendPulse: start actionSendCampaignSaleItaly. \n", Console::FG_GREEN);
 
         /**
          * get order
@@ -293,7 +293,7 @@ class SendPulseController extends Controller
             }
         }
 
-        $this->stdout("SendPulse: end send test campaign. \n", Console::FG_GREEN);
+        $this->stdout("SendPulse: end actionSendCampaignSaleItaly. \n", Console::FG_GREEN);
     }
 
     /**
