@@ -2,14 +2,17 @@
 
 namespace frontend\modules\catalog\controllers;
 
-use frontend\modules\catalog\widgets\filter\ProductFilter;
-use frontend\modules\catalog\widgets\filter\ProductFilterSizes;
 use Yii;
+use yii\web\Response;
+use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use frontend\components\BaseController;
-use frontend\modules\catalog\models\{Collection,
+use frontend\modules\user\models\User;
+use frontend\modules\catalog\widgets\filter\ProductFilter;
+use frontend\modules\catalog\widgets\filter\ProductFilterSizes;
+use frontend\modules\catalog\models\{
+    Collection,
     Colors,
     Product,
     Category,
@@ -22,8 +25,6 @@ use frontend\modules\catalog\models\{Collection,
     Types,
     Specification
 };
-use frontend\modules\user\models\User;
-use yii\web\Response;
 
 /**
  * Class TemplateFactoryController
@@ -181,7 +182,7 @@ class TemplateFactoryController extends BaseController
 
         $model = Product::findByAlias($product);
 
-        if ($model == null) {
+        if ($model == null || $model['factory_id'] != $factory->id) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
