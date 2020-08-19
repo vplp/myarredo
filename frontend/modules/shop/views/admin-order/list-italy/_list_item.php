@@ -5,7 +5,7 @@ use yii\helpers\{
 };
 use yii\widgets\ActiveForm;
 use frontend\modules\shop\models\{
-    Order, OrderItem
+    Order, OrderItem, OrderAnswer
 };
 use frontend\modules\catalog\models\{
     ItalianProduct, Factory
@@ -13,12 +13,19 @@ use frontend\modules\catalog\models\{
 
 /* @var $this yii\web\View */
 /* @var $modelOrder Order */
+/* @var $modelOrderAnswer OrderAnswer */
 /* @var $orderItem OrderItem */
 
 ?>
 
-<div class="hidden-order-in">
-    <div class="flex-product">
+<?php $form = ActiveForm::begin([
+    'id' => 'OrderAnswerForm',
+    'options' => ['data' => ['pjax' => true]],
+    'action' => $modelOrder->getPartnerOrderOnListUrl(),
+]) ?>
+
+<div class="hidden-order-in ordersanswer-box">
+    <div class="flex-product orderanswer-cont">
 
         <?php foreach ($modelOrder->items as $orderItem) { ?>
             <div class="basket-item-info">
@@ -35,8 +42,7 @@ use frontend\modules\catalog\models\{
                 </div>
                 <table class="char" width="100%">
                     <tr>
-                        <td><?= Yii::t('app', 'Предмет') ?></td>
-                        <td>
+                        <td colspan="2">
                             <?php if (ItalianProduct::isPublished($orderItem->product['alias'])) {
                                 echo Html::a(
                                     $orderItem->product['lang']['title'],
@@ -49,12 +55,38 @@ use frontend\modules\catalog\models\{
                         </td>
                     </tr>
                     <tr>
-                        <td><?= Yii::t('app', 'Артикул') ?></td>
-                        <td><?= $orderItem->product['article'] ?? '-' ?></td>
+                        <td colspan="2" class="spec-pad">
+                                <span class="for-ordertable">
+                                    <?= Yii::t('app', 'Артикул') ?>
+                                </span>
+                        </td>
                     </tr>
                     <tr>
-                        <td><?= Yii::t('app', 'Factory') ?></td>
-                        <td>
+                        <td colspan="2" class="spec-pad2">
+                            <?= $orderItem->product['article'] ?>
+                        </td>
+                    </tr>
+                    <tr class="noborder">
+                        <td colspan="2" class="spec-pad">
+                                <span class="for-ordertable">
+                                    <?= Yii::t('app', 'Предмет') ?>
+                                </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="spec-pad2">
+                            <?= $orderItem->product['types']['lang']['title'] ?>
+                        </td>
+                    </tr>
+                    <tr class="noborder">
+                        <td colspan="2" class="spec-pad">
+                                <span class="for-ordertable">
+                                    <?= Yii::t('app', 'Factory') ?>
+                                </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="spec-pad2">
                             <?php if ($orderItem->product['factory']['title']) {
                                 echo Html::a(
                                     $orderItem->product['factory']['title'],
@@ -65,19 +97,99 @@ use frontend\modules\catalog\models\{
                             } ?>
                         </td>
                     </tr>
-                    <tr>
-                        <td><?= Yii::t('app', 'Region') ?></td>
-                        <td><?= $orderItem->product['region']['title'] ?? '-' ?></td>
+                    <tr class="noborder">
+                        <td colspan="2" class="spec-pad">
+                                <span class="for-ordertable">
+                                    <?= Yii::t('app', 'Region') ?>
+                                </span>
+                        </td>
                     </tr>
                     <tr>
-                        <td><?= Yii::t('app', 'Цена доставки') ?></td>
-                        <td>
+                        <td colspan="2" class="spec-pad2">
+                            <?= $orderItem->product['region']['title'] ?>
+                        </td>
+                    </tr>
+                    <tr class="noborder">
+                        <td colspan="2" class="spec-pad">
+                                <span class="for-ordertable">
+                                    <?= $orderItem->product->getAttributeLabel('volume') ?>
+                                </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="spec-pad2">
+                            <?= $orderItem->product['volume'] ?>
+                        </td>
+                    </tr>
+                    <tr class="noborder">
+                        <td colspan="2" class="spec-pad">
+                                <span class="for-ordertable">
+                                    <?= $orderItem->product->getAttributeLabel('weight') ?>
+                                </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="spec-pad2">
+                            <?= $orderItem->product['weight'] ?>
+                        </td>
+                    </tr>
+
+                    <?php if (!empty($orderItem->product['specificationValue'])) { ?>
+                        <tr class="noborder">
+                            <td colspan="2" class="spec-pad">
+                                <span class="for-ordertable">
+                                    <?= Yii::t('app', 'Размеры') ?>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="spec-pad2">
+                                <?php
+                                foreach ($orderItem->product['specificationValue'] as $item) {
+                                    if ($item['specification']['parent_id'] == 4 && $item['val']) {
+                                        echo Html::beginTag('div') .
+                                            $item['specification']['lang']['title'] .
+                                            ' (' . Yii::t('app', 'см') . ')' .
+                                            ': ' .
+                                            $item['val'] .
+                                            Html::endTag('div');
+                                    }
+                                } ?>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                    <tr class="noborder">
+                        <td colspan="2" class="spec-pad">
+                            <span class="for-ordertable">
+                                <?= Yii::t('app', 'Цена доставки') ?>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
                             <?php
                             foreach ($orderItem->orderItemPrices as $price) {
                                 echo '<div><strong>' . $price['user']['profile']['lang']['name_company'] . '</strong></div>' .
                                     '<div>' . $price['user']['email'] . '</div>' .
                                     '<div><strong>' . ($price['out_of_production'] == '1' ? Yii::t('app', 'Снят с производства') : $price['price']) . '</strong></div><br>';
                             }
+                            ?>
+
+                            <?= $form
+                                ->field($orderItem->orderItemPrice, 'product_id')
+                                ->input('hidden', [
+                                    'name' => 'OrderItemPrice[' . $orderItem->product_id . '][product_id]',
+                                ])
+                                ->label(false);
+                            ?>
+                            <?= $form
+                                ->field($orderItem->orderItemPrice, 'price')
+                                ->input('text', [
+                                    'name' => 'OrderItemPrice[' . $orderItem->product_id . '][price]',
+                                    'value' => $orderItem->orderItemPrice->price ?? 0,
+                                    'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true
+                                ])
+                                ->label(false);
                             ?>
                         </td>
                     </tr>
@@ -89,25 +201,11 @@ use frontend\modules\catalog\models\{
     <div class="form-wrap">
 
         <div class="form-group">
-            <?php
-            echo Html::label($modelOrder->getAttributeLabel('comment')) .
-                Html::textarea(
-                    null,
-                    $modelOrder->comment,
-                    [
-                        'class' => 'form-control',
-                        'rows' => 5,
-                        'disabled' => true
-                    ]
-                );
 
-            if ($modelOrder->lang != 'ru-RU') {
-                $form = ActiveForm::begin([
-                    'id' => 'OrderAnswerForm',
-                    'options' => ['data' => ['pjax' => true]],
-                    'action' => Url::toRoute(['/shop/admin-order/update', 'id' => $modelOrder->id]),
-                ]);
+            <?= $form->field($modelOrder, 'comment')
+                ->textarea(['rows' => 5, 'disabled' => true]) ?>
 
+            <?php if ($modelOrder->lang != 'ru-RU') {
                 echo $form
                         ->field($modelOrder, 'admin_comment')
                         ->textarea(['rows' => 5])
@@ -120,8 +218,6 @@ use frontend\modules\catalog\models\{
                             'value' => 1
                         ]
                     );
-
-                ActiveForm::end();
             }
 
             foreach ($modelOrder->orderAnswers as $answer) {
@@ -130,7 +226,41 @@ use frontend\modules\catalog\models\{
                     '<div>' . $answer->getAnswerTime() . '</div>' .
                     '<div>' . $answer['answer'] . '</div><br>';
             } ?>
+
+            <?= $form
+                ->field($modelOrderAnswer, 'answer')
+                ->textarea(['rows' => 5,
+                    'disabled' => (!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0) ? false : true]) ?>
+
+            <?= $form
+                ->field($modelOrderAnswer, 'id')
+                ->input('hidden')
+                ->label(false) ?>
+
+            <?= $form
+                ->field($modelOrderAnswer, 'order_id')
+                ->input('hidden', ['value' => $modelOrder->id])
+                ->label(false) ?>
+
+            <?php if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) { ?>
+                <div><strong><?= Yii::t('app', 'Контактные данные продавца') ?>:</strong></div>
+                <?php foreach ($modelOrder->items as $orderItem) { ?>
+                    <div><?= Yii::t('app', 'Phone') ?>: <?= $orderItem->product['user']['profile']['phone'] ?></div>
+                    <div>Email: <?= $orderItem->product['user']['email'] ?></div>
+                <?php } ?>
+            <?php } ?>
         </div>
 
     </div>
 </div>
+<?php if (!$modelOrderAnswer->id && !$modelOrder->isArchive()) {
+    echo Html::submitButton(
+        Yii::t('app', 'Отправить ответ клиенту'),
+        [
+            'class' => 'btn btn-success action-save-answer',
+            'name' => 'action-save-answer',
+            'value' => 1
+        ]
+    );
+} ?>
+<?php ActiveForm::end(); ?>

@@ -12,7 +12,6 @@ use frontend\modules\catalog\models\{
 };
 
 /* @var $this yii\web\View */
-
 /* @var $modelOrder Order */
 /* @var $modelOrderAnswer OrderAnswer */
 /* @var $orderItem OrderItem */
@@ -28,8 +27,7 @@ use frontend\modules\catalog\models\{
 <div class="hidden-order-in ordersanswer-box">
     <div class="flex-product orderanswer-cont">
 
-        <?php
-        foreach ($modelOrder->items as $orderItem) { ?>
+        <?php foreach ($modelOrder->items as $orderItem) { ?>
             <div class="basket-item-info">
                 <div class="img-cont">
                     <?php if (ItalianProduct::isPublished($orderItem->product['alias'])) {
@@ -54,6 +52,18 @@ use frontend\modules\catalog\models\{
                             } else {
                                 echo $orderItem->product['lang']['title'];
                             } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="spec-pad">
+                                <span class="for-ordertable">
+                                    <?= Yii::t('app', 'Артикул') ?>
+                                </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="spec-pad2">
+                            <?= $orderItem->product['article'] ?>
                         </td>
                     </tr>
                     <tr class="noborder">
@@ -148,7 +158,6 @@ use frontend\modules\catalog\models\{
                             </td>
                         </tr>
                     <?php } ?>
-
 
                     <tr class="noborder">
                         <td colspan="2" class="spec-pad">

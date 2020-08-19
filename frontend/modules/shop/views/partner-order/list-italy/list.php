@@ -3,7 +3,6 @@
 use yii\helpers\{
     Html, Url
 };
-//
 use frontend\modules\shop\models\Order;
 use frontend\modules\news\widgets\news\NewsListForPartners;
 
