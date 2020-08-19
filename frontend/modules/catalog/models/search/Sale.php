@@ -199,7 +199,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
 
         /** orderBy */
 
-        if (Yii::$app->partner != null) {
+        if (isset(Yii::$app->partner) && Yii::$app->partner->id) {
             $order['FIELD (' . self::tableName() . '.user_id, ' . Yii::$app->partner->id . ')'] = SORT_DESC;
         }
 
