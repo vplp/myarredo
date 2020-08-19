@@ -39,7 +39,7 @@ class PartnerOrderController extends BaseController
                             'delivery-italian-orders',
                             'pjax-save-order-answer'
                         ],
-                        'roles' => ['partner'],
+                        'roles' => ['partner', 'admin'],
                     ],
                     [
                         'allow' => true,
@@ -199,7 +199,7 @@ class PartnerOrderController extends BaseController
 
                         $modelOrderItemPrice->order_id = $modelOrder->id;
                         $modelOrderItemPrice->user_id = Yii::$app->getUser()->getId();
-                        $modelOrderItemPrice->product_id = $product_id; // intval($modelPrice['product_id']);
+                        $modelOrderItemPrice->product_id = $product_id;
                         $modelOrderItemPrice->price = isset($modelPrice['price']) ? intval($modelPrice['price']) : 0;
                         $modelOrderItemPrice->out_of_production = $modelPrice['out_of_production'] ?? 0;
 

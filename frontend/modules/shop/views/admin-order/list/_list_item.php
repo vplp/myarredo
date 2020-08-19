@@ -5,7 +5,7 @@ use yii\helpers\{
 };
 use yii\widgets\ActiveForm;
 use frontend\modules\shop\models\{
-    Order, OrderItem
+    Order, OrderItem, OrderAnswer
 };
 use frontend\modules\catalog\models\{
     Product, Factory
@@ -13,16 +13,22 @@ use frontend\modules\catalog\models\{
 
 /* @var $this yii\web\View */
 /* @var $modelOrder Order */
+/* @var $modelOrderAnswer OrderAnswer */
 /* @var $orderItem OrderItem */
 
 ?>
 
-<div class="hidden-order-in">
-    <div class="flex-product">
+<?php $form = ActiveForm::begin([
+    'options' => ['data' => ['pjax' => true]],
+    'action' => $modelOrder->getPartnerOrderOnListUrl(),
+]); ?>
+
+<div class="hidden-order-in ordersanswer-box">
+    <div class="flex-product orderanswer-cont">
+
         <?php if ($modelOrder->items) {
             foreach ($modelOrder->items as $orderItem) { ?>
                 <div class="basket-item-info">
-
                     <div class="img-cont">
                         <?= Html::a(
                             Html::img(Product::getImageThumb($orderItem->product['image_link'])),
@@ -32,8 +38,7 @@ use frontend\modules\catalog\models\{
                     </div>
                     <table class="char" width="100%">
                         <tr>
-                            <td><?= Yii::t('app', 'Предмет') ?></td>
-                            <td>
+                            <td colspan="2">
                                 <?= Html::a(
                                     $orderItem->product['lang']['title'],
                                     Product::getUrl($orderItem->product[Yii::$app->languages->getDomainAlias()])
@@ -41,29 +46,79 @@ use frontend\modules\catalog\models\{
                             </td>
                         </tr>
                         <tr>
-                            <td><?= Yii::t('app', 'Артикул') ?></td>
-                            <td>
-                                <?= $orderItem->product['article'] ?>
+                            <td colspan="2" class="spec-pad">
+                                <span class="for-ordertable">
+                                    <?= Yii::t('app', 'Артикул') ?>
+                                </span>
                             </td>
                         </tr>
                         <tr>
-                            <td><?= Yii::t('app', 'Factory') ?></td>
-                            <td>
+                            <td colspan="2" class="spec-pad2">
+                                <?= $orderItem->product['article'] ?>
+                            </td>
+                        </tr>
+                        <tr class="noborder">
+                            <td colspan="2" class="spec-pad">
+                                <span class="for-ordertable">
+                                    <?= Yii::t('app', 'Factory') ?>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="spec-pad2">
                                 <?= Html::a(
                                     $orderItem->product['factory']['title'],
                                     Factory::getUrl($orderItem->product['factory']['alias'])
                                 ); ?>
                             </td>
                         </tr>
-                        <tr>
-                            <td><?= Yii::t('app', 'Цена для клиента') ?></td>
-                            <td>
+                        <tr class="noborder">
+                            <td colspan="2" class="spec-pad">
+                            <span class="for-ordertable">
+                                <?= Yii::t('app', 'Цена для клиента') ?>
+                            </span>
+                            </td>
+                        </tr>
+                        <tr class="orderlist-price-tr">
+                            <td colspan="2">
                                 <?php
                                 foreach ($orderItem->orderItemPrices as $price) {
                                     echo '<div><strong>' . $price['user']['profile']['lang']['name_company'] . '</strong></div>' .
                                         '<div>' . $price['user']['email'] . '</div>' .
                                         '<div><strong>' . ($price['out_of_production'] == '1' ? Yii::t('app', 'Снят с производства') : $price['price']) . '</strong></div><br>';
                                 }
+                                ?>
+
+                                <?= $form
+                                    ->field($orderItem->orderItemPrice, 'product_id')
+                                    ->input('hidden', [
+                                        'name' => 'OrderItemPrice[' . $orderItem->product_id . '][product_id]',
+                                        'class' => 'order-productid-hfield'
+                                    ])
+                                    ->label(false);
+                                ?>
+                                <?= $form
+                                    ->field($orderItem->orderItemPrice, 'price')
+                                    ->input('text', [
+                                        'name' => 'OrderItemPrice[' . $orderItem->product_id . '][price]',
+                                        'value' => $orderItem->orderItemPrice->price ?? 0,
+                                        'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true,
+                                        'class' => 'orderlist-price-field'
+                                    ])
+                                    ->label(false);
+                                ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="order-list-td">
+                                <?= $form
+                                    ->field($orderItem->orderItemPrice, 'out_of_production')
+                                    ->checkbox([
+                                        'id' => 'orderitemprice-out_of_production' . $orderItem->id,
+                                        'name' => 'OrderItemPrice[' . $orderItem->product_id . '][out_of_production]',
+                                        'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true,
+                                        'class' => 'field-orderitemprice-out_of_production outof-prod-checkbox'
+                                    ], false);
                                 ?>
                             </td>
                         </tr>
@@ -103,7 +158,7 @@ use frontend\modules\catalog\models\{
             <?php }
         } else {
             echo Yii::t('app', 'Клиент оставил данную заявку, так как не нашел то что искал на сайте.');
-        }  ?>
+        } ?>
 
         <?php if ($modelOrder->image_link) { ?>
             <div class="basket-item-info">
@@ -115,51 +170,53 @@ use frontend\modules\catalog\models\{
 
     </div>
     <div class="form-wrap">
-
         <div class="form-group">
-            <?php
-            echo Html::label($modelOrder->getAttributeLabel('comment')) .
-                Html::textarea(
-                    null,
-                    $modelOrder->comment,
-                    [
-                        'class' => 'form-control',
-                        'rows' => 5,
-                        'disabled' => true
-                    ]
-                );
 
-            if ($modelOrder->lang != 'ru-RU') {
-                $form = ActiveForm::begin([
-                    'id' => 'OrderAnswerForm',
-                    'options' => ['data' => ['pjax' => true]],
-                    'action' => Url::toRoute(['/shop/admin-order/update', 'id' => $modelOrder->id]),
-                ]);
+            <?= $form->field($modelOrder, 'comment')
+                ->textarea(['rows' => 5, 'disabled' => true]) ?>
 
-                echo $form
-                        ->field($modelOrder, 'admin_comment')
-                        ->textarea(['rows' => 5])
-
-                    . Html::submitButton(
-                        Yii::t('app', 'Save'),
-                        [
-                            'class' => 'btn btn-success',
-                            'name' => 'action-save-admin-comment',
-                            'value' => 1
-                        ]
-                    );
-
-                ActiveForm::end();
-            }
-
-            foreach ($modelOrder->orderAnswers as $answer) {
+            <?php foreach ($modelOrder->orderAnswers as $answer) {
                 echo '<div><strong>' . $answer['user']['profile']['lang']['name_company'] . '</strong></div>' .
                     '<div>' . $answer['user']['email'] . '</div>' .
                     '<div>' . $answer->getAnswerTime() . '</div>' .
                     '<div>' . $answer['answer'] . '</div><br>';
-            }
-            ?>
-        </div>
+            } ?>
 
+            <?php if ($modelOrder->lang != 'ru-RU') {
+                echo $form
+                    ->field($modelOrder, 'admin_comment')
+                    ->textarea(['rows' => 5]);
+            } ?>
+
+            <?= $form
+                ->field($modelOrderAnswer, 'answer')
+                ->textarea([
+                    'rows' => 5,
+                    'disabled' => (!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0) ? false : true
+                ]) ?>
+
+            <?= $form
+                ->field($modelOrderAnswer, 'id')
+                ->input('hidden')
+                ->label(false) ?>
+
+            <?= $form
+                ->field($modelOrderAnswer, 'order_id')
+                ->input('hidden', ['value' => $modelOrder->id])
+                ->label(false) ?>
+        </div>
     </div>
 </div>
+
+<?php if (!$modelOrderAnswer->id && !$modelOrder->isArchive()) {
+    echo Html::submitButton(
+        Yii::t('app', 'Отправить ответ клиенту'),
+        [
+            'class' => 'btn btn-success action-save-answer',
+            'name' => 'action-save-answer',
+            'value' => 1
+        ]
+    );
+} ?>
+
+<?php ActiveForm::end(); ?>

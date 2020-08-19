@@ -4,8 +4,6 @@ use yii\helpers\{
     Html, Url
 };
 use yii\widgets\ActiveForm;
-
-//
 use frontend\modules\shop\models\{
     Order, OrderItem, OrderAnswer
 };
@@ -42,7 +40,6 @@ if ($user->profile->getPossibilityToAnswer($modelOrder->country_id)) { ?>
                         : $factoryDealersId;
                     ?>
                     <div class="basket-item-info">
-
                         <div class="img-cont">
                             <?= Html::a(
                                 Html::img(Product::getImageThumb($orderItem->product['image_link'])),
@@ -61,12 +58,14 @@ if ($user->profile->getPossibilityToAnswer($modelOrder->country_id)) { ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td colspan="2" class="spec-pad">
                                 <span class="for-ordertable">
                                     <?= Yii::t('app', 'Артикул') ?>
                                 </span>
                                 </td>
-                                <td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="spec-pad2">
                                     <?= $orderItem->product['article'] ?>
                                 </td>
                             </tr>
