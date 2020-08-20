@@ -991,4 +991,34 @@ class CatalogProductController extends Controller
 
         $this->stdout("GenerateTitle Product: finish. \n", Console::FG_GREEN);
     }
+
+    /**
+     * @param string $mark
+     * @throws Exception
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionGenerateAlias()
+    {
+        $this->stdout("actionGenerateAlias: start. \n", Console::FG_GREEN);
+
+        $models = Product::find()
+            ->andFilterWhere([
+                'mark3' => '0',
+            ])
+            ->limit(200)
+            ->orderBy(Product::tableName() . '.id ASC')
+            ->all();
+
+        foreach ($models as $model) {
+            $model->setScenario('setAlias');
+            $model->mark3 = '1';
+
+            if ($model->save()) {
+                $this->stdout("generate ID = " . $model->id . " \n", Console::FG_GREEN);
+            }
+        }
+
+        $this->stdout("actionGenerateAlias: finish. \n", Console::FG_GREEN);
+    }
 }

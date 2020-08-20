@@ -243,7 +243,7 @@ class Product extends ActiveRecord implements iProduct
             'in_stock' => ['in_stock'],
             'position' => ['position'],
             'setImages' => ['image_link', 'gallery_image'],
-            'setAlias' => ['alias', 'alias_en', 'alias_it', 'alias_de', 'mark'],
+            'setAlias' => ['alias', 'alias_en', 'alias_it', 'alias_de', 'mark3'],
             'mark' => ['mark'],
             'mark1' => ['mark1'],
             'mark2' => ['mark2'],
