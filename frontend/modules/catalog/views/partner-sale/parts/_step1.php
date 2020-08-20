@@ -5,7 +5,6 @@ use yii\helpers\{
     Html, Url
 };
 use kartik\widgets\Select2;
-//
 use frontend\modules\catalog\models\{
     Sale, SaleLang, Category, Factory, Types, SubTypes, Specification, Colors
 };
@@ -30,13 +29,14 @@ use frontend\modules\location\models\{
         <!-- steps box end -->
 
         <?php $form = ActiveForm::begin([
+            'id' => 'formPartnerSaleCreate',
             'action' => ($model->isNewRecord)
                 ? Url::toRoute(['/catalog/partner-sale/create'])
                 : Url::toRoute(['/catalog/partner-sale/update', 'id' => $model->id]),
             'fieldConfig' => [
                 'template' => "{label}<div class=\"col-sm-9\">{input}</div>\n{hint}\n{error}",
                 'labelOptions' => ['class' => 'col-sm-3 col-form-label'],
-            ],
+            ]
         ]); ?>
 
         <?= $form->field($modelLang, 'title') ?>
@@ -63,7 +63,7 @@ use frontend\modules\location\models\{
             ->field($model, 'category_ids')
             ->widget(Select2::class, [
                 'data' => Category::dropDownList([
-                    'type_id' => $model->isNewRecord ? 0 : $model['catalog_type_id']
+                    'type_id' => $model->isNewRecord ? null : $model['catalog_type_id']
                 ]),
                 'options' => [
                     'placeholder' => Yii::t('app', 'Select option'),
@@ -111,7 +111,7 @@ use frontend\modules\location\models\{
                     }
                 }
                 ?>
-                <div class="form-group row">
+                <div class="form-group field-sale-specification-value-<?= $Specification['id'] ?>">
                     <?= Html::label(
                         $Specification['lang']['title'],
                         null,
@@ -127,6 +127,7 @@ use frontend\modules\location\models\{
                             ]
                         ]) ?>
                     </div>
+                    <p class="help-block help-block-error" style="display: none"><?= Yii::t('yii', '{attribute} cannot be blank.', ['attribute' => $Specification['lang']['title']]) ?></p>
                 </div>
             <?php } ?>
         <?php } ?>
@@ -273,6 +274,24 @@ $('select#sale-country_id').change(function(){
         select.html(data.options);
         select.selectpicker("refresh");
     });
+});
+
+$('.field-sale-specification-value-9').addClass('required');
+
+$('body').on('beforeSubmit', 'form#formPartnerSaleCreate', function () {
+    var form = $(this);
+
+    if ($('.field-sale-specification-value-9').find('option:selected').val()) {
+        $('.field-sale-specification-value-9').addClass('has-success').removeClass('has-error');
+        $('.field-sale-specification-value-9').find('.help-block').hide();
+    } else {
+        $('.field-sale-specification-value-9').addClass('has-error');
+        $('.field-sale-specification-value-9').find('.help-block').show();
+    }
+    
+    if (form.find('.has-error').length) {
+        return false;
+    }
 });
 JS;
 

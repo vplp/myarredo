@@ -4,7 +4,6 @@ namespace frontend\modules\catalog\models;
 
 use Yii;
 use yii\helpers\Url;
-//
 use frontend\components\ImageResize;
 use frontend\modules\catalog\models\{
     Colors, Sale as SaleModel, SaleLang, SubTypes, Factory

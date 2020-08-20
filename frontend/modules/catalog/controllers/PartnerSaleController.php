@@ -5,17 +5,14 @@ namespace frontend\modules\catalog\controllers;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-//
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
     Sale, SaleLang, search\Sale as filterSaleModel
 };
-//
 use thread\actions\{
     CreateWithLang, ListModel, AttributeSwitch
 };
 use frontend\actions\UpdateWithLang;
-//
 use common\actions\upload\{
     DeleteAction, UploadAction
 };

@@ -6,16 +6,10 @@ use Yii;
 use yii\helpers\{
     ArrayHelper
 };
-use yii\behaviors\AttributeBehavior;
-
-//
-use voskobovich\behaviors\ManyToManyBehavior;
-
-//
-use thread\app\base\models\ActiveRecord;
-
-//
 use common\helpers\Inflector;
+use yii\behaviors\AttributeBehavior;
+use voskobovich\behaviors\ManyToManyBehavior;
+use thread\app\base\models\ActiveRecord;
 use common\modules\location\models\{
     City, Country
 };
@@ -119,6 +113,7 @@ class Sale extends ActiveRecord
     {
         return [
             [['country_id', 'city_id'], 'required'],
+            [['category_ids', 'catalog_type_id', 'colors_ids'], 'required', 'on' => ['frontend']],
             [
                 [
                     'country_id',
