@@ -25,7 +25,6 @@ use yii\helpers\{
                 'rows' => 5
             ]) ?>
         </div>
-
         <div class="form-group">
             <?= Html::label(
                 $modelOrder->orderAnswer->getAttributeLabel('answer'),
@@ -38,14 +37,6 @@ use yii\helpers\{
                 'rows' => 5
             ]) ?>
         </div>
-        <div class="form-group">
-            <div><?= Yii::t('app', 'Response time') ?>:</div>
-            <?php
-            foreach ($modelOrder->orderAnswers as $key => $answer) {
-                echo '<div>' . ($key + 1) . ') ' . $answer->getAnswerTime() . '</div>';
-            } ?>
-        </div>
-
     </div>
 
     <div class="flex-product orderanswer-cont">
