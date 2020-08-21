@@ -28,6 +28,9 @@ use common\modules\shop\models\{
  *
  * @property integer $id
  * @property string $alias
+ * @property string $alias_en
+ * @property string $alias_it
+ * @property string $alias_de
  * @property integer $country_id
  * @property integer $region_id
  * @property integer $city_id
@@ -127,6 +130,36 @@ class ItalianProduct extends ActiveRecord
                     return Inflector::slug($this->alias, '_');
                 },
             ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias_en',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_en',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias_en, '_');
+                },
+            ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias_it',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_it',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias_it, '_');
+                },
+            ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias_de',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_de',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias_de, '_');
+                },
+            ]
         ]);
     }
 
@@ -197,7 +230,7 @@ class ItalianProduct extends ActiveRecord
                 [
                     'phone',
                     'email',
-                    'alias',
+                    'alias', 'alias_en', 'alias_it', 'alias_de',
                     'factory_name',
                     'article',
                     'image_link',
@@ -211,7 +244,7 @@ class ItalianProduct extends ActiveRecord
             ],
             [['email'], 'email'],
             [['gallery_image'], 'string', 'max' => 1024],
-            [['alias'], 'unique'],
+            [['alias', 'alias_en', 'alias_it', 'alias_de'], 'unique'],
             [['factory_name',], 'default', 'value' => ''],
             [['catalog_type_id', 'factory_id', 'region_id', 'position'], 'default', 'value' => '0'],
             [['currency'], 'default', 'value' => 'EUR'],
@@ -248,6 +281,7 @@ class ItalianProduct extends ActiveRecord
             'mark3' => ['mark3'],
             'setStatus' => ['status'],
             'create_mode' => ['create_mode'],
+            'setAlias' => ['alias', 'alias_en', 'alias_it', 'alias_de', 'mark3'],
             'backend' => [
                 'country_id',
                 'region_id',
@@ -263,6 +297,9 @@ class ItalianProduct extends ActiveRecord
                 'gallery_image',
                 'file_link',
                 'alias',
+                'alias_en',
+                'alias_it',
+                'alias_de',
                 'price',
                 'price_new',
                 'price_without_technology',
@@ -305,6 +342,9 @@ class ItalianProduct extends ActiveRecord
                 'gallery_image',
                 'file_link',
                 'alias',
+                'alias_en',
+                'alias_it',
+                'alias_de',
                 'price',
                 'price_new',
                 'price_without_technology',
@@ -351,6 +391,9 @@ class ItalianProduct extends ActiveRecord
             'gallery_image' => Yii::t('app', 'Gallery image'),
             'file_link' => Yii::t('app', 'Project drawing'),
             'alias' => Yii::t('app', 'Alias'),
+            'alias_en' => 'Alias for en',
+            'alias_it' => 'Alias for it',
+            'alias_de' => 'Alias for de',
             'price' => Yii::t('app', 'Price'),
             'price_new' => Yii::t('app', 'New price'),
             'price_without_technology' => Yii::t('app', 'Price without technology'),
@@ -398,6 +441,36 @@ class ItalianProduct extends ActiveRecord
 
             if ($this->id) {
                 $this->alias = $this->id . ' ' . $this->alias;
+            }
+        }
+
+        if (/*$this->alias_en == '' && */in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+            $this->alias_en = (!empty($this->types) ? $this->types->alias_en : '')
+                . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
+                . (($this->article) ? ' ' . $this->article : ' ' . uniqid());
+
+            if ($this->id) {
+                $this->alias_en = $this->id . ' ' . $this->alias_en;
+            }
+        }
+
+        if (/*$this->alias_it == '' && */in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+            $this->alias_it = (!empty($this->types) ? $this->types->alias_it : '')
+                . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
+                . (($this->article) ? ' ' . $this->article : ' ' . uniqid());
+
+            if ($this->id) {
+                $this->alias_it = $this->id . ' ' . $this->alias_it;
+            }
+        }
+
+        if (/*$this->alias_de == '' && */in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+            $this->alias_de = (!empty($this->types) ? $this->types->alias_de : '')
+                . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
+                . (($this->article) ? ' ' . $this->article : ' ' . uniqid());
+
+            if ($this->id) {
+                $this->alias_de = $this->id . ' ' . $this->alias_de;
             }
         }
 
