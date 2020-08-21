@@ -7812,6 +7812,10 @@ h1 {
 .itprodform-box h1 {
   padding-left: 25px;
 }
+.itprodform-box .form-group.required label::before {
+  content: '*';
+  color: #c82333;
+}
 .add-itprod-content {
   width: 100%;
   padding-right: 20px;
