@@ -77,7 +77,7 @@ $this->title = $this->context->title;
                     'смотреть полный<div>Каталог</div>',
                     Yii::$app->catalogFilter->createUrl(
                         [],
-                        ['/catalog/template-factory/catalog', 'alias' => $model[Yii::$app->languages->getDomainAlias()]]
+                        ['/catalog/template-factory/catalog', 'alias' => $model['alias']]
                     ),
                     ['class' => 'full-cat']
                 ); ?>
