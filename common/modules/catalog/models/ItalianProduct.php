@@ -434,7 +434,7 @@ class ItalianProduct extends ActiveRecord
      */
     public function beforeSave($insert)
     {
-        if ($this->alias == '' && in_array($this->scenario, ['backend', 'frontend'])) {
+        if (/*$this->alias == '' && */ in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
             $this->alias = (!empty($this->types) ? $this->types->alias : '')
                 . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
                 . (($this->article) ? ' ' . $this->article : ' ' . uniqid());
@@ -444,7 +444,7 @@ class ItalianProduct extends ActiveRecord
             }
         }
 
-        if (/*$this->alias_en == '' && */in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+        if (/*$this->alias_en == '' && */ in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
             $this->alias_en = (!empty($this->types) ? $this->types->alias_en : '')
                 . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
                 . (($this->article) ? ' ' . $this->article : ' ' . uniqid());
@@ -454,7 +454,7 @@ class ItalianProduct extends ActiveRecord
             }
         }
 
-        if (/*$this->alias_it == '' && */in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+        if (/*$this->alias_it == '' && */ in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
             $this->alias_it = (!empty($this->types) ? $this->types->alias_it : '')
                 . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
                 . (($this->article) ? ' ' . $this->article : ' ' . uniqid());
@@ -464,7 +464,7 @@ class ItalianProduct extends ActiveRecord
             }
         }
 
-        if (/*$this->alias_de == '' && */in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+        if (/*$this->alias_de == '' && */ in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
             $this->alias_de = (!empty($this->types) ? $this->types->alias_de : '')
                 . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
                 . (($this->article) ? ' ' . $this->article : ' ' . uniqid());
