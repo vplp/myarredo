@@ -326,6 +326,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
 
                                             <?= $this->render('@app/modules/shop/views/admin-order/list/_list_item', [
                                                 'modelOrder' => $modelOrder,
+                                                'modelOrderAnswer' => $modelOrder->orderAnswer,
                                             ]) ?>
 
                                         </div>
