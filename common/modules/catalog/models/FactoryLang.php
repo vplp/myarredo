@@ -18,6 +18,7 @@ use common\modules\catalog\Catalog;
  * @property string $h1
  * @property string $meta_title
  * @property string $meta_desc
+ * @property string $working_conditions
  *
  * @package common\modules\catalog\models
  */
@@ -47,7 +48,7 @@ class FactoryLang extends ActiveRecordLang
         return ArrayHelper::merge(parent::rules(), [
             ['rid', 'exist', 'targetClass' => Factory::class, 'targetAttribute' => 'id'],
             [['h1', 'meta_title', 'meta_desc'], 'string', 'max' => 255],
-            [['description', 'content', 'contacts'], 'string'],
+            [['description', 'content', 'contacts', 'working_conditions'], 'string'],
         ]);
     }
 
@@ -57,7 +58,7 @@ class FactoryLang extends ActiveRecordLang
     public function scenarios()
     {
         return [
-            'backend' => ['h1', 'meta_title', 'meta_desc', 'description', 'content', 'contacts'],
+            'backend' => ['h1', 'meta_title', 'meta_desc', 'description', 'content', 'contacts', 'working_conditions'],
         ];
     }
 
@@ -73,6 +74,7 @@ class FactoryLang extends ActiveRecordLang
             'h1' => 'H1',
             'meta_title' => 'Meta title',
             'meta_desc' => 'Meta desc',
+            'working_conditions' => Yii::t('app', 'Условия работы')
         ];
     }
 }

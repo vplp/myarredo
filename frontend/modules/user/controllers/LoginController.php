@@ -7,7 +7,6 @@ use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
-//
 use frontend\components\BaseController;
 use frontend\modules\user\models\form\SignInForm;
 
@@ -70,7 +69,8 @@ class LoginController extends BaseController
             Yii::$app->params['themes']['language'] = $user->profile->preferred_language;
             Yii::$app->language = $user->profile->preferred_language;
 
-            return $this->redirect(Url::toRoute(['/user/profile/index']));
+            //return $this->redirect(Url::toRoute(['/user/profile/index']));
+            return $this->redirect(Yii::$app->request->referrer);
         } else {
             return $this->render('index', [
                 'model' => $model,

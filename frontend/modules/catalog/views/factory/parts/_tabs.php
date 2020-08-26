@@ -93,6 +93,14 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
             </a>
         </li>
     <?php } ?>
+
+    <?php if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'partner'])) { ?>
+        <li>
+            <a data-toggle="tab" href="#working-conditions">
+                <?= Yii::t('app', 'Условия работы') ?>
+            </a>
+        </li>
+    <?php } ?>
 </ul>
 
 <div class="tab-content">
@@ -343,4 +351,9 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         </div>
     <?php } ?>
 
+    <?php if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'partner'])) { ?>
+        <div id="working-conditions" class="tab-pane fade">
+            <?= $model->lang->working_conditions ?>
+        </div>
+    <?php } ?>
 </div>

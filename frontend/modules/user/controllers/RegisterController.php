@@ -77,7 +77,8 @@ class RegisterController extends BaseController
             $status = $model->addUser();
 
             if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
-                return $this->redirect(Url::toRoute('/user/profile/index'));
+                //return $this->redirect(Url::toRoute('/user/profile/index'));
+                return $this->redirect(Yii::$app->request->referrer);
             }
 
             if ($status === true) {
@@ -263,7 +264,8 @@ class RegisterController extends BaseController
                     if (!Yii::$app->session->has("newUserFactory")) {
                         Yii::$app->session->set("newUserFactory", true);
                     }
-                    return $this->redirect(Url::toRoute('/user/profile/index'));
+                    //return $this->redirect(Url::toRoute('/user/profile/index'));
+                    return $this->redirect(Yii::$app->request->referrer);
                 }
 
                 Yii::$app->session->setFlash('success', Yii::$app->param->getByName('USER_FACTORY_REG_CONGRATULATIONS'));

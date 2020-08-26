@@ -12,9 +12,7 @@ use backend\modules\catalog\models\{
  * @var $form ActiveForm
  */
 
-$visible = in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])
-    ? true
-    : false;
+$visible = (in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])) ? true : false;
 
 $form = ActiveForm::begin();
 
@@ -86,6 +84,14 @@ echo Tabs::widget([
         [
             'label' => 'Meta',
             'content' => $this->render('parts/_meta', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
+        [
+            'label' => Yii::t('app', 'Условия работы'),
+            'content' => $this->render('parts/_working_conditions', [
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang
