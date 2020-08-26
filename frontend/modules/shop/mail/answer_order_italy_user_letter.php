@@ -43,14 +43,14 @@ use frontend\modules\shop\models\{
                     <div style="float: left;">
                         <?= Html::a(
                             $item->product['lang']['title'],
-                            ItalianProduct::getUrl($item->product['alias']),
+                            ItalianProduct::getUrl($item->product[Yii::$app->languages->getDomainAlias()]),
                             ['style' => 'width: 140px; max-height: 100px;']
                         ); ?>
                     </div>
                     <div style="float: left; margin: 10px 30px;">
                         <?= Html::a(
                             $item->product['lang']['title'],
-                            ItalianProduct::getUrl($item->product['alias']),
+                            ItalianProduct::getUrl($item->product[Yii::$app->languages->getDomainAlias()]),
                             ['style' => 'font-weight:bold; color: #000; text-transform: uppercase; text-decoration: underline;']
                         ); ?>
                         <br>

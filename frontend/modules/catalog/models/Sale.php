@@ -418,7 +418,7 @@ class Sale extends \common\modules\catalog\models\Sale
         if (isset($params[$keys['colors']])) {
             $query
                 ->innerJoinWith(["colors"])
-                ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
+                ->andFilterWhere(['IN', Colors::tableName() . '.' . Yii::$app->languages->getDomainAlias(), $params[$keys['colors']]]);
         }
 
         if (isset($params['country'])) {

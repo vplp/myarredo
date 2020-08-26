@@ -153,7 +153,7 @@ $this->title = $this->context->title;
 
                                             $array[] = [
                                                 'title' => $item['specification']['lang']['title'],
-                                                'url' => Yii::$app->catalogFilter->createUrl($params, ['/catalog/sale/list'])
+                                                'url' => Yii::$app->catalogFilter->createUrl($params, ['/catalog/sale-italy/list'])
                                             ];
                                         }
                                     }

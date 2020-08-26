@@ -18,7 +18,7 @@ use frontend\modules\catalog\models\ItalianProduct;
         <?php if (ItalianProduct::isPublished($orderItem->product['alias'])) {
             echo Html::a(
                 Html::img(ItalianProduct::getImageThumb($orderItem->product['image_link'])),
-                ItalianProduct::getUrl($orderItem->product['alias']),
+                ItalianProduct::getUrl($orderItem->product[Yii::$app->languages->getDomainAlias()]),
                 ['target' => '_blank']
             );
         } else {
@@ -31,7 +31,7 @@ use frontend\modules\catalog\models\ItalianProduct;
                 <?php if (ItalianProduct::isPublished($orderItem->product['alias'])) {
                     Html::a(
                         $orderItem->product['lang']['title'],
-                        ItalianProduct::getUrl($orderItem->product['alias']),
+                        ItalianProduct::getUrl($orderItem->product[Yii::$app->languages->getDomainAlias()]),
                         ['class' => 'productlink']
                     );
                 } else {

@@ -244,7 +244,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                     echo Html::beginTag('li') .
                         Html::a(
                             Html::tag('span', $item['lang']['title'], ['class' => 'for-catalog-list']),
-                            ItalianProduct::getUrl($item['alias']),
+                            ItalianProduct::getUrl($item[Yii::$app->languages->getDomainAlias()]),
                             ['target' => '_blank']
                         ) .
                         Html::endTag('li');

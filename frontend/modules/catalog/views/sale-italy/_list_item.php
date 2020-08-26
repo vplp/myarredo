@@ -8,7 +8,7 @@ use frontend\modules\catalog\models\ItalianProduct;
 ?>
 
 <?= Html::beginTag('a', [
-    'href' => ItalianProduct::getUrl($model['alias']),
+    'href' => ItalianProduct::getUrl($model[Yii::$app->languages->getDomainAlias()]),
     'class' => 'one-prod-tile',
 ]) ?>
 

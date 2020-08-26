@@ -8,7 +8,6 @@ use yii\helpers\{
 };
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
-//
 use frontend\actions\UpdateWithLang;
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
@@ -16,11 +15,9 @@ use frontend\modules\catalog\models\{
 };
 use frontend\modules\payment\models\Payment;
 use frontend\modules\location\models\Currency;
-//
 use common\actions\upload\{
     DeleteAction, UploadAction
 };
-//
 use thread\actions\{
     CreateWithLang, ListModel, AttributeSwitch
 };

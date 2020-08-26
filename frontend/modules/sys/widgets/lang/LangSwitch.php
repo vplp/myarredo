@@ -7,7 +7,7 @@ use yii\base\Widget;
 use yii\helpers\Html;
 use frontend\modules\sys\models\Language;
 use frontend\modules\catalog\models\{
-    Types, Category, Specification, Colors, Product
+    Types, Category, Specification, Colors, Product, ItalianProduct
 };
 
 /**
@@ -122,6 +122,9 @@ class LangSwitch extends Widget
                 if (Yii::$app->controller->id == 'product') {
                     $model = Product::findByAlias(Yii::$app->request->get('alias'));
                     $path = Product::getUrl($model['alias_' . $lang['alias']], false);
+                } elseif (Yii::$app->controller->id == 'sale-italy') {
+                    $model = ItalianProduct::findByAlias(Yii::$app->request->get('alias'));
+                    $path = ItalianProduct::getUrl($model['alias_' . $lang['alias']], false);
                 }
 
                 $path = str_replace('/' . $this->current['alias'], '', $path);
@@ -175,6 +178,9 @@ class LangSwitch extends Widget
                 if (Yii::$app->controller->id == 'product') {
                     $model = Product::findByAlias(Yii::$app->request->get('alias'));
                     $path = Product::getUrl($model['alias'], false);
+                } elseif (Yii::$app->controller->id == 'sale-italy') {
+                    $model = ItalianProduct::findByAlias(Yii::$app->request->get('alias'));
+                    $path = ItalianProduct::getUrl($model['alias'], false);
                 }
 
                 $path = str_replace('/' . $this->current['alias'], '', $path);
@@ -228,6 +234,9 @@ class LangSwitch extends Widget
                 if (Yii::$app->controller->id == 'product') {
                     $model = Product::findByAlias(Yii::$app->request->get('alias'));
                     $path = Product::getUrl($model['alias'], false);
+                } elseif (Yii::$app->controller->id == 'sale-italy') {
+                    $model = ItalianProduct::findByAlias(Yii::$app->request->get('alias'));
+                    $path = ItalianProduct::getUrl($model['alias'], false);
                 }
 
                 $path = str_replace('/' . $this->current['alias'], '', $path);

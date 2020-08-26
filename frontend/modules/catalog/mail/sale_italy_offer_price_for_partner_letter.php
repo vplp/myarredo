@@ -38,7 +38,7 @@ use frontend\modules\catalog\models\{
             <div style="float: left; margin: 10px 30px;">
                 <?= Html::a(
                     $modelSale->getTitle(),
-                    ItalianProduct::getUrl($modelSale['alias']),
+                    ItalianProduct::getUrl($modelSale[Yii::$app->languages->getDomainAlias()]),
                     ['style' => 'font-weight:bold; color: #000; text-transform: uppercase; text-decoration: underline;']
                 ) ?>
                 <br>

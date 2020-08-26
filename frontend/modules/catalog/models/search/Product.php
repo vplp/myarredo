@@ -332,7 +332,7 @@ class Product extends ProductModel
         if (isset($params[$keys['colors']])) {
             $query
                 ->innerJoinWith(["colors"])
-                ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
+                ->andFilterWhere(['IN', Colors::tableName() . '.' . Yii::$app->languages->getDomainAlias(), $params[$keys['colors']]]);
         }
 
         $query->select(ProductModel::tableName() . '.id');

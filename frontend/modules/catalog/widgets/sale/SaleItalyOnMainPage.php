@@ -34,6 +34,9 @@ class SaleItalyOnMainPage extends Widget
                 ->select([
                     ItalianProduct::tableName() . '.id',
                     ItalianProduct::tableName() . '.alias',
+                    ItalianProduct::tableName() . '.alias_en',
+                    ItalianProduct::tableName() . '.alias_it',
+                    ItalianProduct::tableName() . '.alias_de',
                     ItalianProduct::tableName() . '.image_link',
                     ItalianProduct::tableName() . '.factory_id',
                     ItalianProduct::tableName() . '.bestseller',

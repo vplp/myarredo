@@ -61,7 +61,7 @@ $this->title = $this->context->title;
                                             /** @var $model OrderItem */
                                             return Html::a(
                                                 $model['product']['title'],
-                                                ItalianProduct::getUrl($model['product']['alias']),
+                                                ItalianProduct::getUrl($model['product'][Yii::$app->languages->getDomainAlias()]),
                                                 ['target' => '_blank']
                                             );
                                         },

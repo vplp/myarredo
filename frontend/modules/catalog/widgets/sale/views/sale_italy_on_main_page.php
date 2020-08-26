@@ -28,7 +28,7 @@ use frontend\modules\catalog\models\ItalianProduct;
             <?php
             foreach ($models as $k => $level) {
                 foreach ($level as $key => $model) { ?>
-                    <a href="<?= ItalianProduct::getUrl($model['alias']) ?>" class="one-sale" data-dominant-color>
+                    <a href="<?= ItalianProduct::getUrl($model[Yii::$app->languages->getDomainAlias()]) ?>" class="one-sale" data-dominant-color>
                         <div class="img-cont">
                             <span class="background"></span>
                             <?= Html::img('/', [

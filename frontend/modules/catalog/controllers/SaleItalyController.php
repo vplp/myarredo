@@ -149,6 +149,31 @@ class SaleItalyController extends BaseController
         $model = ItalianProduct::findByAlias($alias);
 
         if ($model == null) {
+            $model = ItalianProduct::find()
+                ->andFilterWhere([
+                    'OR',
+                    [ItalianProduct::tableName() . '.alias' => $alias],
+                    [ItalianProduct::tableName() . '.alias_en' => $alias],
+                    [ItalianProduct::tableName() . '.alias_it' => $alias],
+                    [ItalianProduct::tableName() . '.alias_de' => $alias],
+                ])
+                ->enabled()
+                ->one();
+
+            if ($model != null && $model['alias'] == $alias) {
+                Yii::$app->response->redirect('https://' . 'www.myarredo.ru/sale-italy-product/' . $alias . '/', 301);
+                yii::$app->end();
+            } elseif ($model != null && $model['alias_en'] == $alias) {
+                Yii::$app->response->redirect('https://' . 'www.myarredo.com/en/sale-italy-product/' . $alias . '/', 301);
+                yii::$app->end();
+            } elseif ($model != null && $model['alias_it'] == $alias) {
+                Yii::$app->response->redirect('https://' . 'www.myarredo.com/it/sale-italy-product/' . $alias . '/', 301);
+                yii::$app->end();
+            } elseif ($model != null && $model['alias_de'] == $alias) {
+                Yii::$app->response->redirect('https://' . 'www.myarredo.de/sale-italy-product/' . $alias . '/', 301);
+                yii::$app->end();
+            }
+
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 

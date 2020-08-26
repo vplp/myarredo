@@ -608,7 +608,7 @@ class Product extends \common\modules\catalog\models\Product
         if (isset($params[$keys['colors']])) {
             $query
                 ->innerJoinWith(["colors"], false)
-                ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
+                ->andFilterWhere(['IN', Colors::tableName() . '.' . Yii::$app->languages->getDomainAlias(), $params[$keys['colors']]]);
         }
 
         $result = self::getDb()->cache(function ($db) use ($query) {

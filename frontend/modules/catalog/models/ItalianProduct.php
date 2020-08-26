@@ -2,12 +2,10 @@
 
 namespace frontend\modules\catalog\models;
 
-use frontend\modules\location\models\Currency;
 use Yii;
 use yii\helpers\Url;
-
-//
 use frontend\components\ImageResize;
+use frontend\modules\location\models\Currency;
 
 /**
  * Class ItalianProduct
@@ -142,7 +140,8 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
                     'specificationValue.specification',
                     'specificationValue.specification.lang'
                 ])
-                ->byAlias($alias)
+                ->andWhere([self::tableName() . '.' . Yii::$app->languages->getDomainAlias() => $alias])
+                //->byAlias($alias)
                 ->one();
         }, 60 * 60);
 
@@ -192,15 +191,16 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
     }
 
     /**
-     * @param string $alias
+     * @param $alias
+     * @param bool $scheme
      * @return string
      */
-    public static function getUrl($alias)
+    public static function getUrl($alias, $scheme = true)
     {
         return Url::toRoute([
             '/catalog/sale-italy/view',
             'alias' => $alias
-        ], true);
+        ], $scheme);
     }
 
     /**
@@ -532,7 +532,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
         if (isset($params[$keys['colors']])) {
             $query
                 ->innerJoinWith(["colors"])
-                ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
+                ->andFilterWhere(['IN', Colors::tableName() . '.' . Yii::$app->languages->getDomainAlias(), $params[$keys['colors']]]);
         }
 
         $result = self::getDb()->cache(function ($db) use ($query) {
