@@ -36,7 +36,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                 <div class="container large-container">
 
                     <div class="left-part">
-                        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+                        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
                             <a href="tel:+<?= $clearPhoneNumb ?>" class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
@@ -51,7 +51,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             <?= Yii::t('app', 'Feedback form') ?>
                         </a> */ ?>
 
-                        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de'])) { ?>
+                        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) { ?>
                             <div class="select-city">
                                 <a href="javascript:void(0)" class="js-select-city">
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -221,7 +221,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             <i class="fa fa-search" aria-hidden="true"></i>
         </div> -->
 
-        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de'])) { ?>
+        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) { ?>
             <div class="adress-container">
                 <div class="js-toggle-list">
                 <span class="for-map-icon">

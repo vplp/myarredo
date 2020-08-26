@@ -50,7 +50,7 @@ $bundle = AppAsset::register($this);
 
         <?php
         if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
-        } else if (!in_array(DOMAIN_TYPE, ['com', 'de'])) {
+        } else if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
             echo Cities::widget();
         } ?>
 
@@ -100,9 +100,9 @@ $bundle = AppAsset::register($this);
                         <?php
                         if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
                             echo '';
-                        } elseif (!in_array(DOMAIN_TYPE, ['com', 'de'])) {
+                        } elseif (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
                             echo Menu::widget(['alias' => 'footer']);
-                        } elseif (in_array(DOMAIN_TYPE, ['com', 'de'])) {
+                        } elseif (in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
                             echo Menu::widget(['alias' => 'footer-com']);
                         } ?>
 
