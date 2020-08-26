@@ -82,6 +82,10 @@ abstract class BaseController extends Controller
         Yii::$app->response->headers->set('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + 86400));
         Yii::$app->response->headers->set('Vary', 'User-Agent');
 
+        if (!in_array(Yii::$app->controller->id, ['login', 'profile'])) {
+            Yii::$app->session->set('referrer', Yii::$app->request->referrer);
+        }
+
         return parent::beforeAction($action);
     }
 

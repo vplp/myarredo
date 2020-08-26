@@ -70,7 +70,7 @@ class LoginController extends BaseController
             Yii::$app->language = $user->profile->preferred_language;
 
             //return $this->redirect(Url::toRoute(['/user/profile/index']));
-            return $this->redirect(Yii::$app->request->referrer);
+            return $this->redirect(Yii::$app->session->get('referrer'));
         } else {
             return $this->render('index', [
                 'model' => $model,

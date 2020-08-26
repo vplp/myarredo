@@ -3,16 +3,14 @@
 namespace frontend\modules\user\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
+use yii\web\Response;
 use yii\helpers\Url;
-//
+use yii\filters\AccessControl;
 use frontend\components\BaseController;
 use frontend\modules\user\models\User;
 use frontend\modules\user\models\form\{
     RegisterForm, SignInForm
 };
-use yii\web\Response;
-
 
 /**
  * Class RegisterController
@@ -78,7 +76,7 @@ class RegisterController extends BaseController
 
             if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
                 //return $this->redirect(Url::toRoute('/user/profile/index'));
-                return $this->redirect(Yii::$app->request->referrer);
+                return $this->redirect(Yii::$app->session->get('referrer'));
             }
 
             if ($status === true) {

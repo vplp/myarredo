@@ -6,11 +6,9 @@ use Yii;
 use yii\{
     db\Exception, filters\AccessControl
 };
-//
 use common\actions\upload\{
     DeleteAction, UploadAction
 };
-//
 use frontend\modules\catalog\models\Factory;
 use frontend\components\BaseController;
 use frontend\modules\user\models\{
