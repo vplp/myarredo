@@ -78,7 +78,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         );
     } ?>
 
-    <?php if ($ItalianProductGrezzo) { ?>
+    <?php if (!empty($ItalianProductGrezzo)) { ?>
         <li>
             <a data-toggle="tab" href="#all-grezzo">
                 <?= Yii::t('app', 'Мебель со сроком производства от ... до ...') ?>
@@ -229,7 +229,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         </div>
     <?php } ?>
 
-    <?php if ($ItalianProductGrezzo) { ?>
+    <?php if (!empty($ItalianProductGrezzo)) { ?>
         <div id="all-grezzo" class="tab-pane fade">
             <ul class="list">
                 <?php foreach ($ItalianProductGrezzo as $item) {
