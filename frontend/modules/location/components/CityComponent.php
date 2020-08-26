@@ -204,14 +204,17 @@ class CityComponent extends Component
             // kiev
             $this->defaultCityId = 1;
         } elseif (in_array(DOMAIN_TYPE, ['com']) && DOMAIN_NAME == 'myarredofamily') {
-            // Washington
+            // washington
             $this->defaultCityId = 161;
-        } elseif (in_array(DOMAIN_TYPE, ['com'])  && DOMAIN_NAME == 'myarredo') {
-            // Rome
+        } elseif (in_array(DOMAIN_TYPE, ['com']) && DOMAIN_NAME == 'myarredo') {
+            // rome
             $this->defaultCityId = 159;
         } elseif (in_array(DOMAIN_TYPE, ['de'])) {
-            // Berlin
+            // berlin
             $this->defaultCityId = 160;
+        } elseif (in_array(DOMAIN_TYPE, ['kz'])) {
+            // nur-sultan
+            $this->defaultCityId = 163;
         } else {
             // msk
             $this->defaultCityId = 4;
