@@ -19,7 +19,7 @@ $bundle = AppAsset::register($this);
 <div class="footer">
     <div class="container-wrap">
 
-        <?php if (DOMAIN_TYPE != 'com' && !in_array(Yii::$app->controller->id, ['sale'])) { ?>
+        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz']) && !in_array(Yii::$app->controller->id, ['sale'])) { ?>
             <div class="contacts">
                 <div class="cont-flex">
                     <?php if (!in_array(Yii::$app->controller->id, ['sale-italy'])) {
