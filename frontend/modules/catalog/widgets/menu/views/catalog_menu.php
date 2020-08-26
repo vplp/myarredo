@@ -38,7 +38,7 @@ use frontend\modules\catalog\models\Category;
         </div>
     </li>
 
-    <?php if (DOMAIN_TYPE != 'com') { ?>
+    <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) { ?>
         <li <?= (Yii::$app->controller->id == 'sale') ? ' class="js-has-list has-list second-link"' : ' class="js-has-list second-link"' ?>>
             <?= Html::a(
                 Yii::t('app', 'Sale'),
@@ -50,7 +50,7 @@ use frontend\modules\catalog\models\Category;
 
                     <?php foreach ($categorySale as $model) { ?>
                         <li>
-                            <a href="<?= Category::getUrl( $model[Yii::$app->languages->getDomainAlias()], '/catalog/sale/list') ?>">
+                            <a href="<?= Category::getUrl($model[Yii::$app->languages->getDomainAlias()], '/catalog/sale/list') ?>">
                                 <div class="img-cont">
                                     <?= Html::img(Category::getImage($model['image_link3'])); ?>
                                 </div>
@@ -101,7 +101,7 @@ use frontend\modules\catalog\models\Category;
         ) ?>
     </li>
 
-    <?php if (DOMAIN_TYPE != 'com') { ?>
+    <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) { ?>
         <li <?= (Yii::$app->controller->id == 'contacts') ? ' class="has-list"' : '' ?>>
             <?= Html::a(
                 Yii::t('app', 'Где купить'),

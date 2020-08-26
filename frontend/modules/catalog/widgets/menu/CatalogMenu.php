@@ -4,7 +4,6 @@ namespace frontend\modules\catalog\widgets\menu;
 
 use Yii;
 use yii\base\Widget;
-//
 use frontend\modules\catalog\models\Category;
 
 /**
