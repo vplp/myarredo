@@ -98,14 +98,6 @@ abstract class BaseController extends Controller
             Yii::$app->session->set('referrer', Url::toRoute('/user/profile/index'));
         }
 
-//        if (!Yii::$app->session->has('referrer') && in_array(Yii::$app->controller->id, ['login', 'profile'])) {
-//            Yii::$app->session->set('referrer', Url::toRoute('/user/profile/index'));
-//        }
-
-//        /* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->request->referrer); echo '</pre>'; /* !!! */
-//        /* !!! */ echo  '<pre style="color:red;">'; print_r(Url::current([], true)); echo '</pre>'; /* !!! */
-//
-//        /* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->session->get('referrer')); echo '</pre>'; /* !!! */
         return parent::afterAction($action, $result);
     }
 
