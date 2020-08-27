@@ -82,10 +82,6 @@ abstract class BaseController extends Controller
         Yii::$app->response->headers->set('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + 86400));
         Yii::$app->response->headers->set('Vary', 'User-Agent');
 
-        if (!in_array(Yii::$app->controller->id, ['login', 'profile'])) {
-            Yii::$app->session->set('referrer', Yii::$app->request->referrer);
-        }
-
         return parent::beforeAction($action);
     }
 
@@ -95,6 +91,12 @@ abstract class BaseController extends Controller
     public function afterAction($action, $result)
     {
         //$this->detectBrowserLanguage();
+
+        if (!in_array(Yii::$app->controller->id, ['login', 'profile'])) {
+            Yii::$app->session->set('referrer', Yii::$app->request->referrer);
+        } else {
+            Yii::$app->session->set('referrer', Url::toRoute('/home/home/index'));
+        }
 
         return parent::afterAction($action, $result);
     }
