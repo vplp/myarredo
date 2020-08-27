@@ -1,18 +1,18 @@
 <?php
 
-use thread\widgets\grid\GridViewFilter;
+use thread\widgets\grid\{
+    ActionStatusColumn, GridViewFilter
+};
 use backend\widgets\GridView\GridView;
 use backend\modules\catalog\models\{
-    Category, Factory
+    Category, Factory, Composition, CompositionLang
 };
 use backend\app\bootstrap\ActiveForm;
-use backend\modules\catalog\models\{
-    Composition, CompositionLang
-};
 
 /**
  * @var $form ActiveForm
  * @var $model Composition
+ * @var $filter Composition
  * @var $modelLang CompositionLang
  */
 
@@ -24,6 +24,29 @@ echo GridView::widget([
             'attribute' => 'title',
             'value' => 'lang.title',
             'label' => Yii::t('app', 'Title'),
+        ],
+        [
+            'attribute' => 'created_at',
+            'value' => function ($model) {
+                /** @var $model Product */
+                return date('j.m.Y H:i', $model->created_at);
+            },
+            'format' => 'raw',
+            'filter' => false
+        ],
+        [
+            'attribute' => 'updated_at',
+            'value' => function ($model) {
+                /** @var $model Composition */
+                return date('j.m.Y H:i', $model->updated_at);
+            },
+            'format' => 'raw',
+            'filter' => false
+        ],
+        [
+            'attribute' => 'Редактор',
+            'value' => 'editor.profile.fullName',
+            'filter' => GridViewFilter::selectOne($filter, 'editor_id', [0 => '-'] + Composition::dropDownListEditor()),
         ],
         [
             'attribute' => 'category',
@@ -44,13 +67,9 @@ echo GridView::widget([
             'filter' => GridViewFilter::selectOne($filter, 'factory_id', Factory::dropDownList()),
         ],
         [
-            'attribute' => 'updated_at',
-            'value' => function ($model) {
-                /** @var $model Composition */
-                return date('j.m.Y H:i', $model->updated_at);
-            },
-            'format' => 'raw',
-            'filter' => false
+            'class' => ActionStatusColumn::class,
+            'attribute' => 'published',
+            'action' => 'published'
         ],
         [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class

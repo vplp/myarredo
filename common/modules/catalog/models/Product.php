@@ -23,7 +23,7 @@ use common\modules\user\models\{
  * @property string $country_code
  * @property integer $catalog_type_id
  * @property integer $user_id
- * @property string $user
+ * @property integer $editor_id
  * @property integer $factory_id
  * @property integer $collections_id
  * @property integer $is_composition
@@ -68,6 +68,7 @@ use common\modules\user\models\{
  * @property Category[] $category
  * @property SubTypes[] $subTypes
  * @property Samples[] $samples
+ * @property User $editor
  * @property Factory $factory
  * @property ProductRelFactoryCatalogsFiles[] $factoryCatalogsFiles
  * @property ProductRelFactoryPricesFiles[] $factoryPricesFiles
@@ -166,6 +167,7 @@ class Product extends ActiveRecord implements iProduct
                 [
                     'catalog_type_id',
                     'user_id',
+                    'editor_id',
                     'factory_id',
                     'collections_id',
                     'created_at',
@@ -200,7 +202,7 @@ class Product extends ActiveRecord implements iProduct
                 'in',
                 'range' => array_keys(static::statusKeyRange())
             ],
-            [['country_code', 'user', 'alias', 'alias_en', 'alias_it', 'alias_de', 'default_title', 'image_link'], 'string', 'max' => 255],
+            [['country_code', 'alias', 'alias_en', 'alias_it', 'alias_de', 'default_title', 'image_link'], 'string', 'max' => 255],
             [['gallery_image'], 'string', 'max' => 1024],
             [['article'], 'string', 'max' => 100],
             [['alias', 'alias_en', 'alias_it', 'alias_de'], 'unique'],
@@ -256,6 +258,7 @@ class Product extends ActiveRecord implements iProduct
             'backend' => [
                 'catalog_type_id',
                 'user_id',
+                'editor_id',
                 'factory_id',
                 'collections_id',
                 'image_link',
@@ -278,7 +281,6 @@ class Product extends ActiveRecord implements iProduct
                 'in_stock',
                 'moderation',
                 'country_code',
-                'user',
                 'alias',
                 'alias_en',
                 'alias_it',
@@ -307,6 +309,8 @@ class Product extends ActiveRecord implements iProduct
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'user_id' => 'User',
+            'editor_id' => 'Editor',
             'alias' => Yii::t('app', 'Alias'),
             'alias_en' => 'Alias for en',
             'alias_it' => 'Alias for it',
@@ -324,7 +328,6 @@ class Product extends ActiveRecord implements iProduct
             'collections_id' => Yii::t('app', 'Collections'),
             'catalog_type_id' => Yii::t('app', 'Catalog type'),
             'popular' => 'Популярное',
-            'user' => 'Кто изменил',
             'image_link' => Yii::t('app', 'Image link'),
             'gallery_image' => Yii::t('app', 'Gallery image'),
             'novelty' => Yii::t('app', 'Novelty'),
@@ -449,6 +452,10 @@ class Product extends ActiveRecord implements iProduct
                 Yii::$app->session->setFlash('error', 'Не заполнены размеры и вы не можете сохранить товар');
                 return false;
             }
+        }
+
+        if (Yii::$app instanceof \yii\web\Application) {
+            $this->editor_id = Yii::$app->user->id;
         }
 
         return parent::beforeSave($insert);
@@ -677,6 +684,14 @@ class Product extends ActiveRecord implements iProduct
     public function getFactory()
     {
         return $this->hasOne(Factory::class, ['id' => 'factory_id'])->cache(7200);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEditor()
+    {
+        return $this->hasOne(User::class, ['id' => 'editor_id'])->cache(7200);
     }
 
     /**

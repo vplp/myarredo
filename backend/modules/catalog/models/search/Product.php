@@ -29,7 +29,7 @@ class Product extends ProductModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-            [['id', 'category', 'factory_id'], 'integer'],
+            [['id', 'category', 'factory_id', 'editor_id'], 'integer'],
             [['alias', 'title', 'image_link'], 'string', 'max' => 255],
             [['published', 'removed', 'novelty'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -71,6 +71,7 @@ class Product extends ProductModel implements BaseBackendSearchModel
         $query->andFilterWhere([
             self::tableName() . '.id' => $this->id,
             self::tableName() . '.factory_id' => $this->factory_id,
+            self::tableName() . '.editor_id' => $this->editor_id,
         ]);
 
         $query

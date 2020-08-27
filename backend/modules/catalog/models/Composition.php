@@ -2,6 +2,7 @@
 
 namespace backend\modules\catalog\models;
 
+use backend\modules\user\models\User;
 use Yii;
 use yii\helpers\ArrayHelper;
 use thread\app\model\interfaces\BaseBackendModel;
@@ -33,6 +34,37 @@ class Composition extends CommonCompositionModel implements BaseBackendModel
     public static function dropDownList()
     {
         return ArrayHelper::map(self::findBase()->undeleted()->all(), 'id', 'lang.title');
+    }
+
+    /**
+     * Backend form drop down list
+     * @return array
+     */
+    public static function dropDownListEditor()
+    {
+        $query = self::findBase()
+            ->indexBy('editor_id')
+            ->select('editor_id, count(editor_id) as count')
+            ->groupBy('editor_id')
+            ->andWhere('editor_id > 0')
+            ->asArray()
+            ->all();
+
+        $ids = [];
+
+        foreach ($query as $item) {
+            $ids[] = $item['editor_id'];
+        }
+
+        if ($ids) {
+            return ArrayHelper::map(
+                User::findBase()->andWhere(['IN', User::tableName() . '.id', $ids])->all(),
+                'id',
+                'profile.fullName'
+            );
+        } else {
+            return [];
+        }
     }
 
     /**

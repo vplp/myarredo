@@ -27,7 +27,7 @@ class Composition extends CompositionModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-            [['category', 'factory_id'], 'integer'],
+            [['category', 'factory_id', 'editor_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -64,7 +64,8 @@ class Composition extends CompositionModel implements BaseBackendSearchModel
 
         $query->andFilterWhere([
             self::tableName() . '.id' => $this->id,
-            self::tableName() . '.factory_id' => $this->factory_id
+            self::tableName() . '.factory_id' => $this->factory_id,
+            self::tableName() . '.editor_id' => $this->editor_id
         ]);
 
         $query
