@@ -95,7 +95,7 @@ abstract class BaseController extends Controller
         if (!in_array(Yii::$app->controller->id, ['login', 'profile'])) {
             Yii::$app->session->set('referrer', Yii::$app->request->referrer);
         } else {
-            Yii::$app->session->set('referrer', Url::toRoute('/home/home/index'));
+            Yii::$app->session->set('referrer', Url::toRoute('/user/profile/index'));
         }
 
         return parent::afterAction($action, $result);
