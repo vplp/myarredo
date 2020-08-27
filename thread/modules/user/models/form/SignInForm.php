@@ -3,16 +3,13 @@
 namespace thread\modules\user\models\form;
 
 use Yii;
-//
-use thread\modules\user\models\Group;
 use yii\helpers\ArrayHelper;
+use thread\modules\user\models\Group;
 
 /**
  * Class SignInForm
  *
- * @package thread\modules\user\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
+ * @package thread\modules\user\models\form
  */
 class SignInForm extends CommonForm
 {
