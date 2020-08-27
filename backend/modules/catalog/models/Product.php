@@ -31,7 +31,7 @@ class Product extends CommonProductModel implements BaseBackendModel
      */
     public static function dropDownListEditor()
     {
-        $query = self::findBase()
+        $query = self::find()
             ->indexBy('editor_id')
             ->select('editor_id, count(editor_id) as count')
             ->groupBy('editor_id')

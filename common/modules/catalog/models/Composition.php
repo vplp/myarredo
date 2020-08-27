@@ -45,6 +45,7 @@ class Composition extends Product
                 [
                     'catalog_type_id',
                     'user_id',
+                    'editor_id',
                     'factory_id',
                     'collections_id',
                     'created_at',
@@ -70,7 +71,7 @@ class Composition extends Product
                 'in',
                 'range' => array_keys(static::statusKeyRange())
             ],
-            [['country_code', 'user', 'alias', 'alias_en', 'alias_it', 'alias_de', 'default_title'], 'string', 'max' => 255],
+            [['country_code', 'alias', 'alias_en', 'alias_it', 'alias_de', 'default_title'], 'string', 'max' => 255],
             [['article'], 'string', 'max' => 100],
             [['alias', 'alias_en', 'alias_it', 'alias_de'], 'unique'],
             [['catalog_type_id', 'collections_id', 'position'], 'default', 'value' => '0'],
@@ -102,6 +103,7 @@ class Composition extends Product
             'backend' => [
                 'catalog_type_id',
                 'user_id',
+                'editor_id',
                 'factory_id',
                 'collections_id',
                 'created_at',
@@ -123,7 +125,6 @@ class Composition extends Product
                 'removed',
                 'moderation',
                 'country_code',
-                'user',
                 'alias',
                 'alias_en',
                 'alias_it',
@@ -143,9 +144,13 @@ class Composition extends Product
      */
     public function beforeSave($insert)
     {
-        if (in_array($this->scenario, ['backend']) && $this->id) {
-            $this->alias = $this->id . ' ' . $this->alias;
-        }
+//        if (in_array($this->scenario, ['backend']) && $this->id) {
+//            $this->alias = $this->id . ' ' . $this->alias;
+//        }
+//
+//        if (Yii::$app instanceof \yii\web\Application) {
+//            $this->editor_id = Yii::$app->user->id;
+//        }
 
         return parent::beforeSave($insert);
     }

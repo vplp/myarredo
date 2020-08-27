@@ -42,8 +42,9 @@ class Composition extends CommonCompositionModel implements BaseBackendModel
      */
     public static function dropDownListEditor()
     {
-        $query = self::findBase()
+        $query = self::find()
             ->indexBy('editor_id')
+            ->andWhere(['is_composition' => '1'])
             ->select('editor_id, count(editor_id) as count')
             ->groupBy('editor_id')
             ->andWhere('editor_id > 0')
