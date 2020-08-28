@@ -62,7 +62,7 @@ class SitemapController extends Controller
         // ru ua by
         $cities = City::findBase()
             ->joinWith(['country', 'country.lang'])
-            ->andFilterWhere(['IN', 'country_id', [1, 2, 3, 4, 5, 85]])
+            ->andFilterWhere(['IN', 'country_id', [1, 2, 3, 4, 5, 85, 114]])
             ->all();
 
         $urlsRu = self::getUrls('ru-RU');
@@ -90,11 +90,14 @@ class SitemapController extends Controller
                 // germany
                 $this->createSitemapFile(self::getUrls('de-DE', 'de'), 'https://' . 'www.myarredo.de', $city);
             } elseif ($city['country_id'] == 1) {
-                $urls  = $urlsRu;
+                $urls = $urlsRu;
                 foreach ($urlsUa as $url) {
                     $urls[] = array_merge($url, ['loc' => "/ua" . $url['loc']]);
                 }
                 $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
+            } elseif ($city['country_id'] == 114) {
+                // nur-sultan
+                $this->createSitemapFile($urlsRu, 'https://' . 'www.myarredo.kz', $city);
             } else {
                 $this->createSitemapFile($urlsRu, City::getSubDomainUrl($city), $city);
             }
