@@ -43,6 +43,13 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                                     <span class="phone"><?= Yii::$app->partner->getPartnerPhone() ?></span>
                                 </div>
                             </a>
+                        <?php } elseif (in_array(DOMAIN_TYPE, ['com']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+                            <a href="tel:+3904221500215" class="phone-num">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <div>
+                                    <span class="phone">+39 (0422) 150-02-15</span>
+                                </div>
+                            </a>
                         <?php } ?>
 
                         <?php /*
