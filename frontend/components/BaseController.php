@@ -131,10 +131,17 @@ abstract class BaseController extends Controller
         $current_url = Yii::$app->request->url;
 
         foreach ($languages as $alternate) {
-            if (DOMAIN_TYPE == 'com' && in_array($alternate['alias'], ['it', 'en'])) {
+            if (DOMAIN_TYPE == 'com' && in_array($alternate['alias'], ['it'])) {
                 $alternatePages[$alternate['local']] = [
-                    'href' => 'https://www.myarredo.com' . '/' . $alternate['alias'] .
-                        str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
+                    'href' => 'https://www.myarredo.com' . '/' . $alternate['alias_it'] .
+                        str_replace('/' . $languages[Yii::$app->language]['alias_it'], '', $current_url),
+                    'lang' => substr($alternate['local'], 0, 2),
+                    'current' => (Yii::$app->language == $alternate['local']) ? true : false
+                ];
+            } elseif (DOMAIN_TYPE == 'com' && in_array($alternate['alias'], ['en'])) {
+                $alternatePages[$alternate['local']] = [
+                    'href' => 'https://www.myarredo.com' . '/' . $alternate['alias_en'] .
+                        str_replace('/' . $languages[Yii::$app->language]['alias_en'], '', $current_url),
                     'lang' => substr($alternate['local'], 0, 2),
                     'current' => (Yii::$app->language == $alternate['local']) ? true : false
                 ];
