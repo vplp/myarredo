@@ -35,17 +35,11 @@ use yii\helpers\Html;
                     <td><?= $product['factory']['title'] ?></td>
                 </tr>
             </table>
-            <button type="button" class="btn btn-default read-more">
-                <?= Yii::t('app', 'Подробнее') ?>
-            </button>
-        </div>
-        <div class="more">
-            <h4>
-                <?= Yii::t('app', 'Description') ?>
-            </h4>
-            <p>
-                <?= $product['lang']['description'] ?>
-            </p>
+            <?= Html::a(
+                Yii::t('app', 'Подробнее'),
+                $product::getUrl($product[Yii::$app->languages->getDomainAlias()]),
+                ['class' => 'btn btn-default']
+            ) ?>
         </div>
     </div>
 
