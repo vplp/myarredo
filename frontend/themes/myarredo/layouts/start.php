@@ -3,9 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
-//
 use frontend\themes\myarredo\assets\AppAsset;
-//
 use frontend\modules\catalog\widgets\{
     category\CategoryOnMainPage,
     product\ProductsNoveltiesOnMain,

@@ -32,6 +32,7 @@ class ProductsNoveltiesOnMain extends Widget
         $this->models = Product::findBaseArray()
             ->select([
                 Product::tableName() . '.id',
+                Product::tableName() . '.collections_id',
                 Product::tableName() . '.alias',
                 Product::tableName() . '.alias_en',
                 Product::tableName() . '.alias_it',
@@ -42,6 +43,7 @@ class ProductsNoveltiesOnMain extends Widget
                 ProductLang::tableName() . '.title',
             ])
             ->andWhere([Product::tableName() . '.novelty' => '1'])
+            ->groupBy(Product::tableName() . '.collections_id')
             ->orderBy(Product::tableName() . '.updated_at DESC')
             ->limit(100)
             ->cache(7200)
