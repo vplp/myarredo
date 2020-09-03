@@ -7,15 +7,15 @@ use yii\web\View;
 if (Yii::$app->getUser()->isGuest && DOMAIN_TYPE == 'ru' &&
     !in_array(Yii::$app->controller->id, ['sale', 'sale-italy']) &&
     !in_array(Yii::$app->controller->module->id, ['user']) &&
-    !in_array(Yii::$app->city->getCityId(), [4])
+    in_array(Yii::$app->city->getCityId(), [28])
 ) { ?>
-    <script src="//code.jivosite.com/widget/bdFHrCDC3S" async></script>
+    <script src="//code-ya.jivosite.com/widget/2VVsqQPfCV" async></script>
 <?php } elseif (Yii::$app->getUser()->isGuest && DOMAIN_TYPE == 'ru' &&
     !in_array(Yii::$app->controller->id, ['sale', 'sale-italy']) &&
     !in_array(Yii::$app->controller->module->id, ['user']) &&
-    !in_array(Yii::$app->city->getCityId(), [28])
+    !in_array(Yii::$app->city->getCityId(), [4])
 ) { ?>
-    <script src="//code-ya.jivosite.com/widget/2VVsqQPfCV" async></script>
+    <script src="//code.jivosite.com/widget/bdFHrCDC3S" async></script>
 <?php }
 
 if (Yii::$app->getUser()->isGuest && DOMAIN_TYPE == 'ru' &&
