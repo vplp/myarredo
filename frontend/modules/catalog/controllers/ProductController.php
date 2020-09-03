@@ -204,6 +204,7 @@ class ProductController extends BaseController
 
         $lang = substr(Yii::$app->language, 0, 2);
 
+
         Yii::$app->view->registerLinkTag([
             'rel' => 'canonical',
             'href' => Yii::$app->request->hostInfo . '/' .
@@ -224,6 +225,29 @@ class ProductController extends BaseController
          */
         if ($model !== null) {
             Yii::$app->getModule('catalog')->getViewedProducts($model['id'], 'viewed_products');
+        }
+
+        $alternatePages = [
+            'ru' => [
+                'href' => 'https://www.myarredo.ru' . Product::getUrl($model['alias'], false),
+                'lang' => 'ru'
+            ],
+            'en' => [
+                'href' => 'https://www.myarredo.com' . Product::getUrl($model['alias_en'], false),
+                'lang' => 'en'
+            ],
+            'it' => [
+                'href' => 'https://www.myarredo.com' . Product::getUrl($model['alias_it'], false),
+                'lang' => 'it'
+            ]
+        ];
+
+        foreach ($alternatePages as $page) {
+            Yii::$app->view->registerLinkTag([
+                'rel' => 'alternate',
+                'href' => $page['href'],
+                'hreflang' => $page['lang']
+            ]);
         }
 
         return $this->render('view', [

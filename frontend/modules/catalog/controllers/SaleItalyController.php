@@ -269,6 +269,29 @@ class SaleItalyController extends BaseController
             Yii::$app->getModule('catalog')->getViewedProducts($model['id'], 'viewed_sale_italy');
         }
 
+        $alternatePages = [
+            'ru' => [
+                'href' => 'https://www.myarredo.ru' . ItalianProduct::getUrl($model['alias'], false),
+                'lang' => 'ru'
+            ],
+            'en' => [
+                'href' => 'https://www.myarredo.com' . ItalianProduct::getUrl($model['alias_en'], false),
+                'lang' => 'en'
+            ],
+            'it' => [
+                'href' => 'https://www.myarredo.com' . ItalianProduct::getUrl($model['alias_it'], false),
+                'lang' => 'it'
+            ]
+        ];
+
+        foreach ($alternatePages as $page) {
+            Yii::$app->view->registerLinkTag([
+                'rel' => 'alternate',
+                'href' => $page['href'],
+                'hreflang' => $page['lang']
+            ]);
+        }
+
         return $this->render('view', [
             'model' => $model,
         ]);
