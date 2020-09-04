@@ -110,22 +110,25 @@ $this->title = $this->context->title;
                                     <?php if (!in_array(Yii::$app->controller->action->id, ['product'])) {
                                         if (!in_array($model['id'], $products_id)) {
                                             echo Html::a(
-                                                Yii::t('app', 'Отложить в блокнот'),
+                                                '<i class="fa fa-heart" aria-hidden="true"></i>',
                                                 'javascript:void(0);',
                                                 [
                                                     'class' => 'add-to-notepad btn btn-default big',
                                                     'data-id' => $model['id'],
                                                     'data-toggle' => 'modal',
                                                     'data-target' => '#myModal',
-                                                    'data-message' => Yii::t('app', 'В блокноте')
+                                                    'data-message' => '<i class="fa fa-heart" aria-hidden="true"></i>',
+                                                    'title' => Yii::t('app', 'Отложить в блокнот'),
+                                                    'data-doned' => Yii::t('app', 'В блокноте')
                                                 ]
                                             );
                                         } else {
                                             echo Html::a(
-                                                Yii::t('app', 'В блокноте'),
+                                                '<i class="fa fa-heart" aria-hidden="true"></i>',
                                                 'javascript:void(0);',
                                                 [
-                                                    'class' => 'btn btn-default big',
+                                                    'class' => 'btn btn-default big doned',
+                                                    'title' => Yii::t('app', 'В блокноте')
                                                 ]
                                             );
                                         }
