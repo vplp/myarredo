@@ -245,8 +245,7 @@ $route = $model->producing_country_id == 4
                             <div class="cat-prod catalog-wrap">
                                 <?php foreach ($product as $item) {
                                     echo $this->render('/category/_list_item', [
-                                        'model' => $item,
-                                        'factory' => [$model->id => $model]
+                                        'model' => $item
                                     ]);
                                 } ?>
                                 <div class="one-prod-tile last">

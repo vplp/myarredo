@@ -114,13 +114,14 @@ class CategoryController extends BaseController
             ])
             ->groupBy(ProductStatsDays::tableName() . '.product_id')
             ->orderBy(['views' => SORT_DESC])
+            ->asArray()
             ->limit(30)
             ->all();
-            /* !!! */ echo  '<pre style="color:red;">'; print_r($bestsellers); echo '</pre>'; /* !!! */
 
         return $this->render('list', [
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),
+            'bestsellers' => ArrayHelper::map($bestsellers, 'product_id', 'product_id'),
         ]);
     }
 

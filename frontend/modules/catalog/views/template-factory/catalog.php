@@ -35,8 +35,7 @@ $params = Yii::$app->catalogFilter->params;
 
                                         <?php foreach ($models as $model) {
                                             echo $this->render('/category/_list_item', [
-                                                'model' => $model,
-                                                'factory' => [$factory->id => $factory],
+                                                'model' => $model
                                             ]);
                                         } ?>
 

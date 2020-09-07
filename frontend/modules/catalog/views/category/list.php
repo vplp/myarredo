@@ -17,6 +17,7 @@ use frontend\modules\catalog\widgets\product\ProductsNovelties;
  * @var $pages \yii\data\Pagination
  * @var $model Product
  * @var $models Product[]
+ * @var $bestsellers
  */
 
 $this->title = $this->context->title;
@@ -86,7 +87,8 @@ $params = Yii::$app->catalogFilter->params;
                                             <?php if (!empty($models)) {
                                                 foreach ($models as $model) {
                                                     echo $this->render('_list_item', [
-                                                        'model' => $model
+                                                        'model' => $model,
+                                                        'bestsellers' => $bestsellers
                                                     ]);
                                                 }
                                             } else if (empty($models) && isset($params)) {

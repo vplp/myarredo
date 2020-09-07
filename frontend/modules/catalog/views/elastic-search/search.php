@@ -106,8 +106,7 @@ $this->title = $this->context->title;
                                                     $factory[$model->product['factory']['id']] = $model->product['factory'];
 
                                                     echo $this->render('/category/_list_item', [
-                                                        'model' => $model->product,
-                                                        'factory' => $factory,
+                                                        'model' => $model->product
                                                     ]);
                                                 }
                                             } ?>

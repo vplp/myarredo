@@ -6,7 +6,9 @@ use frontend\modules\catalog\models\{
 };
 
 /** @var $model Product */
-/** @var $factory Factory */
+/** @var $bestsellers */
+
+$bestsellers = $bestsellers ?? [];
 
 ?>
 
@@ -16,7 +18,7 @@ use frontend\modules\catalog\models\{
 ]) ?>
 <div class="one-prod-tile-in">
 
-    <?php if ($model['bestseller']) { ?>
+    <?php if ($model['bestseller'] || in_array($model['id'], $bestsellers)) { ?>
         <div class="prod-bestseller"><?= Yii::t('app', 'Bestseller') ?></div>
     <?php } ?>
 
