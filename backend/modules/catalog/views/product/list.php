@@ -44,6 +44,11 @@ echo GridView::widget([
             'filter' => false
         ],
         [
+            'attribute' => 'Редактор',
+            'value' => 'editor.profile.fullName',
+            'filter' => GridViewFilter::selectOne($filter, 'editor_id', [0 => '-'] + Product::dropDownListEditor()),
+        ],
+        [
             'attribute' => 'updated_at',
             'value' => function ($model) {
                 /** @var $model Product */
@@ -51,11 +56,6 @@ echo GridView::widget([
             },
             'format' => 'raw',
             'filter' => false
-        ],
-        [
-            'attribute' => 'Редактор',
-            'value' => 'editor.profile.fullName',
-            'filter' => GridViewFilter::selectOne($filter, 'editor_id', [0 => '-'] + Product::dropDownListEditor()),
         ],
         [
             'attribute' => 'category',

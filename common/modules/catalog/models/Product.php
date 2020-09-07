@@ -309,7 +309,7 @@ class Product extends ActiveRecord implements iProduct
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => 'User',
+            'user_id' => Yii::t('app', 'User'),
             'editor_id' => 'Editor',
             'alias' => Yii::t('app', 'Alias'),
             'alias_en' => 'Alias for en',
@@ -361,7 +361,6 @@ class Product extends ActiveRecord implements iProduct
     /**
      * @param bool $insert
      * @return bool
-     * @throws \Throwable
      */
     public function beforeSave($insert)
     {

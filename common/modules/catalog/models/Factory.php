@@ -19,6 +19,7 @@ use voskobovich\behaviors\ManyToManyBehavior;
  *
  * @property integer $id
  * @property integer $user_id
+ * @property integer $editor_id
  * @property integer $producing_country_id
  * @property string $country_code
  * @property string $alias
@@ -51,6 +52,7 @@ use voskobovich\behaviors\ManyToManyBehavior;
  *
  * @property FactoryLang $lang
  * @property User $user
+ * @property Editor $editor
  * @property Country $producingCountry
  * @property Collection $collection
  * @property FactoryFile $files
@@ -114,6 +116,7 @@ class Factory extends ActiveRecord
             [
                 [
                     'user_id',
+                    'editor_id',
                     'producing_country_id',
                     'created_at',
                     'updated_at',
@@ -152,7 +155,7 @@ class Factory extends ActiveRecord
             [['first_letter'], 'string', 'max' => 2],
             [['alias'], 'unique'],
             [
-                ['user_id', 'producing_country_id', 'position', 'partner_id', 'product_count'],
+                ['user_id', 'editor_id', 'producing_country_id', 'position', 'partner_id', 'product_count'],
                 'default',
                 'value' => '0'
             ],
@@ -183,6 +186,7 @@ class Factory extends ActiveRecord
             'show_for_de' => ['show_for_de'],
             'backend' => [
                 'user_id',
+                'editor_id',
                 'producing_country_id',
                 'title',
                 'alias',
@@ -222,6 +226,7 @@ class Factory extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User'),
+            'editor_id' => 'Editor',
             'producing_country_id' => Yii::t('app', 'Producing country'),
             'alias' => Yii::t('app', 'Alias'),
             'title' => Yii::t('app', 'Title'),
@@ -261,6 +266,10 @@ class Factory extends ActiveRecord
     {
         $this->first_letter = mb_strtoupper(mb_substr(trim($this->title), 0, 1, 'UTF-8'), 'UTF-8');
         $this->alias = $this->title;
+
+        if (Yii::$app instanceof \yii\web\Application) {
+            $this->editor_id = Yii::$app->user->id;
+        }
 
         return parent::beforeValidate();
     }
@@ -315,7 +324,15 @@ class Factory extends ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::class, ['id' => 'user_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id'])->cache(7200);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEditor()
+    {
+        return $this->hasOne(User::class, ['id' => 'editor_id'])->cache(7200);
     }
 
     /**

@@ -40,6 +40,20 @@ echo GridView::widget([
             ),
         ],
         [
+            'attribute' => 'Редактор',
+            'value' => 'editor.profile.fullName',
+            'filter' => GridViewFilter::selectOne($filter, 'editor_id', [0 => '-'] + Factory::dropDownListEditor()),
+        ],
+        [
+            'attribute' => 'updated_at',
+            'value' => function ($model) {
+                /** @var $model Factory */
+                return date('j.m.Y H:i', $model->updated_at);
+            },
+            'format' => 'raw',
+            'filter' => false
+        ],
+        [
             'class' => ActionStatusColumn::class,
             'attribute' => 'show_for_ru',
             'action' => 'show_for_ru',
