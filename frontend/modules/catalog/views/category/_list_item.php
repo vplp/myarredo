@@ -21,7 +21,7 @@ use frontend\modules\catalog\models\{
     <?php } ?>
 
     <?php if ($model['novelty']) { ?>
-        <div class="prod-bestseller"><?= Yii::t('app', 'Novelty') ?></div>
+        <div class="prod-novelty"><?= Yii::t('app', 'Novelty') ?></div>
     <?php } ?>
 
     <?php

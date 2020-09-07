@@ -356,6 +356,8 @@ class Product extends ProductModel
                 self::tableName() . '.alias_de',
                 self::tableName() . '.image_link',
                 self::tableName() . '.factory_id',
+                self::tableName() . '.bestseller',
+                self::tableName() . '.novelty',
                 self::tableName() . '.removed',
                 self::tableName() . '.price_from',
                 self::tableName() . '.currency',
