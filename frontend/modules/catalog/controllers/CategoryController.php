@@ -116,6 +116,7 @@ class CategoryController extends BaseController
             ->orderBy(['views' => SORT_DESC])
             ->asArray()
             ->limit(30)
+            ->cache(7200)
             ->all();
 
         return $this->render('list', [
