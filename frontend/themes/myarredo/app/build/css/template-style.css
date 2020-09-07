@@ -8153,7 +8153,7 @@ h1 {
   align-items: center;
   min-height: 22px;
   position: absolute;
-  top: 20px;
+  top: 22px;
   right: 0;
   background-color: #C4252F;
   color: #ffffff;
@@ -8181,7 +8181,7 @@ h1 {
   align-items: center;
   min-height: 22px;
   position: absolute;
-  top: 20px;
+  top: 22px;
   left: 0;
   background-color: #C4252F;
   color: #ffffff;
@@ -8189,7 +8189,7 @@ h1 {
   z-index: 99;
 }
 .category-page .cat-prod .one-prod-tile:hover .prod-saving-percentage {
-  top: 19px;
+  top: 21px;
   right: -1px;
 }
 .category-page .cat-prod .one-prod-tile:hover .prod-bestseller {
@@ -8197,7 +8197,7 @@ h1 {
   left: -1px;
 }
 .category-page .cat-prod .one-prod-tile:hover .prod-novelty {
-  top: 19px;
+  top: 21px;
   left: -1px;
 }
 .table.table-totalorder {
