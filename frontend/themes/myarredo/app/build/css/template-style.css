@@ -8166,11 +8166,25 @@ h1 {
   align-items: center;
   min-height: 22px;
   position: absolute;
-  top: 20px;
+  top: 0;
   left: 0;
-  background-color: #448339;
+  background-color: #ffd700;
+  background-image: linear-gradient(#ffe247, #ffd700);
   color: #ffffff;
   text-transform: uppercase;
+  padding: 1px 5px;
+  z-index: 99;
+}
+.prod-novelty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 22px;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  background-color: #C4252F;
+  color: #ffffff;
   padding: 1px 5px;
   z-index: 99;
 }
@@ -8179,6 +8193,10 @@ h1 {
   right: -1px;
 }
 .category-page .cat-prod .one-prod-tile:hover .prod-bestseller {
+  top: -1px;
+  left: -1px;
+}
+.category-page .cat-prod .one-prod-tile:hover .prod-novelty {
   top: 19px;
   left: -1px;
 }
