@@ -79,6 +79,7 @@ class ProductsNovelties extends Widget
                 $modelClass::tableName() . '.image_link',
                 $modelClass::tableName() . '.factory_id',
                 $modelClass::tableName() . '.bestseller',
+                $modelClass::tableName() . '.novelty',
                 $modelClass::tableName() . '.price',
                 $modelClass::tableName() . '.price_new',
                 $modelLangClass::tableName() . '.title',

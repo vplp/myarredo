@@ -8,7 +8,6 @@ use yii\filters\{
 };
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
-//
 use frontend\modules\catalog\models\{
     Product, ProductStats, ProductStatsDays
 };
