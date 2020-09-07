@@ -221,7 +221,8 @@ class CatalogSaleController extends Controller
             $model->setScenario('mark');
             $model->mark = '1';
 
-            if ($model->save() && !in_array(0, array_values($saveLang))) {
+            if (!in_array(0, array_values($saveLang))) {
+                $model->save();
                 $this->stdout("translate ID = " . $model->id . " \n", Console::FG_GREEN);
             }
 
