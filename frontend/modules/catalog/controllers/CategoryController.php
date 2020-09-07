@@ -10,8 +10,16 @@ use frontend\components\BaseController;
 use frontend\modules\catalog\widgets\filter\{
     ProductFilter, ProductFilterSizes
 };
-use frontend\modules\catalog\models\{
-    Collection, Product, Category, Factory, Types, SubTypes, Specification, Colors, ProductRelSpecification
+use frontend\modules\catalog\models\{Collection,
+    Product,
+    Category,
+    Factory,
+    ProductStatsDays,
+    Types,
+    SubTypes,
+    Specification,
+    Colors,
+    ProductRelSpecification
 };
 
 /**
@@ -97,6 +105,18 @@ class CategoryController extends BaseController
                 'content' => 'noindex, nofollow',
             ]);
         }
+
+        $bestsellers = ProductStatsDays::find()
+            ->select([
+                ProductStatsDays::tableName() . '.product_id',
+                'count(' . ProductStatsDays::tableName() . '.product_id) as count',
+                'sum(' . ProductStatsDays::tableName() . '.views) as views'
+            ])
+            ->groupBy(ProductStatsDays::tableName() . '.product_id')
+            ->orderBy(['views' => SORT_DESC])
+            ->limit(30)
+            ->all();
+            /* !!! */ echo  '<pre style="color:red;">'; print_r($bestsellers); echo '</pre>'; /* !!! */
 
         return $this->render('list', [
             'models' => $models->getModels(),

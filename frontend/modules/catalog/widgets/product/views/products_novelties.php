@@ -56,10 +56,6 @@ if (!empty($products) || !empty($promotions)) { ?>
                                 <div class="prod-bestseller"><?= Yii::t('app', 'Bestseller') ?></div>
                             <?php } ?>
 
-                            <?php if ($model['novelty']) { ?>
-                                <div class="prod-novelty"><?= Yii::t('app', 'Novelty') ?></div>
-                            <?php } ?>
-
                             <?php if ($modelClass::getSavingPrice($model)) { ?>
                                 <div class="prod-saving-percentage"><?= $modelClass::getSavingPercentage($model) ?></div>
                             <?php } ?>
