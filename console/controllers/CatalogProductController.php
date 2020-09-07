@@ -49,7 +49,7 @@ class CatalogProductController extends Controller
             ->andFilterWhere([
                 'mark' => '0',
             ])
-            ->limit(1)
+            ->limit(50)
             ->orderBy(Product::tableName() . '.id DESC')
             ->all();
 
@@ -226,7 +226,6 @@ class CatalogProductController extends Controller
             $model->mark = '1';
 
             if ($model->save() && !in_array(0, array_values($saveLang))) {
-                $model->save();
                 $this->stdout("translate ID = " . $model->id . " \n", Console::FG_GREEN);
             }
 
