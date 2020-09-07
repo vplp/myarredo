@@ -138,6 +138,8 @@ class CatalogItalianProductController extends Controller
                                         $transaction->rollBack();
                                         throw new Exception($e);
                                     }
+                                } else {
+                                    $saveLang[] = 0;
                                 }
                             } else {
                                 $saveLang[] = 1;
@@ -220,6 +222,8 @@ class CatalogItalianProductController extends Controller
                                             $transaction->rollBack();
                                             throw new Exception($e);
                                         }
+                                    } else {
+                                        $saveLang[] = 0;
                                     }
                                 }
                             }

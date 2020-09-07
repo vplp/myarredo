@@ -49,7 +49,7 @@ class CatalogProductController extends Controller
             ->andFilterWhere([
                 'mark' => '0',
             ])
-            ->limit(50)
+            ->limit(1)
             ->orderBy(Product::tableName() . '.id DESC')
             ->all();
 
@@ -135,6 +135,8 @@ class CatalogProductController extends Controller
                                         $transaction->rollBack();
                                         throw new Exception($e);
                                     }
+                                } else {
+                                    $saveLang[] = 0;
                                 }
                             } else {
                                 $saveLang[] = 1;
@@ -210,6 +212,8 @@ class CatalogProductController extends Controller
                                             $transaction->rollBack();
                                             throw new Exception($e);
                                         }
+                                    } else {
+                                        $saveLang[] = 0;
                                     }
                                 }
                             }
@@ -222,6 +226,7 @@ class CatalogProductController extends Controller
             $model->mark = '1';
 
             if ($model->save() && !in_array(0, array_values($saveLang))) {
+                $model->save();
                 $this->stdout("translate ID = " . $model->id . " \n", Console::FG_GREEN);
             }
 
