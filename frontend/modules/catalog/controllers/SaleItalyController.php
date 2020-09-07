@@ -271,15 +271,15 @@ class SaleItalyController extends BaseController
 
         $alternatePages = [
             'ru' => [
-                'href' => 'https://www.myarredo.ru' . ItalianProduct::getUrl($model['alias'], false),
+                'href' => 'https://www.myarredo.ru/sale-italy-product/' . $model['alias'] . '/',
                 'lang' => 'ru'
             ],
             'en' => [
-                'href' => 'https://www.myarredo.com' . ItalianProduct::getUrl($model['alias_en'], false),
+                'href' => 'https://www.myarredo.com/en/sale-italy-product/' . $model['alias_en'] . '/',
                 'lang' => 'en'
             ],
             'it' => [
-                'href' => 'https://www.myarredo.com' . ItalianProduct::getUrl($model['alias_it'], false),
+                'href' => 'https://www.myarredo.com/it/sale-italy-product/' . $model['alias_it'] . '/',
                 'lang' => 'it'
             ]
         ];

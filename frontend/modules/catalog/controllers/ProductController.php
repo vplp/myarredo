@@ -229,15 +229,15 @@ class ProductController extends BaseController
 
         $alternatePages = [
             'ru' => [
-                'href' => 'https://www.myarredo.ru' . Product::getUrl($model['alias'], false),
+                'href' => 'https://www.myarredo.ru/product/' . $model['alias'] . '/',
                 'lang' => 'ru'
             ],
             'en' => [
-                'href' => 'https://www.myarredo.com' . Product::getUrl($model['alias_en'], false),
+                'href' => 'https://www.myarredo.com/en/product/' . $model['alias_en'] . '/',
                 'lang' => 'en'
             ],
             'it' => [
-                'href' => 'https://www.myarredo.com' . Product::getUrl($model['alias_it'], false),
+                'href' => 'https://www.myarredo.com/it/product/' . $model['alias_it'] . '/',
                 'lang' => 'it'
             ]
         ];
