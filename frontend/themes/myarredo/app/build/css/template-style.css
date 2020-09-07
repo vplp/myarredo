@@ -8201,6 +8201,16 @@ h1 {
 .comagic-o-rack {
   bottom: 15px;
 }
+.add-to-notepad.btn.btn-default.big {
+  color: #448339;
+  transition: 0.3s;
+}
+.add-to-notepad.btn.btn-default.big:hover,
+.add-to-notepad.btn.btn-default.big.doned,
+.price-availability .availability + .btn.btn-default.big.doned {
+  background-color: #448339;
+  color: #ffffff;
+}
 
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------blog-news styles-------------------------------------- */

@@ -52,9 +52,11 @@ $('.add-to-notepad').on('click', function () {
     var product_id = $(this).data('id');
     var ourElem = $(this);
     var noteBok = $('.header').find('.my-notebook').find('.for-price').text();
+    var donedText = ourElem.attr('data-doned');
     if (!$(this).hasClass('doned')) {
         add_to_popup(product_id);
         $(this).addClass('doned');
+        ourElem.attr('title', donedText);
         setTimeout(function () {
             ourElem.removeAttr('data-toggle');
             $('.header').find('.my-notebook').find('.for-price').text(+noteBok + 1);
