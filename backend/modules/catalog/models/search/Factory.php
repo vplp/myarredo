@@ -35,7 +35,7 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
                 'in',
                 'range' => array_keys(static::statusKeyRange())
             ],
-            [['producing_country_id'], 'integer'],
+            [['producing_country_id', 'editor_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -75,6 +75,7 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
+        $query->andFilterWhere(['=', self::tableName() . '.editor_id', $this->editor_id]);
         $query->andFilterWhere(['=', self::tableName() . '.producing_country_id', $this->producing_country_id]);
         $query->andFilterWhere(['=', self::tableName() . '.published', $this->published]);
 
