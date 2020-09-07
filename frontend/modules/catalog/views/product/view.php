@@ -46,7 +46,7 @@ $this->title = $this->context->title;
 
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-4">
-                            <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') {
+                            <?php if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogeditor'])) {
                                 echo Html::a(
                                     Yii::t('app', 'Edit'),
                                     ($model['is_composition'])
@@ -68,7 +68,7 @@ $this->title = $this->context->title;
                                 <div class="price-availability" itemprop="offers" itemscope
                                      itemtype="http://schema.org/Offer">
 
-                                    <?php if ($model['price_from'] > 0 && !Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'partner'])) { ?>
+                                    <?php if ($model['price_from'] > 0 && !Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'partner', 'catalogeditor'])) { ?>
                                         <div class="price-sticker">
                                             <?= Yii::t('app', 'Цена от') ?><span>&#126;</span>
                                             <span><?= Yii::$app->currency->getValue($model['price_from'], $model['currency']); ?>
