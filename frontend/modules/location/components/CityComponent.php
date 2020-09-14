@@ -110,10 +110,10 @@ class CityComponent extends Component
                 '+39 (9999) 999-9999'
             ],
             'de' => [
-                '+39 (99) 999-999',
-                '+39 (999) 999-999',
-                '+39 (9999) 999-999',
-                '+39 (9999) 999-9999'
+                '+49 (99) 999-999',
+                '+49 (999) 999-999',
+                '+49 (9999) 999-999',
+                '+49 (9999) 999-9999'
             ],
             'kz' => [
                 '+39 (99) 999-999',
@@ -131,6 +131,8 @@ class CityComponent extends Component
             return $mask['ru'] + $mask['it'];
         } elseif (Yii::$app->language == 'it-IT') {
             return $mask['it'];
+        } elseif (Yii::$app->language == 'de-DE') {
+            return $mask['de'];
         } elseif (in_array(DOMAIN_TYPE, ['by'])) {
             return $mask['by'];
         } elseif (in_array(DOMAIN_TYPE, ['ua'])) {
