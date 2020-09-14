@@ -1065,8 +1065,15 @@ $(document).ready(function () {
         }
         // иначе инициализируем со всемя странами
         else {
+            // если страна Германия то по дефолту маска De, если любая другая то - It
+            if (siteLang == 'de') {
+                diCode = 'de';
+            }
+            else {
+                diCode = 'it';
+            }
             iti = window.intlTelInput(intlInputEl, {
-                initialCountry: 'it',
+                initialCountry: diCode,
                 utilsScript: "/js/utils.js",
                 formatOnDisplay: true
             });
@@ -1152,6 +1159,11 @@ $(document).ready(function () {
                 changeIndicator = true;
                 changeCCode = 'it';
             }
+            // Иначе если выбранная страна это Германия
+            else if ($(this).val() == '5') {
+                changeIndicator = true;
+                changeCCode = 'de';
+            }
             // иначе не выбрана ни одна из стран
             else {
                 changeIndicator = false;
@@ -1170,6 +1182,7 @@ $(document).ready(function () {
         });
     }
 
+    // Функционал для открития фильтров по дефолту
     (function() {
         setTimeout(function () {
             if ($('.filters').length > 0) {
