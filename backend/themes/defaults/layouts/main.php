@@ -21,8 +21,8 @@ $this->beginPage();
 <head>
     <base href="<?= Yii::$app->getUrlManager()->getBaseUrl() ?>">
     <meta charset="<?= Yii::$app->charset ?>"/>
-    <link rel="shortcut icon" type="image/png" href="/shortfavicon.png"/>
     <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" href="myarredo-ico.svg" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <?php $this->head(); ?>
