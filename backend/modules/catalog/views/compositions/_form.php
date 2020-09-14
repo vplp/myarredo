@@ -64,6 +64,12 @@ use backend\modules\catalog\models\{
                 'modelLang' => $modelLang
             ])
         ],
+        [
+            'label' => 'Редактор',
+            'content' => $this->render('parts/_editors', [
+                'model' => $model
+            ])
+        ],
     ]
 ]) ?>
 <?= $form->submit($model, $this) ?>
