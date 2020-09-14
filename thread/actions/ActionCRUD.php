@@ -2,10 +2,14 @@
 
 namespace thread\actions;
 
+use Yii;
 use Closure;
 use yii\base\{
     Action, Model
 };
+use thread\modules\sys\modules\logbook\models\Logbook;
+use yii\helpers\Url;
+use yii\log\Logger;
 
 /**
  * Class ActionCRUD
@@ -91,6 +95,19 @@ class ActionCRUD extends Action
      * @var \yii\db\ActiveRecord
      */
     protected $modelLang = null;
+
+    /**
+     * @var bool
+     */
+    public $useLog = true;
+
+    /**
+     * @var array
+     */
+    public $logMessage = [
+        'message' => '',
+        'url' => '',
+    ];
 
     /**
      * Find model by primary key
@@ -192,5 +209,51 @@ class ActionCRUD extends Action
         }
 
         return parent::beforeRun();
+    }
+
+    /**
+     *
+     */
+    public function sendToLog()
+    {
+        /**
+         * @var $loogbook \thread\modules\sys\modules\logbook\components\Logbook
+         */
+        $logbook = Yii::$app->get('logbook', false);
+        if ($logbook !== null) {
+            $module = (Yii::$app->controller->module->module->id == "app-backend")
+                ? Yii::$app->controller->module->id
+                : Yii::$app->controller->module->module->id . '/' . Yii::$app->controller->module->id;
+
+            $controller = Yii::$app->controller->id;
+            $category = $module . '/' . $controller;
+            $info = $this->getLogInfo();
+
+            $model_name = $this->getModel()->formName();
+            $action_method = Yii::$app->controller->action->id;
+            $model_id = $this->getModel()->id;
+
+            $logbook->send($info['message'], $info['url'] ?? '', Logbook::TYPE_NOTICE, $category, $model_name, $action_method, $model_id);
+        } else {
+            Yii::getLogger()->log('logbook service was not found', Logger::LEVEL_ERROR);
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogInfo()
+    {
+        $m = $this->logMessage;
+        if ($m instanceof \Closure) {
+            $message = $m();
+        } elseif (!empty($m['message'])) {
+            $message = $m;
+        } else {
+            $message['message'] = "Model ID:" . $this->getModel()->id;
+            $message['url'] = Url::toRoute(['/' . Yii::$app->controller->module->id . '/' . Yii::$app->controller->id . '/list']);
+        }
+
+        return $message;
     }
 }

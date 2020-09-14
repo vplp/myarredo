@@ -4,9 +4,9 @@ namespace thread\actions;
 
 use Yii;
 use yii\base\Exception;
+use yii\helpers\Url;
 use yii\web\Response;
 use yii\log\Logger;
-//
 use thread\app\base\models\ActiveRecord;
 use thread\modules\seo\modules\modellink\components\Crud;
 
@@ -72,6 +72,12 @@ class Delete extends ActionCRUD
                 $this->seoModelDelete($model);
                 $delete = $model->delete();
                 ($delete) ? $transaction->commit() : $transaction->rollBack();
+
+                //LOG
+                if ($this->useLog && $delete) {
+                    $this->model = $model;
+                    $this->sendToLog();
+                }
             } catch (Exception $e) {
                 Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
                 $transaction->rollBack();
@@ -95,4 +101,26 @@ class Delete extends ActionCRUD
         $seoCrud->getByModel($model)->delete();
     }
 
+    /**
+     * @return string
+     */
+    public function getLogInfo()
+    {
+        $m = $this->logMessage;
+        if ($m instanceof \Closure) {
+            $mess = $m();
+        } elseif (!empty($m['message'])) {
+            $mess = $m;
+        } else {
+            $module = (Yii::$app->controller->module->module->id == "app-backend")
+                ? Yii::$app->controller->module->id
+                : Yii::$app->controller->module->module->id . '/' . Yii::$app->controller->module->id;
+            $controller = Yii::$app->controller->id;
+            $model = $this->getModel();
+            $title = (isset($model['lang']['title'])) ? $model['lang']['title'] : ((isset($model['title'])) ? $model['title'] : $model->id);
+            $mess['message'] = Yii::t('app', 'Delete') . ":" . $title;
+            $mess['url'] = Url::toRoute(['/' . $module . '/' . $controller . '/list']);
+        }
+        return $mess;
+    }
 }

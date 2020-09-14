@@ -4,9 +4,9 @@ namespace thread\actions;
 
 use Yii;
 use yii\base\Exception;
+use yii\helpers\Url;
 use yii\web\Response;
 use yii\log\Logger;
-//
 use thread\app\base\models\ActiveRecord;
 
 /**
@@ -116,11 +116,38 @@ class Sortable extends ActionCRUD
                 $save = true;
             }
             ($save) ? $transaction->commit() : $transaction->rollBack();
+
+            //LOG
+            if ($this->useLog && $save) {
+                $this->model = $model;
+                $this->sendToLog();
+            }
         } catch (Exception $e) {
             Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
             $transaction->rollBack();
         }
 
         return $save;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogInfo()
+    {
+        $m = $this->logMessage;
+        if ($m instanceof \Closure) {
+            $mess = $m();
+        } elseif (!empty($m['message'])) {
+            $mess = $m;
+        } else {
+            $module = (Yii::$app->controller->module->module->id == "app-backend") ?
+                Yii::$app->controller->module->id : Yii::$app->controller->module->module->id . '/' . Yii::$app->controller->module->id;
+            $controller = Yii::$app->controller->id;
+            $model = $this->getModel();
+            $mess['message'] = Yii::t('app', 'Update') . " attribute:" . $model->getAttributeLabel($this->attribute);
+            $mess['url'] = Url::toRoute(['/' . $module . '/' . $controller . '/list']);
+        }
+        return $mess;
     }
 }

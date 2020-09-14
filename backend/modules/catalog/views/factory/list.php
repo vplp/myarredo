@@ -41,7 +41,10 @@ echo GridView::widget([
         ],
         [
             'attribute' => 'Редактор',
-            'value' => 'editor.profile.fullName',
+            'value' => function ($model) {
+                /** @var $model Factory */
+                return $model->editor ? $model->editor->profile->fullName : '-';
+            },
             'filter' => GridViewFilter::selectOne($filter, 'editor_id', [0 => '-'] + Factory::dropDownListEditor()),
         ],
         [

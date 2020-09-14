@@ -22,18 +22,25 @@ class Logbook extends Component
      * @param $link
      * @param string $type
      * @param string $category
+     * @param string $model_name
+     * @param string $action_method
+     * @param int $model_id
      * @throws \yii\db\Exception
      */
-    public function send($message, $link, $type = LogbookModel::TYPE_NOTICE, $category = 'app')
+    public function send($message, $link, $type = LogbookModel::TYPE_NOTICE, $category = 'app', $model_name = '', $action_method = '', $model_id = 0)
     {
         $model = new LogbookModel([
             'scenario' => 'send',
             'message' => $message,
-            'url' => $link,
+            'url' => Yii::$app->request->url, //$link,
             'type' => $type,
             'user_id' => Yii::$app->getUser()->id,
             'category' => $category,
+            'model_name' => $model_name,
+            'action_method' => $action_method,
+            'model_id' => $model_id,
         ]);
+
         /**
          * @var $t yii\db\Transaction
          */

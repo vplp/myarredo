@@ -96,6 +96,14 @@ use backend\modules\catalog\models\{
                 'modelLang' => $modelLang
             ])
         ],
+        [
+            'label' => 'Редактор',
+            'content' => $this->render('parts/_editors', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
     ]
 ]) ?>
 

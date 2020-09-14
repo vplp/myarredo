@@ -4,8 +4,8 @@ namespace thread\actions;
 
 use Yii;
 use yii\base\Exception;
+use yii\helpers\Url;
 use yii\log\Logger;
-//
 use thread\app\base\models\ActiveRecord;
 
 /**
@@ -116,6 +116,12 @@ class CreateWithLang extends ActionCRUD
                 }
                 $save ? $transaction->commit() : $transaction->rollBack();
                 if ($save) {
+                    //LOG
+                    if ($this->useLog) {
+                        $this->model = $model;
+                        $this->sendToLog();
+                    }
+
                     $this->afterSaveModel();
                 }
             } catch (Exception $e) {
@@ -135,5 +141,28 @@ class CreateWithLang extends ActionCRUD
             $f = $this->afterSaveCallback;
             $f($this);
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogInfo()
+    {
+        $m = $this->logMessage;
+        if ($m instanceof \Closure) {
+            $mess = $m();
+        } elseif (!empty($m['message'])) {
+            $mess = $m;
+        } else {
+            $module = (Yii::$app->controller->module->module->id == "app-backend")
+                ? Yii::$app->controller->module->id
+                : Yii::$app->controller->module->module->id . '/' . Yii::$app->controller->module->id;
+            $controller = Yii::$app->controller->id;
+            $model = $this->getModel();
+            $title = (isset($model['lang']['title'])) ? $model['lang']['title'] : ((isset($model['title'])) ? $model['title'] : $model->id);
+            $mess['message'] = Yii::t('app', 'Create') . ":" . $title;
+            $mess['url'] = Url::toRoute(['/' . $module . '/' . $controller . '/update', 'id' => $this->getModel()->id]);
+        }
+        return $mess;
     }
 }

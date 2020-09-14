@@ -19,7 +19,9 @@ use yii\data\ActiveDataProvider;
  */
 class Logbook extends ParentModel implements BaseBackendSearchModel
 {
-    public $title, $date_from, $date_to;
+    public $title;
+    public $date_from;
+    public $date_to;
 
     /**
      * @return array
@@ -27,8 +29,8 @@ class Logbook extends ParentModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-            [['created_at'], 'integer'],
-            [['message', 'category'], 'string', 'max' => 512],
+            [['created_at', 'model_id'], 'integer'],
+            [['message', 'category', 'model_name'], 'string', 'max' => 512],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
             [
                 ['date_from'],
@@ -46,12 +48,11 @@ class Logbook extends ParentModel implements BaseBackendSearchModel
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()
     {
-        return (new Model)->scenarios();
+        return Model::scenarios();
     }
 
     /**
@@ -80,12 +81,16 @@ class Logbook extends ParentModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'published', $this->published])
-            ->andFilterWhere(['like', 'category', $this->category])
-            ->andFilterWhere(['like', 'user_id', $this->user_id])
-            ->andFilterWhere(['like', 'message', $this->message]);
-        //->andFilterWhere(['like', 'created_at', $this->created_at]);$query->andFilterWhere(['>=', 'created_at', $this->date_from]);
-        $query->andFilterWhere(['<=', 'created_at', $this->date_to]);
+        $query
+            ->andFilterWhere([self::tableName() . '.model_id' => $this->model_id])
+            ->andFilterWhere([self::tableName() . '.model_name' => $this->model_name])
+            ->andFilterWhere(['like', self::tableName() . '.published', $this->published])
+            ->andFilterWhere(['like', self::tableName() . '.category', $this->category])
+            ->andFilterWhere(['like', self::tableName() . '.user_id', $this->user_id])
+            ->andFilterWhere(['like', self::tableName() . '.message', $this->message]);
+
+        $query->andFilterWhere(['<=', self::tableName() . '.created_at', $this->date_to]);
+
         return $dataProvider;
     }
 

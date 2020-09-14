@@ -1,11 +1,12 @@
 <?php
+
 namespace thread\actions;
 
 use Yii;
 use yii\base\Exception;
+use yii\helpers\Url;
 use yii\web\Response;
 use yii\log\Logger;
-//
 use thread\app\base\models\ActiveRecord;
 
 /**
@@ -55,7 +56,7 @@ class AttributeSave extends ActionCRUD
         if ($this->modelClass === null) {
             throw new Exception(__CLASS__ . '::$modelClass must be set.');
         }
-        /** @var ActiveRecord $this->model */
+        /** @var ActiveRecord $this ->model */
         $this->model = new $this->modelClass;
         if ($this->model === null) {
             throw new Exception($this->modelClass . 'must be exists.');
@@ -103,11 +104,40 @@ class AttributeSave extends ActionCRUD
             try {
                 $save = $model->save();
                 ($save) ? $transaction->commit() : $transaction->rollBack();
+
+                //LOG
+                if ($this->useLog && $save) {
+                    $this->model = $model;
+                    $this->sendToLog();
+                }
             } catch (Exception $e) {
                 Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
                 $transaction->rollBack();
             }
         }
         return $save;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogInfo()
+    {
+        $m = $this->logMessage;
+        if ($m instanceof \Closure) {
+            $mess = $m();
+        } elseif (!empty($m['message'])) {
+            $mess = $m;
+        } else {
+            $module = (Yii::$app->controller->module->module->id == "app-backend")
+                ? Yii::$app->controller->module->id
+                : Yii::$app->controller->module->module->id . '/' . Yii::$app->controller->module->id;
+            $controller = Yii::$app->controller->id;
+            $model = $this->getModel();
+            $title = (isset($model['lang']['title'])) ? $model['lang']['title'] : ((isset($model['title'])) ? $model['title'] : $model->id);
+            $mess['message'] = 'Update:' . $title;
+            $mess['url'] = Url::toRoute(['/' . $module . '/' . $controller . '/update', 'id' => $this->getModel()->id]);
+        }
+        return $mess;
     }
 }

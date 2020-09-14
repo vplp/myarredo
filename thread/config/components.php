@@ -12,6 +12,9 @@ return [
     'growl' => [
         'class' => \thread\modules\sys\modules\growl\components\Growl::class,
     ],
+    'logbook' => [
+        'class' => \thread\modules\sys\modules\logbook\components\Logbook::class,
+    ],
     'logbookAuth' => [
         'class' => \thread\modules\sys\modules\logbook\components\LogbookAuth::class,
     ],

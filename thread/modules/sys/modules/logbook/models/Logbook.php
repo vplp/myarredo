@@ -14,7 +14,18 @@ use Yii;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  *
- * @property $updated_at int
+ * @property $id
+ * @property $user_id
+ * @property $type
+ * @property $url
+ * @property $message
+ * @property $category
+ * @property $model_name
+ * @property $action_method
+ * @property $model_id
+ * @property $published
+ * @property $deleted
+ * @property $is_read
  */
 class Logbook extends ActiveRecord
 {
@@ -46,10 +57,10 @@ class Logbook extends ActiveRecord
     {
         return [
             [['user_id', 'message', 'type', 'category'], 'required'],
-            [['created_at', 'updated_at', 'user_id'], 'integer'],
+            [['created_at', 'updated_at', 'user_id', 'model_id'], 'integer'],
             [['published', 'deleted', 'is_read'], 'in', 'range' => \array_keys(static::statusKeyRange())],
             [['type'], 'in', 'range' => \array_keys(static::getTypeRange())],
-            [['message', 'url'], 'string', 'max' => 512],
+            [['message', 'url', 'model_name', 'action_method'], 'string', 'max' => 512],
             ['category', 'string', 'max' => 50],
             [['type'], 'default', 'value' => self::TYPE_NOTICE],
         ];
@@ -64,8 +75,33 @@ class Logbook extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'is_read' => ['is_read'],
-            'backend' => ['type', 'url', 'message', 'is_read', 'published', 'deleted', 'category', 'user_id'],
-            'send' => ['created_at', 'type', 'url', 'message', 'is_read', 'published', 'deleted', 'category', 'user_id'],
+            'backend' => [
+                'type',
+                'url',
+                'message',
+                'is_read',
+                'published',
+                'deleted',
+                'category',
+                'user_id',
+                'model_name',
+                'action_method',
+                'model_id'
+            ],
+            'send' => [
+                'created_at',
+                'type',
+                'url',
+                'message',
+                'is_read',
+                'published',
+                'deleted',
+                'category',
+                'user_id',
+                'model_name',
+                'action_method',
+                'model_id'
+            ],
         ];
     }
 
@@ -81,6 +117,9 @@ class Logbook extends ActiveRecord
             'is_read' => 'is_read',
             'user_id' => Yii::t('app', 'User'),
             'category' => Yii::t('app', 'Category'),
+            'model_name',
+            'action_method',
+            'model_id',
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Updated at'),
             'published' => Yii::t('app', 'Published'),

@@ -63,15 +63,15 @@ class Sys extends \common\modules\sys\Sys
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/language/list'],
                     ],
-                    /*[
-                        'label' => 'Messages',
-                        'icon' => 'fa-tasks',
-                        'url' => ['/sys/messages/file/list'],
-                    ],
                     [
                         'label' => 'Log',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/logbook/logbook/list'],
+                    ],
+                    /*[
+                        'label' => 'Messages',
+                        'icon' => 'fa-tasks',
+                        'url' => ['/sys/messages/file/list'],
                     ],
                     [
                         'label' => 'LogbookAuth',

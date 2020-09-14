@@ -24,9 +24,9 @@ class LogbookAuthModel extends ActiveRecord
         'logout'
     ];
 
+
     /**
-     * @return object|string|\yii\db\Connection|null
-     * @throws \yii\base\InvalidConfigException
+     * @return string
      */
     public static function getDb()
     {
