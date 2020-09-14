@@ -1,19 +1,11 @@
 <?php
 
 use yii\grid\GridView;
-use yii\helpers\{
-    Url, Html
-};
-use backend\app\bootstrap\ActiveForm;
 use backend\modules\sys\modules\logbook\models\Logbook;
-use backend\modules\catalog\models\{
-    Factory, FactoryLang
-};
+use backend\modules\catalog\models\Factory;
 
 /**
  * @var $model Factory
- * @var $modelLang FactoryLang
- * @var $form ActiveForm
  */
 
 echo GridView::widget([

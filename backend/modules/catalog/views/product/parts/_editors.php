@@ -4,16 +4,11 @@ use yii\grid\GridView;
 use yii\helpers\{
     Url, Html
 };
-use backend\app\bootstrap\ActiveForm;
 use backend\modules\sys\modules\logbook\models\Logbook;
-use backend\modules\catalog\models\{
-    Product, ProductLang
-};
+use backend\modules\catalog\models\Product;
 
 /**
- * @var $form ActiveForm
  * @var $model Product
- * @var $modelLang ProductLang
  */
 
 echo GridView::widget([
