@@ -32,7 +32,7 @@ class Product extends \common\modules\catalog\models\Product
      */
     public function scenarios()
     {
-        return [];
+        return parent::scenarios();
     }
 
     /**
@@ -48,7 +48,7 @@ class Product extends \common\modules\catalog\models\Product
      */
     public function rules()
     {
-        return [];
+        return parent::rules();
     }
 
     /**

@@ -3,7 +3,6 @@
 namespace common\modules\shop\models;
 
 use Yii;
-//
 use thread\app\base\models\ActiveRecord;
 use common\modules\shop\Shop;
 use common\modules\user\models\User;

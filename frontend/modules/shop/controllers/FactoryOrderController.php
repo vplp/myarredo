@@ -223,19 +223,30 @@ class FactoryOrderController extends BaseController
 
                     $modelOrderItemPrice->order_id = $modelOrder->id;
                     $modelOrderItemPrice->user_id = Yii::$app->getUser()->getId();
-                    $modelOrderItemPrice->product_id = $product_id; // intval($modelPrice['product_id']);
+                    $modelOrderItemPrice->product_id = $product_id;
                     $modelOrderItemPrice->price = isset($modelPrice['price']) ? intval($modelPrice['price']) : 0;
-                    $modelOrderItemPrice->out_of_production = $modelPrice['out_of_production'] ?? 0;
+                    $modelOrderItemPrice->out_of_production = $modelPrice['out_of_production'] ? '1' : '0';
 
                     if ($modelOrderItemPrice->load(Yii::$app->request->post()) && $modelOrderItemPrice->validate()) {
                         /** @var PDO $transaction */
                         $transaction = $modelOrderItemPrice::getDb()->beginTransaction();
                         try {
                             $save = $modelOrderItemPrice->save();
+
                             if ($save) {
                                 $transaction->commit();
                             } else {
                                 $transaction->rollBack();
+                            }
+
+                            if ($modelOrderItemPrice->out_of_production && $save) {
+                                foreach ($modelOrder->items as $item) {
+                                    if ($item->product['id'] == $modelOrderItemPrice->product_id) {
+                                        $item->product->removed = '1';
+                                        $item->product->setScenario('removed');
+                                        $item->product->save();
+                                    }
+                                }
                             }
                         } catch (Exception $e) {
                             $transaction->rollBack();
