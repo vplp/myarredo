@@ -181,12 +181,10 @@ class SendPulseController extends Controller
         /** @var Order $modelOrder */
 
         if ($modelOrder !== null) {
-            if ($modelOrder->city && in_array($modelOrder->lang, ['ru-RU'])) {
+            if ($modelOrder->city) {
                 $bookId = $modelOrder->city->country->bookId;
-            } else if (in_array($modelOrder->lang, ['en-EN', 'it-IT'])) {
+            } else {
                 $bookId = '88910536';
-            } else if ($modelOrder->city && in_array($modelOrder->lang, ['uk-UA'])) {
-                $bookId = $modelOrder->city->country->bookId;
             }
 
             $currentLanguage = Yii::$app->language;
