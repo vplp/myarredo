@@ -28,10 +28,6 @@ class CurrencyComponent extends Component
         if ($session->has('currency') && array_key_exists($session->get('currency'), Currency::getMapCode2Course())) {
             $this->model = Currency::findByCode2($session->get('currency'));
         }
-        if (in_array(DOMAIN_TYPE, ['kz'])) {
-            /* !!! */ echo  '<pre style="color:red;">'; print_r($this->model); echo '</pre>'; /* !!! */
-            die;
-        }
     }
 
     /**
