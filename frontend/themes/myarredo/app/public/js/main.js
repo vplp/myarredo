@@ -1010,6 +1010,8 @@ $(document).ready(function () {
 
         // получаем язык сайта у пользователя
         var siteLang = $('html').attr('lang');
+        // Получаем домен сайта
+        var siteDomen = document.domain;
 
         // функционал переводов ошибок на языки сайта
         // для массива с текстами ошибок
@@ -1070,7 +1072,15 @@ $(document).ready(function () {
                 diCode = 'de';
             }
             else {
-                diCode = 'it';
+                if (siteDomen == 'www.myarredofamily.com') {
+                    diCode = 'us';
+                }
+                else if (siteDomen == 'www.myarredo.kz') {
+                    diCode = 'kz';
+                }
+                else {
+                    diCode = 'it';
+                }
             }
             iti = window.intlTelInput(intlInputEl, {
                 initialCountry: diCode,
