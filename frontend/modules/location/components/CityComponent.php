@@ -135,6 +135,8 @@ class CityComponent extends Component
             return $mask['de'];
         } elseif (in_array(DOMAIN_TYPE, ['by'])) {
             return $mask['by'];
+        }  elseif (in_array(DOMAIN_TYPE, ['kz'])) {
+            return $mask['kz'];
         } elseif (in_array(DOMAIN_TYPE, ['ua'])) {
             return $mask['ua'];
         } else {
