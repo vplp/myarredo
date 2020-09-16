@@ -20,7 +20,6 @@ use frontend\modules\catalog\models\{
 use thread\actions\{
     CreateWithLang, ListModel, AttributeSwitch, UpdateWithLang
 };
-//
 use common\actions\upload\{
     DeleteAction, UploadAction
 };

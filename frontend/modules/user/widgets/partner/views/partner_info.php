@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-//
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\user\models\User;
 use frontend\modules\location\models\City;

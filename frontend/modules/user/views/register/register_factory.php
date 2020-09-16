@@ -4,7 +4,6 @@ use yii\helpers\{
     Html, Url
 };
 use yii\widgets\ActiveForm;
-//
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\user\models\form\RegisterForm;
 use frontend\modules\location\models\{

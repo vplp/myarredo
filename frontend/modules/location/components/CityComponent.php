@@ -167,7 +167,7 @@ class CityComponent extends Component
             $_SERVER["HTTP_HOST"]
         );
 
-        if ($cityAlias && !in_array(DOMAIN_TYPE, ['com', 'de'])) {
+        if ($cityAlias && !in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
             $this->city = City::findByAlias($cityAlias);
 
             if ($this->city == null || in_array($this->city['id'], [1, 2, 4, 159, 160, 161])) {

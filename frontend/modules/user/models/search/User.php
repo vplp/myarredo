@@ -6,7 +6,6 @@ use Yii;
 use yii\base\Model;
 use yii\db\ActiveQuery;
 use yii\data\ActiveDataProvider;
-//
 use frontend\modules\user\models\{
     User as UserModel, Profile, ProfileLang
 };

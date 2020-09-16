@@ -5,7 +5,6 @@ namespace frontend\modules\page\controllers;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
-//
 use frontend\components\BaseController;
 use frontend\modules\page\models\Page;
 

@@ -12,7 +12,6 @@ use yii\helpers\{
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
-//
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
     FactoryPromotion,
@@ -21,10 +20,8 @@ use frontend\modules\catalog\models\{
     search\FactoryProduct as filterFactoryProductModel
 };
 use frontend\modules\payment\models\Payment;
-//
 use common\components\YandexKassaAPI\actions\ConfirmPaymentAction;
 use common\components\YandexKassaAPI\actions\CreatePaymentAction;
-//
 use thread\actions\{
     ListModel,
     AttributeSwitch

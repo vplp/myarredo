@@ -4,7 +4,6 @@ use yii\helpers\{
     Html, Url
 };
 use yii\widgets\ActiveForm;
-//
 use frontend\modules\catalog\models\SaleRequest;
 
 /** @var $model SaleRequest */

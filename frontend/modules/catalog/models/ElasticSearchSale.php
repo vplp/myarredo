@@ -4,9 +4,7 @@ namespace frontend\modules\catalog\models;
 
 use Yii;
 use yii\data\ArrayDataProvider;
-//
 use yii\elasticsearch\ActiveRecord;
-//
 use frontend\modules\location\models\{
     City, Country
 };

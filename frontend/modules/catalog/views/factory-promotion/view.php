@@ -5,7 +5,6 @@ use yii\helpers\{
     Html, Url, ArrayHelper
 };
 use kartik\grid\GridView;
-//
 use frontend\modules\location\models\{
     Country, City
 };
