@@ -138,24 +138,6 @@ class Composition extends Product
     }
 
     /**
-     * @param bool $insert
-     * @return bool
-     * @throws \Throwable
-     */
-    public function beforeSave($insert)
-    {
-//        if (in_array($this->scenario, ['backend']) && $this->id) {
-//            $this->alias = $this->id . ' ' . $this->alias;
-//        }
-//
-//        if (Yii::$app instanceof \yii\web\Application) {
-//            $this->editor_id = Yii::$app->user->id;
-//        }
-
-        return parent::beforeSave($insert);
-    }
-
-    /**
      * @return array
      */
     public function attributeLabels()

@@ -267,11 +267,20 @@ class Factory extends ActiveRecord
         $this->first_letter = mb_strtoupper(mb_substr(trim($this->title), 0, 1, 'UTF-8'), 'UTF-8');
         $this->alias = $this->title;
 
+        return parent::beforeValidate();
+    }
+
+    /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
         if (Yii::$app instanceof \yii\web\Application) {
             $this->editor_id = Yii::$app->user->id;
         }
 
-        return parent::beforeValidate();
+        return parent::beforeSave($insert);
     }
 
     /**

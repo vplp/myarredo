@@ -46,9 +46,9 @@ echo GridView::widget([
                 /** @var $model Factory */
 
                 if ($model->editor) {
-                    return $this->render('parts/_editors_modal', [
-                        'model' => $model
-                    ]);
+//                    return $this->render('parts/_editors_modal', [
+//                        'model' => $model
+//                    ]);
                 } else {
                     return '';
                 }

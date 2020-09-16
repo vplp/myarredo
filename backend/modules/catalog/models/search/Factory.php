@@ -63,11 +63,6 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
             'query' => $query,
             'pagination' => [
                 'defaultPageSize' => $module->itemOnPage
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC
-                ]
             ]
         ]);
 
@@ -76,6 +71,7 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
         }
 
         $query->andFilterWhere(['=', self::tableName() . '.editor_id', $this->editor_id]);
+
         $query->andFilterWhere(['=', self::tableName() . '.producing_country_id', $this->producing_country_id]);
         $query->andFilterWhere(['=', self::tableName() . '.published', $this->published]);
 
