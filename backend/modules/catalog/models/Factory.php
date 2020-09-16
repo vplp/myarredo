@@ -5,6 +5,7 @@ namespace backend\modules\catalog\models;
 use Yii;
 use yii\helpers\ArrayHelper;
 use backend\modules\user\models\User;
+use backend\modules\location\models\Country;
 use thread\app\model\interfaces\BaseBackendModel;
 use common\modules\catalog\models\Factory as CommonFactoryModel;
 use common\actions\upload\UploadBehavior;
@@ -42,6 +43,37 @@ class Factory extends CommonFactoryModel implements BaseBackendModel
     public static function dropDownList()
     {
         return ArrayHelper::map(self::findBase()->undeleted()->all(), 'id', 'title');
+    }
+
+    /**
+     * Backend form drop down list
+     * @return array
+     */
+    public static function dropDownListProducingCountry()
+    {
+        $query = self::find()
+            ->indexBy('producing_country_id')
+            ->select('producing_country_id, count(producing_country_id) as count')
+            ->groupBy('producing_country_id')
+            ->andWhere('producing_country_id > 0')
+            ->asArray()
+            ->all();
+
+        $ids = [];
+
+        foreach ($query as $item) {
+            $ids[] = $item['producing_country_id'];
+        }
+
+        if ($ids) {
+            return ArrayHelper::map(
+                Country::findBase()->andWhere(['IN', Country::tableName() . '.id', $ids])->all(),
+                'id',
+                'lang.title'
+            );
+        } else {
+            return [];
+        }
     }
 
     /**

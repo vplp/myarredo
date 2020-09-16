@@ -5,7 +5,6 @@ namespace backend\modules\catalog\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ArrayDataProvider;
-//
 use backend\modules\catalog\Catalog;
 
 /**

@@ -4,12 +4,10 @@ namespace backend\modules\catalog\controllers;
 
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
-//
 use common\actions\upload\{
     DeleteAction, UploadAction
 };
 use thread\app\base\controllers\BackendController;
-//
 use backend\modules\catalog\models\{
     Samples, SamplesLang, search\Samples as filterSamples
 };

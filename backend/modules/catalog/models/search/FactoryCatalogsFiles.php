@@ -5,9 +5,7 @@ namespace backend\modules\catalog\models\search;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
-//
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
-//
 use backend\modules\catalog\models\{
     FactoryCatalogsFiles as FactoryCatalogsFilesModel
 };

@@ -36,7 +36,7 @@ echo GridView::widget([
             'filter' => GridViewFilter::selectOne(
                 $filter,
                 'producing_country_id',
-                Country::dropDownListForRegistration()
+                [0 => '-'] + Factory::dropDownListProducingCountry()
             ),
         ],
         [

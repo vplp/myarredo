@@ -4,9 +4,7 @@ namespace backend\modules\catalog\models\search;
 
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
-//
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
-//
 use backend\modules\catalog\models\{
     Category as CategoryModel, CategoryLang
 };

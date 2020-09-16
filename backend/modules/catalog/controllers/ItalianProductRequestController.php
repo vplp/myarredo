@@ -4,11 +4,9 @@ namespace backend\modules\catalog\controllers;
 
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-//
 use backend\modules\catalog\models\{
     ItalianProductRequest, search\ItalianProductRequest as filterItalianProductRequest
 };
-//
 use thread\app\base\controllers\BackendController;
 use thread\actions\{
     Create, ListModel, Update
