@@ -225,7 +225,7 @@ class FactoryOrderController extends BaseController
                     $modelOrderItemPrice->user_id = Yii::$app->getUser()->getId();
                     $modelOrderItemPrice->product_id = $product_id;
                     $modelOrderItemPrice->price = isset($modelPrice['price']) ? intval($modelPrice['price']) : 0;
-                    $modelOrderItemPrice->out_of_production = $modelPrice['out_of_production'] ? '1' : '0';
+                    $modelOrderItemPrice->out_of_production = isset($modelPrice['out_of_production']) ? $modelPrice['out_of_production'] : '0';
 
                     if ($modelOrderItemPrice->load(Yii::$app->request->post()) && $modelOrderItemPrice->validate()) {
                         /** @var PDO $transaction */
