@@ -22,7 +22,9 @@ class Composition extends CommonCompositionModel implements BaseBackendModel
      */
     public function beforeValidate()
     {
-        $this->alias = (Yii::$app->request->post('CompositionLang'))['title'];
+        if ($this->alias == '' && in_array($this->scenario, ['backend', 'frontend'])) {
+            $this->alias = (Yii::$app->request->post('CompositionLang'))['title'];
+        }
 
         return parent::beforeValidate();
     }

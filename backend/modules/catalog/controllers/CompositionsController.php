@@ -79,7 +79,6 @@ class CompositionsController extends BackendController
         Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
         if (Yii::$app->request->isAjax) {
-
             $change = Yii::$app->request->post('change');
             $selectedArray = Yii::$app->request->post('selectedArray');
             $selected_val_tovars = Yii::$app->request->post('selected_val_tovars');
