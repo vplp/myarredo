@@ -69,7 +69,8 @@ class CatalogFilter extends Component
         'width' => '.93',
         'length' => '.94',
         'height' => '.95',
-        'apportionment' => '.96,'
+        'apportionment' => '.96',
+        'producing_country' => '.97'
     ];
 
     /**
@@ -95,6 +96,7 @@ class CatalogFilter extends Component
             self::$keys['length'] => 'length',
             self::$keys['height'] => 'height',
             self::$keys['apportionment'] => 'apportionment',
+            self::$keys['producing_country'] => 'producing_country',
         ];
     }
 
@@ -195,6 +197,8 @@ class CatalogFilter extends Component
                 $res[$k] = 'height=' . implode(self::AMPERSAND_2, $v);
             } elseif (is_array($v) && $k == self::$keys['apportionment']) {
                 $res[$k] = 'apportionment=' . implode(self::AMPERSAND_2, $v);
+            }  elseif (is_array($v) && $k == self::$keys['producing_country']) {
+                $res[$k] = 'producing_country=' . implode(self::AMPERSAND_2, $v);
             } elseif (is_array($v)) {
                 $res[$k] = implode(self::AMPERSAND_2, $v);
             } else {
@@ -422,6 +426,18 @@ class CatalogFilter extends Component
             }
 
             self::$_parameters[self::$keys['country']][0] = $model['alias'];
+        }
+
+        /** producing_country */
+
+        if (!empty(self::$_structure['producing_country'])) {
+            $model = Country::findByAlias(self::$_structure['producing_country'][0]);
+
+            if ($model == null || count(self::$_structure['producing_country']) > 1) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            self::$_parameters[self::$keys['producing_country']][0] = $model['alias'];
         }
 
         /** City */

@@ -24,6 +24,7 @@ use frontend\modules\catalog\models\Category;
 /** @var  $apportionmentRange [] */
 /** @var  $sizesLink string */
 /** @var $priceRange [] */
+/** @var $producing_country [] */
 
 ?>
 
@@ -139,6 +140,28 @@ use frontend\modules\catalog\models\Category;
         </div>
     <?php } ?>
 
+    <?php if ($producing_country) { ?>
+        <div class="one-filter open">
+            <?= Html::a(
+                Yii::t('app', 'Producing country'),
+                'javascript:void(0);',
+                ['class' => 'filt-but']
+            ) ?>
+            <div class="list-item">
+                <?php foreach ($producing_country as $item) {
+                    $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
+                    echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
+                    ?>
+                    <div class="filter-group">
+                        <div class="my-checkbox"></div><?= $item['title'] ?>
+                    </div>
+                    <span><?= $item['count'] ?></span>
+                    <?php
+                    echo Html::endTag('a');
+                } ?>
+            </div>
+        </div>
+    <?php } ?>
 
     <?php if ($factory && !in_array(Yii::$app->controller->id, ['template-factory'])) { ?>
         <div class="one-filter">

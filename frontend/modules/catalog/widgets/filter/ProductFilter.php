@@ -5,7 +5,9 @@ namespace frontend\modules\catalog\widgets\filter;
 use Yii;
 use yii\base\Widget;
 use yii\helpers\ArrayHelper;
-//
+use frontend\modules\location\models\{
+    Country, City
+};
 use frontend\modules\catalog\models\{
     Collection, Product, Category, Factory, Types, SubTypes, Specification, Colors, ProductRelSpecification
 };
@@ -63,6 +65,9 @@ class ProductFilter extends Widget
     public $colors = [];
 
     /** @var object */
+    public $producing_country = [];
+
+    /** @var object */
     public $catalogFilterParams = [];
 
     /**
@@ -100,13 +105,7 @@ class ProductFilter extends Widget
         $this->heightRange = [];
         $this->apportionmentRange = [];
 
-        /*if (in_array(Yii::$app->request->userIP, ['127.0.0.1'])) {
-            $this->diameterRange = ProductRelSpecification::getRange($queryParams, 42);
-            $this->widthRange = ProductRelSpecification::getRange($queryParams, 8);
-            $this->lengthRange = ProductRelSpecification::getRange($queryParams, 6);
-            $this->heightRange = ProductRelSpecification::getRange($queryParams, 7);
-            $this->apportionmentRange = ProductRelSpecification::getRange($queryParams, 67);
-        }*/
+        $this->producing_country = Country::getWithProduct($queryParams);
 
         /** CATEGORY LIST */
 
@@ -391,9 +390,7 @@ class ProductFilter extends Widget
                 $params[$keys['price']] = ['{priceMin}', '{priceMax}', Yii::$app->currency->code];
                 $priceRange['link'] = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
             }
-
         }
-
 
         $sizesParams = $this->catalogFilterParams;
 
@@ -559,6 +556,38 @@ class ProductFilter extends Widget
 
         $sizesLink = Yii::$app->catalogFilter->createUrl($sizesParams, [$this->route]);
 
+
+        /**
+         * producing_country
+         */
+
+        $producing_country = [];
+
+        foreach ($this->producing_country as $key => $obj) {
+            $params = $this->catalogFilterParams;
+
+            if (
+                !empty($params[$keys['producing_country']]) &&
+                in_array($obj['alias'], $params[$keys['producing_country']])
+            ) {
+                $checked = 1;
+                $params[$keys['producing_country']] = '';
+            } else {
+                $checked = 0;
+                $params[$keys['producing_country']] = $obj['alias'];
+            }
+
+            $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
+
+            $producing_country[$key] = array(
+                'checked' => $checked,
+                'link' => $link,
+                'title' => $obj['lang']['title'],
+                'count' => $obj['count'],
+                'alias' => $obj['alias'],
+            );
+        }
+
         return $this->render($this->view, [
             'keys' => $keys,
             'filterParams' => $this->catalogFilterParams,
@@ -578,6 +607,7 @@ class ProductFilter extends Widget
             'apportionmentRange' => $apportionmentRange,
             'sizesLink' => $sizesLink,
             'priceRange' => $priceRange,
+            'producing_country' => $producing_country,
             'filter' => $this->catalogFilterParams
         ]);
     }

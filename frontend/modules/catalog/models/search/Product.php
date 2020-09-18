@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\models\search;
 
+use frontend\modules\location\models\Country;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -115,6 +116,15 @@ class Product extends ProductModel
                     Specification::tableName() . '.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['style']]
                 ]);
+        }
+
+        if (isset($params[$keys['producing_country']])) {
+            $country = Country::findBase()->byAlias($params[$keys['producing_country']])->one();
+            if ($country != null) {
+                $query
+                    ->innerJoinWith(["factory"])
+                    ->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', $country['id']]);
+            }
         }
 
         if (isset($params[$keys['factory']])) {
@@ -362,8 +372,7 @@ class Product extends ProductModel
                 self::tableName() . '.price_from',
                 self::tableName() . '.currency',
                 ProductLang::tableName() . '.title',
-            ])
-            ->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
+            ]);
 
         return $this->baseSearch($query, $params);
     }

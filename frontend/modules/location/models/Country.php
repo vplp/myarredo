@@ -212,7 +212,25 @@ class Country extends \common\modules\location\models\Country
         if ($isCountriesFurniture) {
             $query->andFilterWhere(['NOT IN', Factory::tableName() . '.producing_country_id', [4]]);
         } else {
-            $query->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
+            $factories = Factory::find()
+                ->with(['lang'])
+                ->andFilterWhere([
+                    Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
+                ])
+                ->enabled()
+                ->indexBy('producing_country_id')
+                ->select('producing_country_id, count(producing_country_id) as count')
+                ->groupBy('producing_country_id')
+                ->andWhere('producing_country_id > 0')
+                ->all();
+
+            $ids = [];
+
+            foreach ($factories as $item) {
+                $ids[] = $item['producing_country_id'];
+            }
+
+            $query->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', $ids]);
         }
 
         if (isset($params[$keys['category']])) {
