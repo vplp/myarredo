@@ -4,7 +4,6 @@ namespace frontend\modules\catalog\widgets\category;
 
 use Yii;
 use yii\base\Widget;
-//
 use frontend\modules\catalog\models\{Category, CategoryLang, Factory, Product};
 
 /**

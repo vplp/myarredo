@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\models;
 
+use frontend\modules\location\models\Country;
 use Yii;
 
 /**
@@ -76,6 +77,15 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
                     'productSpecification.' . Yii::$app->languages->getDomainAlias(),
                     $params[$keys['style']]
                 ]);
+        }
+
+        if (isset($params[$keys['producing_country']])) {
+            $country = Country::findByAlias($params[$keys['producing_country']]);
+            if ($country != null) {
+                $query
+                    ->innerJoinWith(["product.factory productFactory"], false)
+                    ->andFilterWhere(['IN', 'productFactory.producing_country_id', $country['id']]);
+            }
         }
 
         if (isset($params[$keys['factory']])) {

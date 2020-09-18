@@ -5,7 +5,6 @@ namespace frontend\modules\catalog\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-//
 use frontend\modules\location\models\City;
 use frontend\modules\catalog\models\{
     ItalianProductStats as ItalianProductStatsModel

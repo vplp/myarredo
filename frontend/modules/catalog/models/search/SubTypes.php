@@ -62,7 +62,7 @@ class SubTypes extends SubTypesModel
         }
 
         $query->andFilterWhere(['like', 'alias', $this->alias]);
-        //
+
         $query->andFilterWhere(['like', SubTypesLang::tableName() . '.title', $this->title]);
 
         self::getDb()->cache(function ($db) use ($dataProvider) {

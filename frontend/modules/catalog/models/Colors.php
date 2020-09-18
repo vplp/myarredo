@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\models;
 
+use frontend\modules\location\models\Country;
 use Yii;
 use yii\helpers\{
     ArrayHelper
@@ -131,8 +132,13 @@ class Colors extends \common\modules\catalog\models\Colors
 
         if ($isCountriesFurniture) {
             $query->andFilterWhere(['NOT IN', Factory::tableName() . '.producing_country_id', [4]]);
-        } else {
-            $query->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
+        }
+
+        if (isset($params[$keys['producing_country']])) {
+            $country = Country::findByAlias($params[$keys['producing_country']]);
+            if ($country != null) {
+                $query->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', $country['id']]);
+            }
         }
 
         if (isset($params[$keys['category']])) {

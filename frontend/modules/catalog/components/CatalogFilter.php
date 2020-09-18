@@ -197,8 +197,6 @@ class CatalogFilter extends Component
                 $res[$k] = 'height=' . implode(self::AMPERSAND_2, $v);
             } elseif (is_array($v) && $k == self::$keys['apportionment']) {
                 $res[$k] = 'apportionment=' . implode(self::AMPERSAND_2, $v);
-            }  elseif (is_array($v) && $k == self::$keys['producing_country']) {
-                $res[$k] = 'producing_country=' . implode(self::AMPERSAND_2, $v);
             } elseif (is_array($v)) {
                 $res[$k] = implode(self::AMPERSAND_2, $v);
             } else {

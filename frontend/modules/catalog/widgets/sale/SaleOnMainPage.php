@@ -4,7 +4,6 @@ namespace frontend\modules\catalog\widgets\sale;
 
 use Yii;
 use yii\base\Widget;
-//
 use frontend\modules\catalog\models\{
     Sale, SaleLang
 };
