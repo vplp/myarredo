@@ -462,6 +462,10 @@ class CategoryController extends BaseController
             $noIndex = 1;
         }
 
+        if (isset($params[$keys['producing_country']])) {
+            $noIndex = 1;
+        }
+
         $countParams = 0;
         foreach ($params as $arr) {
             $countParams += count($arr);
@@ -704,6 +708,10 @@ class CategoryController extends BaseController
         }
 
         if (isset($params[$keys['apportionment']])) {
+            $noIndex = 1;
+        }
+
+        if (isset($params[$keys['producing_country']])) {
             $noIndex = 1;
         }
 
