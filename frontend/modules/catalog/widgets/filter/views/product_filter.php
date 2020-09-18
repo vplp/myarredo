@@ -141,7 +141,7 @@ use frontend\modules\catalog\models\Category;
     <?php } ?>
 
     <?php if ($producing_country) { ?>
-        <div class="one-filter open">
+        <div class="one-filter">
             <?= Html::a(
                 Yii::t('app', 'Producing country'),
                 'javascript:void(0);',
