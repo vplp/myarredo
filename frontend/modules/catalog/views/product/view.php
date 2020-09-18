@@ -104,7 +104,8 @@ $this->title = $this->context->title;
                                             <meta itemprop="availability" content="PreOrder"/>
                                         <?php } ?>
                                         <meta itemprop="priceValidUntil" content="<?= date('Y-m-d') ?>"/>
-                                        <link itemprop="url" href="<?= Product::getUrl($model[Yii::$app->languages->getDomainAlias()]) ?>"/>
+                                        <link itemprop="url"
+                                              href="<?= Product::getUrl($model[Yii::$app->languages->getDomainAlias()]) ?>"/>
                                     </div>
 
                                     <?php if (!in_array(Yii::$app->controller->action->id, ['product'])) {
@@ -153,16 +154,18 @@ $this->title = $this->context->title;
                                             <td>
                                                 <?php
                                                 $array = [];
-                                                $paramsUrl = [];
                                                 foreach ($model['subTypes'] as $item) {
-                                                    $array[] = $item['lang']['title'];
+                                                    $paramsUrl = [];
+
                                                     $paramsUrl[$keys['subtypes']][] = $item['alias'];
+
+                                                    $array[] = Html::a(
+                                                        $item['lang']['title'],
+                                                        Yii::$app->catalogFilter->createUrl($paramsUrl)
+                                                    );
                                                 }
 
-                                                echo Html::a(
-                                                    implode('; ', $array),
-                                                    Yii::$app->catalogFilter->createUrl($paramsUrl)
-                                                );
+                                                echo implode('; ', $array);
                                                 ?>
                                             </td>
                                         </tr>
