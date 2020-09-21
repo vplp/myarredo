@@ -22,7 +22,7 @@ $this->beginPage();
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noyaca"/>
-    <link rel="shortcut icon" href="myarredo-ico.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="/myarredo-ico.svg" type="image/x-icon" />
 
     <!-- preloader styles -->
     <style>
