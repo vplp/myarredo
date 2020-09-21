@@ -150,7 +150,8 @@ use frontend\modules\catalog\models\Category;
             <div class="list-item">
                 <?php foreach ($producing_country as $item) {
                     $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
-                    echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
+
+                    echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class , 'rel' => 'nofollow']);
                     ?>
                     <div class="filter-group">
                         <div class="my-checkbox"></div><?= $item['title'] ?>
