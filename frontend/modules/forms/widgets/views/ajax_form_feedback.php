@@ -50,6 +50,7 @@ $script = <<<JS
 $('.btn-feedback, .feedback-container').on('click', function () {
     $.post('$url', {_csrf: $('#token').val()}, function(data){
         $('#ajaxFormFeedbackModal').html(data.html); 
+        interPhoneInit();
         $('#ajaxFormFeedbackModal').modal(); 
         setTimeout(function() {
             feedbackFormElInit();

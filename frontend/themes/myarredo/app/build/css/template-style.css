@@ -9972,6 +9972,10 @@ h1 {
   }
 }
 
+.form-inter-phone .iti.iti--allow-dropdown {
+  width: 100%;
+}
+
 /* --------------------Стили для боковых баннеров------------------------ */
 .fone-poster-box {
   display: none;
