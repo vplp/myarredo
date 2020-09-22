@@ -60,5 +60,3 @@ JS;
 
 $this->registerJs($script);
 ?>
-
-<div class="modal fade" id="ajaxFormFeedbackModal"></div>
