@@ -9961,15 +9961,19 @@ h1 {
   margin-top: 5px;
   margin-bottom: 20px;
 }
-@media(min-width: 1900px) {
+/* @media(min-width: 1900px) {
   #ajaxFormFeedbackModal.modal .modal-dialog {
     margin-top: 45px;
   }
-}
+} */
 @media(max-width: 767px) {
   #ajaxFormFeedbackModal.modal .modal-dialog {
     margin: 0 auto;
   }
+}
+
+.form-inter-phone .iti.iti--allow-dropdown {
+  width: 100%;
 }
 
 /* --------------------Стили для боковых баннеров------------------------ */

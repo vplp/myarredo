@@ -268,9 +268,8 @@ $this->beginPage();
 <?= $this->render('parts/_google_metrika', []) ?>
 
 <input type="hidden" id="token" value="<?= Yii::$app->request->getCsrfToken() ?>">
-
+<div class="modal fade" id="ajaxFormFeedbackModal"></div>
 <?php $this->endBody() ?>
-
 </body>
 </html>
 <?php $this->endPage() ?>

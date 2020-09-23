@@ -14,7 +14,10 @@ use frontend\modules\location\models\City;
 
 <?php $form = ActiveForm::begin([
     'method' => 'post',
-    'action' => Url::toRoute(['/forms/forms/feedback'], true)
+    'action' => Url::toRoute(['/forms/forms/feedback'], true),
+    'options' => [
+        'class' => 'form-inter-phone'
+    ]
 ]); ?>
 
 <?php if (in_array(DOMAIN_TYPE, ['ru', 'ua', 'by'])) {
@@ -51,13 +54,13 @@ use frontend\modules\location\models\City;
 
 <?= $form
     ->field($model, 'phone')
-    ->widget(\yii\widgets\MaskedInput::class, [
-        'mask' => Yii::$app->city->getPhoneMask(),
-        'clientOptions' => [
-            'clearIncomplete' => true
-        ]
-    ])
-    ->input('text', ['placeholder' => Yii::t('app', 'Phone')])
+    // ->widget(\yii\widgets\MaskedInput::class, [
+    //     'mask' => Yii::$app->city->getPhoneMask(),
+    //     'clientOptions' => [
+    //         'clearIncomplete' => true
+    //     ]
+    // ])
+    ->input('text', ['placeholder' => Yii::t('app', 'Phone'), 'class' => 'inter-phone form-control'])
     ->label(false) ?>
 
 <?= $form
