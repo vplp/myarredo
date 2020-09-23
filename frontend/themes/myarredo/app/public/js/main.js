@@ -1059,7 +1059,7 @@ $(document).ready(function () {
         // если по условию нужны только Италия и Россия
         if ($(intlInputEl).attr('data-conly') == 'yes') {
             iti = window.intlTelInput(intlInputEl, {
-                onlyCountries: ["it", "ru"],
+                onlyCountries: ["it", "ru", "de"],
                 initialCountry: diCode,
                 utilsScript: "/js/utils.js",
                 formatOnDisplay: true
