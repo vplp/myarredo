@@ -143,6 +143,8 @@ $url = Url::toRoute(['/location/location/get-cities']);
 
 $script = <<<JS
 var country_id = parseInt($('#registerform-country_id').val());
+var intlInputEl = document.querySelector("#registerform-phone");
+var itiPlugin = {};
 
 showHideForItalia(country_id);
 
@@ -167,9 +169,10 @@ function changeInputmaskByCountry(country_id) {
     inputmask[2] = {"clearIncomplete":true,"mask":["+7 (999) 999-99-99"]};
     inputmask[3] = {"clearIncomplete":true,"mask":["+375 (99) 999-99-99"]};
     inputmask[4] = {"clearIncomplete":true,"mask":['+39 (99) 999-999',
-                '+39 (999) 999-999',
-                '+39 (9999) 999-999',
-                '+39 (9999) 999-9999']};
+    '+39 (999) 999-999',
+    '+39 (9999) 999-999',
+    '+39 (9999) 999-9999']};
+    inputmask[5] = {"clearIncomplete":true,"mask":[""]};
 
     $('#registerform-phone').inputmask(inputmask[country_id]).trigger('focus').trigger("change");
 }
@@ -187,12 +190,31 @@ function showHideForItalia(country_id) {
             var romeOption = $('select#registerform-city_id').children('option')[1];
             $(romeOption).prop('selected', true);
         },300);
+
+        // Если плагин уже активирован то убиваем его
+        if (!$.isEmptyObject(itiPlugin)) {
+            itiPlugin.destroy();
+            intlInputEl.placeholder = '';
+        }
+        
+    }
+    else if (country_id == 5) {
+        itiPlugin = window.intlTelInput(intlInputEl, {
+            initialCountry: 'de',
+            utilsScript: "/js/utils.js",
+            formatOnDisplay: true
+        });
     } else {
         $('.field-registerform-city_id').css('display', 'block');
         $('.field-registerform-exp_with_italian').css('display', 'block');
         $('.field-registerform-delivery_to_other_cities').css('display', 'block');
         
         $('.field-registerform-cape_index').css('display', 'none');
+        // Если плагин уже активирован то убиваем его
+        if (!$.isEmptyObject(itiPlugin)) {
+            itiPlugin.destroy();
+            intlInputEl.placeholder = '';
+        }
     }
 }
 

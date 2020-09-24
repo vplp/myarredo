@@ -9972,7 +9972,8 @@ h1 {
   }
 }
 
-.form-inter-phone .iti.iti--allow-dropdown {
+.form-inter-phone .iti.iti--allow-dropdown,
+#register-form  .iti.iti--allow-dropdown{
   width: 100%;
 }
 

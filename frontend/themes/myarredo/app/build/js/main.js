@@ -46,7 +46,8 @@ function rangeInit() {
 
 
 }
-
+// Функция для активации плагина Intl-input doc - https://github.com/jackocnr/intl-tel-input.git
+// для форм в попапах
 function interPhoneInit() {
 
     if ($('.inter-phone').length > 0) {
@@ -187,44 +188,72 @@ function interPhoneInit() {
                 $(this).find('#cartcustomerform-country_code').val(countryData.iso2);
             }
         });
-
-        // Привязка виджета к выбору страны в выпадающем списке
-        var changeIndicator = false;
-        var changeCCode = '';
-        // Если пользователь изменил страну
-        $('select.rcountry-sct').on('change', function() {
-            // Если новая выбранная страна это рашка)
-            if ($(this).val() == '2') {
-                changeIndicator = true;
-                changeCCode = 'ru';
-            }
-            // Иначе если выбранная страна это Италия
-            else if ($(this).val() == '4') {
-                changeIndicator = true;
-                changeCCode = 'it';
-            }
-            // Иначе если выбранная страна это Германия
-            else if ($(this).val() == '5') {
-                changeIndicator = true;
-                changeCCode = 'de';
-            }
-            // иначе не выбрана ни одна из стран
-            else {
-                changeIndicator = false;
-            }
-
-            // Если индикатор разрешает изменить код страны
-            if (changeIndicator) {
-                // Переинициализируем виджет с выбраной нужной страной по дефолту
-                iti = window.intlTelInput(intlInputEl, {
-                    onlyCountries: ["it", "ru"],
-                    initialCountry: changeCCode,
-                    utilsScript: "/js/utils.js",
-                    formatOnDisplay: true
-                });
-            }
-        });
     }
+}
+
+// Функция для активации плагина с заданой страной  (Intl-input doc - https://github.com/jackocnr/intl-tel-input.git)
+// el - Node Element, поле для номера телефона (должно быть получено с помощью querySelector)
+// code - String, код страны
+function initTelInputCountry(el, code) {
+    // Массив ошибок для поля номер телефона для русского языка
+    var errorMap = ["Некорректный номер", "Некорректный код страны", "Номер короткий", "Номер длинный", "Некорректный номер"];
+    // поле - телефон из нашей формы
+    var intlInputEl = el;
+    // div, обертка поля - телефон из нашей формы
+    var formGroupBox = $(el).closest('.form-group');
+    // див help-block для показа сообщений об ошибке в поле телефон
+    var errorMsg = formGroupBox.children('.help-block')[0];
+    // Инициализируем плагин
+    var itiEl = window.intlTelInput(intlInputEl, {
+        initialCountry: code,
+        utilsScript: "/js/utils.js",
+        formatOnDisplay: true
+    });
+
+    // создаем функцию - сброса
+
+    var reset = function() {
+
+        intlInputEl.classList.remove("error");
+        errorMsg.innerHTML = "";
+        if (itiEl.isValidNumber()) {
+            errorMsg.classList.add("hide");
+            formGroupBox[0].classList.remove("has-error");
+            formGroupBox[0].classList.add("has-success");
+        }
+        else {
+            errorMsg.classList.remove("hide");
+            var errorCode = itiEl.getValidationError();
+            errorMsg.innerHTML = errorMap[errorCode];
+            formGroupBox[0].classList.remove("has-success");
+            formGroupBox[0].classList.add("has-error");
+            intlInputEl.setAttribute('aria-invalid', true);
+        }
+      };
+      
+      // on blur: validate
+      intlInputEl.addEventListener('blur', function() {
+        reset();
+        if (intlInputEl.value.trim()) {
+          if (!iti.isValidNumber()) {
+              setTimeout(function() {
+                intlInputEl.classList.add("error");
+                var errorCode = iti.getValidationError();
+                errorMsg.innerHTML = errorMap[errorCode];
+                errorMsg.classList.remove("hide");
+                formGroupBox[0].classList.remove("has-success");
+                formGroupBox[0].classList.add("has-error");
+                intlInputEl.setAttribute('aria-invalid', true);
+              }, 500);
+          }
+        }
+      });
+      
+      // on keyup / change flag: reset
+      intlInputEl.addEventListener('change', reset);
+      intlInputEl.addEventListener('keyup', reset);
+
+      return itiEl;
 }
 
 // Функция для отслеживания и открития элементов фильтров в которых выбран хоть один элемент
@@ -1239,7 +1268,7 @@ $(document).ready(function () {
         // если по условию нужны только Италия и Россия
         if ($(intlInputEl).attr('data-conly') == 'yes') {
             iti = window.intlTelInput(intlInputEl, {
-                onlyCountries: ["it", "ru", "de"],
+                onlyCountries: ["it", "ru"],
                 initialCountry: diCode,
                 utilsScript: "/js/utils.js",
                 formatOnDisplay: true
