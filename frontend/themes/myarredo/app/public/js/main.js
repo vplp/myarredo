@@ -1379,7 +1379,7 @@ $(document).ready(function () {
                 changeCCode = 'it';
             }
             // Иначе если выбранная страна это Германия
-            else if ($(this).val() == '5') {
+            else if ($(this).val() == '85') {
                 changeIndicator = true;
                 changeCCode = 'de';
             }
@@ -1392,7 +1392,7 @@ $(document).ready(function () {
             if (changeIndicator) {
                 // Переинициализируем виджет с выбраной нужной страной по дефолту
                 iti = window.intlTelInput(intlInputEl, {
-                    onlyCountries: ["it", "ru"],
+                    onlyCountries: ["it", "ru", "de"],
                     initialCountry: changeCCode,
                     utilsScript: "/js/utils.js",
                     formatOnDisplay: true

@@ -172,7 +172,7 @@ function changeInputmaskByCountry(country_id) {
     '+39 (999) 999-999',
     '+39 (9999) 999-999',
     '+39 (9999) 999-9999']};
-    inputmask[5] = {"clearIncomplete":true,"mask":[""]};
+    inputmask[85] = {"clearIncomplete":true,"mask":[""]};
 
     $('#registerform-phone').inputmask(inputmask[country_id]).trigger('focus').trigger("change");
 }
@@ -198,7 +198,7 @@ function showHideForItalia(country_id) {
         }
         
     }
-    else if (country_id == 5) {
+    else if (country_id == 85) {
         itiPlugin = window.intlTelInput(intlInputEl, {
             initialCountry: 'de',
             utilsScript: "/js/utils.js",
