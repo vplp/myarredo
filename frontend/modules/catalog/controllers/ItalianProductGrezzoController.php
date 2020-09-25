@@ -294,7 +294,9 @@ class ItalianProductGrezzoController extends BaseController
                     'class' => AttributeSwitch::class,
                     'modelClass' => $this->model,
                     'attribute' => 'deleted',
-                    'redirect' => $this->defaultAction,
+                    'redirect' => function () {
+                        return ['list'];
+                    }
                 ],
                 'is-sold' => [
                     'class' => AttributeSwitch::class,

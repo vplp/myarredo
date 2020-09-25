@@ -99,7 +99,9 @@ class PartnerSaleController extends BaseController
                     'class' => AttributeSwitch::class,
                     'modelClass' => $this->model,
                     'attribute' => 'deleted',
-                    'redirect' => $this->defaultAction,
+                    'redirect' => function () {
+                        return ['list'];
+                    }
                 ],
                 'fileupload' => [
                     'class' => UploadAction::class,

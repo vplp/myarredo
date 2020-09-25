@@ -93,7 +93,9 @@ class FactoryPromotionController extends BaseController
                     'class' => AttributeSwitch::class,
                     'modelClass' => $this->model,
                     'attribute' => 'deleted',
-                    'redirect' => $this->defaultAction,
+                    'redirect' => function () {
+                        return ['list'];
+                    }
                 ],
                 'create-payment' => [
                     'class' => CreatePaymentAction::class,
