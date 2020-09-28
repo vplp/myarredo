@@ -241,7 +241,7 @@ $route = $model->producing_country_id == 4
                         <?php } ?>
 
                         <?php if ($product) { ?>
-                            <?= Html::tag('h2', Yii::t('app', 'Catalog of furniture')) ?>
+                            <?php /*echo Html::tag('h2', Yii::t('app', 'Catalog of furniture'));*/ ?>
                             <div class="cat-prod catalog-wrap">
                                 <?php foreach ($product as $item) {
                                     echo $this->render('/category/_list_item', [
