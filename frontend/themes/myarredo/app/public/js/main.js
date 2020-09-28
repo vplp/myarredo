@@ -1392,7 +1392,7 @@ $(document).ready(function () {
             if (changeIndicator) {
                 // Переинициализируем виджет с выбраной нужной страной по дефолту
                 iti = window.intlTelInput(intlInputEl, {
-                    onlyCountries: ["it", "ru", "de"],
+                    onlyCountries: [changeCCode],
                     initialCountry: changeCCode,
                     utilsScript: "/js/utils.js",
                     formatOnDisplay: true
