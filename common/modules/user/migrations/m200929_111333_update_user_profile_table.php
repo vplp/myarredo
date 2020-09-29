@@ -25,7 +25,7 @@ class m200929_111333_update_user_profile_table extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn($this->table, 'possibility_to_answer_sale_italy', "enum('0','1') NOT NULL DEFAULT '0' AFTER possibility_to_answer");
+        $this->addColumn($this->table, 'possibility_to_answer_sale_italy', "enum('0','1') NOT NULL DEFAULT '0'");
     }
 
     /**
