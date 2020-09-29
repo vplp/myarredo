@@ -160,6 +160,10 @@ class SaleController extends BaseController
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
+        if ($model['city_id'] != Yii::$app->city->getCityId()) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        }
+
         // SaleStats
         SaleStats::create($model->id);
 
