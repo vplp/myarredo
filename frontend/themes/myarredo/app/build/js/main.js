@@ -1265,10 +1265,10 @@ $(document).ready(function () {
 
         // инициализируем плагин международных телефонных номеров
         var iti = {};
-        // если по условию нужны только Италия и Россия
+        // если по условию нужны только Италия, Россия и Германия
         if ($(intlInputEl).attr('data-conly') == 'yes') {
             iti = window.intlTelInput(intlInputEl, {
-                onlyCountries: ["it", "ru"],
+                onlyCountries: ["it", "ru", "de"],
                 initialCountry: diCode,
                 utilsScript: "/js/utils.js",
                 formatOnDisplay: true
