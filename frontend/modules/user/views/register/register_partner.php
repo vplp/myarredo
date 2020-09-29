@@ -48,12 +48,11 @@ $model->user_agreement = 1;
                                 /**
                                  * country and city
                                  */
+
                                 echo $form->field($model, 'country_id')
                                     ->dropDownList(
-                                        [null => '--'] + Country::dropDownList([1, 2, 3, 4]),
-                                        [
-                                            'class' => 'selectpicker'
-                                        ]
+                                        [null => '--'] + Country::dropDownList([1, 2, 3, 4]) + Country::dropDownListForRegistration(),
+                                        ['class' => 'selectpicker']
                                     );
 
                                 echo $form
@@ -68,12 +67,12 @@ $model->user_agreement = 1;
 
                                 <?= $form
                                     ->field($model, 'phone')
-                                    ->widget(\yii\widgets\MaskedInput::class, [
-                                        'mask' => Yii::$app->city->getPhoneMask(),
-                                        'clientOptions' => [
-                                            'clearIncomplete' => true
-                                        ]
-                                    ]) ?>
+                                    ->input('tel', [
+                                        'placeholder' => Yii::t('app', 'Phone'),
+                                        'class' => 'form-control intlinput-field',
+                                        'data-conly' => 'yes'
+                                    ])
+                                    ->label(false); ?>
 
                                 <?= $form
                                     ->field($model, 'website') ?>
@@ -151,7 +150,7 @@ showHideForItalia(country_id);
 $('select#registerform-country_id').change(function(){
     var country_id = parseInt($(this).val());
     
-    changeInputmaskByCountry(country_id);
+    //changeInputmaskByCountry(country_id);
     
     $.post('$url', {_csrf: $('#token').val(),country_id:country_id}, function(data){
         var select = $('select#registerform-city_id');
@@ -197,13 +196,24 @@ function showHideForItalia(country_id) {
             intlInputEl.placeholder = '';
         }
         
-    }
-    else if (country_id == 85) {
+    } else if (country_id == 85) {
         itiPlugin = window.intlTelInput(intlInputEl, {
             initialCountry: 'de',
             utilsScript: "/js/utils.js",
             formatOnDisplay: true
         });
+        
+        $('.field-registerform-city_id').css('display', 'none');
+        $('.field-registerform-exp_with_italian').css('display', 'none');
+        $('.field-registerform-delivery_to_other_cities').css('display', 'none');
+        
+        $('.field-registerform-cape_index').css('display', 'none');
+       
+        setTimeout(function() {
+            var romeOption = $('select#registerform-city_id').children('option')[1];
+            $(romeOption).prop('selected', true);
+        },300);
+        
     } else {
         $('.field-registerform-city_id').css('display', 'block');
         $('.field-registerform-exp_with_italian').css('display', 'block');
