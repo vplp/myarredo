@@ -48,7 +48,7 @@ class PartnerOrderController extends BaseController
                             'delivery-italian-orders',
                             'pjax-save-order-answer'
                         ],
-                        'roles' => ['logistician'],
+                        'roles' => ['logistician', 'partner'],
                     ],
                     [
                         'allow' => false,

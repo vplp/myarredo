@@ -59,6 +59,10 @@ class UserMenu extends Widget
                     'url' => ['/shop/partner-order/list']
                 ],
                 [
+                    'label' => Yii::t('app', 'Orders italy'),
+                    'url' => ['/shop/partner-order/list-italy']
+                ],
+                [
                     'label' => Yii::t('app', 'General rules'),
                     'url' => ['/rules/rules/list']
                 ],
@@ -76,6 +80,10 @@ class UserMenu extends Widget
                 [
                     'label' => Yii::t('app', 'Orders'),
                     'url' => ['/shop/partner-order/list']
+                ],
+                [
+                    'label' => Yii::t('app', 'Orders italy'),
+                    'url' => ['/shop/partner-order/list-italy']
                 ],
                 [
                     'label' => Yii::t('app', 'Размещение кода'),

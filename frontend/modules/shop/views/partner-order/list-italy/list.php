@@ -15,6 +15,7 @@ use frontend\modules\news\widgets\news\NewsListForPartners;
 $this->title = $this->context->title;
 ?>
 
+
     <main>
         <div class="page adding-product-page ordersbox">
             <div class="largex-container">
@@ -25,11 +26,15 @@ $this->title = $this->context->title;
                     echo NewsListForPartners::widget([]);
                 } ?>
 
-                <?= $this->render('_form_filter', [
-                    'model' => $model,
+                <?= $this->render('_form_filter', ['model' => $model,
                     'params' => $params,
-                    'models' => $models,
-                ]); ?>
+                    'models' => $models,]); ?>
+
+                <?php if (!Yii::$app->user->identity->profile->getPossibilityToAnswerSaleItaly()) { ?>
+                    <div class="info-alertbox">
+                        <?= Yii::t('app', 'Для получения возможности ответов на заявки - свяжитесь с администратором сайта') ?>
+                    </div>
+                <?php } ?>
 
                 <div class="manager-history">
                     <div class="manager-history-header">
@@ -111,15 +116,11 @@ $this->title = $this->context->title;
 
                                 <div class="hidden-order-info flex">
                                     <?php
-                                    if ($modelOrder->isArchive()) {
-                                        echo $this->render('_list_item_archive', [
-                                            'modelOrder' => $modelOrder,
-                                        ]);
+                                    if (!Yii::$app->user->identity->profile->getPossibilityToAnswerSaleItaly() || $modelOrder->isArchive()) {
+                                        echo $this->render('_list_item_archive', ['modelOrder' => $modelOrder,]);
                                     } else {
-                                        echo $this->render('_list_item', [
-                                            'modelOrder' => $modelOrder,
-                                            'modelOrderAnswer' => $modelOrder->orderAnswer,
-                                        ]);
+                                        echo $this->render('_list_item', ['modelOrder' => $modelOrder,
+                                            'modelOrderAnswer' => $modelOrder->orderAnswer,]);
                                     } ?>
                                 </div>
 
@@ -129,9 +130,7 @@ $this->title = $this->context->title;
 
                     </div>
 
-                    <?= frontend\components\LinkPager::widget([
-                        'pagination' => $models->getPagination(),
-                    ]) ?>
+                    <?= frontend\components\LinkPager::widget(['pagination' => $models->getPagination(),]) ?>
 
                 </div>
             </div>

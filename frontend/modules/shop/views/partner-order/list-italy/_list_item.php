@@ -240,3 +240,4 @@ use frontend\modules\catalog\models\{
 } ?>
 
 <?php ActiveForm::end(); ?>
+
