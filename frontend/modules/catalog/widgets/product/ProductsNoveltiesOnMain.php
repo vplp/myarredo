@@ -2,9 +2,10 @@
 
 namespace frontend\modules\catalog\widgets\product;
 
+use Yii;
 use yii\base\Widget;
 use frontend\modules\catalog\models\{
-    Product, ProductLang
+    Product, ProductLang, ProductNoveltyRelCity
 };
 
 /**
@@ -42,12 +43,31 @@ class ProductsNoveltiesOnMain extends Widget
                 Product::tableName() . '.bestseller',
                 ProductLang::tableName() . '.title',
             ])
+            ->innerJoinWith(['noveltyRelCities'], false)
+            ->andFilterWhere([ProductNoveltyRelCity::tableName() . '.location_city_id' => Yii::$app->city->getCityId()])
+            ->limit(100)
+            ->cache(7200)
+            ->all();
+
+        $this->models = array_merge($this->models, Product::findBaseArray()
+            ->select([
+                Product::tableName() . '.id',
+                Product::tableName() . '.collections_id',
+                Product::tableName() . '.alias',
+                Product::tableName() . '.alias_en',
+                Product::tableName() . '.alias_it',
+                Product::tableName() . '.alias_de',
+                Product::tableName() . '.image_link',
+                Product::tableName() . '.factory_id',
+                Product::tableName() . '.bestseller',
+                ProductLang::tableName() . '.title',
+            ])
             ->andWhere([Product::tableName() . '.novelty' => '1'])
             ->groupBy(Product::tableName() . '.collections_id')
             ->orderBy(Product::tableName() . '.updated_at DESC')
             ->limit(100)
             ->cache(7200)
-            ->all();
+            ->all());
 
         $i = 0;
         $_models = [];

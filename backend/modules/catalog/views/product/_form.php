@@ -102,6 +102,14 @@ use backend\modules\catalog\models\{
                 'model' => $model
             ])
         ],
+        [
+            'label' => 'Новинки в городе',
+            'content' => $this->render('parts/_novelty_rel_cities', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
     ]
 ]) ?>
 

@@ -2,6 +2,7 @@
 
 namespace common\modules\catalog\models;
 
+use common\modules\location\models\City;
 use Yii;
 use yii\helpers\{
     ArrayHelper
@@ -74,11 +75,14 @@ use common\modules\user\models\{
  * @property ProductRelFactoryPricesFiles[] $factoryPricesFiles
  * @property Types $types
  * @property Collection $collection
+ * @property Collection $noveltyRelCities
  *
  * @package common\modules\catalog\models
  */
 class Product extends ActiveRecord implements iProduct
 {
+    public $novelty_rel_cities = [];
+
     /**
      * @return object|string|\yii\db\Connection|null
      * @throws \yii\base\InvalidConfigException
@@ -111,6 +115,7 @@ class Product extends ActiveRecord implements iProduct
                     'colors_ids' => 'colors',
                     'factory_catalogs_files_ids' => 'factoryCatalogsFiles',
                     'factory_prices_files_ids' => 'factoryPricesFiles',
+                    'novelty_rel_cities_ids' => 'noveltyRelCities',
                 ],
             ],
             [
@@ -216,7 +221,8 @@ class Product extends ActiveRecord implements iProduct
                     'samples_ids',
                     'colors_ids',
                     'factory_catalogs_files_ids',
-                    'factory_prices_files_ids'
+                    'factory_prices_files_ids',
+                    'novelty_rel_cities_ids'
                 ],
                 'each',
                 'rule' => ['integer']
@@ -298,6 +304,8 @@ class Product extends ActiveRecord implements iProduct
                 'mark1',
                 'mark2',
                 'mark3',
+                'novelty_rel_cities',
+                'novelty_rel_cities_ids'
             ],
         ];
     }
@@ -355,7 +363,21 @@ class Product extends ActiveRecord implements iProduct
             'time_promotion_in_category',
             'time_vip_promotion_in_catalog',
             'time_vip_promotion_in_category',
+            'novelty_rel_cities_ids'
         ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function afterFind()
+    {
+        foreach ($this->noveltyRelCities as $city) {
+            $field = 'novelty_rel_cities';
+            $this->$field[$city['country_id']][$city['id']] = $city['id'];
+        }
+
+        parent::afterFind();
     }
 
     /**
@@ -364,6 +386,19 @@ class Product extends ActiveRecord implements iProduct
      */
     public function beforeSave($insert)
     {
+        if (in_array($this->scenario, ['backend'])) {
+            $array = [];
+            foreach ($this->novelty_rel_cities as $country) {
+                if (is_array($country)) {
+                    foreach ($country as $key2 => $city) {
+                        $array[$city] = $city;
+                    }
+                }
+            }
+
+            $this->novelty_rel_cities_ids = $array;
+        }
+
         if ($this->alias == '' && in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
             $this->alias = (!empty($this->types) ? $this->types->alias : '')
                 . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
@@ -759,5 +794,16 @@ class Product extends ActiveRecord implements iProduct
     {
         return $this->hasOne(UserGroup::class, ['id' => 'group_id'])
             ->viaTable(User::tableName(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getNoveltyRelCities()
+    {
+        return $this
+            ->hasMany(City::class, ['id' => 'location_city_id'])
+            ->viaTable(ProductNoveltyRelCity::tableName(), ['catalog_item_id' => 'id']);
     }
 }

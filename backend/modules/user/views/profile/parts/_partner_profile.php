@@ -1,7 +1,6 @@
 <?php
 
 use kartik\widgets\Select2;
-//
 use backend\modules\location\models\{
     Country, City
 };
