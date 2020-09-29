@@ -1265,10 +1265,11 @@ $(document).ready(function () {
 
         // инициализируем плагин международных телефонных номеров
         var iti = {};
-        // если по условию нужны только Италия, Россия и Германия
+        // если по условию нужна только определенная страна
         if ($(intlInputEl).attr('data-conly') == 'yes') {
+            
             iti = window.intlTelInput(intlInputEl, {
-                onlyCountries: ["it", "ru", "de"],
+                onlyCountries: [diCode],
                 initialCountry: diCode,
                 utilsScript: "/js/utils.js",
                 formatOnDisplay: true
@@ -1368,24 +1369,30 @@ $(document).ready(function () {
         var changeCCode = '';
         // Если пользователь изменил страну
         $('select.rcountry-sct').on('change', function() {
-            // Если новая выбранная страна это рашка)
-            if ($(this).val() == '2') {
-                changeIndicator = true;
-                changeCCode = 'ru';
-            }
-            // Иначе если выбранная страна это Италия
-            else if ($(this).val() == '4') {
-                changeIndicator = true;
-                changeCCode = 'it';
-            }
-            // Иначе если выбранная страна это Германия
-            else if ($(this).val() == '85') {
-                changeIndicator = true;
-                changeCCode = 'de';
-            }
-            // иначе не выбрана ни одна из стран
-            else {
-                changeIndicator = false;
+            // Control change country
+            switch($(this).val()) {
+                case '1':
+                    changeIndicator = true;
+                    changeCCode = 'ua'; 
+                break;
+                case '2':
+                    changeIndicator = true;
+                    changeCCode = 'ru'; 
+                break;
+                case '3':
+                    changeIndicator = true;
+                    changeCCode = 'by'; 
+                break;
+                case '4':
+                    changeIndicator = true;
+                    changeCCode = 'it'; 
+                break;
+                case '85':
+                    changeIndicator = true;
+                    changeCCode = 'de'; 
+                break;
+                default:
+                    changeIndicator = false;
             }
 
             // Если индикатор разрешает изменить код страны

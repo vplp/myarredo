@@ -52,7 +52,7 @@ $model->user_agreement = 1;
                                 echo $form->field($model, 'country_id')
                                     ->dropDownList(
                                         [null => '--'] + Country::dropDownList([1, 2, 3, 4]) + Country::dropDownListForRegistration(),
-                                        ['class' => 'selectpicker']
+                                        ['class' => 'selectpicker rcountry-sct']
                                     );
 
                                 echo $form
@@ -141,9 +141,9 @@ $model->user_agreement = 1;
 $url = Url::toRoute(['/location/location/get-cities']);
 
 $script = <<<JS
+
+console.time('speed register partner js');
 var country_id = parseInt($('#registerform-country_id').val());
-var intlInputEl = document.querySelector("#registerform-phone");
-var itiPlugin = {};
 
 showHideForItalia(country_id);
 
@@ -189,19 +189,8 @@ function showHideForItalia(country_id) {
             var romeOption = $('select#registerform-city_id').children('option')[1];
             $(romeOption).prop('selected', true);
         },300);
-
-        // Если плагин уже активирован то убиваем его
-        if (!$.isEmptyObject(itiPlugin)) {
-            itiPlugin.destroy();
-            intlInputEl.placeholder = '';
-        }
         
     } else if (country_id == 85) {
-        itiPlugin = window.intlTelInput(intlInputEl, {
-            initialCountry: 'de',
-            utilsScript: "/js/utils.js",
-            formatOnDisplay: true
-        });
         
         $('.field-registerform-city_id').css('display', 'none');
         $('.field-registerform-exp_with_italian').css('display', 'none');
@@ -220,11 +209,6 @@ function showHideForItalia(country_id) {
         $('.field-registerform-delivery_to_other_cities').css('display', 'block');
         
         $('.field-registerform-cape_index').css('display', 'none');
-        // Если плагин уже активирован то убиваем его
-        if (!$.isEmptyObject(itiPlugin)) {
-            itiPlugin.destroy();
-            intlInputEl.placeholder = '';
-        }
     }
 }
 
@@ -234,6 +218,7 @@ function showHideForItalia(country_id) {
         $(this).siblings('.dropdown-menu').find('a').attr('href', 'javascript:void(0)');
     });
 })();
-JS;
 
+console.timeEnd('speed register partner js');
+JS;
 $this->registerJs($script);
