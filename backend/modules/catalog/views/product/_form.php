@@ -103,7 +103,7 @@ use backend\modules\catalog\models\{
             ])
         ],
         [
-            'label' => 'Новинки в городе',
+            'label' => Yii::t('app', 'Новинка в городах'),
             'content' => $this->render('parts/_novelty_rel_cities', [
                 'form' => $form,
                 'model' => $model,
