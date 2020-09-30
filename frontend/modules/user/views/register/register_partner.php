@@ -190,18 +190,13 @@ function showHideForItalia(country_id) {
             $(romeOption).prop('selected', true);
         },300);
         
-    } else if (country_id == 85) {
+    } else if (country_id == 85 || country_id == 114) {
         
         $('.field-registerform-city_id').css('display', 'none');
         $('.field-registerform-exp_with_italian').css('display', 'none');
         $('.field-registerform-delivery_to_other_cities').css('display', 'none');
         
         $('.field-registerform-cape_index').css('display', 'none');
-       
-        setTimeout(function() {
-            var romeOption = $('select#registerform-city_id').children('option')[1];
-            $(romeOption).prop('selected', true);
-        },300);
         
     } else {
         $('.field-registerform-city_id').css('display', 'block');

@@ -1391,6 +1391,10 @@ $(document).ready(function () {
                     changeIndicator = true;
                     changeCCode = 'de'; 
                 break;
+                case '114':
+                    changeIndicator = true;
+                    changeCCode = 'kz'; 
+                break;
                 default:
                     changeIndicator = false;
             }
