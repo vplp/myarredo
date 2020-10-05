@@ -151,11 +151,11 @@ $bundle = AppAsset::register($this);
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"></div>
 
 <?php if (DOMAIN_TYPE == 'ru' && Yii::$app->getUser()->isGuest) { ?>
-    <script>
-        var __cs = __cs || [];
+    <script type="text/javascript">
+        var _cs = _cs || [];
         __cs.push(["setCsAccount", "UmbSor8qhGbovgqKXcAqTSVMMinwFmSy"]);
     </script>
-    <script async src="https://app.uiscom.ru/static/cs.min.js"></script>
+    <script type="text/javascript" async src="https://app.uiscom.ru/static/cs.min.js"></script>
 <?php } ?>
 
 <?php if (in_array(Yii::$app->city->getCityId(), [5]) && Yii::$app->getUser()->isGuest) { ?>
