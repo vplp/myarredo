@@ -140,7 +140,7 @@ use frontend\modules\catalog\models\Category;
         </div>
     <?php } ?>
 
-    <?php if ($producing_country) { ?>
+    <?php /*if ($producing_country) { ?>
         <div class="one-filter">
             <?= Html::a(
                 Yii::t('app', 'Producing country'),
@@ -162,7 +162,7 @@ use frontend\modules\catalog\models\Category;
                 } ?>
             </div>
         </div>
-    <?php } ?>
+    <?php }*/ ?>
 
     <?php if ($factory && !in_array(Yii::$app->controller->id, ['template-factory'])) { ?>
         <div class="one-filter">
