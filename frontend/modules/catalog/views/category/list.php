@@ -215,7 +215,7 @@ $.post('$url', {_csrf: $('#token').val(), catalogFilterParams: $queryParams, lin
         $.post('$url3', {_csrf: $('#token').val(),catalogFilterParams:$queryParams,link: '$link'}, function(data) {
             $(data.html).insertAfter('.one-filter:eq(5)');
         });
-    }, 7000);
+    }, 3000);
         
     $('.submit_price').on('click', function () {
         let link = $('input[name="price[link]"]').val(),
