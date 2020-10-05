@@ -463,16 +463,13 @@ class CountriesFurnitureController extends BaseController
         }
 
         $pageDescription[] = Yii::t(
-                'app',
-                'Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo'
-            ) .
-            ' ' .
-            Yii::t('app', 'Звоните') .
-            '! +7 (812)336-42-86.';
+            'app',
+            'Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo'
+        );
 
-            $this->title = Yii::$app->metatag->seo_title
-                ? Yii::$app->metatag->seo_title
-                : $seo_title;
+        $this->title = Yii::$app->metatag->seo_title
+            ? Yii::$app->metatag->seo_title
+            : $seo_title;
 
         if (!Yii::$app->metatag->seo_description) {
             Yii::$app->view->registerMetaTag([

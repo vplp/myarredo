@@ -493,10 +493,7 @@ class CategoryController extends BaseController
         $pageDescription[] = Yii::t(
                 'app',
                 'Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo'
-            ) .
-            ' ' .
-            Yii::t('app', 'Звоните') .
-            '! +7 (812)336-42-86.';
+            );
 
         $this->title = Yii::$app->metatag->seo_title
             ? Yii::$app->metatag->seo_title
