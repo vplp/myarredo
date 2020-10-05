@@ -43,29 +43,7 @@ use frontend\modules\catalog\models\{
             Url::toRoute([$route]),
             ['class' => 'reset']
         );
-    }
-
-    if ($cities) { ?>
-        <div class="one-filter">
-            <?= Html::a(
-                Yii::t('app', 'City'),
-                'javascript:void(0);',
-                ['class' => 'filt-but']
-            ) ?>
-            <div class="list-item">
-                <?php foreach ($cities as $item) { ?>
-                    <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
-
-                    <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                    <div class="filter-group">
-                        <div class="my-checkbox"></div><?= $item['title'] ?>
-                    </div>
-                    <span><?= $item['count'] ?></span>
-                    <?= Html::endTag('a'); ?>
-                <?php } ?>
-            </div>
-        </div>
-    <?php } ?>
+    } ?>
 
     <div class="one-filter">
         <?= Html::a(

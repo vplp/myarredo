@@ -118,10 +118,6 @@ class SaleController extends BaseController
 
         $queryParams['country'] = Yii::$app->city->getCountryId();
 
-        if (!in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159, 160, 161])) {
-            $queryParams['city'] = Yii::$app->city->getCityId();
-        }
-
         $queryParams['defaultPageSize'] = 24;
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
@@ -160,7 +156,7 @@ class SaleController extends BaseController
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
-        if ($model['city_id'] != Yii::$app->city->getCityId()) {
+        if ($model['country_id'] != Yii::$app->city->getCountryId()) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 

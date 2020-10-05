@@ -52,12 +52,6 @@ class SaleFilter extends Widget
     public $factory = [];
 
     /** @var object */
-    public $countries = [];
-
-    /** @var object */
-    public $cities = [];
-
-    /** @var object */
     public $priceRange = ['min' => ['default' => 0], 'max' => ['default' => 0]];
 
     /**  @var object */
@@ -91,8 +85,6 @@ class SaleFilter extends Widget
         $this->style = Specification::getWithSale($queryParams);
         $this->factory = Factory::getWithSale($queryParams);
         $this->colors = Colors::getWithSale($queryParams);
-        $this->countries = Country::getWithSale($queryParams);
-        $this->cities = City::getWithSale($queryParams);
 
         $this->priceRange = Sale::getPriceRange($queryParams);
 
@@ -287,78 +279,6 @@ class SaleFilter extends Widget
         }
 
         /**
-         * Countries list
-         */
-
-        $countries = [];
-        /*
-        foreach ($this->countries as $key => $obj) {
-            $params = $this->catalogFilterParams;
-
-            if (
-                !empty($params[$keys['country']]) &&
-                in_array($obj['alias'], $params[$keys['country']])
-            ) {
-                $checked = 1;
-                $params[$keys['country']] = '';
-                $params[$keys['city']] = '';
-            } else {
-                $checked = 0;
-                $params[$keys['country']] = $obj['alias'];
-                $params[$keys['city']] = '';
-            }
-
-            $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
-
-            $countries[$key] = array(
-                'checked' => $checked,
-                'link' => $link,
-                'title' => $obj['lang']['title'],
-                'count' => $obj['count'],
-                'alias' => $obj['alias'],
-            );
-        }
-        */
-
-        /**
-         * Cities list
-         */
-
-        $cities = [];
-
-        foreach ($this->cities as $key => $obj) {
-            $params = $this->catalogFilterParams;
-
-            if ($obj['id'] == Yii::$app->city->getCityId()) {
-                $checked = 1;
-            } else {
-                $checked = 0;
-            }
-
-            $city = City::findByAlias($obj['alias']);
-
-            if ($city == null || in_array($city['id'], [1, 2, 4, 159, 160, 161])) {
-                $baseUrl = 'https://' . 'www.' . DOMAIN_NAME . '.' . DOMAIN_TYPE;
-            } else {
-                $baseUrl = 'https://' . $city['alias'] . '.' . DOMAIN_NAME . '.' . DOMAIN_TYPE;
-            }
-
-            if ($city['country']['alias'] != DOMAIN_TYPE) {
-                $baseUrl = 'https://' . $city['alias'] . '.' . DOMAIN_NAME . '.' . $city['country']['alias'];
-            }
-
-            $link = $baseUrl . Yii::$app->catalogFilter->createUrl($params, [$this->route]);
-
-            $cities[$key] = array(
-                'checked' => $checked,
-                'link' => $link,
-                'title' => $obj['lang']['title'],
-                'count' => $obj['count'],
-                'alias' => $obj['alias'],
-            );
-        }
-
-        /**
          * Colors list
          */
 
@@ -446,8 +366,6 @@ class SaleFilter extends Widget
             'style' => $style,
             'factory' => $factory,
             'colors' => $colors,
-            'countries' => $countries,
-            'cities' => $cities,
             'factory_first_show' => $factory_first_show,
             'priceRange' => $priceRange,
             'filter' => $this->catalogFilterParams

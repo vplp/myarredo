@@ -48,7 +48,6 @@ class CatalogMenu extends Widget
          */
         $queryParams = [];
         $queryParams['country'] = Yii::$app->city->getCountryId();
-        $queryParams['city'] = Yii::$app->city->getCityId();
 
         $this->categorySale = Category::getWithSale($queryParams);
 

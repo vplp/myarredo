@@ -184,15 +184,11 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         }
 
         if (isset($params['country'])) {
-            $query
-                ->innerJoinWith(['country'])
-                ->andFilterWhere(['IN', Country::tableName() . '.id', $params['country']]);
+            $query->andFilterWhere([self::tableName() . '.country_id' => $params['country']]);
         }
 
         if (isset($params['city'])) {
-            $query
-                ->innerJoinWith(['city'])
-                ->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
+            $query->andFilterWhere([self::tableName() . '.city_id' => $params['city']]);
         }
 
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);
