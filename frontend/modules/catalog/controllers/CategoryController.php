@@ -486,8 +486,8 @@ class CategoryController extends BaseController
             implode(' ', $pageTitle);
 
         if (DOMAIN_TYPE != 'com') {
-            $seo_title .= Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
-            $pageDescription[] = Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere() . '? ';
+            $seo_title .= ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
+            $pageDescription[] = Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere() . '?';
         }
 
         $pageDescription[] = Yii::t(
@@ -496,11 +496,11 @@ class CategoryController extends BaseController
             ) .
             ' ' .
             Yii::t('app', 'Звоните') .
-            '! +7 (812)336-42-86.' .
+            '! +7 (812)336-42-86.';
 
-            $this->title = Yii::$app->metatag->seo_title
-                ? Yii::$app->metatag->seo_title
-                : $seo_title;
+        $this->title = Yii::$app->metatag->seo_title
+            ? Yii::$app->metatag->seo_title
+            : $seo_title;
 
         if (!Yii::$app->metatag->seo_description) {
             Yii::$app->view->registerMetaTag([

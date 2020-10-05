@@ -468,7 +468,7 @@ class CountriesFurnitureController extends BaseController
             ) .
             ' ' .
             Yii::t('app', 'Звоните') .
-            '! +7 (812)336-42-86.' .
+            '! +7 (812)336-42-86.';
 
             $this->title = Yii::$app->metatag->seo_title
                 ? Yii::$app->metatag->seo_title
