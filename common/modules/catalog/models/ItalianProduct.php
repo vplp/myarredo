@@ -645,7 +645,7 @@ class ItalianProduct extends ActiveRecord
     public static function findBase()
     {
         return self::find()
-            ->joinWith(['lang'])
+            ->innerJoinWith(['lang'])
             ->orderBy(self::tableName() . '.updated_at DESC');
     }
 
