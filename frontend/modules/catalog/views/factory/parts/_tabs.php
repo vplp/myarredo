@@ -195,7 +195,6 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         </div>
     <?php } ?>
 
-
     <div id="all-samples" class="tab-pane fade">
         <ul class="list">
             <?php
@@ -243,7 +242,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                 <?php foreach ($ItalianProductGrezzo as $item) {
                     echo Html::beginTag('li') .
                         Html::a(
-                            Html::tag('span', $item['lang']['title'], ['class' => 'for-catalog-list']),
+                            Html::tag('span', $item->getTitle(), ['class' => 'for-catalog-list']),
                             ItalianProduct::getUrl($item[Yii::$app->languages->getDomainAlias()]),
                             ['target' => '_blank']
                         ) .
