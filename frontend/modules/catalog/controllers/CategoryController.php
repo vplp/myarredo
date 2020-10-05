@@ -351,7 +351,7 @@ class CategoryController extends BaseController
 
             $type = [];
             foreach ($models as $model) {
-                $type[] = $model['lang']['title'];
+                $type[] = count($params[$keys['type']]) == 1 ? $model['lang']['plural_title'] : $model['lang']['title'];
             }
 
             $pageTitle[] = implode(', ', $type);
@@ -491,9 +491,9 @@ class CategoryController extends BaseController
         }
 
         $pageDescription[] = Yii::t(
-                'app',
-                'Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo'
-            );
+            'app',
+            'Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo'
+        );
 
         $this->title = Yii::$app->metatag->seo_title
             ? Yii::$app->metatag->seo_title
