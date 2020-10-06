@@ -372,9 +372,11 @@ class Product extends ActiveRecord implements iProduct
      */
     public function afterFind()
     {
-        foreach ($this->noveltyRelCities as $city) {
-            $field = 'novelty_rel_cities';
-            $this->$field[$city['country_id']][$city['id']] = $city['id'];
+        if (isset($this->noveltyRelCities)) {
+            foreach ($this->noveltyRelCities as $city) {
+                $field = 'novelty_rel_cities';
+                $this->$field[$city['country_id']][$city['id']] = $city['id'];
+            }
         }
 
         parent::afterFind();
