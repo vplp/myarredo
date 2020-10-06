@@ -60,9 +60,11 @@ class SitemapController extends Controller
 //        $this->createSitemapFile(self::getUrls('en-EN', 'com'), 'https://' . 'www.myarredofamily.com', $city);
 
         // ru ua by
-        $cities = City::findBase()
-            ->joinWith(['country', 'country.lang'])
+        $cities = City::find()
+            ->joinWith(['lang', 'country', 'country.lang'])
             ->andFilterWhere(['IN', 'country_id', [1, 2, 3, 4, 5, 85, 114]])
+            ->asArray()
+            ->enabled()
             ->all();
 
         $urlsRu = self::getUrls('ru-RU');

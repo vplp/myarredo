@@ -4,8 +4,6 @@ namespace frontend\modules\location\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-
-//
 use frontend\modules\catalog\models\{
     Sale, Product, ItalianProduct, Factory
 };

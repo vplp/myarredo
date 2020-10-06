@@ -3,7 +3,6 @@
 namespace common\modules\location\models;
 
 use yii\helpers\ArrayHelper;
-//
 use common\modules\shop\models\Order;
 use common\modules\catalog\models\{
     Sale, Factory
