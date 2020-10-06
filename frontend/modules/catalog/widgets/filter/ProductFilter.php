@@ -105,7 +105,7 @@ class ProductFilter extends Widget
         $this->heightRange = [];
         $this->apportionmentRange = [];
 
-        $this->producing_country = [];
+        $this->producing_country = Country::getWithProduct($queryParams);
 
         /** CATEGORY LIST */
 
