@@ -8,7 +8,7 @@ use yii\filters\VerbFilter;
 use yii\web\Response;
 use frontend\components\BaseController;
 use frontend\modules\catalog\widgets\filter\{
-    ProductFilter, ProductFilterSizes
+    ProductFilter, ProductFilterSizes, ProductFilterProducingCountry
 };
 use frontend\modules\catalog\models\{Collection,
     Product,
@@ -47,6 +47,7 @@ class CategoryController extends BaseController
                     'ajax-get-category' => ['post'],
                     'ajax-get-filter' => ['post'],
                     'ajax-get-filter-sizes' => ['post'],
+                    'ajax-get-filter-producing-country' => ['post'],
                     'ajax-get-filter-on-main' => ['post'],
                 ],
             ],
@@ -283,6 +284,25 @@ class CategoryController extends BaseController
                 'success' => 1,
                 'html' => ProductFilterSizes::widget([
                     'modelProductRelSpecificationClass' => ProductRelSpecification::class,
+                    'route' => Yii::$app->getRequest()->post('link'),
+                    'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
+                ])
+            ];
+        }
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function actionAjaxGetFilterProducingCountry()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            return [
+                'success' => 1,
+                'html' => ProductFilterProducingCountry::widget([
                     'route' => Yii::$app->getRequest()->post('link'),
                     'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
                 ])

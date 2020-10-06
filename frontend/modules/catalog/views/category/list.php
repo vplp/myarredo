@@ -135,6 +135,7 @@ $params = Yii::$app->catalogFilter->params;
 $queryParams = json_encode(Yii::$app->catalogFilter->params);
 $url = Url::toRoute('/catalog/category/ajax-get-filter');
 $url2 = Url::toRoute('/catalog/category/ajax-get-filter-sizes');
+$url3 = Url::toRoute('/catalog/category/ajax-get-filter-producing-country');
 $link = '/catalog/category/list';
 
 $script = <<<JS
@@ -210,6 +211,12 @@ $.post('$url', {_csrf: $('#token').val(), catalogFilterParams: $queryParams, lin
         });
     }, 1000);
     
+    setTimeout(function() {
+        $.post('$url3', {_csrf: $('#token').val(),catalogFilterParams:$queryParams,link: '$link'}, function(data) {
+            $(data.html).insertAfter('.one-filter:eq(5)');
+        });
+    }, 3000);
+        
     $('.submit_price').on('click', function () {
         let link = $('input[name="price[link]"]').val(),
             min = $('input[name="price[min]"]').val(),
