@@ -20,6 +20,19 @@ class Product extends \common\modules\catalog\models\Product
     public $max;
 
     /**
+     * @inheritDoc
+     */
+    public function afterFind()
+    {
+        foreach ($this->noveltyRelCities as $city) {
+            $field = 'novelty_rel_cities';
+            $this->$field[$city['country_id']][$city['id']] = $city['id'];
+        }
+
+        parent::afterFind();
+    }
+
+    /**
      * @return array
      */
     public function behaviors()

@@ -17,6 +17,19 @@ class Product extends CommonProductModel implements BaseBackendModel
     public $parent_id = 0;
 
     /**
+     * @inheritDoc
+     */
+    public function afterFind()
+    {
+        foreach ($this->noveltyRelCities as $city) {
+            $field = 'novelty_rel_cities';
+            $this->$field[$city['country_id']][$city['id']] = $city['id'];
+        }
+
+        parent::afterFind();
+    }
+
+    /**
      * Backend form drop down list
      * @return array
      */

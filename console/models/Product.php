@@ -7,8 +7,16 @@ namespace console\models;
  *
  * @package console\models
  */
-class Product extends \frontend\modules\catalog\models\Product
+class Product extends \common\modules\catalog\models\Product
 {
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [];
+    }
+
     /**
      * @return mixed
      */
