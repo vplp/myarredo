@@ -25,7 +25,6 @@ $images = $model->getGalleryImageThumb();
                     ]) .
                     Html::tag('meta', '', ['itemprop' => 'name', 'content' => $model->getTitle()]) .
                     Html::tag('meta', '', ['itemprop' => 'caption', 'content' => Product::getStaticTitleForList($model)]) .
-                    Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
                     Html::tag('link', '', ['itemprop' => 'contentUrl', 'href' => $src['img']]) .
                     Html::tag('meta', '', ['itemprop' => 'description', 'content' => strip_tags($model['lang']['description'])]) .
                     Html::a(
@@ -40,6 +39,8 @@ $images = $model->getGalleryImageThumb();
                     ) .
                     Html::tag('span', '', ['class' => 'background']) .
                     Html::endTag('div');
+
+                echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]);
             } else {
                 echo Html::beginTag('div', [
                         'class' => 'item',
@@ -76,11 +77,7 @@ $images = $model->getGalleryImageThumb();
                 <?php foreach ($images as $key => $src) { ?>
                     <div class="thumb-item" data-dominant-color>
                         <span class="background"></span>
-                        <?php if ($key == 0) {
-                            echo Html::img($src['thumb'], ['alt' => $model->getTitle()]);
-                        } else {
-                            echo Html::img($src['thumb'], ['alt' => $model->getTitle()]);
-                        } ?>
+                        <?= Html::img($src['thumb'], ['alt' => $model->getTitle()]) ?>
                     </div>
                 <?php } ?>
 
