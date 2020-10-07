@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-//
 use frontend\modules\catalog\models\Product;
 
 /** @var $model Product */
@@ -26,6 +25,7 @@ $images = $model->getGalleryImageThumb();
                     ]) .
                     Html::tag('meta', '', ['itemprop' => 'name', 'content' => $model->getTitle()]) .
                     Html::tag('meta', '', ['itemprop' => 'caption', 'content' => Product::getStaticTitleForList($model)]) .
+                    Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
                     Html::tag('link', '', ['itemprop' => 'contentUrl', 'href' => $src['img']]) .
                     Html::tag('meta', '', ['itemprop' => 'description', 'content' => strip_tags($model['lang']['description'])]) .
                     Html::a(
@@ -77,8 +77,7 @@ $images = $model->getGalleryImageThumb();
                     <div class="thumb-item" data-dominant-color>
                         <span class="background"></span>
                         <?php if ($key == 0) {
-                            echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
-                                Html::img($src['thumb'], ['alt' => $model->getTitle()]);
+                            echo Html::img($src['thumb'], ['alt' => $model->getTitle()]);
                         } else {
                             echo Html::img($src['thumb'], ['alt' => $model->getTitle()]);
                         } ?>
