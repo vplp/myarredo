@@ -28,6 +28,7 @@ $('.ajax-request-price').on('click', function () {
             ).done(function (data) {
                 if (data.success) {
                     $('#myModal').html(data.view);
+                    interPhoneInit();
                     $('#myModal').modal();
                 }
             });

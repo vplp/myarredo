@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
     'method' => 'post',
     'action' => Url::toRoute('/shop/cart/notepad'),
     'id' => 'checkout-form',
-    'options' => ['class' => 'form-getprice'],
+    'options' => ['class' => 'form-getprice form-inter-phone'],
 ]); ?>
 
 <div class="form-fieldbox2">
@@ -36,7 +36,7 @@ use yii\widgets\ActiveForm;
             ->field($model, 'phone')
             ->input('tel', [
                 'placeholder' => Yii::t('app', 'Phone'),
-                'class' => 'form-control intlinput-field'
+                'class' => 'form-control inter-phone'
             ])
             ->label(false);
     } else {
