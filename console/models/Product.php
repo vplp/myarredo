@@ -7,7 +7,7 @@ namespace console\models;
  *
  * @package console\models
  */
-class Product extends \common\modules\catalog\models\Product
+class Product extends \frontend\modules\catalog\models\Product
 {
     /**
      * @return array
