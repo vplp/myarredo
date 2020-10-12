@@ -11,6 +11,11 @@ use backend\modules\location\models\{
  * @var $form ActiveForm
  */
 
+foreach ($model->noveltyRelCities as $city) {
+    $field = 'novelty_rel_cities';
+    $model->$field[$city['country_id']][$city['id']] = $city['id'];
+}
+
 foreach (Country::dropDownList([1, 2, 3, 4, 5, 85, 114]) as $id => $name) {
     echo $form
         ->field($model, 'novelty_rel_cities[' . $id . ']')

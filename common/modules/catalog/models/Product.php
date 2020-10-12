@@ -75,7 +75,7 @@ use common\modules\user\models\{
  * @property ProductRelFactoryPricesFiles[] $factoryPricesFiles
  * @property Types $types
  * @property Collection $collection
- * @property Collection $noveltyRelCities
+ * @property ProductNoveltyRelCity $noveltyRelCities
  *
  * @package common\modules\catalog\models
  */
@@ -365,19 +365,6 @@ class Product extends ActiveRecord implements iProduct
             'time_vip_promotion_in_category',
             'novelty_rel_cities_ids'
         ];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function afterFind()
-    {
-        foreach ($this->noveltyRelCities as $city) {
-            $field = 'novelty_rel_cities';
-            $this->$field[$city['country_id']][$city['id']] = $city['id'];
-        }
-
-        parent::afterFind();
     }
 
     /**
