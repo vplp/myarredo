@@ -79,6 +79,7 @@ class AppAsset extends AssetBundle
      * @var array
      */
     public $cssOptions = [
-        'position' => View::POS_END
+        'position' => View::POS_END,
+        //'rel' => 'preload',
     ];
 }
