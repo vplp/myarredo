@@ -30,16 +30,26 @@ if (in_array($order->lang, ['ru-RU'])) {
 
 ?>
 
-<div style="width:540px; font: 16px Arial,sans-serif;">
+<div style="width:100%;font-size:16px Arial,sans-serif;">
     <div style="background-color: #c4c0b8; padding:15px 0; text-align:center;">
-        <div>
-            <?= Html::img('https://www.myarredo.ru/uploads/mailer/logo_note.png') ?>
-        </div>
-        <div>
-            <span style="color: #fff; font:bold 16px Arial,sans-serif;">
-                <?= Yii::t('app', 'Мы помогаем купить мебель по лучшим ценам.') ?>
-            </span>
-        </div>
+        <table cellspacing="0" cellpadding="0" border="0" width="540" style="width:100%;">
+			<tr>
+				<td style="text-align:center;">
+                    <div style="width:100%;text-align:center;">
+                        <?= Html::img('https://www.myarredo.ru/uploads/mailer/logo_note.png') ?>
+                    </div>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:center;">
+                    <div style="width:100%;text-align:center;padding-top:8px;">
+                        <span style="color: #fff; font:bold 16px Arial,sans-serif;">
+                            <?= Yii::t('app', 'Мы помогаем купить мебель по лучшим ценам.') ?>
+                        </span>
+                    </div>
+				</td>
+			</tr>
+		</table>
     </div>
 
     <div style="background-color:#fff9ea; text-align: left; padding: 10px 0 40px 10px;font-size: 14px;">
