@@ -6,7 +6,9 @@ use yii\helpers\{
 use frontend\widgets\Alert;
 use frontend\modules\banner\widgets\BackgroundBanner;
 use frontend\themes\myarredo\assets\AppAsset;
+use frontend\themes\myarredo\assets\FontsAsset;
 
+FontsAsset::register($this);
 $bundle = AppAsset::register($this);
 
 $this->beginPage();

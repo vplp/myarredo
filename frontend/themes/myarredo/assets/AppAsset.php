@@ -30,7 +30,7 @@ class AppAsset extends AssetBundle
         'libs/font-awesome/css/font-awesome.min.css',
         'libs/slick-1.6/slick.css',
         'libs/bootstrap-select/css/bootstrap-select.min.css',
-        'css/fonts.css',
+        //'css/fonts.css',
         'libs/fancybox/jquery.fancybox.css',
         'libs/formstyler/jquery.formstyler.css',
         'css/main.scss.min.css',
@@ -42,7 +42,6 @@ class AppAsset extends AssetBundle
      * @var array
      */
     public $js = [
-        // 'https://use.fontawesome.com/35f65baac5.js',
         'libs/vue/vue.min.js',
         'libs/bootstrap-select/js/bootstrap-select.min.js',
         'libs/slick-1.6/slick.min.js',
@@ -79,7 +78,6 @@ class AppAsset extends AssetBundle
      * @var array
      */
     public $cssOptions = [
-        'position' => View::POS_END,
-        //'rel' => 'preload',
+        'position' => View::POS_END
     ];
 }

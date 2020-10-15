@@ -30,7 +30,7 @@ class TemplateFactoryAsset extends AssetBundle
         'libs/font-awesome/css/font-awesome.min.css',
         'libs/slick-1.6/slick.css',
         'libs/bootstrap-select/css/bootstrap-select.min.css',
-        'css/fonts.css',
+        //'css/fonts.css',
         'libs/fancybox/jquery.fancybox.css',
         'css/main.scss.min.css',
         'css/template-style.min.css',
