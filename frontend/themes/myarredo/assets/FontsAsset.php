@@ -57,5 +57,6 @@ class FontsAsset extends AssetBundle
     public $cssOptions = [
         'position' => View::POS_END,
         'rel' => 'preload',
+        'as' => 'style'
     ];
 }
