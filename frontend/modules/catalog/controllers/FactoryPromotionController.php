@@ -2,7 +2,6 @@
 
 namespace frontend\modules\catalog\controllers;
 
-use frontend\modules\location\models\City;
 use Yii;
 use yii\db\Exception;
 use yii\db\Transaction;
@@ -19,6 +18,7 @@ use frontend\modules\catalog\models\{
     FactoryProduct,
     search\FactoryProduct as filterFactoryProductModel
 };
+use frontend\modules\location\models\City;
 use frontend\modules\payment\models\Payment;
 use common\components\YandexKassaAPI\actions\ConfirmPaymentAction;
 use common\components\YandexKassaAPI\actions\CreatePaymentAction;
@@ -235,6 +235,22 @@ class FactoryPromotionController extends BaseController
             'dataProviderFactoryProduct' => $dataProviderFactoryProduct,
             'filterModelFactoryProduct' => $filterModelFactoryProduct,
         ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function actionPayment($id)
+    {
+        $model = FactoryPromotion::findById($id);
+
+        /** @var $model FactoryPromotion */
+
+        if ($model == null) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        }
+
+        $this->crateInvoice($model);
     }
 
     /**

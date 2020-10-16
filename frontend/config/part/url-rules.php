@@ -175,6 +175,7 @@ return [
     'factory-promotion/create-payment/<id:[\d\-]+>' => 'catalog/factory-promotion/create-payment',
     'factory-promotion/notify' => 'catalog/factory-promotion/notify',
     'factory-promotion/update/<id:[\d\-]+>' => 'catalog/factory-promotion/update',
+    'factory-promotion/payment/<id:[\d\-]+>' => 'catalog/factory-promotion/payment',
     'factory-promotion/intrash/<id:[\d\-]+>' => 'catalog/factory-promotion/intrash',
 
     // Partner promotion

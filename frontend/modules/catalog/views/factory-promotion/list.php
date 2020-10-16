@@ -123,7 +123,22 @@ $this->title = $this->context->title;
                                         ],
                                         [
                                             'attribute' => 'amount',
-                                            'value' => 'amount',
+                                            'format' => 'html',
+                                            //'value' => 'amount',
+                                            'value' => function ($model) {
+                                                /** @var $model FactoryPromotion */
+                                                if ($model->status != FactoryPromotion::STATUS_COMPLETED) {
+                                                    return $model['amount'] . '<br>' . Html::a(
+                                                        Yii::t('app', 'Оплатить'),
+                                                        Url::toRoute([
+                                                            '/catalog/factory-promotion/payment',
+                                                            'id' => $model['id']
+                                                        ])
+                                                    );
+                                                } else {
+                                                    return $model['amount'];
+                                                }
+                                            },
                                         ],
                                         [
                                             'attribute' => 'views',
