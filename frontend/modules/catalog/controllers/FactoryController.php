@@ -299,6 +299,24 @@ class FactoryController extends BaseController
             : $model['title'] .
             (DOMAIN_TYPE == 'com' ? ' - ' . Yii::t('app', 'мебели из Италии в') . ' ' . Yii::$app->city->getCityTitleWhere() : '');
 
+        if ($tab == 'collections') {
+            $this->title = Yii::t('app', 'Все коллекции') . ': ' . $this->title;
+        } elseif ($tab == 'articles') {
+            $this->title = Yii::t('app', 'Все артикулы') . ': ' . $this->title;
+        } elseif ($tab == 'catalogs') {
+            $this->title = Yii::t('app', 'Каталоги') . ': ' . $this->title;
+        } elseif ($tab == 'samples') {
+            $this->title = Yii::t('app', 'Варианты отделки') . ': ' . $this->title;
+        } elseif ($tab == 'pricelists') {
+            $this->title = Yii::t('app', 'Прайс листы') . ': ' . $this->title;
+        } elseif ($tab == 'grezzo') {
+            $this->title = Yii::t('app', 'Мебель со сроком производства от ... до ...') . ': ' . $this->title;
+        } elseif ($tab == 'orders') {
+            $this->title = Yii::t('app', 'Orders') . ': ' . $this->title;
+        } elseif ($tab == 'working-conditions') {
+            $this->title = Yii::t('app', 'Условия работы') . ': ' . $this->title;
+        }
+
         if (!Yii::$app->metatag->seo_description) {
             Yii::$app->view->registerMetaTag([
                 'name' => 'description',
