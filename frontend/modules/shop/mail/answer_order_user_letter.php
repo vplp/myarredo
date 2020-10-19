@@ -83,7 +83,7 @@ use frontend\modules\shop\models\{
         <?php if ($modelOrder->orderAnswer->user->group->role == 'partner') { ?>
             <p style="color: #591612; margin-bottom: 1px;">
                 <?= $modelOrder->orderAnswer->user->profile->getNameCompany(); ?><br>
-                <?= $modelOrder->orderAnswer->user->profile->city->getTitle() ?? null; ?><br>
+                <?= $modelOrder->orderAnswer->user->profile->city ? $modelOrder->orderAnswer->user->profile->city->getTitle() : null; ?><br>
                 <?= $modelOrder->orderAnswer->user->profile->lang->address ?? ''; ?>
             </p>
         <?php } ?>

@@ -171,12 +171,8 @@ class PartnerOrderController extends BaseController
 
             if ($modelOrder->isArchive()) {
                 // show message
-                Yii::$app->getSession()->setFlash(
-                    'error',
-                    'Не успели'
-                );
+                Yii::$app->getSession()->setFlash('error', 'Не успели');
             } else {
-
                 /**
                  * save OrderItemPrice
                  */
