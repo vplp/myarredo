@@ -135,7 +135,33 @@ $url = Url::toRoute(['/shop/partner-order/pjax-save-order-answer']);
 $messagePrice = Yii::t('app', 'Ваш ответ должен быть максимально приближен к реальности');
 
 $script = <<<JS
-    // Если произошел клик по кнопке - отправить ответ клиенту
+
+var errorIndicator = true;
+
+// Запрет на ввод любых символов кроме точки.
+$('.orderlist-price-field').on('keypress', function(e) {
+    // разрешаем только цыфры с плавающей точкой
+    if (isNaN(e.key) && e.key != '.') {
+        e.preventDefault();
+    }
+});
+// При фокусе убираем 0 у этого поля
+$('.orderlist-price-field').on('focus', function() {
+    var thisField = $(this);
+    if (thisField.val() == '0') {
+        thisField.val('');
+    }
+});
+// При потере фокуса - если поле пустое - добавляем 0
+$('.orderlist-price-field').on('blur', function() {
+    var thisField = $(this);
+    if (thisField.val() == '') {
+        thisField.val('0');
+    }
+
+});
+
+// Если произошел клик по кнопке - отправить ответ клиенту
 $(".manager-history-list").on("click", ".action-save-answer", function() {
     var thisBtn = $(this);
     var form = thisBtn.parent('form');
@@ -155,42 +181,58 @@ $(".manager-history-list").on("click", ".action-save-answer", function() {
         // если не выбран чекбокс - Товар снят с производства
         if (!out_of_production) {
             // запускаем валидацию поля - цена
-            if (parseFloat(price.find('#orderitemprice-price').val()) < 180) {
+            if (parseFloat(price.find('.orderlist-price-field').val()) < 180) {
                 price.addClass('has-error').find('.help-block').text('$messagePrice');
                 isError = true;
             }
         }
         
        if (isError) {
+            errorIndicator = false;
             return false;
         }
+        else {
+            errorIndicator = true;
+        }
     });
+
+    thisBtn.attr('disabled', true);
+    thisBtn.append('<i class="fa fa-spinner fa-spin fa-fw"></i>');
     
-    // send form
-    $.post('$url', form.serialize()+'&action-save-answer=1').done(function (data) {
-        if (data.OrderAnswer) {
-            form
-                .find('.field-orderanswer-answer')
-                .addClass('has-error')
-                .find('.help-block')
-                .text(data.OrderAnswer.answer);
-        }
-        if (data.OrderItemPrice) {
-            $.each(data.OrderItemPrice, function( product_id, error ) {
+    if (errorIndicator) {
+        // send form
+        $.post('$url', form.serialize()+'&action-save-answer=1').done(function (data) {
+            if (data.OrderAnswer) {
                 form
-                    .find('input[name="OrderItemPrice['+product_id+'][price]"]')
-                    .parent()
+                    .find('.field-orderanswer-answer')
                     .addClass('has-error')
-                    .find('.help-block').text(error.price);
-            });
-        }
-        
-        if (data.success == 1) {
-            document.location.reload(true);
-        }
-    }, 'json');
-      
-    return false;
+                    .find('.help-block')
+                    .text(data.OrderAnswer.answer);
+            }
+            if (data.OrderItemPrice) {
+                $.each(data.OrderItemPrice, function( product_id, error ) {
+                    form
+                        .find('input[name="OrderItemPrice['+product_id+'][price]"]')
+                        .parent()
+                        .addClass('has-error')
+                        .find('.help-block').text(error.price);
+                });
+            }
+            
+            if (data.success == 1) {
+                document.location.reload(true);
+            }
+            else {
+                thisBtn.attr('disabled', false); 
+                thisBtn.children('i.fa').remove();
+            }
+        }, 'json');
+    }
+    else {
+        thisBtn.attr('disabled', false); 
+        thisBtn.children('i.fa').remove();
+        return false;
+    }
 });
 
 // Если происходит переключение именно чекбокса - Товар снят с производства

@@ -183,11 +183,38 @@ use frontend\modules\shop\models\Order;
 
 <?php
 if (Yii::$app->user->identity->profile->possibilityToAnswer) {
-    $url = Url::toRoute(['/shop/partner-order/pjax-save-order-answer']);
-    $messagePrice = Yii::t('app', 'Ваш ответ должен быть максимально приближен к реальности');
+$url = Url::toRoute(['/shop/partner-order/pjax-save-order-answer']);
+$messagePrice = Yii::t('app', 'Ваш ответ должен быть максимально приближен к реальности');
 
-    $script = <<<JS
-    // Если произошел клик по кнопке - отправить ответ клиенту
+$script = <<<JS
+
+var errorIndicator = true;
+
+// Запрет на ввод любых символов кроме точки.
+$('.orderlist-price-field').on('keypress', function(e) {
+        // разрешаем только цыфры с плавающей точкой
+        if (isNaN(e.key) && e.key != '.') {
+            e.preventDefault();
+        }
+    });
+
+    // При фокусе убираем 0 у этого поля
+$('.orderlist-price-field').on('focus', function() {
+    var thisField = $(this);
+    if (thisField.val() == '0') {
+        thisField.val('');
+    }
+});
+// При потере фокуса - если поле пустое - добавляем 0
+$('.orderlist-price-field').on('blur', function() {
+    var thisField = $(this);
+    if (thisField.val() == '') {
+        thisField.val('0');
+    }
+
+});
+
+// Если произошел клик по кнопке - отправить ответ клиенту
 $(".manager-history-list").on("click", ".action-save-answer", function() {
     var thisBtn = $(this);
     var form = thisBtn.parent('form');
@@ -198,7 +225,7 @@ $(".manager-history-list").on("click", ".action-save-answer", function() {
     
     form.find('.basket-item-info').each(function (index, value) {
         var isError = false;
-         
+        
         var price = $(value).find('.field-orderitemprice-price');
         var out_of_production = $(value).find('input[type="checkbox"].outof-prod-checkbox').prop('checked');
 
@@ -207,16 +234,22 @@ $(".manager-history-list").on("click", ".action-save-answer", function() {
         // если не выбран чекбокс - Товар снят с производства
         if (!out_of_production) {
             // запускаем валидацию поля - цена
-            if (parseFloat(price.find('#orderitemprice-price').val()) < 180) {
+            if (parseFloat(price.find('.orderlist-price-field').val()) < 180) {
                 price.addClass('has-error').find('.help-block').text('$messagePrice');
                 isError = true;
             }
         }
         
-       if (isError) {
-            return false;
-        }
+    if (isError) {
+        errorIndicator = false;
+        return false;
+    }
+    else {
+        errorIndicator = true;
+    }
     });
+
+    thisBtn.attr('disabled', true);
     
     // send form
     $.post('$url', form.serialize()+'&action-save-answer=1').done(function (data) {
@@ -240,8 +273,11 @@ $(".manager-history-list").on("click", ".action-save-answer", function() {
         if (data.success == 1) {
             document.location.reload(true);
         }
+        else {
+            thisBtn.attr('disabled', false); 
+        }
     }, 'json');
-      
+    
     return false;
 });
 
@@ -263,5 +299,5 @@ $(".manager-history-list").on('change', 'input[type="checkbox"].field-orderitemp
 });
 JS;
 
-    $this->registerJs($script);
+$this->registerJs($script);
 }
