@@ -26,9 +26,10 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
 
 <ul class="nav nav-tabs">
     <li class="<?= Yii::$app->request->get('tab') == '' ? 'active' : ''; ?>">
-        <a data-toggle="tab" href="#all-product">
-            <?= Yii::t('app', 'Все предметы мебели') ?>
-        </a>
+        <?= Html::a(
+            Yii::t('app', 'Все предметы мебели'),
+            ['/catalog/factory/view', 'alias' => $model['alias']]
+        ) ?>
     </li>
     <li class="<?= Yii::$app->request->get('tab') == 'collections' ? 'active' : ''; ?>">
         <?= Html::a(
