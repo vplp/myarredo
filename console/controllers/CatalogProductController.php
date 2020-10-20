@@ -1030,9 +1030,9 @@ class CatalogProductController extends Controller
     public function actionTestYandexTranslation()
     {
         $translate = Yii::$app->yandexTranslation->getTranslate(
-            'Hello World',
+            'Привет мир',
+            'ru',
             'en',
-            'ru'
         );
 
         var_dump($translate);
