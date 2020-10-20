@@ -166,8 +166,8 @@ class YandexTranslation extends Component
         curl_close($curl);
 
         $result = json_decode($result);
-/* !!! */ echo  '<pre style="color:red;">'; print_r($result); echo '</pre>'; /* !!! */
-        return $result->translations ? $result->translations[0]->text : '';
+//* !!! */ echo  '<pre style="color:red;">'; print_r($result); echo '</pre>'; /* !!! */
+        return isset($result->translations) ? $result->translations[0]->text : '';
     }
 
     public $key;
