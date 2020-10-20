@@ -2,11 +2,13 @@
 
 namespace common\modules\shop\models;
 
+use voskobovich\behaviors\ManyToManyBehavior;
 use Yii;
 use yii\helpers\ArrayHelper;
 use common\modules\location\models\{
     City, Country
 };
+use common\modules\user\models\User;
 
 /**
  * Class Order
@@ -39,11 +41,27 @@ use common\modules\location\models\{
  * @property Customer $customer
  * @property City $city
  * @property Country $country
+ * @property OrderRelUserForAnswer $orderRelUserForAnswer
  *
  * @package common\modules\shop\models
  */
 class Order extends \thread\modules\shop\models\Order
 {
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'user_for_answer_ids' => 'orderRelUserForAnswer',
+                ],
+            ],
+        ]);
+    }
+
     /**
      * @return array
      */
@@ -64,7 +82,14 @@ class Order extends \thread\modules\shop\models\Order
             ],
             [['image_link'], 'string', 'max' => 255],
             // set default values
-            [['delivery_method_id', 'payment_method_id', 'country_id', 'city_id'], 'default', 'value' => 0]
+            [['delivery_method_id', 'payment_method_id', 'country_id', 'city_id'], 'default', 'value' => 0],
+            [
+                [
+                    'user_for_answer_ids',
+                ],
+                'each',
+                'rule' => ['integer']
+            ],
         ];
     }
 
@@ -97,7 +122,8 @@ class Order extends \thread\modules\shop\models\Order
                 'deleted',
                 'create_campaign',
                 'created_at',
-                'updated_at'
+                'updated_at',
+                'user_for_answer_ids'
             ],
             'addNewOrder' => [
                 'product_type',
@@ -129,6 +155,7 @@ class Order extends \thread\modules\shop\models\Order
             'comment' => Yii::t('app', 'Comment client'),
             'admin_comment' => Yii::t('app', 'Admin comment'),
             'image_link' => Yii::t('app', 'Image link'),
+            'user_for_answer_ids' => 'Партнеры, которые могут отвечать на архивные заявки'
         ];
 
         return ArrayHelper::merge(parent::attributeLabels(), $attributeLabels);
@@ -227,6 +254,12 @@ class Order extends \thread\modules\shop\models\Order
             in_array(Yii::$app->user->identity->group->role, ['partner']) &&
             Yii::$app->user->identity->profile->city_id == $this->city_id) {
             $isArchive = false;
+        } elseif ($this->orderRelUserForAnswer) {
+            foreach ($this->orderRelUserForAnswer as $user) {
+                if ($user->id == Yii::$app->user->identity->id) {
+                    $isArchive = false;
+                }
+            }
         } elseif (date_diff(new \DateTime(), new \DateTime(date(DATE_ATOM, $this->created_at)))->days >= 5) {
             $isArchive = true;
         } elseif (count($this->orderAnswers) >= 3) {
@@ -262,5 +295,16 @@ class Order extends \thread\modules\shop\models\Order
             $image = $url . '/' . $this->image_link;
         }
         return $image;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getOrderRelUserForAnswer()
+    {
+        return $this
+            ->hasMany(User::class, ['id' => 'user_id'])
+            ->viaTable(OrderRelUserForAnswer::tableName(), ['order_id' => 'id']);
     }
 }

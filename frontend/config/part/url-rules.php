@@ -61,6 +61,7 @@ return [
 
     'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>' => 'catalog/template-factory/factory',
     'factory/<alias:[\w\-]+>' => 'catalog/factory/view',
+    'factory/<alias:[\w\-]+>/<tab:(collections|articles|catalogs|samples|pricelists|grezzo|orders|working-conditions)>' => 'catalog/factory/view-tab',
 
     'catalog/factory/click-on-file' => 'catalog/factory/click-on-file',
     'product/ajax-get-compositions' => 'catalog/product/ajax-get-compositions',

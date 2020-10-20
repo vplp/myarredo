@@ -7,14 +7,12 @@ use yii\base\Component;
 use yii\helpers\{
     Html, Json
 };
-//
 use Jose\Component\Core\AlgorithmManager;
 use Jose\Component\Core\Converter\StandardConverter;
 use Jose\Component\KeyManagement\JWKFactory;
 use Jose\Component\Signature\JWSBuilder;
 use Jose\Component\Signature\Algorithm\PS256;
 use Jose\Component\Signature\Serializer\CompactSerializer;
-//
 use Yandex\Translate\Translator;
 use Yandex\Translate\Exception;
 
@@ -168,8 +166,8 @@ class YandexTranslation extends Component
         curl_close($curl);
 
         $result = json_decode($result);
-
-        return $result->translations[0]->text;
+//var_dump($result);
+        return $result['translations'][0]['text'];
     }
 
     public $key;
@@ -184,18 +182,20 @@ class YandexTranslation extends Component
     public function getTranslate($text, $sourceLanguageCode, $targetLanguageCode)
     {
         try {
-            // Api v1
-            $translator = new Translator($this->key);
-            $translation = $translator->translate($text, $sourceLanguageCode . '-' . $targetLanguageCode);
-
-            if ($translation != '') {
-                return (string)$translation;
-            } else {
-                // Api v2
-                $translation = $this->translate($text, $sourceLanguageCode, $targetLanguageCode);
-                return (string)$translation;
-            }
-
+//            // Api v1
+//            $translator = new Translator($this->key);
+//            $translation = $translator->translate($text, $sourceLanguageCode . '-' . $targetLanguageCode);
+//
+//            if ($translation != '') {
+//                return (string)$translation;
+//            } else {
+//                // Api v2
+//                $translation = $this->translate($text, $sourceLanguageCode, $targetLanguageCode);
+//                return (string)$translation;
+//            }
+            // Api v2
+            $translation = $this->translate($text, $sourceLanguageCode, $targetLanguageCode);
+            return (string)$translation;
         } catch (Exception $e) {
             // handle exception
             return false;

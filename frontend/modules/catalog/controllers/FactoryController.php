@@ -266,6 +266,72 @@ class FactoryController extends BaseController
     }
 
     /**
+     * @param string $alias
+     * @param string $tab
+     * @return string
+     * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionViewTab(string $alias, $tab = '')
+    {
+        $model = Factory::findByAlias($alias);
+
+        if ($model == null) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        }
+
+        $this->breadcrumbs[] = [
+            'label' => Yii::t('app', 'Итальянские фабрики мебели'),
+            'url' => ['/catalog/factory/list']
+        ];
+
+        $this->breadcrumbs[] = [
+            'label' => $model['title'] .
+                (DOMAIN_TYPE == 'com' ? ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere() : ''),
+            'url' => ['/catalog/factory/view', 'alias' => $model['alias']]
+        ];
+
+        Yii::$app->metatag->render();
+
+        $this->title = Yii::$app->metatag->seo_title
+            ? Yii::$app->metatag->seo_title
+            : $model['title'] .
+            (DOMAIN_TYPE == 'com' ? ' - ' . Yii::t('app', 'мебели из Италии в') . ' ' . Yii::$app->city->getCityTitleWhere() : '');
+
+        if ($tab == 'collections') {
+            $this->title = Yii::t('app', 'Все коллекции') . ': ' . $this->title;
+        } elseif ($tab == 'articles') {
+            $this->title = Yii::t('app', 'Все артикулы') . ': ' . $this->title;
+        } elseif ($tab == 'catalogs') {
+            $this->title = Yii::t('app', 'Каталоги') . ': ' . $this->title;
+        } elseif ($tab == 'samples') {
+            $this->title = Yii::t('app', 'Варианты отделки') . ': ' . $this->title;
+        } elseif ($tab == 'pricelists') {
+            $this->title = Yii::t('app', 'Прайс листы') . ': ' . $this->title;
+        } elseif ($tab == 'grezzo') {
+            $this->title = Yii::t('app', 'Мебель со сроком производства от ... до ...') . ': ' . $this->title;
+        } elseif ($tab == 'orders') {
+            $this->title = Yii::t('app', 'Orders') . ': ' . $this->title;
+        } elseif ($tab == 'working-conditions') {
+            $this->title = Yii::t('app', 'Условия работы') . ': ' . $this->title;
+        }
+
+        if (!Yii::$app->metatag->seo_description) {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'description',
+                'content' => Yii::t('app', 'Каталог итальянской мебели от фабрики') . ' ' . $model['title'] .
+                    (DOMAIN_TYPE == 'com' ? ' ' . Yii::t('app', 'в интернет-магазине Myarredo. Заказать мебель из Италии в') . ' ' . Yii::$app->city->getCityTitleWhere() : ''),
+            ]);
+        }
+
+        return $this->render('view_tab', [
+            'model' => $model,
+            'tab' => $tab,
+        ]);
+    }
+
+    /**
      * @return array
      */
     public function actionClickOnFile()

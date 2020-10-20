@@ -1026,4 +1026,15 @@ class CatalogProductController extends Controller
 
         $this->stdout("actionGenerateAlias: finish. \n", Console::FG_GREEN);
     }
+
+    public function actionTestYandexTranslation()
+    {
+        $translate = Yii::$app->yandexTranslation->getTranslate(
+            'Привет мир',
+            'ru',
+            'en'
+        );
+
+        var_dump($translate);
+    }
 }

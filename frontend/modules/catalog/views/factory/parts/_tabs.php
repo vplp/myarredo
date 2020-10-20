@@ -25,41 +25,47 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
 ?>
 
 <ul class="nav nav-tabs">
-    <li class="active">
-        <a data-toggle="tab" href="#all-product">
-            <?= Yii::t('app', 'Все предметы мебели') ?>
-        </a>
+    <li class="<?= Yii::$app->request->get('tab') == '' ? 'active' : ''; ?>">
+        <?= Html::a(
+            Yii::t('app', 'Все предметы мебели'),
+            ['/catalog/factory/view', 'alias' => $model['alias']]
+        ) ?>
     </li>
-    <li>
-        <a data-toggle="tab" href="#all-collection">
-            <?= Yii::t('app', 'Все коллекции') ?>
-        </a>
+    <li class="<?= Yii::$app->request->get('tab') == 'collections' ? 'active' : ''; ?>">
+        <?= Html::a(
+            Yii::t('app', 'Все коллекции'),
+            ['/catalog/factory/view-tab', 'alias' => $model['alias'], 'tab' => 'collections']
+        ) ?>
     </li>
-    <li>
-        <a data-toggle="tab" href="#all-articles">
-            <?= Yii::t('app', 'Все артикулы') ?>
-        </a>
+    <li class="<?= Yii::$app->request->get('tab') == 'articles' ? 'active' : ''; ?>">
+        <?= Html::a(
+            Yii::t('app', 'Все артикулы'),
+            ['/catalog/factory/view-tab', 'alias' => $model['alias'], 'tab' => 'articles']
+        ) ?>
     </li>
 
     <?php if (!empty($model->catalogsFiles)) { ?>
-        <li>
-            <a data-toggle="tab" href="#catalogs">
-                <?= Yii::t('app', 'Каталоги') ?>
-            </a>
+        <li class="<?= Yii::$app->request->get('tab') == 'catalogs' ? 'active' : ''; ?>">
+            <?= Html::a(
+                Yii::t('app', 'Каталоги'),
+                ['/catalog/factory/view-tab', 'alias' => $model['alias'], 'tab' => 'catalogs']
+            ) ?>
         </li>
     <?php } ?>
 
-    <li>
-        <a data-toggle="tab" href="#all-samples">
-            <?= Yii::t('app', 'Варианты отделки') ?>
-        </a>
+    <li class="<?= Yii::$app->request->get('tab') == 'samples' ? 'active' : ''; ?>">
+        <?= Html::a(
+            Yii::t('app', 'Варианты отделки'),
+            ['/catalog/factory/view-tab', 'alias' => $model['alias'], 'tab' => 'samples']
+        ) ?>
     </li>
 
     <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->isPdfAccess() && !empty($model->pricesFiles)) { ?>
-        <li>
-            <a data-toggle="tab" href="#pricelists">
-                <?= Yii::t('app', 'Прайс листы') ?>
-            </a>
+        <li class="<?= Yii::$app->request->get('tab') == 'pricelists' ? 'active' : ''; ?>">
+            <?= Html::a(
+                Yii::t('app', 'Прайс листы'),
+                ['/catalog/factory/view-tab', 'alias' => $model['alias'], 'tab' => 'pricelists']
+            ) ?>
         </li>
     <?php } ?>
 
@@ -79,103 +85,115 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
     } ?>
 
     <?php if (!empty($ItalianProductGrezzo)) { ?>
-        <li>
-            <a data-toggle="tab" href="#all-grezzo">
-                <?= Yii::t('app', 'Мебель со сроком производства от ... до ...') ?>
-            </a>
+        <li class="<?= Yii::$app->request->get('tab') == 'grezzo' ? 'active' : ''; ?>">
+            <?= Html::a(
+                Yii::t('app', 'Мебель со сроком производства от ... до ...'),
+                ['/catalog/factory/view-tab', 'alias' => $model['alias'], 'tab' => 'grezzo']
+            ) ?>
         </li>
     <?php } ?>
 
     <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') { ?>
-        <li>
-            <a data-toggle="tab" href="#orders">
-                <?= Yii::t('app', 'Orders') ?>
-            </a>
+        <li class="<?= Yii::$app->request->get('tab') == 'orders' ? 'active' : ''; ?>">
+            <?= Html::a(
+                Yii::t('app', 'Orders'),
+                ['/catalog/factory/view-tab', 'alias' => $model['alias'], 'tab' => 'orders']
+            ) ?>
         </li>
     <?php } ?>
 
     <?php if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'partner'])) { ?>
-        <li>
-            <a data-toggle="tab" href="#working-conditions">
-                <?= Yii::t('app', 'Условия работы') ?>
-            </a>
+        <li class="<?= Yii::$app->request->get('tab') == 'working-conditions' ? 'active' : ''; ?>">
+            <?= Html::a(
+                Yii::t('app', 'Условия работы'),
+                ['/catalog/factory/view-tab', 'alias' => $model['alias'], 'tab' => 'working-conditions']
+            ) ?>
         </li>
     <?php } ?>
 </ul>
 
 <div class="tab-content">
-    <div id="all-product" class="tab-pane fade in active">
-        <ul class="list">
-            <?php
-            $FactoryTypes = Factory::getFactoryTypes($model['id']);
+    <?php if (Yii::$app->request->get('tab') == '') { ?>
+        <div id="all-product" class="tab-pane fade <?= Yii::$app->request->get('tab') == '' ? 'in active' : ''; ?>">
+            <ul class="list">
+                <?php
+                $FactoryTypes = Factory::getFactoryTypes($model['id']);
 
-            foreach ($FactoryTypes as $item) {
-                $params = Yii::$app->catalogFilter->params;
+                foreach ($FactoryTypes as $item) {
+                    $params = Yii::$app->catalogFilter->params;
 
-                $params[$keys['factory']][] = $model['alias'];
-                $params[$keys['type']][] = $item[Yii::$app->languages->getDomainAlias()];
+                    $params[$keys['factory']][] = $model['alias'];
+                    $params[$keys['type']][] = $item[Yii::$app->languages->getDomainAlias()];
 
-                echo Html::beginTag('li') .
-                    Html::a(
-                        '<span class="for-allprod">' . $item['title'] . '</span>' .
-                        ' <span>' . $item['count'] . '</span>',
-                        Yii::$app->catalogFilter->createUrl($params, $route)
-                    ) .
-                    Html::endTag('li');
+                    echo Html::beginTag('li') .
+                        Html::a(
+                            '<span class="for-allprod">' . $item['title'] . '</span>' .
+                            ' <span>' . $item['count'] . '</span>',
+                            Yii::$app->catalogFilter->createUrl($params, $route)
+                        ) .
+                        Html::endTag('li');
 
-            }
-            ?>
-        </ul>
-    </div>
+                }
+                ?>
+            </ul>
+        </div>
+    <?php } ?>
 
-    <div id="all-collection" class="tab-pane fade">
-        <ul class="list">
-            <?php
-            $FactoryCollection = Factory::getFactoryCollection($model['id']);
+    <?php if (Yii::$app->request->get('tab') == 'collections') { ?>
+        <div id="all-collection"
+             class="tab-pane fade <?= Yii::$app->request->get('tab') == 'collections' ? 'in active' : ''; ?>">
+            <ul class="list">
+                <?php
+                $FactoryCollection = Factory::getFactoryCollection($model['id']);
 
-            foreach ($FactoryCollection as $item) {
-                $params = Yii::$app->catalogFilter->params;
+                foreach ($FactoryCollection as $item) {
+                    $params = Yii::$app->catalogFilter->params;
 
-                $params[$keys['factory']][] = $model['alias'];
-                $params[$keys['collection']][] = $item['id'];
+                    $params[$keys['factory']][] = $model['alias'];
+                    $params[$keys['collection']][] = $item['id'];
 
-                $title = $item['title'] . ($item['year'] > 0 ? ' (' . $item['year'] . ')' : '');
+                    $title = $item['title'] . ($item['year'] > 0 ? ' (' . $item['year'] . ')' : '');
 
-                echo Html::beginTag('li') .
-                    Html::a(
-                        '<span class="for-allprod">' . $title . '</span>' .
-                        ' <span>' . $item['count'] . '</span>',
-                        Yii::$app->catalogFilter->createUrl($params, $route)
-                    ) .
-                    Html::endTag('li');
+                    echo Html::beginTag('li') .
+                        Html::a(
+                            '<span class="for-allprod">' . $title . '</span>' .
+                            ' <span>' . $item['count'] . '</span>',
+                            Yii::$app->catalogFilter->createUrl($params, $route)
+                        ) .
+                        Html::endTag('li');
 
-            }
-            ?>
-        </ul>
-    </div>
+                }
+                ?>
+            </ul>
+        </div>
+    <?php } ?>
 
-    <div id="all-articles" class="tab-pane fade">
-        <ul class="list">
-            <?php
-            $FactoryArticles = Factory::getFactoryArticles($model['id']);
+    <?php if (Yii::$app->request->get('tab') == 'articles') { ?>
+        <div id="all-articles"
+             class="tab-pane fade <?= Yii::$app->request->get('tab') == 'articles' ? 'in active' : ''; ?>">
+            <ul class="list">
+                <?php
+                $FactoryArticles = Factory::getFactoryArticles($model['id']);
 
-            foreach ($FactoryArticles as $item) {
-                echo Html::beginTag('li') .
-                    Html::a(
-                        '<span class="for-allprod">' . $item['article'] . '</span>',
-                        $model->producing_country_id == 4
-                            ? Product::getUrl($item[Yii::$app->languages->getDomainAlias()])
-                            : CountriesFurniture::getUrl($item['alias'])
-                    ) .
-                    Html::endTag('li');
+                foreach ($FactoryArticles as $item) {
+                    echo Html::beginTag('li') .
+                        Html::a(
+                            '<span class="for-allprod">' . $item['article'] . '</span>',
+                            $model->producing_country_id == 4
+                                ? Product::getUrl($item[Yii::$app->languages->getDomainAlias()])
+                                : CountriesFurniture::getUrl($item['alias'])
+                        ) .
+                        Html::endTag('li');
 
-            }
-            ?>
-        </ul>
-    </div>
+                }
+                ?>
+            </ul>
+        </div>
+    <?php } ?>
 
-    <?php if (!empty($model->catalogsFiles)) { ?>
-        <div id="catalogs" class="tab-pane fade">
+    <?php if (Yii::$app->request->get('tab') == 'catalogs' && !empty($model->catalogsFiles)) { ?>
+        <div id="catalogs"
+             class="tab-pane fade <?= Yii::$app->request->get('tab') == 'catalogs' ? 'in active' : ''; ?>">
             <ul class="list">
                 <?php
                 foreach ($model->catalogsFiles as $catalogFile) {
@@ -195,28 +213,32 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         </div>
     <?php } ?>
 
-    <div id="all-samples" class="tab-pane fade">
-        <ul class="list">
-            <?php
-            $FactorySamples = Factory::getFactorySamples($model['id']);
+    <?php if (Yii::$app->request->get('tab') == 'samples') { ?>
+        <div id="all-samples"
+             class="tab-pane fade <?= Yii::$app->request->get('tab') == 'samples' ? 'in active' : ''; ?>">
+            <ul class="list">
+                <?php
+                $FactorySamples = Factory::getFactorySamples($model['id']);
 
-            foreach ($FactorySamples as $item) {
-                if (Samples::isImage($item['image_link'])) {
-                    echo Html::beginTag('li') .
-                        Html::a(
-                            Html::img(Samples::getImage($item['image_link']))
-                            . Html::tag('span', $item['lang']['title'], ['class' => 'for-catalog-list']),
-                            Samples::getImage($item['image_link']),
-                            ['target' => '_blank']
-                        ) .
-                        Html::endTag('li');
-                }
-            } ?>
-        </ul>
-    </div>
+                foreach ($FactorySamples as $item) {
+                    if (Samples::isImage($item['image_link'])) {
+                        echo Html::beginTag('li') .
+                            Html::a(
+                                Html::img(Samples::getImage($item['image_link']))
+                                . Html::tag('span', $item['lang']['title'], ['class' => 'for-catalog-list']),
+                                Samples::getImage($item['image_link']),
+                                ['target' => '_blank']
+                            ) .
+                            Html::endTag('li');
+                    }
+                } ?>
+            </ul>
+        </div>
+    <?php } ?>
 
-    <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->isPdfAccess() && !empty($model->pricesFiles)) { ?>
-        <div id="pricelists" class="tab-pane fade">
+    <?php if (Yii::$app->request->get('tab') == 'pricelists' && !Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->isPdfAccess() && !empty($model->pricesFiles)) { ?>
+        <div id="pricelists"
+             class="tab-pane fade <?= Yii::$app->request->get('tab') == 'pricelists' ? 'in active' : ''; ?>">
             <ul class="list">
                 <?php
                 foreach ($model->pricesFiles as $priceFile) {
@@ -236,8 +258,9 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         </div>
     <?php } ?>
 
-    <?php if (!empty($ItalianProductGrezzo)) { ?>
-        <div id="all-grezzo" class="tab-pane fade">
+    <?php if (Yii::$app->request->get('tab') == 'grezzo' && !empty($ItalianProductGrezzo)) { ?>
+        <div id="all-grezzo"
+             class="tab-pane fade <?= Yii::$app->request->get('tab') == 'grezzo' ? 'in active' : ''; ?>">
             <ul class="list">
                 <?php foreach ($ItalianProductGrezzo as $item) {
                     echo Html::beginTag('li') .
@@ -252,8 +275,8 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         </div>
     <?php } ?>
 
-    <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') { ?>
-        <div id="orders" class="tab-pane fade">
+    <?php if (Yii::$app->request->get('tab') == 'orders' && !Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') { ?>
+        <div id="orders" class="tab-pane fade <?= Yii::$app->request->get('tab') == 'orders' ? 'in active' : ''; ?>">
             <?php
             $modelOrder = new Order();
             /** @var $modelOrder Order */
@@ -350,8 +373,9 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         </div>
     <?php } ?>
 
-    <?php if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'partner'])) { ?>
-        <div id="working-conditions" class="tab-pane fade">
+    <?php if (Yii::$app->request->get('tab') == 'working-conditions' && !Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'partner'])) { ?>
+        <div id="working-conditions"
+             class="tab-pane fade <?= Yii::$app->request->get('tab') == 'working-conditions' ? 'in active' : ''; ?>">
             <?= $model->lang->working_conditions ?>
         </div>
     <?php } ?>
