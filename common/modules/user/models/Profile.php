@@ -10,6 +10,7 @@ use common\modules\location\models\{
     City, Country
 };
 use common\modules\catalog\models\Factory;
+use common\modules\shop\models\Order;
 
 /**
  * Class Profile
@@ -481,19 +482,27 @@ class Profile extends \thread\modules\user\models\Profile
     }
 
     /**
-     * @param int $country_id
+     * @param Order $modelOrder
      * @return bool
      * @throws \Throwable
      */
-    public function getPossibilityToAnswer($country_id = 0)
+    public function getPossibilityToAnswer(Order $modelOrder = null)
     {
-        if (in_array(Yii::$app->user->identity->group->role, ['partner', 'factory']) && $country_id) {
+        if (in_array(Yii::$app->user->identity->group->role, ['partner', 'factory']) && $modelOrder && $modelOrder->country_id) {
             $modelCountries = Yii::$app->getUser()->getIdentity()->profile->countries;
             if ($modelCountries != null) {
                 foreach ($modelCountries as $item) {
-                    if ($item['id'] == $country_id) {
+                    if ($item['id'] == $modelOrder->country_id) {
                         return true;
                     }
+                }
+            }
+        }
+
+        if ($modelOrder && $modelOrder->orderRelUserForAnswer) {
+            foreach ($modelOrder->orderRelUserForAnswer as $user) {
+                if ($user->id == Yii::$app->user->identity->id) {
+                    return true;
                 }
             }
         }
@@ -584,12 +593,11 @@ class Profile extends \thread\modules\user\models\Profile
     }
 
     /**
-     * @param int $city_id
-     * @param int $country_id
+     * @param Order $modelOrder
      * @return bool
      * @throws \Throwable
      */
-    public function getPossibilityToSaveAnswer($city_id = 0, $country_id = 0)
+    public function getPossibilityToSaveAnswer(Order $modelOrder)
     {
         /**
          * Answers per month
@@ -604,11 +612,11 @@ class Profile extends \thread\modules\user\models\Profile
             Yii::$app->user->identity->profile->country_id &&
             Yii::$app->user->identity->profile->country_id == 4) {
             return true;
-        } elseif (in_array(Yii::$app->user->identity->group->role, ['partner']) && $country_id) {
+        } elseif (in_array(Yii::$app->user->identity->group->role, ['partner']) && $modelOrder->country_id) {
             $modelCountries = Yii::$app->user->identity->profile->countries;
             if ($modelCountries != null) {
                 foreach ($modelCountries as $item) {
-                    if ($item['id'] == $country_id) {
+                    if ($item['id'] == $modelOrder->country_id) {
                         return true;
                     }
                 }
@@ -619,7 +627,7 @@ class Profile extends \thread\modules\user\models\Profile
 
         if ($modelCities != null) {
             foreach ($modelCities as $item) {
-                if ($item['id'] == $city_id) {
+                if ($item['id'] == $modelOrder->city_id) {
                     return true;
                 }
             }

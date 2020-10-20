@@ -1,7 +1,7 @@
 <?php
 
 use yii\db\Migration;
-use thread\app\base\module\abstracts\Module as ParentModule;
+use common\modules\shop\Shop as ParentModule;
 
 class m200604_141257_update_shop_order_table extends Migration
 {
