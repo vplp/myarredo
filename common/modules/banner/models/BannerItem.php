@@ -2,6 +2,7 @@
 
 namespace common\modules\banner\models;
 
+use frontend\components\ImageResize;
 use Yii;
 use yii\helpers\ArrayHelper;
 //
@@ -199,6 +200,32 @@ class BannerItem extends ActiveRecord
 
         if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
             $image = $url . '/' . $this->image_link;
+        } else {
+            $image = 'https://www.myarredo.ru/uploads/banner/' . $this->image_link;
+        }
+
+        return $image;
+    }
+
+    /**
+     * @param int $width
+     * @param int $height
+     * @return string
+     */
+    public function getImageThumb($width = 460, $height = 200)
+    {
+        /** @var BannerModule $module */
+        $module = Yii::$app->getModule('banner');
+
+        $path = $module->getBannerUploadPath();
+        $url = $module->getBannerUploadUrl();
+
+        $image = null;
+
+        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
+            // resize
+            $ImageResize = new ImageResize();
+            $image = $image = $url . '/' . $ImageResize->getThumb($path . '/' . $this->image_link, $width, $height);
         } else {
             $image = 'https://www.myarredo.ru/uploads/banner/' . $this->image_link;
         }

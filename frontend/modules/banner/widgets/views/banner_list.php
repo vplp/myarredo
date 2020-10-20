@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-//
 use frontend\modules\banner\models\BannerItem;
 use frontend\modules\catalog\widgets\filter\ProductFilterOnMainPage;
 
@@ -15,7 +14,7 @@ if (!empty($items)) { ?>
                 'langLink' => $model['lang']['link'],
                 'langDescr' => $model['lang']['description'],
                 'imgLinkDsktp' => $model->getImageLink(),
-                'imgLinkMob' => $model->getImageLink()
+                'imgLinkMob' => $model->getImageThumb()
             );
         } ?>
     <div class="home-top-slider"></div>
