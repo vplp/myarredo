@@ -225,7 +225,7 @@ class BannerItem extends ActiveRecord
         if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
             // resize
             $ImageResize = new ImageResize();
-            $image = $image = $url . '/' . $ImageResize->getThumb($path . '/' . $this->image_link, $width, $height);
+            $image = 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $ImageResize->getThumb($path . '/' . $this->image_link, $width, $height);
         } else {
             $image = 'https://www.myarredo.ru/uploads/banner/' . $this->image_link;
         }
