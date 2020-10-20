@@ -1124,20 +1124,20 @@ $(document).ready(function () {
     }
 
     // Инициализация главного верхнего слайдера на домашней странице
-    (function () {
-        setTimeout(function () {
-            if ($('.home-top-slider').length) {
-                $('.home-top-slider').slick({
-                    autoplay: true,
-                    dots: true,
-                    arrows: true,
-                    fade: true,
-                    cssEase: 'linear',
-                    autoplaySpeed: 3000
-                });
-            }
-        }, 400);
-    })();
+    // (function () {
+    //     setTimeout(function () {
+    //         if ($('.home-top-slider').length > 0) {
+    //             $('.home-top-slider').slick({
+    //                 autoplay: true,
+    //                 dots: true,
+    //                 arrows: true,
+    //                 fade: true,
+    //                 cssEase: 'linear',
+    //                 autoplaySpeed: 3000
+    //             });
+    //         }
+    //     }, 400);
+    // })();
 
     // Инициализация слайдера фото партнеров на странице партнеров
     (function () {
