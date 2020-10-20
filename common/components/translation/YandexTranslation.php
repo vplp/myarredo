@@ -7,14 +7,12 @@ use yii\base\Component;
 use yii\helpers\{
     Html, Json
 };
-//
 use Jose\Component\Core\AlgorithmManager;
 use Jose\Component\Core\Converter\StandardConverter;
 use Jose\Component\KeyManagement\JWKFactory;
 use Jose\Component\Signature\JWSBuilder;
 use Jose\Component\Signature\Algorithm\PS256;
 use Jose\Component\Signature\Serializer\CompactSerializer;
-//
 use Yandex\Translate\Translator;
 use Yandex\Translate\Exception;
 
