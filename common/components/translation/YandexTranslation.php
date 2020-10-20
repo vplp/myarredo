@@ -182,17 +182,20 @@ class YandexTranslation extends Component
     public function getTranslate($text, $sourceLanguageCode, $targetLanguageCode)
     {
         try {
-            // Api v1
-            $translator = new Translator($this->key);
-            $translation = $translator->translate($text, $sourceLanguageCode . '-' . $targetLanguageCode);
-
-            if ($translation != '') {
-                return (string)$translation;
-            } else {
-                // Api v2
-                $translation = $this->translate($text, $sourceLanguageCode, $targetLanguageCode);
-                return (string)$translation;
-            }
+//            // Api v1
+//            $translator = new Translator($this->key);
+//            $translation = $translator->translate($text, $sourceLanguageCode . '-' . $targetLanguageCode);
+//
+//            if ($translation != '') {
+//                return (string)$translation;
+//            } else {
+//                // Api v2
+//                $translation = $this->translate($text, $sourceLanguageCode, $targetLanguageCode);
+//                return (string)$translation;
+//            }
+            // Api v2
+            $translation = $this->translate($text, $sourceLanguageCode, $targetLanguageCode);
+            return (string)$translation;
         } catch (Exception $e) {
             // handle exception
             return false;
