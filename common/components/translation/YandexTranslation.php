@@ -166,7 +166,7 @@ class YandexTranslation extends Component
         curl_close($curl);
 
         $result = json_decode($result);
-
+var_dump($result);
         return $result->translations[0]->text;
     }
 

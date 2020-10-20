@@ -1032,7 +1032,7 @@ class CatalogProductController extends Controller
         $translate = Yii::$app->yandexTranslation->getTranslate(
             'Привет мир',
             'ru',
-            'en',
+            'en'
         );
 
         var_dump($translate);
