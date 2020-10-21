@@ -17,24 +17,24 @@ use frontend\modules\banner\models\BannerItem;
         <div class="fone-poster-left">
             <?php if ($bannerLeft['lang']['link'] != '') {
                 echo Html::a(
-                    Html::img($bannerLeft->getImageLink()),
+                    Html::img('/', ['class' => 'lazy', 'data-src' => $bannerLeft->getImageLink()]),
                     $bannerLeft['lang']['link'],
                     ['class' => 'fone-poster-link']
                 );
             } else {
-                echo Html::img($bannerLeft->getImageLink());
+                echo Html::img('/', ['class' => 'lazy', 'data-src' => $bannerLeft->getImageLink()]);
             } ?>
         </div>
 
         <div class="fone-poster-right">
             <?php if ($bannerRight['lang']['link'] != '') {
                 echo Html::a(
-                    Html::img($bannerRight->getImageLink()),
+                    Html::img('/', ['class' => 'lazy', 'data-src' => $bannerRight->getImageLink()]),
                     $bannerRight['lang']['link'],
                     ['class' => 'fone-poster-link']
                 );
             } else {
-                echo Html::img($bannerRight->getImageLink());
+                echo Html::img('/', ['class' => 'lazy', 'data-src' => $bannerRight->getImageLink()]);
             } ?>
         </div>
 

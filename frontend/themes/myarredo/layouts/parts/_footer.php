@@ -143,7 +143,7 @@ $bundle = AppAsset::register($this);
     </div>
     <div class="totopbox">
         <a href="#top">
-            <img src="<?= $bundle->baseUrl ?>/img/totop.jpg" alt="top" class="totop-img">
+            <img src="/" data-src="<?= $bundle->baseUrl ?>/img/totop.jpg" alt="top" class="totop-img lazy">
         </a>
     </div>
 </div>
