@@ -55,8 +55,9 @@ class LoginController extends BaseController
      */
     public function actionIndex()
     {
-        if (!\Yii::$app->getUser()->isGuest) {
-            return $this->redirect(Url::toRoute('/user/profile/index'));
+        if (!Yii::$app->getUser()->isGuest) {
+            Yii::$app->response->redirect(Url::toRoute('/user/profile/index'));
+            yii::$app->end();
         }
 
         /** @var SignInForm $model */
@@ -69,8 +70,13 @@ class LoginController extends BaseController
             Yii::$app->params['themes']['language'] = $user->profile->preferred_language;
             Yii::$app->language = $user->profile->preferred_language;
 
-            //return $this->redirect(Url::toRoute(['/user/profile/index']));
-            return $this->redirect(Yii::$app->session->get('referrer'));
+            if (strpos(Yii::$app->session->get('referrer'), 'user/login') === false) {
+                Yii::$app->response->redirect(Yii::$app->session->get('referrer'));
+                yii::$app->end();
+            } else {
+                Yii::$app->response->redirect(Url::toRoute('/user/profile/index'));
+                yii::$app->end();
+            }
         } else {
             return $this->render('index', [
                 'model' => $model,

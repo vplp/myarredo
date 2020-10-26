@@ -6,9 +6,7 @@ use yii\helpers\{
 use frontend\widgets\Alert;
 use frontend\modules\banner\widgets\BackgroundBanner;
 use frontend\themes\myarredo\assets\AppAsset;
-// use frontend\themes\myarredo\assets\FontsAsset;
 
-// FontsAsset::register($this);
 $bundle = AppAsset::register($this);
 
 $this->beginPage();
@@ -24,7 +22,7 @@ $this->beginPage();
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noyaca"/>
-    <link rel="shortcut icon" href="/myarredo-ico.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="/myarredo-ico.svg" type="image/x-icon"/>
 
     <!-- preloader styles -->
     <style>
