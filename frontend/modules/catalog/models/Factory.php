@@ -669,7 +669,7 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public static function getFactoryCollection(int $id)
     {
-        //$result = self::getDb()->cache(function ($db) use ($id) {
+        $result = self::getDb()->cache(function ($db) use ($id) {
             return self::getDb()->createCommand("SELECT
                 COUNT(collection.id) as count, 
                 collection.id,
@@ -691,9 +691,9 @@ class Factory extends \common\modules\catalog\models\Factory
                     ':removed' => '0',
                     ':id' => $id,
                 ])->queryAll();
-        //}, 60 * 60);
+        }, 60 * 60);
 
-        //return $result;
+        return $result;
     }
 
     /**
