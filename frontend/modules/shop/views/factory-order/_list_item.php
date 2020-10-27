@@ -38,12 +38,16 @@ use frontend\modules\catalog\models\{
                                 ); ?>
                             </td>
                         </tr>
-                        <tr>
-                            <td><?= Yii::t('app', 'Артикул') ?></td>
-                            <td>
-                                <?= $orderItem->product['article'] ?>
-                            </td>
-                        </tr>
+
+                        <?php if (!$orderItem->product['is_composition']) { ?>
+                            <tr>
+                                <td><?= Yii::t('app', 'Артикул') ?></td>
+                                <td>
+                                    <?= $orderItem->product['article'] ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
+
                         <tr>
                             <td><?= Yii::t('app', 'Factory') ?></td>
                             <td>

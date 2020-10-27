@@ -29,14 +29,18 @@ use frontend\modules\catalog\models\Product;
                 ); ?>
             </td>
         </tr>
-        <tr>
-            <td><span class="for-ordertable"><?= Yii::t('app', 'Артикул') ?></span></td>
-            <td>
+
+        <?php if (!$orderItem->product['is_composition']) { ?>
+            <tr>
+                <td><span class="for-ordertable"><?= Yii::t('app', 'Артикул') ?></span></td>
+                <td>
                 <span class="for-ordertable-descr">
                     <?= $orderItem->product['article'] ?>
                 </span>
-            </td>
-        </tr>
+                </td>
+            </tr>
+        <?php } ?>
+
         <tr class="noborder">
             <td colspan="2" class="spec-pad">
                 <span class="for-ordertable"><?= Yii::t('app', 'Factory') ?></span>

@@ -57,18 +57,22 @@ if ($user->profile->getPossibilityToAnswer($modelOrder)) { ?>
                                     ); ?>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan="2" class="spec-pad">
+
+                            <?php if (!$orderItem->product['is_composition']) { ?>
+                                <tr>
+                                    <td colspan="2" class="spec-pad">
                                 <span class="for-ordertable">
                                     <?= Yii::t('app', 'Артикул') ?>
                                 </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="spec-pad2">
-                                    <?= $orderItem->product['article'] ?>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="spec-pad2">
+                                        <?= $orderItem->product['article'] ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+
                             <tr class="noborder">
                                 <td colspan="2" class="spec-pad">
                                 <span class="for-ordertable">
