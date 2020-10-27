@@ -119,6 +119,7 @@ function interPhoneInit() {
             }
         }
         iti = window.intlTelInput(intlInputEl, {
+            separateDialCode: true,
             initialCountry: diCode,
             utilsScript: "/js/utils.js",
             formatOnDisplay: true
@@ -205,6 +206,7 @@ function initTelInputCountry(el, code) {
     var errorMsg = formGroupBox.children('.help-block')[0];
     // Инициализируем плагин
     var itiEl = window.intlTelInput(intlInputEl, {
+        separateDialCode: true,
         initialCountry: code,
         utilsScript: "/js/utils.js",
         formatOnDisplay: true
@@ -1269,6 +1271,7 @@ $(document).ready(function () {
         if ($(intlInputEl).attr('data-conly') == 'yes') {
             
             iti = window.intlTelInput(intlInputEl, {
+                separateDialCode: true,
                 onlyCountries: [diCode],
                 initialCountry: diCode,
                 utilsScript: "/js/utils.js",
@@ -1293,6 +1296,7 @@ $(document).ready(function () {
                 }
             }
             iti = window.intlTelInput(intlInputEl, {
+                separateDialCode: true,
                 initialCountry: diCode,
                 utilsScript: "/js/utils.js",
                 formatOnDisplay: true
@@ -1403,6 +1407,7 @@ $(document).ready(function () {
             if (changeIndicator) {
                 // Переинициализируем виджет с выбраной нужной страной по дефолту
                 iti = window.intlTelInput(intlInputEl, {
+                    separateDialCode: true,
                     onlyCountries: [changeCCode],
                     initialCountry: changeCCode,
                     utilsScript: "/js/utils.js",
