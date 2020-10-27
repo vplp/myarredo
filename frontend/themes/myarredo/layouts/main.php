@@ -3,7 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
-use frontend\widgets\Alert;
+use frontend\widgets\Popup;
 use frontend\modules\banner\widgets\BackgroundBanner;
 use frontend\themes\myarredo\assets\AppAsset;
 
@@ -249,7 +249,7 @@ $this->beginPage();
 <body>
 <?php $this->beginBody() ?>
 
-<?= Alert::widget() ?>
+<?= Popup::widget(['clientOptions' => ['show' => true]]) ?>
 
 <?= $this->render('parts/_header', ['bundle' => $bundle]) ?>
 

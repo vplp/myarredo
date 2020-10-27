@@ -3,6 +3,8 @@
 namespace frontend\widgets;
 
 /**
+ * Class Alert
+ *
  * Alert widget renders a message from session flash. All flash messages are displayed
  * in the sequence they were assigned using setFlash. You can set message as following:
  *
@@ -18,8 +20,8 @@ namespace frontend\widgets;
  * \Yii::$app->getSession()->setFlash('error', ['Error 1', 'Error 2']);
  * ```
  *
- * @author Kartik Visweswaran <kartikv2@gmail.com>
- * @author Alexander Makarov <sam@rmcreative.ru>
+ *
+ * @package frontend\widgets
  */
 class Alert extends \yii\bootstrap\Widget
 {

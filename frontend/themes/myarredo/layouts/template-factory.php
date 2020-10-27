@@ -4,7 +4,7 @@ use yii\helpers\{
     Url, Html
 };
 use frontend\themes\myarredo\assets\TemplateFactoryAsset;
-use frontend\widgets\Alert;
+use frontend\widgets\Popup;
 use frontend\modules\catalog\models\Factory;
 use frontend\modules\user\widgets\partner\PartnerInfo;
 
@@ -29,7 +29,7 @@ $this->beginPage()
 <body class="tomassy-page category-page">
 <?php $this->beginBody() ?>
 
-<?= Alert::widget() ?>
+<?= Popup::widget() ?>
 
 <div class="tom-header">
     <div class="container large-container">
