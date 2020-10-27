@@ -679,9 +679,9 @@ class Factory extends \common\modules\catalog\models\Factory
                 " . Collection::tableName() . " collection
             INNER JOIN " . Product::tableName() . " product 
                 ON (product.collections_id = collection.id) 
-                AND (product.published = :published AND product.deleted = :deleted AND product.removed = :removed)
+                AND (product.published = :published AND product.deleted = :deleted AND product.removed = :removed)              
             WHERE
-                product.factory_id = :id
+                product.factory_id = :id AND (collection.published = :published AND collection.deleted = :deleted)
             GROUP BY 
                 collection.id
             ORDER BY collection.title")

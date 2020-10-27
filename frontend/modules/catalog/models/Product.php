@@ -5,6 +5,7 @@ namespace frontend\modules\catalog\models;
 use Yii;
 use yii\helpers\Url;
 use frontend\components\ImageResize;
+use frontend\modules\catalog\models\Collection;
 
 /**
  * Class Product
@@ -182,6 +183,14 @@ class Product extends \common\modules\catalog\models\Product
     public function getTypes()
     {
         return $this->hasOne(Types::class, ['id' => 'catalog_type_id'])->enabled();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCollection()
+    {
+        return $this->hasOne(Collection::class, ['id' => 'collections_id'])->enabled();
     }
 
     /**

@@ -2,9 +2,9 @@
 
 namespace frontend\modules\catalog\models;
 
-use frontend\modules\location\models\Country;
 use Yii;
 use yii\helpers\ArrayHelper;
+use frontend\modules\location\models\Country;
 
 /**
  * Class Collection
