@@ -37,6 +37,7 @@ class Popup extends \yii\bootstrap\Widget
 
         foreach ($flashes as $type => $data) {
             $data = (array)$data;
+
             Modal::begin([
                 //'header' => '<h2>Hello world</h2>',
                 //'toggleButton' => ['label' => 'click me'],
@@ -47,7 +48,9 @@ class Popup extends \yii\bootstrap\Widget
             foreach ($data as $i => $message) {
                 echo $message;
             }
+
             $session->removeFlash($type);
+
             Modal::end();
         }
     }

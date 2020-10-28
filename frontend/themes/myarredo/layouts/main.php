@@ -6,7 +6,7 @@ use yii\helpers\{
 use frontend\widgets\Popup;
 use frontend\modules\banner\widgets\BackgroundBanner;
 use frontend\themes\myarredo\assets\AppAsset;
-
+Yii::$app->getSession()->setFlash('error', 'Не успели');
 $bundle = AppAsset::register($this);
 
 $this->beginPage();
