@@ -10131,6 +10131,9 @@ h1 {
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .iti__flag {background-image: url("../img/intl-input/flags@2x.png");}
 }
+#checkout-form .iti__country-list {
+  max-width: 300px;
+}
 
 #checkout-form .iti {
   width: 100%;
