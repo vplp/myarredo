@@ -66,7 +66,7 @@ class LangSwitch extends Widget
 
             // do no show de
             if (in_array($lang['alias'], ['de'])) {
-                //continue;
+                continue;
             }
 
             $image = Language::isImage($lang['img_flag'])
