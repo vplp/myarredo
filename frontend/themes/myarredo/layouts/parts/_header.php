@@ -71,7 +71,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                         <?php } ?>
 
                         <?php if (DOMAIN_NAME == 'myarredo' &&
-                            in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com']) &&
+                            in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de']) &&
                             !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale'])
                         ) { ?>
                             <div class="lang-selector">
@@ -108,7 +108,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
                     <div class="left-part">
                         <?php if (DOMAIN_NAME == 'myarredo' &&
-                            in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com']) &&
+                            in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de']) &&
                             !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale'])
                         ) { ?>
                             <div class="lang-selector">
