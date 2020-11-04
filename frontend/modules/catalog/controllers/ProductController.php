@@ -227,29 +227,6 @@ class ProductController extends BaseController
             Yii::$app->getModule('catalog')->getViewedProducts($model['id'], 'viewed_products');
         }
 
-        $alternatePages = [
-            'ru' => [
-                'href' => 'https://www.myarredo.ru/product/' . $model['alias'] . '/',
-                'lang' => 'ru'
-            ],
-            'en' => [
-                'href' => 'https://www.myarredo.com/en/product/' . $model['alias_en'] . '/',
-                'lang' => 'en'
-            ],
-            'it' => [
-                'href' => 'https://www.myarredo.com/it/product/' . $model['alias_it'] . '/',
-                'lang' => 'it'
-            ]
-        ];
-
-        foreach ($alternatePages as $page) {
-            Yii::$app->view->registerLinkTag([
-                'rel' => 'alternate',
-                'href' => $page['href'],
-                'hreflang' => $page['lang']
-            ]);
-        }
-
         return $this->render('view', [
             'model' => $model,
         ]);
