@@ -227,7 +227,7 @@ class ProductController extends BaseController
             Yii::$app->getModule('catalog')->getViewedProducts($model['id'], 'viewed_products');
         }
 
-        if (in_array(DOMAIN_TYPE, ['com', 'ru', 'de']) && DOMAIN_NAME == 'myarredo') {
+        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161])) {
             $alternatePages = [
                 'ru' => [
                     'href' => 'https://www.myarredo.ru/product/' . $model['alias'] . '/', 'lang' => 'ru'

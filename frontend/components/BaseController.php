@@ -128,8 +128,7 @@ abstract class BaseController extends Controller
     protected function getAlternateHreflang()
     {
         if (!in_array(Yii::$app->controller->id, ['contacts', 'category', 'product', 'sale-italy']) &&
-            DOMAIN_NAME == 'myarredo' &&
-            in_array(DOMAIN_TYPE, ['com', 'de', 'ru'])
+            in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161])
         ) {
             $languages = Language::getAllByLocate();
             $current_url = Yii::$app->request->url;
@@ -142,34 +141,17 @@ abstract class BaseController extends Controller
                     $current_url
                 );
 
-                if (in_array(DOMAIN_TYPE, ['com', 'de']) && in_array($item['alias'], ['it', 'en'])) {
+                if (in_array(DOMAIN_TYPE, ['com', 'de', 'ru']) && in_array($item['alias'], ['it', 'en'])) {
                     $alternatePages[$item['local']] = [
                         'href' => 'https://www.myarredo.com' . '/' . $item['alias'] . $href,
                         'lang' => $lang
                     ];
-                } elseif (in_array(DOMAIN_TYPE, ['com', 'de']) && in_array($item['alias'], ['de'])) {
+                } elseif (in_array(DOMAIN_TYPE, ['com', 'de', 'ru']) && in_array($item['alias'], ['de'])) {
                     $alternatePages[$item['local']] = [
                         'href' => 'https://www.myarredo.de' . $href,
                         'lang' => $lang
                     ];
-                } elseif (in_array(DOMAIN_TYPE, ['com', 'de']) && in_array($item['alias'], ['ru'])) {
-                    $alternatePages[$item['local']] = [
-                        'href' => 'https://www.myarredo.ru' . $href,
-                        'lang' => $lang
-                    ];
-                }
-
-                if (Yii::$app->city->getCityId() == 4 && in_array($item['alias'], ['it', 'en'])) {
-                    $alternatePages[$item['local']] = [
-                        'href' => 'https://www.myarredo.com' . '/' . $item['alias'] . $href,
-                        'lang' => $lang
-                    ];
-                } elseif (Yii::$app->city->getCityId() == 4 && in_array($item['alias'], ['de'])) {
-                    $alternatePages[$item['local']] = [
-                        'href' => 'https://www.myarredo.de' . $href,
-                        'lang' => $lang
-                    ];
-                } elseif (Yii::$app->city->getCityId() == 4 && in_array($item['alias'], ['ru'])) {
+                } elseif (in_array(DOMAIN_TYPE, ['com', 'de', 'ru']) && in_array($item['alias'], ['ru'])) {
                     $alternatePages[$item['local']] = [
                         'href' => 'https://www.myarredo.ru' . $href,
                         'lang' => $lang
