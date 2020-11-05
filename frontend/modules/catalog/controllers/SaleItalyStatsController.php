@@ -8,7 +8,6 @@ use yii\filters\{
 };
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
-//
 use frontend\modules\catalog\models\{
     ItalianProduct, ItalianProductStats, ItalianProductStatsDays
 };
@@ -167,11 +166,14 @@ class SaleItalyStatsController extends BaseController
 
         $this->title = Yii::t('app', 'Sale statistics');
 
-        return $this->render('view', [
-            'model' => $model,
-            'params' => $params,
-            'modelItalianProductStatsDays' => $modelItalianProductStatsDays,
-            'modelsStats' => $stats->getModels(),
-        ]);
+        return $this->render(
+            'view',
+            [
+                'model' => $model,
+                'params' => $params,
+                'modelItalianProductStatsDays' => $modelItalianProductStatsDays,
+                'modelsStats' => $stats->getModels()
+            ]
+        );
     }
 }

@@ -549,6 +549,31 @@ class CategoryController extends BaseController
                 'label' => $model['lang']['title'],
                 'url' => Yii::$app->catalogFilter->createUrl([$keys['category'] => $params[$keys['category']]])
             ];
+            if (in_array(DOMAIN_TYPE, ['com', 'ru', 'de']) && DOMAIN_NAME == 'myarredo') {
+                $alternatePages = [
+                    'ru' => [
+                        'href' => 'https://www.myarredo.ru/catalog/' . $model['alias'] . '/', 'lang' => 'ru'
+                    ],
+                    'en' => [
+                        'href' => 'https://www.myarredo.com/en/catalog/' . $model['alias_en'] . '/', 'lang' => 'en'
+                    ],
+                    'it' => [
+                        'href' => 'https://www.myarredo.com/it/catalog/' . $model['alias_it'] . '/', 'lang' => 'it'
+                    ],
+                    'de' => [
+                        'href' => 'https://www.myarredo.de/catalog/' . $model['alias_de'] . '/', 'lang' => 'de'
+                    ]
+                ];
+
+                foreach ($alternatePages as $page) {
+                    Yii::$app->view->registerLinkTag([
+                        'rel' => 'alternate',
+                        'href' => $page['href'],
+                        'hreflang' => $page['lang']
+                    ]);
+                }
+            }
+
         }
 
         if (DOMAIN_TYPE != 'com') {
