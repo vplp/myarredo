@@ -247,7 +247,7 @@ class LangSwitch extends Widget
             if ($lang['local'] == Yii::$app->language) {
                 $this->current = [
                     'label' => $lang['label'],
-                    'url' => !in_array(Yii::$app->city->getCityId(), [161])
+                    'url' => !in_array($lang['alias'], ['de'])
                         ? $url . '/' . $lang['alias'] . $path
                         : $url . $path,
                     'image' => $image,
@@ -259,7 +259,7 @@ class LangSwitch extends Widget
             if (!$lang['by_default']) {
                 $items[] = [
                     'label' => $lang['label'],
-                    'url' => !in_array(Yii::$app->city->getCityId(), [161])
+                    'url' => !in_array($lang['alias'], ['de'])
                         ? $url . '/' . $lang['alias'] . $path
                         : $url . $path,
                     'image' => $image,
