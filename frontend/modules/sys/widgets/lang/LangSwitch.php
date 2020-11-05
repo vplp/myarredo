@@ -64,18 +64,20 @@ class LangSwitch extends Widget
                 continue;
             }
 
-            // do no show de
-            if (in_array($lang['alias'], ['de'])) {
-                //continue;
-            }
-
             $image = Language::isImage($lang['img_flag'])
                 ? Html::img(Language::getImage($lang['img_flag']))
                 : '<i class="fa fa-globe" aria-hidden="true"></i>';
 
-            // $url and $path
+            // $url
             if (in_array($lang['alias'], ['it', 'en'])) {
                 $url = 'https://www.myarredo.com';
+            } elseif (in_array($lang['alias'], ['de'])) {
+                $url = 'https://www.myarredo.de';
+            } elseif (in_array($lang['alias'], ['ru'])) {
+                $url = 'https://www.myarredo.ru';
+            }
+
+            if (in_array($lang['alias'], ['it', 'en', 'de'])) {
                 $path = Yii::$app->request->url;
 
                 $params = Yii::$app->catalogFilter->params;
@@ -128,12 +130,7 @@ class LangSwitch extends Widget
                 }
 
                 $path = str_replace('/' . $this->current['alias'], '', $path);
-            } elseif (in_array($lang['alias'], ['de'])) {
-                $url = 'https://www.myarredo.de';
-
-
-            } elseif (!in_array($lang['alias'], ['it', 'en', 'de']) && DOMAIN_TYPE == 'com') {
-                $url = 'https://www.myarredo.ru';
+            } elseif (in_array($lang['alias'], ['ru']) && in_array(DOMAIN_TYPE, ['com', 'de'])) {
                 $path = Yii::$app->request->url;
 
                 $params = Yii::$app->catalogFilter->params;
@@ -186,8 +183,6 @@ class LangSwitch extends Widget
                 }
 
                 $path = str_replace('/' . $this->current['alias'], '', $path);
-            } elseif (!in_array($lang['alias'], ['it', 'en', 'de']) && DOMAIN_TYPE == 'de') {
-                $url = 'https://www.myarredo.ru';
             } else {
                 $url = 'https://www.myarredo.ru';
                 $path = Yii::$app->request->url;
