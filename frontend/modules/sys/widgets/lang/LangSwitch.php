@@ -66,7 +66,7 @@ class LangSwitch extends Widget
 
             // do no show de
             if (in_array($lang['alias'], ['de'])) {
-                continue;
+                //continue;
             }
 
             $image = Language::isImage($lang['img_flag'])
@@ -130,6 +130,8 @@ class LangSwitch extends Widget
                 $path = str_replace('/' . $this->current['alias'], '', $path);
             } elseif (in_array($lang['alias'], ['de'])) {
                 $url = 'https://www.myarredo.de';
+
+
             } elseif (!in_array($lang['alias'], ['it', 'en', 'de']) && DOMAIN_TYPE == 'com') {
                 $url = 'https://www.myarredo.ru';
                 $path = Yii::$app->request->url;
