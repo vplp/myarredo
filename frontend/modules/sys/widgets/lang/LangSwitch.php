@@ -77,6 +77,8 @@ class LangSwitch extends Widget
                 $url = 'https://www.myarredo.ru';
             } elseif (in_array($lang['alias'], ['ru']) && in_array(DOMAIN_TYPE, ['ua'])) {
                 $url = 'https://www.myarredo.ua';
+            } else {
+                $url = 'https://www.myarredo.ru';
             }
 
             if (in_array($lang['alias'], ['it', 'en', 'de'])) {
@@ -186,7 +188,6 @@ class LangSwitch extends Widget
 
                 $path = str_replace('/' . $this->current['alias'], '', $path);
             } else {
-                $url = 'https://www.myarredo.ru';
                 $path = Yii::$app->request->url;
 
                 $params = Yii::$app->catalogFilter->params;
