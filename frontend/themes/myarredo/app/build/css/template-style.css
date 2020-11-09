@@ -10432,6 +10432,12 @@ body .concact-page .one-cont .cont-info-row a {
 .factory-catlist li {
   list-style: none;
 }
+.find-product-panel {
+  display: inline-block;
+  margin: 8px;
+  font-family: 'Open Sans',sans-serif;
+  font-size: 16px;
+}
 
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
