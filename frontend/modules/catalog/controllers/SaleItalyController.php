@@ -269,27 +269,29 @@ class SaleItalyController extends BaseController
             Yii::$app->getModule('catalog')->getViewedProducts($model['id'], 'viewed_sale_italy');
         }
 
-        $alternatePages = [
-            'ru' => [
-                'href' => 'https://www.myarredo.ru/sale-italy-product/' . $model['alias'] . '/',
-                'lang' => 'ru'
-            ],
-            'en' => [
-                'href' => 'https://www.myarredo.com/en/sale-italy-product/' . $model['alias_en'] . '/',
-                'lang' => 'en'
-            ],
-            'it' => [
-                'href' => 'https://www.myarredo.com/it/sale-italy-product/' . $model['alias_it'] . '/',
-                'lang' => 'it'
-            ]
-        ];
+        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161])) {
+            $alternatePages = [
+                'ru' => [
+                    'href' => 'https://www.myarredo.ru/sale-italy-product/' . $model['alias'] . '/', 'lang' => 'ru'
+                ],
+                'en' => [
+                    'href' => 'https://www.myarredo.com/en/sale-italy-product/' . $model['alias_en'] . '/', 'lang' => 'en'
+                ],
+                'it' => [
+                    'href' => 'https://www.myarredo.com/it/sale-italy-product/' . $model['alias_it'] . '/', 'lang' => 'it'
+                ],
+                'de' => [
+                    'href' => 'https://www.myarredo.de/sale-italy-product/' . $model['alias_de'] . '/', 'lang' => 'de'
+                ]
+            ];
 
-        foreach ($alternatePages as $page) {
-            Yii::$app->view->registerLinkTag([
-                'rel' => 'alternate',
-                'href' => $page['href'],
-                'hreflang' => $page['lang']
-            ]);
+            foreach ($alternatePages as $page) {
+                Yii::$app->view->registerLinkTag([
+                    'rel' => 'alternate',
+                    'href' => $page['href'],
+                    'hreflang' => $page['lang']
+                ]);
+            }
         }
 
         return $this->render('view', [

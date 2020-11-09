@@ -47,6 +47,8 @@ class LangSwitch extends Widget
 
     /**
      * @return string
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function run()
     {
@@ -64,18 +66,24 @@ class LangSwitch extends Widget
                 continue;
             }
 
-            // do no show de
-            if (in_array($lang['alias'], ['de'])) {
-                continue;
-            }
-
             $image = Language::isImage($lang['img_flag'])
                 ? Html::img(Language::getImage($lang['img_flag']))
                 : '<i class="fa fa-globe" aria-hidden="true"></i>';
 
-            // $url and $path
+            // $url
             if (in_array($lang['alias'], ['it', 'en'])) {
                 $url = 'https://www.myarredo.com';
+            } elseif (in_array($lang['alias'], ['de'])) {
+                $url = 'https://www.myarredo.de';
+            } elseif (in_array($lang['alias'], ['ru']) && in_array(DOMAIN_TYPE, ['ru'])) {
+                $url = 'https://www.myarredo.ru';
+            } elseif (in_array($lang['alias'], ['ru', 'ua']) && in_array(DOMAIN_TYPE, ['ua'])) {
+                $url = 'https://www.myarredo.ua';
+            } else {
+                $url = 'https://www.myarredo.ru';
+            }
+
+            if (in_array($lang['alias'], ['it', 'en', 'de'])) {
                 $path = Yii::$app->request->url;
 
                 $params = Yii::$app->catalogFilter->params;
@@ -122,16 +130,13 @@ class LangSwitch extends Widget
                 if (Yii::$app->controller->id == 'product') {
                     $model = Product::findByAlias(Yii::$app->request->get('alias'));
                     $path = Product::getUrl($model['alias_' . $lang['alias']], false);
-                } elseif (Yii::$app->controller->id == 'sale-italy') {
+                } elseif (Yii::$app->controller->id == 'sale-italy' && Yii::$app->controller->action->id == 'view') {
                     $model = ItalianProduct::findByAlias(Yii::$app->request->get('alias'));
                     $path = ItalianProduct::getUrl($model['alias_' . $lang['alias']], false);
                 }
 
                 $path = str_replace('/' . $this->current['alias'], '', $path);
-            } elseif (in_array($lang['alias'], ['de'])) {
-                $url = 'https://www.myarredo.de';
-            } elseif (!in_array($lang['alias'], ['it', 'en', 'de']) && DOMAIN_TYPE == 'com') {
-                $url = 'https://www.myarredo.ru';
+            } elseif (in_array($lang['alias'], ['ru']) && in_array(DOMAIN_TYPE, ['com', 'de'])) {
                 $path = Yii::$app->request->url;
 
                 $params = Yii::$app->catalogFilter->params;
@@ -178,16 +183,13 @@ class LangSwitch extends Widget
                 if (Yii::$app->controller->id == 'product') {
                     $model = Product::findByAlias(Yii::$app->request->get('alias'));
                     $path = Product::getUrl($model['alias'], false);
-                } elseif (Yii::$app->controller->id == 'sale-italy') {
+                } elseif (Yii::$app->controller->id == 'sale-italy' && Yii::$app->controller->action->id == 'view') {
                     $model = ItalianProduct::findByAlias(Yii::$app->request->get('alias'));
                     $path = ItalianProduct::getUrl($model['alias'], false);
                 }
 
                 $path = str_replace('/' . $this->current['alias'], '', $path);
-            } elseif (!in_array($lang['alias'], ['it', 'en', 'de']) && DOMAIN_TYPE == 'de') {
-                $url = 'https://www.myarredo.ru';
             } else {
-                $url = 'https://www.myarredo.ru';
                 $path = Yii::$app->request->url;
 
                 $params = Yii::$app->catalogFilter->params;
@@ -234,7 +236,7 @@ class LangSwitch extends Widget
                 if (Yii::$app->controller->id == 'product') {
                     $model = Product::findByAlias(Yii::$app->request->get('alias'));
                     $path = Product::getUrl($model['alias'], false);
-                } elseif (Yii::$app->controller->id == 'sale-italy') {
+                } elseif (Yii::$app->controller->id == 'sale-italy' && Yii::$app->controller->action->id == 'view') {
                     $model = ItalianProduct::findByAlias(Yii::$app->request->get('alias'));
                     $path = ItalianProduct::getUrl($model['alias'], false);
                 }
@@ -245,7 +247,9 @@ class LangSwitch extends Widget
             if ($lang['local'] == Yii::$app->language) {
                 $this->current = [
                     'label' => $lang['label'],
-                    'url' => $url . '/' . $lang['alias'] . $path,
+                    'url' => !in_array($lang['alias'], ['de'])
+                        ? $url . '/' . $lang['alias'] . $path
+                        : $url . $path,
                     'image' => $image,
                     'alias' => $lang['alias'],
                     'model' => $lang,
@@ -255,7 +259,9 @@ class LangSwitch extends Widget
             if (!$lang['by_default']) {
                 $items[] = [
                     'label' => $lang['label'],
-                    'url' => $url . '/' . $lang['alias'] . $path,
+                    'url' => !in_array($lang['alias'], ['de'])
+                        ? $url . '/' . $lang['alias'] . $path
+                        : $url . $path,
                     'image' => $image,
                     'alias' => $lang['alias'],
                     'model' => $lang,

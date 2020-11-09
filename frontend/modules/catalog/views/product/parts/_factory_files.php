@@ -3,11 +3,14 @@
 use yii\helpers\{
     Html, Url
 };
+use frontend\modules\catalog\models\{
+    FactoryCatalogsFiles, Product, FactoryPricesFiles
+};
 
 /**
- * @var \frontend\modules\catalog\models\Product $model
- * @var \frontend\modules\catalog\models\FactoryCatalogsFiles $catalogFile
- * @var \frontend\modules\catalog\models\FactoryPricesFiles $priceFile
+ * @var Product $model
+ * @var FactoryCatalogsFiles $catalogFile
+ * @var FactoryPricesFiles $priceFile
  */
 
 ?>

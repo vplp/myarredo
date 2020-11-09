@@ -70,7 +70,10 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             </div>
                         <?php } ?>
 
-                        <?php if (DOMAIN_NAME == 'myarredo' && in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com'])) { ?>
+                        <?php if (DOMAIN_NAME == 'myarredo' &&
+                            in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de']) &&
+                            !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale'])
+                        ) { ?>
                             <div class="lang-selector">
                                 <?= LangSwitch::widget() ?>
                             </div>
@@ -104,7 +107,10 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                 <div class="container large-container">
 
                     <div class="left-part">
-                        <?php if (DOMAIN_NAME == 'myarredo' && in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com'])) { ?>
+                        <?php if (DOMAIN_NAME == 'myarredo' &&
+                            in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de']) &&
+                            !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale'])
+                        ) { ?>
                             <div class="lang-selector">
                                 <?= LangSwitch::widget() ?>
                             </div>
@@ -155,7 +161,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
                 <?= Html::a(
                     Html::img($bundle->baseUrl . '/img/logo.svg'),
-                    Url::toRoute('/home/home/index'),
+                    Yii::$app->controller->id != 'home' ? Url::toRoute('/home/home/index') : null,
                     ['class' => 'logo']
                 ) ?>
 
@@ -217,9 +223,11 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             <span class="for-mob-menu-barstext"><?= Yii::t('app', 'Menu') ?></span>
         </div>
         <div class="logo-num">
-            <a href="/" class="logo">
-                <img src="<?= $bundle->baseUrl ?>/img/logo_myarredo.svg" alt="">
-            </a>
+            <?= Html::a(
+                Html::img($bundle->baseUrl . '/img/logo_myarredo.svg'),
+                Yii::$app->controller->id != 'home' ? Url::toRoute('/home/home/index') : null,
+                ['class' => 'logo']
+            ) ?>
         </div>
     </div>
     <div class="right-btn-part mobmenu-part">

@@ -5,11 +5,11 @@ namespace frontend\modules\catalog\models;
 use Yii;
 use yii\helpers\Url;
 use frontend\components\ImageResize;
-use frontend\modules\catalog\models\Collection;
 
 /**
  * Class Product
- *
+ * @property ProductRelFactoryCatalogsFiles[] $factoryCatalogsFiles
+ * @property ProductRelFactoryPricesFiles[] $factoryPricesFiles
  * @property Samples[] $samples
  *
  * @package frontend\modules\catalog\models
@@ -212,7 +212,8 @@ class Product extends \common\modules\catalog\models\Product
     {
         return $this
             ->hasMany(FactoryCatalogsFiles::class, ['id' => 'factory_file_id'])
-            ->viaTable(ProductRelFactoryCatalogsFiles::tableName(), ['catalog_item_id' => 'id']);
+            ->viaTable(ProductRelFactoryCatalogsFiles::tableName(), ['catalog_item_id' => 'id'])
+            ->published();
     }
 
     /**
@@ -223,7 +224,8 @@ class Product extends \common\modules\catalog\models\Product
     {
         return $this
             ->hasMany(FactoryPricesFiles::class, ['id' => 'factory_file_id'])
-            ->viaTable(ProductRelFactoryPricesFiles::tableName(), ['catalog_item_id' => 'id']);
+            ->viaTable(ProductRelFactoryPricesFiles::tableName(), ['catalog_item_id' => 'id'])
+            ->published();
     }
 
     /**

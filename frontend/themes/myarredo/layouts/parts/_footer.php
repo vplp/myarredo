@@ -74,9 +74,12 @@ $bundle = AppAsset::register($this);
             <div class="container large-container">
                 <div class="footer-cont">
                     <div class="logo-reg">
-                        <a href="/" class="logo">
-                            <img src="<?= $bundle->baseUrl ?>/img/logo.svg" alt="">
-                        </a>
+
+                        <?= Html::a(
+                            Html::img($bundle->baseUrl . '/img/logo.svg'),
+                            Yii::$app->controller->id != 'home' ? Url::toRoute('/home/home/index') : null,
+                            ['class' => 'logo']
+                        ) ?>
 
                         <?= topBarInfo::widget(); ?>
 
@@ -175,5 +178,4 @@ $bundle = AppAsset::register($this);
         "https://www.instagram.com/my_arredo_family/"
     ]
 }
-
 </script>

@@ -71,8 +71,6 @@ use common\modules\user\models\{
  * @property Samples[] $samples
  * @property User $editor
  * @property Factory $factory
- * @property ProductRelFactoryCatalogsFiles[] $factoryCatalogsFiles
- * @property ProductRelFactoryPricesFiles[] $factoryPricesFiles
  * @property Types $types
  * @property Collection $collection
  * @property ProductNoveltyRelCity $noveltyRelCities
