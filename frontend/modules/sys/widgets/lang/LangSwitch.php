@@ -47,6 +47,8 @@ class LangSwitch extends Widget
 
     /**
      * @return string
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function run()
     {
@@ -75,7 +77,7 @@ class LangSwitch extends Widget
                 $url = 'https://www.myarredo.de';
             } elseif (in_array($lang['alias'], ['ru']) && in_array(DOMAIN_TYPE, ['ru'])) {
                 $url = 'https://www.myarredo.ru';
-            } elseif (in_array($lang['alias'], ['ru']) && in_array(DOMAIN_TYPE, ['ua'])) {
+            } elseif (in_array($lang['alias'], ['ru', 'ua']) && in_array(DOMAIN_TYPE, ['ua'])) {
                 $url = 'https://www.myarredo.ua';
             } else {
                 $url = 'https://www.myarredo.ru';
