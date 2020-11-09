@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+use yii\bootstrap\Modal;
 use yii\widgets\ActiveForm;
 use frontend\modules\shop\models\{
     Order, OrderItem, OrderAnswer
@@ -165,6 +166,24 @@ if ($user->profile->getPossibilityToAnswer($modelOrder)) { ?>
                                 <?php } ?>
                             </div>
                         <?php } ?>
+
+                        <?php if ($orderItem->product['factory']['lang']['working_conditions']) {
+                            echo Html::button(Yii::t('app', 'Условия работы'), [
+                                'class' => 'btn btn-primary',
+                                'data-toggle' => 'modal',
+                                'data-target' => '#' . 'working_conditions-modal_' . $orderItem['id'],
+                            ]);
+
+                            Modal::begin([
+                                'header' => Yii::t('app', 'Условия работы') . ' ' . $orderItem->product['factory']['title'],
+                                'id' => 'working_conditions-modal_' . $orderItem['id']
+                            ]);
+
+                            echo $orderItem->product['factory']['lang']['working_conditions'];
+
+                            Modal::end();
+                        } ?>
+
                     </div>
                 <?php }
             } else {
