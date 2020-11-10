@@ -39,6 +39,16 @@ abstract class BaseController extends Controller
      */
     public function beforeAction($action)
     {
+
+        // переход к ответу на заявку при авторизации на сайте
+        $session = Yii::$app->session;
+
+        if (Yii::$app->getUser()->isGuest && !$session->has('redirectToOrders') && strripos(Yii::$app->request->absoluteUrl, '/orders/')) {
+            $session->set('redirectToOrders', Yii::$app->request->absoluteUrl);
+        } else if (!Yii::$app->getUser()->isGuest && $session->has('redirectToOrders')) {
+            $session->remove('redirectToOrders');
+        }
+
         Redirects::findRedirect();
 
         $lang = substr(Yii::$app->language, 0, 2);
@@ -71,15 +81,6 @@ abstract class BaseController extends Controller
             $url = preg_replace('!/{2,}!', '/', $_SERVER['REQUEST_URI']);
             header('Location: ' . $url, false, 301);
             exit();
-        }
-
-        //
-        $session = Yii::$app->session;
-
-        if (Yii::$app->getUser()->isGuest && !$session->has('redirectToOrders') && strripos(Yii::$app->request->pathInfo, '/orders/#')) {
-            $session->set('redirectToOrders', Yii::$app->request->pathInfo);
-        } else if (!Yii::$app->getUser()->isGuest && $session->has('redirectToOrders')) {
-            $session->remove('redirectToOrders');
         }
 
         $this->getAlternateHreflang();
