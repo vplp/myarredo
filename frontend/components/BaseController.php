@@ -73,6 +73,15 @@ abstract class BaseController extends Controller
             exit();
         }
 
+        //
+        $session = Yii::$app->session;
+
+        if (Yii::$app->getUser()->isGuest && !$session->has('redirectToOrders') && strripos(Yii::$app->request->pathInfo, '/orders/#')) {
+            $session->set('redirectToOrders', Yii::$app->request->pathInfo);
+        } else if (!Yii::$app->getUser()->isGuest && $session->has('redirectToOrders')) {
+            $session->remove('redirectToOrders');
+        }
+
         $this->getAlternateHreflang();
 
         $this->setCurrency();

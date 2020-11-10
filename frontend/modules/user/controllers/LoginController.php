@@ -70,8 +70,15 @@ class LoginController extends BaseController
             Yii::$app->params['themes']['language'] = $user->profile->preferred_language;
             Yii::$app->language = $user->profile->preferred_language;
 
-            if (strpos(Yii::$app->session->get('referrer'), 'user/login') === false) {
-                Yii::$app->response->redirect(Yii::$app->session->get('referrer'));
+            $session = Yii::$app->session;
+
+            if ($session->has('redirectToOrders')) {
+                Yii::$app->response->redirect($session->get('redirectToOrders'));
+                yii::$app->end();
+            }
+
+            if (strpos($session->get('referrer'), 'user/login') === false) {
+                Yii::$app->response->redirect($session->get('referrer'));
                 yii::$app->end();
             } else {
                 Yii::$app->response->redirect(Url::toRoute('/user/profile/index'));
