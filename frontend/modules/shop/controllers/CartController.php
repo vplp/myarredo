@@ -8,6 +8,7 @@ use yii\helpers\Url;
 use frontend\components\BaseController;
 use frontend\modules\shop\models\{
     CartCustomerForm,
+    FormFindProduct,
     Order,
     search\Order as SearchOrder
 };
@@ -28,10 +29,10 @@ class CartController extends BaseController
      */
     public function actionRequestFindProduct()
     {
-        $customerForm = new CartCustomerForm();
+        $customerForm = new FormFindProduct();
         $customerForm->setScenario('frontend');
 
-        if ($customerForm->load(Yii::$app->getRequest()->post(), 'CartCustomerForm') && $customerForm->validate()) {
+        if ($customerForm->load(Yii::$app->getRequest()->post(), 'FormFindProduct') && $customerForm->validate()) {
             // сначала добавляем покупателя и получаем его id
             $customer_id = SearchOrder::addNewCustomer($customerForm);
 

@@ -4,9 +4,9 @@ use yii\helpers\{
     Html, Url
 };
 use yii\widgets\ActiveForm;
-use frontend\modules\shop\models\CartCustomerForm;
+use frontend\modules\shop\models\FormFindProduct;
 
-/** @var $model CartCustomerForm */
+/** @var $model FormFindProduct */
 
 $model->user_agreement = 1;
 
@@ -16,7 +16,7 @@ $model->user_agreement = 1;
     Yii::t('app', 'Не нашли то что искали? Оставьте заявку тут'),
     'javascript:void(0);',
     [
-        'class' => 'add-to-notepad-product btn btn-showmore',
+        'class' => 'btn btn-showmore',
         'data-toggle' => 'modal',
         'data-target' => '#formRequestNotFoundModal'
     ]

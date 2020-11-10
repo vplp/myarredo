@@ -4,7 +4,7 @@ namespace frontend\modules\shop\widgets\request;
 
 use Yii;
 use yii\base\Widget;
-use frontend\modules\shop\models\CartCustomerForm;
+use frontend\modules\shop\models\FormFindProduct;
 
 /**
  * Class RequestFindProduct
@@ -20,7 +20,7 @@ class RequestFindProduct extends Widget
      */
     public function run()
     {
-        $model = new CartCustomerForm();
+        $model = new FormFindProduct();
         $model->setScenario('frontend');
 
         $model->load(Yii::$app->getRequest()->post());
