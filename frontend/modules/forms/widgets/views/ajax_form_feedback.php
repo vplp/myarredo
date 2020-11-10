@@ -47,7 +47,7 @@ use frontend\modules\location\models\City;
 $url = Url::to(['/forms/forms/ajax-get-form-feedback']);
 
 $script = <<<JS
-$('.btn-feedback, .feedback-container').on('click', function () {
+$('.btn-feedback, .feedback-container, .block-rightbox-text>a').on('click', function () {
     $.post('$url', {_csrf: $('#token').val()}, function(data){
         $('#ajaxFormFeedbackModal').html(data.html); 
         interPhoneInit();
