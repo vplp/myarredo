@@ -1216,47 +1216,45 @@ $(document).ready(function () {
     });
 
     // Инициализация виджета - Intl-input doc - https://github.com/jackocnr/intl-tel-input.git
+    // получаем язык сайта у пользователя
+    var siteLang = $('html').attr('lang');
+    // Получаем домен сайта
+    var siteDomen = document.domain;
+    // функционал переводов ошибок на языки сайта
+    // для массива с текстами ошибок
+    var errorMap = [];
+    // для кода страны по дефолту при инициализации плагина 
+    var diCode = '';
+
+    // Переключатель-котроллер (В зависимости какой язык выбран на сайте)
+    switch(siteLang) {
+        case 'it':
+            // Массив ошибок для поля номер телефона для италянского языка
+            errorMap = ["Numero non valido", "Codice paese non valido", "Troppo corto", "Troppo lungo", "Numero non valido"];
+            diCode = 'it';
+        break;
+        case 'en':
+            // Массив ошибок для поля номер телефона в международном формате
+            errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+            diCode = 'it';
+        break;
+        case 'ru':
+            // Массив ошибок для поля номер телефона для русского языка
+            errorMap = ["Некорректный номер", "Некорректный код страны", "Номер короткий", "Номер длинный", "Некорректный номер"];
+            diCode = 'ru';
+        break;
+        case 'uk':
+            // Массив ошибок для поля номер телефона для украинского языка
+            errorMap = ["Некоректний номер", "Некоректний код країни", "Номер короткий", "Номер довгий", "Некоректний номер"];
+            diCode = 'ru';
+        break;
+        default:
+            // Массив ошибок для поля номер телефона в международном формате
+            errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"]; 
+            diCode = 'it';  
+    }
     // если данное поле существует на странице
     if ($('.intlinput-field').length > 0) {
-
-        // получаем язык сайта у пользователя
-        var siteLang = $('html').attr('lang');
-        // Получаем домен сайта
-        var siteDomen = document.domain;
-
-        // функционал переводов ошибок на языки сайта
-        // для массива с текстами ошибок
-        var errorMap = [];
-        // для кода страны по дефолту при инициализации плагина 
-        var diCode = '';
-
-        // Переключатель-котроллер (В зависимости какой язык выбран на сайте)
-        switch(siteLang) {
-            case 'it':
-                // Массив ошибок для поля номер телефона для италянского языка
-                errorMap = ["Numero non valido", "Codice paese non valido", "Troppo corto", "Troppo lungo", "Numero non valido"];
-                diCode = 'it';
-            break;
-            case 'en':
-                // Массив ошибок для поля номер телефона в международном формате
-                errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
-                diCode = 'it';
-            break;
-            case 'ru':
-                // Массив ошибок для поля номер телефона для русского языка
-                errorMap = ["Некорректный номер", "Некорректный код страны", "Номер короткий", "Номер длинный", "Некорректный номер"];
-                diCode = 'ru';
-            break;
-            case 'uk':
-                // Массив ошибок для поля номер телефона для украинского языка
-                errorMap = ["Некоректний номер", "Некоректний код країни", "Номер короткий", "Номер довгий", "Некоректний номер"];
-                diCode = 'ru';
-            break;
-            default:
-                // Массив ошибок для поля номер телефона в международном формате
-                errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"]; 
-                diCode = 'it';  
-        }
 
         // поле - телефон из нашей формы
         var intlInputEl = document.querySelector(".intlinput-field");
@@ -1413,6 +1411,118 @@ $(document).ready(function () {
                     utilsScript: "/js/utils.js",
                     formatOnDisplay: true
                 });
+            }
+        });
+    }
+    if ($('.intlinput-field2').length > 0) {
+
+        // поле - телефон из нашей формы
+        var intlInputEl2 = document.querySelector(".intlinput-field2");
+        // div, обертка поля - телефон из нашей формы
+        var formGroupBox2 = $('.intlinput-field2').closest('.form-group');
+        // див help-block для показа сообщений об ошибке в поле телефон
+        var errorMsg2 = formGroupBox2.children('.help-block')[0];
+
+        // инициализируем плагин международных телефонных номеров
+        var iti2 = {};
+        // если по условию нужна только определенная страна
+        if ($(intlInputEl2).attr('data-conly') == 'yes') {
+            
+            iti2 = window.intlTelInput(intlInputEl2, {
+                separateDialCode: true,
+                onlyCountries: [diCode],
+                initialCountry: diCode,
+                utilsScript: "/js/utils.js",
+                formatOnDisplay: true
+            });
+        }
+        // иначе инициализируем со всемя странами
+        else {
+            // если страна Германия то по дефолту маска De, если любая другая то - It
+            if (siteLang == 'de') {
+                diCode = 'de';
+            }
+            else {
+                if (siteDomen == 'www.myarredofamily.com') {
+                    diCode = 'us';
+                }
+                else if (siteDomen == 'www.myarredo.kz') {
+                    diCode = 'kz';
+                }
+                else {
+                    diCode = 'it';
+                }
+            }
+            iti2 = window.intlTelInput(intlInputEl2, {
+                separateDialCode: true,
+                initialCountry: diCode,
+                utilsScript: "/js/utils.js",
+                formatOnDisplay: true
+            });
+        }
+
+        // создаем функцию - сброса
+        var reset2 = function() {
+
+            intlInputEl2.classList.remove("error");
+            errorMsg2.innerHTML = "";
+            if (iti2.isValidNumber()) {
+                errorMsg2.classList.add("hide");
+                formGroupBox2[0].classList.remove("has-error");
+                formGroupBox2[0].classList.add("has-success");
+            }
+            else {
+                errorMsg2.classList.remove("hide");
+                var errorCode = iti2.getValidationError();
+                errorMsg2.innerHTML = errorMap[errorCode];
+                formGroupBox2[0].classList.remove("has-success");
+                formGroupBox2[0].classList.add("has-error");
+                intlInputEl2.setAttribute('aria-invalid', true);
+            }
+          };
+          
+          // on blur: validate
+          intlInputEl2.addEventListener('blur', function() {
+            reset2();
+            if (intlInputEl2.value.trim()) {
+              if (!iti2.isValidNumber()) {
+                  setTimeout(function() {
+                    intlInputEl2.classList.add("error");
+                    var errorCode = iti2.getValidationError();
+                    errorMsg2.innerHTML = errorMap[errorCode];
+                    errorMsg2.classList.remove("hide");
+                    formGroupBox2[0].classList.remove("has-success");
+                    formGroupBox2[0].classList.add("has-error");
+                    intlInputEl2.setAttribute('aria-invalid', true);
+                  }, 500);
+              }
+            }
+          });
+          
+          // on keyup / change flag: reset
+          intlInputEl2.addEventListener('change', reset2);
+          intlInputEl2.addEventListener('keyup', reset2);
+
+        //   Валидация номера телефона при отправке формы
+        $(intlInputEl2).closest('form').on('beforeSubmit', function(ev) {
+            // если номер телефона не валидный
+            if (!iti2.isValidNumber()) {
+                setTimeout(function() {
+                    intlInputEl2.setAttribute('aria-invalid', true);
+                    var errorCode = iti2.getValidationError();
+                    errorMsg2.innerHTML = errorMap[errorCode];
+                    errorMsg2.classList.remove("hide");
+                    formGroupBox2[0].classList.remove("has-success");
+                    formGroupBox2[0].classList.add("has-error");
+                },300);
+                return false;
+            }
+            else {
+                if ($(this).find('.intlinput-field2').val() != iti2.getNumber()) {
+                    $(this).find('.intlinput-field2').val(iti2.getNumber());
+                }
+                var countryData = iti2.getSelectedCountryData();
+                $(this).find('name="CartCustomerForm[country_code]"').val(countryData.iso2);
             }
         });
     }

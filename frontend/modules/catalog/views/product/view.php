@@ -306,7 +306,6 @@ $this->title = $this->context->title;
                                     <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
                                     <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
 
-                                    <?= RequestFindProduct::widget([]) ?>
                                 </div>
 
                             <?php } else { ?>
@@ -402,6 +401,9 @@ $this->title = $this->context->title;
                                 </div>
                                 <div class="text-contain">
                                     <?= Yii::t('app', 'Экономьте время и усилия на поиск по множеству сайтов. Все лучшие и проверенные поставщики собраны в нашей сети.') ?>
+                                    <div class="find-product-panel">
+                                        <?= RequestFindProduct::widget([]) ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
