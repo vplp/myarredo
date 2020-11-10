@@ -78,7 +78,7 @@ class LangSwitch extends Widget
             } elseif (in_array($lang['alias'], ['ru']) && in_array(DOMAIN_TYPE, ['ru'])) {
                 $url = 'https://www.myarredo.ru';
             } elseif (in_array($lang['alias'], ['ru', 'ua']) && in_array(DOMAIN_TYPE, ['ua'])) {
-                $url = 'https://' . 'www.' . DOMAIN_NAME . '.' . DOMAIN_TYPE;
+                $url = Yii::$app->request->hostInfo;
             } else {
                 $url = 'https://www.myarredo.ru';
             }
