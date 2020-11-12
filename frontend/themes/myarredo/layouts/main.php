@@ -23,8 +23,8 @@ $this->beginPage();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noyaca"/>
 
-    <link rel="icon" href="https://img.<?= DOMAIN_NAME . '.' . DOMAIN_TYPE ?>/myarredo-ico.svg" type="image/svg+xml"/>
-    <link rel="icon" href="https://img.<?= DOMAIN_NAME . '.' . DOMAIN_TYPE ?>/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="https://<?= DOMAIN_NAME . '.' . DOMAIN_TYPE ?>/myarredo-ico.svg" type="image/svg+xml"/>
+    <link rel="icon" href="https://<?= DOMAIN_NAME . '.' . DOMAIN_TYPE ?>/favicon.ico" type="image/x-icon"/>
 
     <!-- preloader styles -->
     <style>
