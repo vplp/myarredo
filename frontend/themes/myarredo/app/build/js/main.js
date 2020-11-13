@@ -1078,7 +1078,8 @@ $(document).ready(function () {
         prevArrow: "<a class='arrow prev'><i class='fa fa-angle-left'></i></a>",
         nextArrow: "<a class='arrow next'><i class='fa fa-angle-right'></i></a>",
         dots: false,
-        variableWidth: true
+        variableWidth: true,
+        centerMode: true
     });
 
     $('#cartcustomerform-user_agreement').styler();
