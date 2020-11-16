@@ -17,16 +17,25 @@ use frontend\modules\sys\models\Language;
 ) ?>
 
 <ul class="lang-drop-down">
-    <?php foreach ($models as $model) {
+    <?php
+    $options = [];
+
+    $tags = get_meta_tags('https://' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $_SERVER['REQUEST_URI']);
+    if (strpos($tags['robots'], 'noindex') !== false) {
+        $options['rel'] = 'nofollow';
+    }
+
+    foreach ($models as $model) {
         if ($model['alias'] == $current['alias']) {
             continue;
         }
+
         echo Html::tag(
             'li',
             Html::a(
                 $model['image'] . '&nbsp;' . $model['label'],
                 $model['url'],
-                []
+                $options
             )
         );
     } ?>
