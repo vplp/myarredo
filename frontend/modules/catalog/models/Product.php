@@ -449,6 +449,9 @@ class Product extends \common\modules\catalog\models\Product
                     self::tableName() . '.factory_id',
                     ProductLang::tableName() . '.title',
                 ])
+                ->andFilterWhere([
+                    Product::tableName() . '.removed' => '0'
+                ])
                 ->enabled()
                 ->andWhere([
                     self::tableName() . '.collections_id' => $collections_id,
@@ -478,6 +481,9 @@ class Product extends \common\modules\catalog\models\Product
                     self::tableName() . '.image_link',
                     self::tableName() . '.factory_id',
                     ProductLang::tableName() . '.title',
+                ])
+                ->andFilterWhere([
+                    Product::tableName() . '.removed' => '0'
                 ])
                 ->enabled()
                 ->andWhere([
