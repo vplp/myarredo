@@ -279,7 +279,7 @@ class CountriesFurnitureController extends BaseController
             'url' => ['/catalog/countries-furniture/list']
         ];
 
-        $noIndex = 0;
+        $this->noIndex = 0;
         $pageTitle = $pageH1 = $pageDescription = [];
 
         $pageDescription[] = Yii::t('app', 'Хотите купить');
@@ -289,7 +289,7 @@ class CountriesFurnitureController extends BaseController
             $models = Colors::findByAlias($params[$keys['colors']]);
 
             if (count($params[$keys['colors']]) > 1) {
-                $noIndex = 1;
+                $this->noIndex = 1;
             }
 
             $colors = [];
@@ -322,7 +322,7 @@ class CountriesFurnitureController extends BaseController
             $models = Types::findByAlias($params[$keys['type']]);
 
             if (count($params[$keys['type']]) > 1) {
-                $noIndex = 1;
+                $this->noIndex = 1;
             }
 
             $type = [];
@@ -345,7 +345,7 @@ class CountriesFurnitureController extends BaseController
             $models = SubTypes::findByAlias($params[$keys['subtypes']]);
 
             if (count($params[$keys['subtypes']]) > 1) {
-                $noIndex = 1;
+                $this->noIndex = 1;
             }
 
             $subtypes = [];
@@ -373,11 +373,11 @@ class CountriesFurnitureController extends BaseController
             }
 
             if (count($params[$keys['factory']]) > 1) {
-                $noIndex = 1;
+                $this->noIndex = 1;
             }
 
             if (count($params) == 1 && count($params[$keys['factory']]) == 1) {
-                $noIndex = 1;
+                $this->noIndex = 1;
             }
 
             $pageTitle[] = implode(', ', $factory);
@@ -395,7 +395,7 @@ class CountriesFurnitureController extends BaseController
             $models = Specification::findByAlias($params[$keys['style']]);
 
             if (count($params[$keys['style']]) > 1) {
-                $noIndex = 1;
+                $this->noIndex = 1;
             }
 
             $style = [];
@@ -415,27 +415,27 @@ class CountriesFurnitureController extends BaseController
 
         /** price */
         if (isset($params[$keys['price']])) {
-            $noIndex = 1;
+            $this->noIndex = 1;
         }
 
         if (isset($params[$keys['diameter']])) {
-            $noIndex = 1;
+            $this->noIndex = 1;
         }
 
         if (isset($params[$keys['width']])) {
-            $noIndex = 1;
+            $this->noIndex = 1;
         }
 
         if (isset($params[$keys['length']])) {
-            $noIndex = 1;
+            $this->noIndex = 1;
         }
 
         if (isset($params[$keys['height']])) {
-            $noIndex = 1;
+            $this->noIndex = 1;
         }
 
         if (isset($params[$keys['apportionment']])) {
-            $noIndex = 1;
+            $this->noIndex = 1;
         }
 
         $countParams = 0;
@@ -444,7 +444,7 @@ class CountriesFurnitureController extends BaseController
         }
 
         if ($countParams > 3) {
-            $noIndex = 1;
+            $this->noIndex = 1;
         }
 
         /**
@@ -478,7 +478,7 @@ class CountriesFurnitureController extends BaseController
             ]);
         }
 
-        if ($noIndex) {
+        if ($this->noIndex) {
             Yii::$app->view->registerMetaTag([
                 'name' => 'robots',
                 'content' => 'noindex, follow',
@@ -510,7 +510,7 @@ class CountriesFurnitureController extends BaseController
             'url' => ['/catalog/countries-furniture/list']
         ];
 
-        $noIndex = 0;
+        $this->noIndex = 0;
         $pageTitle = $pageH1 = $pageDescription = [];
 
         /** category */
@@ -532,7 +532,7 @@ class CountriesFurnitureController extends BaseController
             $models = Types::findByAlias($params[$keys['type']]);
 
             if (count($params[$keys['type']]) > 1) {
-                $noIndex = 1;
+                $this->noIndex = 1;
             }
 
             $type = [];
@@ -555,7 +555,7 @@ class CountriesFurnitureController extends BaseController
             $models = SubTypes::findByAlias($params[$keys['subtypes']]);
 
             if (count($params[$keys['subtypes']]) > 1) {
-                $noIndex = 1;
+                $this->noIndex = 1;
             }
 
             $subtypes = [];
@@ -578,7 +578,7 @@ class CountriesFurnitureController extends BaseController
             $models = Specification::findByAlias($params[$keys['style']]);
 
             if (count($params[$keys['style']]) > 1) {
-                $noIndex = 1;
+                $this->noIndex = 1;
             }
 
             $style = [];
@@ -601,7 +601,7 @@ class CountriesFurnitureController extends BaseController
             $models = Collection::findByIDs($params[$keys['collection']]);
 
             if (count($params[$keys['collection']]) > 1) {
-                $noIndex = 1;
+                $this->noIndex = 1;
             }
 
             $collections = [];
@@ -638,11 +638,11 @@ class CountriesFurnitureController extends BaseController
             }
 
             if (count($params[$keys['factory']]) > 1) {
-                $noIndex = 1;
+                $this->noIndex = 1;
             }
 
             if (count($params) == 1 && count($params[$keys['factory']]) == 1) {
-                $noIndex = 1;
+                $this->noIndex = 1;
             }
 
             $pageTitle[] = implode(', ', $factory);
@@ -657,27 +657,27 @@ class CountriesFurnitureController extends BaseController
 
         /** price */
         if (isset($params[$keys['price']])) {
-            $noIndex = 1;
+            $this->noIndex = 1;
         }
 
         if (isset($params[$keys['diameter']])) {
-            $noIndex = 1;
+            $this->noIndex = 1;
         }
 
         if (isset($params[$keys['width']])) {
-            $noIndex = 1;
+            $this->noIndex = 1;
         }
 
         if (isset($params[$keys['length']])) {
-            $noIndex = 1;
+            $this->noIndex = 1;
         }
 
         if (isset($params[$keys['height']])) {
-            $noIndex = 1;
+            $this->noIndex = 1;
         }
 
         if (isset($params[$keys['apportionment']])) {
-            $noIndex = 1;
+            $this->noIndex = 1;
         }
 
         $countParams = 0;
@@ -686,7 +686,7 @@ class CountriesFurnitureController extends BaseController
         }
 
         if ($countParams > 3) {
-            $noIndex = 1;
+            $this->noIndex = 1;
         }
 
         $pageDescription[] = Yii::t('app', 'из Италии');
@@ -742,7 +742,7 @@ class CountriesFurnitureController extends BaseController
             ]);
         }
 
-        if ($noIndex) {
+        if ($this->noIndex) {
             Yii::$app->view->registerMetaTag([
                 'name' => 'robots',
                 'content' => 'noindex, follow',

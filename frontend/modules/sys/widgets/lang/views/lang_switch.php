@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use frontend\modules\sys\models\Language;
 
+/** @var $noIndex boolean */
 /** @var $current Language */
 /** @var $models Language */
 /** @var $model Language */
@@ -20,10 +21,9 @@ use frontend\modules\sys\models\Language;
     <?php
     $options = [];
 
-//    $tags = get_meta_tags('https://' . DOMAIN_NAME . '.' . DOMAIN_TYPE . Yii::$app->request->url);
-//    if (strpos($tags['robots'], 'noindex') !== false) {
-//        $options['rel'] = 'nofollow';
-//    }
+    if ($noIndex) {
+        $options['rel'] = 'nofollow';
+    }
 
     foreach ($models as $model) {
         if ($model['alias'] == $current['alias']) {

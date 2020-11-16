@@ -27,6 +27,9 @@ class LangSwitch extends Widget
      */
     public $current = '';
 
+    // $this->context->noIndex
+    public $noIndex = 0;
+
     /**
      * @var null
      */
@@ -278,6 +281,7 @@ class LangSwitch extends Widget
         }
 
         return $this->render($this->view, [
+            'noIndex' => $this->noIndex,
             'models' => $items,
             'current' => $this->current,
         ]);

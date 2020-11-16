@@ -75,7 +75,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale'])
                         ) { ?>
                             <div class="lang-selector">
-                                <?= LangSwitch::widget() ?>
+                                <?= LangSwitch::widget(['noIndex' => $this->context->noIndex]) ?>
                             </div>
                         <?php } ?>
 
@@ -112,7 +112,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale'])
                         ) { ?>
                             <div class="lang-selector">
-                                <?= LangSwitch::widget() ?>
+                                <?= LangSwitch::widget(['noIndex' => $this->context->noIndex]) ?>
                             </div>
                         <?php } ?>
                         <?php if (in_array(DOMAIN_TYPE, ['ru'])) { ?>

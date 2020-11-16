@@ -58,7 +58,7 @@ $bundle = AppAsset::register($this);
             <div class="bot-list">
                 <?php if (DOMAIN_NAME != 'myarredofamily') { ?>
                     <div class="one-list-cont lang-cont">
-                        <?= LangSwitch::widget(['view' => 'lang_switch_mobile']) ?>
+                        <?= LangSwitch::widget(['view' => 'lang_switch_mobile', 'noIndex' => $this->context->noIndex]) ?>
                     </div>
                 <?php } ?>
 

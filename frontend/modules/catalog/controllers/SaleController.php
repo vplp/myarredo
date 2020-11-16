@@ -405,7 +405,7 @@ class SaleController extends BaseController
         }
 
         if ($countParams > 3) {
-            $noIndex = 1;
+            $this->noIndex = 1;
         }
 
         /**

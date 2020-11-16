@@ -31,6 +31,12 @@ abstract class BaseController extends Controller
      */
     public $breadcrumbs = [];
 
+
+    /**
+     * @var bool
+     */
+    public $noIndex = false;
+
     /**
      * @param \yii\base\Action $action
      * @return bool
