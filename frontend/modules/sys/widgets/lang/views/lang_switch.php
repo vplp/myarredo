@@ -20,7 +20,7 @@ use frontend\modules\sys\models\Language;
     <?php
     $options = [];
 
-    $tags = get_meta_tags('https://' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $_SERVER['REQUEST_URI']);
+    $tags = get_meta_tags('https://' . DOMAIN_NAME . '.' . DOMAIN_TYPE . Yii::$app->request->url);
     if (strpos($tags['robots'], 'noindex') !== false) {
         $options['rel'] = 'nofollow';
     }
