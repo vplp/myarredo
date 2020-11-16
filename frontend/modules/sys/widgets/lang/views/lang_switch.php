@@ -20,10 +20,10 @@ use frontend\modules\sys\models\Language;
     <?php
     $options = [];
 
-    $tags = get_meta_tags('https://' . DOMAIN_NAME . '.' . DOMAIN_TYPE . Yii::$app->request->url);
-    if (strpos($tags['robots'], 'noindex') !== false) {
-        $options['rel'] = 'nofollow';
-    }
+//    $tags = get_meta_tags('https://' . DOMAIN_NAME . '.' . DOMAIN_TYPE . Yii::$app->request->url);
+//    if (strpos($tags['robots'], 'noindex') !== false) {
+//        $options['rel'] = 'nofollow';
+//    }
 
     foreach ($models as $model) {
         if ($model['alias'] == $current['alias']) {
