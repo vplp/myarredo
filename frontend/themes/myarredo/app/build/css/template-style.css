@@ -5197,6 +5197,7 @@ h1 {
 }
 .ordersanswer-box {
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .ordersanswer-box .action-save-answer {
   float: right;
@@ -9977,6 +9978,8 @@ h1 {
   padding: 6px 12px;
   border: 1px solid #448339;
   border-radius: 0.5px;
+  max-width: 300px;
+  white-space: normal;
   transition: 0.3s;
 }
 .btn-showmore:hover,
