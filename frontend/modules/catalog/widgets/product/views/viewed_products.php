@@ -17,7 +17,7 @@ if (!empty($products)) { ?>
                             <?= Html::beginTag(
                                 'a',
                                 [
-                                    'href' => $modelClass::getUrl($model['alias']),
+                                    'href' => $modelClass::getUrl($model[Yii::$app->languages->getDomainAlias()]),
                                     'class' => 'tile',
                                     'target' => '_blank'
                                 ]

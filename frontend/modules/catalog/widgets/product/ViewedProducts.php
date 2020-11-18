@@ -71,6 +71,9 @@ class ViewedProducts extends Widget
                 ->select([
                     $modelClass::tableName() . '.id',
                     $modelClass::tableName() . '.alias',
+                    $modelClass::tableName() . '.alias_en',
+                    $modelClass::tableName() . '.alias_it',
+                    $modelClass::tableName() . '.alias_de',
                     $modelClass::tableName() . '.image_link',
                     $modelClass::tableName() . '.factory_id',
                     $modelLangClass::tableName() . '.title',

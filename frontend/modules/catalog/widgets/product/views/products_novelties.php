@@ -18,7 +18,7 @@ if (!empty($products) || !empty($promotions)) { ?>
                             <?= Html::beginTag(
                                 'a',
                                 [
-                                    'href' => $modelPromotionItemClass::getUrl($model['alias']),
+                                    'href' => $modelPromotionItemClass::getUrl($model[Yii::$app->languages->getDomainAlias()]),
                                     'class' => 'tile',
                                     'target' => '_blank'
                                 ]
@@ -46,7 +46,7 @@ if (!empty($products) || !empty($promotions)) { ?>
                             <?= Html::beginTag(
                                 'a',
                                 [
-                                    'href' => $modelClass::getUrl($model['alias']),
+                                    'href' => $modelClass::getUrl($model[Yii::$app->languages->getDomainAlias()]),
                                     'class' => 'tile',
                                     'target' => '_blank'
                                 ]
