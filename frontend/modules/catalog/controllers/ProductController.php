@@ -109,17 +109,17 @@ class ProductController extends BaseController
 
         $keys = Yii::$app->catalogFilter->keys;
 
-        if (!$model['is_composition']) {
+        //if (!$model['is_composition']) {
             $pageTitle[] = $model['lang']['title'];
             $pageDescription[] = $model['lang']['title'];
-        }
+        //}
 
         if (isset($model['category'][0])) {
             $params = Yii::$app->catalogFilter->params;
 
             $params[$keys['category']] = $model['category'][0][Yii::$app->languages->getDomainAlias()];
 
-            if ($model['is_composition']) {
+            if ($model['is_composition'] && $model['category'][0]['lang']['composition_title']) {
                 $pageTitle[] = $model['category'][0]['lang']['composition_title'];
             }
 
