@@ -7,6 +7,7 @@ use yii\db\Exception;
 use yii\db\mssql\PDO;
 use yii\db\Transaction;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Response;
 use frontend\components\BaseController;
 use frontend\modules\location\models\City;
@@ -56,6 +57,27 @@ class PartnerOrderController extends BaseController
                 ],
             ],
         ];
+    }
+
+    /**
+     * @param \yii\base\Action $action
+     * @return bool|Response
+     * @throws \yii\base\ExitException
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') {
+            $href = str_replace(
+                'partner',
+                'admin',
+                Yii::$app->request->url
+            );
+
+            return $this->redirect($href, 301);
+        }
+
+        return parent::beforeAction($action);
     }
 
     /**
