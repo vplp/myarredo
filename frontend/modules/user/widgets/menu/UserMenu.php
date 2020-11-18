@@ -159,7 +159,8 @@ class UserMenu extends Widget
                 ],
                 [
                     'label' => Yii::t('app', 'Рекламные кампании'),
-                    'url' => ['/catalog/factory-promotion/list']
+                    'url' => ['/catalog/factory-promotion/list'],
+                    'visible' => false
                 ],
                 [
                     'label' => Yii::t('app', 'Orders'),
@@ -197,7 +198,8 @@ class UserMenu extends Widget
                 ],
                 [
                     'label' => Yii::t('app', 'Платежная информация'),
-                    'url' => ['/payment/partner-payment/list']
+                    'url' => ['/payment/partner-payment/list'],
+                    'visible' => false
                 ],
             ];
         } else {
