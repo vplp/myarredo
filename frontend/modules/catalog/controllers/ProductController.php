@@ -6,9 +6,7 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
-use frontend\modules\catalog\models\{
-    Product, ProductStats
-};
+use frontend\modules\catalog\models\{Factory, Product, ProductStats};
 use frontend\components\BaseController;
 
 /**
@@ -72,6 +70,12 @@ class ProductController extends BaseController
 
         if ($model == null) {
             $model = Product::find()
+                ->innerJoinWith(['factory'])
+                ->andFilterWhere([
+                    Product::tableName() . '.removed' => '0',
+                    Factory::tableName() . '.published' => '1',
+                    Factory::tableName() . '.deleted' => '0'
+                ])
                 ->andFilterWhere([
                     'OR',
                     [Product::tableName() . '.alias' => $alias],
