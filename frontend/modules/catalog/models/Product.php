@@ -445,6 +445,9 @@ class Product extends \common\modules\catalog\models\Product
                 ->select([
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
+                    self::tableName() . '.alias_en',
+                    self::tableName() . '.alias_it',
+                    self::tableName() . '.alias_de',
                     self::tableName() . '.image_link',
                     self::tableName() . '.factory_id',
                     ProductLang::tableName() . '.title',
@@ -478,6 +481,9 @@ class Product extends \common\modules\catalog\models\Product
                 ->select([
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
+                    self::tableName() . '.alias_en',
+                    self::tableName() . '.alias_it',
+                    self::tableName() . '.alias_de',
                     self::tableName() . '.image_link',
                     self::tableName() . '.factory_id',
                     ProductLang::tableName() . '.title',
