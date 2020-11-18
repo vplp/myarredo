@@ -56,7 +56,10 @@ $bundle = AppAsset::register($this);
 
         <div class="footer-navpanel">
             <div class="bot-list">
-                <?php if (DOMAIN_NAME != 'myarredofamily') { ?>
+                <?php if (DOMAIN_NAME == 'myarredo' &&
+                    in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de']) &&
+                    !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale'])
+                ) { ?>
                     <div class="one-list-cont lang-cont">
                         <?= LangSwitch::widget(['view' => 'lang_switch_mobile', 'noIndex' => $this->context->noIndex]) ?>
                     </div>
