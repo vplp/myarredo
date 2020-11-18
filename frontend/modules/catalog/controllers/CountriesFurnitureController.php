@@ -203,11 +203,17 @@ class CountriesFurnitureController extends BaseController
 
         $lang = substr(Yii::$app->language, 0, 2);
 
+        if (in_array(DOMAIN_TYPE, ['com']) && DOMAIN_NAME == 'myarredofamily') {
+            $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
+        } elseif (in_array(DOMAIN_TYPE, ['de'])) {
+            $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
+        } else {
+            $hrefCanonical = Yii::$app->request->hostInfo . '/' . ($lang != 'ru' ? $lang . '/' : '') . Yii::$app->request->pathInfo;
+        }
+
         Yii::$app->view->registerLinkTag([
             'rel' => 'canonical',
-            'href' => Yii::$app->request->hostInfo . '/' .
-                ($lang != 'ru' ? $lang . '/' : '') .
-                Yii::$app->request->pathInfo
+            'href' => $hrefCanonical
         ]);
 
         Yii::$app->metatag->renderArrayGraph([
