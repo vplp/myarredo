@@ -70,7 +70,7 @@ class ViewedProducts extends Widget
         if (!empty($IDs)) {
             $query = $modelClass::findBase()->byID($IDs)->asArray();
 
-            if ($modelClass::tableName() != Sale::tableName()) {
+            if ($this->cookieName != 'viewed_sale') {
                 $query->select([
                     $modelClass::tableName() . '.id',
                     $modelClass::tableName() . '.alias',
