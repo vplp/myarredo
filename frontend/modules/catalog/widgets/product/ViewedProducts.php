@@ -5,6 +5,7 @@ namespace frontend\modules\catalog\widgets\product;
 use Yii;
 use yii\base\Exception;
 use yii\base\Widget;
+use frontend\modules\catalog\models\Sale;
 
 /**
  * Class ViewedProducts
@@ -67,8 +68,10 @@ class ViewedProducts extends Widget
         }
 
         if (!empty($IDs)) {
-            $this->models = $modelClass::findBase()
-                ->select([
+            $query = $modelClass::findBase()->byID($IDs)->asArray();
+
+            if ($modelClass::tableName() != Sale::tableName()) {
+                $query->select([
                     $modelClass::tableName() . '.id',
                     $modelClass::tableName() . '.alias',
                     $modelClass::tableName() . '.alias_en',
@@ -77,10 +80,18 @@ class ViewedProducts extends Widget
                     $modelClass::tableName() . '.image_link',
                     $modelClass::tableName() . '.factory_id',
                     $modelLangClass::tableName() . '.title',
-                ])
-                ->byID($IDs)
-                ->asArray()
-                ->all();
+                ]);
+            } else {
+                $query->select([
+                    $modelClass::tableName() . '.id',
+                    $modelClass::tableName() . '.alias',
+                    $modelClass::tableName() . '.image_link',
+                    $modelClass::tableName() . '.factory_id',
+                    $modelLangClass::tableName() . '.title',
+                ]);
+            }
+
+            $this->models = $query->all();
         }
     }
 
