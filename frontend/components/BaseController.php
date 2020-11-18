@@ -49,8 +49,8 @@ abstract class BaseController extends Controller
         // переход к ответу на заявку при авторизации на сайте
         $session = Yii::$app->session;
 
-        if (Yii::$app->getUser()->isGuest && !$session->has('redirectToOrders') && strripos(Yii::$app->request->absoluteUrl, '/orders/')) {
-            $session->set('redirectToOrders', Yii::$app->request->absoluteUrl);
+        if (Yii::$app->getUser()->isGuest && !$session->has('redirectToOrders') && strripos(Yii::$app->request->url, '/orders/')) {
+            $session->set('redirectToOrders', Yii::$app->request->url);
         } else if (!Yii::$app->getUser()->isGuest && $session->has('redirectToOrders')) {
             $session->remove('redirectToOrders');
         }
