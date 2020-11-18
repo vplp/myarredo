@@ -6,9 +6,11 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\base\Component;
 use yii\log\Logger;
+
 //
 use frontend\modules\seo\modules\modellink\models\Modellink;
 use frontend\modules\seo\modules\directlink\models\Directlink;
+
 //
 use thread\app\base\models\ActiveRecord;
 
@@ -305,9 +307,20 @@ class MetaTag extends Component
             ]);
         }
 
+        /**
+         * Add canonical
+         */
+        if (in_array(DOMAIN_TYPE, ['com']) && DOMAIN_NAME == 'myarredofamily') {
+            $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
+        } elseif (in_array(DOMAIN_TYPE, ['de'])) {
+            $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
+        } else {
+            $hrefCanonical = Yii::$app->request->hostInfo . '/' . $lang . Yii::$app->request->pathInfo;
+        }
+
         $view->registerLinkTag([
             'rel' => 'canonical',
-            'href' => Yii::$app->request->hostInfo . '/' . $lang . Yii::$app->request->pathInfo
+            'href' => $hrefCanonical
         ]);
 
         return $this;
