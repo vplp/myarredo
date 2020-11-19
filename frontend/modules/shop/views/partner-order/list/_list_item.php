@@ -152,7 +152,7 @@ if ($user->profile->getPossibilityToAnswer($modelOrder)) { ?>
                                                 <li>
                                                     <?= Html::a(
                                                         $priceFile->title,
-                                                        $fileLink,
+                                                        Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink . '&search=' . $orderItem->product->article,
                                                         [
                                                             'target' => '_blank',
                                                             'class' => 'click-on-factory-file',
