@@ -80,6 +80,7 @@ class ItalianProductRequest extends ActiveRecord
             ],
             [['ip'], 'string', 'max' => 45],
             [['question'], 'string', 'max' => 1024],
+            [['email'], 'email'],
             [['email', 'user_name', 'phone'], 'string', 'max' => 255],
             [
                 [
