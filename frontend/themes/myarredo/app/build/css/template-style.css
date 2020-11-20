@@ -9261,6 +9261,9 @@ h1 {
   line-height: 26px;
   margin-left: 40px;
 }
+.block-rightbox-text>a {
+  cursor:  pointer;
+}
 .betotchers-decorbox {
   position: absolute;
   top: 0;
