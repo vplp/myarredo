@@ -29,6 +29,7 @@ Yii::setAlias('frontend', $rootDir . DIRECTORY_SEPARATOR . 'frontend');
 Yii::setAlias('frontend-web', $rootDir . DIRECTORY_SEPARATOR . 'web');
 Yii::setAlias('backend', $rootDir . DIRECTORY_SEPARATOR . 'backend');
 Yii::setAlias('backend-web', $rootDir . DIRECTORY_SEPARATOR . 'web' . DIRECTORY_SEPARATOR . 'backend');
+Yii::setAlias('api', $rootDir . DIRECTORY_SEPARATOR . 'api');
 /**
  * END
  */

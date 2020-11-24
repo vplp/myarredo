@@ -17,8 +17,6 @@ class OrderAcceptAction extends Action
 {
     public $modelClass;
 
-    public $scenario = Model::SCENARIO_DEFAULT;
-
     /**
      * @param $id
      * @return Order
@@ -29,17 +27,26 @@ class OrderAcceptAction extends Action
     {
         /** @var $model Order */
 
-        $model = new $this->modelClass([
-            'scenario' => $this->scenario,
-        ]);
+        if ($order = Yii::$app->getRequest()->getBodyParams('order')) {
+            $model = new $this->modelClass([
+                'scenario' => 'addNewOrder',
+            ]);
 
-        $model->load(Yii::$app->getRequest()->getBodyParams(), '');
-        if ($model->save()) {
-            Yii::$app->getResponse()->setStatusCode(204);
-        } elseif (!$model->hasErrors()) {
-            throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
+            // add new Customer
+
+            // create
+
         }
 
-        return $model;
+
+        ///* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->getRequest()->getBodyParams()); echo '</pre>'; /* !!! */
+
+//        if ($model->save()) {
+//            Yii::$app->getResponse()->setStatusCode(204);
+//        } elseif (!$model->hasErrors()) {
+//            throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
+//        }
+
+        return ['order' => ['accepted' => false, 'reason' => 'OUT_OF_DATE']];
     }
 }

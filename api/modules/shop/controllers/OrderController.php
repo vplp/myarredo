@@ -41,10 +41,8 @@ class OrderController extends RestController
     protected function verbs()
     {
         return [
-            'index' => ['GET'],
-            'update' => ['PUT'],
-            'create' => ['POST'],
-            'delete' => ['DELETE'],
+            'accept' => ['POST'],
+            'status' => ['POST']
         ];
     }
 }

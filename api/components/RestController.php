@@ -22,14 +22,15 @@ abstract class RestController extends Controller
     {
         $behaviors = parent::behaviors();
 
-        $behaviors['authenticator'] = [
-            'class' => CompositeAuth::className(),
-            'authMethods' => [
-                HttpBasicAuth::className(),
-                HttpBearerAuth::className(),
-                QueryParamAuth::className(),
-            ],
-        ];
+//        unset($behaviors['authenticator']);
+//        $behaviors['authenticator'] = [
+//            'class' => CompositeAuth::className(),
+//            'authMethods' => [
+//                HttpBasicAuth::className(),
+//                HttpBearerAuth::className(),
+//                QueryParamAuth::className(),
+//            ],
+//        ];
 
         return $behaviors;
     }
