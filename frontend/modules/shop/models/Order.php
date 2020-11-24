@@ -203,7 +203,7 @@ class Order extends \common\modules\shop\models\Order
      */
     public function getPartnerOrderOnListUrl()
     {
-        return Url::toRoute(['/shop/partner-order/list']) . '#' . $this->id;
+        return Url::toRoute(['/shop/partner-order/list']) . '?' . $this->id;
     }
 
     /**
@@ -211,7 +211,7 @@ class Order extends \common\modules\shop\models\Order
      */
     public function getPartnerOrderOnListItalyUrl()
     {
-        return Url::toRoute(['/shop/partner-order/list-italy']) . '#' . $this->id;
+        return Url::toRoute(['/shop/partner-order/list-italy']) . '?' . $this->id;
     }
 
     /**

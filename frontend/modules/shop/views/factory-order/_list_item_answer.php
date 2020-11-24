@@ -19,7 +19,7 @@ use frontend\modules\catalog\models\Product;
 <?php $form = ActiveForm::begin([
     'id' => 'OrderAnswerForm',
     'options' => ['data' => ['pjax' => true]],
-    'action' => Yii::$app->request->url . '#' . $modelOrder->id,
+    'action' => Yii::$app->request->url . '?' . $modelOrder->id,
 ]); ?>
 
 <div class="hidden-order-in">
