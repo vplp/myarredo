@@ -689,22 +689,25 @@ $(document).ready(function () {
         }
     });
 
-    window.onload = function () {
+    (function() {
         if (window.location !== "") {
             var hash = window.location.hash.replace("#", "");
             var el = $('[data-hash="' + String(hash) + '"]');
-            if (el.length) {
+            if (el.length > 0) {
                 var top = el.offset().top;
-                $("html,body").animate({"scrollTop": top}, 100);
-                el.click();
+                setTimeout(function() {
+                    $("html,body").animate({"scrollTop": top}, 100);
+                    el.find(".orders-title-block").click();
+                },200);
             }
         }
-    };
+        if (window.location.search) {
+            var searchVal = window.location.search.replace('?','#');
+            var link = window.location.pathname  + searchVal;
+            window.location = link;
+        }
+    })();
 
-    if (window.location.hash !== "") {
-        var itemHash = window.location.hash.replace("#", "");
-        $("[data-hash='" + itemHash + "']").find(".orders-title-block").click();
-    }
     /*--конец открыть/зыкрыть заказ (кабинет фабрики)--*/
 
     /*--поиск по списку (кабинет фабрики)--*/
