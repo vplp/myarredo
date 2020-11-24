@@ -140,7 +140,11 @@ h1 {
       .header .top-header .container:after, .header .top-header .container:before {
         display: none; }
     .header .top-header .left-part {
-      display: flex; }
+      display: flex; 
+    }
+    .header .top-header .left-part .logo {
+      padding-top: 6px;
+    }
     .header .top-header .right-part {
       display: flex;
       height: 100%; }
@@ -149,12 +153,15 @@ h1 {
       }
     .header .top-header a {
       font-family: "Open Sans";
-      color: #535351; }
-      .header .top-header a:hover, .header .top-header a:active, .header .top-header a:focus {
-        text-decoration: none; }
+      color: #535351; 
+    }
+
+    .header .top-header a:hover, .header .top-header a:active, .header .top-header a:focus {
+      text-decoration: none; }
     .header .top-header .phone {
-      font-size: 20px;
-      font-weight: 600; }
+      font-size: 17px;
+      font-weight: 600; 
+    }
     .header .top-header .descr {
       font-size: 9px;
       color: #c4242e;
@@ -181,16 +188,19 @@ h1 {
   .header .phone-num {
     display: flex;
     align-items: center;
-    padding-right: 30px;
-    border-right: 1px solid #BDBCB3; }
+    padding-right: 0;
+    padding-left: 6px;
+    border-right: none; 
+  }
     .header .phone-num .phone {
       display: block; }
     .header .phone-num .descr {
       display: block; }
     .header .phone-num .fa {
       color: #BDBCB3;
-      font-size: 20px;
-      margin-right: 12px; }
+      font-size: 18px;
+      margin-right: 8px; 
+    }
   .header .back-call {
     display: flex;
     align-items: center;
@@ -254,25 +264,38 @@ h1 {
       .header .select-city .links-cont .active a:before {
         background-color: #448339; }
   .header .wishlist {
-    background: #448339;
-    color: #FFFFFF !important;
+    position: relative;
+    background-color: transparent;
+    color: #BDBCB3 !important;
     height: 100%;
-    padding: 0 50px;
+    padding: 0 5px;
     display: flex;
     align-items: center;
     text-transform: uppercase;
     font-size: 13px;
-    font-weight: 700; }
-    .header .wishlist .fa {
-      font-size: 20px;
-      margin-right: 4px; }
+    font-weight: 700; 
+  }
+  .header .wishlist .fa {
+    font-size: 22px;
+    margin-right: 4px; 
+  }
+  .header .wishlist .inscription {
+    position: absolute;
+    top: 14px;
+    left: 13px;
+    color: #fff;
+    font-size: 10px;
+  }
 
   .header .sign-in {
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 0 30px;
+    padding: 0 0 0 16px;
     font-size: 14px; 
+  }
+  .header .sign-in.withicon {
+    padding: 0 14px 0 16px;
   }
   .header .sign-in.withicon::before {
     content: '';
@@ -297,7 +320,7 @@ h1 {
     margin-top: -3px;
   }
   .header .bot-header {
-    height: 94px;
+    height: 52px;
     border-bottom: 1px solid #BDBCB3; }
     .header .bot-header .container {
       display: flex;
@@ -317,7 +340,11 @@ h1 {
         text-transform: uppercase;
         color: #41403e;
         padding: 10px 10px;
-        font-weight: 600; }
+        font-weight: 600; 
+      }
+      .header .bot-header .navigation li:first-child a {
+        padding-left: 0;
+      }
         .header .bot-header .navigation a:hover, .header .bot-header .navigation a:active, .header .bot-header .navigation a:focus {
           text-decoration: none; }
       .header .bot-header .navigation .has-list > a {
@@ -391,16 +418,16 @@ h1 {
           width: 18px;
           height: 14px;
           top: -11px;
-          left: 23%;
+          left: 5%;
           background-image: url("../img/level-arrow.png");
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center; }
         .header .bot-header .navigation .second-link .list-level:before {
-          left: 33%;
+          left: 15%;
         }
         .header .bot-header .navigation .third-link .list-level:before {
-          left: 46%;
+          left: 27%;
         }
         .header .bot-header .navigation .list-level:after {
           content: "";
@@ -5385,8 +5412,6 @@ h1 {
     font-size: 12px; }
   .header .top-header .descr {
     font-size: 8px; }
-  .header .phone-num {
-    padding-right: 15px; }
     .header .phone-num .fa {
       font-size: 18px;
       margin-right: 10px; }
@@ -5400,17 +5425,8 @@ h1 {
   .header .select-city .js-select-city {
     padding: 0 10px 0 10px;
     font-size: 12px; }
-  .header .wishlist {
-    padding: 0 20px;
-    font-size: 12px; }
-  .header .sign-in {
-    padding: 0 20px;
-    font-size: 13px; }
   .header .company-logo {
     width: 80px; }
-  .header .logo {
-    max-width: 160px;
-    min-width: 160px; }
   .header .bot-header .navigation a {
     font-size: 12px;
     padding: 10px 7px; }
@@ -6065,11 +6081,13 @@ h1 {
     padding: 0 12px; } */
     .header .sign-in .fa {
       margin-right: 0; }
-  .header .search-cont {
-    display: none; }
   .header .logo {
-    max-width: 140px;
-    min-width: 140px; }
+    max-width: 200px;
+    min-width: 200px; 
+  }
+  .header .top-header .left-part .logo {
+    padding-top: 9px;
+  }
   .header .bot-header .navigation .list-level li {
     width: 185px;
     margin-right: 8%; }
@@ -8304,6 +8322,9 @@ h1 {
 .price-availability .availability + .btn.btn-default.big.doned {
   background-color: #448339;
   color: #ffffff;
+}
+.container {
+  width: 100% !important;
 }
 
 /* --------------------------------------------------------------------------------------------------------- */
@@ -10773,6 +10794,14 @@ body .concact-page .one-cont .cont-info-row a {
 @media(min-width: 541px) {
   .category-page .cat-prod .one-prod-tile:hover .tile-prod-name {
     min-height: 40px;
+  }
+}
+/* max 799 */
+@media(max-width: 799px) {
+  .header .top-header .left-part .logo {
+    max-width: 160px;
+    min-width: 160px;
+    margin-top: 2px;
   }
 }
 /* max 768px */
