@@ -260,6 +260,7 @@ return [
     'admin/order/update/<id:[\d\-]+>' => 'shop/admin-order/update',
     'admin/orders' => 'shop/admin-order/list',
     'admin/orders-italy' => 'shop/admin-order/list-italy',
+    'admin/orders/pjax-save-order-answer' => 'shop/admin-order/pjax-save-order-answer',
 
     'partner/orders' => 'shop/partner-order/list',
     'partner/orders-italy' => 'shop/partner-order/list-italy',

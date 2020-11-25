@@ -5,12 +5,9 @@ namespace frontend\modules\shop\controllers;
 use Yii;
 use yii\db\Exception;
 use yii\db\mssql\PDO;
-use yii\db\Transaction;
-use yii\filters\AccessControl;
-use yii\helpers\Url;
 use yii\web\Response;
+use yii\filters\AccessControl;
 use frontend\components\BaseController;
-use frontend\modules\location\models\City;
 use frontend\modules\shop\models\{Order, OrderAnswer, OrderItem, OrderItemPrice};
 
 /**
@@ -40,7 +37,7 @@ class PartnerOrderController extends BaseController
                             'delivery-italian-orders',
                             'pjax-save-order-answer'
                         ],
-                        'roles' => ['partner', 'admin'],
+                        'roles' => ['partner'],
                     ],
                     [
                         'allow' => true,

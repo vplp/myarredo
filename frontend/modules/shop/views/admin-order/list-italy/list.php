@@ -123,7 +123,7 @@ $this->title = $this->context->title;
 
 <?php
 
-$url = Url::toRoute(['/shop/partner-order/pjax-save-order-answer']);
+$url = Url::toRoute(['/shop/admin-order/pjax-save-order-answer']);
 $messagePrice = Yii::t('app', 'Ваш ответ должен быть максимально приближен к реальности');
 
 $script = <<<JS
