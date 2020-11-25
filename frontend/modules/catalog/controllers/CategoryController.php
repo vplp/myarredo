@@ -851,22 +851,24 @@ class CategoryController extends BaseController
             ]);
         }
 
-        foreach ($alternateParamsUrl as $lang => $paramsUrl) {
-            if ($lang == 'en') {
-                $href = 'https://www.myarredo.com';
-            } elseif ($lang == 'it') {
-                $href = 'https://www.myarredo.com';
-            } elseif ($lang == 'de') {
-                $href = 'https://www.myarredo.de';
-            } else {
-                $href = 'https://www.myarredo.ru';
-            }
+        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161])) {
+            foreach ($alternateParamsUrl as $lang => $paramsUrl) {
+                if ($lang == 'en') {
+                    $href = 'https://www.myarredo.com/en';
+                } elseif ($lang == 'it') {
+                    $href = 'https://www.myarredo.com/it';
+                } elseif ($lang == 'de') {
+                    $href = 'https://www.myarredo.de';
+                } else {
+                    $href = 'https://www.myarredo.ru';
+                }
 
-            Yii::$app->view->registerLinkTag([
-                'rel' => 'alternate',
-                'href' => $href . Yii::$app->catalogFilter->createUrl($paramsUrl, ['']),
-                'hreflang' => $lang
-            ]);
+                Yii::$app->view->registerLinkTag([
+                    'rel' => 'alternate',
+                    'href' => $href . Yii::$app->catalogFilter->createUrl($paramsUrl, ['']),
+                    'hreflang' => $lang
+                ]);
+            }
         }
 
         Yii::$app->metatag->seo_h1 = (Yii::$app->metatag->seo_h1 != '')
