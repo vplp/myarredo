@@ -311,9 +311,9 @@ class MetaTag extends Component
          * Add canonical
          */
         if (in_array(DOMAIN_TYPE, ['com']) && DOMAIN_NAME == 'myarredofamily') {
-            $hrefCanonical = Yii::$app->request->hostInfo . Yii::$app->request->pathInfo;
+            $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
         } elseif (in_array(DOMAIN_TYPE, ['de'])) {
-            $hrefCanonical = Yii::$app->request->hostInfo . Yii::$app->request->pathInfo;
+            $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
         } else {
             $hrefCanonical = Yii::$app->request->hostInfo . ($lang != 'ru' ? '/' . $lang : '') . Yii::$app->request->pathInfo;
         }
