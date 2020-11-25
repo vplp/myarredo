@@ -136,7 +136,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                         <?php } ?>
                     </div>
 
-                    <div class="right-part">
+                    <div class="right-part autorized">
 
                         <?= Cart::widget(['view' => 'short']) ?>
 

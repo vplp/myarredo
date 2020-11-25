@@ -188,7 +188,7 @@ h1 {
   .header .phone-num {
     display: flex;
     align-items: center;
-    padding-right: 0;
+    padding-right: 2px;
     padding-left: 6px;
     border-right: none; 
   }
@@ -268,7 +268,7 @@ h1 {
     background-color: transparent;
     color: #BDBCB3 !important;
     height: 100%;
-    padding: 0 5px;
+    padding: 0 12px 0 5px;
     display: flex;
     align-items: center;
     text-transform: uppercase;
@@ -286,7 +286,6 @@ h1 {
     color: #fff;
     font-size: 10px;
   }
-
   .header .sign-in {
     display: flex;
     align-items: center;
@@ -4586,9 +4585,9 @@ h1 {
 /*--media--*/
 @media (max-width: 1300px) {
   .header .search-cont {
-    min-width: 208px; }
+    min-width: 230px; }
     .header .search-cont .search-group {
-      width: 208px; }
+      width: 230px; }
   .header .bot-header .navigation a {
     font-size: 14px; }
   .header .bot-header .navigation .list-level {
@@ -5437,10 +5436,10 @@ h1 {
       height: 30px;
       font-size: 13px; }
   .header .search-cont {
-    width: 175px;
-    min-width: 175px; }
+    width: 230px;
+    min-width: 230px; }
     .header .search-cont .search-group {
-      width: 175px; }
+      width: 230px; }
       .header .search-cont .search-group input {
         width: calc( 100% - 32px); }
   .footer .cont-info {
@@ -10482,6 +10481,12 @@ body .concact-page .one-cont .cont-info-row a {
     padding: 0 20px;
   }
 }
+/* min 1301px */
+@media(min-width: 1301px) {
+  .header .autorized .wishlist {
+    margin-right: 45px;
+  }
+}
 /* min 1279px */
 @media (min-width: 1279px) {
   #comp-slider.mw-item .item {
@@ -10649,6 +10654,9 @@ body .concact-page .one-cont .cont-info-row a {
   .home-top-slider .slick-arrow.slick-prev:before {
     font-size: 1.538vw;
   }
+  .header .autorized .wishlist {
+    padding-right: 0;
+  }
 }
 @media (max-width: 1280px) {
   .progress-steps-step:not(:first-child) {
@@ -10794,6 +10802,16 @@ body .concact-page .one-cont .cont-info-row a {
 @media(min-width: 541px) {
   .category-page .cat-prod .one-prod-tile:hover .tile-prod-name {
     min-height: 40px;
+  }
+}
+/* max 800px */
+@media(max-width: 800px) {
+  .header .search-cont .search-group {
+    width: 180px;
+  }
+  .header .search-cont {
+    width: 140px;
+    min-width: 140px;
   }
 }
 /* max 799 */
