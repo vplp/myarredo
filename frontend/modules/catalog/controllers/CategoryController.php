@@ -863,9 +863,9 @@ class CategoryController extends BaseController
                     $href = 'https://www.myarredo.ru';
                 }
 
-                $lang = substr(Yii::$app->language, 0, 2);
+                $currentLang = substr(Yii::$app->language, 0, 2);
 
-                $url = str_replace('/' . $lang, '', Yii::$app->catalogFilter->createUrl($paramsUrl, ['']));
+                $url = str_replace('/' . $currentLang, '', Yii::$app->catalogFilter->createUrl($paramsUrl, ['']));
 
                 Yii::$app->view->registerLinkTag([
                     'rel' => 'alternate',
