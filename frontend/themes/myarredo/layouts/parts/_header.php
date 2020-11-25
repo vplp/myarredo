@@ -37,11 +37,11 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
                     <div class="left-part">
 
-                    <?= Html::a(
-                        Html::img($bundle->baseUrl . '/img/logo.svg'),
-                        Yii::$app->controller->id != 'home' ? Url::toRoute('/home/home/index') : null,
-                        ['class' => 'logo']
-                    ) ?>
+                        <?= Html::a(
+                            Html::img($bundle->baseUrl . '/img/logo.svg'),
+                            Yii::$app->controller->id != 'home' ? Url::toRoute('/home/home/index') : null,
+                            ['class' => 'logo']
+                        ) ?>
 
                         <?php /*
                         <a class="back-call">
@@ -80,14 +80,14 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
                         <?= Cart::widget(['view' => 'short']) ?>
 
-                        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+                        <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'de', 'kz']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
                             <a href="tel:+<?= $clearPhoneNumb ?>" class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
                                     <span class="phone"><?= Yii::$app->partner->getPartnerPhone() ?></span>
                                 </div>
                             </a>
-                        <?php } elseif (in_array(DOMAIN_TYPE, ['com']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+                        <?php } elseif (Yii::$app->getUser()->isGuest && in_array(DOMAIN_TYPE, ['com']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
                             <a href="tel:+3904221500215" class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
@@ -140,14 +140,14 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
                         <?= Cart::widget(['view' => 'short']) ?>
 
-                        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+                        <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'de', 'kz']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
                             <a href="tel:+<?= $clearPhoneNumb ?>" class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
                                     <span class="phone"><?= Yii::$app->partner->getPartnerPhone() ?></span>
                                 </div>
                             </a>
-                        <?php } elseif (in_array(DOMAIN_TYPE, ['com']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+                        <?php } elseif (Yii::$app->getUser()->isGuest && in_array(DOMAIN_TYPE, ['com']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
                             <a href="tel:+3904221500215" class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
