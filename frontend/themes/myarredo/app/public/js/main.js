@@ -702,9 +702,16 @@ $(document).ready(function () {
             }
         }
         if (window.location.search) {
-            var searchVal = window.location.search.replace('?','#');
-            var link = window.location.pathname  + searchVal;
-            window.location = link;
+            // если мы находимся именно на странице заказов
+            if (window.location.pathname.indexOf('orders') != -1) {
+                var checkedSearch = window.location.search.replace('?','');
+                var searchVal = window.location.search.replace('?','#');
+                // Если запрос являеться числом (значит это именно запрос на переход к заказу а не какой то другой)
+                if (!isNaN(checkedSearch)) {
+                    var link = window.location.pathname  + searchVal;
+                    window.location = link;
+                }
+            }
         }
     })();
 
