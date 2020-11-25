@@ -539,7 +539,7 @@ class CategoryController extends BaseController
         ];
 
         $this->noIndex = 0;
-        $pageTitle = $pageH1 = $pageDescription = [];
+        $pageTitle = $pageH1 = $pageDescription = $alternateParamsUrl = [];
 
         /** category */
         if (!empty($params[$keys['category']])) {
@@ -550,55 +550,10 @@ class CategoryController extends BaseController
                 'url' => Yii::$app->catalogFilter->createUrl([$keys['category'] => $params[$keys['category']]])
             ];
 
-            if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161])) {
-                $alternatePages = [
-                    'ru' => [
-                        'href' => 'https://www.myarredo.ru/catalog/' . $model['alias'] . '/', 'lang' => 'ru'
-                    ],
-                    'en' => [
-                        'href' => 'https://www.myarredo.com/en/catalog/' . $model['alias_en'] . '/', 'lang' => 'en'
-                    ],
-                    'it' => [
-                        'href' => 'https://www.myarredo.com/it/catalog/' . $model['alias_it'] . '/', 'lang' => 'it'
-                    ],
-                    'de' => [
-                        'href' => 'https://www.myarredo.de/catalog/' . $model['alias_de'] . '/', 'lang' => 'de'
-                    ]
-                ];
-
-                foreach ($alternatePages as $page) {
-                    Yii::$app->view->registerLinkTag([
-                        'rel' => 'alternate',
-                        'href' => $page['href'],
-                        'hreflang' => $page['lang']
-                    ]);
-                }
-            }
-        } else {
-            if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161])) {
-                $alternatePages = [
-                    'ru' => [
-                        'href' => 'https://www.myarredo.ru/catalog/', 'lang' => 'ru'
-                    ],
-                    'en' => [
-                        'href' => 'https://www.myarredo.com/en/catalog/', 'lang' => 'en'
-                    ],
-                    'it' => [
-                        'href' => 'https://www.myarredo.com/it/catalog/', 'lang' => 'it'
-                    ],
-                    'de' => [
-                        'href' => 'https://www.myarredo.de/catalog/', 'lang' => 'de'
-                    ]
-                ];
-
-                foreach ($alternatePages as $page) {
-                    Yii::$app->view->registerLinkTag([
-                        'rel' => 'alternate',
-                        'href' => $page['href'],
-                        'hreflang' => $page['lang']
-                    ]);
-                }
-            }
+            $alternateParamsUrl['ru'][$keys['category']] = $model['alias'];
+            $alternateParamsUrl['en'][$keys['category']] = $model['alias_en'];
+            $alternateParamsUrl['it'][$keys['category']] = $model['alias_it'];
+            $alternateParamsUrl['de'][$keys['category']] = $model['alias_de'];
         }
 
         if (DOMAIN_TYPE != 'com') {
@@ -616,6 +571,11 @@ class CategoryController extends BaseController
             $type = [];
             foreach ($models as $model) {
                 $type[] = $model['lang']['title'];
+
+                $alternateParamsUrl['ru'][$keys['type']][] = $model['alias'];
+                $alternateParamsUrl['en'][$keys['type']][] = $model['alias_en'];
+                $alternateParamsUrl['it'][$keys['type']][] = $model['alias_it'];
+                $alternateParamsUrl['de'][$keys['type']][] = $model['alias_de'];
             }
 
             $pageTitle[] = implode(', ', $type);
@@ -639,6 +599,11 @@ class CategoryController extends BaseController
             $subtypes = [];
             foreach ($models as $model) {
                 $subtypes[] = $model['lang']['title'];
+
+                $alternateParamsUrl['ru'][$keys['subtypes']][] = $model['alias'];
+                $alternateParamsUrl['en'][$keys['subtypes']][] = $model['alias'];
+                $alternateParamsUrl['it'][$keys['subtypes']][] = $model['alias'];
+                $alternateParamsUrl['de'][$keys['subtypes']][] = $model['alias'];
             }
 
             $pageTitle[] = implode(', ', $subtypes);
@@ -662,6 +627,11 @@ class CategoryController extends BaseController
             $style = [];
             foreach ($models as $model) {
                 $style[] = $model['lang']['title'];
+
+                $alternateParamsUrl['ru'][$keys['style']][] = $model['alias'];
+                $alternateParamsUrl['en'][$keys['style']][] = $model['alias_en'];
+                $alternateParamsUrl['it'][$keys['style']][] = $model['alias_it'];
+                $alternateParamsUrl['de'][$keys['style']][] = $model['alias_de'];
             }
 
             $pageTitle[] = Yii::t('app', 'Стиль') . ' ' . implode(', ', $style);
@@ -713,6 +683,11 @@ class CategoryController extends BaseController
             $factory = [];
             foreach ($models as $model) {
                 $factory[] = $model['title'];
+
+                $alternateParamsUrl['ru'][$keys['factory']][] = $model['alias'];
+                $alternateParamsUrl['en'][$keys['factory']][] = $model['alias'];
+                $alternateParamsUrl['it'][$keys['factory']][] = $model['alias'];
+                $alternateParamsUrl['de'][$keys['factory']][] = $model['alias'];
             }
 
             if (count($params[$keys['factory']]) > 1) {
@@ -736,30 +711,65 @@ class CategoryController extends BaseController
         /** price */
         if (isset($params[$keys['price']])) {
             $this->noIndex = 1;
+
+            $alternateParamsUrl['ru'][$keys['price']] = $params[$keys['price']];
+            $alternateParamsUrl['en'][$keys['price']] = $params[$keys['price']];
+            $alternateParamsUrl['it'][$keys['price']] = $params[$keys['price']];
+            $alternateParamsUrl['de'][$keys['price']] = $params[$keys['price']];
         }
 
         if (isset($params[$keys['diameter']])) {
             $this->noIndex = 1;
+
+            $alternateParamsUrl['ru'][$keys['diameter']] = $params[$keys['diameter']];
+            $alternateParamsUrl['en'][$keys['diameter']] = $params[$keys['diameter']];
+            $alternateParamsUrl['it'][$keys['diameter']] = $params[$keys['diameter']];
+            $alternateParamsUrl['de'][$keys['diameter']] = $params[$keys['diameter']];
         }
 
         if (isset($params[$keys['width']])) {
             $this->noIndex = 1;
+
+            $alternateParamsUrl['ru'][$keys['width']] = $params[$keys['width']];
+            $alternateParamsUrl['en'][$keys['width']] = $params[$keys['width']];
+            $alternateParamsUrl['it'][$keys['width']] = $params[$keys['width']];
+            $alternateParamsUrl['de'][$keys['width']] = $params[$keys['width']];
         }
 
         if (isset($params[$keys['length']])) {
             $this->noIndex = 1;
+
+            $alternateParamsUrl['ru'][$keys['length']] = $params[$keys['length']];
+            $alternateParamsUrl['en'][$keys['length']] = $params[$keys['length']];
+            $alternateParamsUrl['it'][$keys['length']] = $params[$keys['length']];
+            $alternateParamsUrl['de'][$keys['length']] = $params[$keys['length']];
         }
 
         if (isset($params[$keys['height']])) {
             $this->noIndex = 1;
+
+            $alternateParamsUrl['ru'][$keys['height']] = $params[$keys['height']];
+            $alternateParamsUrl['en'][$keys['height']] = $params[$keys['height']];
+            $alternateParamsUrl['it'][$keys['height']] = $params[$keys['height']];
+            $alternateParamsUrl['de'][$keys['height']] = $params[$keys['height']];
         }
 
         if (isset($params[$keys['apportionment']])) {
             $this->noIndex = 1;
+
+            $alternateParamsUrl['ru'][$keys['apportionment']] = $params[$keys['apportionment']];
+            $alternateParamsUrl['en'][$keys['apportionment']] = $params[$keys['apportionment']];
+            $alternateParamsUrl['it'][$keys['apportionment']] = $params[$keys['apportionment']];
+            $alternateParamsUrl['de'][$keys['apportionment']] = $params[$keys['apportionment']];
         }
 
         if (isset($params[$keys['producing_country']])) {
             $this->noIndex = 1;
+
+            $alternateParamsUrl['ru'][$keys['producing_country']] = $params[$keys['producing_country']];
+            $alternateParamsUrl['en'][$keys['producing_country']] = $params[$keys['producing_country']];
+            $alternateParamsUrl['it'][$keys['producing_country']] = $params[$keys['producing_country']];
+            $alternateParamsUrl['de'][$keys['producing_country']] = $params[$keys['producing_country']];
         }
 
         $countParams = 0;
@@ -833,6 +843,24 @@ class CategoryController extends BaseController
             Yii::$app->view->registerMetaTag([
                 'name' => 'robots',
                 'content' => 'noindex, follow',
+            ]);
+        }
+
+        foreach ($alternateParamsUrl as $lang => $paramsUrl) {
+            if ($lang == 'en') {
+                $href = 'https://www.myarredo.com';
+            } elseif ($lang == 'it') {
+                $href = 'https://www.myarredo.com';
+            } elseif ($lang == 'de') {
+                $href = 'https://www.myarredo.de';
+            } else {
+                $href = 'https://www.myarredo.ru';
+            }
+
+            Yii::$app->view->registerLinkTag([
+                'rel' => 'alternate',
+                'href' => $href . Yii::$app->catalogFilter->createUrl($paramsUrl, ['']),
+                'hreflang' => $lang
             ]);
         }
 
