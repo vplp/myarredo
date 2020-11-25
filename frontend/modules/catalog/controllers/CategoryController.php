@@ -655,6 +655,11 @@ class CategoryController extends BaseController
             $collections = [];
             foreach ($models as $model) {
                 $collections[] = $model['title'];
+
+                $alternateParamsUrl['ru'][$keys['collection']] = $params[$keys['collection']];
+                $alternateParamsUrl['en'][$keys['collection']] = $params[$keys['collection']];
+                $alternateParamsUrl['it'][$keys['collection']] = $params[$keys['collection']];
+                $alternateParamsUrl['de'][$keys['collection']] = $params[$keys['collection']];
             }
 
             $pageTitle[] = Yii::t('app', 'Коллекция мебели') . ' ' . implode(', ', $collections);
