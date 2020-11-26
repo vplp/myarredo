@@ -119,7 +119,7 @@ class Product extends ProductModel
         }
 
         if (isset($params[$keys['producing_country']])) {
-            $country = Country::findByAlias($params[$keys['producing_country']]);
+            $country = Country::findBase()->byAlias($params[$keys['producing_country']])->one();
             if ($country != null) {
                 $query
                     ->innerJoinWith(["factory"])

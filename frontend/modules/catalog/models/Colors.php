@@ -135,7 +135,7 @@ class Colors extends \common\modules\catalog\models\Colors
         }
 
         if (isset($params[$keys['producing_country']])) {
-            $country = Country::findByAlias($params[$keys['producing_country']]);
+            $country = Country::findBase()->byAlias($params[$keys['producing_country']])->one();
             if ($country != null) {
                 $query->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', $country['id']]);
             }

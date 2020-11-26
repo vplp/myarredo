@@ -429,7 +429,7 @@ class CatalogFilter extends Component
         /** producing_country */
 
         if (!empty(self::$_structure['producing_country'])) {
-            $model = Country::findByAlias(self::$_structure['producing_country'][0]);
+            $model = Country::findBase()->byAlias(self::$_structure['producing_country'][0])->one();
 
             if ($model == null || count(self::$_structure['producing_country']) > 1) {
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
