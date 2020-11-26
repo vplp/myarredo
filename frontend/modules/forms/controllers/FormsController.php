@@ -3,7 +3,6 @@
 namespace frontend\modules\forms\controllers;
 
 use Yii;
-use yii\helpers\ArrayHelper;
 use yii\log\Logger;
 use yii\base\Exception;
 use yii\web\Response;
@@ -34,7 +33,7 @@ class FormsController extends BaseController
                 'actions' => [
                     'feedback' => ['post', 'get'],
                     'feedback-partner' => ['post'],
-                    'ajax-get-form-feedback' => ['post'],
+                    'ajax-get-form-feedback' => ['post', 'get'],
                 ],
             ],
         ];
