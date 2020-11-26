@@ -852,26 +852,43 @@ class CategoryController extends BaseController
         }
 
         if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161])) {
-            foreach ($alternateParamsUrl as $lang => $paramsUrl) {
-                if ($lang == 'en') {
-                    $href = 'https://www.myarredo.com/en';
-                } elseif ($lang == 'it') {
-                    $href = 'https://www.myarredo.com/it';
-                } elseif ($lang == 'de') {
-                    $href = 'https://www.myarredo.de';
-                } else {
-                    $href = 'https://www.myarredo.ru';
+            if (!empty($alternateParamsUrl)) {
+                foreach ($alternateParamsUrl as $lang => $paramsUrl) {
+                    if ($lang == 'en') {
+                        $href = 'https://www.myarredo.com/en';
+                    } elseif ($lang == 'it') {
+                        $href = 'https://www.myarredo.com/it';
+                    } elseif ($lang == 'de') {
+                        $href = 'https://www.myarredo.de';
+                    } else {
+                        $href = 'https://www.myarredo.ru';
+                    }
+
+                    $currentLang = substr(Yii::$app->language, 0, 2);
+
+                    $url = str_replace('/' . $currentLang, '', Yii::$app->catalogFilter->createUrl($paramsUrl, ['']));
+
+                    Yii::$app->view->registerLinkTag([
+                        'rel' => 'alternate',
+                        'href' => $href . $url,
+                        'hreflang' => $lang
+                    ]);
                 }
+            } else {
+                $alternateUrl = [
+                    'ru' => 'https://www.myarredo.ru/catalog/',
+                    'en' => 'https://www.myarredo.com/en/catalog/',
+                    'it' => 'https://www.myarredo.com/it/catalog/',
+                    'de' => 'https://www.myarredo.de/catalog/'
+                ];
 
-                $currentLang = substr(Yii::$app->language, 0, 2);
-
-                $url = str_replace('/' . $currentLang, '', Yii::$app->catalogFilter->createUrl($paramsUrl, ['']));
-
-                Yii::$app->view->registerLinkTag([
-                    'rel' => 'alternate',
-                    'href' => $href . $url,
-                    'hreflang' => $lang
-                ]);
+                foreach ($alternateUrl as $lang => $url) {
+                    Yii::$app->view->registerLinkTag([
+                        'rel' => 'alternate',
+                        'href' => $url,
+                        'hreflang' => $lang
+                    ]);
+                }
             }
         }
 
