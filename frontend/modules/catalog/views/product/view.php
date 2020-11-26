@@ -65,7 +65,7 @@ $this->title = $this->context->title;
                                 ); ?>
                             </div>
                             <div class="prod-info-table">
-                                <div class="price-availability" itemprop="offers" itemscope
+                                <div class="price-availability tobox" itemprop="offers" itemscope
                                      itemtype="http://schema.org/Offer">
 
                                     <?php if ($model['price_from'] > 0 && !Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'partner', 'catalogeditor'])) { ?>
@@ -134,6 +134,8 @@ $this->title = $this->context->title;
                                             );
                                         }
                                     } ?>
+
+                                    <button class="btn-toform onlymob"><?= Yii::t('app', 'Получить лучшую цену')?></button>
 
                                 </div>
 

@@ -903,6 +903,14 @@ $(document).ready(function () {
             }, 100);
         }
     });
+
+    $('.btn-toform').click(function() {
+        var bestPriceBox = $('.best-price-form');
+        var topPos = bestPriceBox.offset().top;
+        $('html, body').animate({
+            scrollTop: topPos
+        }, 300);
+    });
 });
 // end ready
 
