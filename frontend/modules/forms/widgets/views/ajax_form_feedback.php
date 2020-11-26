@@ -42,7 +42,7 @@ echo Html::a(
 $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
 
 $script = <<<JS
-$('.btn-feedback, .feedback-container, .block-rightbox-text>a').on('click', function () {
+$(document).on('click', '.btn-feedback, .feedback-container, .block-rightbox-text>a', function() {
     $.post('$url', {_csrf: $('#token').val()}, function(data){
         $('#ajaxFormFeedbackModal').html(data.html); 
         interPhoneInit();
