@@ -3,16 +3,13 @@
 use yii\helpers\{
     Html, Url
 };
-use yii\widgets\ActiveForm;
 use frontend\modules\forms\models\FormsFeedback;
-use frontend\modules\location\models\City;
 
 /**
  * @var FormsFeedback $model
  */
 
 ?>
-
 
 <div class="modal-dialog" role="document">
     <div class="modal-content">

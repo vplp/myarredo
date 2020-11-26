@@ -3,17 +3,13 @@
 use yii\helpers\{
     Html, Url
 };
-use yii\widgets\ActiveForm;
 use frontend\modules\forms\models\FormsFeedback;
-use frontend\modules\location\models\City;
 
 /**
  * @var FormsFeedback $model
  */
 
-?>
-
-<?= Html::a(
+echo Html::a(
     '<span class="for-ctext">'
     . Yii::t('app', 'Связаться с оператором сайта') .
     '</span>
@@ -37,14 +33,13 @@ use frontend\modules\location\models\City;
         </svg>
     </span>'
     ,
-    'javascript:void(0);',
+    null,
     [
         'class' => 'btn btn-feedback',
     ]
 );
 
-
-$url = Url::to(['/forms/forms/ajax-get-form-feedback']);
+$url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
 
 $script = <<<JS
 $('.btn-feedback, .feedback-container, .block-rightbox-text>a').on('click', function () {
@@ -60,4 +55,3 @@ $('.btn-feedback, .feedback-container, .block-rightbox-text>a').on('click', func
 JS;
 
 $this->registerJs($script);
-?>

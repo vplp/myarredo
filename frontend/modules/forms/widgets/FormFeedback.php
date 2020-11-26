@@ -3,7 +3,6 @@
 namespace frontend\modules\forms\widgets;
 
 use yii\base\Widget;
-//
 use frontend\modules\forms\models\FormsFeedback;
 
 /**

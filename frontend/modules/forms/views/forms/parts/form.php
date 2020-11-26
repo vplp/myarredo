@@ -54,12 +54,6 @@ use frontend\modules\location\models\City;
 
 <?= $form
     ->field($model, 'phone')
-    // ->widget(\yii\widgets\MaskedInput::class, [
-    //     'mask' => Yii::$app->city->getPhoneMask(),
-    //     'clientOptions' => [
-    //         'clearIncomplete' => true
-    //     ]
-    // ])
     ->input('text', ['placeholder' => Yii::t('app', 'Phone'), 'class' => 'inter-phone form-control'])
     ->label(false) ?>
 
@@ -75,10 +69,7 @@ use frontend\modules\location\models\City;
 
 <?= $form
     ->field($model, 'reCaptcha')
-    ->widget(
-        \himiklab\yii2\recaptcha\ReCaptcha2::class
-    //['action' => 'feedback']
-    )
+    ->widget(\himiklab\yii2\recaptcha\ReCaptcha2::class)
     ->label(false) ?>
 
 <?= Html::submitButton(Yii::t('app', 'Отправить'), ['class' => 'btn btn-success big']) ?>
