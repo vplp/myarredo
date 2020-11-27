@@ -17,6 +17,8 @@ class OrderAcceptAction extends Action
 {
     public $modelClass;
 
+    public $scenario = Model::SCENARIO_DEFAULT;
+
     /**
      * @param $id
      * @return Order
@@ -38,6 +40,12 @@ class OrderAcceptAction extends Action
 
         }
 
+        ob_start();
+        /* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->getRequest()->getBodyParams()); echo '</pre>'; /* !!! */
+        $msg = ob_get_contents();
+        ob_end_clean();
+
+        mail('zndron@gmail.com', '$subject', $msg);
 
         ///* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->getRequest()->getBodyParams()); echo '</pre>'; /* !!! */
 
@@ -47,6 +55,8 @@ class OrderAcceptAction extends Action
 //            throw new ServerErrorHttpException('Failed to create the object for unknown reason.');
 //        }
 
-        return ['order' => ['accepted' => false, 'reason' => 'OUT_OF_DATE']];
+        return [
+            //'order' => ['accepted' => false, 'reason' => 'OUT_OF_DATE']
+        ];
     }
 }

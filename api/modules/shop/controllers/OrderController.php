@@ -26,7 +26,7 @@ class OrderController extends RestController
             'accept' => [
                 'class' => OrderAcceptAction::class,
                 'modelClass' => $this->modelClass,
-                'scenario' => 'backend',
+                'scenario' => 'addNewOrder',
             ],
             'status' => [
                 'class' => OrderStatusAction::class,
