@@ -6681,7 +6681,15 @@ h1 {
       display: none; }
   .prod-card-page .price-availability {
     flex-direction: column;
-    align-items: flex-start; }
+    align-items: flex-start; 
+  }
+  .prod-card-page .price-availability.tobox {
+    flex-direction: row;
+  }
+  .prod-card-page .price-availability.tobox .add-to-notepad,
+  .prod-card-page .price-availability.tobox .btn-toform {
+    margin-left: 15px;
+  }
     .prod-card-page .price-availability .price-sticker {
       margin-bottom: 13px; }
     .prod-card-page .price-availability .availability {
@@ -10852,11 +10860,6 @@ body .concact-page .one-cont .cont-info-row a {
   .tobox {
     position: relative;
   }
-  .btn-toform {
-    position: absolute;
-    top: 0;
-    right: 15px;
-  }
 }
 @media (max-width: 760px) {
   .welcome-box {
@@ -11034,6 +11037,7 @@ body .concact-page .one-cont .cont-info-row a {
     min-width: 25%;
   }
 }
+
 /* max 419px */
 @media(max-width: 419px) {
   .btn-feedback, .nav>li>a.btn-feedback {
@@ -11059,6 +11063,9 @@ body .concact-page .one-cont .cont-info-row a {
   }
   .adress-container .for-adress-icon {
     padding-left: 6px;
+  }
+  .prod-card-page .price-availability.tobox .btn-toform {
+    margin: 12px 0;
   }
 }
 /* max 369px */
