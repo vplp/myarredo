@@ -35,6 +35,10 @@ class ElasticSearchController extends BaseController
 
         $queryParams = ArrayHelper::merge(['search' => ''], Yii::$app->request->queryParams);
 
+        if (Yii::$app->request->userIP == '93.72.70.75') {
+           //* !!! */ echo  '<pre style="color:red;">'; print_r($queryParams); echo '</pre>'; /* !!! */
+        }
+
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
         $modelsSale = $modelSale->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
         $modelsItalianProduct = $modelItalianProduct->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));

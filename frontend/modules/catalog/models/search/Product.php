@@ -159,12 +159,12 @@ class Product extends ProductModel
             $min = $params[$keys['diameter']][0];
             $max = $params[$keys['diameter']][1];
 
-            $arr[] = 'OR';
-            $arr[] = ['BETWEEN', 'diameter.val', $min, $max];
-            for ($n = 2; $n <= 10; $n++) {
-                $field = "val$n";
-                $arr[] = ['BETWEEN', 'diameter.' . $field, $min, $max];
-            }
+            //$arr[] = 'OR';
+            $arr = ['BETWEEN', 'diameter.val', $min, $max];
+//            for ($n = 2; $n <= 10; $n++) {
+//                $field = "val$n";
+//                $arr[] = ['BETWEEN', 'diameter.' . $field, $min, $max];
+//            }
 
             $query
                 ->innerJoinWith(["specificationValue diameter"])
@@ -176,12 +176,12 @@ class Product extends ProductModel
             $min = $params[$keys['width']][0];
             $max = $params[$keys['width']][1];
 
-            $arr[] = 'OR';
-            $arr[] = ['BETWEEN', 'width.val', $min, $max];
-            for ($n = 2; $n <= 10; $n++) {
-                $field = "val$n";
-                $arr[] = ['BETWEEN', 'width.' . $field, $min, $max];
-            }
+            //$arr[] = 'OR';
+            $arr = ['BETWEEN', 'width.val', $min, $max];
+//            for ($n = 2; $n <= 10; $n++) {
+//                $field = "val$n";
+//                $arr[] = ['BETWEEN', 'width.' . $field, $min, $max];
+//            }
 
             $query
                 ->innerJoinWith(["specificationValue width"])
@@ -193,12 +193,12 @@ class Product extends ProductModel
             $min = $params[$keys['length']][0];
             $max = $params[$keys['length']][1];
 
-            $arr[] = 'OR';
-            $arr[] = ['BETWEEN', 'length.val', $min, $max];
-            for ($n = 2; $n <= 10; $n++) {
-                $field = "val$n";
-                $arr[] = ['BETWEEN', 'length.' . $field, $min, $max];
-            }
+            //$arr[] = 'OR';
+            $arr = ['BETWEEN', 'length.val', $min, $max];
+//            for ($n = 2; $n <= 10; $n++) {
+//                $field = "val$n";
+//                $arr[] = ['BETWEEN', 'length.' . $field, $min, $max];
+//            }
 
             $query
                 ->innerJoinWith(["specificationValue length"])
@@ -210,12 +210,12 @@ class Product extends ProductModel
             $min = $params[$keys['height']][0];
             $max = $params[$keys['height']][1];
 
-            $arr[] = 'OR';
-            $arr[] = ['BETWEEN', 'height.val', $min, $max];
-            for ($n = 2; $n <= 10; $n++) {
-                $field = "val$n";
-                $arr[] = ['BETWEEN', 'height.' . $field, $min, $max];
-            }
+            //$arr[] = 'OR';
+            $arr = ['BETWEEN', 'height.val', $min, $max];
+//            for ($n = 2; $n <= 10; $n++) {
+//                $field = "val$n";
+//                $arr[] = ['BETWEEN', 'height.' . $field, $min, $max];
+//            }
 
             $query
                 ->innerJoinWith(["specificationValue height"])
@@ -227,12 +227,12 @@ class Product extends ProductModel
             $min = $params[$keys['apportionment']][0];
             $max = $params[$keys['apportionment']][1];
 
-            $arr[] = 'OR';
-            $arr[] = ['BETWEEN', 'apportionment.val', $min, $max];
-            for ($n = 2; $n <= 10; $n++) {
-                $field = "val$n";
-                $arr[] = ['BETWEEN', 'apportionment.' . $field, $min, $max];
-            }
+            //$arr[] = 'OR';
+            $arr = ['BETWEEN', 'apportionment.val', $min, $max];
+//            for ($n = 2; $n <= 10; $n++) {
+//                $field = "val$n";
+//                $arr[] = ['BETWEEN', 'apportionment.' . $field, $min, $max];
+//            }
 
             $query
                 ->innerJoinWith(["specification apportionment"])
