@@ -40,14 +40,17 @@ class OrderAcceptAction extends Action
 
         }
 
-        ob_start();
-        /* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->getRequest()->getBodyParams()); echo '</pre>'; /* !!! */
-        $msg = ob_get_contents();
-        ob_end_clean();
-
-        mail('zndron@gmail.com', '$subject', $msg);
-
-        ///* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->getRequest()->getBodyParams()); echo '</pre>'; /* !!! */
+        Yii::$app
+            ->mailer
+            ->compose(
+                'order_accept_action',
+                [
+                    'post' => Yii::$app->getRequest()->getBodyParams(),
+                ]
+            )
+            ->setTo('zndron@gmail.com')
+            ->setSubject('Яндекс.Турбо')
+            ->send();
 
 //        if ($model->save()) {
 //            Yii::$app->getResponse()->setStatusCode(204);
