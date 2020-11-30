@@ -1561,4 +1561,49 @@ $(document).ready(function () {
         }, 800);
     })();
 
+    // ===Custom Galery Image Viewer - кастомный просмотрщик фото для страницы товара
+    // Закрыть просмотрщик
+    $('.btn-igalery-close').click(function() {
+        $(this).parent('.igalery-close').siblings('.igallery-images').children('.scrollwrap').children().remove();
+        $(this).closest('.custom-image-gallery').removeClass('open');
+    });
+    // Открыть просмотрщик
+    $('.igalery').find('.carousel-inner').find('.fancyimage').click(function() {
+        // Только для экранов 1080 и больше
+        if (window.screen.width >= 1080) {
+            // Закрываем fancybox
+            $.fancybox.close();
+            // Получаем ссылку на активную картинку
+            var thisHref = $(this).attr('href');
+            // Собираем картинки для просмотрщика
+            var images = [];
+            $('#prod-slider').children('.carousel-inner').find('.fancyimage').each(function(i, elem) {
+                var imgPath = $(elem).attr('href');
+                images.push({
+                    'path': imgPath,
+                    'active': thisHref == imgPath ? 1 : 0
+                });
+            });
+            // Рендерим верстку блока с изображениями
+            var layout = '';
+            for(var i = 0; i < images.length; i++) {
+                var activeClas = images[i].active ? "active" : "";
+                layout += '' +
+                    '<div class="igalery-item '+ activeClas +'">' +
+                        '<img src="'+ images[i].path +'">' +
+                    '</div>';
+            }
+            // Добавляем верстку в блок
+            $('.scrollwrap').html(layout);
+            // Открываем просмотрщик
+            $('.custom-image-gallery').addClass('open');
+            // Прокручиваем блок до активной картинки (по которой кликнули)
+            var ofsetActivePos = $('.scrollwrap').children('.igalery-item.active')[0].offsetTop;
+            $('.scrollwrap').animate({
+                scrollTop: ofsetActivePos - 20
+            }, 300);
+        }
+    });
+    // ===end Custom Galery Image Viewer
+
 });

@@ -28,7 +28,7 @@ $this->title = $this->context->title;
 ?>
 
     <main>
-        <div class="prod-card-page page">
+        <div class="prod-card-page page igalery">
             <div class="container-wrap">
                 <div class="container large-container">
                     <?php if (!isset($this->context->factory)) { ?>
@@ -304,10 +304,21 @@ $this->title = $this->context->title;
                         <div class="col-sm-12 col-md-12 col-lg-3">
 
                             <?php if (!$model['removed']) { ?>
-                                <div class="best-price-form">
-                                    <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
-                                    <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
+                                <div class="custom-image-gallery">
+                                    <div class="igalery-close">
+                                        <button class="btn-igalery-close">&times;</button>
+                                    </div>
+                                    <div class="igallery-images">
+                                        <div class="scrollwrap">
+                                        </div>
+                                    </div>
+                                    <div class="igallery-form">
+                                        <div class="best-price-form">
+                                            <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
+                                            <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
 
+                                        </div>
+                                    </div>
                                 </div>
 
                             <?php } else { ?>
