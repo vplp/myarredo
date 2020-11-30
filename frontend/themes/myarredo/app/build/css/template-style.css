@@ -10144,6 +10144,10 @@ h1 {
   .footer .container-wrap {
     z-index: 0;
   }
+  main.thispos {
+    position: relative;
+    z-index: 3;
+  }
 }
 /* --------------------конец Стили для боковых баннеров------------------------- */
 
@@ -10481,11 +10485,73 @@ body .concact-page .one-cont .cont-info-row a {
   border-radius: 0;
   padding: 5.5px 12px;
 }
+.custom-image-gallery.open {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(63, 63, 62, 0.96);
+  padding: 10px 20px 20px;
+  z-index: 999;
+}
+.igallery-form {
+  max-width: 320px;
+  max-height: 100vh;
+  overflow: auto;
+}
+.igallery-images {
+  display: none;
+  width: calc(100% - 350px);
+  overflow: hidden;
+}
+.custom-image-gallery.open .igallery-images {
+  display: block;
+}
+.igallery-images .scrollwrap {
+  width: calc(100% + 20px);
+  height: 95vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.igalery-item {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.igalery-item img {
+  width: auto;
+  max-width: 100%;
+  max-height: 88vh;
+  height: auto;
+}
+.btn-igalery-close {
+  padding: 2px;
+  width: 30px;
+  height: 30px;
+  background-color: #3f3f3e;
+  color: #f2f2f2;
+  margin: 0 0 0 auto;
+  border: 0;
+}
+.igalery-close {
+  display: none;
+  width: 100%;
+  text-align: right;
+  margin-bottom: 10px;
+}
+.custom-image-gallery.open .igalery-close {
+  display: block;
+}
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
 /* ---------------------------------------------------------------------------------------------------- */
 
 /* min width styles */
+
 @media (min-width: 1461px) {
   .itprod-panel-add {
     max-width: 1400px;
@@ -10744,6 +10810,15 @@ body .concact-page .one-cont .cont-info-row a {
   }
   .page.rules-page {
     background-color: #ffffff;
+  }
+}
+/* max 1079px */
+@media(max-width: 1079px) {
+  .custom-image-gallery.open .igallery-form {
+    display: none;
+  }
+  .custom-image-gallery.open .igallery-images {
+    width: 100%;
   }
 }
 /* max 992px */
