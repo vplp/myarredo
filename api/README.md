@@ -8,7 +8,7 @@ API
 3. https://www.myarredo.ru/api/shop/order/status/
 
 4. curl -X POST \
-     http://www.myarredo.test/api/shop/order/accept \
+     https://www.myarredo.ru/api/shop/order/accept \
      -H 'Authorization: 770000018E75BC14' \
      -H 'Content-Type: application/json' \
      -d '{"order": {
