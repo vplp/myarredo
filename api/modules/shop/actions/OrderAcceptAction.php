@@ -43,14 +43,14 @@ class OrderAcceptAction extends Action
             ]
         ];
 
-//        if ($cart = Yii::$app->request->post('order')) {
-//            $new_order = Order::addNewOrder($cart);
-//
-//            if ($new_order) {
-//                $response['order']['accepted'] = true;
-//                $response['order']['id'] = $new_order['id'];
-//            }
-//        }
+        if ($cart = Yii::$app->request->post('order')) {
+            $new_order = Order::addNewOrder($cart);
+
+            if ($new_order) {
+                $response['order']['accepted'] = true;
+                $response['order']['id'] = $new_order['id'];
+            }
+        }
 
         return $response;
     }
