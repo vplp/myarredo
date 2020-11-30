@@ -164,6 +164,10 @@ $bundle = AppAsset::register($this);
     <script type="text/javascript" async src="https://app.uiscom.ru/static/cs.min.js"></script>
 <?php } ?>
 
+<?php if (DOMAIN_TYPE == 'com') { ?>
+    <script src="//code.jivosite.com/widget/j8ehoc0YLd" async></script>
+<?php } ?>
+
 <?php if (in_array(Yii::$app->city->getCityId(), [5]) && Yii::$app->getUser()->isGuest) { ?>
     <script src="//code.jivosite.com/widget/yG6Q733QpB" async></script>
 <?php } ?>
