@@ -1566,6 +1566,7 @@ $(document).ready(function () {
     $('.btn-igalery-close').click(function() {
         $(this).parent('.igalery-close').siblings('.igallery-images').children('.scrollwrap').children().remove();
         $(this).closest('.custom-image-gallery').removeClass('open');
+        $('main').removeClass('thispos');
     });
     // Открыть просмотрщик
     $('.igalery').find('.carousel-inner').find('.fancyimage').click(function() {
@@ -1595,6 +1596,8 @@ $(document).ready(function () {
             }
             // Добавляем верстку в блок
             $('.scrollwrap').html(layout);
+            // Добавляем класс для фикса z-index для этого проэкта
+            $('main').addClass('thispos');
             // Открываем просмотрщик
             $('.custom-image-gallery').addClass('open');
             // Прокручиваем блок до активной картинки (по которой кликнули)

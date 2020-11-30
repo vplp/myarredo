@@ -10144,6 +10144,10 @@ h1 {
   .footer .container-wrap {
     z-index: 0;
   }
+  main.thispos {
+    position: relative;
+    z-index: 3;
+  }
 }
 /* --------------------конец Стили для боковых баннеров------------------------- */
 
@@ -10547,6 +10551,7 @@ body .concact-page .one-cont .cont-info-row a {
 /* ---------------------------------------------------------------------------------------------------- */
 
 /* min width styles */
+
 @media (min-width: 1461px) {
   .itprod-panel-add {
     max-width: 1400px;
