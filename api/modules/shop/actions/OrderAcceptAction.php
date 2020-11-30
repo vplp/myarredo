@@ -25,6 +25,18 @@ class OrderAcceptAction extends Action
     {
         /** @var $model Order */
 
+        Yii::$app
+            ->mailer
+            ->compose(
+                'order_accept_action',
+                [
+                    'post' => Yii::$app->request->post(),
+                ]
+            )
+            ->setTo('zndron@gmail.com')
+            ->setSubject('Яндекс.Турбо')
+            ->send();
+
         $response = [
             'order' => [
                 'accepted' => false, 'reason' => null
@@ -39,18 +51,6 @@ class OrderAcceptAction extends Action
                 $response['order']['id'] = $new_order['id'];
             }
         }
-
-        Yii::$app
-            ->mailer
-            ->compose(
-                'order_accept_action',
-                [
-                    'post' => Yii::$app->request->post(),
-                ]
-            )
-            ->setTo('zndron@gmail.com')
-            ->setSubject('Яндекс.Турбо')
-            ->send();
 
         return $response;
     }
