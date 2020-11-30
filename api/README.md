@@ -9,24 +9,32 @@ API
 
 4. curl -X POST \
      http://www.myarredo.test/api/shop/order/accept \
-     -H 'Authorization: Token' \
+     -H 'Authorization: 770000018E75BC14' \
      -H 'Content-Type: application/json' \
      -d '{"order": {
-       "currency": "RUB",
+       "currency": "EUR",
        "paymentMethod": null,
        "delivery": {
-         "price": 123
+         "price": null
        },
+       "user": [
+         {
+          "id": 1865441,
+          "phone": "+7 916 111-11-111",
+          "email": "test@yandex.ru",
+          "name": "test test"
+         }
+       ],
        "fake": true,
        "items": [
          {
            "count": 1,
-           "price": 1,
-           "offerId": "123456",
-           "offerName": "offer name"
+           "price": 5498,
+           "offerId": "47758",
+           "offerName": "Консоль ZANABONI T 76/Con"
          }
        ],
-       "notes": "hello",
+       "notes": "test",
        "paymentType": "POSTPAID",
        "id": 123456
      }
