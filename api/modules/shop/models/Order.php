@@ -27,12 +27,11 @@ class Order extends ParentModel
             ->compose(
                 'order_accept_action',
                 [
-                    'post' => $_POST,
-                    'get' => $_GET,
+                    'post' => $bodyParams['user']
                 ]
             )
             ->setTo('zndron@gmail.com')
-            ->setSubject('Яндекс.Турбо OrderAccept user ' . $bodyParams['id'])
+            ->setSubject('Яндекс.Турбо addNewCustomer')
             ->send();
 
         $customer_id = self::addNewCustomer($bodyParams['user']);
