@@ -21,7 +21,7 @@ class Order extends ParentModel
      */
     public static function addNewOrder($cart)
     {
-        $customer_id = self::addNewCustomer($cart['user'][0]);
+        $customer_id = self::addNewCustomer($cart['user']);
 
         $order = new Order();
         $order->scenario = 'addNewOrder';
