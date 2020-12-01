@@ -1591,7 +1591,7 @@ $(document).ready(function () {
                 var activeClas = images[i].active ? "active" : "";
                 layout += '' +
                     '<div class="igalery-item '+ activeClas +'">' +
-                        '<img src="'+ images[i].path +'">' +
+                        '<a href="'+ images[i].path +'" target="_blank"><img src="'+ images[i].path +'"></a>' +
                     '</div>';
             }
             // Добавляем верстку в блок
