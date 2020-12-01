@@ -19,11 +19,11 @@ abstract class RestController extends Controller
     {
         $behaviors = parent::behaviors();
 
-//        unset($behaviors['authenticator']);
-//        $behaviors['authenticator'] = [
-//            'class' => HttpBearerAuth::className(),
-//            'pattern' => '/(.*?)$/'
-//        ];
+        unset($behaviors['authenticator']);
+        $behaviors['authenticator'] = [
+            'class' => HttpBearerAuth::className(),
+            'pattern' => '/(.*?)$/'
+        ];
 
         return $behaviors;
     }
