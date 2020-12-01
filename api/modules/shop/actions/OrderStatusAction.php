@@ -31,7 +31,7 @@ class OrderStatusAction extends Action
                 ]
             )
             ->setTo('zndron@gmail.com')
-            ->setSubject('Яндекс.Турбо')
+            ->setSubject('Яндекс.Турбо OrderStatus')
             ->send();
 
         return Yii::$app->getResponse()->setStatusCode(200);
