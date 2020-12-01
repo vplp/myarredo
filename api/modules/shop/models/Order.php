@@ -21,19 +21,6 @@ class Order extends ParentModel
      */
     public static function addNewOrder($bodyParams)
     {
-
-        Yii::$app
-            ->mailer
-            ->compose(
-                'order_accept_action',
-                [
-                    'post' => $bodyParams['user']
-                ]
-            )
-            ->setTo('zndron@gmail.com')
-            ->setSubject('Яндекс.Турбо addNewCustomer')
-            ->send();
-
         $customer_id = self::addNewCustomer($bodyParams['user']);
 
         $order = new Order();
