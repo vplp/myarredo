@@ -27,17 +27,17 @@ class OrderAcceptAction extends Action
 
         $bodyParams = Yii::$app->request->getBodyParam('order');
 
-        Yii::$app
-            ->mailer
-            ->compose(
-                'order_accept_action',
-                [
-                    'post' => $bodyParams
-                ]
-            )
-            ->setTo('zndron@gmail.com')
-            ->setSubject('Яндекс.Турбо OrderAccept')
-            ->send();
+//        Yii::$app
+//            ->mailer
+//            ->compose(
+//                'order_accept_action',
+//                [
+//                    'post' => $bodyParams
+//                ]
+//            )
+//            ->setTo('zndron@gmail.com')
+//            ->setSubject('Яндекс.Турбо OrderAccept')
+//            ->send();
 
         $response = [
             'order' => [
