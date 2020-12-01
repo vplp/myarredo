@@ -3,8 +3,8 @@
 namespace backend\modules\seo\controllers;
 
 use Yii;
-//
 use thread\app\base\controllers\BackendController;
+use yii\filters\AccessControl;
 
 /**
  * Class RobotsController
@@ -18,6 +18,32 @@ class RobotsController extends BackendController
     public $title = 'Robots.txt';
     public $name = 'Robots.txt';
     public $defaultAction = 'update';
+
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin', 'seo'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
 
     /**
      * @return array
