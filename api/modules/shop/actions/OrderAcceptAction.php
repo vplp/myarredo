@@ -32,8 +32,8 @@ class OrderAcceptAction extends Action
             ->compose(
                 'order_accept_action',
                 [
-                    'post' => $_POST,
-                    'get' => $_GET,
+                    'post' => Yii::$app->request->post('order'),
+                    'get' => Yii::$app->getRequest()->getBodyParam('order'),
                 ]
             )
             ->setTo('zndron@gmail.com')
