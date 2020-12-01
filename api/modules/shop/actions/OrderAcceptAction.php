@@ -30,7 +30,7 @@ class OrderAcceptAction extends Action
             ->compose(
                 'order_accept_action',
                 [
-                    'post' => Yii::$app->request->post(),
+                    'post' => Yii::$app->getRequest()->getBodyParams('order'),
                 ]
             )
             ->setTo('zndron@gmail.com')
@@ -43,7 +43,7 @@ class OrderAcceptAction extends Action
             ]
         ];
 
-        if ($cart = Yii::$app->request->post('order')) {
+        if ($cart = Yii::$app->getRequest()->getBodyParams('order')) {
             $new_order = Order::addNewOrder($cart);
 
             if ($new_order) {
