@@ -50,7 +50,7 @@ class OrderAcceptAction extends Action
 
             if ($new_order) {
                 $response['order']['accepted'] = true;
-                $response['order']['id'] = $new_order['id'];
+                $response['order']['id'] = $bodyParams['id'];
             }
         }
 
