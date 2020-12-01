@@ -22,18 +22,6 @@ class OrderStatusAction extends Action
      */
     public function run()
     {
-        Yii::$app
-            ->mailer
-            ->compose(
-                'order_accept_action',
-                [
-                    'post' => Yii::$app->getRequest()->getBodyParams('order'),
-                ]
-            )
-            ->setTo('zndron@gmail.com')
-            ->setSubject('Яндекс.Турбо OrderStatus')
-            ->send();
-
         return Yii::$app->getResponse()->setStatusCode(200);
     }
 }
