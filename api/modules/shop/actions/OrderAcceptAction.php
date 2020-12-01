@@ -45,8 +45,8 @@ class OrderAcceptAction extends Action
             ]
         ];
 
-        if (isset($bodyParams['order'])) {
-            $new_order = Order::addNewOrder($bodyParams['order']);
+        if (!empty($bodyParams)) {
+            $new_order = Order::addNewOrder($bodyParams);
 
             if ($new_order) {
                 $response['order']['accepted'] = true;
