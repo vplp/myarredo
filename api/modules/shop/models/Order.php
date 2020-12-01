@@ -31,7 +31,7 @@ class Order extends ParentModel
         $order->country_id = 2;
         $order->city_id = 0;
         $order->customer_id = $customer_id;
-        $order->comment = 'Яндекс.Турбо';
+        $order->admin_comment = 'Яндекс.Турбо';
 
         $order->generateToken();
 
