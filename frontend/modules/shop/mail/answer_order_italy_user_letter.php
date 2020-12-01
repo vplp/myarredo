@@ -56,7 +56,7 @@ use frontend\modules\shop\models\{
                         <br>
                         <span style="color:#9f8b80; font-size: 14px;"><?= $item->product['factory']['title']; ?></span>
                     </div>
-                    <div style="padding-top: 10px; color:#8e3628"><?= $item->orderItemPrice->price; ?> &euro;</div>
+                    <div style="padding-top: 10px; color:#8e3628"><?= $item->orderItemPrice->price . ' ' . $item->orderItemPrice->currency; ?></div>
                 </div>
             <?php } ?>
         </div>

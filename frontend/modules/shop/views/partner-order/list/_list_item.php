@@ -116,6 +116,13 @@ if ($user->profile->getPossibilityToAnswer($modelOrder)) { ?>
                                         ])
                                         ->label(false);
                                     ?>
+                                    <?= $form
+                                        ->field(
+                                            $orderItem->orderItemPrice,
+                                            'currency'
+                                        )
+                                        ->dropDownList($orderItem->orderItemPrice::currencyRange(), [ 'name' => 'OrderItemPrice[' . $orderItem->product_id . '][currency]'])
+                                        ->label(false) ?>
                                 </td>
                             </tr>
                             <tr>

@@ -60,7 +60,7 @@ use frontend\modules\shop\models\{
                     <?php if ($item->orderItemPrice->out_of_production == '1') {
                         echo Yii::t('app', 'Снят с производства');
                     } else {
-                        echo $item->orderItemPrice->price . ' &euro';
+                        echo $item->orderItemPrice->price . ' ' . $item->orderItemPrice->currency;
                     } ?>
                 </div>
             </div>

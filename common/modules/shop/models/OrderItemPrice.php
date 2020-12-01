@@ -15,6 +15,7 @@ use common\modules\user\models\User;
  * @property integer $user_id
  * @property integer $product_id
  * @property float $price
+ * @property string $currency
  * @property integer $out_of_production
  *
  * @package common\modules\shop\models
@@ -59,6 +60,8 @@ class OrderItemPrice extends ActiveRecord
                 }"
             ],
             [['price'], 'default', 'value' => 0],
+            [['currency'], 'in', 'range' => array_keys(static::currencyRange())],
+            [['currency'], 'default', 'value' => 'EUR'],
         ];
     }
 
@@ -74,6 +77,7 @@ class OrderItemPrice extends ActiveRecord
                 'user_id',
                 'product_id',
                 'price',
+                'currency',
                 'out_of_production'
             ],
             'frontend' => [
@@ -81,6 +85,7 @@ class OrderItemPrice extends ActiveRecord
                 'user_id',
                 'product_id',
                 'price',
+                'currency',
                 'out_of_production'
             ],
         ];
@@ -97,6 +102,7 @@ class OrderItemPrice extends ActiveRecord
             'user_id' => Yii::t('app', 'User'),
             'product_id' => Yii::t('app', 'Product id'),
             'price' => Yii::t('app', 'Price'),
+            'currency' => Yii::t('app', 'Currency'),
             'out_of_production' => Yii::t('app', 'Снят с производства'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
@@ -127,5 +133,17 @@ class OrderItemPrice extends ActiveRecord
     {
         return $this
             ->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    /**
+     * @return array
+     */
+    public static function currencyRange()
+    {
+        return [
+            'EUR' => 'EUR',
+            'RUB' => 'RUB',
+            'USD' => 'USD'
+        ];
     }
 }
