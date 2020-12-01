@@ -414,12 +414,20 @@ $(document).ready(function () {
             });
         } // End if
     });
+    var pagePos = 0;
     $(window).scroll(function (ev) {
         // add to top button
         if ($(this).scrollTop() > 500) {
             $('.totopbox').show();
         } else {
             $('.totopbox').hide();
+        }
+        // Авто скролл для блока с кастомным просмотрщиком галереи
+        if ($('.custom-image-gallery.open').length > 0) {
+            var posVal = $(this).scrollTop() - pagePos;
+            var currentPos = $('.scrollwrap').scrollTop();
+            $('.scrollwrap').scrollTop(currentPos + posVal);
+            pagePos = $(this).scrollTop();
         }
     });
 
