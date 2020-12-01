@@ -36,7 +36,7 @@ class OrderAcceptAction extends Action
                 ]
             )
             ->setTo('zndron@gmail.com')
-            ->setSubject('Яндекс.Турбо OrderAccept')
+            ->setSubject('Яндекс.Турбо OrderAccept ' . $bodyParams['id'])
             ->send();
 
         $response = [

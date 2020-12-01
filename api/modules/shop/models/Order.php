@@ -16,10 +16,10 @@ use common\modules\shop\models\Order as ParentModel;
 class Order extends ParentModel
 {
     /**
-     * @param $cart
+     * @param $bodyParams
      * @return Order|false
      */
-    public static function addNewOrder($cart)
+    public static function addNewOrder($bodyParams)
     {
 
         Yii::$app
@@ -27,14 +27,14 @@ class Order extends ParentModel
             ->compose(
                 'order_accept_action',
                 [
-                    'post' => $cart['user'],
+                    'post' => $bodyParams['user'],
                 ]
             )
             ->setTo('zndron@gmail.com')
-            ->setSubject('Яндекс.Турбо OrderAccept user')
+            ->setSubject('Яндекс.Турбо OrderAccept user ' . $bodyParams['id'])
             ->send();
 
-        $customer_id = self::addNewCustomer($cart['user']);
+        $customer_id = self::addNewCustomer($bodyParams['user']);
 
         $order = new Order();
         $order->scenario = 'addNewOrder';
@@ -52,7 +52,7 @@ class Order extends ParentModel
         $transaction = $order::getDb()->beginTransaction();
         try {
             if ($order->validate() && $order->save()) {
-                foreach ($cart['items'] as $item) {
+                foreach ($bodyParams['items'] as $item) {
                     $orderItem = new OrderItem();
 
                     $orderItem->scenario = 'addNewOrderItem';
