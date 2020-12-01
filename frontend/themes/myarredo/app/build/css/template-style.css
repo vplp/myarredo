@@ -2634,7 +2634,7 @@ h1 {
   cursor: pointer; }
 
 .prod-card-page #prod-slider .prev {
-  left: 7px;
+  left: 0px;
   height: 45px;
   border-bottom-right-radius: 23px;
   border-top-right-radius: 23px; }
@@ -2645,7 +2645,7 @@ h1 {
     transform: translate(0, -50%); }
 
 .prod-card-page #prod-slider .next {
-  right: 7px;
+  right: 0px;
   height: 45px;
   border-bottom-left-radius: 23px;
   border-top-left-radius: 23px; }
@@ -10922,6 +10922,13 @@ body .concact-page .one-cont .cont-info-row a {
   .nosearch-panel {
     margin-left: auto;
     margin-right: auto;
+  }
+  .prod-card-page #prod-slider .prev {
+    left: 0;
+  }
+  .prod-card-page #prod-slider .next {
+    left: auto;
+    right: 0;
   }
 }
 @media (max-width: 767px) {
