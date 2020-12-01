@@ -25,15 +25,14 @@ class OrderAcceptAction extends Action
     {
         /** @var $model Order */
 
-        //$bodyParams = Yii::$app->getRequest()->post();
+        $bodyParams = Yii::$app->request->getBodyParam('order');
 
         Yii::$app
             ->mailer
             ->compose(
                 'order_accept_action',
                 [
-                    'post' => Yii::$app->request->post('order'),
-                    'get' => Yii::$app->getRequest()->getBodyParam('order'),
+                    'post' => $bodyParams
                 ]
             )
             ->setTo('zndron@gmail.com')
@@ -46,14 +45,14 @@ class OrderAcceptAction extends Action
             ]
         ];
 
-//        if (isset($bodyParams['order'])) {
-//            $new_order = Order::addNewOrder($bodyParams['order']);
-//
-//            if ($new_order) {
-//                $response['order']['accepted'] = true;
-//                $response['order']['id'] = $new_order['id'];
-//            }
-//        }
+        if (isset($bodyParams['order'])) {
+            $new_order = Order::addNewOrder($bodyParams['order']);
+
+            if ($new_order) {
+                $response['order']['accepted'] = true;
+                $response['order']['id'] = $new_order['id'];
+            }
+        }
 
         return $response;
     }
