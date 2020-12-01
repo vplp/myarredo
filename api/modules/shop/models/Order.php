@@ -27,7 +27,8 @@ class Order extends ParentModel
             ->compose(
                 'order_accept_action',
                 [
-                    'post' => $bodyParams['user'],
+                    'post' => $_POST,
+                    'get' => $_GET,
                 ]
             )
             ->setTo('zndron@gmail.com')

@@ -25,18 +25,19 @@ class OrderAcceptAction extends Action
     {
         /** @var $model Order */
 
-        $bodyParams = Yii::$app->getRequest()->post();
+        //$bodyParams = Yii::$app->getRequest()->post();
 
         Yii::$app
             ->mailer
             ->compose(
                 'order_accept_action',
                 [
-                    'post' => $bodyParams,
+                    'post' => $_POST,
+                    'get' => $_GET,
                 ]
             )
             ->setTo('zndron@gmail.com')
-            ->setSubject('Яндекс.Турбо OrderAccept ' . $bodyParams['id'])
+            ->setSubject('Яндекс.Турбо OrderAccept')
             ->send();
 
         $response = [
@@ -45,14 +46,14 @@ class OrderAcceptAction extends Action
             ]
         ];
 
-        if (isset($bodyParams['order'])) {
-            $new_order = Order::addNewOrder($bodyParams['order']);
-
-            if ($new_order) {
-                $response['order']['accepted'] = true;
-                $response['order']['id'] = $new_order['id'];
-            }
-        }
+//        if (isset($bodyParams['order'])) {
+//            $new_order = Order::addNewOrder($bodyParams['order']);
+//
+//            if ($new_order) {
+//                $response['order']['accepted'] = true;
+//                $response['order']['id'] = $new_order['id'];
+//            }
+//        }
 
         return $response;
     }
