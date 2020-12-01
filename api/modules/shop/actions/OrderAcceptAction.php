@@ -25,7 +25,7 @@ class OrderAcceptAction extends Action
     {
         /** @var $model Order */
 
-        $bodyParams = Yii::$app->getRequest()->getBodyParams();
+        $bodyParams = Yii::$app->getRequest()->post();
 
         Yii::$app
             ->mailer
