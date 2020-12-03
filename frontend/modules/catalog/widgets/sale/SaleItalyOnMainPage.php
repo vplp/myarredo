@@ -2,10 +2,9 @@
 
 namespace frontend\modules\catalog\widgets\sale;
 
+use Yii;
 use yii\base\Widget;
-use frontend\modules\catalog\models\{
-    ItalianProduct, ItalianProductLang
-};
+use frontend\modules\catalog\models\{ItalianProduct, ItalianProductLang, search\Specification};
 
 /**
  * Class SaleItalyOnMainPage
@@ -30,6 +29,18 @@ class SaleItalyOnMainPage extends Widget
     public function init()
     {
         $this->models = ItalianProduct::getDb()->cache(function ($db) {
+            /** orderBy */
+
+            if (isset(Yii::$app->partner) && Yii::$app->partner->id) {
+                $order['FIELD (' . self::tableName() . '.user_id, ' . Yii::$app->partner->id . ')'] = SORT_DESC;
+            }
+
+            if (DOMAIN_TYPE == 'com') {
+                $order['(CASE WHEN ' . Specification::tableName() . '.id = 28 THEN 0 ELSE 1 END), ' . ItalianProduct::tableName() . '.position'] = SORT_DESC;
+            }
+
+            $order[ItalianProduct::tableName() . '.updated_at'] = SORT_DESC;
+
             return ItalianProduct::findBaseArray()
                 ->select([
                     ItalianProduct::tableName() . '.id',
@@ -45,7 +56,9 @@ class SaleItalyOnMainPage extends Widget
                     ItalianProduct::tableName() . '.currency',
                     ItalianProductLang::tableName() . '.title',
                 ])
+                ->innerJoinWith(["specification"])
                 ->limit(8)
+                ->orderBy($order)
                 ->all();
         }, 60 * 60);
 
