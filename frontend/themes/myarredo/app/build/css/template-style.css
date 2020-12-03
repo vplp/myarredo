@@ -8201,7 +8201,7 @@ h1 {
   max-width: 40px;
   max-height: 40px;
   position: fixed;
-  right: 0;
+  right: 9px;
   bottom: 10px;
   z-index: 99;
 }
@@ -11035,6 +11035,14 @@ body .concact-page .one-cont .cont-info-row a {
   .contact-partner-slider .img-cont img {
     min-height: 200px;
     max-height: 200px;
+  }
+  .comagic-c-sitephone-label__bubble {
+    top: -30px;
+    right: -26px;
+  }
+  .comagic-c-sitephone-label__icon--sitephone {
+    top: -30px;
+    right: -12.5px;
   }
 }
 @media (max-width: 540px) {
