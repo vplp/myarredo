@@ -1576,7 +1576,8 @@ $(document).ready(function () {
         $(this).closest('.custom-image-gallery').removeClass('open');
         $('main').removeClass('thispos');
     });
-    // Открыть просмотрщик
+    // *Открыть просмотрщик
+    // По клике на основное изображение
     $('.igalery').find('.carousel-inner').find('.fancyimage').click(function() {
         // Только для экранов 1080 и больше
         if (window.screen.width >= 1080) {
@@ -1584,6 +1585,43 @@ $(document).ready(function () {
             $.fancybox.close();
             // Получаем ссылку на активную картинку
             var thisHref = $(this).attr('href');
+            // Собираем картинки для просмотрщика
+            var images = [];
+            $('#prod-slider').children('.carousel-inner').find('.fancyimage').each(function(i, elem) {
+                var imgPath = $(elem).attr('href');
+                images.push({
+                    'path': imgPath,
+                    'active': thisHref == imgPath ? 1 : 0
+                });
+            });
+            // Рендерим верстку блока с изображениями
+            var layout = '';
+            for(var i = 0; i < images.length; i++) {
+                var activeClas = images[i].active ? "active" : "";
+                layout += '' +
+                    '<div class="igalery-item '+ activeClas +'">' +
+                        '<a href="'+ images[i].path +'" target="_blank"><img src="'+ images[i].path +'"></a>' +
+                    '</div>';
+            }
+            // Добавляем верстку в блок
+            $('.scrollwrap').html(layout);
+            // Добавляем класс для фикса z-index для этого проэкта
+            $('main').addClass('thispos');
+            // Открываем просмотрщик
+            $('.custom-image-gallery').addClass('open');
+            // Прокручиваем блок до активной картинки (по которой кликнули)
+            var ofsetActivePos = $('.scrollwrap').children('.igalery-item.active')[0].offsetTop;
+            $('.scrollwrap').animate({
+                scrollTop: ofsetActivePos - 20
+            }, 300);
+        }
+    });
+    // По клику на изображение превью
+    $('.igalery').find('.carousel-indicators').find('.thumb-item').children('img').click(function() {
+        // Только для экранов 1080 и больше
+        if (window.screen.width >= 1080) {
+            // Получаем ссылку на активную картинку
+            var thisHref = $(this).attr('src');
             // Собираем картинки для просмотрщика
             var images = [];
             $('#prod-slider').children('.carousel-inner').find('.fancyimage').each(function(i, elem) {
