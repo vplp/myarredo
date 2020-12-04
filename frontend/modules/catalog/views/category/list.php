@@ -63,7 +63,7 @@ $params = Yii::$app->catalogFilter->params;
                         </div>
                     <?php } ?>
 
-                    <div class="cat-content">
+                    <div class="cat-content scroll-marker">
                         <?= Html::a(
                             Yii::t('app', 'Фильтры'),
                             'javascript:void(0);',

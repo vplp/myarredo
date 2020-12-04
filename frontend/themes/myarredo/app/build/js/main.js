@@ -415,6 +415,13 @@ $(document).ready(function () {
         } // End if
     });
     var pagePos = 0;
+    var jsBtnPos = 0;
+    var endBtnPos = 0;
+    // Если фильтр существует на странице
+    if ($('.scroll-marker').length > 0) {
+        jsBtnPos = $('.scroll-marker').offset().top - 15;
+        endBtnPos = jsBtnPos + $('.scroll-marker').find('.cat-prod').height();
+    }
     $(window).scroll(function (ev) {
         // add to top button
         if ($(this).scrollTop() > 500) {
@@ -429,6 +436,19 @@ $(document).ready(function () {
             $('.scrollwrap').scrollTop(currentPos + posVal);
             pagePos = $(this).scrollTop();
         }
+        // *Для фиксации фильтра на мобильном
+        // Если фильтр существует на странице
+        if ($('.scroll-marker').length > 0) {
+            if ($(this).scrollTop() >= jsBtnPos && $(this).scrollTop() <= endBtnPos) {
+                $('.js-filter-btn').addClass('filter-btn-fixed');
+                $('.ajax-get-filter').addClass('filter-panel-fixed');
+            }
+            else {
+                $('.js-filter-btn').removeClass('filter-btn-fixed');
+                $('.ajax-get-filter').removeClass('filter-panel-fixed');
+            }
+        }
+        
     });
 
     var state = {
