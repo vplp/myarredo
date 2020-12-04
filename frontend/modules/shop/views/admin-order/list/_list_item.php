@@ -117,7 +117,7 @@ use frontend\modules\catalog\models\{
                                         $orderItem->orderItemPrice,
                                         'currency'
                                     )
-                                    ->dropDownList($orderItem->orderItemPrice::currencyRange(), [ 'name' => 'OrderItemPrice[' . $orderItem->product_id . '][currency]'])
+                                    ->dropDownList($orderItem->orderItemPrice::currencyRange(), ['name' => 'OrderItemPrice[' . $orderItem->product_id . '][currency]'])
                                     ->label(false) ?>
                             </td>
                         </tr>
@@ -234,6 +234,11 @@ use frontend\modules\catalog\models\{
                 ->field($modelOrderAnswer, 'order_id')
                 ->input('hidden', ['value' => $modelOrder->id])
                 ->label(false) ?>
+
+            <?php if ($modelOrder->order_count_url_visit) {
+                echo '<div>Просмотреных страниц: ' . $modelOrder->order_count_url_visit . '</div>' .
+                    '<div>Первая стрнаница: ' . $modelOrder->order_first_url_visit . '</div>';
+            } ?>
         </div>
     </div>
 </div>

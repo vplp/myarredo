@@ -23,6 +23,8 @@ use common\modules\user\models\User;
  * @property integer $items_count
  * @property integer $items_total_count
  * @property string $comment
+ * @property string $order_first_url_visit
+ * @property integer $order_count_url_visit
  * @property string $image_link
  * @property string $admin_comment
  * @property string $token
@@ -71,8 +73,9 @@ class Order extends \thread\modules\shop\models\Order
             ['lang', 'string', 'min' => 5, 'max' => 5],
             [['customer_id', 'country_id'], 'required', 'on' => ['backend', 'addNewOrder']],
             [['comment', 'admin_comment'], 'string', 'max' => 512],
+            [['order_first_url_visit'], 'string'],
             [['token'], 'string', 'max' => 255],
-            [['customer_id', 'country_id', 'city_id', 'items_count', 'items_total_count'], 'integer'],
+            [['customer_id', 'country_id', 'city_id', 'items_count', 'items_total_count', 'order_count_url_visit'], 'integer'],
             [['order_status'], 'in', 'range' => array_keys(self::getOrderStatuses())],
             [['product_type'], 'in', 'range' => array_keys(self::productTypeKeyRange())],
             [
@@ -82,7 +85,7 @@ class Order extends \thread\modules\shop\models\Order
             ],
             [['image_link'], 'string', 'max' => 255],
             // set default values
-            [['delivery_method_id', 'payment_method_id', 'country_id', 'city_id'], 'default', 'value' => 0],
+            [['delivery_method_id', 'payment_method_id', 'country_id', 'city_id', 'order_count_url_visit'], 'default', 'value' => 0],
             [
                 [
                     'user_for_answer_ids',
@@ -115,6 +118,8 @@ class Order extends \thread\modules\shop\models\Order
                 'items_total_count',
                 'order_status',
                 'comment',
+                'order_first_url_visit',
+                'order_count_url_visit',
                 'image_link',
                 'admin_comment',
                 'token',
@@ -132,6 +137,8 @@ class Order extends \thread\modules\shop\models\Order
                 'payment_method_id',
                 'order_status',
                 'comment',
+                'order_first_url_visit',
+                'order_count_url_visit',
                 'image_link',
                 'customer_id',
                 'country_id',
@@ -155,7 +162,9 @@ class Order extends \thread\modules\shop\models\Order
             'comment' => Yii::t('app', 'Comment client'),
             'admin_comment' => Yii::t('app', 'Admin comment'),
             'image_link' => Yii::t('app', 'Image link'),
-            'user_for_answer_ids' => 'Партнеры, которые могут отвечать на архивные заявки'
+            'user_for_answer_ids' => 'Партнеры, которые могут отвечать на архивные заявки',
+            'order_first_url_visit' => 'order_first_url_visit',
+            'order_count_url_visit' => 'order_count_url_visit',
         ];
 
         return ArrayHelper::merge(parent::attributeLabels(), $attributeLabels);

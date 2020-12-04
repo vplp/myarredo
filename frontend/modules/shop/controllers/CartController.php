@@ -53,6 +53,12 @@ class CartController extends BaseController
             $order->customer_id = $customer_id;
             $order->generateToken();
 
+            $session = Yii::$app->session;
+            $order->order_first_url_visit = $session->get('order_first_url_visit');
+            $order->order_count_url_visit = $session->get('order_count_url_visit');
+            $session->remove('order_first_url_visit');
+            $session->remove('order_count_url_visit');
+
             $file = UploadedFile::getInstance($customerForm, 'image_link');
 
             if ($file && $file->error == UPLOAD_ERR_OK) {

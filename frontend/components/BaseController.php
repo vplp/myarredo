@@ -106,10 +106,12 @@ abstract class BaseController extends Controller
     {
         //$this->detectBrowserLanguage();
 
-        if (Yii::$app->session->get('referrer') != Url::current([], true)) {
-            Yii::$app->session->set('referrer', Yii::$app->request->referrer);
+        $session = Yii::$app->session;
+
+        if ($session->get('referrer') != Url::current([], true)) {
+            $session->set('referrer', Yii::$app->request->referrer);
         } else {
-            Yii::$app->session->set('referrer', Url::toRoute('/user/profile/index'));
+            $session->set('referrer', Url::toRoute('/user/profile/index'));
         }
 
         return parent::afterAction($action, $result);

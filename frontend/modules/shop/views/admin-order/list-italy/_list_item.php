@@ -274,6 +274,11 @@ use frontend\modules\catalog\models\{
                     <div>Email: <?= $orderItem->product['user']['email'] ?></div>
                 <?php } ?>
             <?php } ?>
+
+            <?php if ($modelOrder->order_count_url_visit) {
+                echo '<div>Просмотреных страниц: ' . $modelOrder->order_count_url_visit . '</div>' .
+                    '<div>Первая стрнаница: ' . $modelOrder->order_first_url_visit . '</div>';
+            } ?>
         </div>
 
     </div>

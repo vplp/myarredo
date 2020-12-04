@@ -27,6 +27,8 @@ use thread\modules\shop\models\query\OrderQuery;
  * @property float $discount_full
  * @property float $total_summ
  * @property string $comment
+ * @property string $order_first_url_visit
+ * @property integer $order_count_url_visit
  * @property string $token
  * @property integer $created_at
  * @property integer $updated_at
@@ -68,8 +70,9 @@ class Order extends ActiveRecord
         return [
             [['customer_id', 'delivery_method_id', 'payment_method_id'], 'required'],
             [['comment'], 'string', 'max' => 512],
+            [['order_first_url_visit'], 'string'],
             [['token'], 'string', 'max' => 255],
-            [['customer_id', 'items_count', 'items_total_count', 'created_at', 'updated_at'], 'integer'],
+            [['customer_id', 'items_count', 'items_total_count', 'created_at', 'updated_at', 'order_count_url_visit'], 'integer'],
             [
                 [
                     'items_summ',
@@ -102,6 +105,8 @@ class Order extends ActiveRecord
                 'order_status',
                 'payd_status',
                 'comment',
+                'order_first_url_visit',
+                'order_count_url_visit',
                 'items_summ',
                 'items_total_summ',
                 'discount_percent',
@@ -145,6 +150,8 @@ class Order extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'order_first_url_visit' => 'order_first_url_visit',
+            'order_count_url_visit' => 'order_count_url_visit',
         ];
     }
 

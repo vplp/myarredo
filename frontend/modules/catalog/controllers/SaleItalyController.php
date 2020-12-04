@@ -148,6 +148,16 @@ class SaleItalyController extends BaseController
     {
         $model = ItalianProduct::findByAlias($alias);
 
+        $session = Yii::$app->session;
+
+        if (!$session->has('order_count_url_visit')) {
+            $session->set('order_first_url_visit', Yii::$app->request->absoluteUrl);
+            $session->set('order_count_url_visit', 1);
+        } else if ($session->has('order_count_url_visit')) {
+            $count = $session->get('order_count_url_visit');
+            $session->set('order_count_url_visit', ++$count);
+        }
+
         if ($model == null) {
             $model = ItalianProduct::find()
                 ->andFilterWhere([
