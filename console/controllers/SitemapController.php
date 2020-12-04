@@ -67,8 +67,8 @@ class SitemapController extends Controller
             ->enabled()
             ->all();
 
-        $urlsRu = self::getUrls('ru-RU');
-        $urlsUa = self::getUrls('uk-UA');
+        $urlsRu = self::getUrls('ru-RU', 'ru', 4);
+        $urlsUa = self::getUrls('uk-UA', 'ru', 1);
 
         foreach ($cities as $city) {
             if ($city['country_id'] == 4) {
