@@ -10546,6 +10546,7 @@ body .concact-page .one-cont .cont-info-row a {
 .custom-image-gallery.open .igalery-close {
   display: block;
 }
+
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
 /* ---------------------------------------------------------------------------------------------------- */
@@ -10929,6 +10930,25 @@ body .concact-page .one-cont .cont-info-row a {
   .prod-card-page #prod-slider .next {
     left: auto;
     right: 0;
+  }
+  .js-filter-btn.filter-btn-fixed {
+    position: fixed;
+    top: 0;
+    right: 15px;
+    bottom: auto;
+    left: 15px;
+    z-index: 999;
+  }
+  .ajax-get-filter.filter-panel-fixed {
+    position: fixed;
+    top: 47px;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    background-color: #fff;
+    max-height: calc(100vh - 47px);
+    overflow: auto;
+    z-index: 999;
   }
 }
 @media (max-width: 767px) {
