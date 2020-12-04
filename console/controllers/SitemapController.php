@@ -74,12 +74,12 @@ class SitemapController extends Controller
             if ($city['country_id'] == 4) {
                 // italy
                 $urls = [];
-                $urlsIt = self::getUrls('it-IT', 'com');
+                $urlsIt = self::getUrls('it-IT', 'com', $city['id']);
                 foreach ($urlsIt as $url) {
                     $urls[] = array_merge($url, ['loc' => "/it" . $url['loc']]);
                 }
 
-                $urlsEn = self::getUrls('en-EN', 'com');
+                $urlsEn = self::getUrls('en-EN', 'com', $city['id']);
                 foreach ($urlsEn as $url) {
                     $urls[] = array_merge($url, ['loc' => "/en" . $url['loc']]);
                 }
@@ -87,10 +87,18 @@ class SitemapController extends Controller
                 $this->createSitemapFile($urls, 'https://' . 'www.myarredo.com', $city);
             } elseif ($city['country_id'] == 5) {
                 // usa
-                $this->createSitemapFile(self::getUrls('en-EN', 'com'), 'https://' . 'www.myarredofamily.com', $city);
+                $this->createSitemapFile(
+                    self::getUrls('en-EN', 'com', $city['id']),
+                    'https://' . 'www.myarredofamily.com',
+                    $city
+                );
             } elseif ($city['country_id'] == 85) {
                 // germany
-                $this->createSitemapFile(self::getUrls('de-DE', 'de'), 'https://' . 'www.myarredo.de', $city);
+                $this->createSitemapFile(
+                    self::getUrls('de-DE', 'de', $city['id']),
+                    'https://' . 'www.myarredo.de',
+                    $city
+                );
             } elseif ($city['country_id'] == 1) {
                 $urls = $urlsRu;
                 foreach ($urlsUa as $url) {
@@ -224,9 +232,10 @@ class SitemapController extends Controller
     /**
      * @param string $language
      * @param string $domain
+     * @param int $cityID
      * @return array
      */
-    private function getUrls($language = 'ru-RU', $domain = 'ru')
+    private function getUrls($language = 'ru-RU', $domain = 'ru', $cityID = 0)
     {
         $_urls = $this->urls;
 
@@ -270,12 +279,15 @@ class SitemapController extends Controller
                     $model::tableName() . '.alias_de',
                     $model::tableName() . '.updated_at',
                 ]);
-            } elseif ($model::className() == Directlink::className()) {
+            } elseif ($model::className() == Directlink::className() && $cityID) {
                 $query->select([
                     $model::tableName() . '.id',
                     $model::tableName() . '.url',
                     $model::tableName() . '.updated_at',
                 ]);
+                $query
+                    ->joinWith(['cities'])
+                    ->andWhere(['fv_seo_direct_link_rel_location_city.location_city_id' => $cityID]);
             } elseif ($model::className() == Factory::className() && $domain) {
                 $query
                     ->select([

@@ -6,12 +6,8 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\base\Component;
 use yii\log\Logger;
-
-//
 use frontend\modules\seo\modules\modellink\models\Modellink;
 use frontend\modules\seo\modules\directlink\models\Directlink;
-
-//
 use thread\app\base\models\ActiveRecord;
 
 /**
