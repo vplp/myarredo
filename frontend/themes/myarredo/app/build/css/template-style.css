@@ -10938,6 +10938,10 @@ body .concact-page .one-cont .cont-info-row a {
     bottom: auto;
     left: 15px;
     z-index: 999;
+    transition: 0.05s;
+  }
+  .js-filter-btn.filter-btn-fixed+.row-mob {
+    margin-top: 59px;
   }
   .ajax-get-filter.filter-panel-fixed {
     position: fixed;

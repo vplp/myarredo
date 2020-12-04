@@ -419,7 +419,7 @@ $(document).ready(function () {
     var endBtnPos = 0;
     // Если фильтр существует на странице
     if ($('.scroll-marker').length > 0) {
-        jsBtnPos = $('.scroll-marker').offset().top;
+        jsBtnPos = $('.scroll-marker').offset().top - 15;
         endBtnPos = jsBtnPos + $('.scroll-marker').find('.cat-prod').height();
     }
     $(window).scroll(function (ev) {
