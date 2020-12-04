@@ -279,15 +279,18 @@ class SitemapController extends Controller
                     $model::tableName() . '.alias_de',
                     $model::tableName() . '.updated_at',
                 ]);
-            } elseif ($model::className() == Directlink::className() && $cityID) {
+            } elseif ($model::className() == Directlink::className()) {
                 $query->select([
                     $model::tableName() . '.id',
                     $model::tableName() . '.url',
                     $model::tableName() . '.updated_at',
                 ]);
-                $query
-                    ->joinWith(['cities'])
-                    ->andWhere(['fv_seo_direct_link_rel_location_city.location_city_id' => $cityID]);
+
+                if ($cityID) {
+                    $query
+                        ->joinWith(['cities'])
+                        ->andWhere(['fv_seo_direct_link_rel_location_city.location_city_id' => $cityID]);
+                }
             } elseif ($model::className() == Factory::className() && $domain) {
                 $query
                     ->select([
