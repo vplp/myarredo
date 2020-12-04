@@ -108,9 +108,10 @@ class Product extends ProductModel
                 ->andFilterWhere(['IN', SubTypes::tableName() . '.alias', $params[$keys['subtypes']]]);
         }
 
+        $query->innerJoinWith(["specification"]);
+
         if (isset($params[$keys['style']])) {
             $query
-                ->innerJoinWith(["specification"])
                 ->andFilterWhere([
                     'IN',
                     Specification::tableName() . '.' . Yii::$app->languages->getDomainAlias(),
@@ -247,6 +248,10 @@ class Product extends ProductModel
         }
 
         /** orderBy */
+
+        if (DOMAIN_TYPE == 'com') {
+            $order['(CASE WHEN ' . Specification::tableName() . '.id = 28 THEN 0 ELSE 1 END), ' . self::tableName() . '.position'] = SORT_DESC;
+        }
 
         if (!isset($params[$keys['category']])) {
             $order[self::tableName() . '.time_promotion_in_catalog'] = SORT_DESC;
