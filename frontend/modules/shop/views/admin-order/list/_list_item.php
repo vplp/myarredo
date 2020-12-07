@@ -119,7 +119,7 @@ use frontend\modules\catalog\models\{
                                             'currency'
                                         )
                                         ->dropDownList($orderItem->orderItemPrice::currencyRange(), ['name' => 'OrderItemPrice[' . $orderItem->product_id . '][currency]'])
-                                        ->label(false) 
+                                        ->label(false)
                                     ?>
                                 </div>
                             </td>
@@ -240,7 +240,7 @@ use frontend\modules\catalog\models\{
 
             <?php if ($modelOrder->order_count_url_visit) {
                 echo '<div>Просмотреных страниц: ' . $modelOrder->order_count_url_visit . '</div>' .
-                    '<div>Первая стрнаница: ' . $modelOrder->order_first_url_visit . '</div>';
+                    '<div>Первая стрнаница: ' . Html::a('Ссылка', $modelOrder->order_first_url_visit, ['target' => '_blank']) . '</div>';
             } ?>
         </div>
     </div>
