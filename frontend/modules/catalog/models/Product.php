@@ -393,6 +393,32 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * @return string
+     */
+    public function getImageAlt()
+    {
+        $alt = [];
+
+        if (!empty($this->types)) {
+            $alt[] = $this->types->lang->title;
+        }
+
+        if (!empty($this->factory)) {
+            $alt[] = $this->factory->title;
+        }
+
+        if ($this->article) {
+            $alt[] = $this->article;
+        }
+
+        if ($this->collections_id) {
+            $alt[] = $this->collection->title;
+        }
+
+        return implode(' ', $alt);
+    }
+
+    /**
      * @param $model
      * @return string
      */
