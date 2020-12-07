@@ -268,7 +268,7 @@ class Product extends ProductModel
         }
 
         if (DOMAIN_TYPE == 'com' && !isset($params[$keys['style']])) {
-            $order['(CASE WHEN ' . Specification::tableName() . '.id = 28 THEN 0 ELSE 9999 END), ' . self::tableName() . '.position'] = SORT_DESC;
+            $order['(CASE WHEN ' . Specification::tableName() . '.id = 28 THEN 0 ELSE 9999 END), ' . self::tableName() . '.position'] = SORT_ASC;
         }
 
         $order[self::tableName() . '.updated_at'] = SORT_DESC;
@@ -277,9 +277,9 @@ class Product extends ProductModel
 
         /** cache */
 
-        self::getDb()->cache(function ($db) use ($dataProvider) {
-            $dataProvider->prepare();
-        }, 60 * 60 * 3, self::generateDependency(self::find()));
+//        self::getDb()->cache(function ($db) use ($dataProvider) {
+//            $dataProvider->prepare();
+//        }, 60 * 60 * 3, self::generateDependency(self::find()));
 
         return $dataProvider;
     }
