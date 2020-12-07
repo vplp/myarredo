@@ -267,8 +267,8 @@ class Product extends ProductModel
             $order[self::tableName() . '.is_composition'] = SORT_DESC;
         }
 
-        if (DOMAIN_TYPE == 'com') {
-            $order['(CASE WHEN ' . Specification::tableName() . '.id = 28 THEN 0 ELSE 1 END), ' . self::tableName() . '.position'] = SORT_DESC;
+        if (DOMAIN_TYPE == 'com' && !isset($params[$keys['style']])) {
+            $order['(CASE WHEN ' . Specification::tableName() . '.id = 28 THEN 0 ELSE 9999 END), ' . self::tableName() . '.position'] = SORT_DESC;
         }
 
         $order[self::tableName() . '.updated_at'] = SORT_DESC;
@@ -376,6 +376,7 @@ class Product extends ProductModel
                 self::tableName() . '.removed',
                 self::tableName() . '.price_from',
                 self::tableName() . '.currency',
+                self::tableName() . '.updated_at',
                 ProductLang::tableName() . '.title',
             ]);
 
