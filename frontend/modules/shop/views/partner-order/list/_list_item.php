@@ -106,23 +106,26 @@ if ($user->profile->getPossibilityToAnswer($modelOrder)) { ?>
                                         ])
                                         ->label(false);
                                     ?>
-                                    <?= $form
-                                        ->field($orderItem->orderItemPrice, 'price')
-                                        ->input('text', [
-                                            'name' => 'OrderItemPrice[' . $orderItem->product_id . '][price]',
-                                            'value' => $orderItem->orderItemPrice->price ?? 0,
-                                            'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true,
-                                            'class' => 'orderlist-price-field'
-                                        ])
-                                        ->label(false);
-                                    ?>
-                                    <?= $form
-                                        ->field(
-                                            $orderItem->orderItemPrice,
-                                            'currency'
-                                        )
-                                        ->dropDownList($orderItem->orderItemPrice::currencyRange(), ['name' => 'OrderItemPrice[' . $orderItem->product_id . '][currency]'])
-                                        ->label(false) ?>
+                                    <div class="form-twoboxl">
+                                        <?= $form
+                                            ->field($orderItem->orderItemPrice, 'price')
+                                            ->input('text', [
+                                                'name' => 'OrderItemPrice[' . $orderItem->product_id . '][price]',
+                                                'value' => $orderItem->orderItemPrice->price ?? 0,
+                                                'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true,
+                                                'class' => 'orderlist-price-field'
+                                            ])
+                                            ->label(false);
+                                        ?>
+                                        <?= $form
+                                            ->field(
+                                                $orderItem->orderItemPrice,
+                                                'currency'
+                                            )
+                                            ->dropDownList($orderItem->orderItemPrice::currencyRange(), ['name' => 'OrderItemPrice[' . $orderItem->product_id . '][currency]'])
+                                            ->label(false);
+                                        ?>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
