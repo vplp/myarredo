@@ -1609,8 +1609,10 @@ $(document).ready(function () {
             var images = [];
             $('#prod-slider').children('.carousel-inner').find('.fancyimage').each(function(i, elem) {
                 var imgPath = $(elem).attr('href');
+                var imgAlt = $(elem).attr('data-alt');
                 images.push({
                     'path': imgPath,
+                    'alt' : imgAlt,
                     'active': thisHref == imgPath ? 1 : 0
                 });
             });
@@ -1620,7 +1622,7 @@ $(document).ready(function () {
                 var activeClas = images[i].active ? "active" : "";
                 layout += '' +
                     '<div class="igalery-item '+ activeClas +'">' +
-                        '<a href="'+ images[i].path +'" target="_blank"><img src="'+ images[i].path +'"></a>' +
+                        '<a href="'+ images[i].path +'" target="_blank"><img src="'+ images[i].path +'" alt="'+ images[i].alt +'"></a>' +
                     '</div>';
             }
             // Добавляем верстку в блок
@@ -1646,8 +1648,10 @@ $(document).ready(function () {
             var images = [];
             $('#prod-slider').children('.carousel-inner').find('.fancyimage').each(function(i, elem) {
                 var imgPath = $(elem).attr('href');
+                var imgAlt = $(elem).attr('data-alt');
                 images.push({
                     'path': imgPath,
+                    'alt' : imgAlt,
                     'active': thisHref == imgPath ? 1 : 0
                 });
             });
@@ -1657,7 +1661,7 @@ $(document).ready(function () {
                 var activeClas = images[i].active ? "active" : "";
                 layout += '' +
                     '<div class="igalery-item '+ activeClas +'">' +
-                        '<a href="'+ images[i].path +'" target="_blank"><img src="'+ images[i].path +'"></a>' +
+                        '<a href="'+ images[i].path +'" target="_blank"><img src="'+ images[i].path +'" alt="'+ images[i].alt +'"></a>' +
                     '</div>';
             }
             // Добавляем верстку в блок
