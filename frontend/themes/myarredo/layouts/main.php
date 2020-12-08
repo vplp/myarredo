@@ -8,7 +8,7 @@ use frontend\modules\banner\widgets\BackgroundBanner;
 use frontend\themes\myarredo\assets\AppAsset;
 
 $bundle = AppAsset::register($this);
-var_dump(Yii::$app->getModule('catalog')->isMobileDevice());
+
 $this->beginPage();
 ?>
 <!DOCTYPE html>
