@@ -25,6 +25,7 @@ use common\modules\user\models\User;
  * @property string $comment
  * @property string $order_first_url_visit
  * @property integer $order_count_url_visit
+ * @property integer $order_mobile
  * @property string $image_link
  * @property string $admin_comment
  * @property string $token
@@ -79,7 +80,7 @@ class Order extends \thread\modules\shop\models\Order
             [['order_status'], 'in', 'range' => array_keys(self::getOrderStatuses())],
             [['product_type'], 'in', 'range' => array_keys(self::productTypeKeyRange())],
             [
-                ['published', 'deleted', 'create_campaign', 'mark', 'mark1'],
+                ['published', 'deleted', 'create_campaign', 'mark', 'mark1', 'order_mobile'],
                 'in',
                 'range' => array_keys(self::statusKeyRange())
             ],
@@ -120,6 +121,7 @@ class Order extends \thread\modules\shop\models\Order
                 'comment',
                 'order_first_url_visit',
                 'order_count_url_visit',
+                'order_mobile',
                 'image_link',
                 'admin_comment',
                 'token',
@@ -139,6 +141,7 @@ class Order extends \thread\modules\shop\models\Order
                 'comment',
                 'order_first_url_visit',
                 'order_count_url_visit',
+                'order_mobile',
                 'image_link',
                 'customer_id',
                 'country_id',
@@ -165,6 +168,7 @@ class Order extends \thread\modules\shop\models\Order
             'user_for_answer_ids' => 'Партнеры, которые могут отвечать на архивные заявки',
             'order_first_url_visit' => 'order_first_url_visit',
             'order_count_url_visit' => 'order_count_url_visit',
+            'order_mobile' => 'order_mobile'
         ];
 
         return ArrayHelper::merge(parent::attributeLabels(), $attributeLabels);
