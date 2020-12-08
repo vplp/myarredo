@@ -280,7 +280,7 @@ use frontend\modules\catalog\models\{
 
             <?php if ($modelOrder->order_count_url_visit) {
                 echo '<div>Просмотреных страниц: ' . $modelOrder->order_count_url_visit . '</div>' .
-                    '<div>Первая стрнаница: ' . Html::a('Ссылка', $modelOrder->order_first_url_visit, ['target' => '_blank']) . '</div>';
+                    '<div>Первая страница: ' . Html::a('Ссылка', $modelOrder->order_first_url_visit, ['target' => '_blank']) . '</div>';
             } ?>
         </div>
 
