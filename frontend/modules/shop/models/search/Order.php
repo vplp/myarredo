@@ -181,6 +181,14 @@ class Order extends OrderModel
                 $IDs[] = $item['product_id'];
             }
 
+            $session = Yii::$app->session;
+            $order->order_first_url_visit = $session->get('order_first_url_visit');
+            $order->order_count_url_visit = $session->get('order_count_url_visit');
+            $order->order_mobile = Yii::$app->getModule('catalog')->isMobileDevice();
+
+            $session->remove('order_first_url_visit');
+            $session->remove('order_count_url_visit');
+
             foreach ($cart->items as $cartItem) {
                 if (!in_array($cartItem['product_id'], $IDs)) {
                     $orderItem = new OrderItem();
@@ -245,8 +253,6 @@ class Order extends OrderModel
         $transaction = $order::getDb()->beginTransaction();
         try {
             if ($order->validate() && $order->save()) {
-
-
                 foreach ($cart->items as $cartItem) {
                     $orderItem = new OrderItem();
 
