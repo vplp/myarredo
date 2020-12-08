@@ -151,7 +151,7 @@ class SaleItalyController extends BaseController
         $session = Yii::$app->session;
 
         if (!$session->has('order_count_url_visit')) {
-            $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+            $url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             $session->set('order_first_url_visit', $url);
             $session->set('order_count_url_visit', 1);
         } else if ($session->has('order_count_url_visit')) {
