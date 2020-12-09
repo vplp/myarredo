@@ -146,10 +146,10 @@ class OrderController extends BaseController
             $session = Yii::$app->session;
             $order->order_first_url_visit = $session->get('order_first_url_visit');
             $order->order_count_url_visit = $session->get('order_count_url_visit');
-            $order->order_mobile = Yii::$app->getModule('catalog')->isMobileDevice();
+            $order->order_mobile = Yii::$app->getModule('shop')->isMobileDevice();
 
-            $session->remove('order_first_url_visit');
-            $session->remove('order_count_url_visit');
+            //$session->remove('order_first_url_visit');
+            //$session->remove('order_count_url_visit');
 
             if ($order->validate() && $order->save()) {
                 $orderItem = new OrderItem();
