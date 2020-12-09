@@ -108,10 +108,9 @@ class Product extends ProductModel
                 ->andFilterWhere(['IN', SubTypes::tableName() . '.alias', $params[$keys['subtypes']]]);
         }
 
-        $query->innerJoinWith(["specification"]);
-
         if (isset($params[$keys['style']])) {
             $query
+                ->innerJoinWith(["specification"])
                 ->andFilterWhere([
                     'IN',
                     Specification::tableName() . '.' . Yii::$app->languages->getDomainAlias(),
@@ -268,6 +267,7 @@ class Product extends ProductModel
         }
 
         if (DOMAIN_TYPE == 'com' && !isset($params[$keys['style']])) {
+            $query->innerJoinWith(["specification"]);
             $order['(CASE WHEN ' . Specification::tableName() . '.id = 28 THEN 0 ELSE 9999 END), ' . self::tableName() . '.position'] = SORT_ASC;
         }
 

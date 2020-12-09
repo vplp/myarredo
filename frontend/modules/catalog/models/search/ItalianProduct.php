@@ -106,14 +106,14 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
                 ->andFilterWhere(['IN', SubTypes::tableName() . '.alias', $params[$keys['subtypes']]]);
         }
 
-        $query->innerJoinWith(["specification"]);
-
         if (isset($params[$keys['style']])) {
-            $query->andFilterWhere([
-                'IN',
-                Specification::tableName() . '.' . Yii::$app->languages->getDomainAlias(),
-                $params[$keys['style']]
-            ]);
+            $query
+                ->innerJoinWith(["specification"])
+                ->andFilterWhere([
+                    'IN',
+                    Specification::tableName() . '.' . Yii::$app->languages->getDomainAlias(),
+                    $params[$keys['style']]
+                ]);
         }
 
         if (isset($params[$keys['factory']])) {
@@ -196,6 +196,7 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
         }
 
         if (DOMAIN_TYPE == 'com' && !isset($params[$keys['style']])) {
+            $query->innerJoinWith(["specification"]);
             $order['(CASE WHEN ' . Specification::tableName() . '.id = 28 THEN 0 ELSE 9999 END), ' . self::tableName() . '.position'] = SORT_DESC;
         }
 
