@@ -411,7 +411,7 @@ class Product extends \common\modules\catalog\models\Product
             $alt[] = $this->article;
         }
 
-        if ($this->collections_id) {
+        if ($this->collection) {
             $alt[] = $this->collection->title;
         }
 
