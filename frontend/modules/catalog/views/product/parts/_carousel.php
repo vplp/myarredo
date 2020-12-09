@@ -28,13 +28,13 @@ $images = $model->getGalleryImageThumb();
                     Html::tag('link', '', ['itemprop' => 'contentUrl', 'href' => $src['img']]) .
                     Html::tag('meta', '', ['itemprop' => 'description', 'content' => strip_tags($model['lang']['description'])]) .
                     Html::a(
-                        Html::img($src['thumb'], ['alt' => $model->getImageAlt()]),
+                        Html::img($src['thumb'], ['alt' => Product::getImageAlt($model)]),
                         $src['img'],
                         [
                             'class' => 'img-cont fancyimage',
                             'data-fancybox-group' => 'group',
                             'data-dominant-color' => '',
-                            'data-alt' => $model->getImageAlt()
+                            'data-alt' => Product::getImageAlt($model)
                         ]
                     ) .
                     Html::tag('span', '', ['class' => 'background']) .
@@ -53,7 +53,7 @@ $images = $model->getGalleryImageThumb();
                             'class' => 'img-cont fancyimage',
                             'data-fancybox-group' => 'group',
                             'data-dominant-color' => '',
-                            'data-alt' => $model->getImageAlt()
+                            'data-alt' => Product::getImageAlt($model)
                         ]
                     ) .
                     Html::tag('span', '', ['class' => 'background']) .
