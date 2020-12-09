@@ -10564,6 +10564,9 @@ body .concact-page .one-cont .cont-info-row a {
   padding: 2px 5px;
   margin-top: 2px;
 }
+.fancybox-nav span {
+  visibility: visible;
+}
 
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
