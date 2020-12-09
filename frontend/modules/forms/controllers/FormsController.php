@@ -41,8 +41,6 @@ class FormsController extends BaseController
 
     /**
      * @return array
-     * @throws \Throwable
-     * @throws \yii\base\InvalidConfigException
      */
     public function actionAjaxGetFormFeedback()
     {
@@ -58,8 +56,9 @@ class FormsController extends BaseController
             return ['success' => 1, 'html' => $html];
         }
     }
+
     /**
-     * @return string|\yii\web\Response
+     * @return string|Response
      */
     public function actionFeedback()
     {
@@ -116,7 +115,7 @@ class FormsController extends BaseController
     }
 
     /**
-     * @return string|\yii\web\Response
+     * @return Response
      */
     public function actionFeedbackPartner()
     {

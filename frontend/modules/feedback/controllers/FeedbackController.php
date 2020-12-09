@@ -5,7 +5,6 @@ namespace frontend\modules\feedback\controllers;
 use Yii;
 use yii\helpers\Url;
 use yii\filters\VerbFilter;
-//
 use frontend\components\BaseController;
 use frontend\modules\feedback\models\{
     Group, Question

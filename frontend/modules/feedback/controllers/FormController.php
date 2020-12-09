@@ -6,7 +6,6 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\base\Exception;
 use yii\log\Logger;
-//
 use frontend\components\BaseController;
 use frontend\modules\feedback\models\Question;
 
@@ -34,14 +33,6 @@ class FormController extends BaseController
                 ],
             ],
         ];
-    }
-
-    /**
-     *
-     */
-    public function actionIndex()
-    {
-
     }
 
     /**

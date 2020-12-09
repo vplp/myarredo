@@ -4,6 +4,7 @@ use yii\helpers\{
     Html, Url
 };
 use frontend\modules\user\widgets\partner\PartnerMap;
+use frontend\modules\forms\widgets\FormFeedback;
 
 $this->title = $this->context->title;
 ?>
@@ -17,6 +18,10 @@ $this->title = $this->context->title;
                 <div class="map-cont">
 
                     <?= PartnerMap::widget([]) ?>
+
+                    <?php if (in_array(DOMAIN_TYPE, ['com', 'de'])) {
+                        echo FormFeedback::widget(['view' => 'form_become_partner']);
+                    } ?>
 
                     <?= Html::a(
                         Yii::t('app', 'Вернуться назад'),
