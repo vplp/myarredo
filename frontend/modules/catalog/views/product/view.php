@@ -215,7 +215,7 @@ $this->title = $this->context->title;
                                         </tr>
                                     <?php } ?>
 
-                                    <?php if ($model['collection']) { ?>
+                                    <?php if (isset($model['collection'])) { ?>
                                         <tr>
                                             <td><?= Yii::t('app', 'Коллекция') ?></td>
                                             <td>
