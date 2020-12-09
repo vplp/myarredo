@@ -181,14 +181,6 @@ class Order extends OrderModel
                 $IDs[] = $item['product_id'];
             }
 
-            $session = Yii::$app->session;
-            $order->order_first_url_visit = $session->get('order_first_url_visit');
-            $order->order_count_url_visit = $session->get('order_count_url_visit');
-            $order->order_mobile = Yii::$app->getModule('catalog')->isMobileDevice();
-
-            $session->remove('order_first_url_visit');
-            $session->remove('order_count_url_visit');
-
             foreach ($cart->items as $cartItem) {
                 if (!in_array($cartItem['product_id'], $IDs)) {
                     $orderItem = new OrderItem();
@@ -207,6 +199,15 @@ class Order extends OrderModel
             }
 
             $order->scenario = 'addNewOrder';
+
+            $session = Yii::$app->session;
+            $order->order_first_url_visit = $session->get('order_first_url_visit');
+            $order->order_count_url_visit = $session->get('order_count_url_visit');
+            $order->order_mobile = Yii::$app->getModule('shop')->isMobileDevice();
+
+            //$session->remove('order_first_url_visit');
+            //$session->remove('order_count_url_visit');
+
             $order->save();
 
             return $order;
@@ -243,10 +244,10 @@ class Order extends OrderModel
         $session = Yii::$app->session;
         $order->order_first_url_visit = $session->get('order_first_url_visit');
         $order->order_count_url_visit = $session->get('order_count_url_visit');
-        $order->order_mobile = Yii::$app->getModule('catalog')->isMobileDevice();
+        $order->order_mobile = Yii::$app->getModule('shop')->isMobileDevice();
 
-        $session->remove('order_first_url_visit');
-        $session->remove('order_count_url_visit');
+        //$session->remove('order_first_url_visit');
+        //$session->remove('order_count_url_visit');
 
         $order->generateToken();
         /** @var PDO $transaction */

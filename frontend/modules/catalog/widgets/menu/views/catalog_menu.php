@@ -101,7 +101,7 @@ use frontend\modules\catalog\models\Category;
         ) ?>
     </li>
 
-    <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) { ?>
+    <?php if (!in_array(DOMAIN_TYPE, ['kz'])) { ?>
         <li <?= (Yii::$app->controller->id == 'contacts') ? ' class="has-list"' : '' ?>>
             <?= Html::a(
                 Yii::t('app', 'Где купить'),

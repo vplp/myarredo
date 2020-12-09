@@ -1,6 +1,6 @@
 <?php
 
-return [
+$urls = [
     'gii' => 'gii',
     '<_m:debug>/<_c:\w+>/<_a:\w+>/' => '<_m>/<_c>/<_a>',
     [
@@ -281,3 +281,9 @@ return [
 
     'seo/metrics/ajax-get-metrics' => 'seo/metrics/ajax-get-metrics'
 ];
+
+if (in_array(DOMAIN_TYPE, ['de', 'com'])) {
+    $urls['contacts'] = 'page/contacts/list-partners';
+}
+
+return $urls;
