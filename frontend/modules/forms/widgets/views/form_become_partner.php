@@ -15,11 +15,12 @@ $model->user_agreement = 1;
 
 ?>
 
-<div class="container large-container">
+<div>
     <div class="row">
-        <div class="col-sm-6 col-md-6">
+        <div class="col-sm-12 col-md-4"></div>
+        <div class="col-sm-12 col-md-4">
 
-            <div class="feedback-title"><?= Yii::t('app', 'Хотите стать нашим партнером? Оправте заявку'); ?>:</div>
+            <h3 class="feedback-title"><?= Yii::t('app', 'Хотите стать нашим партнером? Оправте заявку'); ?>:</h3>
 
             <?php $form = ActiveForm::begin([
                 'method' => 'post',
@@ -73,5 +74,6 @@ $model->user_agreement = 1;
             <?php ActiveForm::end(); ?>
 
         </div>
+        <div class="col-sm-12 col-md-4"></div>
     </div>
 </div>
