@@ -10975,6 +10975,9 @@ body .concact-page .one-cont .cont-info-row a {
     overflow: auto;
     z-index: 999;
   }
+  .rec-slider-wrap.novetly-sliderbox {
+    display: none;
+  }
 }
 @media (max-width: 767px) {
   .factory-page .text iframe {
