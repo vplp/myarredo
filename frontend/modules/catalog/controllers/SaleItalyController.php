@@ -114,7 +114,7 @@ class SaleItalyController extends BaseController
 
         $queryParams = Yii::$app->catalogFilter->params;
 
-        $queryParams['defaultPageSize'] = 60;
+        $queryParams['defaultPageSize'] = 48;
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         Yii::$app->metatag
