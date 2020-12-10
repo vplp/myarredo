@@ -87,7 +87,7 @@ class CategoryController extends BaseController
         $keys = Yii::$app->catalogFilter->keys;
         $queryParams = Yii::$app->catalogFilter->params;
 
-        $queryParams['defaultPageSize'] = 33;
+        $queryParams['defaultPageSize'] = 60;
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         Yii::$app->metatag
