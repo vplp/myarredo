@@ -47,6 +47,11 @@ class ProductsNovelties extends Widget
      */
     public $modelLangClass = null;
 
+     /**
+     * @var object
+     */
+    public $sliderData = [];
+
     /**
      * @var object
      */
@@ -131,6 +136,26 @@ class ProductsNovelties extends Widget
 
             $this->modelsPromotions = $query->all();
         }
+
+        // Ready data for front
+        foreach ($this->modelsPromotions as $model) { 
+            $this->sliderData[] = array(
+                'href' => $modelPromotionItemClass::getUrl($model[Yii::$app->languages->getDomainAlias()]),
+                'src' => $modelPromotionItemClass::getImageThumb($model['image_link']),
+                'text' => $model['lang']['title'],
+                'percent' => 'vip',
+                'bestseller' => 0
+            );
+        }
+        foreach ($this->models as $model) { 
+            $this->sliderData[] = array(
+                'href' => $modelClass::getUrl($model[Yii::$app->languages->getDomainAlias()]),
+                'src' => $modelClass::getImageThumb($model['image_link']),
+                'text' => $model['lang']['title'],
+                'percent' => $modelClass::getSavingPrice($model) ? $modelClass::getSavingPercentage($model) : '',
+                'bestseller' => $model['bestseller'] ? 1 : 0
+            );
+        }
     }
 
     /**
@@ -142,10 +167,8 @@ class ProductsNovelties extends Widget
             return $this->render(
                 $this->view,
                 [
-                    'promotions' => $this->modelsPromotions,
-                    'modelPromotionItemClass' => $this->modelPromotionItemClass,
                     'products' => $this->models,
-                    'modelClass' => $this->modelClass,
+                    'sliderData' => json_encode($this->sliderData)
                 ]
             );
         }

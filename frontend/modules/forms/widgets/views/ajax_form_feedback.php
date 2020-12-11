@@ -38,7 +38,8 @@ echo Html::a(
         'class' => 'btn btn-feedback',
     ]
 );
-
+?>
+<?php
 $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
 
 $script = <<<JS
@@ -55,3 +56,4 @@ $(document).on('click', '.btn-feedback, .feedback-container, .block-rightbox-tex
 JS;
 
 $this->registerJs($script);
+?>

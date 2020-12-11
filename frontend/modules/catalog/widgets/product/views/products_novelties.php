@@ -11,72 +11,46 @@ if (!empty($products) || !empty($promotions)) { ?>
     <div class="rec-slider-wrap novetly-sliderbox">
         <div class="container large-container">
             <div class="row">
-                <div class="std-slider" id="rec-slider">
-
-                    <?php foreach ($promotions as $model) { ?>
-                        <div class="item" data-dominant-color>
-                            <?= Html::beginTag(
-                                'a',
-                                [
-                                    'href' => $modelPromotionItemClass::getUrl($model[Yii::$app->languages->getDomainAlias()]),
-                                    'class' => 'tile',
-                                    'target' => '_blank'
-                                ]
-                            ) ?>
-
-                            <div class="prod-saving-percentage">vip</div>
-
-                            <div class="img-cont">
-                                <?= Html::img($modelPromotionItemClass::getImageThumb($model['image_link'])) ?>
-                                <span class="background"></span>
-                            </div>
-
-                            <div class="add-item-text">
-                                <?= $model['lang']['title'] ?>
-                            </div>
-
-                            <?= Html::endTag('a') ?>
-
-                        </div>
-
-                    <?php } ?>
-
-                    <?php foreach ($products as $model) { ?>
-                        <div class="item" data-dominant-color>
-                            <?= Html::beginTag(
-                                'a',
-                                [
-                                    'href' => $modelClass::getUrl($model[Yii::$app->languages->getDomainAlias()]),
-                                    'class' => 'tile',
-                                    'target' => '_blank'
-                                ]
-                            ) ?>
-
-                            <?php if ($model['bestseller']) { ?>
-                                <div class="prod-bestseller"><?= Yii::t('app', 'Bestseller') ?></div>
-                            <?php } ?>
-
-                            <?php if ($modelClass::getSavingPrice($model)) { ?>
-                                <div class="prod-saving-percentage"><?= $modelClass::getSavingPercentage($model) ?></div>
-                            <?php } ?>
-
-                            <div class="img-cont">
-                                <?= Html::img($modelClass::getImageThumb($model['image_link'])) ?>
-                                <span class="background"></span>
-                            </div>
-
-                            <div class="add-item-text">
-                                <?= $model['lang']['title'] ?>
-                            </div>
-
-                            <?= Html::endTag('a') ?>
-
-                        </div>
-
-                    <?php } ?>
-
-                </div>
+                <div class="std-slider novoslider" id="rec-slider"></div>
             </div>
         </div>
     </div>
-<?php }
+<?php } ?>
+
+<?php
+$bestsellertext = Yii::t('app', 'Bestseller');
+$script = <<< JS
+console.time('speed novetly slider js');
+
+var sliderData = $sliderData;
+var bestselerText = "$bestsellertext";
+
+var sliderLayout = '';
+
+if (window.screen.width >= 768) {
+    sliderData.forEach(function(elem, i) {
+        var bestseler = elem.bestseller ? '<div class="prod-bestseller">'+ bestselerText +'</div>' : '';
+
+        sliderLayout += '' +
+        '<div class="item" data-dominant-color>' +
+            '<a class="tile" href="'+ elem.href +'" target="_blank">' +
+                bestseler +
+                '<div class="prod-saving-percentage">'+ elem.percent +'</div>' +
+                '<div class="img-cont">' +
+                    '<img src="'+ elem.src +'" alt="">' +                               
+                    '<span class="background"></span>' +
+                '</div>' +
+                '<div class="add-item-text">' +
+                    elem.text +                      
+                '</div>' +
+            '</a>' +
+        '</div>';
+    });
+
+    $('.novoslider').html(sliderLayout);
+}
+
+console.timeEnd('speed novetly slider js');
+JS;
+$this->registerJs($script, yii\web\View::POS_READY);
+?>
