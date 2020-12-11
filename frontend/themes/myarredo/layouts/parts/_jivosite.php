@@ -4,7 +4,21 @@ use yii\web\View;
 
 /** @var $this \yii\web\View */
 
-if (Yii::$app->getUser()->isGuest && DOMAIN_TYPE == 'ru' &&
+?>
+
+<?php if (DOMAIN_TYPE == 'com') { ?>
+    <script src="//code.jivosite.com/widget/j8ehoc0YLd" async></script>
+<?php } ?>
+
+<?php if (in_array(Yii::$app->city->getCityId(), [5]) && Yii::$app->getUser()->isGuest) { ?>
+    <script src="//code.jivosite.com/widget/yG6Q733QpB" async></script>
+<?php } ?>
+
+<?php if (in_array(Yii::$app->city->getCityId(), [38])) { ?>
+    <script src="//code-ya.jivosite.com/widget/BCBRXDDEBZ" async></script>
+<?php } ?>
+
+<?php if (Yii::$app->getUser()->isGuest && DOMAIN_TYPE == 'ru' &&
     !in_array(Yii::$app->controller->id, ['sale', 'sale-italy']) &&
     !in_array(Yii::$app->controller->module->id, ['user']) &&
     in_array(Yii::$app->city->getCityId(), [28])
