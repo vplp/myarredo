@@ -3,7 +3,6 @@
 use yii\helpers\{
     Html, Url
 };
-//
 use frontend\modules\location\models\{
     Country, City
 };
@@ -30,7 +29,7 @@ use frontend\modules\location\models\{
 
         echo Html::a(
             $cityCountry['lang']['title'],
-            $url,
+            $this->renderDynamic($url),
             ['rel' => 'nofollow']
         );
         echo Html::endTag('li');
