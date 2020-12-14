@@ -56,7 +56,10 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                                     <?= Yii::$app->city->getCountryTitle() ?> | <?= Yii::$app->city->getCitytitle() ?>
                                 </a>
                                 <div class="city-list-cont">
-                                    <?= ChangeCity::widget() ?>
+                                    <?php if ($this->beginCache('ChangeCityWidget' . DOMAIN_TYPE, ['duration' => 7200])) {
+                                        echo ChangeCity::widget();
+                                        $this->endCache();
+                                    } ?>
                                 </div>
                             </div>
                         <?php } ?>
@@ -206,7 +209,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                         Yii::$app->user->identity->group->role == 'factory'
                     )) {
                 } else { ?>
-                    <?php if ($this->beginCache('CatalogMenuWidget' . Yii::$app->city->getCityId(), ['duration' => 7200])) {
+                    <?php if ($this->beginCache('CatalogMenuWidget' . DOMAIN_TYPE, ['duration' => 7200])) {
                         echo CatalogMenu::widget([]);
                         $this->endCache();
                     } ?>
@@ -269,7 +272,10 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                 </span>
                     <span class="for-adress-icon"><?= Yii::$app->city->getCitytitle() ?></span>
                 </div>
-                <?= ChangeCity::widget(['view' => 'select_city_mobile']) ?>
+                <?php if ($this->beginCache('ChangeCityMobileWidget' . DOMAIN_TYPE, ['duration' => 7200])) {
+                    echo ChangeCity::widget(['view' => 'select_city_mobile']);
+                    $this->endCache();
+                } ?>
             </div>
         <?php } ?>
 
@@ -298,7 +304,6 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                 <a href="<?= Url::toRoute(['/catalog/factory/list']) ?>" class="mob-fabrics-link">
                     <span class="for-mobmenu-fabicon"><i class="fa fa-industry" aria-hidden="true"></i></span>
                     <span class="for-mobmenu-fabtext"><?= Yii::t('app', 'Фабрики') ?></span>
-
                 </a>
             </div>
         </div>
@@ -387,7 +392,10 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             echo UserMenu::widget(['view' => 'user_menu_mobile']);
         } else {
             echo UserMenu::widget(['view' => 'user_menu_mobile']);
-            echo CatalogMenu::widget(['view' => 'catalog_menu_mobile']);
+            if ($this->beginCache('CatalogMenuMobileWidget' . DOMAIN_TYPE, ['duration' => 7200])) {
+                echo CatalogMenu::widget(['view' => 'catalog_menu_mobile']);
+                $this->endCache();
+            }
         } ?>
 
     </div>

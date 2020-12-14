@@ -51,7 +51,7 @@ $bundle = AppAsset::register($this);
         <?php
         if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
         } else if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
-            if ($this->beginCache('CitiesWidget' . Yii::$app->city->getCityId(), ['duration' => 7200])) {
+            if ($this->beginCache('CitiesWidget' . DOMAIN_TYPE, ['duration' => 7200])) {
                 echo Cities::widget();
                 $this->endCache();
             }
