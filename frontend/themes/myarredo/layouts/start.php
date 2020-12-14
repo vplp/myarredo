@@ -26,10 +26,7 @@ $bundle = AppAsset::register($this);
         <!-- container-wrap -->
         <div class="container-wrap">
 
-            <?php if ($this->beginCache('BannerList' . DOMAIN_TYPE, ['duration' => 60 * 15])) {
-                echo BannerList::widget(['type' => 'main', 'city_id' => Yii::$app->city->getCityId()]);
-                $this->endCache();
-            } ?>
+            <?= BannerList::widget(['type' => 'main', 'city_id' => Yii::$app->city->getCityId()]); ?>
 
             <!-- best-price -->
             <div class="best-price">
