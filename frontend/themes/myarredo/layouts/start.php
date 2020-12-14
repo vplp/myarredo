@@ -26,7 +26,10 @@ $bundle = AppAsset::register($this);
         <!-- container-wrap -->
         <div class="container-wrap">
 
-            <?= BannerList::widget(['type' => 'main', 'city_id' => Yii::$app->city->getCityId()]); ?>
+            <?php if ($this->beginCache('BannerList' . DOMAIN_TYPE, ['duration' => 60 * 15])) {
+                echo BannerList::widget(['type' => 'main', 'city_id' => Yii::$app->city->getCityId()]);
+                $this->endCache();
+            } ?>
 
             <!-- best-price -->
             <div class="best-price">
@@ -110,8 +113,7 @@ $bundle = AppAsset::register($this);
             </div>
             <!-- end best-price -->
 
-            <?php if ($this->beginCache('Start' . Yii::$app->city->getCityId(), ['duration' => 7200])) { ?>
-
+            <?php if ($this->beginCache('Start' . DOMAIN_TYPE, ['duration' => 7200])) { ?>
                 <div class="categories-sect">
                     <div class="container large-container">
                         <div class="section-header">

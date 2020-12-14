@@ -212,29 +212,32 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                     } ?>
 
                     <div class="search-cont">
-                        <?php $form = ActiveForm::begin([
-                            'action' => ['/catalog/elastic-search/search'],
-                            'method' => 'get',
-                            'options' => ['class' => 'form-inline'],
-                        ]); ?>
+                        <?php if ($this->beginCache('ElasticSearch' . DOMAIN_TYPE, ['duration' => 7200])) {
+                            $form = ActiveForm::begin([
+                                'action' => ['/catalog/elastic-search/search'],
+                                'method' => 'get',
+                                'options' => ['class' => 'form-inline'],
+                            ]); ?>
 
-                        <div class="search-group">
-                            <?= Html::input(
-                                'text',
-                                'search',
-                                null,
-                                [
-                                    'class' => 'form-control input-md',
-                                    'placeholder' => Yii::t('app', 'Поиск'),
-                                ]
-                            ) ?>
-                            <?= Html::submitButton(
-                                '<i class="fa fa-search" aria-hidden="true"></i>',
-                                ['class' => 'search-button']
-                            ) ?>
-                        </div>
+                            <div class="search-group">
+                                <?= Html::input(
+                                    'text',
+                                    'search',
+                                    null,
+                                    [
+                                        'class' => 'form-control input-md',
+                                        'placeholder' => Yii::t('app', 'Поиск'),
+                                    ]
+                                ) ?>
+                                <?= Html::submitButton(
+                                    '<i class="fa fa-search" aria-hidden="true"></i>',
+                                    ['class' => 'search-button']
+                                ) ?>
+                            </div>
 
-                        <?php ActiveForm::end(); ?>
+                            <?php ActiveForm::end();
+                            $this->endCache();
+                        } ?>
                     </div>
                 <?php } ?>
             </div>
@@ -320,25 +323,29 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
         </div>
     </div>
     <div class="mobmenu-serch-part">
-        <?php $form = ActiveForm::begin(['action' => ['/catalog/elastic-search/search'],
-            'method' => 'get',
-            'options' => ['class' => 'mobsearch-form'],]); ?>
+        <?php
+        if ($this->beginCache('ElasticSearchMobile' . DOMAIN_TYPE, ['duration' => 7200])) {
+            $form = ActiveForm::begin(['action' => ['/catalog/elastic-search/search'],
+                'method' => 'get',
+                'options' => ['class' => 'mobsearch-form'],]); ?>
 
-        <div class="mobsearch-group">
-            <?= Html::input(
-                'text',
-                'search',
-                null,
-                ['class' => 'form-control mobsearch-fld',
-                    'placeholder' => Yii::t('app', 'Поиск'),]
-            ) ?>
-            <?= Html::submitButton(
-                '<i class="fa fa-search" aria-hidden="true"></i>',
-                ['class' => 'btn-mobsearch']
-            ) ?>
-        </div>
+            <div class="mobsearch-group">
+                <?= Html::input(
+                    'text',
+                    'search',
+                    null,
+                    ['class' => 'form-control mobsearch-fld',
+                        'placeholder' => Yii::t('app', 'Поиск'),]
+                ) ?>
+                <?= Html::submitButton(
+                    '<i class="fa fa-search" aria-hidden="true"></i>',
+                    ['class' => 'btn-mobsearch']
+                ) ?>
+            </div>
 
-        <?php ActiveForm::end(); ?>
+            <?php ActiveForm::end();
+            $this->endCache();
+        } ?>
     </div>
 
     <div class="mobile-menu js-mobile-menu">
