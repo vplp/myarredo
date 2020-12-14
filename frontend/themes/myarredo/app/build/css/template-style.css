@@ -405,7 +405,12 @@ h1 {
           padding: 0;
           display: flex;
           align-items: center;
-          line-height: 14px; }
+          line-height: 14px; 
+          transition: 0.3s;
+        }
+        .header .bot-header .navigation .list-level a:hover {
+          color: #448339;
+        }
           .header .bot-header .navigation .list-level a:before {
             display: none; }
         .header .bot-header .navigation .list-level .count {
