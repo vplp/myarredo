@@ -13,10 +13,11 @@ use frontend\modules\sys\widgets\lang\LangSwitch;
 use frontend\modules\location\widgets\ChangeCurrency;
 
 $bundle = AppAsset::register($this);
+$url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
 
 ?>
 
-<div class="footer">
+<div class="footer jsftr" data-url="<?= $url; ?>">
     <div class="container-wrap">
 
         <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz']) && !in_array(Yii::$app->controller->id, ['sale'])) { ?>

@@ -35,25 +35,6 @@ echo Html::a(
     ,
     null,
     [
-        'class' => 'btn btn-feedback',
+        'class' => 'btn btn-feedback'
     ]
 );
-?>
-<?php
-$url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
-
-$script = <<<JS
-$(document).on('click', '.btn-feedback, .feedback-container, .block-rightbox-text>a', function() {
-    $.post('$url', {_csrf: $('#token').val()}, function(data){
-        $('#ajaxFormFeedbackModal').html(data.html); 
-        interPhoneInit();
-        $('#ajaxFormFeedbackModal').modal(); 
-        setTimeout(function() {
-            feedbackFormElInit();
-        },100);
-    });
-});
-JS;
-
-$this->registerJs($script);
-?>

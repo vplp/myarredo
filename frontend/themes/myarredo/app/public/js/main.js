@@ -1679,4 +1679,35 @@ $(document).ready(function () {
     });
     // ===end Custom Galery Image Viewer
 
+    // Форма обратной связи 
+    $(document).on('click', '.btn-feedback, .feedback-container, .block-rightbox-text>a', function() {
+        var thisUrl = $('.jsftr').attr('data-url');
+        $.ajax({
+            type: 'POST',
+            url: thisUrl,
+            data: {
+                '_csrf' : $('#token').val()
+            },
+            success: function(resp) {
+                $('#ajaxFormFeedbackModal').html(resp.html); 
+                interPhoneInit();
+                $('#ajaxFormFeedbackModal').modal(); 
+                setTimeout(function() {
+                    feedbackFormElInit();
+                },100);
+            },
+            error: function(err) {
+                console.log(err.statusText);
+            }
+        });
+        // $.post('$url', {_csrf: $('#token').val()}, function(data){
+        //     $('#ajaxFormFeedbackModal').html(data.html); 
+        //     interPhoneInit();
+        //     $('#ajaxFormFeedbackModal').modal(); 
+        //     setTimeout(function() {
+        //         feedbackFormElInit();
+        //     },100);
+        // });
+    });
+
 });
