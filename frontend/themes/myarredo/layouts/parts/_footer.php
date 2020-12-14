@@ -25,7 +25,10 @@ $bundle = AppAsset::register($this);
                     <?php if (!in_array(Yii::$app->controller->id, ['sale-italy'])) {
                         echo PartnerInfo::widget();
                     } else {
-                        echo FormFeedback::widget(['view' => 'form_feedback_sale_italy']);
+                        if ($this->beginCache('FormFeedbackSaleItaly' . Yii::$app->city->getCityId(), ['duration' => 7200])) {
+                            echo FormFeedback::widget(['view' => 'form_feedback_sale_italy']);
+                            $this->endCache();
+                        }
                     } ?>
                 </div>
 
@@ -182,6 +185,7 @@ $bundle = AppAsset::register($this);
         "https://www.instagram.com/my_arredo_family/"
     ]
 }
+
 
 
 </script>
