@@ -206,13 +206,13 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                         Yii::$app->user->identity->group->role == 'factory'
                     )) {
                 } else { ?>
-                    <?php if ($this->beginCache('CatalogMenuWidget' . DOMAIN_TYPE, ['duration' => 7200])) {
+                    <?php if ($this->beginCache('CatalogMenuWidget' . Yii::$app->city->getCityId(), ['duration' => 7200])) {
                         echo CatalogMenu::widget([]);
                         $this->endCache();
                     } ?>
 
                     <div class="search-cont">
-                        <?php if ($this->beginCache('ElasticSearch' . DOMAIN_TYPE, ['duration' => 7200])) {
+                        <?php if ($this->beginCache('ElasticSearch' . Yii::$app->city->getCityId(), ['duration' => 7200])) {
                             $form = ActiveForm::begin([
                                 'action' => ['/catalog/elastic-search/search'],
                                 'method' => 'get',
@@ -324,7 +324,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
     </div>
     <div class="mobmenu-serch-part">
         <?php
-        if ($this->beginCache('ElasticSearchMobile' . DOMAIN_TYPE, ['duration' => 7200])) {
+        if ($this->beginCache('ElasticSearchMobile' . Yii::$app->city->getCityId(), ['duration' => 7200])) {
             $form = ActiveForm::begin(['action' => ['/catalog/elastic-search/search'],
                 'method' => 'get',
                 'options' => ['class' => 'mobsearch-form'],]); ?>
@@ -393,7 +393,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             echo UserMenu::widget(['view' => 'user_menu_mobile']);
         } else {
             echo UserMenu::widget(['view' => 'user_menu_mobile']);
-            if ($this->beginCache('CatalogMenuMobileWidget' . DOMAIN_TYPE, ['duration' => 7200])) {
+            if ($this->beginCache('CatalogMenuMobileWidget' . Yii::$app->city->getCityId(), ['duration' => 7200])) {
                 echo CatalogMenu::widget(['view' => 'catalog_menu_mobile']);
                 $this->endCache();
             }
