@@ -51,10 +51,10 @@ $bundle = AppAsset::register($this);
         <?php
         if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
         } else if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
-            if ($this->beginCache('Cities' . Yii::$app->city->getCityId(), ['duration' => 7200])) {
+            //if ($this->beginCache('Cities' . Yii::$app->city->getCityId(), ['duration' => 7200])) {
                 echo Cities::widget();
                 $this->endCache();
-            }
+            //}
         } ?>
 
         <div class="footer-navpanel">

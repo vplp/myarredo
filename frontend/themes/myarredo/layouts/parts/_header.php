@@ -206,10 +206,10 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                         Yii::$app->user->identity->group->role == 'factory'
                     )) {
                 } else { ?>
-                    <?php if ($this->beginCache('CatalogMenu' . Yii::$app->city->getCityId(), ['duration' => 7200])) {
+                    <?php //if ($this->beginCache('CatalogMenu' . Yii::$app->city->getCityId(), ['duration' => 7200])) {
                         echo CatalogMenu::widget([]);
-                        $this->endCache();
-                    } ?>
+                        //$this->endCache();
+                    //} ?>
 
                     <div class="search-cont">
                         <?php $form = ActiveForm::begin([
