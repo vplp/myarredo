@@ -91,61 +91,63 @@ $bundle = AppAsset::register($this);
 
                     </div>
 
-                    <ul class="nav ftr-nav">
-                        <li><?= FormFeedback::widget(['view' => 'ajax_form_feedback']); ?></li>
-                        <?php if (in_array(Yii::$app->language, ['ru-RU', 'uk-UA'])) { ?>
-                            <li>
-                                <?= Html::a(
-                                    Yii::t('app', 'Стать главным партнером в городе') . '<i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
-                                    'https://www.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . '/uploads/myarredofamily-for-partners.pdf',
-                                    ['class' => 'btn btn-gopartner click-on-become-partner', 'target' => '_blank']
-                                ); ?>
-                            </li>
-                        <?php } ?>
-                    </ul>
-
-                    <div class="menu-items">
-
-                        <?php
-                        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
-                            echo '';
-                        } elseif (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
-                            echo Menu::widget(['alias' => 'footer']);
-                        } elseif (in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
-                            echo Menu::widget(['alias' => 'footer-com']);
-                        } ?>
-
-                    </div>
-                    <div class="soc-copy">
-                        <div class="social">
-                            <a href="https://www.facebook.com/Myarredo/" target="_blank" rel="nofollow">
-                                <i class="fa fa-facebook" aria-hidden="true"></i>
-                            </a>
-                            <a href="https://www.instagram.com/my_arredo_family/" target="_blank" rel="nofollow">
-                                <i class="fa fa-instagram" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                        <div class="copyright">
-
-                            <?php if (DOMAIN_TYPE == 'by') { ?>
-                                2013 - <?= date('Y'); ?> (с)
-                                <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_BY')); ?>
-                                <br>
-                            <?php } elseif (DOMAIN_TYPE == 'ua') { ?>
-                                2013 - <?= date('Y'); ?> (с)
-                                <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_UA')); ?>
-                                <br>
-                            <?php } else { ?>
-                                2013 - <?= date('Y'); ?> (с)
-                                <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_RU')); ?>
-                                <br>
+                    <?php if ($this->beginCache('Footer' . DOMAIN_TYPE, ['duration' => 7200])) { ?>
+                        <ul class="nav ftr-nav">
+                            <li><?= FormFeedback::widget(['view' => 'ajax_form_feedback']); ?></li>
+                            <?php if (in_array(Yii::$app->language, ['ru-RU', 'uk-UA'])) { ?>
+                                <li>
+                                    <?= Html::a(
+                                        Yii::t('app', 'Стать главным партнером в городе') . '<i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                                        'https://www.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . '/uploads/myarredofamily-for-partners.pdf',
+                                        ['class' => 'btn btn-gopartner click-on-become-partner', 'target' => '_blank']
+                                    ); ?>
+                                </li>
                             <?php } ?>
+                        </ul>
 
-                            <?= Yii::t('app', 'Программирование сайта') ?> -
-                            <a href="http://www.vipdesign.com.ua/" rel="nofollow">VipDesign</a>
-
+                        <div class="menu-items">
+                            <?php
+                            if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
+                                echo '';
+                            } elseif (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
+                                echo Menu::widget(['alias' => 'footer']);
+                            } elseif (in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
+                                echo Menu::widget(['alias' => 'footer-com']);
+                            } ?>
                         </div>
-                    </div>
+                        <div class="soc-copy">
+                            <div class="social">
+                                <a href="https://www.facebook.com/Myarredo/" target="_blank" rel="nofollow">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://www.instagram.com/my_arredo_family/" target="_blank" rel="nofollow">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="copyright">
+
+                                <?php if (DOMAIN_TYPE == 'by') { ?>
+                                    2013 - <?= date('Y'); ?> (с)
+                                    <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_BY')); ?>
+                                    <br>
+                                <?php } elseif (DOMAIN_TYPE == 'ua') { ?>
+                                    2013 - <?= date('Y'); ?> (с)
+                                    <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_UA')); ?>
+                                    <br>
+                                <?php } else { ?>
+                                    2013 - <?= date('Y'); ?> (с)
+                                    <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_RU')); ?>
+                                    <br>
+                                <?php } ?>
+
+                                <?= Yii::t('app', 'Программирование сайта') ?> -
+                                <a href="http://www.vipdesign.com.ua/" rel="nofollow">VipDesign</a>
+
+                            </div>
+                        </div>
+                        <?php
+                        $this->endCache();
+                    } ?>
                 </div>
             </div>
         </div>
@@ -180,5 +182,6 @@ $bundle = AppAsset::register($this);
         "https://www.instagram.com/my_arredo_family/"
     ]
 }
+
 
 </script>
