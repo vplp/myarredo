@@ -53,7 +53,7 @@ $bundle = AppAsset::register($this);
         } else if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
             //if ($this->beginCache('Cities' . Yii::$app->city->getCityId(), ['duration' => 7200])) {
                 echo Cities::widget();
-                $this->endCache();
+                //$this->endCache();
             //}
         } ?>
 
