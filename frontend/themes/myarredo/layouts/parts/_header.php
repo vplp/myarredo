@@ -56,10 +56,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                                     <?= Yii::$app->city->getCountryTitle() ?> | <?= Yii::$app->city->getCitytitle() ?>
                                 </a>
                                 <div class="city-list-cont">
-                                    <?php if ($this->beginCache('ChangeCityWidget' . DOMAIN_TYPE, ['duration' => 7200])) {
-                                        echo ChangeCity::widget();
-                                        $this->endCache();
-                                    } ?>
+                                    <?= ChangeCity::widget(); ?>
                                 </div>
                             </div>
                         <?php } ?>
@@ -272,10 +269,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                 </span>
                     <span class="for-adress-icon"><?= Yii::$app->city->getCitytitle() ?></span>
                 </div>
-                <?php if ($this->beginCache('ChangeCityMobileWidget' . DOMAIN_TYPE, ['duration' => 7200])) {
-                    echo ChangeCity::widget(['view' => 'select_city_mobile']);
-                    $this->endCache();
-                } ?>
+                <?= ChangeCity::widget(['view' => 'select_city_mobile']); ?>
             </div>
         <?php } ?>
 
