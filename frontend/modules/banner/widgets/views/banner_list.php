@@ -11,8 +11,8 @@ $presentData = array();
 if (!empty($items)) { ?>
         <?php foreach ($items as $model) {
             $presentData[] = array(
-                'langLink' => $model['lang']['link'],
-                'langDescr' => $model['lang']['description'],
+                'langLink' => $model['lang']['link'] ?? '',
+                'langDescr' => $model['lang']['description'] ?? '',
                 'imgLinkDsktp' => $model->getImageLink(),
                 'imgLinkMob' => $model->getImageThumb()
             );
