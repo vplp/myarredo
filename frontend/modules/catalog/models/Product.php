@@ -60,19 +60,13 @@ class Product extends \common\modules\catalog\models\Product
         $query = self::find()
             ->innerJoinWith(['lang', 'factory'])
             ->andFilterWhere([
-                //Product::tableName() . '.removed' => '0',
+                Product::tableName() . '.removed' => '0',
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
                 Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
             ])
             ->enabled()
             ->orderBy(self::tableName() . '.updated_at DESC');
-
-        if (Yii::$app->controller->id != 'product') {
-            $query->andFilterWhere([
-                Product::tableName() . '.removed' => '0'
-            ]);
-        }
 
         return $query;
     }
