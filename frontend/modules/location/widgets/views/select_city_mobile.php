@@ -29,7 +29,7 @@ use frontend\modules\location\models\{
 
         echo Html::a(
             $cityCountry['lang']['title'],
-            $this->renderDynamic($url),
+            $url,
             ['rel' => 'nofollow']
         );
 
