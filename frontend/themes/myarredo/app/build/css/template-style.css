@@ -737,7 +737,7 @@ h1 {
     left: -3px;
   }
   /* --------------Стили для новогоднего украшения логотипа (для применения раскоментировать)-------------- */
-  /* .header .logo {
+  .header .logo {
     position: relative;
   }
   .header .logo:after {
@@ -753,6 +753,7 @@ h1 {
     top: 11px;
     left: 0;
     z-index: 6;
+    pointer-events: none;
   }
   .mobile-header .logo {
     position: relative;
@@ -767,13 +768,14 @@ h1 {
     background-position: center center;
     background-size: contain;
     position: absolute;
-    top: 11px;
-    left: 0;
+    top: 35px;
+    left: -64px;
     z-index: 1;
+    pointer-events: none;
   }
   .mobile-header .phone-container {
     margin-top: 10px;
-  } */
+  }
    /* ----------------конец Стили для новогоднего украшения логотипа----------------- */
 
    .mobile-header.open {
@@ -3233,10 +3235,12 @@ h1 {
       padding: 12px; }
     .sale-page .brand-info .image-container {
       border-bottom: 1px solid #BDBCB3; }
-      .sale-page .brand-info .image-container img {
-        display: block;
-        max-width: 100%;
-        height: auto; }
+    .sale-page .brand-info .image-container img {
+      display: block;
+      max-width: 100%;
+      height: auto; 
+      margin: 0 auto;
+    }
     .sale-page .brand-info .text-center {
       color: #535351; }
     .sale-page .brand-info p {
@@ -3277,7 +3281,8 @@ h1 {
       font-weight: 600;
       margin: 0 auto 15px auto;
       text-decoration: none; }
-    .sale-page .brand-info .write-seller {
+    .sale-page .brand-info .write-seller,
+    .sale-page .sale-prod .write-seller {
       width: 170px;
       height: 32px;
       border: 1px solid #448339;
@@ -3290,7 +3295,12 @@ h1 {
       text-transform: uppercase;
       margin-left: auto;
       margin-right: auto;
-      text-decoration: none; }
+      text-decoration: none; 
+    }
+    .sale-page .sale-prod .write-seller {
+      margin-left: 0;
+      margin-bottom: 22px;
+    }
     .sale-page .brand-info .adress {
       color: #535351;
       font-size: 17px;
