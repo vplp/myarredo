@@ -38,9 +38,6 @@ use frontend\modules\catalog\widgets\sale\SaleRequestForm;
                     <?= $model['user']['profile']['lang']['address']; ?>
                 </div>
 
-                <div class="ico">
-                    <?= Html::img($bundle->baseUrl . '/img/conv.svg') ?>
-                </div>
             <?php } else { ?>
                 <h4 class="text-center">
                     <?= Yii::t('app', 'Распродажа') ?> My Arredo Family
@@ -49,14 +46,6 @@ use frontend\modules\catalog\widgets\sale\SaleRequestForm;
                     <?= Yii::t('app', 'Для уточнения цены и наличия') ?>:
                 </p>
             <?php } ?>
-
-            <?= Html::a(Yii::t('app', 'Написать продавцу'), 'javascript:void(0);', [
-                'class' => 'write-seller',
-                'data-toggle' => 'modal',
-                'data-target' => '#modalSaleRequestForm'
-            ]); ?>
-
-            <?= SaleRequestForm::widget(['sale_item_id' => $model['id']]) ?>
         </div>
     </div>
 </div>

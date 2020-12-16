@@ -82,15 +82,13 @@ $this->title = $this->context->title;
                                 <div class="prod-is-sold"><?= Yii::t('app', 'Item sold') ?></div>
                             <?php } ?>
 
-                            <?= Html::a(
-                                Yii::t('app', 'Предложите свою цену'),
-                                'javascript:void(0);',
-                                [
-                                    'class' => 'btn btn-offerprice',
-                                    'data-toggle' => 'modal',
-                                    'data-target' => '#modalSaleOfferPrice'
-                                ]
-                            ) ?>
+                            <?= Html::a(Yii::t('app', 'Написать продавцу'), 'javascript:void(0);', [
+                                'class' => 'write-seller',
+                                'data-toggle' => 'modal',
+                                'data-target' => '#modalSaleRequestForm'
+                            ]); ?>
+
+                            <?= SaleRequestForm::widget(['sale_item_id' => $model['id']]) ?>
 
                             <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
                                 <meta itemprop="ratingValue" content="5"/>
@@ -214,6 +212,16 @@ $this->title = $this->context->title;
                                     </tr>
                                 <?php } ?>
                             </table>
+
+                            <?= Html::a(
+                                Yii::t('app', 'Предложите свою цену'),
+                                'javascript:void(0);',
+                                [
+                                    'class' => 'btn btn-offerprice',
+                                    'data-toggle' => 'modal',
+                                    'data-target' => '#modalSaleOfferPrice'
+                                ]
+                            ) ?>
 
                             <div class="prod-shortstory" itemprop="description">
                                 <?= $model['lang']['description']; ?>
