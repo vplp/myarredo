@@ -50,7 +50,7 @@ use frontend\modules\catalog\widgets\sale\SaleRequestForm;
                 </p>
             <?php } ?>
 
-            <?= Html::a(Yii::t('app', 'Написать продавцу'), 'javascript:void(0);', [
+            <?= Html::a(Yii::t('app', 'Хочу купить'), 'javascript:void(0);', [
                 'class' => 'write-seller',
                 'data-toggle' => 'modal',
                 'data-target' => '#modalSaleRequestForm'
