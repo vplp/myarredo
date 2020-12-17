@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="col-md-12 col-lg-9">
     <ul class="nav nav-tabs">
         <?php if (!empty($samples)) { ?>
             <li>

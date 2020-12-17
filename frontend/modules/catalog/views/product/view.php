@@ -310,7 +310,7 @@ $this->title = $this->context->title;
                                     <div class="scrollwrap">
                                     </div>
                                 </div>
-                                <div class="igallery-form">
+                                <div class="igallery-form scrolled">
                                     <div class="best-price-form">
                                         <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
                                         <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
@@ -439,7 +439,7 @@ $this->title = $this->context->title;
                     </div>
                 </div>
 
-                <div class="best-price">
+                <div class="best-price ecotime">
                     <div>
                         <div class="after-text">
                             <div class="img-container">

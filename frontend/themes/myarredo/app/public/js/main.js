@@ -291,7 +291,7 @@ function selectFirstFEl() {
 function slickInit() {
     if ($("#panel2 .row").length > 0) {
         $("#panel2 .row").slick({
-            slidesToShow: 4,
+            slidesToShow: 3,
             slidesToScroll: 1,
             nextArrow: "<a href=javascript:void(0) class='fa fa-angle-left'></a>",
             prevArrow: "<a href=javascript:void(0) class='fa fa-angle-right'></a>",
@@ -322,7 +322,7 @@ function slickInit() {
     }
     if ($('#comp-slider').length > 0) {
         $('#comp-slider').slick({
-            slidesToShow: 4,
+            slidesToShow: 3,
             slidesToScroll: 1,
             dots: false,
             // autoplay: true,
@@ -446,6 +446,23 @@ $(document).ready(function () {
             else {
                 $('.js-filter-btn').removeClass('filter-btn-fixed');
                 $('.ajax-get-filter').removeClass('filter-panel-fixed');
+            }
+        }
+        // *Для фиксации формы подачи заявки на странице товара
+        // Если данная форма существует на странице
+        if ($('.scrolled').length > 0) {
+            var ecotimePos = $('.ecotime').offset().top - 610;
+            if ($(this).scrollTop() > 50) {
+                $('.scrolled').addClass('fixed');
+                if ($(this).scrollTop() < ecotimePos) {
+                    $('.scrolled').removeClass('hidetop');
+                }
+                else {
+                    $('.scrolled').addClass('hidetop');
+                }
+            }
+            else {
+                $('.scrolled').removeClass('fixed');
             }
         }
         
