@@ -82,7 +82,7 @@ $this->title = $this->context->title;
                                 <div class="prod-is-sold"><?= Yii::t('app', 'Item sold') ?></div>
                             <?php } ?>
 
-                            <?= Html::a(Yii::t('app', 'Написать продавцу'), 'javascript:void(0);', [
+                            <?= Html::a(Yii::t('app', 'Хочу купить'), 'javascript:void(0);', [
                                 'class' => 'write-seller',
                                 'data-toggle' => 'modal',
                                 'data-target' => '#modalSaleRequestForm'

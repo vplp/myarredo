@@ -23,11 +23,13 @@ $this->title = $this->context->title;
                         echo FormFeedback::widget(['view' => 'form_become_partner']);
                     } ?>
 
-                    <?= Html::a(
-                        Yii::t('app', 'Вернуться назад'),
-                        Url::toRoute('/page/contacts/index'),
-                        ['class' => 'view-all']
-                    ); ?>
+                    <?php if (!in_array(DOMAIN_TYPE, ['com', 'de'])) {
+                        echo Html::a(
+                            Yii::t('app', 'Вернуться назад'),
+                            Url::toRoute('/page/contacts/index'),
+                            ['class' => 'view-all']
+                        );
+                    } ?>
 
                 </div>
             </div>

@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-//
 use frontend\modules\catalog\widgets\sale\SaleRequestForm;
 
 ?>
@@ -46,6 +45,7 @@ use frontend\modules\catalog\widgets\sale\SaleRequestForm;
                     <?= Yii::t('app', 'Для уточнения цены и наличия') ?>:
                 </p>
             <?php } ?>
+
         </div>
     </div>
 </div>
