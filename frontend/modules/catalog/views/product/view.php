@@ -331,6 +331,7 @@ $this->title = $this->context->title;
 
                 <div class="row composition"></div>
 
+                <!--
                 <div class="salonesbox">
                     <div class="section-header">
                         <h3 class="section-title">
@@ -438,6 +439,7 @@ $this->title = $this->context->title;
                         </div>
                     </div>
                 </div>
+                -->
 
                 <div class="best-price ecotime">
                     <div>
