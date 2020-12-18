@@ -18,6 +18,23 @@ use yii\web\View;
     <script src="//code-ya.jivosite.com/widget/BCBRXDDEBZ" async></script>
 <?php } ?>
 
+<?php if (in_array(Yii::$app->city->getCityId(), [89])) { ?>
+    <script src="//code-ya.jivosite.com/widget/7RaHzlV7fb" async></script>
+<?php } ?>
+
+<?php if (in_array(Yii::$app->city->getCityId(), [44])) { ?>
+    <script src="//code-ya.jivosite.com/widget/4GPT8DHdeo" async></script>
+<?php } ?>
+
+<?php if (in_array(Yii::$app->city->getCityId(), [47])) { ?>
+    <script src="//code-ya.jivosite.com/widget/93COR0jvXn" async></script>
+<?php } ?>
+
+<?php if (in_array(Yii::$app->city->getCityId(), [45])) { ?>
+    <script src="//code-ya.jivosite.com/widget/0wbN9wW6Ah" async></script>
+<?php } ?>
+
+
 <?php if (Yii::$app->getUser()->isGuest && DOMAIN_TYPE == 'ru' &&
     !in_array(Yii::$app->controller->id, ['sale', 'sale-italy']) &&
     !in_array(Yii::$app->controller->module->id, ['user']) &&
