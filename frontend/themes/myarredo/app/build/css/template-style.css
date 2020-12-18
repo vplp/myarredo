@@ -10582,13 +10582,147 @@ body .concact-page .one-cont .cont-info-row a {
 .fancybox-nav span {
   visibility: visible;
 }
+.salones-body {
+  margin-top: 18px;
+}
+.prod-card-page .info-table.table-salones-list td:first-child {
+  width: 150px;
+}
+.prod-card-page .info-table.table-salones-list td:last-child {
+  font-weight: 500;
+  font-size: 13px;
+}
+.last-sale {
+  max-width: 440px;
+  margin-top: -14px;
+}
+.last-sale-top,
+.last-sale-bottom {
+  padding: 24px;
+  background-color: #F3F2F0;
+}
+.last-sale-top {
+  border-bottom: 1px solid #ffffff;
+}
+.last-sale-info,
+.last-sale-infobot {
+  display: flex;
+}
+.last-sale-left {
+  width: 180px;
+}
+.last-sale-right {
+  width: calc(100% - 180px);
+}
+.last-sale-infobot .last-sale-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.last-sale-title {
+  font-family: 'Palatino', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  margin: 0 0 24px;
+}
+.last-sale-img {
+  width: 100%;
+  height: auto;
+}
+.last-sale-table tr td:first-child {
+  padding-right: 20px;
+}
+.last-sale-tablebox {
+  padding: 0 20px;
+}
+.last-sale-table {
+  margin: 0 auto;
+}
+.last-sale-text {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: #448438;
+}
+.for-lastsale-curval {
+  font-size: 42px;
+  font-weight: 600;
+}
+.for-lastsale-curency {
+  font-family: 'Palatino', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+.last-sale-arrow {
+  width: 38px;
+  height: 38px;
+  position: relative;
+}
+.arrow-block {
+  width: 38px;
+  height: 38px;
+  border-right: 2px solid #448438;
+  border-bottom: 2px solid #448438;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: rotate(-45deg);
+}
+.arrow-block:after {
+  content: '';
+  display: block;
+  width: 76px;
+  height: 2px;
+  background-color: #448438;
+  position: absolute;
+  top: 9.5px;
+  right: -13px;
+  transform: rotate(45deg);
+}
+.gradient-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: linear-gradient(transparent, rgba(255, 255, 255, 0.9));
+}
+.all-salones-link {
+  color: #448339;
+  text-decoration: underline;
+  font-weight: 600;
+}
+.all-salones-link:hover {
+  color: #448339;
+}
+.salones-list {
+  position: relative;
+}
 
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
 /* ---------------------------------------------------------------------------------------------------- */
 
+@media(max-width: 1392px) and (min-width: 768px) {
+  .last-sale-left {
+    width: 150px;
+  }
+  .last-sale-right {
+    width: calc(100% - 150px);
+  }
+  .last-sale-bottom, .last-sale-top {
+    padding: 15px;
+  }
+  .last-sale-table tr td:first-child {
+    padding-right: 10px;
+  }
+  .last-sale-tablebox {
+    padding: 0 10px;
+  }
+}
 /* min width styles */
-
 @media (min-width: 1461px) {
   .itprod-panel-add {
     max-width: 1400px;
@@ -10599,6 +10733,27 @@ body .concact-page .one-cont .cont-info-row a {
     margin: 0 auto;
     max-width: 1400px;
     padding: 0 20px;
+  }
+  .custom-image-gallery:not(.open) .scrolled.fixed {
+    position: fixed;
+    top: 56px;
+    right: auto;
+    left: auto;
+    transition: 0.5s;
+  }
+  .custom-image-gallery:not(.open) .scrolled.fixed.hidetop {
+    top: -650px;
+    transition: 2s;
+  }
+}
+/* min 1400px */
+@media(min-width: 1400px) {
+  .prod-card-page .info-table.table-salones-list td:first-child {
+    font-size: 15px;
+    width: 195px;
+  }
+  .prod-card-page .info-table.table-salones-list td:last-child {
+    font-size: 15px;
   }
 }
 /* min 1301px */
@@ -10659,6 +10814,9 @@ body .concact-page .one-cont .cont-info-row a {
   }
   .add-itprod-rules {
     border-left: 1px dotted #535351;
+  }
+  .salones-list {
+    padding-right: 20px;
   }
 }
 @media(min-width: 993px) {
@@ -10991,6 +11149,9 @@ body .concact-page .one-cont .cont-info-row a {
     z-index: 999;
   }
   .rec-slider-wrap.novetly-sliderbox {
+    display: none;
+  }
+  .salonesbox {
     display: none;
   }
 }
