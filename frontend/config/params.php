@@ -1,6 +1,6 @@
 <?php
 
-//Yii::$app->params['cache']['duration']
+//\Yii::$app->params['cache']['duration']
 
 return [
     'mailer' => [

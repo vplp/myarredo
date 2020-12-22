@@ -90,7 +90,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
         return $this->hasOne(Factory::class, ['id' => 'factory_id'])
             ->innerJoinWith(["product"], false)
             ->andWhere([Product::tableName() . '.factory_id' => 'factory_id'])
-            ->cache(Yii::$app->params['cache']['duration']);
+            ->cache(\Yii::$app->params['cache']['duration']);
     }
 
     /**
@@ -119,7 +119,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
                 ->orderBy([self::tableName() . '.updated_at' => SORT_DESC])
                 ->limit(1)
                 ->one();
-        }, Yii::$app->params['cache']['duration']);
+        }, \Yii::$app->params['cache']['duration']);
 
         return $result;
     }
@@ -143,7 +143,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
                 ->andWhere([self::tableName() . '.' . Yii::$app->languages->getDomainAlias() => $alias])
                 //->byAlias($alias)
                 ->one();
-        }, Yii::$app->params['cache']['duration']);
+        }, \Yii::$app->params['cache']['duration']);
 
         return $result;
     }
@@ -546,7 +546,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
                 ])
                 ->asArray()
                 ->one();
-        }, Yii::$app->params['cache']['duration']);
+        }, \Yii::$app->params['cache']['duration']);
 
         return $result;
     }

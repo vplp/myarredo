@@ -89,7 +89,7 @@ class FormsController extends BaseController
                                 'model' => $model,
                             ]
                         )
-                        ->setTo(Yii::$app->params['form_feedback']['setTo'])
+                        ->setTo(\Yii::$app->params['form_feedback']['setTo'])
                         ->setSubject($subject)
                         ->send();
 

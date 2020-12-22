@@ -112,7 +112,7 @@ class Product extends \common\modules\catalog\models\Product
                 //->byAlias($alias)
                 ->enabled()
                 ->one();
-        }, Yii::$app->params['cache']['duration']);
+        }, \Yii::$app->params['cache']['duration']);
 
         return $result;
     }
@@ -127,7 +127,7 @@ class Product extends \common\modules\catalog\models\Product
     {
         $result = self::getDb()->cache(function ($db) use ($id) {
             return self::findBaseArray()->byId($id)->one();
-        }, Yii::$app->params['cache']['duration']);
+        }, \Yii::$app->params['cache']['duration']);
 
         return $result;
     }
@@ -142,7 +142,7 @@ class Product extends \common\modules\catalog\models\Product
     {
         $result = self::getDb()->cache(function ($db) use ($ids) {
             return self::findBase()->andWhere(['IN', self::tableName() . '.id', array_unique($ids)])->all();
-        }, Yii::$app->params['cache']['duration']);
+        }, \Yii::$app->params['cache']['duration']);
 
         return $result;
     }
@@ -166,7 +166,7 @@ class Product extends \common\modules\catalog\models\Product
                 ->orderBy([self::tableName() . '.updated_at' => SORT_DESC])
                 ->limit(1)
                 ->one();
-        },Yii::$app->params['cache']['duration']);
+        },\Yii::$app->params['cache']['duration']);
 
         return $result;
     }
@@ -491,7 +491,7 @@ class Product extends \common\modules\catalog\models\Product
                 ->andFilterWhere(['NOT IN', self::tableName() . '.alias', Yii::$app->request->get('alias')])
                 ->limit(12)
                 ->all();
-        }, Yii::$app->params['cache']['duration']);
+        }, \Yii::$app->params['cache']['duration']);
 
         return $result;
     }
@@ -528,7 +528,7 @@ class Product extends \common\modules\catalog\models\Product
                 ->andFilterWhere(['NOT IN', self::tableName() . '.alias', Yii::$app->request->get('alias')])
                 ->limit(12)
                 ->all();
-        }, Yii::$app->params['cache']['duration']);
+        }, \Yii::$app->params['cache']['duration']);
 
         return $result;
     }
@@ -672,7 +672,7 @@ class Product extends \common\modules\catalog\models\Product
                 ])
                 ->asArray()
                 ->one();
-        }, Yii::$app->params['cache']['duration']);
+        }, \Yii::$app->params['cache']['duration']);
 
         return $result;
     }

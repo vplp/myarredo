@@ -152,7 +152,7 @@ class ItalianProductRelSpecification extends \common\modules\catalog\models\Ital
                 ])
                 ->asArray()
                 ->one();
-        }, Yii::$app->params['cache']['duration']);
+        }, \Yii::$app->params['cache']['duration']);
 
         return $result;
     }

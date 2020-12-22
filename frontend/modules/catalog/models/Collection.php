@@ -157,7 +157,7 @@ class Collection extends \common\modules\catalog\models\Collection
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        }, Yii::$app->params['cache']['duration']);
+        }, \Yii::$app->params['cache']['duration']);
 
         return $result;
     }

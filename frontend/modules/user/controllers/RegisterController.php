@@ -169,7 +169,7 @@ class RegisterController extends BaseController
                             'url' => Url::home(true) . 'backend/user/user/update?id=' . $modelUser->id,
                         ]
                     )
-                    ->setTo(Yii::$app->params['mailer']['setTo'])
+                    ->setTo(\Yii::$app->params['mailer']['setTo'])
                     ->setSubject($title)
                     ->send();
 
@@ -240,7 +240,7 @@ class RegisterController extends BaseController
                             'url' => Url::home(true) . 'backend/user/user/update?id=' . $modelUser->id,
                         ]
                     )
-                    ->setTo(Yii::$app->params['mailer']['setTo'])
+                    ->setTo(\Yii::$app->params['mailer']['setTo'])
                     ->setSubject($title)
                     ->send();
 
@@ -313,7 +313,7 @@ class RegisterController extends BaseController
                             'url' => Url::home(true) . 'backend/user/user/update?id=' . $modelUser->id,
                         ]
                     )
-                    ->setTo(Yii::$app->params['mailer']['setTo'])
+                    ->setTo(\Yii::$app->params['mailer']['setTo'])
                     ->setSubject($title)
                     ->send();
 

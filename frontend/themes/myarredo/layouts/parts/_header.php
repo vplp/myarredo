@@ -206,13 +206,13 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                         Yii::$app->user->identity->group->role == 'factory'
                     )) {
                 } else { ?>
-                    <?php if ($this->beginCache('CatalogMenuWidget' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => Yii::$app->params['cache']['duration']])) {
+                    <?php if ($this->beginCache('CatalogMenuWidget' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => \Yii::$app->params['cache']['duration']])) {
                         echo CatalogMenu::widget([]);
                         $this->endCache();
                     } ?>
 
                     <div class="search-cont">
-                        <?php if ($this->beginCache('ElasticSearch' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => Yii::$app->params['cache']['duration']])) {
+                        <?php if ($this->beginCache('ElasticSearch' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => \Yii::$app->params['cache']['duration']])) {
                             $form = ActiveForm::begin([
                                 'id' => 'search-form',
                                 'action' => ['/catalog/elastic-search/search'],
@@ -325,7 +325,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
     </div>
     <div class="mobmenu-serch-part">
         <?php
-        if ($this->beginCache('ElasticSearchMobile' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => Yii::$app->params['cache']['duration']])) {
+        if ($this->beginCache('ElasticSearchMobile' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => \Yii::$app->params['cache']['duration']])) {
             $form = ActiveForm::begin([
                 'action' => ['/catalog/elastic-search/search'],
                 'id' => 'mobile-search-form',
@@ -396,7 +396,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             echo UserMenu::widget(['view' => 'user_menu_mobile']);
         } else {
             echo UserMenu::widget(['view' => 'user_menu_mobile']);
-            if ($this->beginCache('CatalogMenuMobileWidget' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => Yii::$app->params['cache']['duration']])) {
+            if ($this->beginCache('CatalogMenuMobileWidget' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => \Yii::$app->params['cache']['duration']])) {
                 echo CatalogMenu::widget(['view' => 'catalog_menu_mobile']);
                 $this->endCache();
             }

@@ -108,7 +108,7 @@ class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
                     'url' => Url::home(true) . 'backend/catalog/promotion-product/update?id=' . $this->id,
                 ]
             )
-            ->setTo(Yii::$app->params['mailer']['setTo'])
+            ->setTo(\Yii::$app->params['mailer']['setTo'])
             ->setSubject($title)
             ->send();
     }
@@ -137,7 +137,7 @@ class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
                         'model' => $this,
                     ]
                 )
-                ->setTo(Yii::$app->params['mailer']['setTo'])
+                ->setTo(\Yii::$app->params['mailer']['setTo'])
                 ->setSubject($message)
                 ->send();
         }

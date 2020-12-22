@@ -162,7 +162,7 @@ class Payment extends \common\modules\payment\models\Payment
                         'model' => $this,
                     ]
                 )
-                ->setTo(Yii::$app->params['mailer']['setTo'])
+                ->setTo(\Yii::$app->params['mailer']['setTo'])
                 ->setSubject($message)
                 ->send();
         }

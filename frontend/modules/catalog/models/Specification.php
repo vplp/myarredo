@@ -122,7 +122,7 @@ class Specification extends \common\modules\catalog\models\Specification
                     )
                     ->one();
             }
-        }, Yii::$app->params['cache']['duration']);
+        }, \Yii::$app->params['cache']['duration']);
 
         return $result;
     }
@@ -302,7 +302,7 @@ class Specification extends \common\modules\catalog\models\Specification
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        }, Yii::$app->params['cache']['duration']);
+        }, \Yii::$app->params['cache']['duration']);
 
         return $result;
     }

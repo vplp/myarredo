@@ -88,7 +88,7 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
             } else {
                 return self::findBase()->byAlias($alias)->one();
             }
-        }, Yii::$app->params['cache']['duration']);
+        }, \Yii::$app->params['cache']['duration']);
 
         return $result;
     }
@@ -257,7 +257,7 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        }, Yii::$app->params['cache']['duration']);
+        }, \Yii::$app->params['cache']['duration']);
 
         return $result;
     }

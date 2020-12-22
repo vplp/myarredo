@@ -116,7 +116,7 @@ class CategoryController extends BaseController
             ->orderBy(['views' => SORT_DESC])
             ->asArray()
             ->limit(30)
-            ->cache(Yii::$app->params['cache']['duration'])
+            ->cache(\Yii::$app->params['cache']['duration'])
             ->all();
 
         return $this->render('list', [
@@ -208,7 +208,7 @@ class CategoryController extends BaseController
                     ProductLang::tableName() . '.title',
                 ])
                 ->andWhere(['onmain' => '1'])
-                ->cache(Yii::$app->params['cache']['duration'])
+                ->cache(\Yii::$app->params['cache']['duration'])
                 ->all();
 
             $i = 0;

@@ -60,7 +60,7 @@ class SaleItalyOnMainPage extends Widget
                 ->limit(8)
                 ->orderBy($order)
                 ->all();
-        }, Yii::$app->params['cache']['duration']);
+        }, \Yii::$app->params['cache']['duration']);
 
 
         if ($this->models != null) {
