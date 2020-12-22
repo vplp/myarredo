@@ -103,6 +103,8 @@ if (in_array($model['user']['group_id'], [4, 7])) {
 
     echo $form->switcher($model, 'possibility_to_answer_sale_italy');
 
+    echo $form->switcher($model, 'possibility_to_answer_com_de');
+
     echo $form->switcher($model, 'pdf_access');
 
     echo $form->switcher($model, 'show_contacts');

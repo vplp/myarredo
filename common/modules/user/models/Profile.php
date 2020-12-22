@@ -37,6 +37,7 @@ use common\modules\shop\models\Order;
  * @property int $partner_in_city_paid
  * @property int $possibility_to_answer
  * @property int $possibility_to_answer_sale_italy
+ * @property int $possibility_to_answer_com_de
  * @property int $pdf_access
  * @property int $show_contacts
  * @property int $show_contacts_on_sale
@@ -126,6 +127,7 @@ class Profile extends \thread\modules\user\models\Profile
                     'partner_in_city_paid',
                     'possibility_to_answer',
                     'possibility_to_answer_sale_italy',
+                    'possibility_to_answer_com_de',
                     'pdf_access',
                     'show_contacts',
                     'show_contacts_on_sale',
@@ -191,6 +193,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'partner_in_city_paid',
                 'possibility_to_answer',
                 'possibility_to_answer_sale_italy',
+                'possibility_to_answer_com_de',
                 'pdf_access',
                 'show_contacts',
                 'show_contacts_on_sale',
@@ -223,6 +226,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'partner_in_city_paid',
                 'possibility_to_answer',
                 'possibility_to_answer_sale_italy',
+                'possibility_to_answer_com_de',
                 'pdf_access',
                 'show_contacts',
                 'show_contacts_on_sale',
@@ -260,6 +264,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'partner_in_city_paid',
                 'possibility_to_answer',
                 'possibility_to_answer_sale_italy',
+                'possibility_to_answer_com_de',
                 'pdf_access',
                 'show_contacts',
                 'show_contacts_on_sale',
@@ -309,6 +314,7 @@ class Profile extends \thread\modules\user\models\Profile
             'partner_in_city_paid' => Yii::t('app', 'Partner in city paid'),
             'possibility_to_answer' => Yii::t('app', 'Отвечает без установки кода на сайт'),
             'possibility_to_answer_sale_italy' => Yii::t('app', 'Отвечает на заявки Итальянской распродажи'),
+            'possibility_to_answer_com_de' => 'Отвечает на заявки myarredo.com  myarredo.de myarredofamily.com',
             'pdf_access' => Yii::t('app', 'Доступ к прайсам и каталогам'),
             'show_contacts' => Yii::t('app', 'Показывать в контактах'),
             'show_contacts_on_sale' => Yii::t('app', 'Показывать контакты в распродаже'),
@@ -550,6 +556,17 @@ class Profile extends \thread\modules\user\models\Profile
         return false;
     }
 
+
+    public function getPossibilityToAnswerComDe()
+    {
+        if (in_array(Yii::$app->user->identity->group->role, ['logistician'])) {
+            return true;
+        } elseif (Yii::$app->getUser()->getIdentity()->profile->possibility_to_answer_com_de) {
+            return true;
+        }
+
+        return false;
+    }
 
     /**
      * @param int $country_id
