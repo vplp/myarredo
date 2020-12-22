@@ -88,7 +88,7 @@ class Colors extends \common\modules\catalog\models\Colors
                     )
                     ->one();
             }
-        }, 60 * 60 * 2);
+        }, Yii::$app->params['cache']['duration']);
 
         return $result;
     }
@@ -261,7 +261,7 @@ class Colors extends \common\modules\catalog\models\Colors
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        }, 60 * 60 * 2);
+        }, Yii::$app->params['cache']['duration']);
 
         return $result;
     }
@@ -360,7 +360,7 @@ class Colors extends \common\modules\catalog\models\Colors
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        }, 60 * 60 * 2);
+        }, Yii::$app->params['cache']['duration']);
 
         return $result;
     }
@@ -454,7 +454,7 @@ class Colors extends \common\modules\catalog\models\Colors
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        }, 60 * 60 * 2);
+        }, Yii::$app->params['cache']['duration']);
 
         return $result;
     }

@@ -184,7 +184,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
                 ])
                 ->asArray()
                 ->one();
-        }, 60 * 60 * 2);
+        }, Yii::$app->params['cache']['duration']);
 
         return $result;
     }

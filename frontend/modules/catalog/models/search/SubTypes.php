@@ -67,7 +67,7 @@ class SubTypes extends SubTypesModel
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();
-        }, 60 * 60 * 2, self::generateDependency(self::find()));
+        }, Yii::$app->params['cache']['duration'], self::generateDependency(self::find()));
 
         return $dataProvider;
     }

@@ -62,7 +62,7 @@ class SaleOnMainPage extends Widget
                 ->limit(8)
                 ->asArray()
                 ->all();
-        }, 60 * 60 * 2);
+        }, Yii::$app->params['cache']['duration']);
 
         $_models = [];
 

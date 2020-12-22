@@ -77,7 +77,7 @@ class Sale extends \common\modules\catalog\models\Sale
         return $this->hasOne(Factory::class, ['id' => 'factory_id'])
             ->innerJoinWith(["product"], false)
             ->andWhere([Product::tableName() . '.factory_id' => 'factory_id'])
-            ->cache(60 * 60 * 2);
+            ->cache(Yii::$app->params['cache']['duration']);
     }
 
     /**
@@ -98,7 +98,7 @@ class Sale extends \common\modules\catalog\models\Sale
                 ])
                 ->byAlias($alias)
                 ->one();
-        }, 60 * 60 * 2);
+        }, Yii::$app->params['cache']['duration']);
 
         return $result;
     }
@@ -121,7 +121,7 @@ class Sale extends \common\modules\catalog\models\Sale
                 ->orderBy([self::tableName() . '.updated_at' => SORT_DESC])
                 ->limit(1)
                 ->one();
-        },60 * 60 * 2);
+        },Yii::$app->params['cache']['duration']);
 
         return $result;
     }
@@ -446,7 +446,7 @@ class Sale extends \common\modules\catalog\models\Sale
                 ])
                 ->asArray()
                 ->one();
-        }, 60 * 60 * 2);
+        }, Yii::$app->params['cache']['duration']);
 
         return $result;
     }

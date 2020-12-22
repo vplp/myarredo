@@ -33,7 +33,7 @@ class Order extends \common\modules\shop\models\Order
      */
     public function getCustomer()
     {
-        return $this->hasOne(Customer::class, ['id' => 'customer_id'])->cache(60 * 60 * 2);
+        return $this->hasOne(Customer::class, ['id' => 'customer_id'])->cache(Yii::$app->params['cache']['duration']);
     }
 
     /**
@@ -41,7 +41,7 @@ class Order extends \common\modules\shop\models\Order
      */
     public function getCity()
     {
-        return $this->hasOne(City::class, ['id' => 'city_id'])->cache(60 * 60 * 2);
+        return $this->hasOne(City::class, ['id' => 'city_id'])->cache(Yii::$app->params['cache']['duration']);
     }
 
     /**
@@ -49,7 +49,7 @@ class Order extends \common\modules\shop\models\Order
      */
     public function getCountry()
     {
-        return $this->hasOne(Country::class, ['id' => 'country_id'])->cache(60 * 60 * 2);
+        return $this->hasOne(Country::class, ['id' => 'country_id'])->cache(Yii::$app->params['cache']['duration']);
     }
 
     /**
