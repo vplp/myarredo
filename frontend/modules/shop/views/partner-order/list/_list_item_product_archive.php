@@ -52,11 +52,15 @@ use frontend\modules\catalog\models\Product;
             </td>
         </tr>
         <tr class="noborder">
-            <td colspan="2"><span class="for-ordertable"><?= Yii::t('app', 'Цена для клиента') ?></span></td>
+            <td colspan="2">
+                <span class="for-ordertable"><?= Yii::t('app', 'Цена для клиента') ?></span>
+            </td>
         </tr>
         <tr>
             <td colspan="2">
-                <?= $orderItem->orderItemPrice['out_of_production'] == '1' ? Yii::t('app', 'Снят с производства') : $orderItem->orderItemPrice['price'] ?>
+                <?= $orderItem->orderItemPrice['out_of_production'] == '1'
+                    ? Yii::t('app', 'Снят с производства')
+                    : ($orderItem->orderItemPrice['price'] . ' ' . $orderItem->orderItemPrice['currency']) ?>
             </td>
         </tr>
     </table>

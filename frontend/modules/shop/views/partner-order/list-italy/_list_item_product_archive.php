@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+
 //
 use frontend\modules\shop\models\OrderItem;
 use frontend\modules\catalog\models\ItalianProduct;
@@ -74,7 +75,9 @@ use frontend\modules\catalog\models\ItalianProduct;
         </tr>
         <tr>
             <td colspan="2">
-                <?= $orderItem->orderItemPrice['out_of_production'] == '1' ? Yii::t('app', 'Снят с производства') : $orderItem->orderItemPrice['price'] ?>
+                <?= $orderItem->orderItemPrice['out_of_production'] == '1'
+                    ? Yii::t('app', 'Снят с производства')
+                    : $orderItem->orderItemPrice['price'] . ' ' . $orderItem->orderItemPrice['currency'] ?>
             </td>
         </tr>
     </table>
