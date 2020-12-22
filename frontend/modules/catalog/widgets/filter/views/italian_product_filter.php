@@ -118,6 +118,44 @@ use frontend\modules\catalog\models\{
         </div>
     <?php } ?>
 
+    <?php if ($priceRange && $priceRange['min']['default'] != $priceRange['max']['default']) { ?>
+        <div class="one-filter filter-range-slider">
+            <?= Html::a(
+                Yii::t('app', 'Цена'),
+                'javascript:void(0);',
+                ['class' => 'filt-but']
+            ) ?>
+            <div class="price-slider-cont">
+                <div id="price-slider" class="myarredo-slider"
+                     data-min="<?= $priceRange['min']['current'] ?>"
+                     data-max="<?= $priceRange['max']['current'] ?>"></div>
+                <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
+                    <div class="cur min">
+                        <?= Html::input(
+                            'text',
+                            'price[min]',
+                            $priceRange['min']['default'],
+                            ['id' => 'min-price', 'data-default' => $priceRange['min']['default']]
+                        ) ?>
+                        <span class="for-curicon"><?= Yii::$app->currency->symbol ?></span>
+                    </div>
+                    <span class="indent"> - </span>
+                    <div class="cur max">
+                        <?= Html::input(
+                            'text',
+                            'price[max]',
+                            $priceRange['max']['default'],
+                            ['id' => 'max-price', 'data-default' => $priceRange['max']['default']]
+                        ) ?>
+                        <span class="for-curicon"><?= Yii::$app->currency->symbol ?></span>
+                    </div>
+                </div>
+                <?= Html::input('hidden', 'price[link]', $priceRange['link']) ?>
+                <a href="javascript:void(0);" class="submit submit_price" rel="nofollow">OK</a>
+            </div>
+        </div>
+    <?php } ?>
+
     <?php if ($style) { ?>
         <div class="one-filter">
             <?= Html::a(
@@ -201,44 +239,6 @@ use frontend\modules\catalog\models\{
                     <?php
                     echo Html::endTag('a');
                 } ?>
-            </div>
-        </div>
-    <?php } ?>
-
-    <?php if ($priceRange && $priceRange['min']['default'] != $priceRange['max']['default']) { ?>
-        <div class="one-filter filter-range-slider">
-            <?= Html::a(
-                Yii::t('app', 'Цена'),
-                'javascript:void(0);',
-                ['class' => 'filt-but']
-            ) ?>
-            <div class="price-slider-cont">
-                <div id="price-slider" class="myarredo-slider"
-                     data-min="<?= $priceRange['min']['current'] ?>"
-                     data-max="<?= $priceRange['max']['current'] ?>"></div>
-                <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
-                    <div class="cur min">
-                        <?= Html::input(
-                            'text',
-                            'price[min]',
-                            $priceRange['min']['default'],
-                            ['id' => 'min-price', 'data-default' => $priceRange['min']['default']]
-                        ) ?>
-                        <span class="for-curicon"><?= Yii::$app->currency->symbol ?></span>
-                    </div>
-                    <span class="indent"> - </span>
-                    <div class="cur max">
-                        <?= Html::input(
-                            'text',
-                            'price[max]',
-                            $priceRange['max']['default'],
-                            ['id' => 'max-price', 'data-default' => $priceRange['max']['default']]
-                        ) ?>
-                        <span class="for-curicon"><?= Yii::$app->currency->symbol ?></span>
-                    </div>
-                </div>
-                <?= Html::input('hidden', 'price[link]', $priceRange['link']) ?>
-                <a href="javascript:void(0);" class="submit submit_price" rel="nofollow">OK</a>
             </div>
         </div>
     <?php } ?>
