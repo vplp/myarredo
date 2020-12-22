@@ -22,10 +22,11 @@ use backend\app\bootstrap\ActiveForm;
     <!-- steps box end -->
 
     <?php $form = ActiveForm::begin([
+        'id' => 'step2',
         'fieldConfig' => [
             'template' => "{label}<div class=\"col-sm-9\">{input}</div>\n{hint}\n{error}",
             'labelOptions' => ['class' => 'col-sm-3 col-form-label'],
-        ],
+        ]
     ]) ?>
 
     <?= $form

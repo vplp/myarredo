@@ -214,6 +214,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                     <div class="search-cont">
                         <?php if ($this->beginCache('ElasticSearch' . Yii::$app->city->getCityId(), ['duration' => 7200])) {
                             $form = ActiveForm::begin([
+                                'id' => 'search-form',
                                 'action' => ['/catalog/elastic-search/search'],
                                 'method' => 'get',
                                 'options' => ['class' => 'form-inline'],
@@ -325,7 +326,9 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
     <div class="mobmenu-serch-part">
         <?php
         if ($this->beginCache('ElasticSearchMobile' . Yii::$app->city->getCityId(), ['duration' => 7200])) {
-            $form = ActiveForm::begin(['action' => ['/catalog/elastic-search/search'],
+            $form = ActiveForm::begin([
+                'action' => ['/catalog/elastic-search/search'],
+                'id' => 'mobile-search-form',
                 'method' => 'get',
                 'options' => ['class' => 'mobsearch-form'],]); ?>
 

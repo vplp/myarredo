@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-//
 use backend\widgets\LangSwitch\LangSwitch;
 use backend\widgets\navbar\NavBar;
 use backend\themes\defaults\assets\AppAsset;
@@ -22,7 +21,7 @@ $this->beginPage();
     <base href="<?= Yii::$app->getUrlManager()->getBaseUrl() ?>">
     <meta charset="<?= Yii::$app->charset ?>"/>
     <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="shortcut icon" href="myarredo-ico.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="myarredo-ico.svg" type="image/x-icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <?php $this->head(); ?>
