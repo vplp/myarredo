@@ -279,7 +279,7 @@ class Product extends ProductModel
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();
-        }, 60 * 60 * 3, self::generateDependency(self::find()));
+        }, 60 * 60 * 2, self::generateDependency(self::find()));
 
         return $dataProvider;
     }

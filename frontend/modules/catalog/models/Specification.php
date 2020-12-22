@@ -122,7 +122,7 @@ class Specification extends \common\modules\catalog\models\Specification
                     )
                     ->one();
             }
-        }, 60 * 60);
+        }, 60 * 60 * 2);
 
         return $result;
     }
@@ -302,7 +302,7 @@ class Specification extends \common\modules\catalog\models\Specification
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        }, 60 * 60);
+        }, 60 * 60 * 2);
 
         return $result;
     }

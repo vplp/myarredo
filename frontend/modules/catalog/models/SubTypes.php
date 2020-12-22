@@ -88,7 +88,7 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
             } else {
                 return self::findBase()->byAlias($alias)->one();
             }
-        }, 60 * 60);
+        }, 60 * 60 * 2);
 
         return $result;
     }
@@ -257,7 +257,7 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        }, 60 * 60);
+        }, 60 * 60 * 2);
 
         return $result;
     }

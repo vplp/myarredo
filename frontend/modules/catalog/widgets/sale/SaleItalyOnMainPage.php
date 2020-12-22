@@ -60,7 +60,7 @@ class SaleItalyOnMainPage extends Widget
                 ->limit(8)
                 ->orderBy($order)
                 ->all();
-        }, 60 * 60);
+        }, 60 * 60 * 2);
 
 
         if ($this->models != null) {

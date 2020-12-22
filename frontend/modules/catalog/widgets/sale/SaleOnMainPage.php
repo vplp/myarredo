@@ -62,7 +62,7 @@ class SaleOnMainPage extends Widget
                 ->limit(8)
                 ->asArray()
                 ->all();
-        }, 60 * 60);
+        }, 60 * 60 * 2);
 
         $_models = [];
 

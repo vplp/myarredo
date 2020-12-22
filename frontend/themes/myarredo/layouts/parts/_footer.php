@@ -26,7 +26,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
                     <?php if (!in_array(Yii::$app->controller->id, ['sale-italy'])) {
                         echo PartnerInfo::widget();
                     } else {
-                        if ($this->beginCache('FormFeedbackSaleItaly' . Yii::$app->city->getCityId(), ['duration' => 7200])) {
+                        if ($this->beginCache('FormFeedbackSaleItaly' . Yii::$app->city->getCityId(), ['duration' => 60 * 60 * 2])) {
                             echo FormFeedback::widget(['view' => 'form_feedback_sale_italy']);
                             $this->endCache();
                         }
@@ -55,7 +55,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
         <?php
         if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
         } else if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
-            if ($this->beginCache('CitiesWidget' . Yii::$app->city->getCityId(), ['duration' => 7200])) {
+            if ($this->beginCache('CitiesWidget' . Yii::$app->city->getCityId(), ['duration' => 60 * 60 * 2])) {
                 echo Cities::widget();
                 $this->endCache();
             }
@@ -95,7 +95,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
 
                     </div>
 
-                    <?php if ($this->beginCache('Footer' . Yii::$app->city->getCityId(), ['duration' => 7200])) { ?>
+                    <?php if ($this->beginCache('Footer' . Yii::$app->city->getCityId(), ['duration' => 60 * 60 * 2])) { ?>
                         <ul class="nav ftr-nav">
                             <li><?= FormFeedback::widget(['view' => 'ajax_form_feedback']); ?></li>
                             <?php if (in_array(Yii::$app->language, ['ru-RU', 'uk-UA'])) { ?>

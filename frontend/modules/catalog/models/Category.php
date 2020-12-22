@@ -88,7 +88,7 @@ class Category extends \common\modules\catalog\models\Category
                     [self::tableName() . '.' . Yii::$app->languages->getDomainAlias() => $alias]
                 )
                 ->one();
-        }, 60 * 60);
+        }, 60 * 60 * 2);
 
         return $result;
     }
@@ -103,7 +103,7 @@ class Category extends \common\modules\catalog\models\Category
     {
         $result = self::getDb()->cache(function ($db) use ($id) {
             return self::findBase()->byId($id)->one();
-        }, 60 * 60);
+        }, 60 * 60 * 2);
 
         return $result;
     }
@@ -344,7 +344,7 @@ class Category extends \common\modules\catalog\models\Category
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        }, 60 * 60);
+        }, 60 * 60 * 2);
 
         return $result;
     }
@@ -442,7 +442,7 @@ class Category extends \common\modules\catalog\models\Category
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        }, 60 * 60);
+        }, 60 * 60 * 2);
 
         return $result;
     }
@@ -535,7 +535,7 @@ class Category extends \common\modules\catalog\models\Category
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        }, 60 * 60);
+        }, 60 * 60 * 2);
 
         return $result;
     }

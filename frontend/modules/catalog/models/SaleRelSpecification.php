@@ -151,7 +151,7 @@ class SaleRelSpecification extends \common\modules\catalog\models\SaleRelSpecifi
                 ])
                 ->asArray()
                 ->one();
-        }, 60 * 60);
+        }, 60 * 60 * 2);
 
         return $result;
     }

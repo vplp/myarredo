@@ -109,7 +109,7 @@ class Types extends \common\modules\catalog\models\Types
                     )
                     ->one();
             }
-        }, 60 * 60);
+        }, 60 * 60 * 2);
 
         return $result;
     }
@@ -286,7 +286,7 @@ class Types extends \common\modules\catalog\models\Types
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        }, 60 * 60);
+        }, 60 * 60 * 2);
 
         return $result;
     }

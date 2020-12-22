@@ -110,7 +110,7 @@ $bundle = AppAsset::register($this);
             </div>
             <!-- end best-price -->
 
-            <?php if ($this->beginCache('Start' . Yii::$app->city->getCityId(), ['duration' => 7200])) { ?>
+            <?php if ($this->beginCache('Start' . Yii::$app->city->getCityId(), ['duration' => 60 * 60 * 2])) { ?>
                 <div class="categories-sect">
                     <div class="container large-container">
                         <div class="section-header">

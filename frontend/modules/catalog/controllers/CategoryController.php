@@ -116,7 +116,7 @@ class CategoryController extends BaseController
             ->orderBy(['views' => SORT_DESC])
             ->asArray()
             ->limit(30)
-            ->cache(7200)
+            ->cache(60 * 60 * 2)
             ->all();
 
         return $this->render('list', [
@@ -208,7 +208,7 @@ class CategoryController extends BaseController
                     ProductLang::tableName() . '.title',
                 ])
                 ->andWhere(['onmain' => '1'])
-                ->cache(7200)
+                ->cache(60 * 60 * 2)
                 ->all();
 
             $i = 0;
