@@ -14,8 +14,8 @@ use frontend\modules\catalog\models\Category;
 
 ?>
 
-<ul class="navigation">
-    <li <?= (Yii::$app->controller->id == 'category') ? ' class="js-has-list has-list first-link"' : ' class="js-has-list first-link"' ?>>
+<ul class="navigation headermenu">
+    <li <?= (Yii::$app->controller->id == 'category') ? ' class="js-has-list first-link"' : ' class="js-has-list first-link"' ?>>
         <?= Html::a(Yii::t('app', 'Catalog of furniture'), ['/catalog/category/list']); ?>
         <div class="list-level-wrap">
             <ul class="list-level">
@@ -39,7 +39,7 @@ use frontend\modules\catalog\models\Category;
     </li>
 
     <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) { ?>
-        <li <?= (Yii::$app->controller->id == 'sale') ? ' class="js-has-list has-list second-link"' : ' class="js-has-list second-link"' ?>>
+        <li <?= (Yii::$app->controller->id == 'sale') ? ' class="js-has-list second-link"' : ' class="js-has-list second-link"' ?>>
             <?= Html::a(
                 Yii::t('app', 'Sale'),
                 Url::toRoute(['/catalog/sale/list'])
