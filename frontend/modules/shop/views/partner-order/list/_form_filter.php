@@ -26,6 +26,7 @@ $lang = substr(Yii::$app->language, 0, 2);
     ]
 ]); ?>
 
+<?php if (Yii::$app->user->identity->group->role == 'partner' && Yii::$app->user->identity->profile->possibility_to_answer_com_de) { ?>
     <div class="form-group">
         <?= Select2::widget([
             'name' => 'country_id',
@@ -38,59 +39,60 @@ $lang = substr(Yii::$app->language, 0, 2);
             ]
         ]); ?>
     </div>
+<?php } ?>
 
-    <div class="form-group">
-        <?= Select2::widget([
-            'name' => 'factory_id',
-            'value' => (!is_array($params['factory_id'])) ? $params['factory_id'] : 0,
-            'data' => [0 => Yii::t('app', 'Все фабрики')] + Factory::dropDownList($params['factory_id']),
-            'options' => [
-                'id' => 'factory_id',
-                'multiple' => false,
-                'placeholder' => Yii::t('app', 'Select option')
-            ]
-        ]); ?>
-    </div>
+<div class="form-group">
+    <?= Select2::widget([
+        'name' => 'factory_id',
+        'value' => (!is_array($params['factory_id'])) ? $params['factory_id'] : 0,
+        'data' => [0 => Yii::t('app', 'Все фабрики')] + Factory::dropDownList($params['factory_id']),
+        'options' => [
+            'id' => 'factory_id',
+            'multiple' => false,
+            'placeholder' => Yii::t('app', 'Select option')
+        ]
+    ]); ?>
+</div>
 
-    <div class="form-group dropdown large-picker">
-        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-            <input type="text" class="drop-date-picker" readonly
-                   value="<?= $params['start_date'] . '-' . $params['end_date'] ?>">
-        </button>
-        <div class="dropdown-menu datepicker-drop">
-            <div class="range-inputs">
-                <label>
-                    <?= Html::input(
-                        'text',
-                        'start_date',
-                        $params['start_date'],
-                        ['class' => 'input-mini range-a']
-                    ) ?>
-                    -
-                    <?= Html::input(
-                        'text',
-                        'end_date',
-                        $params['end_date'],
-                        ['class' => 'input-mini range-b']
-                    ) ?>
-                </label>
-            </div>
-            <div class="flex btns-cont">
-                <button type="button" class="btn btn-success dropdown-toggle change-date"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <?= Yii::t('app', 'Apply') ?>
-                </button>
-                <button type="button" class="btn btn-default dropdown-toggle"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <?= Yii::t('app', 'Cancel') ?>
-                </button>
-            </div>
+<div class="form-group dropdown large-picker">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+        <input type="text" class="drop-date-picker" readonly
+               value="<?= $params['start_date'] . '-' . $params['end_date'] ?>">
+    </button>
+    <div class="dropdown-menu datepicker-drop">
+        <div class="range-inputs">
+            <label>
+                <?= Html::input(
+                    'text',
+                    'start_date',
+                    $params['start_date'],
+                    ['class' => 'input-mini range-a']
+                ) ?>
+                -
+                <?= Html::input(
+                    'text',
+                    'end_date',
+                    $params['end_date'],
+                    ['class' => 'input-mini range-b']
+                ) ?>
+            </label>
+        </div>
+        <div class="flex btns-cont">
+            <button type="button" class="btn btn-success dropdown-toggle change-date"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?= Yii::t('app', 'Apply') ?>
+            </button>
+            <button type="button" class="btn btn-default dropdown-toggle"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?= Yii::t('app', 'Cancel') ?>
+            </button>
         </div>
     </div>
+</div>
 
-    <div class="form-group">
-        <div class="form-control"><?= Yii::t('app', 'Количество') ?>: <?= $models->getTotalCount() ?></div>
-    </div>
+<div class="form-group">
+    <div class="form-control"><?= Yii::t('app', 'Количество') ?>: <?= $models->getTotalCount() ?></div>
+</div>
 
 <?php ActiveForm::end(); ?>
 

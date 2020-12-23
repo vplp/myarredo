@@ -114,7 +114,7 @@ class Order extends OrderModel
                 ->andFilterWhere(['IN', 'product.factory_id', Yii::$app->user->identity->profile->factory_id]);
         }*/
 
-        //possibility_to_answer_com_de
+        // possibility_to_answer_com_de
         if (Yii::$app->user->identity->group->role == 'partner' && !Yii::$app->user->identity->profile->possibility_to_answer_com_de) {
             $query
                 ->andFilterWhere(['NOT IN', self::tableName() . '.lang', ['it-IT', 'en-EN', 'de-DE']]);
