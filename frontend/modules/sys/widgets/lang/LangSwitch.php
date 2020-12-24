@@ -69,6 +69,11 @@ class LangSwitch extends Widget
                 continue;
             }
 
+            // ua only for domain ua
+            if (!in_array(DOMAIN_TYPE, ['co.il']) && in_array($lang['alias'], ['il'])) {
+                continue;
+            }
+
             $image = Language::isImage($lang['img_flag'])
                 ? Html::img(Language::getImage($lang['img_flag']))
                 : '<i class="fa fa-globe" aria-hidden="true"></i>';
