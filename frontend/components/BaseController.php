@@ -65,14 +65,14 @@ abstract class BaseController extends Controller
             /* !!! */ echo  '<pre style="color:red;">'; print_r(DOMAIN_TYPE); echo '</pre>'; /* !!! */
             defined('YII_DEBUG') or define('YII_DEBUG', true);
             defined('YII_ENV') or define('YII_ENV', 'dev');
-            die;
+            //die;
         }
 
         // il domain
-        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && DOMAIN_TYPE == 'co.il' && !in_array($lang, ['he'])) {
+        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && DOMAIN_TYPE == 'co.il' && !in_array($lang, ['he', 'en'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.co.il/', 301);
             yii::$app->end();
-        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(DOMAIN_TYPE, ['ru', 'ua', 'by', 'com', 'de']) && in_array($lang, ['he'])) {
+        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(DOMAIN_TYPE, ['ru', 'ua', 'by', 'com', 'de']) && in_array($lang, ['he', 'en'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.co.il/', 301);
             yii::$app->end();
         }
