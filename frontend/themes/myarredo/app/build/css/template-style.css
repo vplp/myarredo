@@ -10739,11 +10739,9 @@ body .concact-page .one-cont .cont-info-row a {
     top: 56px;
     right: auto;
     left: auto;
-    transition: 0.5s;
   }
   .custom-image-gallery:not(.open) .scrolled.fixed.hidetop {
-    top: -650px;
-    transition: 2s;
+    position: absolute;
   }
 }
 /* min 1400px */

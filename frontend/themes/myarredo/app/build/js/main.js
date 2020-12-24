@@ -464,18 +464,25 @@ $(document).ready(function () {
         // *Для фиксации формы подачи заявки на странице товара
         // Если данная форма существует на странице
         if ($('.scrolled').length > 0) {
-            var ecotimePos = $('.ecotime').offset().top - 610;
-            if ($(this).scrollTop() > 50) {
-                $('.scrolled').addClass('fixed');
-                if ($(this).scrollTop() < ecotimePos) {
-                    $('.scrolled').removeClass('hidetop');
+            if ($('.ecotime').length > 0) {
+                if ($('.ecotime').offset().top < 1000) {
+                    return false;
+                }
+                var ecotimePos = $('.ecotime').offset().top - 750;
+                if ($(this).scrollTop() > 50) {
+                    $('.scrolled').addClass('fixed');
+                    if ($(this).scrollTop() < ecotimePos) {
+                        $('.scrolled').removeClass('hidetop');
+                        $('.scrolled').css('top', '56px');
+                    }
+                    else {
+                        $('.scrolled').addClass('hidetop');
+                        $('.scrolled').css('top', (ecotimePos - 80) + 'px');
+                    }
                 }
                 else {
-                    $('.scrolled').addClass('hidetop');
+                    $('.scrolled').removeClass('fixed');
                 }
-            }
-            else {
-                $('.scrolled').removeClass('fixed');
             }
         }
         
