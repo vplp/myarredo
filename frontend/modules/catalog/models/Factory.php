@@ -51,7 +51,7 @@ class Factory extends \common\modules\catalog\models\Factory
     {
         return parent::findBase()
             ->andFilterWhere([
-                self::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
+                //self::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
             ])
             ->enabled();
     }

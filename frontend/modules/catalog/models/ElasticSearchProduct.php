@@ -212,7 +212,7 @@ class ElasticSearchProduct extends ActiveRecord
                 Product::tableName() . '.removed' => '0',
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
-                Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
+                //Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
             ])
             ->enabled();
     }

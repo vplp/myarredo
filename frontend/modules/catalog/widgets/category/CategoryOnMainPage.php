@@ -39,7 +39,7 @@ class CategoryOnMainPage extends Widget
                     Product::tableName() . '.removed' => '0',
                     Factory::tableName() . '.published' => '1',
                     Factory::tableName() . '.deleted' => '0',
-                    Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
+                    //Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
                 ])
                 ->andWhere([Category::tableName() . '.popular' => '1'])
                 ->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]])

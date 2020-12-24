@@ -135,7 +135,7 @@ class CityComponent extends Component
             return $mask['de'];
         } elseif (in_array(DOMAIN_TYPE, ['by'])) {
             return $mask['by'];
-        }  elseif (in_array(DOMAIN_TYPE, ['kz'])) {
+        } elseif (in_array(DOMAIN_TYPE, ['kz'])) {
             return $mask['kz'];
         } elseif (in_array(DOMAIN_TYPE, ['ua'])) {
             return $mask['ua'];
@@ -219,6 +219,9 @@ class CityComponent extends Component
         } elseif (in_array(DOMAIN_TYPE, ['kz'])) {
             // nur-sultan
             $this->defaultCityId = 163;
+        } elseif (in_array(DOMAIN_TYPE, ['co.il'])) {
+            // jerusalem
+            $this->defaultCityId = 164;
         } else {
             // msk
             $this->defaultCityId = 4;

@@ -40,7 +40,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
                 Product::tableName() . '.removed' => '0',
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
-                Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
+                //Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
             ]);
 
         if (isset($params[$keys['category']])) {

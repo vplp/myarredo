@@ -204,7 +204,7 @@ class Country extends \common\modules\location\models\Country
                 Product::tableName() . '.removed' => '0',
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
-                Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
+                //Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
             ]);
 
         if ($isCountriesFurniture) {
@@ -213,7 +213,7 @@ class Country extends \common\modules\location\models\Country
             $factories = Factory::find()
                 ->with(['lang'])
                 ->andFilterWhere([
-                    Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
+                    //Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
                 ])
                 ->enabled()
                 ->indexBy('producing_country_id')
