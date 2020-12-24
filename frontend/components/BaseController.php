@@ -55,10 +55,6 @@ abstract class BaseController extends Controller
             $session->remove('redirectToOrders');
         }
 
-        Redirects::findRedirect();
-
-        $lang = substr(Yii::$app->language, 0, 2);
-
         if (DOMAIN_TYPE == 'co.il') {
             //echo '2';
             /* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->language); echo '</pre>'; /* !!! */
@@ -66,6 +62,10 @@ abstract class BaseController extends Controller
             defined('YII_ENV') or define('YII_ENV', 'dev');
             die;
         }
+        Redirects::findRedirect();
+
+        $lang = substr(Yii::$app->language, 0, 2);
+
 
         // il domain
         if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && DOMAIN_TYPE == 'co.il' && !in_array($lang, ['il'])) {
