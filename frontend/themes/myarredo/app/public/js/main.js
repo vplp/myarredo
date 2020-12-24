@@ -1,4 +1,5 @@
 // Global Scoupe
+var basedUrl = window.location.origin;
 // Функция для инициализации range-sliders для фильтров
 function rangeInit() {
     // если нужный элемент присутствует на странице
@@ -390,6 +391,18 @@ $(document).ready(function () {
             $('.about-container').find('.about-title').slideUp();
         }
     })();
+
+    // js для подсветки активных ссылок основного меню в шапке сайте
+    if ($('.headermenu').length > 0) {
+        $('.headermenu').children('li').each(function(i, elem) {
+            if ($(elem).children('a').attr('href') == window.location.pathname) {
+                $(elem).addClass('has-list');
+            }
+            else {
+                $(elem).removeClass('has-list');
+            }
+        });
+    }
 
     // Smooth scrols (W3C recomended)
     // Функционал плавного скрола по рекомендациям W3C

@@ -8044,8 +8044,8 @@ h1 {
 }
 .bot-header .header-addprodbox {
   position: absolute;
-  top: 30px;
-  right: 3px;
+  top: 8px;
+  right: 8px;
 }
 .sitemap-list {
   display: flex;
