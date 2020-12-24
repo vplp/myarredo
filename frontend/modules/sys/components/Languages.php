@@ -63,6 +63,9 @@ class Languages extends Component implements iLanguages, BootstrapInterface
             } elseif (DOMAIN_TYPE == 'de' && $item['alias'] == 'de') {
                 $this->defaultLang = $item;
                 break;
+            } elseif (DOMAIN_TYPE == 'co.il' && $item['alias'] == 'il') {
+                $this->defaultLang = $item;
+                break;
             } elseif (in_array(DOMAIN_TYPE, ['ru', 'ua', 'by', 'com', 'kz']) && $item['by_default']) {
                 $this->defaultLang = $item;
                 break;
