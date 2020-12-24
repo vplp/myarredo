@@ -61,11 +61,11 @@ abstract class BaseController extends Controller
 
         if (DOMAIN_TYPE == 'co.il') {
             //echo '2';
-            /* !!! */ echo  '<pre style="color:red;">'; print_r($lang); echo '</pre>'; /* !!! */
+            /* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->language); echo '</pre>'; /* !!! */
             /* !!! */ echo  '<pre style="color:red;">'; print_r(DOMAIN_TYPE); echo '</pre>'; /* !!! */
             defined('YII_DEBUG') or define('YII_DEBUG', true);
             defined('YII_ENV') or define('YII_ENV', 'dev');
-            //die;
+            die;
         }
 
         // il domain
