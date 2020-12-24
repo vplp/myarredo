@@ -45,12 +45,7 @@ abstract class BaseController extends Controller
      */
     public function beforeAction($action)
     {
-        if (DOMAIN_TYPE == 'co.il') {
-            echo '2';
-            defined('YII_DEBUG') or define('YII_DEBUG', true);
-            defined('YII_ENV') or define('YII_ENV', 'dev');
-            die;
-        }
+
         // переход к ответу на заявку при авторизации на сайте
         $session = Yii::$app->session;
 
@@ -60,7 +55,7 @@ abstract class BaseController extends Controller
             $session->remove('redirectToOrders');
         }
 
-        Redirects::findRedirect();
+        //Redirects::findRedirect();
 
         $lang = substr(Yii::$app->language, 0, 2);
 
@@ -109,6 +104,13 @@ abstract class BaseController extends Controller
 
         Yii::$app->response->headers->set('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + 86400));
         Yii::$app->response->headers->set('Vary', 'User-Agent');
+
+        if (DOMAIN_TYPE == 'co.il') {
+            //echo '2';
+            defined('YII_DEBUG') or define('YII_DEBUG', true);
+            defined('YII_ENV') or define('YII_ENV', 'dev');
+            //die;
+        }
 
         return parent::beforeAction($action);
     }
