@@ -47,7 +47,7 @@ class ProductsNovelties extends Widget
      */
     public $modelLangClass = null;
 
-     /**
+    /**
      * @var object
      */
     public $sliderData = [];
@@ -138,7 +138,7 @@ class ProductsNovelties extends Widget
         }
 
         // Ready data for front
-        foreach ($this->modelsPromotions as $model) { 
+        foreach ($this->modelsPromotions as $model) {
             $this->sliderData[] = array(
                 'href' => $modelPromotionItemClass::getUrl($model[Yii::$app->languages->getDomainAlias()]),
                 'src' => $modelPromotionItemClass::getImageThumb($model['image_link']),
@@ -147,7 +147,8 @@ class ProductsNovelties extends Widget
                 'bestseller' => 0
             );
         }
-        foreach ($this->models as $model) { 
+
+        foreach ($this->models as $model) {
             $this->sliderData[] = array(
                 'href' => $modelClass::getUrl($model[Yii::$app->languages->getDomainAlias()]),
                 'src' => $modelClass::getImageThumb($model['image_link']),
