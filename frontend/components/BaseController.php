@@ -57,21 +57,22 @@ abstract class BaseController extends Controller
 
         if (DOMAIN_TYPE == 'co.il') {
             //echo '2';
-            /* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->language); echo '</pre>'; /* !!! */
+            ///* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->language); echo '</pre>'; /* !!! */
             defined('YII_DEBUG') or define('YII_DEBUG', true);
             defined('YII_ENV') or define('YII_ENV', 'dev');
-            die;
+            //die;
         }
+
         Redirects::findRedirect();
 
         $lang = substr(Yii::$app->language, 0, 2);
 
 
         // il domain
-        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && DOMAIN_TYPE == 'co.il' && !in_array($lang, ['il'])) {
+        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && DOMAIN_TYPE == 'co.il' && !in_array($lang, ['he'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.co.il/', 301);
             yii::$app->end();
-        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(DOMAIN_TYPE, ['ru', 'ua', 'by', 'com', 'de']) && in_array($lang, ['il'])) {
+        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(DOMAIN_TYPE, ['ru', 'ua', 'by', 'com', 'de']) && in_array($lang, ['he'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.co.il/', 301);
             yii::$app->end();
         }
@@ -146,7 +147,7 @@ abstract class BaseController extends Controller
          */
         $lang = substr(Yii::$app->language, 0, 2);
 
-        if (in_array(DOMAIN_TYPE, ['ua', 'by', 'com', 'de', 'il'])) {
+        if (in_array(DOMAIN_TYPE, ['ua', 'by', 'com', 'de', 'he'])) {
             $session->set('currency', 'EUR');
         } elseif (in_array(DOMAIN_TYPE, ['kz'])) {
             $session->set('currency', 'KZT');

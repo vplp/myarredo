@@ -121,7 +121,7 @@ class CityComponent extends Component
                 '+39 (9999) 999-999',
                 '+39 (9999) 999-9999'
             ],
-            'il' => [
+            'he' => [
                 '+39 (99) 999-999',
                 '+39 (999) 999-999',
                 '+39 (9999) 999-999',
@@ -144,7 +144,7 @@ class CityComponent extends Component
         } elseif (in_array(DOMAIN_TYPE, ['kz'])) {
             return $mask['kz'];
         } elseif (in_array(DOMAIN_TYPE, ['co.il'])) {
-            return $mask['il'];
+            return $mask['he'];
         } elseif (in_array(DOMAIN_TYPE, ['ua'])) {
             return $mask['ua'];
         } else {

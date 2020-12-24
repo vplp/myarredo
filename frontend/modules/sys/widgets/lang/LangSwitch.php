@@ -70,7 +70,7 @@ class LangSwitch extends Widget
             }
 
             // ua only for domain ua
-            if (!in_array(DOMAIN_TYPE, ['co.il']) && in_array($lang['alias'], ['il'])) {
+            if (!in_array(DOMAIN_TYPE, ['co.il']) && in_array($lang['alias'], ['he'])) {
                 continue;
             }
 
@@ -83,7 +83,7 @@ class LangSwitch extends Widget
                 $url = 'https://www.myarredo.com';
             } elseif (in_array($lang['alias'], ['de'])) {
                 $url = 'https://www.myarredo.de';
-            } elseif (in_array($lang['alias'], ['il'])) {
+            } elseif (in_array($lang['alias'], ['he'])) {
                 $url = 'https://www.myarredo.co.il';
             } elseif (in_array($lang['alias'], ['ru']) && in_array(DOMAIN_TYPE, ['ru'])) {
                 $url = 'https://www.myarredo.ru';
