@@ -68,6 +68,11 @@ abstract class BaseController extends Controller
             yii::$app->end();
         }
 
+        if (DOMAIN_TYPE == 'co.il') {
+            echo '2';
+            die;
+        }
+
         // de domain
         if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && DOMAIN_TYPE == 'de' && !in_array($lang, ['de'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.de/', 301);
@@ -92,11 +97,11 @@ abstract class BaseController extends Controller
             yii::$app->end();
         }
 
-//        if (preg_match('!/{2,}!', $_SERVER['REQUEST_URI'])) {
-//            $url = preg_replace('!/{2,}!', '/', $_SERVER['REQUEST_URI']);
-//            header('Location: ' . $url, false, 301);
-//            exit();
-//        }
+        if (preg_match('!/{2,}!', $_SERVER['REQUEST_URI'])) {
+            $url = preg_replace('!/{2,}!', '/', $_SERVER['REQUEST_URI']);
+            header('Location: ' . $url, false, 301);
+            exit();
+        }
 
         $this->getAlternateHreflang();
 
