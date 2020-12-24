@@ -92,11 +92,11 @@ abstract class BaseController extends Controller
             yii::$app->end();
         }
 
-        if (preg_match('!/{2,}!', $_SERVER['REQUEST_URI'])) {
-            $url = preg_replace('!/{2,}!', '/', $_SERVER['REQUEST_URI']);
-            header('Location: ' . $url, false, 301);
-            exit();
-        }
+//        if (preg_match('!/{2,}!', $_SERVER['REQUEST_URI'])) {
+//            $url = preg_replace('!/{2,}!', '/', $_SERVER['REQUEST_URI']);
+//            header('Location: ' . $url, false, 301);
+//            exit();
+//        }
 
         $this->getAlternateHreflang();
 
