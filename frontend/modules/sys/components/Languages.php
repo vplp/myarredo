@@ -55,15 +55,8 @@ class Languages extends Component implements iLanguages, BootstrapInterface
         }
 
         $this->items = $this->getAll();
-        if (DOMAIN_TYPE == 'co.il') {
-            /* !!! */ echo  '<pre style="color:red;">'; print_r(DOMAIN_TYPE); echo '</pre>'; /* !!! */
-            //die;
-        }
+
         foreach ($this->items as $item) {
-            if (DOMAIN_TYPE == 'co.il') {
-                /* !!! */ echo  '<pre style="color:red;">'; print_r($item['alias']); echo '</pre>'; /* !!! */
-                //die;
-            }
             if (DOMAIN_NAME == 'myarredofamily' && DOMAIN_TYPE == 'com' && $item['alias'] == 'en') {
                 $this->defaultLang = $item;
                 break;
@@ -78,10 +71,7 @@ class Languages extends Component implements iLanguages, BootstrapInterface
                 break;
             }
         }
-        if (DOMAIN_TYPE == 'co.il') {
-            /* !!! */ echo  '<pre style="color:red;">'; print_r($this->defaultLang); echo '</pre>'; /* !!! */
-            //die;
-        }
+
         parent::init();
     }
 
