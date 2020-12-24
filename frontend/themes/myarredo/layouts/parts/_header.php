@@ -201,10 +201,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                     </div>
                 <?php } ?>
 
-                <?php if (!Yii::$app->getUser()->isGuest && (
-                        (Yii::$app->user->identity->group->role == 'partner' && Yii::$app->user->identity->profile->country_id == 4) ||
-                        Yii::$app->user->identity->group->role == 'factory'
-                    )) {
+                <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
                 } else { ?>
                     <?php if ($this->beginCache('CatalogMenuWidget' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => \Yii::$app->params['cache']['duration']])) {
                         echo CatalogMenu::widget([]);
