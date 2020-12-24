@@ -49,7 +49,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             <?= Yii::t('app', 'Feedback form') ?>
                         </a> */ ?>
 
-                        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) { ?>
+                        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz', 'co.il'])) { ?>
                             <div class="select-city">
                                 <a href="javascript:void(0)" class="js-select-city">
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -62,7 +62,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                         <?php } ?>
 
                         <?php if (DOMAIN_NAME == 'myarredo' &&
-                            in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de']) &&
+                            in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de', 'co.il']) &&
                             !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale'])
                         ) { ?>
                             <div class="lang-selector">
@@ -80,7 +80,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
                         <?= Cart::widget(['view' => 'short']) ?>
 
-                        <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'de', 'kz']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+                        <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'de', 'kz', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
                             <a href="tel:+<?= $clearPhoneNumb ?>" class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
@@ -122,7 +122,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                         ) ?>
 
                         <?php if (DOMAIN_NAME == 'myarredo' &&
-                            in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de']) &&
+                            in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de', 'co.il']) &&
                             !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale'])
                         ) { ?>
                             <div class="lang-selector">
@@ -140,7 +140,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
                         <?= Cart::widget(['view' => 'short']) ?>
 
-                        <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'de', 'kz']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+                        <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'de', 'kz', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
                             <a href="tel:+<?= $clearPhoneNumb ?>" class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
@@ -262,7 +262,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             <i class="fa fa-search" aria-hidden="true"></i>
         </div> -->
 
-        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) { ?>
+        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz', 'co.il'])) { ?>
             <div class="adress-container">
                 <div class="js-toggle-list">
                 <span class="for-map-icon">
@@ -309,7 +309,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             <span class="for-fctext"><?= Yii::t('app', 'Напишите нам') ?></span>
         </div>
         <div class="phone-container">
-            <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'de', 'kz']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+            <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'de', 'kz', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
                 <a href="tel:+<?= $clearPhoneNumb ?>" class="phone-num">
                     <?= Yii::$app->partner->getPartnerPhone() ?>
                 </a>

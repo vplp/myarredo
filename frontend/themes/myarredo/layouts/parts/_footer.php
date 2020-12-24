@@ -20,7 +20,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
 <div class="footer jsftr" data-url="<?= $url; ?>">
     <div class="container-wrap">
 
-        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz']) && !in_array(Yii::$app->controller->id, ['sale'])) { ?>
+        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale'])) { ?>
             <div class="contacts">
                 <div class="cont-flex">
                     <?php if (!in_array(Yii::$app->controller->id, ['sale-italy'])) {
@@ -54,7 +54,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
 
         <?php
         if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
-        } else if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
+        } else if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz', 'co.il'])) {
             if ($this->beginCache('CitiesWidget' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => \Yii::$app->params['cache']['duration']])) {
                 echo Cities::widget();
                 $this->endCache();
@@ -64,7 +64,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
         <div class="footer-navpanel">
             <div class="bot-list">
                 <?php if (DOMAIN_NAME == 'myarredo' &&
-                    in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de']) &&
+                    in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de', 'co.il']) &&
                     !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale'])
                 ) { ?>
                     <div class="one-list-cont lang-cont">
@@ -113,9 +113,9 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
                             <?php
                             if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
                                 echo '';
-                            } elseif (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
+                            } elseif (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz', 'co.il'])) {
                                 echo Menu::widget(['alias' => 'footer']);
-                            } elseif (in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
+                            } elseif (in_array(DOMAIN_TYPE, ['com', 'de', 'kz', 'co.il'])) {
                                 echo Menu::widget(['alias' => 'footer-com']);
                             } ?>
                         </div>

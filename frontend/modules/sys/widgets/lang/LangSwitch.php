@@ -93,7 +93,7 @@ class LangSwitch extends Widget
                 $url = 'https://www.myarredo.ru';
             }
 
-            if (in_array($lang['alias'], ['it', 'en', 'de'])) {
+            if (in_array($lang['alias'], ['it', 'en', 'de', 'co.il'])) {
                 $path = Yii::$app->request->url;
 
                 $params = Yii::$app->catalogFilter->params;
@@ -146,7 +146,7 @@ class LangSwitch extends Widget
                 }
 
                 $path = str_replace('/' . $this->current['alias'], '', $path);
-            } elseif (in_array($lang['alias'], ['ru']) && in_array(DOMAIN_TYPE, ['com', 'de'])) {
+            } elseif (in_array($lang['alias'], ['ru']) && in_array(DOMAIN_TYPE, ['com', 'de', 'co.il'])) {
                 $path = Yii::$app->request->url;
 
                 $params = Yii::$app->catalogFilter->params;
@@ -257,7 +257,7 @@ class LangSwitch extends Widget
             if ($lang['local'] == Yii::$app->language) {
                 $this->current = [
                     'label' => $lang['label'],
-                    'url' => !in_array($lang['alias'], ['de'])
+                    'url' => !in_array($lang['alias'], ['de', 'co.il'])
                         ? $url . '/' . $lang['alias'] . $path
                         : $url . $path,
                     'image' => $image,
@@ -269,7 +269,7 @@ class LangSwitch extends Widget
             if (!$lang['by_default']) {
                 $items[] = [
                     'label' => $lang['label'],
-                    'url' => !in_array($lang['alias'], ['de'])
+                    'url' => !in_array($lang['alias'], ['de', 'co.il'])
                         ? $url . '/' . $lang['alias'] . $path
                         : $url . $path,
                     'image' => $image,
