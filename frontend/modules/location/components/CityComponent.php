@@ -121,6 +121,12 @@ class CityComponent extends Component
                 '+39 (9999) 999-999',
                 '+39 (9999) 999-9999'
             ],
+            'il' => [
+                '+39 (99) 999-999',
+                '+39 (999) 999-999',
+                '+39 (9999) 999-999',
+                '+39 (9999) 999-9999'
+            ],
         ];
 
         if (in_array($key, array_keys($mask))) {
@@ -137,6 +143,8 @@ class CityComponent extends Component
             return $mask['by'];
         } elseif (in_array(DOMAIN_TYPE, ['kz'])) {
             return $mask['kz'];
+        } elseif (in_array(DOMAIN_TYPE, ['co.il'])) {
+            return $mask['il'];
         } elseif (in_array(DOMAIN_TYPE, ['ua'])) {
             return $mask['ua'];
         } else {
@@ -169,10 +177,10 @@ class CityComponent extends Component
             $_SERVER["HTTP_HOST"]
         );
 
-        if ($cityAlias && !in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
+        if ($cityAlias && !in_array(DOMAIN_TYPE, ['com', 'de', 'kz', 'co.il'])) {
             $this->city = City::findByAlias($cityAlias);
 
-            if ($this->city == null || in_array($this->city['id'], [1, 2, 4, 159, 160, 161])) {
+            if ($this->city == null || in_array($this->city['id'], [1, 2, 4, 159, 160, 161, 164])) {
                 Yii::$app->response->redirect(
                     'https://' . 'www.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . Yii::$app->request->url,
                     301
