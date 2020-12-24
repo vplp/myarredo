@@ -65,7 +65,7 @@ abstract class BaseController extends Controller
             /* !!! */ echo  '<pre style="color:red;">'; print_r(DOMAIN_TYPE); echo '</pre>'; /* !!! */
             defined('YII_DEBUG') or define('YII_DEBUG', true);
             defined('YII_ENV') or define('YII_ENV', 'dev');
-            die;
+            //die;
         }
 
         // il domain
