@@ -55,9 +55,17 @@ abstract class BaseController extends Controller
             $session->remove('redirectToOrders');
         }
 
-        //Redirects::findRedirect();
+        Redirects::findRedirect();
 
         $lang = substr(Yii::$app->language, 0, 2);
+
+        if (DOMAIN_TYPE == 'co.il') {
+            //echo '2';
+            /* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->language); echo '</pre>'; /* !!! */
+            defined('YII_DEBUG') or define('YII_DEBUG', true);
+            defined('YII_ENV') or define('YII_ENV', 'dev');
+            die;
+        }
 
         // il domain
         if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && DOMAIN_TYPE == 'co.il' && !in_array($lang, ['il'])) {
@@ -104,13 +112,6 @@ abstract class BaseController extends Controller
 
         Yii::$app->response->headers->set('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + 86400));
         Yii::$app->response->headers->set('Vary', 'User-Agent');
-
-        if (DOMAIN_TYPE == 'co.il') {
-            //echo '2';
-            defined('YII_DEBUG') or define('YII_DEBUG', true);
-            defined('YII_ENV') or define('YII_ENV', 'dev');
-            //die;
-        }
 
         return parent::beforeAction($action);
     }
