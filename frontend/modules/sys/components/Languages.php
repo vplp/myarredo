@@ -71,7 +71,10 @@ class Languages extends Component implements iLanguages, BootstrapInterface
                 break;
             }
         }
-
+        if (DOMAIN_TYPE == 'co.il') {
+            /* !!! */ echo  '<pre style="color:red;">'; print_r($this->defaultLang); echo '</pre>'; /* !!! */
+            //die;
+        }
         parent::init();
     }
 
