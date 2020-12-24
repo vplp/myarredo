@@ -45,7 +45,12 @@ abstract class BaseController extends Controller
      */
     public function beforeAction($action)
     {
-
+        if (DOMAIN_TYPE == 'co.il') {
+            echo '2';
+            defined('YII_DEBUG') or define('YII_DEBUG', true);
+            defined('YII_ENV') or define('YII_ENV', 'dev');
+            die;
+        }
         // переход к ответу на заявку при авторизации на сайте
         $session = Yii::$app->session;
 
@@ -66,11 +71,6 @@ abstract class BaseController extends Controller
         } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(DOMAIN_TYPE, ['ru', 'ua', 'by', 'com', 'de']) && in_array($lang, ['il'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.co.il/', 301);
             yii::$app->end();
-        }
-
-        if (DOMAIN_TYPE == 'co.il') {
-            echo '2';
-            die;
         }
 
         // de domain
