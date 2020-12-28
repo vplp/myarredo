@@ -99,6 +99,12 @@ class SitemapController extends Controller
                     'https://' . 'www.myarredo.de',
                     $city
                 );
+            } elseif ($city['country_id'] == 109) {
+                $this->createSitemapFile(
+                    self::getUrls('he-IL', 'co.il', $city['id']),
+                    'https://' . 'www.myarredo.co.il',
+                    $city
+                );
             } elseif ($city['country_id'] == 1) {
                 $urls = $urlsRu;
                 foreach ($urlsUa as $url) {
@@ -107,8 +113,6 @@ class SitemapController extends Controller
                 $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
             } elseif ($city['country_id'] == 114) {
                 $this->createSitemapFile($urlsRu, 'https://' . 'www.myarredo.kz', $city);
-            } elseif ($city['country_id'] == 109) {
-                $this->createSitemapFile($urlsRu, 'https://' . 'www.myarredo.co.il', $city);
             } else {
                 $this->createSitemapFile($urlsRu, City::getSubDomainUrl($city), $city);
             }

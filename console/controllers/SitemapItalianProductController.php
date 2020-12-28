@@ -76,6 +76,9 @@ class SitemapItalianProductController extends Controller
             } elseif ($city['country_id'] == 85) {
                 // germany
                 $this->createSitemapFile(self::getUrls('de-DE'), 'https://' . 'www.myarredo.de', $city);
+            } elseif ($city['country_id'] == 109) {
+                // germany
+                $this->createSitemapFile(self::getUrls('he-IL'), 'https://' . 'www.myarredo.co.il', $city);
             } elseif ($city['country_id'] == 1) {
                 $urlsUa = self::getUrls('uk-UA');
 
@@ -86,8 +89,6 @@ class SitemapItalianProductController extends Controller
                 $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
             } elseif ($city['country_id'] == 114) {
                 $this->createSitemapFile($urlsRu, 'https://' . 'www.myarredo.kz', $city);
-            } elseif ($city['country_id'] == 109) {
-                $this->createSitemapFile($urlsRu, 'https://' . 'www.myarredo.co.il', $city);
             } else {
                 $this->createSitemapFile($urlsRu, City::getSubDomainUrl($city), $city);
             }
