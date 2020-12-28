@@ -29,12 +29,14 @@ $images = $model->getGalleryImageThumb();
                     <table class="info-table table-salones-list">
                         <tbody>
 
-                        <?php foreach ($partners as $partner) { ?>
-                            <tr>
-                                <td><?= $partner->profile->getNameCompany() ?></td>
-                                <td><?= $partner->profile->city->getTitle() . ', ' . $partner->profile->lang->address ?? '' ?></td>
-                            </tr>
-                        <?php } ?>
+                        <?php foreach ($partners as $partner) {
+                            if ($partner->profile->lang->address) { ?>
+                                <tr>
+                                    <td><?= $partner->profile->getNameCompany() ?></td>
+                                    <td><?= $partner->profile->city->getTitle() . ', ' . $partner->profile->lang->address ?? '' ?></td>
+                                </tr>
+                            <?php }
+                        } ?>
 
                         </tbody>
                     </table>
