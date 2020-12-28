@@ -33,7 +33,6 @@ class AppAsset extends AssetBundle
         'libs/fancybox/jquery.fancybox.css',
         'libs/formstyler/jquery.formstyler.css',
         'libs/intl-input/intlTelInput.min.css',
-        'css/first.min.css',
         'css/template-style.min.css',
     ];
 
