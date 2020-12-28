@@ -50,7 +50,8 @@ var dev_patches = {
     'font': ['./build/font/*'],
     'less': ['./build/less/**/*.less'],
     'scss': ['./build/scss/**/*.scss'],
-    'css': ['./build/css/template-style.css'],
+    'css': ['./build/css/*.css'],
+    'first': ['./build/css/first.css'],
     'css-base': './build/css/',
     'images-jpg': ['./build/img/**/*.jpg', './build/img/*.jpg'],
     'images-svg': ['./build/img/**/*.svg'],
@@ -100,6 +101,7 @@ gulp.task('watch', function () {
 gulp.task('watchnum2', function () {
     gulp.watch(dev_patches['js'], ['scripts']);
     gulp.watch(dev_patches['css'], ['minify-css']);
+    gulp.watch(dev_patches['first'], ['minify-css']);
 });
 
 //------------------------------------------------------------------------

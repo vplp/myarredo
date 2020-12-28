@@ -17,7 +17,7 @@ use frontend\modules\location\models\{
 <div class="cities-list">
     <div class="container large-container">
         <span class="title-h5"><?= Yii::t('app', 'Этот список городов размещен здесь для вашего удобства. Найдите свой город и купите итальянскую мебель по лучшей цене.') ?></span>
-        <div class="dropdown">
+        <div class="dropdown" style="overflow:hidden;">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Город
@@ -33,7 +33,7 @@ use frontend\modules\location\models\{
                 } ?>
             </div>
         </div>
-        <div class="list-of-cities">
+        <div class="list-of-cities" style="overflow:hidden;">
             <?php $currentLetter = '' ?>
             <?php
             foreach ($country['cities'] as $cityCountry) {
