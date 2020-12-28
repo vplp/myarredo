@@ -190,7 +190,7 @@ function showHideForItalia(country_id) {
             $(romeOption).prop('selected', true);
         },300);
         
-    } else if (country_id == 85 || country_id == 114) {
+    } else if (country_id == 85 || country_id == 114 || country_id == 109) {
         
         $('.field-registerform-city_id').css('display', 'none');
         $('.field-registerform-exp_with_italian').css('display', 'none');

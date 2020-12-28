@@ -51,7 +51,7 @@ class SitemapItalianProductController extends Controller
         // list of cities
         $cities = City::findBase()
             ->joinWith(['country', 'country.lang'])
-            ->andFilterWhere(['IN', 'country_id', [1, 2, 3, 4, 5, 85, 114]])
+            ->andFilterWhere(['IN', 'country_id', [1, 2, 3, 4, 5, 85, 114, 109]])
             ->all();
 
         $urlsRu = self::getUrls('ru-RU');
@@ -84,9 +84,10 @@ class SitemapItalianProductController extends Controller
                     $urls[] = array_merge($url, ['loc' => "/ua" . $url['loc']]);
                 }
                 $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
-            }  elseif ($city['country_id'] == 114) {
-                // nur-sultan
+            } elseif ($city['country_id'] == 114) {
                 $this->createSitemapFile($urlsRu, 'https://' . 'www.myarredo.kz', $city);
+            } elseif ($city['country_id'] == 109) {
+                $this->createSitemapFile($urlsRu, 'https://' . 'www.myarredo.co.il', $city);
             } else {
                 $this->createSitemapFile($urlsRu, City::getSubDomainUrl($city), $city);
             }
