@@ -32,7 +32,7 @@ $images = $model->getGalleryImageThumb();
                         <?php foreach ($partners as $partner) { ?>
                             <tr>
                                 <td><?= $partner->profile->getNameCompany() ?></td>
-                                <td><?= $partner->profile->lang->address ?? '' ?></td>
+                                <td><?= $partner->profile->city->getTitle() . ', ' . $partner->profile->lang->address ?? '' ?></td>
                             </tr>
                         <?php } ?>
 
@@ -49,89 +49,91 @@ $images = $model->getGalleryImageThumb();
                 </div>
             </div>
             <div class="col-sm-6 col-lg-4">
-                <div class="last-sale">
-                    <div class="last-sale-top">
+                <?php if ($model['price_from']) { ?>
+                    <div class="last-sale">
+                        <div class="last-sale-top">
 
-                        <h4 class="last-sale-title"><?= $model->getTitle() ?></h4>
-                        <div class="last-sale-info">
-                            <div class="last-sale-left">
-                                <?= Html::img($images[0]['thumb'], ['alt' => Product::getImageAlt($model), 'class' => 'last-sale-img']) ?>
-                            </div>
-                            <div class="last-sale-right">
-                                <div class="last-sale-tablebox">
-                                    <table class="last-sale-table">
-                                        <tr>
-                                            <td><?= Yii::t('app', 'Артикул') ?></td>
-                                            <td><?= $model['article']; ?></td>
-                                        </tr>
-                                        <?php if (!empty($model['specificationValue'])) { ?>
-                                            <?php
-                                            $array = [];
-                                            foreach ($model['specificationValue'] as $item) {
-                                                if ($item['specification']['parent_id'] == 4 && $item['val']) {
-                                                    $str = '';
-                                                    for ($n = 2; $n <= 10; $n++) {
-                                                        $field = "val$n";
-                                                        if ($item[$field]) {
-                                                            $str .= '; ' . $item[$field];
+                            <h4 class="last-sale-title"><?= $model->getTitle() ?></h4>
+                            <div class="last-sale-info">
+                                <div class="last-sale-left">
+                                    <?= Html::img($images[0]['thumb'], ['alt' => Product::getImageAlt($model), 'class' => 'last-sale-img']) ?>
+                                </div>
+                                <div class="last-sale-right">
+                                    <div class="last-sale-tablebox">
+                                        <table class="last-sale-table">
+                                            <?php if (!empty($model['specificationValue'])) { ?>
+                                                <?php
+                                                $array = [];
+                                                foreach ($model['specificationValue'] as $item) {
+                                                    if ($item['specification']['parent_id'] == 4 && $item['val']) {
+                                                        $str = '';
+                                                        for ($n = 2; $n <= 10; $n++) {
+                                                            $field = "val$n";
+                                                            if ($item[$field]) {
+                                                                $str .= '; ' . $item[$field];
+                                                            }
                                                         }
+                                                        ?>
+                                                        <tr>
+                                                            <td><?= $item['specification']['lang']['title'] . ' (' . Yii::t('app', 'см') . ')' ?></td>
+                                                            <td>
+                                                                <?= $item['val'] . $str ?>
+                                                            </td>
+                                                        </tr>
+                                                        <?php
                                                     }
-                                                    ?>
+                                                }
+                                                ?>
+
+                                                <?php
+                                                $array = [];
+                                                foreach ($model['specificationValue'] as $item) {
+                                                    if ($item['specification']['parent_id'] == 2) {
+                                                        $array[] = $item['specification']['lang']['title'];
+                                                    }
+                                                }
+                                                if (!empty($array)) { ?>
                                                     <tr>
-                                                        <td><?= $item['specification']['lang']['title'] . ' (' . Yii::t('app', 'см') . ')' ?></td>
+                                                        <td><?= Yii::t('app', 'Материал') ?></td>
                                                         <td>
-                                                            <?= $item['val'] . $str ?>
+                                                            <?= implode('; ', $array) ?>
                                                         </td>
                                                     </tr>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
+                                                <?php } ?>
 
-                                            <?php
-                                            $array = [];
-                                            foreach ($model['specificationValue'] as $item) {
-                                                if ($item['specification']['parent_id'] == 2) {
-                                                    $array[] = $item['specification']['lang']['title'];
-                                                }
-                                            }
-                                            if (!empty($array)) { ?>
-                                                <tr>
-                                                    <td><?= Yii::t('app', 'Материал') ?></td>
-                                                    <td>
-                                                        <?= implode('; ', $array) ?>
-                                                    </td>
-                                                </tr>
                                             <?php } ?>
-
-                                        <?php } ?>
-                                    </table>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                    </div>
-                    <div class="last-sale-bottom">
-                        <div class="last-sale-infobot">
-                            <div class="last-sale-left">
-                                <div class="last-sale-text top">
-                                    <?= Yii::t('app', 'Последний раз этот товар был продан партнером нашей сети за') ?>:
-                                </div>
-                                <div class="last-sale-text">
+                        </div>
+                        <div class="last-sale-bottom">
+                            <div class="last-sale-infobot">
+                                <div class="last-sale-left">
+                                    <div class="last-sale-text top">
+                                        <?= Yii::t('app', 'Последний раз этот товар был продан партнером нашей сети за') ?>
+                                        :
+                                    </div>
+                                    <div class="last-sale-text">
                                     <span class="for-lastsale-curval">
-                                        <?= Yii::$app->currency->getReversValue($model['price_from'] * 60, $model['currency'], 'EUR') ?>
+                                        <?php
+                                        $price = Yii::$app->currency->getReversValue($model['price_from'], Yii::$app->currency->code, 'EUR');
+                                        echo Yii::$app->currency->getValue($price * 60, 'EUR');
+                                        ?>
                                     </span>
-                                    <span class="for-lastsale-curency"><?= 'EUR' ?></span>
+                                        <span class="for-lastsale-curency"><?= Yii::$app->currency->symbol ?></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="last-sale-right">
-                                <div class="last-sale-arrow">
-                                    <div class="arrow-block"></div>
+                                <div class="last-sale-right">
+                                    <div class="last-sale-arrow">
+                                        <div class="arrow-block"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
     </div>
