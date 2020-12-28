@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
 </div>
 
 <div class="form-fieldbox2">
-    <?php if (in_array(DOMAIN_TYPE, ['com', 'de', 'kz'])) {
+    <?php if (in_array(DOMAIN_TYPE, ['com', 'de', 'kz', 'co.il'])) {
         $model->city_id = 0;
         $model->country_code = Yii::$app->city->getCountryCode();
 

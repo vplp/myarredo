@@ -282,7 +282,7 @@ $urls = [
     'seo/metrics/ajax-get-metrics' => 'seo/metrics/ajax-get-metrics'
 ];
 
-if (in_array(DOMAIN_TYPE, ['de', 'com'])) {
+if (in_array(DOMAIN_TYPE, ['de', 'com', 'co.il'])) {
     $urls['contacts'] = 'page/contacts/list-partners';
 }
 
