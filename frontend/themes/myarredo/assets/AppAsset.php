@@ -30,11 +30,10 @@ class AppAsset extends AssetBundle
         'libs/font-awesome/css/font-awesome.min.css',
         'libs/slick-1.6/slick.css',
         'libs/bootstrap-select/css/bootstrap-select.min.css',
-        //'css/fonts.css',
         'libs/fancybox/jquery.fancybox.css',
         'libs/formstyler/jquery.formstyler.css',
-        'css/main.scss.min.css',
         'libs/intl-input/intlTelInput.min.css',
+        'css/first.min.css',
         'css/template-style.min.css',
     ];
 
