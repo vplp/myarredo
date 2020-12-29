@@ -13558,11 +13558,15 @@ body .concact-page .one-cont .cont-info-row a {
   width: 100%;
   height: auto;
 }
+.last-sale-table tr td {
+  font-size: 12px;
+}
 .last-sale-table tr td:first-child {
   padding-right: 20px;
+  opacity: 0.97;
 }
 .last-sale-tablebox {
-  padding: 0 20px;
+  padding: 0 0 0 20px;
 }
 .last-sale-table {
   margin: 0 auto;
@@ -13573,7 +13577,7 @@ body .concact-page .one-cont .cont-info-row a {
   color: #448438;
 }
 .for-lastsale-curval {
-  font-size: 42px;
+  font-size: 28px;
   font-weight: 600;
 }
 .for-lastsale-curency {
@@ -13648,7 +13652,7 @@ body .concact-page .one-cont .cont-info-row a {
     padding-right: 10px;
   }
   .last-sale-tablebox {
-    padding: 0 10px;
+    padding: 0 0 0 10px;
   }
 }
 /* min width styles */
