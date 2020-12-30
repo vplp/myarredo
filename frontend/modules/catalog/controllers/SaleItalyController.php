@@ -46,6 +46,18 @@ class SaleItalyController extends BaseController
     protected $filterModel = filterItalianProductModel::class;
 
     /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws \yii\base\ExitException
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
+    /**
      * @return array
      */
     public function behaviors()

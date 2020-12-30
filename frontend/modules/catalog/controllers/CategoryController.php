@@ -33,6 +33,12 @@ class CategoryController extends BaseController
 
     public $defaultAction = 'list';
 
+    /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws \yii\base\ExitException
+     * @throws \yii\web\BadRequestHttpException
+     */
     public function beforeAction($action)
     {
         $this->enableCsrfValidation = false;
