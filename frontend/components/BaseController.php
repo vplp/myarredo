@@ -142,6 +142,8 @@ abstract class BaseController extends Controller
             $session->set('currency', 'EUR');
         } elseif (in_array(DOMAIN_TYPE, ['kz'])) {
             $session->set('currency', 'KZT');
+        } elseif (in_array(DOMAIN_TYPE, ['co.il'])) {
+            $session->set('currency', 'ILS');
         } elseif (!$session->has('currency') && $lang == 'ru') {
             $session->set('currency', 'RUB');
         } elseif (!$session->has('currency')) {
