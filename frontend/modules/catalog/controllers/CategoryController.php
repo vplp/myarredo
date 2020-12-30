@@ -33,6 +33,12 @@ class CategoryController extends BaseController
 
     public $defaultAction = 'list';
 
+    public function beforeAction($action)
+    {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
     /**
      * @return array
      */
