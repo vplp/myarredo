@@ -1,6 +1,6 @@
 h1 {
   font-family: 'Vollkorn', sans-serif;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 35px;
 }
 .page {
@@ -732,7 +732,7 @@ footer .partner-cities ul {
   font-weight: 400
 }
 .prod-card-page .availability td:first-child, .prod-card-page .price td .currency, .prod-card-page .price td:first-child {
-  font-weight: 700
+  font-weight: 500;
 }
 .prod-card-page .field-cartcustomerform-user_agreement label a {
   color: #333;
@@ -2319,7 +2319,7 @@ footer .partner-cities ul {
   margin: 5px 0
 }
 .sale-page .seller-cont .title {
-  font-weight: 700;
+  font-weight: 500;
   color: #41403e;
   font-size: 18px;
   margin-bottom: 10px
@@ -2483,7 +2483,7 @@ footer .partner-cities ul {
   padding: 15px;
   color: #41403e;
   font-size: 16px;
-  font-weight: 700
+  font-weight: 500;
 }
 .filecatalog-page table {
   border: 1px solid #CAC6BF
@@ -2503,13 +2503,13 @@ footer .partner-cities ul {
   font-size: 16px
 }
 .filecatalog-page td:first-child {
-  font-weight: 700
+  font-weight: 500;
 }
 .filecatalog-page td:last-child {
-  text-align: right
+  text-align: right;
 }
 .adding-product-page h1, .change-pass h1, .city-partner h1, .create-sale h1, .factory-collection h1, .factory-profile h1 {
-  text-align: center
+  text-align: center;
 }
 .filecatalog-page .add-file {
   background: #D9534F;
@@ -2524,47 +2524,47 @@ footer .partner-cities ul {
   border: 2px solid transparent;
   border-radius: 3px;
   margin-right: 2px;
-  display: inline-block
+  display: inline-block;
 }
 .filecatalog-page .cust-but:last-child {
-  margin-right: 0
+  margin-right: 0;
 }
 .adding-product-page #form-stats .form-group, .adding-product-page .form-filter-date-cont .dropdown {
-  margin-right: 15px
+  margin-right: 15px;
 }
 .filecatalog-page .cust-but:hover {
-  border: 2px solid #2ab000
+  border: 2px solid #2ab000;
 }
 .filecatalog-page .cust-but .fa {
   color: #FFF;
-  font-size: 15px
+  font-size: 15px;
 }
 .my-notebook.dropdown.open .dropdown-menu, .my-notebook.dropdown.open .dropdown-menu li {
-  display: block
+  display: block;
 }
 .my-notebook.dropdown.open .dropdown-menu li a {
   display: block;
-  width: 100%
+  width: 100%;
 }
 .adding-product-page .drop-date-picker {
   border: none;
   background: 0 0;
-  cursor: pointer
+  cursor: pointer;
 }
 .adding-product-page .form-filter-date-cont {
-  justify-content: flex-end
+  justify-content: flex-end;
 }
 .adding-product-page #form-stats {
-  margin-top: 18px
+  margin-top: 18px;
 }
 .adding-product-page #form-stats .select2-container {
-  min-width: 150px
+  min-width: 150px;
 }
 .adding-product-page .arr-drop {
-  position: relative
+  position: relative;
 }
 .adding-product-page .arr-drop .btn {
-  padding-right: 20px
+  padding-right: 20px;
 }
 .adding-product-page .arr-drop:after {
   content: "\f0d7";
@@ -2573,23 +2573,23 @@ footer .partner-cities ul {
   transform: translateY(-50%);
   top: 50%;
   right: 7px;
-  font-family: FontAwesome
+  font-family: FontAwesome;
 }
 .adding-product-page .open>.dropdown-menu {
   display: flex;
-  flex-direction: column
+  flex-direction: column;
 }
 .adding-product-page .ui-daterangepicker .ranges {
-  display: flex
+  display: flex;
 }
 .adding-product-page .datepicker-drop {
   left: auto;
-  right: 0
+  right: 0;
 }
 .adding-product-page .ui-datepicker .ui-datepicker-prev span {
   position: relative;
   text-indent: 0;
-  font-size: 0
+  font-size: 0;
 }
 .adding-product-page .ui-datepicker .ui-datepicker-prev span:before {
   content: "\f104";
@@ -2602,12 +2602,12 @@ footer .partner-cities ul {
   font-size: 15px;
   display: flex;
   align-items: center;
-  justify-content: center
+  justify-content: center;
 }
 .adding-product-page .ui-datepicker .ui-datepicker-next span {
   position: relative;
   text-indent: 0;
-  font-size: 0
+  font-size: 0;
 }
 .adding-product-page .ui-datepicker .ui-datepicker-next span:before {
   content: "\f105";
@@ -2620,7 +2620,7 @@ footer .partner-cities ul {
   font-size: 15px;
   display: flex;
   align-items: center;
-  justify-content: center
+  justify-content: center;
 }
 .adding-product-page .large-picker>.btn {
   position: relative
@@ -2629,48 +2629,48 @@ footer .partner-cities ul {
   content: "\f14a";
   color: #11883B;
   font-family: FontAwesome;
-  margin-left: 7px
+  margin-left: 7px;
 }
 .adding-product-page .btns-cont {
   padding: 5px 10px
 }
 .adding-product-page .btns-cont .btn-success {
-  margin-right: 10px
+  margin-right: 10px;
 }
 .adding-product-page .range-inputs {
   display: flex;
   flex-direction: column;
-  padding: 0 10px
+  padding: 0 10px;
 }
 .adding-product-page .range-inputs label {
   display: flex;
-  align-items: center
+  align-items: center;
 }
 .adding-product-page .input-mini {
   display: block;
   margin-bottom: 5px;
   width: 90px;
   margin-left: 6px;
-  padding-left: 5px
+  padding-left: 5px;
 }
 .adding-product-page .ui-widget-content {
-  border: none
+  border: none;
 }
 .adding-product-page button.btnDone {
-  display: none !important
+  display: none !important;
 }
 .adding-product-page .ui-corner-all.ui-daterangepicker {
-  display: flex !important
+  display: flex !important;
 }
 .adding-product-page .manager-history-header ul {
   border: 1px solid #cac6bf;
-  background: #efede8
+  background: #efede8;
 }
 .adding-product-page .manager-history-header ul li {
   height: 45px;
   color: #41403e;
   font-size: 12px;
-  text-transform: uppercase
+  text-transform: uppercase;
 }
 .adding-product-page .manager-history-list .item {
   border-bottom: 1px solid #cac6bf
@@ -2678,23 +2678,23 @@ footer .partner-cities ul {
 .adding-product-page .manager-history-list ul {
   background: #e8e6dd;
   border-left: 1px solid #CAC6BF;
-  border-right: 1px solid #CAC6BF
+  border-right: 1px solid #CAC6BF;
 }
 .adding-product-page .manager-history-list ul:last-child {
-  border-bottom: none
+  border-bottom: none;
 }
 .adding-product-page .manager-history-list ul:hover {
-  background: #ECFFE7
+  background: #ECFFE7;
 }
 .adding-product-page .manager-history-list ul li {
   color: #41403e;
   font-size: 12px;
-  text-transform: none
+  text-transform: none;
 }
 .adding-product-page .manager-history {
   padding: 10px;
   background: #FFF;
-  margin-top: 15px
+  margin-top: 15px;
 }
 .adding-product-page .manager-history ul {
   margin: 0;
@@ -2842,14 +2842,14 @@ footer .partner-cities ul {
 }
 .factory-collection .collection-wrap th {
   padding: 15px;
-  font-weight: 700
+  font-weight: 500;
 }
 .factory-collection .collection-wrap td {
   padding: 15px;
   position: relative
 }
 .factory-collection .collection-wrap td:first-child {
-  font-weight: 700
+  font-weight: 500;
 }
 .factory-collection .collection-wrap td:not(:last-child):after {
   content: "";
@@ -4663,7 +4663,7 @@ footer .partner-cities ul {
 }
 .viewall-link {
   color: #676767;
-  font-weight: bold;
+  font-weight: 500;
 }
 @keyframes slideInRight{
   0%{transform:translate3d(100%,0,0);visibility:hidden;opacity:0;}
@@ -4947,7 +4947,7 @@ footer .partner-cities ul {
     border-radius: 0;
     font-size: 13px;
     text-transform: uppercase;
-    font-weight: 700; }
+    font-weight: 500; }
   .footer .dropdown-toggle {
     width: 100%;
     height: 50px;
@@ -5213,7 +5213,7 @@ footer .partner-cities ul {
     background: #448339;
     color: #FFFFFF;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -5278,7 +5278,7 @@ footer .partner-cities ul {
     .home-main .sale-sect .price .new-price {
       color: #448339;
       font-size: 22px;
-      font-weight: 700;
+      font-weight: 500;
       margin-left: 5px;
       margin-right: 4px; }
   .home-main .large-text .one-post {
@@ -5314,12 +5314,12 @@ footer .partner-cities ul {
     max-height: 245px; }
     .home-main .large-text .post-text i {
       font-style: italic;
-      font-weight: 700; }
+      font-weight: 500; }
   .home-main .large-text .read-more {
     color: #448339;
     text-transform: uppercase;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 500;
     text-decoration: none;
     margin-top: 10px;
     display: inline-block; }
@@ -5380,7 +5380,7 @@ footer .partner-cities ul {
   color: #535351;
   font-size: 11px;
   text-transform: uppercase;
-  font-weight: 700; }
+  font-weight: 500; }
 
 .category-page .sort-by {
   justify-content: center; }
@@ -5405,7 +5405,7 @@ footer .partner-cities ul {
   .category-page .this-page .label {
     color: #535351;
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 500;
     text-transform: uppercase; }
 
 .category-page .pageChanger {
@@ -5440,7 +5440,7 @@ footer .partner-cities ul {
     background: #FFFFFF;
     color: #535351;
     font-size: 13px;
-    font-weight: 700; }
+    font-weight: 500; }
 .category-page .filters .one-filter .filt-but:after {
     content: '\f067';
     height: 24px;
@@ -5504,7 +5504,7 @@ footer .partner-cities ul {
       height: 100%;
       color: #535351;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 500;
       text-transform: uppercase;
       display: flex;
       justify-content: space-between;
@@ -5579,7 +5579,7 @@ footer .partner-cities ul {
   margin-left: -15px;
   font-size: 11px;
   color: #535351;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase; }
   .category-page .reset:after {
     content: '\f067';
@@ -5675,7 +5675,7 @@ footer .partner-cities ul {
     padding: 0 13px;
     font-size: 13px;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     text-decoration: none; }
   .category-page .cat-prod .btn-block .more-info {
     border: 1px solid #BDBCB3;
@@ -5732,11 +5732,11 @@ footer .partner-cities ul {
     border: 1px solid #448339;
     color: #FFFFFF;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     border-radius: 0; }
   .category-page .best-price-form .btn-default {
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     border-radius: 0;
     background: transparent;
     color: #535351;
@@ -5752,7 +5752,7 @@ footer .partner-cities ul {
     border-radius: 0;
     text-transform: uppercase;
     font-size: 13px;
-    font-weight: bold;
+    font-weight: 500;
     transition: all 0.4s;
   }
   .btn-goods:hover,
@@ -5767,7 +5767,7 @@ footer .partner-cities ul {
     border-radius: 0;
     text-transform: uppercase;
     font-size: 13px;
-    font-weight: bold;
+    font-weight: 500;
     transition: all 0.4s;
   }
   .btn-cancel:hover,
@@ -6090,11 +6090,11 @@ footer .partner-cities ul {
     border: 1px solid #448339;
     color: #FFFFFF;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     border-radius: 0; }
   .prod-card-page .best-price-form .btn-default {
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     border-radius: 0;
     background: transparent;
     color: #535351;
@@ -6125,7 +6125,7 @@ footer .partner-cities ul {
     margin-right: 15px; }
     .prod-card-page .price-availability .price-sticker span {
       font-size: 23px;
-      font-weight: 700;
+      font-weight: 500;
       margin-left: 5px; }
   .prod-card-page .price-availability .availability {
     background: #E3E0D5;
@@ -6219,7 +6219,7 @@ footer .partner-cities ul {
     display: flex;
     align-items: center;
     color: #e3e0d5;
-    font-weight: 700;
+    font-weight: 500;
     font-family: 'Vollkorn', sans-serif; }
   .prod-card-page .numbers .img-cont {
     height: 105px;
@@ -6248,7 +6248,7 @@ footer .partner-cities ul {
 
 .prod-card-page .composition .nav-tabs > li a {
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   color: #535351;
   border: none;
   background: none; }
@@ -6398,7 +6398,7 @@ footer .partner-cities ul {
   height: 34px;
   display: flex;
   align-items: center;
-  font-weight: 700;
+  font-weight: 500;
   margin-left: 15px;
   margin-top: 12px; }
 
@@ -6525,7 +6525,7 @@ footer .partner-cities ul {
     padding-right: 15px;
     font-size: 13px;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     margin-left: 13px; }
   .sale-page .brand-info {
     background: #F3F2F0;
@@ -6627,7 +6627,7 @@ footer .partner-cities ul {
     margin-right: 8px; }
     .sale-page .prod-info .price span {
       font-size: 21px;
-      font-weight: 700;
+      font-weight: 500;
       margin-left: 3px; }
   .sale-page .prod-info .economy {
     background: #E3E0D5;
@@ -6692,7 +6692,7 @@ footer .partner-cities ul {
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     text-decoration: none;
     width: 190px;
     margin-left: auto;
@@ -6783,7 +6783,7 @@ footer .partner-cities ul {
       justify-content: center;
       font-size: 25px;
       line-height: 29px;
-      font-weight: 700;
+      font-weight: 500;
       padding-top: 0;
       height: 110px;
       margin-bottom: 30px; 
@@ -6807,7 +6807,7 @@ footer .partner-cities ul {
       color: #FFFFFF;
       border: none;
       font-size: 13px;
-      font-weight: 700; }
+      font-weight: 500; }
     .sign-in-page .square-in .forgot-pass {
       color: #448339;
       font-size: 14px; }
@@ -6870,7 +6870,7 @@ footer .partner-cities ul {
     font-family: 'Vollkorn', sans-serif;
     font-size: 25px;
     line-height: 29px;
-    font-weight: 700; }
+    font-weight: 500; }
   .sign-up-page .right-border {
     border-right: 1px dotted #535351; }
   .sign-up-page .form-block-in {
@@ -6922,7 +6922,7 @@ footer .partner-cities ul {
     border: 1px solid #448339;
     border-radius: 0;
     text-transform: uppercase;
-    font-weight: 700; }
+    font-weight: 500; }
   .sign-up-page .text {
     padding: 0 50px;
     font-size: 16px;
@@ -6944,7 +6944,7 @@ footer .partner-cities ul {
     display: flex;
     align-items: center;
     min-height: 80px;
-    font-weight: 700;
+    font-weight: 500;
     padding: 10px 0; }
   .concact-page .of-conts {
     margin-left: -8px;
@@ -7011,7 +7011,7 @@ footer .partner-cities ul {
       margin-top: -10px;
       margin-left: auto;
       margin-right: auto;
-      font-weight: 700; }
+      font-weight: 500; }
 .concact-page .one-cont h4,
 .concact-page .one-cont h2 {
   font-size: 21px;
@@ -7072,7 +7072,7 @@ footer .partner-cities ul {
     color: #535351;
     font-size: 35px;
     font-family: 'Vollkorn', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
     margin: 0 0 5px 0; }
   .factory-list-page .after-title {
     font-size: 18px;
@@ -7123,7 +7123,7 @@ footer .partner-cities ul {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: 700;
+        font-weight: 500;
         text-decoration: none;
         margin-top: 10px; }
       .factory-list-page .title-mark .letter-nav > .container .letter-select {
@@ -7136,7 +7136,7 @@ footer .partner-cities ul {
 .factory-list-page .title-mark .letter-nav > .container .letter-select a {
   color: #535351;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -7180,7 +7180,7 @@ footer .partner-cities ul {
       text-align: center;
       font-family: 'Vollkorn', sans-serif;
       font-size: 18px;
-      font-weight: 700;
+      font-weight: 500;
       text-decoration: none;
       justify-content: center;
       text-transform: none !important;
@@ -7243,7 +7243,7 @@ footer .partner-cities ul {
         border: none;
         color: #535351;
         text-transform: uppercase;
-        font-weight: 700;
+        font-weight: 500;
         font-size: 14px;
         background: transparent; }
 
@@ -7375,7 +7375,7 @@ footer .partner-cities ul {
     color: #535351;
     font-size: 13px;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     padding: 12px 15px 7px 15px; }
   .factory-page .one-filter .list {
     margin: 0;
@@ -7460,7 +7460,7 @@ footer .partner-cities ul {
       color: #FFFFFF;
       text-transform: uppercase;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 500;
       display: inline-flex;
       align-items: center;
       padding-left: 22px;
@@ -7528,7 +7528,7 @@ footer .partner-cities ul {
       padding: 0 13px;
       font-size: 13px;
       text-transform: uppercase;
-      font-weight: 700;
+      font-weight: 500;
       text-decoration: none; }
     .factory-page .one-prod-tile .btn-block .more-info {
       border: 1px solid #BDBCB3;
@@ -7639,7 +7639,7 @@ footer .partner-cities ul {
     .about-main .best-price .num-sym {
       color: #bdbcb3;
       font-size: 92px;
-      font-weight: 700; }
+      font-weight: 500; }
     .about-main .best-price .num-in {
       transform: translateX(-50%);
       background: #EDEBE6;
@@ -8289,7 +8289,7 @@ footer .partner-cities ul {
   }
   .promotion-title-label #cost {
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 500;
     color: #448339;
     margin-left: 5px;
   }
@@ -8483,7 +8483,7 @@ footer .partner-cities ul {
   font-size: 13px;
   color: #FFF;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 500;
   padding: 8px 16px;
   border: 1ps solid #448339;
   border-radius: 2px;
@@ -8514,7 +8514,7 @@ footer .partner-cities ul {
 }
 .adding-product-page .ordersanswer-formcont .control-label {
   font-size: 11px;
-  font-weight: bold;
+  font-weight: 500;
   text-transform: uppercase;
   color: #535351;
 }
@@ -8562,7 +8562,7 @@ footer .partner-cities ul {
 }
 .ordersanswer-box .for-ordertable {
   font-family: "Open Sans", sans-serif;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 11px;
   color: #535351;
   text-transform: uppercase;
@@ -8607,7 +8607,7 @@ footer .partner-cities ul {
 }
 .ordersanswer-box .downloads ul li a {
   font-family: "Open Sans", sans-serif;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 11px;
   text-transform: uppercase;
   color: #448339;
@@ -8623,7 +8623,7 @@ footer .partner-cities ul {
 }
 .modal-body #factory-promotion-form .kv-grid-table.table-striped thead tr th {
   font-size: 11px;
-  font-weight: bold;
+  font-weight: 500;
   text-transform: uppercase;
   color: #535351;
   background-color: #f6f6f5;
@@ -9392,7 +9392,7 @@ footer .partner-cities ul {
     font-size: 11px;
     text-transform: uppercase;
     color: #535351;
-    font-weight: 700;
+    font-weight: 500;
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
@@ -10754,7 +10754,7 @@ footer .partner-cities ul {
 .welcome-tittle {
   display: block;
   font-family: 'Vollkorn', sans-serif;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 28px;
   color: #535351;
 }
@@ -10820,7 +10820,7 @@ footer .partner-cities ul {
 }
 .prod-pricebox .for-green {
   color: #4d8438;
-  font-weight: bold;
+  font-weight: 500;
 }
 .category-page .cat-prod .one-prod-tile:hover .prod-pricebox {
   margin-top: 5px;
@@ -13196,7 +13196,7 @@ body>.modal-backdrop.fade.in{
 .tarif-totlal .total-amount {
   color: #343434;
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 500;
 }
 /* max 1199px for tarifs page */
 @media(max-width: 1199px) {
@@ -13425,7 +13425,7 @@ body .concact-page .one-cont .cont-info-row a {
   border: 1px solid #448339;
   color: #FFF;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 500;
   border-radius: 0;
   padding: 5.5px 12px;
 }
