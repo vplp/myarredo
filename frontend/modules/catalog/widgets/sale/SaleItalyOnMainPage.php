@@ -32,7 +32,7 @@ class SaleItalyOnMainPage extends Widget
             /** orderBy */
 
             if (isset(Yii::$app->partner) && Yii::$app->partner->id) {
-                $order['FIELD (' . self::tableName() . '.user_id, ' . Yii::$app->partner->id . ')'] = SORT_DESC;
+                $order['FIELD (' . ItalianProduct::tableName() . '.user_id, ' . Yii::$app->partner->id . ')'] = SORT_DESC;
             }
 
             if (DOMAIN_TYPE == 'com') {

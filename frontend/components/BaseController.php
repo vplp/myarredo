@@ -102,8 +102,8 @@ abstract class BaseController extends Controller
 
         $this->setCurrency();
 
-//        Yii::$app->response->headers->set('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + 86400));
-//        Yii::$app->response->headers->set('Vary', 'User-Agent');
+        Yii::$app->response->headers->set('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + 86400));
+        Yii::$app->response->headers->set('Vary', 'User-Agent');
 
         return parent::beforeAction($action);
     }
