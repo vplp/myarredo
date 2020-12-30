@@ -199,7 +199,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
             $order['FIELD (' . self::tableName() . '.user_id, ' . Yii::$app->partner->id . ')'] = SORT_DESC;
         }
 
-        if (in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159, 160, 161])) {
+        if (in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159, 160, 161, 164])) {
             $query
                 ->innerJoinWith(['city'])
                 ->andFilterWhere(['NOT IN', City::tableName() . '.id', [5]]);

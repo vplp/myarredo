@@ -851,7 +851,7 @@ class CategoryController extends BaseController
             ]);
         }
 
-        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161])) {
+        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161, 164])) {
             if (!empty($alternateParamsUrl)) {
                 foreach ($alternateParamsUrl as $lang => $paramsUrl) {
                     if ($lang == 'en') {
@@ -860,6 +860,8 @@ class CategoryController extends BaseController
                         $href = 'https://www.myarredo.com/it';
                     } elseif ($lang == 'de') {
                         $href = 'https://www.myarredo.de';
+                    } elseif ($lang == 'he') {
+                        $href = 'https://www.myarredo.co.il';
                     } else {
                         $href = 'https://www.myarredo.ru';
                     }

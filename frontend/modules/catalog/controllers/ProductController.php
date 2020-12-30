@@ -248,7 +248,7 @@ class ProductController extends BaseController
             Yii::$app->getModule('catalog')->getViewedProducts($model['id'], 'viewed_products');
         }
 
-        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161])) {
+        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161, 164])) {
             $alternatePages = [
                 'ru' => [
                     'href' => 'https://www.myarredo.ru/product/' . $model['alias'] . '/', 'lang' => 'ru'
@@ -261,6 +261,9 @@ class ProductController extends BaseController
                 ],
                 'de' => [
                     'href' => 'https://www.myarredo.de/product/' . $model['alias_de'] . '/', 'lang' => 'de'
+                ],
+                'he' => [
+                    'href' => 'https://www.myarredo.co.il/product/' . $model['alias_en'] . '/', 'lang' => 'he'
                 ]
             ];
 
