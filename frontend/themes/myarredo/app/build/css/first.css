@@ -1,5 +1,5 @@
 /* Open Sans */
-@font-face {
+/* @font-face {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 300;
@@ -30,9 +30,9 @@
     font-display: fallback;
     src: local('Open Sans Bold'), local('OpenSans-Bold'), url('../fonts/OpenSans-Bold.woff2') format('woff2'),
     url('../fonts/OpenSans-Bold.woff') format('woff'), url('../fonts/OpenSans-Bold.ttf') format('truetype');
-  }
+  } */
 /* HelveticaNeueCyr */
-@font-face {
+/* @font-face {
     font-family: 'HelveticaNeueCyr-Roman';
     font-display: fallback;
     src: local('HelveticaNeueCyr-Roman'), url('../fonts/helveticaneuecyr-roman.otf');
@@ -51,9 +51,9 @@
     font-family: 'HelveticaNeueCyr-Bold';
     font-display: fallback;
     src: local('HelveticaNeueCyr-Bold'), url('../fonts/HelveticaNeue-CondensedBold.ttf');
-}
+} */
 /* Palatino */
-@font-face {
+/* @font-face {
     font-family: 'Palatino';
     font-display: fallback;
     src: local('Palatino'), url('../fonts/palatino-linotype.woff2') format('woff2'),
@@ -70,10 +70,13 @@
         url('../fonts/palab.ttf') format('truetype');
     font-weight: bold;  
     font-style: normal;
-}
+} */
 body {
     font-family: 'Open Sans', sans-serif !important; 
 }
+/* h1, h2, h3, h4 {
+  font-family: 'Vollkorn', sans-serif;
+} */
 .container-wrap {
     max-width: 1600px;
     margin: 0 auto; 
@@ -153,7 +156,7 @@ body {
     font-size: 13px;
     color: #FFF;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     padding: 5px 10px;
     border-radius: 2px;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
@@ -248,7 +251,7 @@ body {
   align-items: center;
   text-transform: uppercase;
   font-size: 13px;
-  font-weight: 700; 
+  font-weight: 500; 
 }
 .header .wishlist .fa {
   font-size: 22px;
@@ -1182,7 +1185,7 @@ body {
   }
   .btn-mobsearch {
     display: inline-block;
-    font-family: "Palatino", "Open Sans", sans-serif;
+    font-family: 'Vollkorn', sans-serif;
     font-weight: bold;
     font-size: 16px;
     padding: 5px 20px;
@@ -1223,7 +1226,7 @@ body {
     left: 50%;
     transform: translate(-50%,-50%);
     display: block;
-    font-family: 'Palatino', sans-serif;
+    font-family: 'Vollkorn', sans-serif;
     font-size: 35px;
     color: #f2f2f2;
     text-shadow: 1px 1px 9px rgba(0, 0, 0, 0.8);
@@ -1331,7 +1334,7 @@ body {
     padding-left: 40px;
     padding-right: 40px;
     color: #FFFFFF;
-    font-weight: 700;
+    font-weight: 500;
     text-decoration: none; 
 }
 .home-main .search {
@@ -1348,8 +1351,8 @@ body {
     font-size: 35px;
     color: #535351;
     line-height: 27px;
-    font-family: 'Palatino';
-    font-weight: 700;
+    font-family: 'Vollkorn', sans-serif;
+    font-weight: 500;
     margin: 0 15px 0 0;
     text-transform: none;
 }
@@ -1366,8 +1369,8 @@ body {
     display: flex;
     align-items: center;
     color: #e3e0d5;
-    font-weight: 700;
-    font-family: 'Palatino'; 
+    font-weight: 500;
+    font-family: 'Vollkorn', sans-serif; 
 }
 .home-main .numbers .img-cont {
     height: 105px;

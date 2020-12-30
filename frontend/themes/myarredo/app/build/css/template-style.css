@@ -1,5 +1,5 @@
 h1 {
-  font-family: "Palatino", "Open Sans", sans-serif;
+  font-family: 'Vollkorn', sans-serif;
   font-weight: bold;
   font-size: 35px;
 }
@@ -4727,7 +4727,7 @@ footer .partner-cities ul {
     padding-bottom: 110px; 
   }
   .footer .feedback-title {
-    font-family: 'Palatino', 'Open Sans', sans-serif;
+    font-family: 'Vollkorn', sans-serif;
     font-size: 18px;
     font-weight: 600;
     color: #535351;
@@ -4745,7 +4745,7 @@ footer .partner-cities ul {
   }
     .footer .cont-info-border h4 {
       font-size: 34px;
-      font-family: 'Palatino';
+      font-family: 'Vollkorn', sans-serif;
       padding: 0 20px;
       display: inline-block;
       position: relative;
@@ -4833,7 +4833,7 @@ footer .partner-cities ul {
     .footer .cities-list .initial-letter {
       color: #535351;
       font-size: 30px;
-      font-family: 'Palatino';
+      font-family: 'Vollkorn', sans-serif;
       margin: 0 0 0 0; }
     .footer .cities-list a {
       color: #535351;
@@ -5060,7 +5060,7 @@ footer .partner-cities ul {
     font-size: 33px;
     line-height: 45px;
     color: #ffffff;
-    font-family: 'Palatino';
+    font-family: 'Vollkorn', sans-serif;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -5293,7 +5293,7 @@ footer .partner-cities ul {
     color: #535351;
     font-size: 30px;
     line-height: 45px;
-    font-family: 'Palatino';
+    font-family: 'Vollkorn', sans-serif;
     padding: 25px 0 25px 0;
     margin-left: 80px; }
   .home-main .large-text .post-title-in {
@@ -6194,7 +6194,7 @@ footer .partner-cities ul {
     line-height: 29px;
     display: flex;
     margin-top: 90px;
-    font-family: 'Palatino'; }
+    font-family: 'Vollkorn', sans-serif; }
   .prod-card-page .best-price .img-container {
     position: relative;
     min-width: 350px;
@@ -6220,7 +6220,7 @@ footer .partner-cities ul {
     align-items: center;
     color: #e3e0d5;
     font-weight: 700;
-    font-family: 'Palatino'; }
+    font-family: 'Vollkorn', sans-serif; }
   .prod-card-page .numbers .img-cont {
     height: 105px;
     width: 105px;
@@ -6384,7 +6384,7 @@ footer .partner-cities ul {
 .rec-slider-wrap h3 {
   color: #535351;
   font-size: 30px;
-  font-family: 'Palatino'; }
+  font-family: 'Vollkorn', sans-serif; }
   .rec-slider-wrap h3:after {
     display: none; }
 
@@ -6510,7 +6510,7 @@ footer .partner-cities ul {
     font-size: 35px;
     line-height: 27px;
     color: #535351;
-    font-family: 'Palatino';
+    font-family: 'Vollkorn', sans-serif;
     margin-bottom: 0;
     text-transform: uppercase;
     margin-top: 0; }
@@ -6548,7 +6548,7 @@ footer .partner-cities ul {
     .sale-page .brand-info h4 {
       font-size: 28px;
       margin: 0;
-      font-family: 'Palatino';
+      font-family: 'Vollkorn', sans-serif;
       margin-bottom: 15px; }
     .sale-page .brand-info .ico {
       display: block;
@@ -6703,7 +6703,7 @@ footer .partner-cities ul {
   .similar-prod h3 {
     color: #535351;
     font-size: 30px;
-    font-family: 'Palatino';
+    font-family: 'Vollkorn', sans-serif;
     text-transform: uppercase;
     margin: 45px 0; }
 
@@ -6776,7 +6776,7 @@ footer .partner-cities ul {
     text-align: center;
    }
     .sign-in-page .square-in h3 {
-      font-family: 'Palatino';
+      font-family: 'Vollkorn', sans-serif;
       color: #535351;
       display: flex;
       align-items: center;
@@ -6867,7 +6867,7 @@ footer .partner-cities ul {
     padding-top: 30px; }
   .sign-up-page h2 {
     margin: 0 0 35px 0;
-    font-family: 'Palatino';
+    font-family: 'Vollkorn', sans-serif;
     font-size: 25px;
     line-height: 29px;
     font-weight: 700; }
@@ -6940,7 +6940,7 @@ footer .partner-cities ul {
     margin: 0;
     color: #535351;
     font-size: 35px;
-    font-family: 'Palatino';
+    font-family: 'Vollkorn', sans-serif;
     display: flex;
     align-items: center;
     min-height: 80px;
@@ -7016,7 +7016,7 @@ footer .partner-cities ul {
 .concact-page .one-cont h2 {
   font-size: 21px;
   line-height: 28px;
-  font-family: 'Palatino';
+  font-family: 'Vollkorn', sans-serif;
   text-align: center;
   min-height: 30px;
   margin: 0; 
@@ -7071,7 +7071,7 @@ footer .partner-cities ul {
   .factory-list-page h1 {
     color: #535351;
     font-size: 35px;
-    font-family: 'Palatino';
+    font-family: 'Vollkorn', sans-serif;
     font-weight: 700;
     margin: 0 0 5px 0; }
   .factory-list-page .after-title {
@@ -7178,7 +7178,7 @@ footer .partner-cities ul {
     .factory-list-page .factory-tile h3,
     .factory-list-page .factory-tile h2 {
       text-align: center;
-      font-family: 'Palatino';
+      font-family: 'Vollkorn', sans-serif;
       font-size: 18px;
       font-weight: 700;
       text-decoration: none;
@@ -7205,7 +7205,7 @@ footer .partner-cities ul {
 .factory-page h1 {
   color: #535351;
   font-size: 35px;
-  font-family: 'Palatino';
+  font-family: 'Vollkorn', sans-serif;
   margin-bottom: 0; }
 
 .factory-page .fact-img {
@@ -7361,7 +7361,7 @@ footer .partner-cities ul {
 .factory-page .text-header {
   font-size: 20px;
   line-height: 35px;
-  font-family: 'Palatino';
+  font-family: 'Vollkorn', sans-serif;
   background: #FFFFFF;
   margin-left: -60px;
   padding-top: 10px;
@@ -10753,7 +10753,7 @@ footer .partner-cities ul {
 }
 .welcome-tittle {
   display: block;
-  font-family: "Palatino", "Open Sans", sans-serif;
+  font-family: 'Vollkorn', sans-serif;
   font-weight: bold;
   font-size: 28px;
   color: #535351;
@@ -11037,7 +11037,7 @@ footer .partner-cities ul {
   margin-left: -5px;
 }
 .progress-steps-step {
-  font-family: Palatino,"Open Sans",sans-serif;
+  font-family: 'Vollkorn', sans-serif;
   font-size: 16px;
   font-weight: 600;
   display: flex;
@@ -11457,7 +11457,7 @@ footer .partner-cities ul {
   }
 }
 .myarredoblog-title {
-  font-family: "Palatino","Open Sans",sans-serif;
+  font-family: 'Vollkorn', sans-serif;
   font-size: 35px;
   text-transform: uppercase;
   font-weight: 600;
@@ -11659,7 +11659,7 @@ footer .partner-cities ul {
   }
 }
 .single-articlebox .article-title {
-  font-family: "Palatino","Open Sans",sans-serif;
+  font-family: 'Vollkorn', sans-serif;
   font-size: 30px;
   font-weight: 600;
   color: #535351;
@@ -11702,7 +11702,7 @@ footer .partner-cities ul {
   margin-bottom: 10px;
 }
 .article-asside-title {
-  font-family: "Palatino","Open Sans",sans-serif;
+  font-family: 'Vollkorn', sans-serif;
   font-size: 20px;
   color: #535351;
   font-weight: 600;
@@ -13187,7 +13187,7 @@ body>.modal-backdrop.fade.in{
   padding: 20px 0;
 }
 .tarif-totlal {
-  font-family: "Palatino", "Open Sans", sans-serif;
+  font-family: 'Vollkorn', sans-serif;
   font-weight: normal;
   font-size: 17px;
   color: #565656;
@@ -13549,7 +13549,7 @@ body .concact-page .one-cont .cont-info-row a {
   align-items: center;
 }
 .last-sale-title {
-  font-family: 'Palatino', sans-serif;
+  font-family: 'Vollkorn', sans-serif;
   font-weight: 500;
   font-size: 22px;
   margin: 0 0 24px;
@@ -13581,7 +13581,7 @@ body .concact-page .one-cont .cont-info-row a {
   font-weight: 600;
 }
 .for-lastsale-curency {
-  font-family: 'Palatino', sans-serif;
+  font-family: 'Vollkorn', sans-serif;
   font-size: 18px;
   font-weight: 600;
 }
