@@ -5,9 +5,7 @@ namespace frontend\modules\location\controllers;
 use Yii;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-//
 use frontend\modules\location\models\Currency;
-//
 use frontend\components\BaseController;
 
 /**

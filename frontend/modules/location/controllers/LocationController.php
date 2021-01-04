@@ -6,7 +6,6 @@ use Yii;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use frontend\modules\location\models\City;
-//
 use frontend\components\BaseController;
 
 /**
