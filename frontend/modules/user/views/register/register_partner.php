@@ -28,6 +28,7 @@ $model->user_agreement = 1;
                     <?php $form = ActiveForm::begin([
                         'id' => 'register-form',
                         'action' => Url::toRoute('/user/register/partner'),
+                        'options' => ['class' => 'form-iti-validate']
                     ]); ?>
                     <div class="row">
 

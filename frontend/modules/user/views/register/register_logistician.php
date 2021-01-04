@@ -30,6 +30,7 @@ $model->user_confirm_offers = 1;
                     <?php $form = ActiveForm::begin([
                         'id' => 'register-form',
                         'action' => Url::toRoute('/user/register/logistician'),
+                        'options' => ['class' => 'form-iti-validate']
                     ]); ?>
                     <div class="row">
 

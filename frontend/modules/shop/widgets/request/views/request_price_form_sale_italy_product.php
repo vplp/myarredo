@@ -18,6 +18,7 @@ $model->user_agreement = 1;
     'method' => 'post',
     'action' => Url::toRoute(['/shop/order/create', 'product_id' => $product_id]),
     'id' => 'checkout-form',
+    'options' => ['class' => 'form-iti-validate']
 ]); ?>
 
 <?= $form

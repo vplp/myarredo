@@ -183,8 +183,8 @@ function interPhoneInit() {
                 return false;
             }
             else {
-                if ($(this).find('.intlinput-field').val() != iti.getNumber()) {
-                    $(this).find('.intlinput-field').val(iti.getNumber());
+                if ($(this).find('.inter-phone').val() != iti.getNumber()) {
+                    $(this).find('.inter-phone').val(iti.getNumber());
                 }
                 var countryData = iti.getSelectedCountryData();
                 $(this).find('#cartcustomerform-country_code').val(countryData.iso2);
@@ -364,6 +364,7 @@ function feedbackFormElInit() {
     }
 } 
 
+// Ready 1
 $(document).ready(function () {
 
     slickInit();
@@ -1011,6 +1012,7 @@ $(document).ready(function () {
     }
 })();
 
+// Ready 2
 $(document).ready(function () {
     if (window.screen.width >= 769) {
         $('.js-has-list').hover(function () {
@@ -1056,6 +1058,7 @@ $(document).ready(function () {
     });
 });
 /*--------------------------------------------------------*/
+// Ready 3
 $(document).ready(function () {
     /*--Главная--*/
     $('[data-styler]').styler();
@@ -1331,6 +1334,16 @@ $(document).ready(function () {
             errorMap = ["Некоректний номер", "Некоректний код країни", "Номер короткий", "Номер довгий", "Некоректний номер"];
             diCode = 'ru';
         break;
+        case 'he':
+            // Массив ошибок для поля номер телефона для иврита
+            errorMap = [
+                "מספר שגוי",
+                "קוד מדינה לא חוקי", 
+                "מספר קצר", 
+                "מספר ארוך", 
+                "מספר שגוי"];
+            diCode = 'il';
+        break;
         default:
             // Массив ошибок для поля номер телефона в международном формате
             errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"]; 
@@ -1361,7 +1374,7 @@ $(document).ready(function () {
         }
         // иначе инициализируем со всемя странами
         else {
-            // если страна Германия то по дефолту маска De, если любая другая то - It
+            // если страна Германия то по дефолту маска De
             if (siteLang == 'de') {
                 diCode = 'de';
             }
@@ -1426,10 +1439,10 @@ $(document).ready(function () {
           intlInputEl.addEventListener('change', reset);
           intlInputEl.addEventListener('keyup', reset);
 
-        //   Валидация номера телефона при отправке формы
-        $('#checkout-form').on('beforeSubmit', function(ev) {
-            // если номер телефона не валидный
-            if (!iti.isValidNumber()) {
+        //   Валидация номера телефона при работе с формой
+        $('.form-iti-validate').on('afterValidate', function(ev) {
+            // Если номер телефона уже введен и номер телефона не валидный
+            if (iti.getNumber() && !iti.isValidNumber()) {
                 setTimeout(function() {
                     intlInputEl.setAttribute('aria-invalid', true);
                     var errorCode = iti.getValidationError();
@@ -1440,7 +1453,10 @@ $(document).ready(function () {
                 },300);
                 return false;
             }
-            else {
+        });
+        $('.form-iti-validate').on('beforeSubmit', function() {
+            // если номер телефона валидный
+            if (iti.isValidNumber()) {
                 if ($(this).find('.intlinput-field').val() != iti.getNumber()) {
                     $(this).find('.intlinput-field').val(iti.getNumber());
                 }
@@ -1486,6 +1502,8 @@ $(document).ready(function () {
 
             // Если индикатор разрешает изменить код страны
             if (changeIndicator) {
+                // Убиваем старую инициализацию
+                iti.destroy();
                 // Переинициализируем виджет с выбраной нужной страной по дефолту
                 iti = window.intlTelInput(intlInputEl, {
                     separateDialCode: true,
