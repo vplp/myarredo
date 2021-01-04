@@ -364,6 +364,7 @@ function feedbackFormElInit() {
     }
 } 
 
+// Ready 1
 $(document).ready(function () {
 
     slickInit();
@@ -1011,6 +1012,7 @@ $(document).ready(function () {
     }
 })();
 
+// Ready 2
 $(document).ready(function () {
     if (window.screen.width >= 769) {
         $('.js-has-list').hover(function () {
@@ -1056,6 +1058,7 @@ $(document).ready(function () {
     });
 });
 /*--------------------------------------------------------*/
+// Ready 3
 $(document).ready(function () {
     /*--Главная--*/
     $('[data-styler]').styler();
