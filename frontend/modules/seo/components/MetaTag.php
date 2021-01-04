@@ -414,37 +414,31 @@ class MetaTag extends Component
 
         $view->registerMetaTag([
             'property' => 'og:site_name',
-            'itemprop' => 'site_name',
             'content' => $array['site_name'] ?? null,
         ]);
 
         $view->registerMetaTag([
             'property' => 'og:type',
-            'itemprop' => 'type',
             'content' => $array['type'] ?? 'website',
         ]);
 
         $view->registerMetaTag([
             'property' => 'og:url',
-            'itemprop' => 'url',
             'content' => Yii::$app->getRequest()->getAbsoluteUrl(),
         ]);
 
         $view->registerMetaTag([
             'property' => 'og:title',
-            'itemprop' => 'title',
             'content' => $array['title'] ?? null,
         ]);
 
         $view->registerMetaTag([
             'property' => 'og:description',
-            'itemprop' => 'description',
             'content' => $array['description'] ?? null,
         ]);
 
         $view->registerMetaTag([
             'property' => 'og:image',
-            'itemprop' => 'image',
             'content' => $array['image'] ?? null,
         ]);
 
@@ -453,7 +447,6 @@ class MetaTag extends Component
 
         $view->registerMetaTag([
             'property' => 'og:locale',
-            'itemprop' => 'locale',
             'content' => $locale,
         ]);
 
