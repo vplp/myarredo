@@ -18,6 +18,7 @@ use common\modules\catalog\Catalog;
  * @property string $alias_en
  * @property string $alias_it
  * @property string $alias_de
+ * @property string $alias_he
  * @property integer $type
  * @property integer $created_at
  * @property integer $updated_at
@@ -68,11 +69,11 @@ class Specification extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias', 'alias_en', 'alias_it', 'alias_de'], 'required'],
+            [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_he'], 'required'],
             [['parent_id', 'created_at', 'updated_at', 'position'], 'integer'],
             [['type', 'published', 'deleted', 'readonly'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['alias', 'alias_en', 'alias_it', 'alias_de'], 'string', 'max' => 255],
-            [['alias', 'alias_en', 'alias_it', 'alias_de'], 'unique'],
+            [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_he'], 'string', 'max' => 255],
+            [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_he'], 'unique'],
             [['position'], 'default', 'value' => '0']
         ];
     }
@@ -92,6 +93,7 @@ class Specification extends ActiveRecord
                 'alias_en',
                 'alias_it',
                 'alias_de',
+                'alias_he',
                 'type',
                 'position',
                 'published',
@@ -112,6 +114,7 @@ class Specification extends ActiveRecord
             'alias_en' => 'Alias for en',
             'alias_it' => 'Alias for it',
             'alias_de' => 'Alias for de',
+            'alias_he' => 'Alias for he',
             'type' => 'Текстовое поле',
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),

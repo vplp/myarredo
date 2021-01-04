@@ -178,10 +178,6 @@ class Languages extends Component implements iLanguages, BootstrapInterface
             $alias = 'alias_' . $lang;
         }
 
-        if (in_array($lang, ['he'])) {
-            $alias = 'alias_en';
-        }
-
         return $alias;
     }
 }

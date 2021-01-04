@@ -212,6 +212,7 @@ class CategoryController extends BaseController
                     Product::tableName() . '.alias_en',
                     Product::tableName() . '.alias_it',
                     Product::tableName() . '.alias_de',
+                    Product::tableName() . '.alias_he',
                     Product::tableName() . '.image_link',
                     Product::tableName() . '.factory_id',
                     Product::tableName() . '.removed',
@@ -566,6 +567,7 @@ class CategoryController extends BaseController
             $alternateParamsUrl['en'][$keys['category']] = $model['alias_en'];
             $alternateParamsUrl['it'][$keys['category']] = $model['alias_it'];
             $alternateParamsUrl['de'][$keys['category']] = $model['alias_de'];
+            $alternateParamsUrl['he'][$keys['category']] = $model['alias_he'];
         }
 
         if (DOMAIN_TYPE != 'com') {
@@ -588,6 +590,7 @@ class CategoryController extends BaseController
                 $alternateParamsUrl['en'][$keys['type']][] = $model['alias_en'];
                 $alternateParamsUrl['it'][$keys['type']][] = $model['alias_it'];
                 $alternateParamsUrl['de'][$keys['type']][] = $model['alias_de'];
+                $alternateParamsUrl['he'][$keys['type']][] = $model['alias_he'];
             }
 
             $pageTitle[] = implode(', ', $type);
@@ -644,6 +647,7 @@ class CategoryController extends BaseController
                 $alternateParamsUrl['en'][$keys['style']][] = $model['alias_en'];
                 $alternateParamsUrl['it'][$keys['style']][] = $model['alias_it'];
                 $alternateParamsUrl['de'][$keys['style']][] = $model['alias_de'];
+                $alternateParamsUrl['he'][$keys['style']][] = $model['alias_he'];
             }
 
             $pageTitle[] = Yii::t('app', 'Стиль') . ' ' . implode(', ', $style);

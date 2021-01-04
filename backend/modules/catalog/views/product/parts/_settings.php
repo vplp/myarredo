@@ -24,6 +24,8 @@ use backend\modules\catalog\models\{
 
 <?= $form->text_line($model, 'alias_de') ?>
 
+<?= $form->text_line($model, 'alias_he') ?>
+
 <?= $form->text_line($model, 'article') ?>
 
 <?= $form->text_line_lang($modelLang, 'title') ?>

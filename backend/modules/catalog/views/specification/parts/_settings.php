@@ -31,6 +31,9 @@ use backend\modules\catalog\models\{
     <div class="col-md-3">
         <?= $form->text_line($model, 'alias_de')->input('text', ['disabled' => ($model->readonly == '1') ? true : false]) ?>
     </div>
+    <div class="col-md-3">
+        <?= $form->text_line($model, 'alias_he')->input('text', ['disabled' => ($model->readonly == '1') ? true : false]) ?>
+    </div>
 </div>
 
 <div class="row control-group">

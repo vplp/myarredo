@@ -179,6 +179,7 @@ class SaleItalyController extends BaseController
                     [ItalianProduct::tableName() . '.alias_en' => $alias],
                     [ItalianProduct::tableName() . '.alias_it' => $alias],
                     [ItalianProduct::tableName() . '.alias_de' => $alias],
+                    [ItalianProduct::tableName() . '.alias_he' => $alias],
                 ])
                 ->enabled()
                 ->one();
@@ -194,6 +195,9 @@ class SaleItalyController extends BaseController
                 yii::$app->end();
             } elseif ($model != null && $model['alias_de'] == $alias) {
                 Yii::$app->response->redirect('https://' . 'www.myarredo.de/sale-italy-product/' . $alias . '/', 301);
+                yii::$app->end();
+            } elseif ($model != null && $model['alias_he'] == $alias) {
+                Yii::$app->response->redirect('https://' . 'www.myarredo.co.il/sale-italy-product/' . $alias . '/', 301);
                 yii::$app->end();
             }
 
@@ -307,7 +311,7 @@ class SaleItalyController extends BaseController
                     'href' => 'https://www.myarredo.de/sale-italy-product/' . $model['alias_de'] . '/', 'lang' => 'de'
                 ],
                 'he' => [
-                    'href' => 'https://www.myarredo.co.il/sale-italy-product/' . $model['alias_en'] . '/', 'lang' => 'he'
+                    'href' => 'https://www.myarredo.co.il/sale-italy-product/' . $model['alias_he'] . '/', 'lang' => 'he'
                 ]
             ];
 

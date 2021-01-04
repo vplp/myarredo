@@ -32,6 +32,7 @@ use common\modules\user\models\{
  * @property string $alias_en
  * @property string $alias_it
  * @property string $alias_de
+ * @property string $alias_he
  * @property string $article
  * @property float $price
  * @property float $volume
@@ -155,6 +156,16 @@ class Product extends ActiveRecord implements iProduct
                 'value' => function ($event) {
                     return Inflector::slug($this->alias_de, '_');
                 },
+            ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias_he',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_he',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias_he, '_');
+                },
             ]
         ]);
     }
@@ -205,10 +216,10 @@ class Product extends ActiveRecord implements iProduct
                 'in',
                 'range' => array_keys(static::statusKeyRange())
             ],
-            [['country_code', 'alias', 'alias_en', 'alias_it', 'alias_de', 'default_title', 'image_link'], 'string', 'max' => 255],
+            [['country_code', 'alias', 'alias_en', 'alias_it', 'alias_de', 'alias_he', 'default_title', 'image_link'], 'string', 'max' => 255],
             [['gallery_image'], 'string', 'max' => 1024],
             [['article'], 'string', 'max' => 100],
-            [['alias', 'alias_en', 'alias_it', 'alias_de'], 'unique'],
+            [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_he'], 'unique'],
             [['catalog_type_id', 'collections_id', 'position'], 'default', 'value' => '0'],
             [['country_code'], 'default', 'value' => '//'],
             [['article'], 'default', 'value' => ''],
@@ -249,7 +260,7 @@ class Product extends ActiveRecord implements iProduct
             'in_stock' => ['in_stock'],
             'position' => ['position'],
             'setImages' => ['image_link', 'gallery_image'],
-            'setAlias' => ['alias', 'alias_en', 'alias_it', 'alias_de', 'mark3'],
+            'setAlias' => ['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_he', 'mark3'],
             'mark' => ['mark'],
             'mark1' => ['mark1'],
             'mark2' => ['mark2'],
@@ -289,6 +300,7 @@ class Product extends ActiveRecord implements iProduct
                 'alias_en',
                 'alias_it',
                 'alias_de',
+                'alias_he',
                 'default_title',
                 'article',
                 'category_ids',
@@ -321,6 +333,7 @@ class Product extends ActiveRecord implements iProduct
             'alias_en' => 'Alias for en',
             'alias_it' => 'Alias for it',
             'alias_de' => 'Alias for de',
+            'alias_he' => 'Alias for he',
             'country_code' => 'Показывать для страны',
             'article' => Yii::t('app', 'Артикул'),
             //'price' => Yii::t('app', 'Price'),
@@ -421,6 +434,16 @@ class Product extends ActiveRecord implements iProduct
 
             if ($this->id) {
                 $this->alias_de = $this->id . ' ' . $this->alias_de;
+            }
+        }
+
+        if ($this->alias_he == '' && in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+            $this->alias_he = (!empty($this->types) ? $this->types->alias_he : '')
+                . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
+                . (($this->article) ? ' ' . $this->article : ' ' . uniqid());
+
+            if ($this->id) {
+                $this->alias_he = $this->id . ' ' . $this->alias_he;
             }
         }
 

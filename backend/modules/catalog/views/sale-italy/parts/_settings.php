@@ -27,6 +27,8 @@ use backend\modules\catalog\models\{
 
 <?= $form->text_line($model, 'alias_de') ?>
 
+<?= $form->text_line($model, 'alias_he') ?>
+
 <?= $form
     ->field($model, 'factory_id')
     ->widget(Select2::class, [

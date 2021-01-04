@@ -30,6 +30,9 @@ use backend\modules\catalog\models\{
     <div class="col-md-3">
         <?= $form->text_line($model, 'alias_de') ?>
     </div>
+    <div class="col-md-3">
+        <?= $form->text_line($model, 'alias_he') ?>
+    </div>
 </div>
 
 <div class="row control-group">

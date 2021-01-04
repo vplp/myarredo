@@ -592,6 +592,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 category.alias_en AS alias_en,
                 category.alias_it AS alias_it,
                 category.alias_de AS alias_de,
+                category.alias_he AS alias_he,
                 categoryLang.title AS title
             FROM
                 " . self::tableName() . " factory
@@ -636,6 +637,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 types.alias_en,
                 types.alias_it,
                 types.alias_de,
+                types.alias_he,
                 typesLang.title AS title
             FROM
                 " . Types::tableName() . " types
