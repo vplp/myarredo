@@ -183,8 +183,8 @@ function interPhoneInit() {
                 return false;
             }
             else {
-                if ($(this).find('.intlinput-field').val() != iti.getNumber()) {
-                    $(this).find('.intlinput-field').val(iti.getNumber());
+                if ($(this).find('.inter-phone').val() != iti.getNumber()) {
+                    $(this).find('.inter-phone').val(iti.getNumber());
                 }
                 var countryData = iti.getSelectedCountryData();
                 $(this).find('#cartcustomerform-country_code').val(countryData.iso2);
@@ -1426,10 +1426,10 @@ $(document).ready(function () {
           intlInputEl.addEventListener('change', reset);
           intlInputEl.addEventListener('keyup', reset);
 
-        //   Валидация номера телефона при отправке формы
-        $('#checkout-form').on('beforeSubmit', function(ev) {
-            // если номер телефона не валидный
-            if (!iti.isValidNumber()) {
+        //   Валидация номера телефона при работе с формой
+        $('.form-iti-validate').on('afterValidate', function(ev) {
+            // Если номер телефона уже введен и номер телефона не валидный
+            if (iti.getNumber() && !iti.isValidNumber()) {
                 setTimeout(function() {
                     intlInputEl.setAttribute('aria-invalid', true);
                     var errorCode = iti.getValidationError();
@@ -1440,7 +1440,10 @@ $(document).ready(function () {
                 },300);
                 return false;
             }
-            else {
+        });
+        $('.form-iti-validate').on('beforeSubmit', function() {
+            // если номер телефона валидный
+            if (iti.isValidNumber()) {
                 if ($(this).find('.intlinput-field').val() != iti.getNumber()) {
                     $(this).find('.intlinput-field').val(iti.getNumber());
                 }
@@ -1486,6 +1489,8 @@ $(document).ready(function () {
 
             // Если индикатор разрешает изменить код страны
             if (changeIndicator) {
+                // Убиваем старую инициализацию
+                iti.destroy();
                 // Переинициализируем виджет с выбраной нужной страной по дефолту
                 iti = window.intlTelInput(intlInputEl, {
                     separateDialCode: true,

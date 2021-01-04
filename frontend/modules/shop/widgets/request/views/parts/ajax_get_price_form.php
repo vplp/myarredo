@@ -13,6 +13,7 @@ use yii\widgets\ActiveForm;
     'action' => Url::toRoute('/shop/cart/notepad'),
     'id' => 'checkout-form',
     'options' => ['class' => 'form-getprice form-inter-phone'],
+    'options' => ['class' => 'form-iti-validate']
 ]); ?>
 
 <div class="form-fieldbox2">

@@ -19,6 +19,7 @@ $this->title = 'Регистрация';
                 <?php $form = ActiveForm::begin([
                     'id' => 'register-form',
                     'action' => Url::toRoute('/user/register/index'),
+                    'options' => ['class' => 'form-iti-validate']
                 ]); ?>
                 <div class="row">
                     <?= Html::tag('h2', $this->title); ?>

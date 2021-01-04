@@ -17,6 +17,7 @@ $model->user_agreement = 1;
     'method' => 'post',
     'action' => Url::toRoute('/shop/cart/notepad'),
     'id' => 'checkout-form',
+    'options' => ['class' => 'form-iti-validate']
 ]); ?>
 
 <?= $form
