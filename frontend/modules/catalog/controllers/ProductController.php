@@ -239,7 +239,7 @@ class ProductController extends BaseController
 
         Yii::$app->metatag->renderArrayGraph([
             'site_name' => 'Myarredo Family',
-            'type' => 'article',
+            'type' => 'product',
             'title' => $pageTitle,
             'description' => $pageDescription,
             'image' => Product::getImage($model['image_link']),
