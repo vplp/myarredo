@@ -32,8 +32,17 @@ $this->title = $this->context->title;
                     } ?>
 
                 </div>
+
+                <?= \frontend\modules\catalog\widgets\product\ViewedProducts::widget([
+                    'modelClass' => \frontend\modules\catalog\models\Product::class,
+                    'modelLangClass' => \frontend\modules\catalog\models\ProductLang::class,
+                    'cookieName' => 'viewed_products'
+                ]) ?>
+
             </div>
 
         </div>
     </div>
 </main>
+
+
