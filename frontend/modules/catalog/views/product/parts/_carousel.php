@@ -20,7 +20,7 @@ $images = $model->getGalleryImageThumb();
                 echo Html::beginTag('div', [
                         'class' => 'item active',
                         'data-dominant-color' => '',
-                        'itemscope' => '',
+                        'itemscope' => true,
                         'itemtype' => 'http://schema.org/ImageObject'
                     ]) .
                     Html::tag('meta', '', ['itemprop' => 'name', 'content' => $model->getTitle()]) .
