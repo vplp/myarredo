@@ -1766,3 +1766,89 @@ $(document).ready(function () {
     });
 
 });
+
+// Vue js Code
+// Код Vue js для мобильного меню (желательно его держать в конце файла)
+console.time('speed mobile menu vue js');
+ Vue.component('mob-menu-list', {
+    data: function () {
+        return {
+            mobdata: mobMenuData
+        };
+    },
+    methods: {
+        openTwolevel: function(item) {
+            item = !item; 
+            if (item) {
+                if (window.pageYOffset > 120) {
+                    // window.scrollTo(pageXOffset, 0);
+                    var el = document.getElementsByClassName('mobile-header');
+                    setTimeout(function() {
+                        el[0].scrollIntoView({behavior: "smooth"});
+                    },550);
+                }
+            }
+
+            return item;
+        }
+    },
+    template: 
+    `<ul class="menu-list navigation">
+        <li v-for="oneItem in mobdata.menulist" v-if="oneItem.show" v-bind:class="{jshaslist : oneItem.levelisset}">
+            <a v-on:click="oneItem.levelopen = !oneItem.levelopen"
+            v-bind:class="{open: oneItem.levelopen}"
+            v-if="oneItem.levelisset"
+            href="javascript:void(0);">
+                {{ oneItem.text }}
+            </a>
+            <a v-else v-bind:href=oneItem.link>{{ oneItem.text }}</a>
+            
+            <div v-if="oneItem.levelisset" class="list-levelbox">
+                
+                <ul v-show="oneItem.levelopen" class="list-level">
+                    <li v-for="twoLevel in oneItem.levelData" v-bind:class="{open: twoLevel.lopen}">
+                        <a href="javascript:void(0);"
+                        v-on:click="twoLevel.lopen = openTwolevel(twoLevel.lopen)">
+
+                            <div class="img-cont">
+                                <img v-bind:src=twoLevel.limglink alt="">
+                            </div>
+                            <span class="for-mobm-text">{{ twoLevel.ltext }}</span>
+                            <span class="count">{{ twoLevel.lcount }}</span>
+                        </a>
+                        <transition name="slidemenu">
+                            <ul class="three-llist" v-show="twoLevel.lopen">
+                                <li class="tl-panel">
+                                    <button v-on:click="twoLevel.lopen = !twoLevel.lopen" class="btn-mobitem-close">
+                                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                        <span class="for-onelevel-text"> 
+                                            {{ oneItem.text }}
+                                        </span>
+                                        <span class="for-twolevel-text"> 
+                                            {{ twoLevel.ltext }}
+                                        </span>
+                                    </button>
+                                </li>
+                                <li v-for="threelev in twoLevel.ldata">
+                                    <a v-bind:href=threelev.link>{{ threelev.text }}</a>
+                                </li>
+                                <li>
+                                    <a v-bind:href=twoLevel.llink class="viewall-link">{{ mobdata.transtexts.allwiewText }}</a>
+                                </li>
+                            </ul>
+                        </transition>
+                    </li>
+                </ul>
+                
+            </div>
+            
+        </li>
+    </ul>`
+});
+
+// Vue init
+new Vue({
+    el: '#mob_menu_list'
+});
+console.timeEnd('speed mobile menu vue js');
+// end Vue js code
