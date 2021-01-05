@@ -151,7 +151,7 @@ class SaleRelSpecification extends \common\modules\catalog\models\SaleRelSpecifi
                 ])
                 ->asArray()
                 ->one();
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }

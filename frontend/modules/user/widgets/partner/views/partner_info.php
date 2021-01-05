@@ -24,7 +24,7 @@ $image_link = $partner['profile']['image_link']
             if (!Yii::$app->getUser()->isGuest &&
                 in_array(Yii::$app->user->identity->group->role, ['partner', 'admin', 'factory', 'logistician'])
             ) { ?>
-                <?php if ($this->beginCache('PartnerInfoUser' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => \Yii::$app->params['cache']['duration']])) { ?>
+                <?php if ($this->beginCache('PartnerInfoUser' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) { ?>
                     <div class="ico">
                         <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
                     </div>
@@ -50,7 +50,7 @@ $image_link = $partner['profile']['image_link']
 
             <?php } else { ?>
 
-                <?php if ($this->beginCache('PartnerInfoUserGuest' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => \Yii::$app->params['cache']['duration']])) { ?>
+                <?php if ($this->beginCache('PartnerInfoUserGuest' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) { ?>
                     <div class="ico">
                         <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
                     </div>

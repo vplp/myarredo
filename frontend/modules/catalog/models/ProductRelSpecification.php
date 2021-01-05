@@ -184,7 +184,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
                 ])
                 ->asArray()
                 ->one();
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }

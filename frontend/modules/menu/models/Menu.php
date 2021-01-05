@@ -79,7 +79,7 @@ final class Menu extends \common\modules\menu\models\Menu implements BaseFrontMo
     {
         $result = self::getDb()->cache(function ($db) use ($id) {
             return self::findById($id)->one();
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }
@@ -94,7 +94,7 @@ final class Menu extends \common\modules\menu\models\Menu implements BaseFrontMo
     {
         $result = self::getDb()->cache(function ($db) use ($alias) {
             return self::findByAlias($alias)->one();
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }

@@ -74,7 +74,7 @@ class Factory extends \common\modules\catalog\models\Factory
     {
         $result = self::getDb()->cache(function ($db) use ($alias) {
             return self::findBase()->byAlias($alias)->one();
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }
@@ -125,7 +125,7 @@ class Factory extends \common\modules\catalog\models\Factory
             return self::findBase()
                 ->andFilterWhere(['IN', self::tableName() . '.alias', $alias])
                 ->all();
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }
@@ -373,7 +373,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->groupBy(self::tableName() . '.id')
                 ->asArray()
                 ->all();
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }
@@ -470,7 +470,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->groupBy(self::tableName() . '.id')
                 ->asArray()
                 ->all();
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }
@@ -616,7 +616,7 @@ class Factory extends \common\modules\catalog\models\Factory
                     ':removed' => '0',
                     ':lang' => Yii::$app->language,
                 ])->queryAll();
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }
@@ -658,7 +658,7 @@ class Factory extends \common\modules\catalog\models\Factory
                     ':id' => $id,
                     ':lang' => Yii::$app->language,
                 ])->queryAll();
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }
@@ -693,7 +693,7 @@ class Factory extends \common\modules\catalog\models\Factory
                     ':removed' => '0',
                     ':id' => $id,
                 ])->queryAll();
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }

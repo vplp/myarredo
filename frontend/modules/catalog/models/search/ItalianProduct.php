@@ -209,7 +209,7 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
         if (Yii::$app->controller->id == 'sale-italy') {
             self::getDb()->cache(function ($db) use ($dataProvider) {
                 $dataProvider->prepare();
-            }, \Yii::$app->params['cache']['duration'], self::generateDependency(self::find()));
+            }, 7200, self::generateDependency(self::find()));
         }
 
         return $dataProvider;

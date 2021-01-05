@@ -109,7 +109,7 @@ class Types extends \common\modules\catalog\models\Types
                     )
                     ->one();
             }
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }
@@ -287,7 +287,7 @@ class Types extends \common\modules\catalog\models\Types
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }

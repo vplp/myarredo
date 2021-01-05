@@ -88,7 +88,7 @@ class Colors extends \common\modules\catalog\models\Colors
                     )
                     ->one();
             }
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }
@@ -262,7 +262,7 @@ class Colors extends \common\modules\catalog\models\Colors
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }
@@ -362,7 +362,7 @@ class Colors extends \common\modules\catalog\models\Colors
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }
@@ -457,7 +457,7 @@ class Colors extends \common\modules\catalog\models\Colors
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        }, \Yii::$app->params['cache']['duration']);
+        }, 7200);
 
         return $result;
     }

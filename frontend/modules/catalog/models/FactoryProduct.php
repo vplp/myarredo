@@ -138,7 +138,7 @@ class FactoryProduct extends FrontendProduct
         return $this
             ->hasOne(FactoryPromotion::class, ['id' => 'promotion_id'])
             ->viaTable(FactoryPromotionRelProduct::tableName(), ['catalog_item_id' => 'id'])
-            ->cache(\Yii::$app->params['cache']['duration']);
+            ->cache(7200);
     }
 
     /**
