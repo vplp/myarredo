@@ -86,6 +86,9 @@ return ArrayHelper::merge(
             'catalog-product' => [
                 'class' => \console\controllers\CatalogProductController::class,
             ],
+            'catalog-translate' => [
+                'class' => \console\controllers\CatalogTranslateController::class,
+            ],
             'catalog-sale' => [
                 'class' => \console\controllers\CatalogSaleController::class,
             ],
