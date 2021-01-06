@@ -16,7 +16,10 @@ $bundle = AppAsset::register($this);
 $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
 
 ?>
-
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <div class="footer jsftr" data-url="<?= $url; ?>">
     <div class="container-wrap">
 
