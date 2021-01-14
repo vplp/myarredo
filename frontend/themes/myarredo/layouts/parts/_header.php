@@ -250,7 +250,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
         </div>
         <div class="logo-num">
             <?= Html::a(
-                Html::img($bundle->baseUrl . '/img/logo_myarredo.svg'),
+                Html::img($bundle->baseUrl . '/img/logo_myarredo.svg', ['width' => '75px', 'height' => '49px']),
                 Yii::$app->controller->id != 'home' ? Url::toRoute('/home/home/index') : null,
                 ['class' => 'logo']
             ) ?>

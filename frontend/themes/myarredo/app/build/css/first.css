@@ -89,6 +89,11 @@ body {
 .container {
     width: 100% !important;
 }
+h1 {
+  font-family: 'Vollkorn', sans-serif;
+  font-weight: 500;
+  font-size: 35px;
+}
 
 /* Header Styles */
 .header {
@@ -1356,6 +1361,7 @@ body {
 .home-main .numbers {
     display: flex;
     justify-content: space-between; 
+    min-height: 194px;
 }
 .home-main .numbers .one-number {
     max-width: 210px; 
@@ -1408,6 +1414,7 @@ body {
 .home-main .best-price .img-container img {
     position: absolute;
     width: 100%;
+    height: auto;
     bottom: -50px;
     left: 0; 
 }
