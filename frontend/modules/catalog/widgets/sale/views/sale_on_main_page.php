@@ -32,9 +32,11 @@ use frontend\modules\catalog\models\Sale;
                         <div class="img-cont">
                             <span class="background"></span>
                             <?= Html::img('/', [
-                                'class' => 'cont lazy',
+                                'class' => 'cont lazy her',
                                 'alt' => $model['lang']['title'],
-                                'data-src' => Sale::getImageThumb($model['image_link'])
+                                'data-src' => Sale::getImageThumb($model['image_link']),
+                                'width' => '290px',
+                                'height' => '240px'
                             ]) ?>
                         </div>
                         <div class="prod-title">

@@ -8,6 +8,8 @@ use frontend\modules\catalog\widgets\filter\ProductFilterOnMainPage;
  * @var $model BannerItem
  */
 $presentData = array();
+$firstFrameLink = '';
+$firstFrameSrc = '';
 if (!empty($items)) { ?>
         <?php foreach ($items as $model) {
             $presentData[] = array(
@@ -16,8 +18,16 @@ if (!empty($items)) { ?>
                 'imgLinkDsktp' => $model->getImageLink(),
                 'imgLinkMob' => $model->getImageThumb()
             );
+            $firstFrameLink = $model['lang']['link'] ?? '';
+            $firstFrameSrc = $model->getImageThumb();
         } ?>
-    <div class="home-top-slider"></div>
+    <div class="home-top-slider">
+        <div class="img-cont">
+            <a href="<?= $firstFrameLink; ?>">
+                <img src="<?= $firstFrameSrc; ?>" alt="">
+            </a>
+        </div>
+    </div>
 <?php } elseif ($type == 'main') { ?>
     <div class="top-home-img">
         <?= ProductFilterOnMainPage::widget(); ?>

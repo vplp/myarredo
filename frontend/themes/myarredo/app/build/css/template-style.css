@@ -1,8 +1,3 @@
-h1 {
-  font-family: 'Vollkorn', sans-serif;
-  font-weight: 500;
-  font-size: 35px;
-}
 .page {
   background: #F3F2F0; 
 }
@@ -180,6 +175,9 @@ footer, header, main, nav {
 }
 .novelties #novelties-slider, .sale .old-price {
   position: relative
+}
+.novelties #novelties-slider {
+  min-height: 420px;
 }
 .causes .descr li:before, .sale .old-price:after {
   top: 50%;

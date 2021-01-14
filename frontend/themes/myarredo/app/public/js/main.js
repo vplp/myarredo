@@ -1811,7 +1811,7 @@ console.time('speed mobile menu vue js');
                         v-on:click="twoLevel.lopen = openTwolevel(twoLevel.lopen)">
 
                             <div class="img-cont">
-                                <img v-bind:src=twoLevel.limglink alt="">
+                                <img v-bind:src=twoLevel.limglink alt="" width="26px" height="20px">
                             </div>
                             <span class="for-mobm-text">{{ twoLevel.ltext }}</span>
                             <span class="count">{{ twoLevel.lcount }}</span>

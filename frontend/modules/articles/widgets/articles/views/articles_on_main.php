@@ -38,7 +38,9 @@ use frontend\modules\articles\models\Article;
                                             <div class="article-item-img">
                                                 <?= Html::img('/', [
                                                     'class' => 'lazy',
-                                                    'data-src' => $article->getArticleImage()
+                                                    'data-src' => $article->getArticleImage(),
+                                                    'width' => '290px',
+                                                    'height' => '190px'
                                                 ]) ?>
                                             </div>
                                         </a>
