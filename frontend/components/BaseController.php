@@ -156,7 +156,8 @@ abstract class BaseController extends Controller
      */
     protected function getAlternateHreflang()
     {
-        if (!in_array(Yii::$app->controller->id, ['articles', 'contacts', 'category', 'product', 'sale-italy', 'sale']) &&
+        if (Yii::$app->controller->action->id != 'error' &&
+            !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'category', 'product', 'sale-italy', 'sale']) &&
             in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161])
         ) {
             $languages = Language::getAllByLocate();

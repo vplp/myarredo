@@ -61,7 +61,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             </div>
                         <?php } ?>
 
-                        <?php if (DOMAIN_NAME == 'myarredo' &&
+                        <?php if (DOMAIN_NAME == 'myarredo' && Yii::$app->controller->action->id != 'error' &&
                             in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de', 'co.il']) &&
                             !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale'])
                         ) { ?>
@@ -70,7 +70,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             </div>
                         <?php } ?>
 
-                        <?php if (in_array(DOMAIN_TYPE, ['ru'])) { ?>
+                        <?php if (in_array(DOMAIN_TYPE, ['ru']) && Yii::$app->controller->action->id != 'error') { ?>
                             <div class="lang-selector">
                                 <?= ChangeCurrency::widget() ?>
                             </div>
@@ -121,7 +121,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             ['class' => 'logo']
                         ) ?>
 
-                        <?php if (DOMAIN_NAME == 'myarredo' &&
+                        <?php if (DOMAIN_NAME == 'myarredo' && Yii::$app->controller->action->id != 'error' &&
                             in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de', 'co.il']) &&
                             !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale'])
                         ) { ?>
@@ -129,7 +129,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                                 <?= LangSwitch::widget(['noIndex' => $this->context->noIndex]) ?>
                             </div>
                         <?php } ?>
-                        <?php if (in_array(DOMAIN_TYPE, ['ru'])) { ?>
+                        <?php if (in_array(DOMAIN_TYPE, ['ru']) && Yii::$app->controller->action->id != 'error') { ?>
                             <div class="lang-selector">
                                 <?= ChangeCurrency::widget() ?>
                             </div>

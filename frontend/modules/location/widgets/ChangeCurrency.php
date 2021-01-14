@@ -4,7 +4,6 @@ namespace frontend\modules\location\widgets;
 
 use Yii;
 use yii\base\Widget;
-//
 use frontend\modules\location\models\Currency;
 
 /**
