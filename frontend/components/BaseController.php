@@ -171,6 +171,10 @@ abstract class BaseController extends Controller
                     $current_url
                 );
 
+                if ($item['alias'] == 'he') {
+                    continue;
+                }
+
                 if (in_array(DOMAIN_TYPE, ['com', 'de', 'ru']) && in_array($item['alias'], ['it', 'en'])) {
                     $alternatePages[$item['local']] = [
                         'href' => 'https://www.myarredo.com' . '/' . $item['alias'] . $href,

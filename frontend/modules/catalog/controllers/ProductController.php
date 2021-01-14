@@ -265,9 +265,6 @@ class ProductController extends BaseController
                 ],
                 'de' => [
                     'href' => 'https://www.myarredo.de/product/' . $model['alias_de'] . '/', 'lang' => 'de'
-                ],
-                'he' => [
-                    'href' => 'https://www.myarredo.co.il/product/' . $model['alias_he'] . '/', 'lang' => 'he'
                 ]
             ];
 
