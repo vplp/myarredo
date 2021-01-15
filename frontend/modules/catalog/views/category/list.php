@@ -48,14 +48,14 @@ $params = Yii::$app->catalogFilter->params;
 
                     </div>
 
-                    <?php if (empty($params) || (count($params) == 1 && isset($params[$keys['category']]))) {
+                    <?php /*if (empty($params) || (count($params) == 1 && isset($params[$keys['category']]))) {
                         echo ProductsNovelties::widget([
                             'modelPromotionItemClass' => Product::class,
                             'modelPromotionItemLangClass' => ProductLang::class,
                             'modelClass' => ItalianProduct::class,
                             'modelLangClass' => ItalianProductLang::class,
                         ]);
-                    } ?>
+                    }*/ ?>
 
                     <?php if (empty($params)) { ?>
                         <div class="only-mob mobcat">

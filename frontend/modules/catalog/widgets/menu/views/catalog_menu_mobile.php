@@ -105,14 +105,14 @@ $MenuDataArray = array(
             'levelopen' => 0,
             'levelData' => $categoriesSale
         ),
-        array(
-            'link' => Url::toRoute(['/catalog/sale-italy/list']),
-            'text' => Yii::t('app', 'Sale in Italy'),
-            'show' => 1,
-            'levelisset' => !empty($categoriesSaleItaly),
-            'levelopen' => 0,
-            'levelData' => $categoriesSaleItaly
-        ),
+//        array(
+//            'link' => Url::toRoute(['/catalog/sale-italy/list']),
+//            'text' => Yii::t('app', 'Sale in Italy'),
+//            'show' => 1,
+//            'levelisset' => !empty($categoriesSaleItaly),
+//            'levelopen' => 0,
+//            'levelData' => $categoriesSaleItaly
+//        ),
         array(
             'link' => '/catalog/category/list',
             'text' => Yii::t('app', 'Catalog of furniture'),
