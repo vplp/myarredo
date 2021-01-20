@@ -36,7 +36,7 @@ if (in_array($order->lang, ['ru-RU'])) {
             ) . ' ' .
             Yii::t('app', 'на сайте') . ' ' . 'MYARREDO.' . $domain ?>
 
-            <?php if (in_array($order->lang, ['ru-RU'])) { ?>
+            <?php if (in_array($order->lang, ['ru-RU']) && $order->city && $order->city->lang) { ?>
                 <span style="display:block;">
                     <?= Yii::t('app', 'Клиент из г.') . $order->city->lang->title ?>
                 </span>
