@@ -265,7 +265,10 @@ class Factory extends ActiveRecord
     public function beforeValidate()
     {
         $this->first_letter = mb_strtoupper(mb_substr(trim($this->title), 0, 1, 'UTF-8'), 'UTF-8');
-        $this->alias = $this->title;
+
+        if ($this->alias == '') {
+            $this->alias = $this->title;
+        }
 
         return parent::beforeValidate();
     }
