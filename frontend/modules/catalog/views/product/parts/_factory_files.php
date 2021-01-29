@@ -37,7 +37,14 @@ use frontend\modules\catalog\models\{
             } ?>
         <?php } else { ?>
             <li>
-
+                <?= Html::a(
+                    Yii::t('app', 'Каталоги') . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                    ['/catalog/factory/view-tab', 'alias' => $model['factory']['alias'], 'tab' => 'catalogs'],
+                    [
+                        'target' => '_blank',
+                        'class' => 'btn-inpdf'
+                    ]
+                ) ?>
             </li>
         <?php } ?>
     </ul>
