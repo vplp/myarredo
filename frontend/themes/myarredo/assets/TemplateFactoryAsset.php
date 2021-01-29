@@ -57,7 +57,7 @@ class TemplateFactoryAsset extends AssetBundle
      */
     public $depends = [
         YiiAsset::class,
-        BootstrapAsset::class,
+        //BootstrapAsset::class,
         BootstrapPluginAsset::class,
     ];
 

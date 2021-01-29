@@ -64,11 +64,12 @@ return [
                     'position' => \yii\web\View::POS_END
                 ],
             ],
-            'yii\bootstrap\BootstrapAsset' => [
-                'cssOptions' => [
-                    'position' => \yii\web\View::POS_END
-                ],
-            ],
+            'yii\bootstrap\BootstrapAsset' => false,
+//            'yii\bootstrap\BootstrapAsset' => [
+//                'cssOptions' => [
+//                    'position' => \yii\web\View::POS_END
+//                ],
+//            ],
         ],
     ],
     'catalogFilter' => [

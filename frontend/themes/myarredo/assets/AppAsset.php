@@ -26,6 +26,7 @@ class AppAsset extends AssetBundle
      * @var array
      */
     public $css = [
+        'css/bootstrap.min.css',
         'libs/nouislider/nouislider.min.css',
         'libs/font-awesome/css/font-awesome.min.css',
         'libs/slick-1.6/slick.css',
@@ -60,7 +61,7 @@ class AppAsset extends AssetBundle
      */
     public $depends = [
         YiiAsset::class,
-        BootstrapAsset::class,
+        //BootstrapAsset::class,
         BootstrapPluginAsset::class,
     ];
 
