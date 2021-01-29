@@ -91,8 +91,8 @@ use frontend\modules\catalog\models\{
         </div>
     <?php } ?>
 
-    <?php if ($subtypes) { ?>
-        <div class="one-filter">
+    <div class="one-filter">
+        <?php if ($subtypes) { ?>
             <?= Html::a(
                 Yii::t('app', 'Тип'),
                 'javascript:void(0);',
@@ -115,8 +115,8 @@ use frontend\modules\catalog\models\{
                     echo Html::endTag('a');
                 } ?>
             </div>
-        </div>
-    <?php } ?>
+        <?php } ?>
+    </div>
 
     <?php if ($priceRange && $priceRange['min']['default'] != $priceRange['max']['default']) { ?>
         <div class="one-filter filter-range-slider">

@@ -86,8 +86,9 @@ use frontend\modules\catalog\models\Category;
         </div>
     <?php } ?>
 
-    <?php if ($subtypes) { ?>
-        <div class="one-filter">
+
+    <div class="one-filter">
+        <?php if ($subtypes) { ?>
             <?= Html::a(
                 Yii::t('app', 'Тип'),
                 'javascript:void(0);',
@@ -110,8 +111,9 @@ use frontend\modules\catalog\models\Category;
                     echo Html::endTag('a');
                 } ?>
             </div>
-        </div>
-    <?php } ?>
+        <?php } ?>
+    </div>
+
 
     <?php if ($priceRange && $priceRange['min']['default'] != $priceRange['max']['default']) { ?>
         <div class="one-filter filter-range-slider">
@@ -179,7 +181,7 @@ use frontend\modules\catalog\models\Category;
                 <?php foreach ($producing_country as $item) {
                     $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
 
-                    echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class , 'rel' => 'nofollow']);
+                    echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class, 'rel' => 'nofollow']);
                     ?>
                     <div class="filter-group">
                         <div class="my-checkbox"></div><?= $item['title'] ?>
