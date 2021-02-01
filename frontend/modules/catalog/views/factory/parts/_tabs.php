@@ -197,17 +197,19 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
             <ul class="list">
                 <?php
                 foreach ($model->catalogsFiles as $catalogFile) {
-                    echo Html::beginTag('li') .
-                        Html::a(
-                            ($catalogFile->image_link
-                                ? Html::img($catalogFile->getImageLink())
-                                : ''
+                    if ($catalogFile->getFileLink()) {
+                        echo Html::beginTag('li') .
+                            Html::a(
+                                ($catalogFile->image_link
+                                    ? Html::img($catalogFile->getImageLink())
+                                    : ''
+                                ) .
+                                Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
+                                $catalogFile->getFileLink(),
+                                ['target' => '_blank', 'class' => 'click-on-factory-file', 'data-id' => $catalogFile->id]
                             ) .
-                            Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
-                            $catalogFile->getFileLink(),
-                            ['target' => '_blank', 'class' => 'click-on-factory-file', 'data-id' => $catalogFile->id]
-                        ) .
-                        Html::endTag('li');
+                            Html::endTag('li');
+                    }
                 } ?>
             </ul>
         </div>
@@ -242,17 +244,19 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
             <ul class="list">
                 <?php
                 foreach ($model->pricesFiles as $priceFile) {
-                    echo Html::beginTag('li') .
-                        Html::a(
-                            ($priceFile->image_link
-                                ? Html::img($priceFile->getImageLink())
-                                : ''
+                    if ($catalogFile->getFileLink()) {
+                        echo Html::beginTag('li') .
+                            Html::a(
+                                ($priceFile->image_link
+                                    ? Html::img($priceFile->getImageLink())
+                                    : ''
+                                ) .
+                                Html::tag('span', $priceFile->title, ['class' => 'for-catalog-list']),
+                                $priceFile->getFileLink(),
+                                ['target' => '_blank', 'class' => 'click-on-factory-file', 'data-id' => $priceFile->id]
                             ) .
-                            Html::tag('span', $priceFile->title, ['class' => 'for-catalog-list']),
-                            $priceFile->getFileLink(),
-                            ['target' => '_blank', 'class' => 'click-on-factory-file', 'data-id' => $priceFile->id]
-                        ) .
-                        Html::endTag('li');
+                            Html::endTag('li');
+                    }
                 } ?>
             </ul>
         </div>
