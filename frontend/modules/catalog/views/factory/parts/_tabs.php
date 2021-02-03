@@ -244,7 +244,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
             <ul class="list">
                 <?php
                 foreach ($model->pricesFiles as $priceFile) {
-                    if ($catalogFile->getFileLink()) {
+                    if ($priceFile->getFileLink()) {
                         echo Html::beginTag('li') .
                             Html::a(
                                 ($priceFile->image_link
