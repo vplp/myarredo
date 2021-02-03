@@ -370,14 +370,18 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             } ?>
 
             <?= Html::a(
-                '<i class="fa fa-phone" aria-hidden="true"></i>' . Yii::t('app', 'Feedback form'),
+                '<i class="fa fa-phone" aria-hidden="true"></i>',
                 'javascript:void(0);',
                 [
                     'class' => 'back-call',
                     'data-toggle' => 'modal',
-                    'data-target' => '#formFeedbackModal'
+                    'data-target' => '#formFeedbackModal',
+                    'title' => Yii::t('app', 'Feedback form')
                 ]
             ) ?>
+            <div class="header-langbox">
+                <?= LangSwitch::widget(['view' => 'lang_switch_mobile', 'noIndex' => $this->context->noIndex]) ?>
+            </div>
 
             <a href="javascript:void(0);" class="close-mobile-menu js-close-mobile-menu">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
