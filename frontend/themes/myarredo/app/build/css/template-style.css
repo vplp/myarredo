@@ -45,6 +45,22 @@ footer, header, main, nav {
   right: 0;
   text-align: left
 }
+.header-langbox {
+  min-width: 41%;
+}
+.header-langbox .one-list.js-toggle-list {
+  background-color: transparent;
+  height: 39px;
+  border-right: 1px solid #BDBCB3;
+}
+.header-langbox .mobile-lang-list.js-list-container {
+  box-shadow: 0 0 6px rgb(0 0 0 / 30%);
+  background-color: #ffffff;
+  margin-top: 1px;
+}
+.mobile-header .header-langbox .one-list .fa {
+  margin-right: 2px;
+}
 .causes .big, .causes .causes-in, .causes h2, .sale .name, .sale .new-price, .sale .old-price, .sale .one-tile {
   text-align: center
 }

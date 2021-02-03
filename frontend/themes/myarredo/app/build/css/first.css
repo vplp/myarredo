@@ -678,10 +678,13 @@ h1 {
  .mobile-header.open .mobile-menu {
    left: 0;
  }
-   .mobile-header .mobile-menu .stripe {
-     height: 40px;
-     border-bottom: 1px solid #BDBCB3;
-     display: flex; }
+.mobile-header .mobile-menu .stripe {
+  height: 40px;
+  border-bottom: 1px solid #BDBCB3;
+  display: flex;
+  position: relative;
+  z-index: 1; 
+}
      .mobile-header .mobile-menu .stripe a {
        color: #535351;
        font-size: 14px;
