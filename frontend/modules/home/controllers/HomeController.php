@@ -37,8 +37,8 @@ class HomeController extends BaseController
                     $timeLastUpdate[] = $model['updated_at'];
 
                     // SaleItalyOnMainPage widget
-                    $model = ItalianProduct::findLastUpdated();
-                    $timeLastUpdate[] = $model['updated_at'];
+//                    $model = ItalianProduct::findLastUpdated();
+//                    $timeLastUpdate[] = $model['updated_at'];
 
                     // ArticlesList widget
                     $model = Article::findLastUpdated();
