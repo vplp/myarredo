@@ -10,6 +10,8 @@ use frontend\modules\catalog\models\Sale;
  * @var $model Sale
  */
 
+$detect = new Mobile_Detect();
+
 ?>
 
 <div class="sale-sect">
@@ -26,8 +28,7 @@ use frontend\modules\catalog\models\Sale;
         </div>
         <div class="sale-wrap">
             <?php
-            foreach ($models as $k => $level) {
-                foreach ($level as $key => $model) { ?>
+            foreach ($models as $key => $model) { ?>
                     <a href="<?= Sale::getUrl($model['alias']) ?>" class="one-sale" data-dominant-color>
                         <div class="img-cont">
                             <span class="background"></span>
@@ -52,7 +53,10 @@ use frontend\modules\catalog\models\Sale;
                             </span> <?= Yii::$app->currency->symbol ?>
                         </div>
                     </a>
-                <?php }
+                <?php
+                if ($detect->isMobile() && $key == 3) {
+                    break;
+                }
             } ?>
         </div>
     </div>

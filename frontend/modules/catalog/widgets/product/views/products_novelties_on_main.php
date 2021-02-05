@@ -6,6 +6,8 @@ use frontend\modules\catalog\models\Product;
 /** @var $models Product[] */
 /** @var $model Product */
 
+$detect = new Mobile_Detect();
+
 ?>
 
 <div class="novelties">
@@ -70,10 +72,10 @@ use frontend\modules\catalog\models\Product;
                                                 if ($key >= 4) {
                                                     echo Html::a(
                                                         Html::img('/', [
-                                                                'alt' => Product::getStaticTitle($model),
-                                                                'class' => 'lazy',
-                                                                'data-src' => Product::getImageThumb($model['image_link'])
-                                                            ]),
+                                                            'alt' => Product::getStaticTitle($model),
+                                                            'class' => 'lazy',
+                                                            'data-src' => Product::getImageThumb($model['image_link'])
+                                                        ]),
                                                         Product::getUrl($model[Yii::$app->languages->getDomainAlias()]),
                                                         ['class' => 'smaller']
                                                     );
@@ -83,7 +85,11 @@ use frontend\modules\catalog\models\Product;
                                     </div>
                                 </div>
 
-                            <?php }
+                                <?php
+                                if ($detect->isMobile()) {
+                                    break;
+                                }
+                            }
                         } ?>
 
                     </div>

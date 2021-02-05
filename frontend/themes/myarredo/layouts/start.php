@@ -100,7 +100,8 @@ $bundle = AppAsset::register($this);
                     </div>
                     <div class="after-text">
                         <div class="img-container">
-                            <img src="/" data-src="<?= $bundle->baseUrl ?>/img/best-price.svg" alt="" width="270px" height="220x" class="lazy">
+                            <img src="/" data-src="<?= $bundle->baseUrl ?>/img/best-price.svg" alt="" width="270px"
+                                 height="220x" class="lazy">
                         </div>
                         <div class="text-contain">
                             <?= Yii::t('app', 'На нашем портале ведут рекламную кампанию сами фабрики. Салоны обеспечат сервис по покупки на фабрике и доставке клиенту по адресу.') ?>

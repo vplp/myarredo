@@ -63,19 +63,6 @@ class SaleOnMainPage extends Widget
                 ->asArray()
                 ->all();
         }, 7200);
-
-        $_models = [];
-
-        if ($this->models != null) {
-            $i = 0;
-            foreach ($this->models as $key => $model) {
-                if ($key % 3 == 0) {
-                    $i++;
-                }
-                $_models[$i][] = $model;
-            }
-            $this->models = $_models;
-        }
     }
 
     /**
