@@ -111,7 +111,7 @@ $bundle = AppAsset::register($this);
             </div>
             <!-- end best-price -->
 
-            <?php if ($this->beginCache('Start' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) { ?>
+            <?php //if ($this->beginCache('Start' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) { ?>
                 <div class="categories-sect">
                     <div class="container large-container">
                         <div class="section-header">
@@ -152,8 +152,7 @@ $bundle = AppAsset::register($this);
                     echo ArticlesList::widget(['view' => 'articles_on_main', 'limit' => 4]);
                 } ?>
 
-                <?php $this->endCache();
-            } ?>
+                <?php //$this->endCache(); } ?>
 
         </div>
         <!-- end container-wrap -->
