@@ -41,8 +41,8 @@ class HomeController extends BaseController
 //                    $timeLastUpdate[] = $model['updated_at'];
 
                     // ArticlesList widget
-                    $model = Article::findLastUpdated();
-                    $timeLastUpdate[] = $model['updated_at'];
+//                    $model = Article::findLastUpdated();
+//                    $timeLastUpdate[] = $model['updated_at'];
 
                     return max($timeLastUpdate);
                 },
