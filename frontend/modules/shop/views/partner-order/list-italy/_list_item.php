@@ -88,7 +88,7 @@ use frontend\modules\catalog\models\{
                     </tr>
                     <tr>
                         <td colspan="2" class="spec-pad2">
-                            <?php if ($orderItem->product['factory']['title']) {
+                            <?php if ($orderItem->product['factory'] && $orderItem->product['factory']['title']) {
                                 echo Html::a(
                                     $orderItem->product['factory']['title'],
                                     Factory::getUrl($orderItem->product['factory']['alias'])
@@ -107,7 +107,7 @@ use frontend\modules\catalog\models\{
                     </tr>
                     <tr>
                         <td colspan="2" class="spec-pad2">
-                            <?= $orderItem->product['region']['title'] ?>
+                            <?= $orderItem->product['region']['title'] ?? '' ?>
                         </td>
                     </tr>
                     <tr class="noborder">
@@ -199,7 +199,7 @@ use frontend\modules\catalog\models\{
                     </tr>
                 </table>
 
-                <?php if ($orderItem->product['factory']['lang'] && $orderItem->product['factory']['lang']['working_conditions']) {
+                <?php if (isset($orderItem->product['factory']['lang']) && $orderItem->product['factory']['lang']['working_conditions']) {
                     echo Html::button(Yii::t('app', 'Условия работы'), [
                         'class' => 'btn btn-primary',
                         'data-toggle' => 'modal',

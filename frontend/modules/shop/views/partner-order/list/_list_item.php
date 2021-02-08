@@ -177,7 +177,7 @@ if ($user->profile->getPossibilityToAnswer($modelOrder)) { ?>
                             </div>
                         <?php } ?>
 
-                        <?php if ($orderItem->product['factory']['lang'] && $orderItem->product['factory']['lang']['working_conditions']) {
+                        <?php if (isset($orderItem->product['factory']['lang']) && $orderItem->product['factory']['lang']['working_conditions']) {
                             echo Html::button(Yii::t('app', 'Условия работы'), [
                                 'class' => 'btn btn-primary',
                                 'data-toggle' => 'modal',
