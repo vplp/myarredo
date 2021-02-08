@@ -33,6 +33,7 @@ $this->beginPage();
     <link rel="dns-prefetch" href="https://www.google.com">
     <link rel="dns-prefetch" href="https://www.gstatic.com">
     <link rel="dns-prefetch" href="https://mc.yandex.ru">
+    <link rel="dns-prefetch" href="https://img.<?= DOMAIN_NAME . '.' . DOMAIN_TYPE ?>">
 
     <!-- preloader styles -->
     <style>
