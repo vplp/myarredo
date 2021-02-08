@@ -1,7 +1,6 @@
 <?php
 
 use backend\widgets\GridView\GridView;
-//
 use thread\widgets\grid\{
     ActionStatusColumn
 };
@@ -17,7 +16,7 @@ echo GridView::widget([
             'class' => \thread\widgets\grid\kartik\EditableColumn::class,
             'attribute' => 'title',
             'displayValue' => function ($model) {
-                return $model['lang']['title'];
+                return $model['lang']['title'] ?? '';
             }
         ],
         [

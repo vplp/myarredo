@@ -4,7 +4,6 @@ namespace backend\modules\user\models;
 
 use yii\helpers\ArrayHelper;
 use yii\data\ActiveDataProvider;
-//
 use thread\app\model\interfaces\BaseBackendModel;
 
 /**
@@ -35,7 +34,8 @@ class User extends \common\modules\user\models\User implements BaseBackendModel
             ->all();
 
         return ArrayHelper::map($query, 'id', function ($item) {
-            return $item['profile']['lang']['name_company'] . ' (' . $item['email'] . ')';
+            return ($item['profile']['lang'] ? $item['profile']['lang']['name_company'] : '')
+                . ' (' . $item['email'] . ')';
         });
     }
 
