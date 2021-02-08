@@ -55,7 +55,7 @@ use frontend\modules\catalog\models\{
                         $params[$keys['type']][] = $item[Yii::$app->languages->getDomainAlias()];
                         $link = Yii::$app->catalogFilter->createUrl($params, ['/catalog/category/list']);
 
-                        echo '<li>' . Html::a($item['lang']['title'], $link) . '<span>' . $item['count'] . '</span></li>';
+                        echo '<li>' . Html::a($item['lang']['title'] ?? '', $link) . '<span>' . $item['count'] . '</span></li>';
                     }
                     ?>
                 </ul>
