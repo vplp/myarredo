@@ -55,7 +55,7 @@ $image_link = $partner['profile']['image_link']
                         <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
                     </div>
 
-                    <meta itemprop="name" content="<?= Html::encode($partner['profile']['lang']['name_company']) ?>"/>
+                    <meta itemprop="name" content="<?= Html::encode($partner['profile']->getNameCompany()) ?>"/>
 
                     <p><?= Yii::t('app', 'Получить консультацию в') ?> <?= $city['lang']['title_where'] ?></p>
 
@@ -66,7 +66,7 @@ $image_link = $partner['profile']['image_link']
                     </div>
 
                     <div class="stud" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                        <p><?= Html::encode($partner['profile']['lang']['name_company']) ?></p>
+                        <p><?= Html::encode($partner['profile']->getNameCompany()) ?></p>
                         <meta itemprop="addressLocality"
                               content="<?= $city['country']['lang']['title'] ?> <?= $city['lang']['title'] ?>"/>
                         <p><?= $city['lang']['title'] ?></p>

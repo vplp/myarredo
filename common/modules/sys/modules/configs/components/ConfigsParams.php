@@ -45,7 +45,7 @@ class ConfigsParams extends Component
     protected function cache(Params $value)
     {
         $id = $value['id'];
-        $v = $value['lang']['content'];
+        $v = $value['lang']['content'] ?? '';
 
         if (isset($this->cach[$id])) {
             if ($this->cach[$id] != $v) {

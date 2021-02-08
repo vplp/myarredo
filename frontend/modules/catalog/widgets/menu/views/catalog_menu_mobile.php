@@ -26,7 +26,7 @@ foreach ($category as $model) {
         $params[$keys['type']][] = $type[Yii::$app->languages->getDomainAlias()];
         $ldata[] = [
             'link' => Yii::$app->catalogFilter->createUrl($params),
-            'text' => $type['lang']['title']
+            'text' => $type['lang']['title'] ?? ''
         ];
     }
 
@@ -52,7 +52,7 @@ foreach ($categorySale as $model) {
         $params[$keys['type']][] = $type[Yii::$app->languages->getDomainAlias()];
         $ldata[] = [
             'link' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale/list'),
-            'text' => $type['lang']['title']
+            'text' => $type['lang']['title'] ?? ''
         ];
     }
 
@@ -78,7 +78,7 @@ foreach ($categorySaleItaly as $model) {
         $params[$keys['type']][] = $type[Yii::$app->languages->getDomainAlias()];
         $ldata[] = [
             'link' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale-italy/list'),
-            'text' => $type['lang']['title']
+            'text' => $type['lang']['title'] ?? ''
         ];
     }
 

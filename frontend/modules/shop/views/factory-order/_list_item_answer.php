@@ -144,7 +144,7 @@ use frontend\modules\catalog\models\Product;
                 <div><?= Yii::t('app', 'Response time') ?>:</div>
                 <?php foreach ($modelOrder->orderAnswers as $key => $answer) {
                     if ($answer->user->group->role == 'partner') {
-                        echo '<div><strong>' . $answer['user']['profile']['lang']['name_company'] . '</strong></div>';
+                        echo '<div><strong>' . $answer['user']['profile']->getNameCompany() . '</strong></div>';
                     } elseif ($answer->user->group->role == 'factory') {
                         echo '<div><strong>' . $answer['user']['profile']['factory']['title'] . '</strong></div>';
                     }

@@ -16,7 +16,7 @@ use frontend\modules\catalog\widgets\sale\SaleRequestForm;
                     <?= Yii::t('app', 'Контакты продавца') ?>
                 </p>
                 <h4 class="text-center">
-                    <?= $model['user']['profile']['lang']['name_company']; ?>
+                    <?= $model['user']['profile']->getNameCompany(); ?>
                 </h4>
                 <div class="ico">
                     <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>

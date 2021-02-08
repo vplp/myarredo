@@ -88,7 +88,7 @@ use frontend\modules\catalog\models\{
                             <td colspan="2">
                                 <?php
                                 foreach ($orderItem->orderItemPrices as $price) {
-                                    echo '<div><strong>' . $price['user']['profile']['lang']['name_company'] . '</strong></div>' .
+                                    echo '<div><strong>' . $price['user']['profile']->getNameCompany() . '</strong></div>' .
                                         '<div>' . $price['user']['email'] . '</div>' .
                                         '<div><strong>' . ($price['out_of_production'] == '1'
                                             ? Yii::t('app', 'Снят с производства')
@@ -172,7 +172,7 @@ use frontend\modules\catalog\models\{
                         <?php } ?>
                     </div>
 
-                    <?php if ($orderItem->product['factory']['lang']['working_conditions']) {
+                    <?php if ($orderItem->product['factory']['lang'] && $orderItem->product['factory']['lang']['working_conditions']) {
                         echo Html::button(Yii::t('app', 'Условия работы'), [
                             'class' => 'btn btn-primary',
                             'data-toggle' => 'modal',
@@ -211,7 +211,7 @@ use frontend\modules\catalog\models\{
                 ->textarea(['rows' => 5, 'disabled' => true]) ?>
 
             <?php foreach ($modelOrder->orderAnswers as $answer) {
-                echo '<div><strong>' . $answer['user']['profile']['lang']['name_company'] . '</strong></div>' .
+                echo '<div><strong>' . $answer['user']['profile']->getNameCompany() . '</strong></div>' .
                     '<div>' . $answer['user']['email'] . '</div>' .
                     '<div>' . $answer->getAnswerTime() . '</div>' .
                     '<div>' . $answer['answer'] . '</div><br>';

@@ -25,7 +25,7 @@ use frontend\modules\catalog\models\{
         </div>
     </div>
     <div style="background-color:#fff9ea; text-align: left; padding: 10px 0 40px 10px;">
-        <p>Добрый день, <?= $modelSale->user['profile']['lang']['name_company'] ?>!</p>
+        <p>Добрый день, <?= $modelSale->user['profile']->getNameCompany() ?>!</p>
         <p>Вам поступил запрос на предмет мебели вашей экспозиции:</p>
         <div style="clear: both;overflow: hidden;">
             <div style="float: left;">
