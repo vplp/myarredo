@@ -30,6 +30,10 @@ $this->beginPage();
     <link rel="icon" href="https://img.<?= DOMAIN_NAME . '.' . DOMAIN_TYPE ?>/myarredo-ico.svg" type="image/svg+xml"/>
     <link rel="icon" href="https://img.<?= DOMAIN_NAME . '.' . DOMAIN_TYPE ?>/favicon.ico" type="image/x-icon"/>
 
+    <link rel="dns-prefetch" href="https://www.google.com">
+    <link rel="dns-prefetch" href="https://www.gstatic.com">
+    <link rel="dns-prefetch" href="https://mc.yandex.ru">
+
     <!-- preloader styles -->
     <style>
         .preloader-container {
