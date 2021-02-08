@@ -15,7 +15,7 @@ use frontend\modules\banner\models\BannerItem;
     <div class="fone-poster-box" style="background-color:<?= $background ? $background : 'transparent' ?>;">
 
         <div class="fone-poster-left">
-            <?php if ($bannerLeft['lang']['link'] != '') {
+            <?php if ($bannerLeft['lang'] && $bannerLeft['lang']['link'] != '') {
                 echo Html::a(
                     Html::img('/', ['class' => 'lazy', 'data-src' => $bannerLeft->getImageLink()]),
                     $bannerLeft['lang']['link'],
@@ -27,7 +27,7 @@ use frontend\modules\banner\models\BannerItem;
         </div>
 
         <div class="fone-poster-right">
-            <?php if ($bannerRight['lang']['link'] != '') {
+            <?php if ($bannerLeft['lang'] && $bannerRight['lang']['link'] != '') {
                 echo Html::a(
                     Html::img('/', ['class' => 'lazy', 'data-src' => $bannerRight->getImageLink()]),
                     $bannerRight['lang']['link'],

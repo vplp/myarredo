@@ -193,7 +193,7 @@ class ProductFilter extends Widget
             $subtypes[$key] = array(
                 'checked' => $checked,
                 'link' => $link,
-                'title' => $obj['lang']['title'],
+                'title' => $obj['lang']['title'] ?? '',
                 'count' => $obj['count'],
                 'alias' => $obj['alias'],
             );
