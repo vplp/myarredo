@@ -22,12 +22,16 @@ class PartnerInfo extends Widget
      */
     public function run()
     {
-        return $this->render(
-            $this->view,
-            [
-                'partner' => Yii::$app->partner->getPartner(),
-                'city' => Yii::$app->city->getCity(),
-            ]
-        );
+        $partner = Yii::$app->partner->getPartner();
+
+        if ($partner) {
+            return $this->render(
+                $this->view,
+                [
+                    'partner' => $partner,
+                    'city' => Yii::$app->city->getCity(),
+                ]
+            );
+        }
     }
 }
