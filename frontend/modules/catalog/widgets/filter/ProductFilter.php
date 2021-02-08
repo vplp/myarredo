@@ -129,7 +129,7 @@ class ProductFilter extends Widget
             $category[$key] = array(
                 'checked' => $checked,
                 'link' => $link,
-                'title' => $obj['lang']['title'],
+                'title' => $obj['lang']['title'] ?? '',
                 'count' => $obj['count'],
                 'image_link' => $obj['image_link'],
                 'image_link2' => $obj['image_link2'],
@@ -163,7 +163,7 @@ class ProductFilter extends Widget
             $types[$key] = array(
                 'checked' => $checked,
                 'link' => $link,
-                'title' => $obj['lang']['title'],
+                'title' => $obj['lang']['title'] ?? '',
                 'count' => $obj['count'],
                 'alias' => $obj['alias'],
             );
@@ -225,7 +225,7 @@ class ProductFilter extends Widget
             $style[$key] = array(
                 'checked' => $checked,
                 'link' => $link,
-                'title' => $obj['lang']['title'],
+                'title' => $obj['lang']['title'] ?? '',
                 'count' => $obj['count'],
                 'alias' => $alias,
             );
@@ -341,7 +341,7 @@ class ProductFilter extends Widget
             $colors[$key] = [
                 'checked' => $checked,
                 'link' => $link,
-                'title' => $obj['lang']['title'],
+                'title' => $obj['lang']['title'] ?? '',
                 'count' => $obj['count'],
                 'alias' => $alias,
                 'color_code' => $obj['color_code'],
@@ -582,7 +582,7 @@ class ProductFilter extends Widget
             $producing_country[$key] = array(
                 'checked' => $checked,
                 'link' => $link,
-                'title' => $obj['lang']['title'],
+                'title' => $obj['lang']['title'] ?? '',
                 'count' => $obj['count'],
                 'alias' => $obj['alias'],
             );
