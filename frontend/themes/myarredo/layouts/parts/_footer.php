@@ -168,14 +168,6 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"></div>
 
-<?php if (DOMAIN_TYPE == 'ru' && Yii::$app->getUser()->isGuest) { ?>
-    <script type="text/javascript">
-        var __cs = __cs || [];
-        __cs.push(["setCsAccount", "UmbSor8qhGbovgqKXcAqTSVMMinwFmSy"]);
-    </script>
-    <script type="text/javascript" async src="https://app.uiscom.ru/static/cs.min.js"></script>
-<?php } ?>
-
 <script type="application/ld+json">
 {
     "@context": "http://schema.org",
