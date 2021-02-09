@@ -77,8 +77,8 @@ class SaleController extends BaseController
                 'etagSeed' => function ($action, $params) {
                     $model = Sale::findLastUpdated();
                     return serialize([
-                        $model['lang']['title'],
-                        $model['lang']['description']
+                        $model->getTitle(),
+                        $model->getDescription()
                     ]);
                 },
             ];

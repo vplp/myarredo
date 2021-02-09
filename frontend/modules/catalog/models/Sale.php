@@ -307,13 +307,20 @@ class Sale extends \common\modules\catalog\models\Sale
         return $imagesSources;
     }
 
-
     /**
      * @return string
      */
     public function getTitle()
     {
         return (isset($this->lang->title)) ? $this->lang->title : "{{-}}";
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return (isset($this->lang->description)) ? $this->lang->description : "{{-}}";
     }
 
     /**
