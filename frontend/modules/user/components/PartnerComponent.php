@@ -4,7 +4,6 @@ namespace frontend\modules\user\components;
 
 use Yii;
 use yii\base\Component;
-//
 use frontend\modules\user\models\User;
 
 /**
@@ -41,7 +40,7 @@ class PartnerComponent extends Component
      */
     public function __get($name)
     {
-        return $this->partner[$name];
+        return $this->partner[$name] ?? '';
     }
 
     /**

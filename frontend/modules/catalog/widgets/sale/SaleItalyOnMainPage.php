@@ -31,7 +31,7 @@ class SaleItalyOnMainPage extends Widget
         $this->models = ItalianProduct::getDb()->cache(function ($db) {
             /** orderBy */
 
-            if (isset(Yii::$app->partner) && Yii::$app->partner->id) {
+            if (!empty(Yii::$app->partner) && Yii::$app->partner->id) {
                 $order['FIELD (' . ItalianProduct::tableName() . '.user_id, ' . Yii::$app->partner->id . ')'] = SORT_DESC;
             }
 
