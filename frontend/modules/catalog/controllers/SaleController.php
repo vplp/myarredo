@@ -93,8 +93,8 @@ class SaleController extends BaseController
                 'etagSeed' => function ($action, $params) {
                     $model = Sale::findByAlias(Yii::$app->request->get('alias'));
                     return serialize([
-                        $model['lang']['title'],
-                        $model['lang']['description']
+                        $model->getTitle(),
+                        $model->getDescription()
                     ]);
                 },
             ];
