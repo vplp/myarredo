@@ -65,7 +65,7 @@ use frontend\modules\catalog\models\ItalianProduct;
         </tr>
         <tr>
             <td colspan="2" class="spec-pad2">
-                <span class="for-ordertable-descr"><?= $orderItem->product['region']['title'] ?></span>
+                <span class="for-ordertable-descr"><?= $orderItem->product['region']['title'] ?? '' ?></span>
             </td>
         </tr>
         <tr class="noborder">
