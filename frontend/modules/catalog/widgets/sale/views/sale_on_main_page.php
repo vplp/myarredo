@@ -58,6 +58,10 @@ $detect = new Mobile_Detect();
                     break;
                 }
             } ?>
+
+                <div class="sales-morepanel onlymob">
+                    <a href="#" class="btn-myarredo">Смотреть все распродажи</a>
+                </div>
         </div>
     </div>
 

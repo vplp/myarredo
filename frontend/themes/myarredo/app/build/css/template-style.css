@@ -61,6 +61,18 @@ footer, header, main, nav {
 .mobile-header .header-langbox .one-list .fa {
   margin-right: 2px;
 }
+.novetlies-morepanel {
+  text-align: center;
+  margin: 30px auto 0;
+}
+.sales-morepanel {
+  text-align: center;
+  margin: 0 auto 20px;
+}
+.novetlies-morepanel .btn-myarredo,
+.sales-morepanel .btn-myarredo {
+  font-weight: normal;
+}
 .causes .big, .causes .causes-in, .causes h2, .sale .name, .sale .new-price, .sale .old-price, .sale .one-tile {
   text-align: center
 }

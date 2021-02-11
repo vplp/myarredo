@@ -104,7 +104,9 @@ $detect = new Mobile_Detect();
                     </div>
 
                 </div>
-
+                <div class="novetlies-morepanel onlymob">
+                    <a href="#" class="btn-myarredo">Смотреть все новинки</a>
+                </div>
             </div>
         </div>
     </div>
