@@ -5370,7 +5370,14 @@ footer .partner-cities ul {
       background: #FFFFFF;
       border-bottom-right-radius: 40px;
       border-top-right-radius: 40px;
-      transform: translate(0, -50%); }
+      transform: translate(0, -50%); 
+    }
+    .home-main .arr-cont .left-arr .fa {
+      font-size: 28px;
+      position: absolute;
+      top: calc(50% - 13px);
+      left: 0;
+    }
     .home-main .arr-cont .right-arr {
       right: 0;
       top: 50%;
@@ -5381,7 +5388,14 @@ footer .partner-cities ul {
       border-bottom-left-radius: 40px;
       border-top-left-radius: 40px;
       text-decoration: none;
-      transform: translate(0, -50%); }
+      transform: translate(0, -50%); 
+    }
+    .home-main .arr-cont .right-arr .fa {
+      font-size: 28px;
+      position: absolute;
+      top: calc(50% - 13px);
+      right: 0;
+    }
     .home-main .arr-cont .glyphicon {
       color: #448339; }
   .home-main .novelties {
