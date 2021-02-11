@@ -69,10 +69,12 @@ use frontend\modules\catalog\models\{
                     <?php }
                 } ?>
             <?php } else {
-
+                $isFiles = false;
                 foreach ($model->getElementsComposition() as $product) {
                     foreach ($product->factoryPricesFiles as $priceFile) {
-                        if ($fileLink = $priceFile->getFileLink()) { ?>
+                        if ($fileLink = $priceFile->getFileLink()) {
+                            $isFiles = true;
+                            ?>
                             <li>
                                 <?= Html::a(
                                     $priceFile->title . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
@@ -87,18 +89,20 @@ use frontend\modules\catalog\models\{
                         <?php }
                     }
                 }
-                ?>
-                <li>
-                    <?= Html::a(
-                        Yii::t('app', 'Прайс листы') . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
-                        ['/catalog/factory/view-tab', 'alias' => $model['factory']['alias'], 'tab' => 'pricelists'],
-                        [
-                            'target' => '_blank',
-                            'class' => 'btn-inpdf'
-                        ]
-                    ) ?>
-                </li>
-            <?php } ?>
+
+                if (!$isFiles) { ?>
+                    <li>
+                        <?= Html::a(
+                            Yii::t('app', 'Прайс листы') . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                            ['/catalog/factory/view-tab', 'alias' => $model['factory']['alias'], 'tab' => 'pricelists'],
+                            [
+                                'target' => '_blank',
+                                'class' => 'btn-inpdf'
+                            ]
+                        ) ?>
+                    </li>
+                <?php }
+            } ?>
         </ul>
 
     <?php } ?>
