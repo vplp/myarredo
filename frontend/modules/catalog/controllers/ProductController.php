@@ -42,13 +42,13 @@ class ProductController extends BaseController
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
                     $model = Product::findByAlias(Yii::$app->request->get('alias'));
-                    return $model['updated_at'];
+                    return $model['updated_at'] ?? 0;
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Product::findByAlias(Yii::$app->request->get('alias'));
                     return serialize([
-                        $model['lang']['title'],
-                        $model['lang']['description']
+                        $model['lang']['title'] ?? '',
+                        $model['lang']['description'] ?? ''
                     ]);
                 },
             ];

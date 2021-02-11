@@ -68,7 +68,26 @@ use frontend\modules\catalog\models\{
                         </li>
                     <?php }
                 } ?>
-            <?php } else { ?>
+            <?php } else {
+
+                foreach ($model->getElementsComposition() as $product) {
+                    foreach ($product->factoryPricesFiles as $priceFile) {
+                        if ($fileLink = $priceFile->getFileLink()) { ?>
+                            <li>
+                                <?= Html::a(
+                                    $priceFile->title . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                                    Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink . '&search=' . $model->article,
+                                    [
+                                        'target' => '_blank',
+                                        'class' => 'click-on-factory-file btn-inpdf',
+                                        'data-id' => $priceFile->id
+                                    ]
+                                ) ?>
+                            </li>
+                        <?php }
+                    }
+                }
+                ?>
                 <li>
                     <?= Html::a(
                         Yii::t('app', 'Прайс листы') . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
