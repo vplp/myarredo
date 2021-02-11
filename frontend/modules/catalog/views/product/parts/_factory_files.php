@@ -49,10 +49,10 @@ use frontend\modules\catalog\models\{
     </ul>
 
     <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->isPdfAccess()) { ?>
-        <?php if (!empty($model->factoryPricesFiles)) { ?>
-            <p class="inpdf-title"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
-            <ul class="inpdf-list">
 
+        <p class="inpdf-title"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
+        <ul class="inpdf-list">
+            <?php if (!empty($model->factoryPricesFiles)) { ?>
                 <?php foreach ($model->factoryPricesFiles as $priceFile) {
                     if ($fileLink = $priceFile->getFileLink()) { ?>
                         <li>
@@ -68,9 +68,20 @@ use frontend\modules\catalog\models\{
                         </li>
                     <?php }
                 } ?>
+            <?php } else { ?>
+                <li>
+                    <?= Html::a(
+                        Yii::t('app', 'Прайс листы') . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                        ['/catalog/factory/view-tab', 'alias' => $model['factory']['alias'], 'tab' => 'pricelists'],
+                        [
+                            'target' => '_blank',
+                            'class' => 'btn-inpdf'
+                        ]
+                    ) ?>
+                </li>
+            <?php } ?>
+        </ul>
 
-            </ul>
-        <?php } ?>
     <?php } ?>
 </div>
 
