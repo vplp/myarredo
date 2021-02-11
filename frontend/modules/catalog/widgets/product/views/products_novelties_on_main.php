@@ -105,7 +105,11 @@ $detect = new Mobile_Detect();
 
                 </div>
                 <div class="novetlies-morepanel onlymob">
-                    <a href="#" class="btn-myarredo">Смотреть все новинки</a>
+                    <?= Html::a(
+                        Yii::t('app', 'Смотреть все категории'),
+                        ['/catalog/category/list'],
+                        ['class' => 'btn-myarredo']
+                    ) ?>
                 </div>
             </div>
         </div>

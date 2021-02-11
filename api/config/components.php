@@ -58,7 +58,7 @@ return [
         'enableSwiftMailerLogging' => true,
         'messageConfig' => [
             'charset' => 'UTF-8',
-            'from' => ['info@myarredo.ru' => 'myarredo'],
+            'from' => ['info@myarredo.com' => 'myarredo'],
         ],
     ],
 ];

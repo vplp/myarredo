@@ -60,7 +60,11 @@ $detect = new Mobile_Detect();
             } ?>
 
                 <div class="sales-morepanel onlymob">
-                    <a href="#" class="btn-myarredo">Смотреть все распродажи</a>
+                    <?= Html::a(
+                        Yii::t('app', 'Все акционные товары'),
+                        Url::toRoute(['/catalog/sale/list']),
+                        ['class' => 'btn-myarredo']
+                    ); ?>
                 </div>
         </div>
     </div>
