@@ -162,7 +162,7 @@ class ProductController extends BaseController
             ];
         }
 
-        if ($model['collections_id']) {
+        if ($model['collections_id'] && $model['collection']) {
             $pageTitle[] = $model['collection']['title'];
             $pageDescription[] = Yii::t('app', 'Коллекция') . ': ' . $model['collection']['title'];
         }

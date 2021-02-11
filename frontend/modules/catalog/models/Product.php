@@ -415,7 +415,7 @@ class Product extends \common\modules\catalog\models\Product
         }
 
         if ($model['collection']) {
-            $alt[] = $model['collection']['title'];
+            $alt[] = $model['collection']['title'] ?? '';
         }
 
         return implode(' ', $alt);

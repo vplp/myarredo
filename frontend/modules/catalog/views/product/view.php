@@ -222,7 +222,7 @@ $this->title = $this->context->title;
                                             <td><?= Yii::t('app', 'Коллекция') ?></td>
                                             <td>
                                                 <?= Html::a(
-                                                    $model['collection']['title'],
+                                                    $model['collection']['title'] ?? '',
                                                     Yii::$app->catalogFilter->createUrl(
                                                         Yii::$app->catalogFilter->params +
                                                         [$keys['factory'] => $model['factory']['alias']] +
