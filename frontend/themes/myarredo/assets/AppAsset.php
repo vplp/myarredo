@@ -28,7 +28,6 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/bootstrap.min.css',
         'libs/nouislider/nouislider.min.css',
-        'libs/font-awesome/css/font-awesome.min.css',
         'libs/slick-1.6/slick.css',
         'libs/bootstrap-select/css/bootstrap-select.min.css',
         'libs/fancybox/jquery.fancybox.css',
