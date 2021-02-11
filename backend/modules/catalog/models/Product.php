@@ -87,6 +87,15 @@ class Product extends CommonProductModel implements BaseBackendModel
      * @param $params
      * @return \yii\data\ActiveDataProvider
      */
+    public function searchWithoutPrices($params)
+    {
+        return (new search\Product())->searchWithoutPrices($params);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
     public function searchWithoutSpecificationAndDescription($params)
     {
         return (new search\Product())->searchWithoutSpecificationAndDescription($params);

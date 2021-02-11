@@ -113,24 +113,12 @@ class Product extends ProductModel implements BaseBackendSearchModel
     }
 
     /**
-     * @param $query
-     * @param $params
+     * @param array $params
      * @return ActiveDataProvider
      */
-    public function basesSearchWithoutSpecificationAndDescription($query, $params)
+    public function searchWithoutSpecificationAndDescription($params)
     {
-        /** @var Catalog $module */
-        $module = Yii::$app->getModule('catalog');
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'defaultPageSize' => $module->itemOnPage
-            ],
-        ]);
-
-        $query->andFilterWhere([
-            Product::tableName() . '.is_composition' => '0'
-        ]);
+        $query = ProductModel::findBase()->undeleted();
 
         // не светильники
         $query
@@ -175,90 +163,7 @@ class Product extends ProductModel implements BaseBackendSearchModel
                 //['in', self::tableName() . '.id', $subQuery2]
             ]);
 
-        if (!($this->load($params) && $this->validate())) {
-            return $dataProvider;
-        }
-
-        $query->andFilterWhere([
-            self::tableName() . '.id' => $this->id,
-            self::tableName() . '.factory_id' => $this->factory_id,
-        ]);
-
-        $query
-            ->andFilterWhere(['like', self::tableName() . '.alias', $this->alias])
-            ->andFilterWhere(['=', self::tableName() . '.published', $this->published]);
-
-        $query
-            ->andFilterWhere(['like', ProductLang::tableName() . '.title', $this->title]);
-
-        if ($this->category) {
-            $query
-                ->innerJoinWith(["category"])
-                ->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $this->category]);
-        }
-
-        return $dataProvider;
-    }
-
-    /**
-     * @param array $params
-     * @return ActiveDataProvider
-     */
-    public function searchWithoutSpecificationAndDescription($params)
-    {
-        $query = ProductModel::findBase()->undeleted();
-        return $this->basesSearchWithoutSpecificationAndDescription($query, $params);
-    }
-
-    /**
-     * @param $query
-     * @param $params
-     * @return ActiveDataProvider
-     */
-    public function basesSearchWithoutPriceList($query, $params)
-    {
-        /** @var Catalog $module */
-        $module = Yii::$app->getModule('catalog');
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'defaultPageSize' => $module->itemOnPage
-            ],
-        ]);
-
-        $query->andFilterWhere([
-            Product::tableName() . '.is_composition' => '0'
-        ]);
-
-        $query
-            ->joinWith(["factoryPricesFiles" => function ($query) {
-                return $query
-                    ->andWhere(['IS', ProductRelFactoryPricesFiles::tableName() . '.catalog_item_id', null]);
-            }]);
-
-        if (!($this->load($params) && $this->validate())) {
-            return $dataProvider;
-        }
-
-        $query->andFilterWhere([
-            self::tableName() . '.id' => $this->id,
-            self::tableName() . '.factory_id' => $this->factory_id,
-        ]);
-
-        $query
-            ->andFilterWhere(['like', self::tableName() . '.alias', $this->alias])
-            ->andFilterWhere(['=', self::tableName() . '.published', $this->published]);
-
-        $query
-            ->andFilterWhere(['like', ProductLang::tableName() . '.title', $this->title]);
-
-        if ($this->category) {
-            $query
-                ->innerJoinWith(["category"])
-                ->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $this->category]);
-        }
-
-        return $dataProvider;
+        return $this->baseSearch($query, $params);
     }
 
     /**
@@ -272,6 +177,33 @@ class Product extends ProductModel implements BaseBackendSearchModel
                 ProductModel::tableName() . '.removed' => '0'
             ])
             ->enabled();
-        return $this->basesSearchWithoutPriceList($query, $params);
+
+        $query
+            ->joinWith(["factoryPricesFiles" => function ($query) {
+                return $query
+                    ->andWhere(['IS', ProductRelFactoryPricesFiles::tableName() . '.catalog_item_id', null]);
+            }]);
+
+        return $this->baseSearch($query, $params);
+    }
+
+    /**
+     * @param array $params
+     * @return ActiveDataProvider
+     */
+    public function searchWithoutPrices($params)
+    {
+        $query = ProductModel::findBase()
+            ->andFilterWhere([
+                ProductModel::tableName() . '.removed' => '0'
+            ])
+            ->andWhere([
+                'OR',
+                ['=', ProductModel::tableName() . '.factory_price', '0'],
+                ['=', ProductModel::tableName() . '.price_from', '0'],
+            ])
+            ->enabled();
+
+        return $this->baseSearch($query, $params);
     }
 }
