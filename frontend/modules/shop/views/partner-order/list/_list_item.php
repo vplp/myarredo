@@ -154,10 +154,12 @@ if ($user->profile->getPossibilityToAnswer($modelOrder)) { ?>
                                     $pricesFiles = $orderItem->product->factory->pricesFiles;
                                 }
 
-                                if (!empty($pricesFiles)) { ?>
-                                    <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
-                                    <ul>
-                                        <?php foreach ($pricesFiles as $priceFile) {
+                                ?>
+                                <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
+                                <ul>
+                                    <?php
+                                    if (!empty($pricesFiles)) {
+                                        foreach ($pricesFiles as $priceFile) {
                                             if ($fileLink = $priceFile->getFileLink()) { ?>
                                                 <li>
                                                     <?= Html::a(
@@ -171,9 +173,21 @@ if ($user->profile->getPossibilityToAnswer($modelOrder)) { ?>
                                                     ) ?>
                                                 </li>
                                             <?php }
-                                        } ?>
-                                    </ul>
-                                <?php } ?>
+                                        }
+                                    } else { ?>
+                                        <li>
+                                            <?= Html::a(
+                                                Yii::t('app', 'Прайс листы') . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                                                ['/catalog/factory/view-tab', 'alias' => $orderItem->product->factory->alias, 'tab' => 'pricelists'],
+                                                [
+                                                    'target' => '_blank',
+                                                    'class' => 'btn-inpdf'
+                                                ]
+                                            ) ?>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+
                             </div>
                         <?php } ?>
 

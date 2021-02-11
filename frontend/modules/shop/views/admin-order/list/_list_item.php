@@ -149,11 +149,13 @@ use frontend\modules\catalog\models\{
                         } else if (isset($orderItem->product->factory->pricesFiles)) {
                             $pricesFiles = $orderItem->product->factory->pricesFiles;
                         }
+                        ?>
 
-                        if (!empty($pricesFiles)) { ?>
-                            <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
-                            <ul class="pricelist">
-                                <?php foreach ($pricesFiles as $priceFile) {
+                        <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
+                        <ul class="pricelist">
+                            <?php
+                            if (!empty($pricesFiles)) {
+                                foreach ($pricesFiles as $priceFile) {
                                     if ($fileLink = $priceFile->getFileLink()) { ?>
                                         <li>
                                             <?= Html::a(
@@ -167,9 +169,20 @@ use frontend\modules\catalog\models\{
                                             ) ?>
                                         </li>
                                     <?php }
-                                } ?>
-                            </ul>
-                        <?php } ?>
+                                }
+                            } else { ?>
+                                <li>
+                                    <?= Html::a(
+                                        Yii::t('app', 'Прайс листы') . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                                        ['/catalog/factory/view-tab', 'alias' => $orderItem->product->factory->alias, 'tab' => 'pricelists'],
+                                        [
+                                            'target' => '_blank',
+                                            'class' => 'btn-inpdf'
+                                        ]
+                                    ) ?>
+                                </li>
+                            <?php } ?>
+                        </ul>
                     </div>
 
                     <?php if (isset($orderItem->product['factory']['lang']) && $orderItem->product['factory']['lang']['working_conditions']) {
