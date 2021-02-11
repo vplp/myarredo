@@ -43,6 +43,7 @@ return [
     'Product' => 'Товары',
     'Product without specification' => 'Товары без размеров или описания',
     'Product without price list' => 'Товары без прайсов',
+    'Product without prices' => 'Товары без цен',
     'Compositions' => 'Композиции',
     'Samples' => 'Отделка',
     'Specification' => 'Характеристики',
