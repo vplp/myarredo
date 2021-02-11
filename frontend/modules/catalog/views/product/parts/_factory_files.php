@@ -76,7 +76,7 @@ use frontend\modules\catalog\models\{
                             <li>
                                 <?= Html::a(
                                     $priceFile->title . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
-                                    Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink . '&search=' . $model->article,
+                                    Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink . '&search=' . $product->article,
                                     [
                                         'target' => '_blank',
                                         'class' => 'click-on-factory-file btn-inpdf',
