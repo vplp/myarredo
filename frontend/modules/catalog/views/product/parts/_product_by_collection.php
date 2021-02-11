@@ -10,7 +10,7 @@ $keys = Yii::$app->catalogFilter->keys;
 
 ?>
 
-<?php if (!empty($models)) { ?>
+<?php if (!empty($models) && $collection) { ?>
     <div class="rec-slider-wrap">
         <div class="flex c-align rec-header">
 
