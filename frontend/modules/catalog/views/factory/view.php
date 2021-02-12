@@ -102,7 +102,7 @@ $route = $model->producing_country_id == 4
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-9">
                         <div class="text">
-                            <?= $model['lang']['content']; ?>
+                            <?= $model['lang'] ? $model['lang']['content'] : ''; ?>
                             <?= $model->getVideo(); ?>
                         </div>
                     </div>
