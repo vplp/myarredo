@@ -26,7 +26,6 @@ class AppAsset extends AssetBundle
      * @var array
      */
     public $css = [
-        'css/bootstrap.min.css',
         'libs/nouislider/nouislider.min.css',
         'libs/slick-1.6/slick.css',
         'libs/bootstrap-select/css/bootstrap-select.min.css',
