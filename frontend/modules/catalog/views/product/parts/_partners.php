@@ -58,8 +58,7 @@ $images = $model->getGalleryImageThumb();
                         <h4 class="last-sale-title"><?= $model->getTitle() ?></h4>
                         <div class="last-sale-info">
                             <div class="last-sale-left">
-                                <?php
-                                if (!empty($images)) {
+                                <?php if ($images) {
                                     echo Html::img($images[0]['thumb'], ['alt' => Product::getImageAlt($model), 'class' => 'last-sale-img']);
                                 } ?>
                             </div>
