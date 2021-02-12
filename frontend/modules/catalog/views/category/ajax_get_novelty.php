@@ -87,10 +87,10 @@ use yii\helpers\Url;
 
                 <div class="arr-cont">
                     <a class="left left-arr" href="#novelties-slider" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
                     </a>
                     <a class="right right-arr" href="#novelties-slider" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
                     </a>
                 </div>
 

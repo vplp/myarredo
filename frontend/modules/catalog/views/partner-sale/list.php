@@ -142,7 +142,7 @@ $this->title = $this->context->title;
                                             'update' => function ($url, $model) {
                                                 /** @var $model Sale */
                                                 return Html::a(
-                                                    '<span class="glyphicon glyphicon-pencil"></span>',
+                                                    '<i class="fa fa-pencil" aria-hidden="true"></i>',
                                                     Url::toRoute(['/catalog/partner-sale/update', 'id' => $model->id]),
                                                     [
                                                         'class' => 'btn btn-default btn-xs'
@@ -152,7 +152,7 @@ $this->title = $this->context->title;
                                             'delete' => function ($url, $model) {
                                                 /** @var $model Sale */
                                                 return Html::a(
-                                                    '<span class="glyphicon glyphicon-trash"></span>',
+                                                    '<i class="fa fa-trash" aria-hidden="true"></i>',
                                                     Url::toRoute(['/catalog/partner-sale/intrash', 'id' => $model->id]),
                                                     [
                                                         'class' => 'btn btn-default btn-xs',

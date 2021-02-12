@@ -69,7 +69,7 @@ $this->title = $this->context->title;
                                                     /** @var $model Collection */
                                                     return (Yii::$app->user->identity->id == $model['user_id'])
                                                         ? Html::a(
-                                                            '<span class="glyphicon glyphicon-pencil"></span>',
+                                                            '<i class="fa fa-pencil" aria-hidden="true"></i>',
                                                             Url::toRoute([
                                                                 '/catalog/factory-collections/update',
                                                                 'id' => $model['id']

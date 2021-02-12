@@ -93,7 +93,7 @@ $this->title = $this->context->title;
                                                     /** @var $model FactoryCatalogsFiles */
                                                     return (empty($model->product))
                                                         ? Html::a(
-                                                            '<span class="glyphicon glyphicon-pencil"></span>',
+                                                            '<i class="fa fa-pencil" aria-hidden="true"></i>',
                                                             Url::toRoute([
                                                                 '/catalog/factory-catalogs-files/update',
                                                                 'id' => $model['id']
@@ -108,7 +108,7 @@ $this->title = $this->context->title;
                                                     /** @var $model FactoryCatalogsFiles */
                                                     return (empty($model->product))
                                                         ? Html::a(
-                                                            '<span class="glyphicon glyphicon-trash"></span>',
+                                                            '<i class="fa fa-trash" aria-hidden="true"></i>',
                                                             Url::toRoute([
                                                                 '/catalog/factory-catalogs-files/intrash',
                                                                 'id' => $model['id']

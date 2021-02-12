@@ -54,8 +54,8 @@ class TreeGrid extends \leandrogehlen\treegrid\TreeGrid
      */
     public function renderToolbar()
     {
-        $content = Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'], ['class' => 'btn btn-primary'])
-            . Html::a('<i class="glyphicon glyphicon-trash"></i>', ['trash'], ['class' => 'btn btn-info']);
+        $content = Html::a('<i class="fa fa-plus" aria-hidden="true"></i>', ['create'], ['class' => 'btn btn-primary'])
+            . Html::a('<i class="fa fa-trash" aria-hidden="true"></i>', ['trash'], ['class' => 'btn btn-info']);
         $render = Html::tag('div', '', ['class' => 'col-sm-5 m-b-xs']);
         $render .= Html::tag('div', '', ['class' => 'col-sm-5 m-b-xs']);
         $render .= Html::tag('div', $content, ['class' => 'col-sm-2 btn-group btn-group-sm', 'role' => 'group']);

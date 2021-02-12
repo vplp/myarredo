@@ -120,7 +120,7 @@ class GridView extends \yii\grid\GridView
     public function renderToolbar()
     {
         $content = Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'], ['class' => 'btn btn-primary'])
-            . Html::a('<i class="glyphicon glyphicon-trash"></i>', ['trash'], ['class' => 'btn btn-info']);
+            . Html::a('<i class="fa fa-trash" aria-hidden="true"></i>', ['trash'], ['class' => 'btn btn-info']);
         //
         $render = Html::tag('div', '', ['class' => 'col-sm-5 m-b-xs'])
             . Html::tag('div', '', ['class' => 'col-sm-5 m-b-xs'])

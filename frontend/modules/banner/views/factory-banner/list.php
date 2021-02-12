@@ -52,14 +52,14 @@ $this->title = $this->context->title;
                             'buttons' => [
                                 'update' => function ($url, $model) {
                                     return Html::a(
-                                        '<span class="glyphicon glyphicon-pencil"></span>',
+                                        '<i class="fa fa-pencil" aria-hidden="true"></i>',
                                         Url::to(['/banner/factory-banner/update', 'id' => $model->id]),
                                         ['class' => 'btn btn-default btn-xs']
                                     );
                                 },
                                 'delete' => function ($url, $model) {
                                     return Html::a(
-                                        '<span class="glyphicon glyphicon-trash"></span>',
+                                        '<i class="fa fa-trash" aria-hidden="true"></i>',
                                         Url::to(['/banner/factory-banner/intrash', 'id' => $model->id]),
                                         [
                                             'class' => 'btn btn-default btn-xs',

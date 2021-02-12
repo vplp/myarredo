@@ -337,7 +337,7 @@ $this->title = $this->context->title;
                                                 'update' => function ($url, $model) {
                                                     /** @var $model ItalianProduct */
                                                     return Html::a(
-                                                        '<span class="glyphicon glyphicon-pencil"></span> ' . Yii::t('app', 'Edit'),
+                                                        '<i class="fa fa-pencil" aria-hidden="true"></i> ' . Yii::t('app', 'Edit'),
                                                         Url::toRoute(
                                                             ['/catalog/italian-product/update', 'id' => $model->id]
                                                         ),
@@ -349,7 +349,7 @@ $this->title = $this->context->title;
                                                 'delete' => function ($url, $model) {
                                                     /** @var $model ItalianProduct */
                                                     return Html::a(
-                                                        '<span class="glyphicon glyphicon-trash"></span> ' . Yii::t('app', 'Delete'),
+                                                        '<i class="fa fa-trash" aria-hidden="true"></i> ' . Yii::t('app', 'Delete'),
                                                         Url::toRoute(
                                                             ['/catalog/italian-product/intrash', 'id' => $model->id]
                                                         ),

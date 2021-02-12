@@ -196,7 +196,7 @@ $this->title = $this->context->title;
                                                 'update' => function ($url, $model) {
                                                     /** @var $model FactoryProduct */
                                                     return Yii::$app->user->identity->id == $model->user_id ? Html::a(
-                                                        '<span class="glyphicon glyphicon-pencil"></span>',
+                                                        '<i class="fa fa-pencil" aria-hidden="true"></i>',
                                                         Url::toRoute([
                                                             '/catalog/factory-product/update',
                                                             'id' => $model->id
@@ -209,7 +209,7 @@ $this->title = $this->context->title;
                                                 'delete' => function ($url, $model) {
                                                     /** @var $model FactoryProduct */
                                                     return Yii::$app->user->identity->id == $model->user_id ? Html::a(
-                                                        '<span class="glyphicon glyphicon-trash"></span>',
+                                                        '<i class="fa fa-trash" aria-hidden="true"></i>',
                                                         Url::toRoute([
                                                             '/catalog/factory-product/intrash',
                                                             'id' => $model->id
