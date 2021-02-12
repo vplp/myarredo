@@ -34,11 +34,15 @@ $this->beginPage();
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://mc.yandex.ru">
     <link rel="dns-prefetch" href="https://img.<?= DOMAIN_NAME . '.' . DOMAIN_TYPE ?>">
+
+    <link rel="preload" href="/css/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2">
+    <!--
     <link rel="preload" href="/css/font-awesome/fonts/fontawesome-webfont.eot" as="font" type="application/vnd.ms-fontobject">
     <link rel="preload" href="/css/font-awesome/fonts/fontawesome-webfont.woff2" as="font" type="font/woff2">
     <link rel="preload" href="/css/font-awesome/fonts/fontawesome-webfont.woff" as="font" type="font/woff">
     <link rel="preload" href="/css/font-awesome/fonts/fontawesome-webfont.ttf" as="font" type="font/ttf">
     <link rel="preload" href="/css/font-awesome/fonts/fontawesome-webfont.svg" as="font" type="image/svg+xml">
+    -->
 
     <!-- preloader styles -->
     <style>
