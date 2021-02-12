@@ -78,7 +78,7 @@ class FactoryController extends BaseController
                     $model = Factory::findByAlias(Yii::$app->request->get('alias'));
                     return serialize([
                         $model['title'],
-                        $model['lang']['content']
+                        $model['lang']['content'] ?? ''
                     ]);
                 },
             ];
