@@ -26,7 +26,7 @@ $bundle = AppAsset::register($this);
         <!-- container-wrap -->
         <div class="container-wrap">
 
-            <?= BannerList::widget(['type' => 'main', 'city_id' => Yii::$app->city->getCityId()]); ?>
+            <?= '';//BannerList::widget(['type' => 'main', 'city_id' => Yii::$app->city->getCityId()]); ?>
 
             <!-- best-price -->
             <div class="best-price">
