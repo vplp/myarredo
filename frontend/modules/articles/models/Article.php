@@ -49,10 +49,23 @@ class Article extends \common\modules\articles\models\Article
      */
     public static function findBase()
     {
-        return parent::findBase()
+        $query = parent::findBase()
             ->innerJoinWith(['lang'])
             ->enabled()
             ->orderBy(['published_time' => SORT_DESC]);
+
+        if (Yii::$app->city->getCityId() == 4) {
+            $query->andFilterWhere([
+                'OR',
+                ['city_id' => Yii::$app->city->getCityId()],
+                ['city_id' => 0]
+            ]);
+        } else {
+            $query->andFilterWhere(['city_id' => Yii::$app->city->getCityId()]);
+        }
+
+
+        return $query;
     }
 
     /**

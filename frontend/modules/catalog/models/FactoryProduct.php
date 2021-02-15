@@ -5,9 +5,7 @@ namespace frontend\modules\catalog\models;
 use Yii;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
-//
 use common\modules\catalog\models\Product as CommonProduct;
-//
 use frontend\modules\payment\models\{
     Payment, PaymentRelItem
 };

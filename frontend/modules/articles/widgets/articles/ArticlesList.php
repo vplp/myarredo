@@ -4,7 +4,6 @@ namespace frontend\modules\articles\widgets\articles;
 
 use Yii;
 use yii\base\Widget;
-//
 use frontend\modules\articles\models\{
     Article, ArticleLang
 };

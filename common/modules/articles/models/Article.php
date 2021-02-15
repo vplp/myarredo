@@ -2,18 +2,17 @@
 
 namespace common\modules\articles\models;
 
+use common\modules\location\models\City;
 use Yii;
 use yii\helpers\{
     ArrayHelper, Inflector
 };
 use yii\behaviors\AttributeBehavior;
 use voskobovich\behaviors\ManyToManyBehavior;
-//
 use common\modules\catalog\models\{
     Factory, Category, Types, Specification
 };
 use common\modules\articles\Articles as ArticlesModule;
-//
 use thread\app\base\models\ActiveRecord;
 
 /**
@@ -21,6 +20,7 @@ use thread\app\base\models\ActiveRecord;
  *
  * @property integer $id
  * @property string $alias
+ * @property integer $city_id
  * @property integer $category_id
  * @property integer $factory_id
  * @property string $image_link
@@ -90,7 +90,7 @@ class Article extends ActiveRecord
     {
         return [
             [['alias'], 'required'],
-            [['category_id', 'factory_id', 'created_at', 'updated_at'], 'integer'],
+            [['city_id', 'category_id', 'factory_id', 'created_at', 'updated_at'], 'integer'],
             [
                 ['published_time'],
                 'date',
@@ -121,6 +121,7 @@ class Article extends ActiveRecord
             'deleted' => ['deleted'],
             'backend' => [
                 'alias',
+                'city_id',
                 'category_id',
                 'factory_id',
                 'image_link',
@@ -141,6 +142,7 @@ class Article extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
+            'city_id' => Yii::t('app', 'City'),
             'category_id' => Yii::t('app', 'Category'),
             'factory_id' => Yii::t('app', 'Factory'),
             'image_link' => Yii::t('app', 'Image link'),
@@ -160,6 +162,14 @@ class Article extends ActiveRecord
     public static function findBase()
     {
         return self::find()->innerJoinWith(['lang'])->orderBy(['published_time' => SORT_DESC]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCity()
+    {
+        return $this->hasOne(City::class, ['id' => 'city_id']);
     }
 
     /**

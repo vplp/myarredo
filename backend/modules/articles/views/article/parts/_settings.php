@@ -2,16 +2,25 @@
 
 use yii\helpers\ArrayHelper;
 use kartik\widgets\Select2;
-//
 use backend\modules\catalog\models\{
     Category, Factory, Types, Specification
 };
+use backend\modules\location\models\City;
 
 /**
  * @var \backend\modules\articles\models\Article $model
  * @var \backend\modules\articles\models\ArticleLang $modelLang
  * @var \backend\widgets\forms\ActiveForm $form
  */
+
+echo $form->field($model, 'city_id')
+    ->widget(Select2::class, [
+    'data' => City::dropDownList(),
+    'options' => [
+        'placeholder' => Yii::t('app', 'Select option'),
+        'multiple' => false
+    ],
+]);;
 
 echo $form->field($model, 'category_id')->dropDownList(ArrayHelper::merge(
     [0 => '--' . Yii::t('app', 'Select option') . '--'],

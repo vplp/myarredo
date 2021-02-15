@@ -4,7 +4,7 @@ use backend\widgets\GridView;
 use backend\modules\catalog\models\{
     Category, Factory
 };
-//
+use backend\modules\location\models\City;
 use thread\widgets\grid\{
     ActionCheckboxColumn, GridViewFilter
 };
@@ -17,6 +17,15 @@ echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
+        [
+            'attribute' => 'city_id',
+            'value' => 'city.lang.title',
+            'filter' => GridViewFilter::dropDownList(
+                $filter,
+                'city_id',
+                City::dropDownList()
+            ),
+        ],
         [
             'attribute' => 'category_id',
             'value' => 'category.lang.title',

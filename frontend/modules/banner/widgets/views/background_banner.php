@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-//
 use frontend\modules\banner\models\BannerItem;
 
 /**
