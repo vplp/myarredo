@@ -81,7 +81,7 @@ class SaleItalyController extends BaseController
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
                     $model = ItalianProduct::findLastUpdated();
-                    return $model['updated_at'] ?? time();
+                    return $model != null ? $model['updated_at'] : time();
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = ItalianProduct::findLastUpdated();
@@ -98,7 +98,7 @@ class SaleItalyController extends BaseController
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
                     $model = ItalianProduct::findByAlias(Yii::$app->request->get('alias'));
-                    return $model['updated_at'] ?? time();
+                    return $model != null ? $model['updated_at'] : time();
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = ItalianProduct::findByAlias(Yii::$app->request->get('alias'));

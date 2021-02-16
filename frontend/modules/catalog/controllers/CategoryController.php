@@ -71,7 +71,7 @@ class CategoryController extends BaseController
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
                     $model = Product::findLastUpdated();
-                    return $model['updated_at'] ?? time();
+                    return $model != null ? $model['updated_at'] : time();
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Product::findLastUpdated();
