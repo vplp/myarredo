@@ -49,10 +49,12 @@ class ArticlesController extends BaseController
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Article::findByAlias(Yii::$app->request->get('alias'));
-                    return serialize([
-                        $model['lang']['title'],
-                        $model['lang']['content']
-                    ]);
+                    return $model != null
+                        ? serialize([
+                            $model['lang']['title'],
+                            $model['lang']['content']
+                        ])
+                        : serialize([]);
                 }
             ];
 
