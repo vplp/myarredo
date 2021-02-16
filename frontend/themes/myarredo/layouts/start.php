@@ -148,9 +148,7 @@ $bundle = AppAsset::register($this);
                     </div>
                 </div>
 
-                <?php if (in_array(DOMAIN_TYPE, ['ru']) && Yii::$app->city->getCityId() == 4) {
-                    echo ArticlesList::widget(['view' => 'articles_on_main', 'limit' => 4]);
-                } ?>
+                <?= ArticlesList::widget(['view' => 'articles_on_main', 'limit' => 4]); ?>
 
                 <?php //$this->endCache(); } ?>
 
