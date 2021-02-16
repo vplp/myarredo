@@ -5,10 +5,8 @@ namespace frontend\modules\articles\controllers;
 use Yii;
 use yii\helpers\Url;
 use yii\filters\VerbFilter;
-//
 use frontend\components\BaseController;
 use frontend\modules\articles\models\Article;
-//
 use thread\actions\{
     ListQuery, RecordView
 };
@@ -99,15 +97,13 @@ class ArticlesController extends BaseController
     }
 
     /**
-     * @param $action
+     * @param \yii\base\Action $action
      * @return bool
+     * @throws \yii\base\ExitException
+     * @throws \yii\web\BadRequestHttpException
      */
     public function beforeAction($action)
     {
-        if (Yii::$app->city->getCityId() != 4) {
-            return $this->redirect('https://' . 'www.myarredo.ru' . Url::toRoute('/articles/articles/list'), 301);
-        }
-
         $this->title = Yii::t('app', 'Articles');
 
         return parent::beforeAction($action);
