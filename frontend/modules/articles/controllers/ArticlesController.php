@@ -45,7 +45,7 @@ class ArticlesController extends BaseController
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
                     $model = Article::findByAlias(Yii::$app->request->get('alias'));
-                    return $model['updated_at'];
+                    return $model['updated_at'] ?? time();
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Article::findByAlias(Yii::$app->request->get('alias'));
@@ -62,7 +62,7 @@ class ArticlesController extends BaseController
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
                     $model = Article::findLastUpdated();
-                    return $model['updated_at'];
+                    return $model['updated_at'] ?? time();
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Article::findLastUpdated();
