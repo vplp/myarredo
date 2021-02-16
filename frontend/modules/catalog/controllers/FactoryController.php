@@ -78,10 +78,12 @@ class FactoryController extends BaseController
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Factory::findByAlias(Yii::$app->request->get('alias'));
-                    return serialize([
-                        $model['title'],
-                        $model['lang'] ? $model['lang']['content'] : ''
-                    ]);
+                    return $model != null
+                        ? serialize([
+                            $model['title'],
+                            $model['lang'] ? $model['lang']['content'] : ''
+                        ])
+                        : serialize([]);
                 },
             ];
         }
