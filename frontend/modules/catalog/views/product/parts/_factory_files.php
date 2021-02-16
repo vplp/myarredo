@@ -52,8 +52,8 @@ use frontend\modules\catalog\models\{
 
         <p class="inpdf-title"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
         <ul class="inpdf-list">
-            <?php if (!empty($model->factoryPricesFiles)) { ?>
-                <?php foreach ($model->factoryPricesFiles as $priceFile) {
+            <?php if (!empty($model->factoryPricesFiles)) {
+                foreach ($model->factoryPricesFiles as $priceFile) {
                     if ($fileLink = $priceFile->getFileLink()) { ?>
                         <li>
                             <?= Html::a(
@@ -67,8 +67,8 @@ use frontend\modules\catalog\models\{
                             ) ?>
                         </li>
                     <?php }
-                } ?>
-            <?php } else {
+                }
+            } elseif ($model['is_composition']) {
                 $isFiles = false;
                 foreach ($model->getElementsComposition() as $product) {
                     foreach ($product->factoryPricesFiles as $priceFile) {
@@ -102,6 +102,18 @@ use frontend\modules\catalog\models\{
                         ) ?>
                     </li>
                 <?php }
+            } else { ?>
+                <li>
+                    <?= Html::a(
+                        Yii::t('app', 'Прайс листы') . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                        ['/catalog/factory/view-tab', 'alias' => $model['factory']['alias'], 'tab' => 'pricelists'],
+                        [
+                            'target' => '_blank',
+                            'class' => 'btn-inpdf'
+                        ]
+                    ) ?>
+                </li>
+                <?php
             } ?>
         </ul>
 
