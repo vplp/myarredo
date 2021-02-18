@@ -30,7 +30,7 @@ use frontend\modules\catalog\models\Product;
             </td>
         </tr>
 
-        <?php if (!$orderItem->product['is_composition']) { ?>
+        <?php if (isset($orderItem->product['is_composition']) && !$orderItem->product['is_composition']) { ?>
             <tr>
                 <td><span class="for-ordertable"><?= Yii::t('app', 'Артикул') ?></span></td>
                 <td>

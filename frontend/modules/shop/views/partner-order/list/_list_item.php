@@ -59,7 +59,7 @@ if ($user->profile->getPossibilityToAnswer($modelOrder)) { ?>
                                 </td>
                             </tr>
 
-                            <?php if (!$orderItem->product['is_composition']) { ?>
+                            <?php if (isset($orderItem->product['is_composition']) && !$orderItem->product['is_composition']) { ?>
                                 <tr>
                                     <td colspan="2" class="spec-pad">
                                 <span class="for-ordertable">
