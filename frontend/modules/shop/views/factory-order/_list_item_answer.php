@@ -51,10 +51,13 @@ use frontend\modules\catalog\models\Product;
                             <?= $orderItem->product['article'] ?>
                         </td>
                     </tr>
-                    <tr>
-                        <td><?= Yii::t('app', 'Factory') ?></td>
-                        <td><?= $orderItem->product['factory']['title'] ?? '' ?></td>
-                    </tr>
+
+                    <?php if ($orderItem->product['factory']) { ?>
+                        <tr>
+                            <td><?= Yii::t('app', 'Factory') ?></td>
+                            <td><?= $orderItem->product['factory']['title'] ?></td>
+                        </tr>
+                    <?php } ?>
 
                     <tr class="noborder">
                         <td colspan="2" class="spec-pad">

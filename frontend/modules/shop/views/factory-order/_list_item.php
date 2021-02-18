@@ -48,15 +48,18 @@ use frontend\modules\catalog\models\{
                             </tr>
                         <?php } ?>
 
-                        <tr>
-                            <td><?= Yii::t('app', 'Factory') ?></td>
-                            <td>
-                                <?= Html::a(
-                                    $orderItem->product['factory']['title'] ?? '',
-                                    Factory::getUrl($orderItem->product['factory']['alias'])
-                                ); ?>
-                            </td>
-                        </tr>
+                        <?php if ($orderItem->product['factory']) { ?>
+                            <tr>
+                                <td><?= Yii::t('app', 'Factory') ?></td>
+                                <td>
+                                    <?= Html::a(
+                                        $orderItem->product['factory']['title'],
+                                        Factory::getUrl($orderItem->product['factory']['alias'])
+                                    ); ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
+
                     </table>
                 </div>
             <?php }
