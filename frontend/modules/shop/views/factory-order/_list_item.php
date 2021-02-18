@@ -52,7 +52,7 @@ use frontend\modules\catalog\models\{
                             <td><?= Yii::t('app', 'Factory') ?></td>
                             <td>
                                 <?= Html::a(
-                                    $orderItem->product['factory']['title'],
+                                    $orderItem->product['factory']['title'] ?? '',
                                     Factory::getUrl($orderItem->product['factory']['alias'])
                                 ); ?>
                             </td>
