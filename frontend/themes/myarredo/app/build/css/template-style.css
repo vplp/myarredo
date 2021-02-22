@@ -5026,7 +5026,8 @@ footer .partner-cities ul {
       width: 25px;
       height: 25px;
       display: block;
-      margin: 0 8px; }
+      margin: 0 8px; 
+    }
       .pagi-wrap .pagination li a, .pagi-wrap .pagination li span {
         padding: 0;
         display: flex;
@@ -5056,7 +5057,8 @@ footer .partner-cities ul {
       .pagi-wrap .pagination li.next {
         width: 25px;
         height: 25px;
-        display: inline-block; }
+        display: inline-block; 
+      }
         .pagi-wrap .pagination li.next a, .pagi-wrap .pagination li.next span {
           border: none;
           border-radius: 16px;
@@ -10703,6 +10705,16 @@ footer .partner-cities ul {
   .row-mob {
     margin-left: -15px;
     margin-right: -15px;
+  }
+  .pagi-wrap .pagination li {
+    width: 35px;
+    height: 35px;
+    margin: 0 5px;
+  }
+  .pagi-wrap .pagination li.prev,
+  .pagi-wrap .pagination li.next {
+    width: 35px;
+    height: 35px;
   }
 }
 .tomassy-page .fact-slider {
