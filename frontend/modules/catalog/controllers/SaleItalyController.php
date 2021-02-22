@@ -85,10 +85,10 @@ class SaleItalyController extends BaseController
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = ItalianProduct::findLastUpdated();
-                    return serialize([
+                    return $model != null ? serialize([
                         $model['lang']['title'],
                         $model['lang']['description']
-                    ]);
+                    ]) : '';
                 },
             ];
 
@@ -102,10 +102,10 @@ class SaleItalyController extends BaseController
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = ItalianProduct::findByAlias(Yii::$app->request->get('alias'));
-                    return serialize([
+                    return $model != null ? serialize([
                         $model['lang']['title'],
                         $model['lang']['description']
-                    ]);
+                    ]) : '';
                 },
             ];
         }

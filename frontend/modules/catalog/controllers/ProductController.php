@@ -46,10 +46,10 @@ class ProductController extends BaseController
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Product::findByAlias(Yii::$app->request->get('alias'));
-                    return serialize([
+                    return $model != null ? serialize([
                         $model['lang']['title'] ?? '',
                         $model['lang']['description'] ?? ''
-                    ]);
+                    ]) : '';
                 },
             ];
         }

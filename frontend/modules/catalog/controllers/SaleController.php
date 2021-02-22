@@ -76,10 +76,10 @@ class SaleController extends BaseController
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Sale::findLastUpdated();
-                    return serialize([
+                    return $model != null ? serialize([
                         $model->getTitle(),
                         $model->getDescription()
-                    ]);
+                    ]) : '';
                 },
             ];
             $behaviors[] = [
@@ -92,10 +92,10 @@ class SaleController extends BaseController
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Sale::findByAlias(Yii::$app->request->get('alias'));
-                    return serialize([
+                    return $model != null ? serialize([
                         $model->getTitle(),
                         $model->getDescription()
-                    ]);
+                    ]) : '';
                 },
             ];
         }
