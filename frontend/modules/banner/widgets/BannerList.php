@@ -3,10 +3,10 @@
 namespace frontend\modules\banner\widgets;
 
 use yii\base\Widget;
-//
 use frontend\modules\banner\models\{
     BannerItem, BannerItemRelCity
 };
+use Mobile_Detect;
 
 /**
  * Class BannerList
@@ -64,6 +64,12 @@ class BannerList extends Widget
      */
     public function run()
     {
+        $detect = new Mobile_Detect();
+
+        if (!$detect->isMobile()) {
+            $this->view = 'banner_list_mobile';
+        }
+
         return $this->render(
             $this->view,
             [

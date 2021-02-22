@@ -1,0 +1,26 @@
+<?php
+
+use frontend\modules\banner\models\BannerItem;
+
+/**
+ * @var $model BannerItem
+ */
+
+if (!empty($items)) {
+    $model = $items[0];
+    ?>
+
+    <div class="home-top-slider">
+        <div class="img-cont">
+            <?php if ($model['lang']['link']) { ?>
+                <a href="<?= $model['lang']['link'] ?? '' ?>">
+                    <img src="<?= $model->getImageThumb(); ?>" alt="">
+                </a>
+            <?php } else { ?>
+                <img src="<?= $model->getImageThumb(); ?>" alt="">
+            <?php } ?>
+
+            <span><?= $model['lang']['description'] ?? ''; ?></span>
+        </div>
+    </div>
+<?php } ?>

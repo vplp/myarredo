@@ -11,16 +11,16 @@ $presentData = array();
 $firstFrameLink = '';
 $firstFrameSrc = '';
 if (!empty($items)) { ?>
-        <?php foreach ($items as $model) {
-            $presentData[] = array(
-                'langLink' => $model['lang']['link'] ?? '',
-                'langDescr' => $model['lang']['description'] ?? '',
-                'imgLinkDsktp' => $model->getImageLink(),
-                'imgLinkMob' => $model->getImageThumb()
-            );
-            $firstFrameLink = $model['lang']['link'] ?? '';
-            $firstFrameSrc = $model->getImageThumb();
-        } ?>
+    <?php foreach ($items as $model) {
+        $presentData[] = array(
+            'langLink' => $model['lang']['link'] ?? '',
+            'langDescr' => $model['lang']['description'] ?? '',
+            'imgLinkDsktp' => $model->getImageLink(),
+            'imgLinkMob' => $model->getImageThumb()
+        );
+        $firstFrameLink = $model['lang']['link'] ?? '';
+        $firstFrameSrc = $model->getImageThumb();
+    } ?>
     <div class="home-top-slider">
         <div class="img-cont">
             <a href="<?= $firstFrameLink; ?>">
@@ -35,7 +35,7 @@ if (!empty($items)) { ?>
 <?php }
 
 $prsData = json_encode($presentData);
-$csToken =  Yii::$app->getRequest()->csrfToken;
+$csToken = Yii::$app->getRequest()->csrfToken;
 $script = <<< JS
 console.time('speed banner loader js');
 // Рендерим слайдер с картинками нужного размера
