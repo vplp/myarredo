@@ -46,7 +46,7 @@ class PageController extends BaseController
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Page::findByAlias(Yii::$app->request->get('alias'));
-                    return $model != null ? serialize([
+                    return ($model != null && $model['lang']) ? serialize([
                             $model['lang']['title'],
                             $model['lang']['content']
                         ]) : '';

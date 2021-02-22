@@ -75,12 +75,10 @@ class CategoryController extends BaseController
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Product::findLastUpdated();
-                    return $model != null
-                        ? serialize([
+                    return ($model != null && $model['lang']) ? serialize([
                             $model['lang']['title'],
                             $model['lang']['description']
-                        ])
-                        : serialize([]);
+                        ]) : '';
                 }
             ];
         }

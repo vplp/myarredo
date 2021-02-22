@@ -59,12 +59,10 @@ class FactoryController extends BaseController
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Product::findLastUpdated();
-                    return $model != null
-                        ? serialize([
+                    return ($model != null && $model['lang']) ? serialize([
                             $model['title'],
                             $model['lang']['content']
-                        ])
-                        : serialize([]);
+                        ]) : '';
                 },
             ];
 
@@ -78,10 +76,10 @@ class FactoryController extends BaseController
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Factory::findByAlias(Yii::$app->request->get('alias'));
-                    return ($model != null) ? serialize([
+                    return ($model != null && $model['lang']) ? serialize([
                             $model['title'],
-                            $model['lang'] ? $model['lang']['content'] : ''
-                        ]) : serialize([]);
+                            $model['lang']['content']
+                        ]) : '';
                 },
             ];
         }
