@@ -66,7 +66,7 @@ class BannerList extends Widget
     {
         $detect = new Mobile_Detect();
 
-        if (!$detect->isMobile()) {
+        if ($detect->isMobile()) {
             $this->view = 'banner_list_mobile';
         }
 
