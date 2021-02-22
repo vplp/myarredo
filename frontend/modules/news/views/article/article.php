@@ -1,25 +1,66 @@
 <?php
 
-use yii\helpers\Html;
+use frontend\modules\news\models\Article;
+use frontend\modules\news\widgets\newslist\NewsList;
+use frontend\themes\myarredo\assets\AppAsset;
+
+/** @var $model Article */
+
+$bundle = AppAsset::register($this);
 
 $this->title = $model['lang']['title'];
 ?>
 
-<div class="news-img">
-    <figure class="img1">
-        <?php if ($model->getArticleImage()) { ?>
-            <img src="<?= $model->getArticleImage() ?>" alt="news"
-                 srcset="<?= $model->getArticleImage() ?> 620w, <?= $model->getArticleImage() ?> 540w, <?= $model->getArticleImage() ?> 320w"
-                 sizes="(min-width:1200px) 620px, (min-width:1000px) 430px, (min-width:620px)  580px, 280px">
-        <?php } ?>
-    </figure>
+<div class="myarredo-blog-wrap">
+    <div class="myarredo-blogbox">
+        <div class="myarredo-blogartbox">
+
+            <!-- Контент старт -->
+            <div class="single-articlebox" itemscope itemtype="http://schema.org/Article">
+                <h1 class="article-title"><?= $model['lang']['title'] ?></h1>
+                <article class="article-textbox" itemprop="articleBody">
+                    <?= $model['lang']['content'] ?>
+                </article>
+            </div>
+            <!-- Контент конец -->
+
+            <!-- Сайдбар старт -->
+            <?= NewsList::widget(['view' => 'articles_assidebox', 'limit' => 2]) ?>
+            <!-- Сайдбар конец -->
+
+            <!-- Похожие статьи старт -->
+            <?= NewsList::widget(['view' => 'articles_similarbox', 'limit' => 4]) ?>
+            <!-- Похожие статьи конец -->
+
+        </div>
+    </div>
 </div>
-<div class="news-body">
-    <div class="date"><?= $model->getPublishedTime() ?></div>
-</div>
 
-<?= Html::tag('h1', $model['lang']['title']) ?>
-
-<?= $model['lang']['content'] ?>
-
-<?= Yii::t('news', 'News') ?>
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "<?= $model->getUrl(true) ?>"
+    },
+    "headline": "<?= $model['lang']['title'] ?>",
+    "image": [
+        "<?= $model->getArticleImage() ?>"
+    ],
+    "datePublished": "<?= date('Y-m-d', $model->published_time) ?>",
+    "dateModified": "<?= date('Y-m-d', $model->updated_at) ?>",
+    "author": {
+        "@type": "Person",
+        "name": "MyArredo"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "MyArredoFamily",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "<?= 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE ?>/uploads/myarredo-ico.jpg"
+        }
+    }
+}
+</script>

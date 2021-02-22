@@ -2,13 +2,13 @@
 
 namespace common\modules\articles\models;
 
-use common\modules\location\models\City;
 use Yii;
 use yii\helpers\{
     ArrayHelper, Inflector
 };
 use yii\behaviors\AttributeBehavior;
 use voskobovich\behaviors\ManyToManyBehavior;
+use common\modules\location\models\City;
 use common\modules\catalog\models\{
     Factory, Category, Types, Specification
 };

@@ -64,7 +64,6 @@ class Article extends \common\modules\articles\models\Article
             $query->andFilterWhere(['city_id' => Yii::$app->city->getCityId()]);
         }
 
-
         return $query;
     }
 

@@ -2,15 +2,14 @@
 
 namespace backend\modules\news\controllers;
 
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
-//
 use common\actions\upload\{
     DeleteAction, UploadAction
 };
 use thread\actions\EditableAttributeSave;
 use thread\actions\EditableAttributeSaveLang;
 use thread\app\base\controllers\BackendController;
-//
 use backend\modules\news\models\{
     Article, ArticleLang, search\Article as filterArticleModel
 };
@@ -31,14 +30,37 @@ class ArticleController extends BackendController
     /**
      * @return array
      */
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin', 'seo'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
     public function actions()
     {
         return ArrayHelper::merge(
             parent::actions(),
             [
-                'list' => [
-                    'layout' => 'list-article',
-                ],
                 'fileupload' => [
                     'class' => UploadAction::class,
                     'path' => $this->module->getArticleUploadPath()

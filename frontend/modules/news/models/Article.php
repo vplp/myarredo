@@ -2,7 +2,9 @@
 
 namespace frontend\modules\news\models;
 
+use Yii;
 use yii\helpers\Url;
+
 /**
  * Class Article
  *
@@ -48,19 +50,60 @@ class Article extends \common\modules\news\models\Article
      */
     public static function findBase()
     {
-        return parent::findBase()
+        $query = parent::findBase()
             ->innerJoinWith(['lang'])
             ->enabled()
             ->orderBy(['published_time' => SORT_DESC]);
+
+        if (Yii::$app->city->getCityId() == 4) {
+            $query->andFilterWhere([
+                'OR',
+                ['city_id' => Yii::$app->city->getCityId()],
+                ['city_id' => 0]
+            ]);
+        } else {
+            $query->andFilterWhere(['city_id' => Yii::$app->city->getCityId()]);
+        }
+
+        return $query;
+    }
+
+    /**
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function findLastUpdated()
+    {
+        $result = self::getDb()->cache(function ($db) {
+            return self::findBase()
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.updated_at',
+                    ArticleLang::tableName() . '.title',
+                    ArticleLang::tableName() . '.content'
+                ])
+                ->orderBy([self::tableName() . '.updated_at' => SORT_DESC])
+                ->limit(1)
+                ->one();
+        });
+
+        return $result;
     }
 
     /**
      * @param $id
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findById($id)
     {
-        return self::findBase()->byID($id)->one();
+        $result = self::getDb()->cache(function ($db) use ($id) {
+            return self::findBase()->byId($id)->one();
+        }, 60 * 60);
+
+        return $result;
     }
 
     /**
@@ -75,10 +118,16 @@ class Article extends \common\modules\news\models\Article
     /**
      * @param $alias
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->byAlias($alias)->one();
+        $result = self::getDb()->cache(function ($db) use ($alias) {
+            return self::findBase()->byAlias($alias)->one();
+        }, 60 * 60);
+
+        return $result;
     }
 
     /**
@@ -88,5 +137,44 @@ class Article extends \common\modules\news\models\Article
     public function getUrl($scheme = false)
     {
         return Url::toRoute(['/news/article/index', 'alias' => $this->alias], $scheme);
+    }
+
+    /**
+     * @param string $image_link
+     * @return bool
+     */
+    public static function isImage($image_link = '')
+    {
+        $module = Yii::$app->getModule('news');
+
+        $path = $module->getArticleUploadPath();
+
+        $image = false;
+
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = true;
+        }
+
+        return $image;
+    }
+
+    /**
+     * @param string $image_link
+     * @return string|null
+     */
+    public static function getImageThumb($image_link = '')
+    {
+        $module = Yii::$app->getModule('news');
+
+        $path = $module->getArticleUploadPath();
+        $url = $module->getArticleUploadUrl();
+
+        $image = null;
+
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = $url . '/' . $image_link;
+        }
+
+        return $image;
     }
 }

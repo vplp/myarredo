@@ -5,10 +5,8 @@ namespace backend\modules\news\models\search;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
-//
 use thread\app\base\models\query\ActiveQuery;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
-//
 use backend\modules\news\News as NewsModule;
 use backend\modules\news\models\{
     Article as ArticleModel, ArticleLang
@@ -33,6 +31,7 @@ class Article extends ArticleModel implements BaseBackendSearchModel
         return [
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [['city_id', 'category_id', 'factory_id'], 'integer'],
             [['group_id'], 'integer'],
             [
                 ['published_time'],
@@ -77,11 +76,6 @@ class Article extends ArticleModel implements BaseBackendSearchModel
             'query' => $query,
             'pagination' => [
                 'defaultPageSize' => $module->itemOnPage
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'published_time' => SORT_DESC
-                ]
             ]
         ]);
 
@@ -89,12 +83,15 @@ class Article extends ArticleModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query->with(['group', 'group.lang']);
+        //$query->with(['group', 'group.lang']);
 
-        $query->andFilterWhere(['like', 'alias', $this->alias])
+        $query
+            ->andFilterWhere(['like', 'alias', $this->alias])
             ->andFilterWhere(['=', 'published', $this->published])
-            ->andFilterWhere(['like', 'published_time', $this->published_time])
-            ->andFilterWhere(['like', 'group_id', $this->group_id]);
+            ->andFilterWhere(['=', 'published_time', $this->published_time])
+            ->andFilterWhere(['=', 'category_id', $this->category_id])
+            ->andFilterWhere(['=', 'city_id', $this->city_id])
+            ->andFilterWhere(['=', 'factory_id', $this->factory_id]);
         //
         $query->andFilterWhere(['>=', 'published_time', $this->date_from]);
         $query->andFilterWhere(['<=', 'published_time', $this->date_to]);

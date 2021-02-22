@@ -12,6 +12,7 @@ use frontend\modules\catalog\widgets\{
 };
 use frontend\modules\banner\widgets\BannerList;
 use frontend\modules\articles\widgets\articles\ArticlesList;
+use frontend\modules\news\widgets\newslist\NewsList;
 
 $bundle = AppAsset::register($this);
 ?>
@@ -147,6 +148,8 @@ $bundle = AppAsset::register($this);
                         </div>
                     </div>
                 </div>
+
+                <?= NewsList::widget(['view' => 'articles_on_main', 'limit' => 4]); ?>
 
                 <?= ArticlesList::widget(['view' => 'articles_on_main', 'limit' => 4]); ?>
 

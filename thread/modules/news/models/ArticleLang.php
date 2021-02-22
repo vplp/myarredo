@@ -4,7 +4,6 @@ namespace thread\modules\news\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-//
 use thread\modules\news\News as NewsModule;
 use thread\app\base\models\ActiveRecordLang;
 

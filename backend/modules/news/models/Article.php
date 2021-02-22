@@ -3,12 +3,8 @@
 namespace backend\modules\news\models;
 
 use yii\helpers\ArrayHelper;
-//
 use thread\app\model\interfaces\BaseBackendModel;
-//
 use common\modules\news\models\Article as CommonArticleModel;
-//
-use backend\modules\sys\modules\logbook\behaviors\LogbookBehavior;
 
 /**
  * Class Article
@@ -45,16 +41,6 @@ class Article extends CommonArticleModel implements BaseBackendModel
         return ArrayHelper::merge(
             parent::behaviors(),
             [
-                'LogbookBehavior' => [
-                    'class' => LogbookBehavior::class,
-                    'category' => 'Новости',
-                    'updateMessage' => function () {
-                        return "<a href='/core-cms/web/backend/news/article/update?id=" . $this->owner->id .
-                            "'>Обновлена новость " .
-                            $this->owner->lang->title .
-                            "</a>";
-                    }
-                ]
             ]
         );
     }

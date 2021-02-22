@@ -3,7 +3,6 @@
 namespace thread\modules\news;
 
 use Yii;
-//
 use thread\app\base\module\abstracts\Module as aModule;
 
 /**

@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use frontend\modules\articles\models\Article;
+use frontend\modules\news\models\Article;
 
 /** @var $article Article */
 

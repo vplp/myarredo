@@ -1,33 +1,49 @@
 <?php
 
 use backend\widgets\GridView\GridView;
-//
+use backend\modules\catalog\models\{
+    Category, Factory
+};
+use backend\modules\location\models\City;
 use thread\widgets\grid\{
     ActionCheckboxColumn, GridViewFilter
 };
-//
-use backend\modules\news\models\Group;
 
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
         [
-            'class' => \thread\widgets\grid\kartik\EditableColumn::class,
-            'attribute' => 'title',
-            'displayValue' => function ($model) {
-                return $model['lang']['title'];
-            },
+            'attribute' => 'city_id',
+            'value' => 'city.lang.title',
+            'filter' => GridViewFilter::dropDownList(
+                $filter,
+                'city_id',
+                City::dropDownList()
+            ),
         ],
         [
-            'class' => \thread\widgets\grid\kartik\EditableDropDownColumn::class,
-            'attribute' => 'group_id',
-            'link' => ['attribute-save-group'],
-            'data' => ['0' => '---'] + Group::dropDownList(),
-            'displayValue' => function ($model) {
-                return $model['group']['lang']['title'];
-            },
-            'filter' => GridViewFilter::selectOne($filter, 'group_id', ['0' => '---'] + Group::dropDownList()),
+            'attribute' => 'category_id',
+            'value' => 'category.lang.title',
+            'filter' => GridViewFilter::dropDownList(
+                $filter,
+                'category_id',
+                Category::dropDownList()
+            ),
+        ],
+        [
+            'attribute' => 'factory_id',
+            'value' => 'factory.title',
+            'filter' => GridViewFilter::dropDownList(
+                $filter,
+                'factory_id',
+                Factory::dropDownList()
+            ),
+        ],
+        [
+            'attribute' => 'title',
+            'value' => 'lang.title',
+            'label' => Yii::t('app', 'Title'),
         ],
         [
             'attribute' => 'published_time',
@@ -42,7 +58,7 @@ echo GridView::widget([
             'action' => 'published'
         ],
         [
-            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class
+            'class' => \backend\widgets\gridColumns\ActionColumn::class
         ],
     ]
 ]);

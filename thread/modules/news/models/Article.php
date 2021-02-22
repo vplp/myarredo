@@ -7,7 +7,11 @@ use yii\helpers\{
     ArrayHelper, Inflector
 };
 use yii\behaviors\AttributeBehavior;
-//
+use voskobovich\behaviors\ManyToManyBehavior;
+use thread\modules\location\models\City;
+use common\modules\catalog\models\{
+    Factory, Category, Types, Specification
+};
 use thread\app\base\models\ActiveRecord;
 use thread\modules\news\News as NewsModule;
 
@@ -17,6 +21,9 @@ use thread\modules\news\News as NewsModule;
  * @property integer id
  * @property integer group_id
  * @property string alias
+ * @property integer $city_id
+ * @property integer $category_id
+ * @property integer $factory_id
  * @property string image_link
  * @property integer published_time
  * @property integer created_at
@@ -24,6 +31,10 @@ use thread\modules\news\News as NewsModule;
  * @property boolean published
  * @property boolean deleted
  *
+ * @property Category $category
+ * @property Factory $factory
+ * @property Types[] $types
+ * @property Specification[] $styles
  * @property Group $group
  * @property ArticleLang $lang
  *
@@ -55,6 +66,13 @@ class Article extends ActiveRecord
     {
         return ArrayHelper::merge(parent::behaviors(), [
             [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'types_ids' => 'types',
+                    'styles_ids' => 'styles',
+                ],
+            ],
+            [
                 'class' => AttributeBehavior::className(),
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
@@ -74,7 +92,7 @@ class Article extends ActiveRecord
     {
         return [
             [['alias'], 'required'],
-            [['group_id', 'create_time', 'update_time'], 'integer'],
+            [['city_id', 'category_id', 'factory_id', 'group_id', 'create_time', 'update_time'], 'integer'],
             [
                 ['published_time'],
                 'date',
@@ -83,7 +101,15 @@ class Article extends ActiveRecord
             ],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['alias', 'image_link'], 'string', 'max' => 255],
-            [['alias'], 'unique']
+            [['alias'], 'unique'],
+            [
+                [
+                    'types_ids',
+                    'styles_ids',
+                ],
+                'each',
+                'rule' => ['integer']
+            ],
         ];
     }
 
@@ -95,7 +121,19 @@ class Article extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['group_id', 'alias', 'image_link', 'published', 'deleted', 'published_time'],
+            'backend' => [
+                'city_id',
+                'category_id',
+                'factory_id',
+                'group_id',
+                'alias',
+                'image_link',
+                'published',
+                'deleted',
+                'published_time',
+                'types_ids',
+                'styles_ids',
+            ],
         ];
     }
 
@@ -108,6 +146,9 @@ class Article extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'group_id' => Yii::t('app', 'Group'),
             'alias' => Yii::t('app', 'Alias'),
+            'city_id' => Yii::t('app', 'City'),
+            'category_id' => Yii::t('app', 'Category'),
+            'factory_id' => Yii::t('app', 'Factory'),
             'image_link' => Yii::t('app', 'Image link'),
             'published_time' => Yii::t('app', 'Published time'),
             'created_at' => Yii::t('app', 'Create time'),
@@ -116,6 +157,8 @@ class Article extends ActiveRecord
             'deleted' => Yii::t('app', 'Deleted'),
             'date_from' => Yii::t('news', 'Date from'),
             'date_to' => Yii::t('news', 'Date to'),
+            'types_ids' => Yii::t('app', 'Types'),
+            'styles_ids' => Yii::t('app', 'Styles'),
         ];
     }
 
@@ -133,6 +176,52 @@ class Article extends ActiveRecord
     public function getLang()
     {
         return $this->hasOne(ArticleLang::class, ['rid' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCity()
+    {
+        return $this->hasOne(City::class, ['id' => 'city_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getTypes()
+    {
+        return $this
+            ->hasMany(Types::class, ['id' => 'type_id'])
+            ->viaTable(ArticleRelTypes::tableName(), ['article_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getStyles()
+    {
+        return $this
+            ->hasMany(Specification::class, ['id' => 'style_id'])
+            ->viaTable(ArticleRelStyles::tableName(), ['article_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Category::class, ['id' => 'category_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactory()
+    {
+        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
     }
 
     /**

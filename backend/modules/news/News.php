@@ -22,10 +22,23 @@ class News extends \common\modules\news\News
 
         if (in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])) {
             $menuItems = [
-                'label' => 'Information for partners',
+                'label' => 'News',
                 'icon' => 'fa-file-text',
-                'position' => 2,
-                'url' => ['/news/article-for-partners/list'],
+                'position' => 4,
+                'items' => [
+                    [
+                        'label' => 'Information for partners',
+                        'icon' => 'fa-file-text',
+                        'position' => 2,
+                        'url' => ['/news/article-for-partners/list'],
+                    ],
+                    [
+                        'label' => 'News',
+                        'icon' => 'fa-file-text',
+                        'position' => 2,
+                        'url' => ['/news/article/list'],
+                    ]
+                ]
             ];
         }
 

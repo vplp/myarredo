@@ -20,7 +20,7 @@ echo $form->field($model, 'city_id')
         'placeholder' => Yii::t('app', 'Select option'),
         'multiple' => false
     ],
-]);;
+]);
 
 echo $form->field($model, 'category_id')->dropDownList(ArrayHelper::merge(
     [0 => '--' . Yii::t('app', 'Select option') . '--'],

@@ -7,7 +7,7 @@ namespace frontend\modules\news;
  *
  * @package frontend\modules\news
  */
-class News extends \backend\modules\news\News
+class News extends \common\modules\news\News
 {
     /**
      * @var int

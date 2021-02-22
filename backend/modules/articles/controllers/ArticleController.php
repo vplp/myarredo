@@ -4,11 +4,9 @@ namespace backend\modules\articles\controllers;
 
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
-//
 use backend\modules\articles\models\{
     Article, ArticleLang, search\Article as filterArticleModel
 };
-//
 use common\actions\upload\{
     DeleteAction, UploadAction
 };

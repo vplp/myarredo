@@ -22,7 +22,6 @@ $this->title = $model['lang']['title'];
                     <?= $model['lang']['content'] ?>
                 </article>
             </div>
-
             <!-- Контент конец -->
 
             <!-- Сайдбар старт -->

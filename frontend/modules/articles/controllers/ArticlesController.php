@@ -49,12 +49,10 @@ class ArticlesController extends BaseController
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Article::findByAlias(Yii::$app->request->get('alias'));
-                    return $model != null
-                        ? serialize([
+                    return $model != null ? serialize([
                             $model['lang']['title'],
                             $model['lang']['content']
-                        ])
-                        : serialize([]);
+                        ]) : '';
                 }
             ];
 
@@ -68,10 +66,10 @@ class ArticlesController extends BaseController
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Article::findLastUpdated();
-                    return serialize([
+                    return $model != null ? serialize([
                         $model['lang']['title'],
                         $model['lang']['content']
-                    ]);
+                    ]) : '';
                 },
             ];
         }
