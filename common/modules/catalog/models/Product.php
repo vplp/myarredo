@@ -695,6 +695,7 @@ class Product extends ActiveRecord implements iProduct
     {
         return $this
             ->hasMany(SubTypes::class, ['id' => 'subtype_id'])
+            ->innerJoinWith('lang')
             ->viaTable(ProductRelSubTypes::tableName(), ['item_id' => 'id']);
     }
 
