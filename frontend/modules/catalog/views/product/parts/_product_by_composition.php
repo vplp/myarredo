@@ -23,7 +23,7 @@ use frontend\modules\catalog\models\Product;
                             ]
                         ); ?>
                         <div class="img-cont">
-                            <?= Html::img(Product::getImageThumb($model['image_link'])); ?>
+                            <?= Html::img(Product::getImageThumb($model['image_link']), ['loading' => 'lazy']); ?>
                             <span class="background"></span>
                         </div>
                         <div class="add-item-text">
