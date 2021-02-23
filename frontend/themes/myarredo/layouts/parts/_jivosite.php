@@ -4,6 +4,7 @@ use yii\web\View;
 
 /** @var $this \yii\web\View */
 
+echo Yii::$app->city->getJivosite();
 ?>
 
 <?php if (DOMAIN_TYPE == 'com') { ?>

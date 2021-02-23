@@ -161,6 +161,14 @@ class CityComponent extends Component
     }
 
     /**
+     * @return string
+     */
+    public function getJivosite()
+    {
+        return $this->city['jivosite'];
+    }
+
+    /**
      * @inheritdoc
      */
     private function setup()

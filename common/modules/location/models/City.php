@@ -23,6 +23,7 @@ use yii\helpers\ArrayHelper;
  * @property boolean $deleted
  * @property integer $position
  * @property integer $show_price
+ * @property integer $jivosite
  *
  * @package common\modules\location\models
  */
@@ -36,7 +37,8 @@ class City extends \thread\modules\location\models\City
         $rules = [
             [['lat', 'lng'], 'double'],
             [['geo_placename', 'geo_position', 'geo_region', 'icbm'], 'string', 'max' => 128],
-            [['show_price'], 'in', 'range' => array_keys(static::statusKeyRange())]
+            [['show_price'], 'in', 'range' => array_keys(static::statusKeyRange())],
+            ['jivosite', 'string', 'max' => 255]
         ];
 
         return ArrayHelper::merge($rules, parent::rules());
@@ -50,7 +52,7 @@ class City extends \thread\modules\location\models\City
         $scenarios = [
             'show_price' => ['show_price'],
             'backend' => [
-                'lat', 'lng', 'geo_placename', 'geo_position', 'geo_region', 'icbm', 'show_price'
+                'lat', 'lng', 'geo_placename', 'geo_position', 'geo_region', 'icbm', 'show_price', 'jivosite'
             ]
         ];
 
@@ -69,7 +71,8 @@ class City extends \thread\modules\location\models\City
             'geo_position' => 'geo.position',
             'geo_region' => 'geo.region',
             'icbm' => 'ICBM',
-            'show_price' => Yii::t('app', 'Show price')
+            'show_price' => Yii::t('app', 'Show price'),
+            'jivosite' => 'Чат jivosite'
         ];
 
         return ArrayHelper::merge($attributeLabels, parent::attributeLabels());
