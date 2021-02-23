@@ -34,6 +34,7 @@ $this->beginPage();
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://mc.yandex.ru">
     <link rel="dns-prefetch" href="https://img.<?= DOMAIN_NAME . '.' . DOMAIN_TYPE ?>">
+    <link rel="dns-prefetch" href="https://www.gstatic.com">
 
     <link rel="preload" href="/css/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" href="/css/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
