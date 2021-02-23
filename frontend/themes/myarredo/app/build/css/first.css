@@ -59,7 +59,7 @@
     src: local('Palatino'), url('../fonts/palatino-linotype.woff2') format('woff2'),
         url('../fonts/palatino-linotype.woff') format('woff'),
         url('../fonts/Palatino-Linotype.ttf') format('truetype');
-    font-weight: normal;  
+    font-weight: normal;
     font-style: normal;
 }
 @font-face {
@@ -68,15 +68,15 @@
     src: local('Palatino'), url('../fonts/palab.woff2') format('woff2'),
         url('../fonts/palab.woff') format('woff'),
         url('../fonts/palab.ttf') format('truetype');
-    font-weight: bold;  
+    font-weight: bold;
     font-style: normal;
 } */
 body {
-    font-family: 'Open Sans', sans-serif !important; 
+    font-family: 'Open Sans', sans-serif !important;
 }
 .container-wrap {
     max-width: 1600px;
-    margin: 0 auto; 
+    margin: 0 auto;
 }
 .form-control {
     border-color: transparent;
@@ -97,57 +97,57 @@ h1 {
 
 /* Header Styles */
 .header {
-    background: #F3F2F0; 
+    background: #F3F2F0;
 }
 .header .container-wrap {
-    background: #FFFFFF; 
+    background: #FFFFFF;
 }
 .header .top-header {
     border-bottom: 1px solid #BDBCB3;
     height: 46px;
-    width: 100%; 
+    width: 100%;
 }
 .header .top-header .container {
     height: 100%;
     display: flex;
     justify-content: space-between;
-    position: relative; 
+    position: relative;
 }
 .header .top-header .container:after, .header .top-header .container:before {
-    display: none; 
+    display: none;
 }
 .header .top-header .left-part {
-    display: flex; 
+    display: flex;
 }
 .header .top-header .left-part .logo {
     padding-top: 6px;
 }
 .header .top-header .right-part {
     display: flex;
-    height: 100%; 
+    height: 100%;
 }
 .header .top-header .right-part .navbar-right {
     margin-right: 0;
 }
 .header .top-header a {
     font-family: "Open Sans";
-    color: #535351; 
+    color: #535351;
 }
 .header .top-header a:hover, .header .top-header a:active, .header .top-header a:focus {
-    text-decoration: none; 
+    text-decoration: none;
   }
   .header .top-header .phone {
     font-size: 17px;
-    font-weight: 600; 
+    font-weight: 600;
   }
   .header .top-header .descr {
     font-size: 9px;
     color: #c4242e;
     text-transform: uppercase;
-    font-weight: 600; 
+    font-weight: 600;
   }
   .header .top-header .container .row {
-    width: 100%; 
+    width: 100%;
   }
   .header .top-header .my-notebook {
     cursor: pointer; }
@@ -170,7 +170,7 @@ h1 {
   align-items: center;
   padding-right: 2px;
   padding-left: 6px;
-  border-right: none; 
+  border-right: none;
 }
   .header .phone-num .phone {
     display: block; }
@@ -179,7 +179,7 @@ h1 {
   .header .phone-num .fa {
     color: #BDBCB3;
     font-size: 18px;
-    margin-right: 8px; 
+    margin-right: 8px;
   }
 .header .back-call {
   display: flex;
@@ -253,11 +253,11 @@ h1 {
   align-items: center;
   text-transform: uppercase;
   font-size: 13px;
-  font-weight: 500; 
+  font-weight: 500;
 }
 .header .wishlist .fa {
   font-size: 22px;
-  margin-right: 4px; 
+  margin-right: 4px;
 }
 .header .wishlist .inscription {
   position: absolute;
@@ -271,7 +271,7 @@ h1 {
   align-items: center;
   height: 100%;
   padding: 0 0 0 16px;
-  font-size: 14px; 
+  font-size: 14px;
 }
 .header .sign-in.withicon {
   padding: 0 14px 0 16px;
@@ -319,7 +319,7 @@ h1 {
       text-transform: uppercase;
       color: #41403e;
       padding: 10px 10px;
-      font-weight: 600; 
+      font-weight: 600;
     }
     .header .bot-header .navigation li:first-child a {
       padding-left: 0;
@@ -385,7 +385,7 @@ h1 {
         padding: 0;
         display: flex;
         align-items: center;
-        line-height: 14px; 
+        line-height: 14px;
         transition: 0.3s;
       }
       .header .bot-header .navigation .list-level a:hover {
@@ -425,7 +425,7 @@ h1 {
 .header .logo {
   width: 233px;
   display: block;
-  margin-right: 10px; 
+  margin-right: 10px;
 }
   .header .logo img {
     display: block;
@@ -516,7 +516,7 @@ h1 {
     max-width: 100%;
     max-height: 100%;
     height: auto;
-    width: auto; 
+    width: auto;
 }
 .fixed-header .top-header {
   position: fixed;
@@ -532,7 +532,7 @@ h1 {
   0% {
     top: -50px; }
   100% {
-    top: 0px; } 
+    top: 0px; }
 }
  /* --------------Стили для новогоднего украшения логотипа (для применения раскоментировать)-------------- */
  /* .header .logo {
@@ -581,11 +581,11 @@ h1 {
     height: auto;
     min-height: 80px;
     display: none;
-    position: relative; 
+    position: relative;
 }
 .mobile-header .left-info-part {
     width: calc( 100% - 42px);
-    padding: 10px 0px; 
+    padding: 10px 0px;
 }
 .mobile-header .right-btn-part {
     width: 42px; }
@@ -606,13 +606,13 @@ h1 {
     color: #FFFFFF; }
 .mobile-header .logo {
     width: 100%;
-    display: block; 
+    display: block;
 }
 .mobile-header .logo img {
     display: block;
     width: 100%;
     max-width: 75px;
-    height: auto; 
+    height: auto;
 }
 .mobile-header .mobmenu-part .menu-btn {
     background-color: transparent;
@@ -655,7 +655,7 @@ h1 {
  .mobile-header .phone-num {
    font-size: 14px;
    color: #535351;
-   text-decoration: none; 
+   text-decoration: none;
    font-weight: 900;
  }
  .mobile-header .after-num {
@@ -673,7 +673,7 @@ h1 {
    max-width: 340px;
    border: 1px solid #BDBCB3;
    background: #FFFFFF;
-   transition: 0.45s; 
+   transition: 0.45s;
  }
  .mobile-header.open .mobile-menu {
    left: 0;
@@ -683,7 +683,7 @@ h1 {
   border-bottom: 1px solid #BDBCB3;
   display: flex;
   position: relative;
-  z-index: 1; 
+  z-index: 1;
 }
      .mobile-header .mobile-menu .stripe a {
        color: #535351;
@@ -737,7 +737,7 @@ h1 {
      list-style: none;
      padding-left: 0;
      padding-top: 0;
-     margin-bottom: 30px; 
+     margin-bottom: 30px;
      max-height: 75vh;
      overflow-y: auto;
    }
@@ -762,10 +762,10 @@ h1 {
        height: auto;
        width: auto; }
 .mobile-header .one-list-cont {
- border-bottom: 1px solid #FFFFFF; 
+ border-bottom: 1px solid #FFFFFF;
 }
 .mobile-header .one-list-cont:last-child {
- border-bottom: none; 
+ border-bottom: none;
 }
 .mobile-header .one-list,
 .footer-navpanel .one-list {
@@ -775,21 +775,21 @@ h1 {
  align-items: center;
  padding: 0 15px;
  font-size: 16px;
- position: relative; 
+ position: relative;
 }
 .mobile-header .one-list .fa {
   margin-right: 13px;
   color: #BDBCB3;
-  font-size: 18px; 
+  font-size: 18px;
 }
 .mobile-header .one-list .fa-map-marker,
 .footer-navpanel .one-list .fa-map-marker {
-  font-size: 23px; 
+  font-size: 23px;
 }
 .mobile-header .one-list .fa-chevron-down,
 .footer-navpanel .one-list .fa-chevron-down {
   color: #448339;
-  font-size: 14px; 
+  font-size: 14px;
 }
 .mobile-header .one-list:after,
 .footer-navpanel .one-list:after {
@@ -801,7 +801,7 @@ h1 {
   transform: translateY(-50%);
   font-family: "FontAwesome";
   font-size: 13px;
-  transition: all 0.2s ease-out; 
+  transition: all 0.2s ease-out;
 }
 .mobile-header .mobile-city-list {
     margin: 0;
@@ -809,23 +809,23 @@ h1 {
     list-style: none;
     max-height: 350px;
     overflow-y: auto;
-    display: none; 
+    display: none;
   }
   .mobile-header .mobile-city-list li {
     min-height: 25px;
-    padding-left: 15px; 
+    padding-left: 15px;
     padding-top: 3px;
   }
   .mobile-header .mobile-city-list li.active a {
     color: #448339;
-    position: relative; 
+    position: relative;
   }
   .mobile-header .mobile-city-list li.active a:after {
     content: "\f00c";
     font-family: "FontAwesome";
     position: absolute;
     top: 4px;
-    right: 15px; 
+    right: 15px;
   }
   .mobile-header .mobile-city-list a {
     color: #535351;
@@ -833,7 +833,7 @@ h1 {
     display: flex;
     align-items: center;
     height: 100%;
-    padding-right: 35px; 
+    padding-right: 35px;
   }
 .mobile-header .mobile-lang-list {
     margin: 0;
@@ -841,22 +841,22 @@ h1 {
     padding-top: 10px;
     padding-bottom: 10px;
     list-style: none;
-    display: none; 
+    display: none;
 }
 .mobile-header .mobile-lang-list .fa {
   color: #BDBCB3;
   font-size: 18px;
-  margin-right: 10px; 
+  margin-right: 10px;
 }
 .mobile-header .mobile-lang-list li {
   height: 30px;
-  padding-left: 15px; 
+  padding-left: 15px;
 }
 .mobile-header .mobile-lang-list a {
   color: #535351;
   display: flex;
   align-items: center;
-  height: 100%; 
+  height: 100%;
 }
 .mobile-header .mobile-menu .menu-list .three-llist a {
     font-size: 14px;
@@ -1030,7 +1030,7 @@ h1 {
     right: 10px;
     transition: 0.07s;
   }
-  
+
   .mobile-menu .navigation li.js-has-list>a.open:after,
   .mobile-menu .navigation li.jshaslist>a.open:after {
     transform: rotate(180deg);
@@ -1197,25 +1197,25 @@ h1 {
     background-color: #bdbcb3;
     color: #ffffff;
     border: 1px solid #bdbcb3;
-  
+
   }
   .btn-mobsearch:focus {
     text-decoration: none;
     border-color: #448339;
 }
 .home-main {
-    background: #F3F2F0; 
+    background: #F3F2F0;
 }
 .home-main .container-wrap {
-  background: #FFFFFF; 
+  background: #FFFFFF;
 }
 .home-main .top-home-img {
-    position: relative; 
+    position: relative;
 }
 .home-main .top-home-img img {
     display: block;
     width: 100%;
-    height: auto; 
+    height: auto;
 }
 
 /* Home top slider */
@@ -1325,7 +1325,7 @@ h1 {
 .home-main .section-header {
     height: 125px;
     display: flex;
-    align-items: center; 
+    align-items: center;
   }
 .home-main .section-header .sticker {
     display: flex;
@@ -1340,7 +1340,7 @@ h1 {
     padding-right: 40px;
     color: #FFFFFF;
     font-weight: 500;
-    text-decoration: none; 
+    text-decoration: none;
 }
 .home-main .search {
     background: #448339;
@@ -1350,7 +1350,7 @@ h1 {
     border: none;
     min-width: 160px;
     font-weight: 600;
-    border-bottom-right-radius: 4px; 
+    border-bottom-right-radius: 4px;
   }
   .home-main .section-title {
     font-size: 35px;
@@ -1363,11 +1363,11 @@ h1 {
 }
 .home-main .numbers {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     min-height: 194px;
 }
 .home-main .numbers .one-number {
-    max-width: 210px; 
+    max-width: 210px;
     overflow: hidden;
   }
 .home-main .numbers .title {
@@ -1376,7 +1376,7 @@ h1 {
     align-items: center;
     color: #e3e0d5;
     font-weight: 500;
-    font-family: 'Vollkorn', sans-serif; 
+    font-family: 'Vollkorn', sans-serif;
 }
 .home-main .numbers .img-cont {
     height: 105px;
@@ -1385,20 +1385,20 @@ h1 {
     display: flex;
     justify-content: center;
     margin-left: 15px;
-    margin-top: 22px; 
+    margin-top: 22px;
 }
 .home-main .numbers .img-cont img {
     max-height: 100%;
     max-width: 100%;
     height: auto;
     width: auto;
-    display: block; 
+    display: block;
 }
 .home-main .numbers .descr {
     font-size: 15px;
     line-height: 25px;
     color: #41403e;
-    margin-top: -23px; 
+    margin-top: -23px;
 }
 .home-main .best-price .after-text {
     background: #F3F2F0;
@@ -1407,19 +1407,19 @@ h1 {
     font-size: 24px;
     line-height: 36px;
     display: flex;
-    margin-top: 100px; 
+    margin-top: 100px;
   }
 .home-main .best-price .img-container {
     position: relative;
     min-width: 350px;
-    margin-right: 60px; 
+    margin-right: 60px;
 }
 .home-main .best-price .img-container img {
     position: absolute;
     width: 100%;
     height: auto;
     bottom: -50px;
-    left: 0; 
+    left: 0;
 }
 .home-main .sale-sect .img-cont img {
     display: block;
@@ -1430,10 +1430,10 @@ h1 {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);
 }
 .footer .cities-list .list-of-cities {
-    column-count: 7; 
+    column-count: 7;
 }
 .footer .cities-list .list-of-cities>span {
     font-size: 18px;
@@ -1441,7 +1441,7 @@ h1 {
 }
 .footer .cities-list .list-of-cities {
     padding-bottom: 50px;
-    border-bottom: 1px solid #BDBCB3; 
+    border-bottom: 1px solid #BDBCB3;
 }
 
 /* ------------------------------------------------------------------------------- */
@@ -1477,8 +1477,8 @@ h1 {
 /* min 992px */
 @media screen and (min-width: 992px) {
   header #main-menu {
-    height: auto !important; 
-  } 
+    height: auto !important;
+  }
 }
 /* min 769px */
 @media(min-width: 769px) {
@@ -1490,7 +1490,7 @@ h1 {
     min-height: 560px;
   }
   .fixed-header {
-    padding-top: 46px; 
+    padding-top: 46px;
   }
 }
 /* min 359px */
@@ -1534,12 +1534,12 @@ h1 {
       max-width: 285px;
       width: 285px; }
     .home-main .sale-sect .one-sale {
-      width: calc( 25% - 20px); 
-    } 
+      width: calc( 25% - 20px);
+    }
     .header .autorized .wishlist {
         padding-right: 0;
     }
-    .home-top-slider, 
+    .home-top-slider,
   .home-top-slider .img-cont img {
     min-height: 43vw;
     max-height: 43vw;
@@ -1560,7 +1560,7 @@ h1 {
     padding-right: 0.23vw;
     padding-left: 0.461vw;
   }
-  .home-top-slider .slick-arrow.slick-next:before, 
+  .home-top-slider .slick-arrow.slick-next:before,
   .home-top-slider .slick-arrow.slick-prev:before {
     font-size: 1.538vw;
   }
@@ -1604,12 +1604,12 @@ h1 {
         font-size: 13px; }
     .header .search-cont {
         width: 230px;
-        min-width: 230px; 
+        min-width: 230px;
     }
     .header .search-cont .search-group {
         width: 230px; }
     .header .search-cont .search-group input {
-        width: calc( 100% - 32px); 
+        width: calc( 100% - 32px);
     }
     .home-main .numbers .title {
         font-size: 90px; }
@@ -1621,21 +1621,21 @@ h1 {
         line-height: normal;
         margin-top: -10px; }
       .home-main .numbers .one-number {
-        max-width: 165px; 
+        max-width: 165px;
     }
     .home-main .section-title {
-        font-size: 28px; 
+        font-size: 28px;
     }
     .home-main .best-price .img-container img {
-        bottom: -10px; 
+        bottom: -10px;
     }
     .home-main .best-price .after-text {
         padding: 30px 30px;
         font-size: 21px;
-        line-height: normal; 
+        line-height: normal;
     }
     .footer .cities-list .list-of-cities {
-        column-count: 6; 
+        column-count: 6;
     }
 }
 
@@ -1658,7 +1658,7 @@ h1 {
         margin-right: 0; }
     .header .logo {
     max-width: 200px;
-    min-width: 200px; 
+    min-width: 200px;
     }
     .header .top-header .left-part .logo {
     padding-top: 9px;
@@ -1669,20 +1669,20 @@ h1 {
     .header .bot-header .navigation .list-level li .img-cont {
         margin-right: 5px; }
     .header .bot-header .navigation .list-level a {
-    font-size: 13px; 
+    font-size: 13px;
     }
     .home-main .numbers {
         flex-wrap: wrap;
-        justify-content: center; 
+        justify-content: center;
     }
     .home-main .section-title {
-        font-size: 24px; 
+        font-size: 24px;
     }
     .home-main .best-price .after-text {
-        font-size: 18px; 
+        font-size: 18px;
     }
     .footer .cities-list .list-of-cities {
-        column-count: 5; 
+        column-count: 5;
     }
 }
 
@@ -1708,29 +1708,29 @@ h1 {
 /* max 768px */
 @media(max-width: 768px) {
     .header {
-        display: none; 
+        display: none;
     }
     .mobile-header {
         display: flex;
-        flex-wrap: wrap; 
+        flex-wrap: wrap;
     }
     .home-main .section-title {
         color: #535351;
         font-size: 20px;
-        line-height: 26px; 
+        line-height: 26px;
     }
     .home-main .best-price .img-container img {
         bottom: auto;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%); 
+        transform: translate(-50%, -50%);
     }
     .home-main .best-price .after-text {
         font-size: 16px;
-        padding: 20px; 
+        padding: 20px;
     }
     .footer .cities-list .list-of-cities {
-        column-count: 4; 
+        column-count: 4;
     }
 }
 
@@ -1759,31 +1759,31 @@ h1 {
       .home-main .numbers .title {
         justify-content: center; }
       .home-main .numbers .descr {
-        text-align: center; 
+        text-align: center;
     }
     .home-main .section-title {
         margin-right: 0;
         font-size: 20px;
         line-height: 26px;
         text-align: center;
-        margin-bottom: 20px; 
+        margin-bottom: 20px;
     }
     .home-main .best-price {
-        margin-bottom: 30px; 
+        margin-bottom: 30px;
     }
     .home-main .best-price .img-container img {
         position: static;
-        transform: translate(0, 0); 
+        transform: translate(0, 0);
     }
     .home-main .best-price .after-text {
         flex-direction: column;
         font-size: 17px;
         line-height: 30px;
         font-weight: 300;
-        margin-top: 50px; 
+        margin-top: 50px;
     }
     .footer .list-of-cities {
-        display: none; 
+        display: none;
     }
 }
 
@@ -1859,4 +1859,7 @@ h1 {
     .mobile-header .phone-num {
       font-size: 16px;
     }
+}
+.img-cont {
+  position: relative;
 }
