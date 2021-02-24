@@ -56,7 +56,7 @@ class Article extends \common\modules\news\models\Article
             ->orderBy(['published_time' => SORT_DESC]);
 
         $query->andFilterWhere([
-            'AND',
+            'OR',
             ['city_id' => Yii::$app->city->getCityId()],
             ['city_id' => 0]
         ]);
