@@ -72,7 +72,7 @@ class City extends \thread\modules\location\models\City
             'geo_region' => 'geo.region',
             'icbm' => 'ICBM',
             'show_price' => Yii::t('app', 'Show price'),
-            'jivosite' => 'Чат jivosite'
+            'jivosite' => 'Чат jivosite src'
         ];
 
         return ArrayHelper::merge($attributeLabels, parent::attributeLabels());
