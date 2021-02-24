@@ -55,15 +55,11 @@ class Article extends \common\modules\news\models\Article
             ->enabled()
             ->orderBy(['published_time' => SORT_DESC]);
 
-        if (Yii::$app->city->getCityId() == 4) {
-            $query->andFilterWhere([
-                'OR',
-                ['city_id' => Yii::$app->city->getCityId()],
-                ['city_id' => 0]
-            ]);
-        } else {
-            $query->andFilterWhere(['city_id' => Yii::$app->city->getCityId()]);
-        }
+        $query->andFilterWhere([
+            'AND',
+            ['city_id' => Yii::$app->city->getCityId()],
+            ['city_id' => 0]
+        ]);
 
         return $query;
     }
