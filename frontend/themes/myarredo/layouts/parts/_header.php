@@ -203,10 +203,10 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
                 <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
                 } else { ?>
-                    <?php //if ($this->beginCache('CatalogMenuWidget' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) {
+                    <?php if ($this->beginCache('CatalogMenuWidget' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) {
                         echo CatalogMenu::widget([]);
-                        //$this->endCache();
-                    //} ?>
+                        $this->endCache();
+                    } ?>
 
                     <div class="search-cont">
                         <?php if ($this->beginCache('ElasticSearch' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) {
