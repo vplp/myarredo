@@ -10357,7 +10357,9 @@ footer .partner-cities ul {
     flex-direction: column;
     height: auto; }
     .home-main .section-header .sticker {
-      display: none; }
+      /* display: none;  */
+      margin-bottom: 15px;
+    }
     .home-main .best-price .img-container {
       margin-right: 0;
       width: 100%;
