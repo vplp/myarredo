@@ -700,6 +700,7 @@ class ItalianProduct extends ActiveRecord
     {
         return $this
             ->hasMany(SubTypes::class, ['id' => 'subtype_id'])
+            ->innerJoinWith('lang')
             ->viaTable(ItalianProductRelSubTypes::tableName(), ['item_id' => 'id']);
     }
 

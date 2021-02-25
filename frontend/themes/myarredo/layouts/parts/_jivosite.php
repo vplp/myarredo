@@ -4,6 +4,10 @@ use yii\web\View;
 
 /** @var $this \yii\web\View */
 
+if (Yii::$app->city->getJivosite()) {
+    echo ' <script src="' . Yii::$app->city->getJivosite() . '" async></script>';
+}
+/*
 ?>
 
 <?php if (DOMAIN_TYPE == 'com') { ?>
@@ -71,3 +75,4 @@ JS;
 
     $this->registerJs($script, View::POS_END);
 }
+*/

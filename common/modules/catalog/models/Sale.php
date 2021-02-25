@@ -457,6 +457,7 @@ class Sale extends ActiveRecord
     {
         return $this
             ->hasMany(SubTypes::class, ['id' => 'subtype_id'])
+            ->innerJoinWith('lang')
             ->viaTable(SaleRelSubTypes::tableName(), ['item_id' => 'id']);
     }
 

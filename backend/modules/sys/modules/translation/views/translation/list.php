@@ -32,7 +32,7 @@ echo GridView::widget(
                 'class' => \thread\widgets\grid\kartik\EditableColumn::class,
                 'attribute' => 'translation',
                 'displayValue' => function ($model) {
-                    return $model['message']['translation'];
+                    return $model['message']['translation'] ?? '';
                 }
             ],
             [

@@ -31,7 +31,7 @@ class CatalogTranslateController extends Controller
         foreach ($models as $model) {
             /** @var $model Category */
             $model->setScenario('backend');
-            $model->alias_he = $model['lang']['title'];
+            $model->alias_he = $model->alias_en;
             $model->save();
         }
 
@@ -52,7 +52,7 @@ class CatalogTranslateController extends Controller
         foreach ($models as $model) {
             /** @var $model Types */
             $model->setScenario('backend');
-            $model->alias_he = $model['lang']['title'];
+            $model->alias_he = $model->alias_en;
             $model->save();
         }
 
@@ -73,7 +73,7 @@ class CatalogTranslateController extends Controller
         foreach ($models as $model) {
             /** @var $model Specification */
             $model->setScenario('backend');
-            $model->alias_he = $model['lang']['title'];
+            $model->alias_he = $model->alias_en;
             $model->save();
         }
 
@@ -94,7 +94,7 @@ class CatalogTranslateController extends Controller
         foreach ($models as $model) {
             /** @var $model Colors */
             $model->setScenario('backend');
-            $model->alias_he = $model['lang']['title'];
+            $model->alias_he = $model->alias_en;
             $model->save();
         }
 
@@ -115,7 +115,7 @@ class CatalogTranslateController extends Controller
         foreach ($models as $model) {
             /** @var $model Product */
             $model->setScenario('backend');
-            $model->alias_he = $model['lang']['title'];
+            $model->alias_he = $model->alias_en;
             $model->save();
         }
 
@@ -136,7 +136,7 @@ class CatalogTranslateController extends Controller
         foreach ($models as $model) {
             /** @var $model ItalianProduct */
             $model->setScenario('backend');
-            $model->alias_he = $model['lang']['title'];
+            $model->alias_he = $model->alias_en;
             $model->save();
         }
 
