@@ -4,9 +4,10 @@ use yii\web\View;
 
 /** @var $this \yii\web\View */
 
-if (Yii::$app->city->getJivosite()) {
+if (Yii::$app->city->getJivosite() && Yii::$app->getUser()->isGuest) {
     echo ' <script src="' . Yii::$app->city->getJivosite() . '" async></script>';
 }
+
 /*
 ?>
 
