@@ -19,6 +19,7 @@ $bundle = AppAsset::register($this);
 $this->title = Yii::t('app', 'Регистрация для фабрики');
 
 $model->user_agreement = 1;
+$model->factory_confirm_offers = 1;
 ?>
 
 <main>
@@ -88,6 +89,16 @@ $model->user_agreement = 1;
                                 )
                                 ->checkbox([], false)
                                 ->label('&nbsp;' . Yii::t('app', 'User agreement for factory')) ?>
+
+                            <?= $form
+                                ->field(
+                                    $model,
+                                    'factory_confirm_offers',
+                                    ['template' => '{input}{label}{error}{hint}']
+                                )
+                                ->checkbox([], false)
+                                ->label('&nbsp;' . $model->getAttributeLabel('factory_confirm_offers')) ?>
+
 
                             <?= $form
                                 ->field($model, 'reCaptcha')

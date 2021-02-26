@@ -4,6 +4,7 @@ namespace common\modules\user\models\form;
 
 use Yii;
 use yii\base\Model;
+
 //
 use common\modules\user\User as UserModule;
 use common\modules\user\models\User as UserModel;
@@ -65,6 +66,7 @@ class CommonForm extends Model
     public $delivery_to_other_cities;
     public $user_agreement;
     public $user_confirm_offers;
+    public $factory_confirm_offers;
     public $confirm_processing_data;
     public $country_id;
     public $city_id;
@@ -132,7 +134,13 @@ class CommonForm extends Model
                 'max' => 255
             ],
             [
-                ['delivery_to_other_cities, user_agreement', 'confirm_processing_data', 'user_confirm_offers'],
+                [
+                    'delivery_to_other_cities',
+                    'user_agreement',
+                    'confirm_processing_data',
+                    'factory_confirm_offers',
+                    'user_confirm_offers'
+                ],
                 'in',
                 'range' => [0, 1]
             ],
@@ -199,6 +207,7 @@ class CommonForm extends Model
             'city_id' => Yii::t('app', 'City'),
             'delivery_to_other_cities' => Yii::t('app', 'Готов к поставкам мебели в другие города'),
             'user_agreement' => Yii::t('app', 'Подтверждаю <a href="/terms-of-use/" target="_blank">пользовательское соглашение</a>'),
+            'factory_confirm_offers' => Yii::t('app', 'Подтверждаю <a href="/offer-for-factories/" target="_blank">оферту</a>'),
             'user_confirm_offers' => Yii::t('app', 'Подтверждаю <a href="/logistician-offers/" target="_blank">оферту</a>'),
             'confirm_processing_data' => Yii::t('app', 'Подтверждаю <a href="/terms-of-use/" target="_blank">обработку моих персональных данных</a>'),
             'factory_package' => Yii::t('app', 'Package'),

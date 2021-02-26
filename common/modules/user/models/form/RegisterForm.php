@@ -7,6 +7,7 @@ use Exception;
 use DomainException;
 use yii\db\mssql\PDO;
 use yii\helpers\ArrayHelper;
+
 //
 use common\modules\user\models\{
     Group, Profile, ProfileLang, User
@@ -14,6 +15,7 @@ use common\modules\user\models\{
 use common\modules\location\models\{
     City, Country
 };
+
 //
 use thread\app\base\models\ActiveRecord;
 
@@ -74,6 +76,7 @@ class RegisterForm extends CommonForm
                     'country_id',
                     'city_id',
                     'user_agreement',
+                    'factory_confirm_offers',
                     'reCaptcha'
                 ],
                 'required',
@@ -88,6 +91,7 @@ class RegisterForm extends CommonForm
                     'country_id',
                     'city_id',
                     'user_agreement',
+                    'factory_confirm_offers',
                     'user_confirm_offers',
                     'reCaptcha'
                 ],
@@ -134,6 +138,13 @@ class RegisterForm extends CommonForm
                 'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
             ],
             [
+                ['factory_confirm_offers'],
+                'required',
+                'on' => ['registerFactory'],
+                'requiredValue' => 1,
+                'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
+            ],
+            [
                 ['confirm_processing_data'],
                 'required',
                 'on' => ['registerPartner'],
@@ -141,7 +152,13 @@ class RegisterForm extends CommonForm
                 'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
             ],
             [
-                ['delivery_to_other_cities', 'user_agreement', 'confirm_processing_data', 'user_confirm_offers'],
+                [
+                    'delivery_to_other_cities',
+                    'user_agreement',
+                    'confirm_processing_data',
+                    'user_confirm_offers',
+                    'factory_confirm_offers'
+                ],
                 'in',
                 'range' => [0, 1]
             ],
@@ -233,6 +250,7 @@ class RegisterForm extends CommonForm
                 'country_id',
                 'city_id',
                 'user_agreement',
+                'factory_confirm_offers',
                 'reCaptcha'
             ],
             'registerLogistician' => [
