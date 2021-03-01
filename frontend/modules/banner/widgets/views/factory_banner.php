@@ -13,7 +13,7 @@ if (!empty($items)) { ?>
 
         <?php foreach ($items as $model) { ?>
             <div class="img-cont">
-                <?php if ($model['lang']['link'] != '') {
+                <?php if (isset($model['lang']) && $model['lang']['link'] != '') {
                     echo Html::a(Html::img($model->getImageLink()), $model['lang']['link'], []);
                 } else {
                     echo Html::img($model->getImageLink());
