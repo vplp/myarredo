@@ -19,7 +19,7 @@ if (!empty($items)) { ?>
                     echo Html::img($model->getImageLink());
                 } ?>
 
-                <?php if ($model['lang']['description'] != '') {
+                <?php if (isset($model['lang']) && $model['lang']['description'] != '') {
                     echo Html::tag('span', $model['lang']['description']);
                 } ?>
             </div>
