@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-//
+use frontend\modules\news\models\Article;
 use frontend\modules\news\models\ArticleForPartners;
 
 /** @var $article ArticleForPartners */
@@ -37,8 +37,8 @@ use frontend\modules\news\models\ArticleForPartners;
 
                         <?= $article['lang']['content'] ?>
 
-                        <?php if ($article->getArticleImage()) {
-                            echo Html::img($article->getArticleImage(), ['class' => '']);
+                        <?php if (Article::isImage($article['image_link'])) {
+                            echo Html::img(Article::getImageThumb($article['image_link']), ['class' => '']);
                         } ?>
 
                     </div>
