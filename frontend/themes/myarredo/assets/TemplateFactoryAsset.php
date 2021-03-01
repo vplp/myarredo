@@ -26,13 +26,14 @@ class TemplateFactoryAsset extends AssetBundle
      * @var array
      */
     public $css = [
+        'css/bootstrap.min.css',
         'libs/nouislider/nouislider.min.css',
         'libs/font-awesome/css/font-awesome.min.css',
         'libs/slick-1.6/slick.css',
         'libs/bootstrap-select/css/bootstrap-select.min.css',
         //'css/fonts.css',
         'libs/fancybox/jquery.fancybox.css',
-        'css/main.scss.min.css',
+        // 'css/main.scss.min.css',
         'css/template-style.min.css',
     ];
 
@@ -49,6 +50,7 @@ class TemplateFactoryAsset extends AssetBundle
         'libs/formstyler/jquery.formstyler.js',
         'libs/fancybox/jquery.fancybox.pack.js',
         'libs/lazyload/lazyload.min.js',
+        'libs/vue/vue.min.js',
         'js/main.js',
     ];
 
