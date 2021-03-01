@@ -46,7 +46,7 @@ class RobotsController extends Controller
             echo 'Disallow: *price=' . PHP_EOL;
             echo 'Disallow: /user/' . PHP_EOL;
             echo 'Disallow: /shop/' . PHP_EOL;
-            //echo 'Disallow: /catalog/*?page=*' . PHP_EOL;
+            echo 'Disallow: *?page=' . PHP_EOL;
             echo 'Disallow: *.svg' . PHP_EOL;
             echo 'Disallow: /uploads/banner/' . PHP_EOL . PHP_EOL;
         }
