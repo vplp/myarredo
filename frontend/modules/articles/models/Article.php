@@ -166,7 +166,7 @@ class Article extends \common\modules\articles\models\Article
      * @param int $height
      * @return string
      */
-    public static function getImageThumb($image_link = '', $width = 290, $height = 190)
+    public static function getImageThumb($image_link = '', $width = 290, $height = 290)
     {
         $module = Yii::$app->getModule('articles');
 
