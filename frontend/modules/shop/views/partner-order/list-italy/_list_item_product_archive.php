@@ -31,12 +31,12 @@ use frontend\modules\catalog\models\ItalianProduct;
             <td colspan="2">
                 <?php if (ItalianProduct::isPublished($orderItem->product['alias'])) {
                     Html::a(
-                        $orderItem->product['lang']['title'],
+                        $orderItem->product->getTitle(),
                         ItalianProduct::getUrl($orderItem->product[Yii::$app->languages->getDomainAlias()]),
                         ['class' => 'productlink']
                     );
                 } else {
-                    echo $orderItem->product['lang']['title'];
+                    echo $orderItem->product->getTitle();
                 } ?>
             </td>
         </tr>

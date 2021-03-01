@@ -23,7 +23,7 @@ use frontend\modules\catalog\models\Product;
         <tr>
             <td colspan="2">
                 <?= Html::a(
-                    $orderItem->product['lang']['title'],
+                    $orderItem->product->getTitle(),
                     Product::getUrl($orderItem->product[Yii::$app->languages->getDomainAlias()]),
                     ['class' => 'productlink']
                 ); ?>

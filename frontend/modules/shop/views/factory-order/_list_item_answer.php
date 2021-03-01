@@ -40,7 +40,7 @@ use frontend\modules\catalog\models\Product;
                         <td><?= Yii::t('app', 'Subject') ?></td>
                         <td>
                             <?= Html::a(
-                                $orderItem->product['lang']['title'],
+                                $orderItem->product->getTitle(),
                                 Product::getUrl($orderItem->product[Yii::$app->languages->getDomainAlias()])
                             ); ?>
                         </td>
