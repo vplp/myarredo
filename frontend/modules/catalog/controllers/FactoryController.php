@@ -362,12 +362,12 @@ class FactoryController extends BaseController
             $model = FactoryFile::findOne(['file_link' => $file]);
 
             if ($model) {
-                $this->title = Yii::t('app', 'Каталог фабрики') . $model['factory']['title'] .
+                $this->title = Yii::t('app', 'Каталог фабрики') .  ' ' . $model['factory']['title'] .
                     ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
 
                 Yii::$app->view->registerMetaTag([
                     'name' => 'description',
-                    'content' => Yii::t('app', 'Каталог итальянской фабрики') .
+                    'content' => Yii::t('app', 'Каталог итальянской фабрики') . ' ' .
                         $model['factory']['title'] .
                         Yii::t('app', 'Представляет модели итальянской мебели. Смотреть каталог онлайн на MyArredo') .
                         ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere()
