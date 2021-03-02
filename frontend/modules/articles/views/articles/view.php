@@ -48,7 +48,7 @@ $keys = Yii::$app->catalogFilter->keys;
                         <?= Yii::t('app', 'Factory') ?>:
                         <?= Html::a(
                             $model['factory']['title'],
-                            Yii::$app->catalogFilter->createUrl([$keys['factory'] => $model['factory']['alias']])
+                            $model['factory']->getUrl()
                         ); ?>
                     </div>
                 <?php } ?>
