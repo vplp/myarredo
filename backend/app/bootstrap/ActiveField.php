@@ -40,7 +40,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
         $this->parts['{input}'] .= FileInput::widget([
             'name' => $name,
             'options' => [
-                'accept' => '.jpeg,.png'
+                'accept' => '.jpg,.jpeg,.png'
             ],
             'pluginOptions' => [
                 'uploadUrl' => Url::toRoute(['fileupload', 'input_file_name' => $name, 'id' => $this->model->id]),
@@ -113,7 +113,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
             'name' => $name,
             'options' => [
                 'multiple' => true,
-                'accept' => '.jpeg,.png'
+                'accept' => '.jpg,.jpeg,.png'
             ],
             'pluginOptions' => ArrayHelper::merge([
                 'uploadUrl' => Url::toRoute(['fileupload', 'input_file_name' => $name]),

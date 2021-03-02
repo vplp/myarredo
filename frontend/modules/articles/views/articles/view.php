@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Html;
 use frontend\modules\articles\models\Article;
 use frontend\modules\articles\widgets\articles\ArticlesList;
 use frontend\themes\myarredo\assets\AppAsset;
@@ -9,6 +10,8 @@ use frontend\themes\myarredo\assets\AppAsset;
 $bundle = AppAsset::register($this);
 
 $this->title = $model['lang']['title'];
+$keys = Yii::$app->catalogFilter->keys;
+
 ?>
 
 <div class="myarredo-blog-wrap">
@@ -21,6 +24,76 @@ $this->title = $model['lang']['title'];
                 <article class="article-textbox" itemprop="articleBody">
                     <?= $model['lang']['content'] ?>
                 </article>
+
+                <?php if ($model['category']) { ?>
+                    <div>
+                        <?= Yii::t('app', 'Category') ?>:
+                        <?php
+                        $paramsUrl = [];
+
+                        if ($model['factory']) {
+                            $paramsUrl[$keys['factory']][] = $model['factory']['alias'];
+                        }
+                        $paramsUrl[$keys['category']] = $model['category']['alias'];
+
+                        echo Html::a(
+                            $model['category']['lang']['title'],
+                            Yii::$app->catalogFilter->createUrl($paramsUrl)
+                        ); ?>
+                    </div>
+                <?php } ?>
+
+                <?php if ($model['factory']) { ?>
+                    <div>
+                        <?= Yii::t('app', 'Factory') ?>:
+                        <?= Html::a(
+                            $model['factory']['title'],
+                            Yii::$app->catalogFilter->createUrl([$keys['factory'] => $model['factory']['alias']])
+                        ); ?>
+                    </div>
+                <?php } ?>
+
+                <div>
+                    <?= Yii::t('app', 'Стили мебели') ?>:
+                    <?php
+                    $array = [];
+                    foreach ($model['styles'] as $item) {
+                        $paramsUrl = [];
+
+                        if ($model['factory']) {
+                            $paramsUrl[$keys['factory']][] = $model['factory']['alias'];
+                        }
+                        $paramsUrl[$keys['style']][] = $item['alias'];
+
+                        $array[] = Html::a(
+                            $item['lang']['title'],
+                            Yii::$app->catalogFilter->createUrl($paramsUrl)
+                        );
+                    }
+                    echo implode('; ', $array);
+                    ?>
+                </div>
+
+                <div>
+                    <?= Yii::t('app', 'Types') ?>:
+                    <?php
+                    $array = [];
+                    foreach ($model['types'] as $item) {
+                        $paramsUrl = [];
+
+                        if ($model['factory']) {
+                            $paramsUrl[$keys['factory']][] = $model['factory']['alias'];
+                        }
+                        $paramsUrl[$keys['type']][] = $item['alias'];
+
+                        $array[] = Html::a(
+                            $item['lang']['title'],
+                            Yii::$app->catalogFilter->createUrl($paramsUrl)
+                        );
+                    }
+                    echo implode('; ', $array);
+                    ?>
+                </div>
             </div>
             <!-- Контент конец -->
 
@@ -46,7 +119,7 @@ $this->title = $model['lang']['title'];
     },
     "headline": "<?= $model['lang']['title'] ?>",
     "image": [
-        "<?= $model->getArticleImage() ?>"
+        "<?= Article::getImageThumb($model['image_link']) ?>"
     ],
     "datePublished": "<?= date('Y-m-d', $model->published_time) ?>",
     "dateModified": "<?= date('Y-m-d', $model->updated_at) ?>",
@@ -63,4 +136,9 @@ $this->title = $model['lang']['title'];
         }
     }
 }
+
+
+
+
+
 </script>

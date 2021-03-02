@@ -135,7 +135,7 @@ class Form extends \yii\bootstrap\ActiveField
             'name' => $name,
             'options' => [
                 'class' => 'file-loading',
-                'accept' => '.jpeg,.png'
+                'accept' => '.jpg,.jpeg,.png'
             ],
             'pluginOptions' => [
                 'uploadUrl' => Url::toRoute(['fileupload', 'input_file_name' => $name]),
@@ -200,7 +200,7 @@ class Form extends \yii\bootstrap\ActiveField
             'options' => [
                 'multiple' => true,
                 'class' => 'file-loading',
-                'accept' => '.jpeg,.png'
+                'accept' => '.jpg,.jpeg,.png'
             ],
             'pluginOptions' => ArrayHelper::merge([
                 'uploadUrl' => Url::toRoute(['fileupload', 'input_file_name' => $name]),

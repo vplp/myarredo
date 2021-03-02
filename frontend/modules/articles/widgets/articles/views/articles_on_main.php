@@ -3,7 +3,6 @@
 use yii\helpers\{
     Url, Html
 };
-//
 use frontend\modules\articles\models\Article;
 
 /** @var $articles Article[] */
@@ -38,7 +37,7 @@ use frontend\modules\articles\models\Article;
                                             <div class="article-item-img">
                                                 <?= Html::img('/', [
                                                     'class' => 'lazy',
-                                                    'data-src' => $article->getArticleImage(),
+                                                    'data-src' => Article::getImageThumb($article['image_link']),
                                                     'width' => '290px',
                                                     'height' => '190px'
                                                 ]) ?>

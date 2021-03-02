@@ -15,7 +15,7 @@ use backend\modules\location\models\City;
 
 echo $form->field($model, 'city_id')
     ->widget(Select2::class, [
-    'data' => City::dropDownList(),
+    'data' => [0 => 'Все города'] + City::dropDownList(),
     'options' => [
         'placeholder' => Yii::t('app', 'Select option'),
         'multiple' => false

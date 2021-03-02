@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-
 use frontend\modules\articles\models\Article;
 
 /** @var $article Article */
@@ -10,9 +9,9 @@ use frontend\modules\articles\models\Article;
 
 <div class="articles_i cf">
     <div class="articles_i_l">
-        <?php if ($article->getArticleImage()) { ?>
+        <?php if (Article::isImage($article['image_link'])) { ?>
             <div class="articles_i_img">
-                <?= Html::img($article->getArticleImage()) ?>
+                <?= Html::img(Article::getImageThumb($article['image_link'])) ?>
             </div>
         <?php } ?>
     </div>

@@ -46,7 +46,7 @@ $this->title = $model['lang']['title'];
     },
     "headline": "<?= $model['lang']['title'] ?>",
     "image": [
-        "<?= $model->getArticleImage() ?>"
+        "<?= Article::getImageThumb($model['image_link']) ?>"
     ],
     "datePublished": "<?= date('Y-m-d', $model->published_time) ?>",
     "dateModified": "<?= date('Y-m-d', $model->updated_at) ?>",

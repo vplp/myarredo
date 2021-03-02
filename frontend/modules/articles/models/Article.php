@@ -4,6 +4,7 @@ namespace frontend\modules\articles\models;
 
 use Yii;
 use yii\helpers\Url;
+use frontend\components\ImageResize;
 
 /**
  * Class Article
@@ -161,9 +162,11 @@ class Article extends \common\modules\articles\models\Article
 
     /**
      * @param string $image_link
-     * @return string|null
+     * @param int $width
+     * @param int $height
+     * @return string
      */
-    public static function getImageThumb($image_link = '')
+    public static function getImageThumb($image_link = '', $width = 290, $height = 290)
     {
         $module = Yii::$app->getModule('articles');
 
@@ -173,7 +176,17 @@ class Article extends \common\modules\articles\models\Article
         $image = null;
 
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-            $image = $url . '/' . $image_link;
+            $thumb = $path . '/thumb_' . $image_link;
+
+            if (is_file($thumb)) {
+                $image = $thumb;
+            } else {
+                $image = $path . '/' . $image_link;
+            }
+
+            // resize
+            $ImageResize = new ImageResize();
+            $image = 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $ImageResize->getThumb($image, $width, $height);
         }
 
         return $image;

@@ -1,12 +1,13 @@
 <?php
 
 use yii\helpers\Html;
+use frontend\modules\news\models\Article;
 
 ?>
 
 <div class="news">
     <figure>
-        <?php if ($article->getArticleImage()) { ?>
+        <?php if (Article::isImage($article['image_link'])) { ?>
             <img src="<?= $article->getArticleImage() ?>"
                  alt="news"
                  srcset="<?= $article->getArticleImage() ?> 620w,
