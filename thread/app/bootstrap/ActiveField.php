@@ -157,7 +157,7 @@ class ActiveField extends \yii\bootstrap\ActiveField
             'name' => $name,
             'options' => [
                 'class' => 'file-loading',
-                'accept' => '.jpeg,.png'
+                'accept' => '.jpg,.jpeg,.png'
             ],
             'pluginOptions' => [
                 'uploadUrl' => Url::toRoute(['fileupload', 'input_file_name' => $name, 'model_id' => $this->model->id]),
