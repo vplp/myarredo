@@ -10,6 +10,7 @@ use frontend\themes\myarredo\assets\AppAsset;
 $bundle = AppAsset::register($this);
 
 $this->title = $model['lang']['title'];
+$keys = Yii::$app->catalogFilter->keys;
 ?>
 
 <div class="myarredo-blog-wrap">
