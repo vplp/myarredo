@@ -17,7 +17,7 @@ use frontend\modules\location\models\{
 <div class="cities-list">
     <div class="container large-container">
         <span class="title-h5"><?= Yii::t('app', 'Этот список городов размещен здесь для вашего удобства. Найдите свой город и купите итальянскую мебель по лучшей цене.') ?></span>
-        <div class="dropdown" style="overflow:hidden;">
+        <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Город
