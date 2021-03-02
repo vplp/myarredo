@@ -126,4 +126,9 @@ class FactoryFile extends ActiveRecord
     {
         return self::find()->orderBy(self::tableName() . '.updated_at DESC');
     }
+
+    public function getFactory()
+    {
+        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
+    }
 }

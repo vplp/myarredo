@@ -11,6 +11,7 @@ use frontend\components\BaseController;
 use frontend\modules\user\models\User;
 use frontend\modules\catalog\models\{
     FactoryCatalogsFiles,
+    FactoryFile,
     Product,
     Factory,
     Sale,
@@ -60,9 +61,9 @@ class FactoryController extends BaseController
                 'etagSeed' => function ($action, $params) {
                     $model = Product::findLastUpdated();
                     return ($model != null && $model['lang']) ? serialize([
-                            $model['title'],
-                            $model['lang']['content']
-                        ]) : '';
+                        $model['title'],
+                        $model['lang']['content']
+                    ]) : '';
                 },
             ];
 
@@ -77,9 +78,9 @@ class FactoryController extends BaseController
                 'etagSeed' => function ($action, $params) {
                     $model = Factory::findByAlias(Yii::$app->request->get('alias'));
                     return ($model != null && $model['lang']) ? serialize([
-                            $model['title'],
-                            $model['lang']['content']
-                        ]) : '';
+                        $model['title'],
+                        $model['lang']['content']
+                    ]) : '';
                 },
             ];
         }
@@ -354,7 +355,25 @@ class FactoryController extends BaseController
     {
         $this->layout = 'pdfjs';
 
-        $this->title = Yii::t('app', 'Итальянская мебель');
+        if (Yii::$app->request->get('file')) {
+            $ext = explode('/', Yii::$app->request->get('file'));
+            $file = end($ext);
+
+            $model = FactoryFile::findOne(['file_link' => $file]);
+
+            if ($model) {
+                $this->title = Yii::t('app', 'Каталог фабрики') . $model['factory']['title'] .
+                    ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
+
+                Yii::$app->view->registerMetaTag([
+                    'name' => 'description',
+                    'content' => Yii::t('app', 'Каталог итальянской фабрики') .
+                        $model['factory']['title'] .
+                        Yii::t('app', 'Представляет модели итальянской мебели. Смотреть каталог онлайн на MyArredo') .
+                        ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere()
+                ]);
+            }
+        }
 
         return $this->render('pdfjs', []);
     }
