@@ -1782,6 +1782,9 @@ h1 {
         font-weight: 300;
         margin-top: 50px;
     }
+    .cities-list .dropdown.open {
+      overflow: initial !important;
+    }
     .footer .list-of-cities {
         display: none;
     }
