@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use frontend\modules\articles\models\Article;
 use frontend\modules\articles\widgets\articles\ArticlesList;
 use frontend\themes\myarredo\assets\AppAsset;
+use frontend\modules\catalog\models\Factory;
 
 /** @var $model Article */
 
@@ -48,7 +49,7 @@ $keys = Yii::$app->catalogFilter->keys;
                         <?= Yii::t('app', 'Factory') ?>:
                         <?= Html::a(
                             $model['factory']['title'],
-                            $model['factory']->getUrl()
+                            Factory::getUrl($model['factory']['alias'])
                         ); ?>
                     </div>
                 <?php } ?>
