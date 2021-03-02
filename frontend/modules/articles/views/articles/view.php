@@ -53,47 +53,52 @@ $keys = Yii::$app->catalogFilter->keys;
                     </div>
                 <?php } ?>
 
-                <div>
-                    <?= Yii::t('app', 'Стили мебели') ?>:
-                    <?php
-                    $array = [];
-                    foreach ($model['styles'] as $item) {
-                        $paramsUrl = [];
+                <?php if ($model['styles']) { ?>
+                    <div>
+                        <?= Yii::t('app', 'Стили мебели') ?>:
+                        <?php
+                        $array = [];
+                        foreach ($model['styles'] as $item) {
+                            $paramsUrl = [];
 
-                        if ($model['factory']) {
-                            $paramsUrl[$keys['factory']][] = $model['factory']['alias'];
+                            if ($model['factory']) {
+                                $paramsUrl[$keys['factory']][] = $model['factory']['alias'];
+                            }
+                            $paramsUrl[$keys['style']][] = $item['alias'];
+
+                            $array[] = Html::a(
+                                $item['lang']['title'],
+                                Yii::$app->catalogFilter->createUrl($paramsUrl)
+                            );
                         }
-                        $paramsUrl[$keys['style']][] = $item['alias'];
+                        echo implode('; ', $array);
+                        ?>
+                    </div>
+                <?php } ?>
 
-                        $array[] = Html::a(
-                            $item['lang']['title'],
-                            Yii::$app->catalogFilter->createUrl($paramsUrl)
-                        );
-                    }
-                    echo implode('; ', $array);
-                    ?>
-                </div>
+                <?php if ($model['types']) { ?>
+                    <div>
+                        <?= Yii::t('app', 'Types') ?>:
+                        <?php
+                        $array = [];
+                        foreach ($model['types'] as $item) {
+                            $paramsUrl = [];
 
-                <div>
-                    <?= Yii::t('app', 'Types') ?>:
-                    <?php
-                    $array = [];
-                    foreach ($model['types'] as $item) {
-                        $paramsUrl = [];
+                            if ($model['factory']) {
+                                $paramsUrl[$keys['factory']][] = $model['factory']['alias'];
+                            }
+                            $paramsUrl[$keys['type']][] = $item['alias'];
 
-                        if ($model['factory']) {
-                            $paramsUrl[$keys['factory']][] = $model['factory']['alias'];
+                            $array[] = Html::a(
+                                $item['lang']['title'],
+                                Yii::$app->catalogFilter->createUrl($paramsUrl)
+                            );
                         }
-                        $paramsUrl[$keys['type']][] = $item['alias'];
+                        echo implode('; ', $array);
+                        ?>
+                    </div>
+                <?php } ?>
 
-                        $array[] = Html::a(
-                            $item['lang']['title'],
-                            Yii::$app->catalogFilter->createUrl($paramsUrl)
-                        );
-                    }
-                    echo implode('; ', $array);
-                    ?>
-                </div>
             </div>
             <!-- Контент конец -->
 
@@ -136,6 +141,7 @@ $keys = Yii::$app->catalogFilter->keys;
         }
     }
 }
+
 
 
 
