@@ -9,6 +9,8 @@ use frontend\modules\shop\models\Order;
 /**
  * @var $pages Pagination
  * @var $modelOrder Order
+ * @var $params array
+ * @var $model array
  * @var $models Order[]
  */
 

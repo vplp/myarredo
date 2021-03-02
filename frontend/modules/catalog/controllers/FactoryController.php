@@ -354,6 +354,8 @@ class FactoryController extends BaseController
     {
         $this->layout = 'pdfjs';
 
+        $this->title = Yii::t('app', 'Итальянская мебель');
+
         return $this->render('pdfjs', []);
     }
 }
