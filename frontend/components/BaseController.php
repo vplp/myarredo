@@ -158,7 +158,8 @@ abstract class BaseController extends Controller
     {
         if (Yii::$app->controller->action->id != 'error' &&
             !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'category', 'product', 'sale-italy', 'sale']) &&
-            in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161])
+            in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161]) &&
+            !in_array(Yii::$app->controller->module->id, ['news'])
         ) {
             $languages = Language::getAllByLocate();
             $current_url = Yii::$app->request->url;
