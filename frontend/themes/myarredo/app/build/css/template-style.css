@@ -11449,6 +11449,10 @@ footer .partner-cities ul {
   top: 21px;
   left: -1px;
 }
+.product-title + .prod-novelty {
+  top: 71px;
+  left: 14px;
+}
 .table.table-totalorder {
   width: auto;
   margin-top: 35px;

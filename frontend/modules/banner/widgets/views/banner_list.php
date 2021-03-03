@@ -24,7 +24,7 @@ if (!empty($items)) { ?>
     <div class="home-top-slider">
         <div class="img-cont">
             <a href="<?= $firstFrameLink; ?>">
-                <img src="<?= $firstFrameSrc; ?>" alt="">
+                <img width="1600" height="560" src="<?= $firstFrameSrc; ?>" alt="">
             </a>
         </div>
     </div>

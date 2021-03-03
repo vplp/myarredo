@@ -313,7 +313,7 @@ $this->title = $this->context->title;
                                     <div class="title">
                                         1
                                         <div class="img-cont">
-                                            <?= Html::img($bundle->baseUrl . '/img/num1.svg') ?>
+                                            <?= Html::img($bundle->baseUrl . '/img/num1.svg',  ['width' => '105', 'height' => '105']) ?>
                                         </div>
                                     </div>
                                     <div class="descr">
@@ -327,7 +327,7 @@ $this->title = $this->context->title;
                                     <div class="title">
                                         2
                                         <div class="img-cont">
-                                            <?= Html::img($bundle->baseUrl . '/img/num2.svg') ?>
+                                            <?= Html::img($bundle->baseUrl . '/img/num2.svg',  ['width' => '105', 'height' => '105']) ?>
                                         </div>
                                     </div>
                                     <div class="descr">
@@ -341,7 +341,7 @@ $this->title = $this->context->title;
                                     <div class="title">
                                         3
                                         <div class="img-cont" style="margin-top: 0;">
-                                            <?= Html::img($bundle->baseUrl . '/img/num3.svg') ?>
+                                            <?= Html::img($bundle->baseUrl . '/img/num3.svg',  ['width' => '105', 'height' => '105']) ?>
                                         </div>
                                     </div>
                                     <div class="descr">
@@ -352,7 +352,7 @@ $this->title = $this->context->title;
                                     <div class="title">
                                         4
                                         <div class="img-cont">
-                                            <?= Html::img($bundle->baseUrl . '/img/num4.svg') ?>
+                                            <?= Html::img($bundle->baseUrl . '/img/num4.svg',  ['width' => '105', 'height' => '105']) ?>
                                         </div>
                                     </div>
                                     <div class="descr">
@@ -363,7 +363,7 @@ $this->title = $this->context->title;
                                     <div class="title">
                                         5
                                         <div class="img-cont">
-                                            <?= Html::img($bundle->baseUrl . '/img/num5.svg') ?>
+                                            <?= Html::img($bundle->baseUrl . '/img/num5.svg',  ['width' => '105', 'height' => '105']) ?>
                                         </div>
                                     </div>
                                     <div class="descr">
