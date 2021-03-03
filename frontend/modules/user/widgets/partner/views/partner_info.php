@@ -26,7 +26,7 @@ $image_link = $partner['profile']['image_link']
             ) { ?>
                 <?php if ($this->beginCache('PartnerInfoUser' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) { ?>
                     <div class="ico">
-                        <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
+                        <?= Html::img($bundle->baseUrl . '/img/phone.svg', ['width' => '36', 'height' => '31']) ?>
                     </div>
                     <p><?= Yii::t('app', 'Администрация проекта') ?></p>
 
@@ -52,7 +52,7 @@ $image_link = $partner['profile']['image_link']
 
                 <?php if ($this->beginCache('PartnerInfoUserGuest' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) { ?>
                     <div class="ico">
-                        <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
+                        <?= Html::img($bundle->baseUrl . '/img/phone.svg',['width' => '36', 'height' => '31']) ?>
                     </div>
 
                     <meta itemprop="name" content="<?= Html::encode($partner['profile']->getNameCompany()) ?>"/>
@@ -62,7 +62,7 @@ $image_link = $partner['profile']['image_link']
                     <p class="num" itemprop="telephone"><?= Yii::$app->partner->getPartnerPhone() ?></p>
 
                     <div class="ico">
-                        <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
+                        <?= Html::img($bundle->baseUrl . '/img/marker-map.png', ['width' => '34', 'height' => '28']) ?>
                     </div>
 
                     <div class="stud" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
@@ -90,4 +90,3 @@ $image_link = $partner['profile']['image_link']
 </div>
 
 <div class="cont-bg custom-lazy" data-background="<?= $image_link ?>"></div>
-

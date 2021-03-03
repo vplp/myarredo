@@ -9905,7 +9905,11 @@ footer .partner-cities ul {
     .prod-card-page .info-table td:last-child {
       font-size: 12px; }
   .prod-card-page .prod-model {
-    margin: 0 0 20px; }
+    margin: 0 0 30px; }
+    .product-title+.prod-novelty {
+      top: 52px;
+
+    }
   .prod-card-page .numbers .one-number {
     max-width: none; }
   .prod-card-page .numbers .slick-dots {
@@ -11452,6 +11456,25 @@ footer .partner-cities ul {
 .product-title + .prod-novelty {
   top: 71px;
   left: 14px;
+  z-index: 5;
+}
+@media (max-width:768px){
+  .product-title + .prod-novelty {
+  top: 27px;
+  }
+  .prod-card-page .prod-model {
+    max-height: 25px;
+    overflow: hidden;
+  }
+}
+@media (max-width:350px){
+  .product-title + .prod-novelty {
+  top: 50px;
+  }
+  .prod-card-page .prod-model {
+    max-height: 50px;
+    overflow: hidden;
+  }
 }
 .table.table-totalorder {
   width: auto;
@@ -14041,6 +14064,7 @@ body .concact-page .one-cont .cont-info-row a {
 
 /* max 768px */
 @media(max-width: 768px) {
+
   .nosearch-panel {
     margin-left: auto;
     margin-right: auto;
@@ -14081,6 +14105,7 @@ body .concact-page .one-cont .cont-info-row a {
   .salonesbox {
     display: none;
   }
+
 }
 @media (max-width: 767px) {
   .factory-page .text iframe {

@@ -41,7 +41,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
                 } else { ?>
                     <div class="white-stripe">
                         <div class="icon">
-                            <img src="<?= $bundle->baseUrl ?>/img/markers.svg" alt="">
+                            <img width="45" height="30" src="<?= $bundle->baseUrl ?>/img/markers.svg" alt="">
                         </div>
 
                         <?= Html::a(
