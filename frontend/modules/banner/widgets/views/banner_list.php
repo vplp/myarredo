@@ -61,7 +61,7 @@ function renderSlider(data) {
 
         if (elem.langLink != '') {
             layut += '<a href="'+ elem.langLink +'">' +
-                    '<img  src="'+ link +'" alt="">' +
+                    '<img width="1600" height="560" src="'+ link +'" alt="">' +
                 '</a>';
         }
         else {
