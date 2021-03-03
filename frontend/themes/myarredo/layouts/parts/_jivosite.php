@@ -5,7 +5,37 @@ use yii\web\View;
 /** @var $this \yii\web\View */
 
 if (Yii::$app->city->getJivosite() && Yii::$app->getUser()->isGuest) {
-    echo ' <script src="' . Yii::$app->city->getJivosite() . '" async></script>';
+    $src = Yii::$app->city->getJivosite();
+
+    $script = <<<JS
+(function () {
+var d = document;
+var w = window;
+
+function l() {
+    setTimeout(function () {
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = '$src';
+        var ss = document.getElementsByTagName('script')[0];
+        ss.parentNode.insertBefore(s, ss);
+    }, 5000);
+}
+
+if (d.readyState == 'complete') {
+    l();
+} else {
+    if (w.attachEvent) {
+        w.attachEvent('onload', l);
+    } else {
+        w.addEventListener('load', l, false);
+    }
+}
+})();
+JS;
+
+    $this->registerJs($script, View::POS_END);
 }
 
 /*
