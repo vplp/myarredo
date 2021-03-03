@@ -14,10 +14,10 @@ if (!empty($items)) {
         <div class="img-cont">
             <?php if ($model['lang']['link']) { ?>
                 <a href="<?= $model['lang']['link'] ?? '' ?>">
-                    <img src="<?= $model->getImageThumb(); ?>" alt="">
+                    <img width="375" height="162" src="<?= $model->getImageThumb(); ?>" alt="">
                 </a>
             <?php } else { ?>
-                <img src="<?= $model->getImageThumb(); ?>" alt="">
+                <img width="375" height="162" src="<?= $model->getImageThumb(); ?>" alt="">
             <?php } ?>
 
             <span><?= $model['lang']['description'] ?? ''; ?></span>
