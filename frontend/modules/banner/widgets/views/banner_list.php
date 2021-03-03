@@ -61,11 +61,11 @@ function renderSlider(data) {
 
         if (elem.langLink != '') {
             layut += '<a href="'+ elem.langLink +'">' +
-                    '<img src="'+ link +'" alt="">' +
+                    '<img  src="'+ link +'" alt="">' +
                 '</a>';
         }
         else {
-            layut += '<img src="'+ link +'" alt="">';
+            layut += '<img width="1600" height="560" src="'+ link +'" alt="">';
         }
         if (elem.langDescr != '') {
             layut += '<span>'+ elem.langDescr +'</span>';
