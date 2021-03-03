@@ -68,7 +68,8 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
             <div class="bot-list">
                 <?php if (DOMAIN_NAME == 'myarredo' && Yii::$app->controller->action->id != 'error' &&
                     in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de', 'co.il']) &&
-                    !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale', 'news'])
+                    !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale']) &&
+                    !in_array(Yii::$app->controller->module->id, ['news'])
                 ) { ?>
                     <div class="one-list-cont lang-cont">
                         <?= LangSwitch::widget(['view' => 'lang_switch_mobile', 'noIndex' => $this->context->noIndex]) ?>

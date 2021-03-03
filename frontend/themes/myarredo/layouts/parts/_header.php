@@ -63,7 +63,8 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
                         <?php if (DOMAIN_NAME == 'myarredo' && Yii::$app->controller->action->id != 'error' &&
                             in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de', 'co.il']) &&
-                            !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale', 'news'])
+                            !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale']) &&
+                            !in_array(Yii::$app->controller->module->id, ['news'])
                         ) { ?>
                             <div class="lang-selector">
                                 <?= LangSwitch::widget(['noIndex' => $this->context->noIndex]) ?>
@@ -123,7 +124,8 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
                         <?php if (DOMAIN_NAME == 'myarredo' && Yii::$app->controller->action->id != 'error' &&
                             in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de', 'co.il']) &&
-                            !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale', 'news'])
+                            !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale']) &&
+                            !in_array(Yii::$app->controller->module->id, ['news'])
                         ) { ?>
                             <div class="lang-selector">
                                 <?= LangSwitch::widget(['noIndex' => $this->context->noIndex]) ?>
@@ -382,7 +384,8 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
             <?php if (DOMAIN_NAME == 'myarredo' && Yii::$app->controller->action->id != 'error' &&
                 in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de', 'co.il']) &&
-                !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale', 'news'])
+                !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale']) &&
+                !in_array(Yii::$app->controller->module->id, ['news'])
             ) { ?>
                 <div class="header-langbox">
                     <?= LangSwitch::widget(['view' => 'lang_switch_mobile', 'noIndex' => $this->context->noIndex]) ?>
