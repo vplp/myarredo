@@ -90,7 +90,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
                     <div class="logo-reg">
 
                         <?= Html::a(
-                            Html::img($bundle->baseUrl . '/img/logo.svg'),
+                            Html::img($bundle->baseUrl . '/img/logo.svg', ['width' => '233', 'height' => '33']),
                             Yii::$app->controller->id != 'home' ? Url::toRoute('/home/home/index') : null,
                             ['class' => 'logo']
                         ) ?>

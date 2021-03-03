@@ -45,7 +45,7 @@ $bundle = AppAsset::register($this);
                                             ); ?>
                                             <div class="cont-info-row">
                                                 <div class="ico">
-                                                    <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
+                                                    <?= Html::img($bundle->baseUrl . '/img/phone.svg', ['width' => '36', 'height' => '31']) ?>
                                                 </div>
 
                                                 <?= Html::a(
