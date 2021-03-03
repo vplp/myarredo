@@ -66,6 +66,15 @@ $this->title = $this->context->title;
                                     ['class' => 'prod-model', 'itemprop' => 'name']
                                 ); ?>
                             </div>
+
+                            <?php if ($model['bestseller']) { ?>
+                                <div class="prod-bestseller"><?= Yii::t('app', 'Bestseller') ?></div>
+                            <?php } ?>
+
+                            <?php if ($model['novelty']) { ?>
+                                <div class="prod-novelty"><?= Yii::t('app', 'Novelty') ?></div>
+                            <?php } ?>
+
                             <div class="prod-info-table">
                                 <div class="price-availability tobox" itemprop="offers" itemscope
                                      itemtype="http://schema.org/Offer">
