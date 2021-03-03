@@ -310,17 +310,21 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             <span class="for-fcicon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
             <span class="for-fctext"><?= Yii::t('app', 'Напишите нам') ?></span>
         </div>
-        <div class="phone-container">
-            <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'de', 'kz', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+
+        <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'de', 'kz', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+            <div class="phone-container">
                 <a href="tel:+<?= $clearPhoneNumb ?>" class="phone-num">
                     <?= Yii::$app->partner->getPartnerPhone() ?>
                 </a>
-            <?php } elseif (Yii::$app->getUser()->isGuest && in_array(DOMAIN_TYPE, ['com']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+            </div>
+        <?php } elseif (Yii::$app->getUser()->isGuest && in_array(DOMAIN_TYPE, ['com']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+            <div class="phone-container">
                 <a href="tel:+3904221500215" class="phone-num">
                     +39 (0422) 150-02-15
                 </a>
-            <?php } ?>
-        </div>
+            </div>
+        <?php } ?>
+
     </div>
     <div class="mobmenu-serch-part">
         <?php
