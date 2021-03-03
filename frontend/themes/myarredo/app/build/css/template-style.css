@@ -9908,6 +9908,7 @@ footer .partner-cities ul {
     margin: 0 0 30px; }
     .product-title+.prod-novelty {
       top: 52px;
+
     }
   .prod-card-page .numbers .one-number {
     max-width: none; }
@@ -11455,6 +11456,7 @@ footer .partner-cities ul {
 .product-title + .prod-novelty {
   top: 71px;
   left: 14px;
+  z-index: 5;
 }
 @media (max-width:768px){
   .product-title + .prod-novelty {
