@@ -58,6 +58,11 @@ class Product extends ProductModel implements BaseBackendSearchModel
             'pagination' => [
                 'defaultPageSize' => $module->itemOnPage
             ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC
+                ]
+            ]
         ]);
 
         $query->andFilterWhere([
