@@ -40,7 +40,8 @@ $this->title = $this->context->title;
                             ]); ?>
 
                             <div class="img-cont">
-                                <?= Html::img(Factory::getImageThumb($item['factory']['image_link'])) ?>
+                                <?= Html::img(Factory::getImageThumb($item['factory']['image_link']),['width' => '317',
+            'height' => '188']) ?>
                                 <div class="brand">
                                     <?= Yii::t('app', 'Просмотры') ?>: <?= $item['views'] ?>
                                     <?= Yii::t('app', 'Заявки') ?>: <?= $item['requests'] ?>

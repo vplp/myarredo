@@ -6143,7 +6143,7 @@ footer .partner-cities ul {
     border: 1px solid #BDBCB3; }
 
 .prod-card-page .prod-model {
-  margin: 0 0 25px 0;
+  margin: 0 0 15px 0;
   font-size: 33px;
   color: #535351;
   font-weight: 600; }
@@ -9904,8 +9904,8 @@ footer .partner-cities ul {
       font-size: 11px; }
     .prod-card-page .info-table td:last-child {
       font-size: 12px; }
-  .prod-card-page .prod-model {
-    margin: 0 0 30px; }
+  /* .prod-card-page .prod-model {
+    margin: 0 0 15px; } */
     .product-title+.prod-novelty {
       top: 52px;
 
@@ -11454,12 +11454,12 @@ footer .partner-cities ul {
   left: -1px;
 }
 .product-title + .prod-novelty {
-
-  top: 71px;
-  left: 14px;
+  position: initial;
+  margin-bottom: 10px;
+  width: 40px;
   z-index: 5;
 }
-.prod-card-page .prod-model {
+/* .prod-card-page .prod-model {
   height: 72px;
   overflow: hidden;
 }
@@ -11487,7 +11487,9 @@ footer .partner-cities ul {
     max-height: 50px;
     overflow: hidden;
   }
-}
+} */
+
+
 .table.table-totalorder {
   width: auto;
   margin-top: 35px;

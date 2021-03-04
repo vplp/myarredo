@@ -59,7 +59,7 @@ $images = $model->getGalleryImageThumb();
                         <div class="last-sale-info">
                             <div class="last-sale-left">
                                 <?php if ($images) {
-                                    echo Html::img($images[0]['thumb'], ['alt' => Product::getImageAlt($model), 'class' => 'last-sale-img']);
+                                    echo Html::img($images[0]['thumb'], ['alt' => Product::getImageAlt($model), 'class' => 'last-sale-img', 'loading' => 'lazy', 'width' => '180', 'height' => '124']);
                                 } ?>
                             </div>
                             <div class="last-sale-right">

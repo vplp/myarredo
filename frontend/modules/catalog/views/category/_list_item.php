@@ -43,6 +43,8 @@ $bestsellers = $bestsellers ?? [];
         <?= Html::img('/', [
             'alt' => Product::getStaticTitleForList($model),
             'class' => 'lazy',
+            'width' => '317',
+            'height' => '188',
             'data-src' => Product::getImageThumb($model['image_link'])
         ]) ?>
     </div>
