@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\models;
 
+use frontend\components\ImageResize;
 use Yii;
 
 /**
@@ -87,6 +88,32 @@ class Samples extends \common\modules\catalog\models\Samples
 
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image = 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $url . '/' . $image_link;
+        }
+
+        return $image;
+    }
+
+    /**
+     * @param string $image_link
+     * @param int $width
+     * @param int $height
+     * @return string|null
+     */
+    public static function getImageThumb($image_link = '', $width = 310, $height = 240)
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getSamplesUploadPath();
+
+        $image = null;
+
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = $path . '/' . $image_link;
+
+            // resize
+            $ImageResize = new ImageResize();
+            $image = 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $ImageResize->getThumb($image, $width, $height);
         }
 
         return $image;

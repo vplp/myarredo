@@ -226,7 +226,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                     if (Samples::isImage($item['image_link'])) {
                         echo Html::beginTag('li') .
                             Html::a(
-                                Html::img(Samples::getImage($item['image_link']))
+                                Html::img(Samples::getImageThumb($item['image_link']))
                                 . Html::tag('span', $item['lang']['title'], ['class' => 'for-catalog-list']),
                                 Samples::getImage($item['image_link']),
                                 ['target' => '_blank']

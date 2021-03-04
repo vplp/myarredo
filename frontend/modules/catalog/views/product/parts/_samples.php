@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-//
 use frontend\modules\catalog\models\Samples;
 
 /** @var $samples Samples[] */
@@ -14,7 +13,7 @@ use frontend\modules\catalog\models\Samples;
         <?php foreach ($samples as $model) { ?>
             <div class="col-md-3">
                 <?= Html::a(
-                    Html::img(Samples::getImage($model['image_link'])),
+                    Html::img(Samples::getImageThumb($model['image_link'])),
                     Samples::getImage($model['image_link']),
                     ['class' => 'show-modal']
                 ) ?>
