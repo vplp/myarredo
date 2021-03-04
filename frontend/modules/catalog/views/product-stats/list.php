@@ -42,7 +42,8 @@ $this->title = $this->context->title;
                         ]); ?>
 
                         <div class="img-cont">
-                            <?= Html::img(Product::getImageThumb($item['product']['image_link'])) ?>
+                            <?= Html::img(Product::getImageThumb($item['product']['image_link']),['width' => '317',
+            'height' => '188']) ?>
                             <div class="brand">
                                 <?= Yii::t('app', 'Просмотры') ?>: <?= $item['views'] ?>
                                 <?= Yii::t('app', 'Заявки') ?>: <?= $item['requests'] ?>
