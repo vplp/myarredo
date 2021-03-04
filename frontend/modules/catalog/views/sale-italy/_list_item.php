@@ -27,6 +27,8 @@ use frontend\modules\catalog\models\ItalianProduct;
         <?= Html::img('/', [
             'alt' => $model->getTitleForList(),
             'class' => 'lazy',
+            'width' => '317',
+            'height' => '188',
             'data-src' => ItalianProduct::getImageThumb($model['image_link'])
         ]) ?>
     </div>

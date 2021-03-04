@@ -24,7 +24,7 @@ if (!empty($products)) { ?>
                             ) ?>
 
                             <div class="img-cont">
-                                <?= Html::img($modelClass::getImageThumb($model['image_link']), ['loading' => 'lazy']) ?>
+                                <?= Html::img($modelClass::getImageThumb($model['image_link']), ['loading' => 'lazy', 'width' => '250', 'height' => '250']) ?>
                                 <span class="background"></span>
                             </div>
 

@@ -30,6 +30,8 @@ use frontend\modules\catalog\models\{
         <?= Html::img('/', [
             'alt' => $model['lang']['title'],
             'class' => 'lazy',
+            'width' => '317',
+            'height' => '188',
             'data-src' => ItalianProduct::getImageThumb($model['image_link'])
         ]) ?>
     </div>

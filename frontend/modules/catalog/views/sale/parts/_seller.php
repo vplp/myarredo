@@ -19,7 +19,7 @@ use frontend\modules\catalog\widgets\sale\SaleRequestForm;
                     <?= $model['user']['profile']->getNameCompany(); ?>
                 </h4>
                 <div class="ico">
-                    <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
+                    <?= Html::img($bundle->baseUrl . '/img/phone.svg', ['width' => '36', 'height' => '31']) ?>
                 </div>
                 <div class="tel-num js-show-num">
                     (XXX) XXX-XX-XX
@@ -30,7 +30,7 @@ use frontend\modules\catalog\widgets\sale\SaleRequestForm;
                 ]); ?>
 
                 <div class="ico">
-                    <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
+                    <?= Html::img($bundle->baseUrl . '/img/marker-map.png', ['width' => '34', 'height' => '28']) ?>
                 </div>
                 <div class="text-center adress">
                     <?= $model['user']['profile']['city']['lang']['title']; ?>,<br>

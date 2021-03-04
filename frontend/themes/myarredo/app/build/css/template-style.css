@@ -11454,10 +11454,22 @@ footer .partner-cities ul {
   left: -1px;
 }
 .product-title + .prod-novelty {
+
   top: 71px;
   left: 14px;
   z-index: 5;
 }
+.prod-card-page .prod-model {
+  height: 72px;
+  overflow: hidden;
+}
+@media (max-width:1200px){
+  .prod-card-page .prod-model {
+    height: 72px;
+    overflow: hidden;
+  }
+}
+
 @media (max-width:768px){
   .product-title + .prod-novelty {
   top: 27px;
