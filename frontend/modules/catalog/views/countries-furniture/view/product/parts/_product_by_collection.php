@@ -50,7 +50,7 @@ $keys = Yii::$app->catalogFilter->keys;
                             ); ?>
 
                             <div class="img-cont">
-                                <?= Html::img(Product::getImageThumb($model['image_link'])); ?>
+                                <?= Html::img(Product::getImageThumb($model['image_link']),['width' => '250', 'height' => '250'] ); ?>
                                 <span class="background"></span>
                             </div>
 

@@ -26,6 +26,8 @@ $hostInfo = $hostInfo ?? Yii::$app->request->hostInfo;
         <?= Html::img('/', [
             'alt' => $model->getTitle(),
             'class' => 'lazy',
+            'width' => '317',
+            'height' => '188',
             'data-src' => Sale::getImageThumb($model['image_link'])
         ]); ?>
     </div>
