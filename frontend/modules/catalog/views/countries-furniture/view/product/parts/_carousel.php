@@ -29,7 +29,7 @@ use frontend\modules\catalog\models\Product;
                     Html::tag('link', '', ['itemprop' => 'contentUrl', 'href' => $src['img']]) .
                     Html::tag('meta', '', ['itemprop' => 'description', 'content' => strip_tags($model['lang']['description'])]) .
                     Html::a(
-                        Html::img($src['thumb'], ['alt' => $model->getTitle()]),
+                        Html::img($src['thumb'], ['alt' => $model->getTitle(), 'width'=> '555', 'height' => '382', 'class' => '111']),
                         $src['img'],
                         [
                             'class' => 'img-cont fancyimage',
@@ -46,7 +46,7 @@ use frontend\modules\catalog\models\Product;
                         'data-dominant-color' => '',
                     ]) .
                     Html::a(
-                        Html::img($src['thumb']),
+                        Html::img($src['thumb'],['width'=> '555', 'height' => '382', 'class' => '111']),
                         $src['img'],
                         [
                             'class' => 'img-cont fancyimage',
@@ -78,9 +78,9 @@ use frontend\modules\catalog\models\Product;
                     <span class="background"></span>
                     <?php if ($key == 0) {
                         echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
-                            Html::img($src['thumb'], ['alt' => $model->getTitle()]);
+                            Html::img($src['thumb'], ['alt' => $model->getTitle(),'width'=> '138', 'height' => '95', 'class' => '22']);
                     } else {
-                        echo Html::img($src['thumb'], ['alt' => $model->getTitle()]);
+                        echo Html::img($src['thumb'], ['alt' => $model->getTitle(),'width'=> '138', 'height' => '95', 'class' => '22']);
                     } ?>
                 </div>
             <?php } ?>
