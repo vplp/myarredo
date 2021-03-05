@@ -1,11 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-//
 use frontend\modules\catalog\models\Product;
 
-/** @var $modelProduct */
-
+/**
+ * @var $modelProduct
+ * @var $model Product
+ */
 $keys = Yii::$app->catalogFilter->keys;
 
 ?>
@@ -47,12 +48,12 @@ $keys = Yii::$app->catalogFilter->keys;
                             ); ?>
 
                             <div class="img-cont">
-                                <?= Html::img(Product::getImageThumb($model['image_link']), ['loading' => 'lazy', 'width' => '250', 'height' => '250'], ); ?>
+                                <?= Html::img(Product::getImageThumb($model['image_link']), ['loading' => 'lazy', 'width' => '250', 'height' => '250'],); ?>
                                 <span class="background"></span>
                             </div>
 
                             <div class="add-item-text">
-                                <?= $model['lang']['title']; ?>
+                                <?= $model->getTitle(); ?>
                             </div>
 
                             <?= Html::endTag('a'); ?>
