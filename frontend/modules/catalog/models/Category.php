@@ -53,7 +53,7 @@ class Category extends \common\modules\catalog\models\Category
      */
     public static function findBase()
     {
-        return parent::findBase()->asArray()->enabled();
+        return self::find()->innerJoinWith(['lang'])->asArray()->enabled();
     }
 
     /**
