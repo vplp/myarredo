@@ -58,7 +58,15 @@ $bestsellers = $bestsellers ?? [];
         </div>
     </div>
 
-    <?php if (Yii::$app->request->get('page') == false && Yii::$app->city->isShowPrice() && !$model['removed'] && $model['price_from'] > 0) { ?>
+    <?php if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'partner']) && Yii::$app->city->isShowPrice() && !$model['removed'] && $model['price_from'] > 0) { ?>
+        <div class="prod-pricebox">
+            <?= Yii::t('app', 'Цена от') ?><span>&#126;</span>
+            <span class="for-green">
+                    <?= Yii::$app->currency->getValue($model['price_from'], $model['currency']) ?>
+                    &nbsp;<span class="currency"><?= Yii::$app->currency->symbol ?></span>
+                </span>
+        </div>
+    <?php } elseif (Yii::$app->request->get('page') == false && Yii::$app->city->isShowPrice() && !$model['removed'] && $model['price_from'] > 0) { ?>
         <div class="prod-pricebox">
             <?= Yii::t('app', 'Цена от') ?><span>&#126;</span>
             <span class="for-green">
