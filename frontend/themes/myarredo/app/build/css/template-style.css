@@ -11454,9 +11454,10 @@ footer .partner-cities ul {
   left: -1px;
 }
 .product-title + .prod-novelty {
+  display: inline-block;
+  padding: 0px 5px;
   position: initial;
   margin-bottom: 10px;
-  width: 40px;
   z-index: 5;
 }
 /* .prod-card-page .prod-model {
