@@ -353,7 +353,7 @@ $this->title = $this->context->title;
                         <div>
                             <div class="after-text">
                                 <div class="img-container">
-                                    <?= Html::img($bundle->baseUrl . '/img/hand.svg') ?>
+                                    <?= Html::img($bundle->baseUrl . '/img/hand.svg', ['width' => '290', 'height' => '60', 'loading' => 'lazy']) ?>
                                 </div>
                                 <div class="text-contain">
                                     <?= Yii::t('app', 'Экономьте время и усилия на поиск по множеству сайтов. Все лучшие и проверенные поставщики собраны в нашей сети.') ?>
