@@ -38,7 +38,7 @@ class Sale extends \common\modules\catalog\models\Sale
      */
     public static function findBase()
     {
-        $query = parent::findBase();
+        $query = self::find()->innerJoinWith(['lang']);
 
         if (Yii::$app->controller->id == 'partner-sale') {
             $query
