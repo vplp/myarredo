@@ -17,7 +17,7 @@ $bundle = AppAsset::register($this);
 $partner = Yii::$app->partner->getPartner();
 $city = Yii::$app->city->getCity();
 
-$image_link = $partner['profile']['image_link']
+$image_link = isset($partner['profile']['image_link'])
     ? $partner['profile']['imageLink']
     : $bundle->baseUrl . '/img/cont-photo-bg.jpg';
 ?>

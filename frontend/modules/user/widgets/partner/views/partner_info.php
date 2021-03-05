@@ -10,7 +10,7 @@ $bundle = AppAsset::register($this);
 /** @var $partner User */
 /** @var $city City */
 
-$image_link = $partner['profile']['image_link']
+$image_link = isset($partner['profile']['image_link'])
     ? $partner['profile']['imageLink']
     : $bundle->baseUrl . '/img/cont-photo-bg.jpg';
 ?>
