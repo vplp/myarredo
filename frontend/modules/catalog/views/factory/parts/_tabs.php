@@ -227,7 +227,11 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                         echo Html::beginTag('li') .
                             Html::a(
                                 Html::img(Samples::getImageThumb($item['image_link']))
-                                . Html::tag('span', $item['lang']['title'], ['class' => 'for-catalog-list']),
+                                . Html::tag(
+                                    'span',
+                                    isset($item['lang']['title']) ? $item['lang']['title'] : '',
+                                    ['class' => 'for-catalog-list']
+                                ),
                                 Samples::getImage($item['image_link']),
                                 ['target' => '_blank']
                             ) .
