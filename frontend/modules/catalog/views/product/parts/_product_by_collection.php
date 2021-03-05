@@ -53,7 +53,7 @@ $keys = Yii::$app->catalogFilter->keys;
                             </div>
 
                             <div class="add-item-text">
-                                <?= $model->getTitle(); ?>
+                                <?= isset($model['lang']) ? $model['lang']['title'] : ''; ?>
                             </div>
 
                             <?= Html::endTag('a'); ?>
