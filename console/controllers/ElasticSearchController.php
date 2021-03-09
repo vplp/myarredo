@@ -99,13 +99,16 @@ class ElasticSearchController extends Controller
                     $saveLang = [];
 
                     foreach ($languages as $lang) {
-                        Yii::$app->language = $lang['local'];
+                        $lang = substr($lang['local'], 0, 2);
+                        if (in_array($lang, ['uk', 'ru', 'en', 'it'])) {
+                            Yii::$app->language = $lang['local'];
 
-                        /** @var $product Product */
-                        $product = Product::findByID($model->id);
+                            /** @var $product Product */
+                            $product = Product::findByID($model->id);
 
-                        if (!empty($product->lang)) {
-                            $saveLang[] = ElasticSearchProduct::addRecord($product);
+                            if (!empty($product->lang)) {
+                                $saveLang[] = ElasticSearchProduct::addRecord($product);
+                            }
                         }
                     }
 
@@ -164,13 +167,16 @@ class ElasticSearchController extends Controller
                     $saveLang = [];
 
                     foreach ($languages as $lang) {
-                        Yii::$app->language = $lang['local'];
+                        $lang = substr($lang['local'], 0, 2);
+                        if (in_array($lang, ['uk', 'ru', 'en', 'it'])) {
+                            Yii::$app->language = $lang['local'];
 
-                        /** @var $product Sale */
-                        $product = Sale::findByID($model->id);
+                            /** @var $product Sale */
+                            $product = Sale::findByID($model->id);
 
-                        if (!empty($product->lang)) {
-                            $saveLang[] = ElasticSearchSale::addRecord($product);
+                            if (!empty($product->lang)) {
+                                $saveLang[] = ElasticSearchSale::addRecord($product);
+                            }
                         }
                     }
 
@@ -229,13 +235,16 @@ class ElasticSearchController extends Controller
                     $saveLang = [];
 
                     foreach ($languages as $lang) {
-                        Yii::$app->language = $lang['local'];
+                        $lang = substr($lang['local'], 0, 2);
+                        if (in_array($lang, ['uk', 'ru', 'en', 'it'])) {
+                            Yii::$app->language = $lang['local'];
 
-                        /** @var $product ItalianProduct */
-                        $product = ItalianProduct::findByID($model->id);
+                            /** @var $product ItalianProduct */
+                            $product = ItalianProduct::findByID($model->id);
 
-                        if (!empty($product->lang)) {
-                            $saveLang[] = ElasticSearchItalianProduct::addRecord($product);
+                            if (!empty($product->lang)) {
+                                $saveLang[] = ElasticSearchItalianProduct::addRecord($product);
+                            }
                         }
                     }
 
