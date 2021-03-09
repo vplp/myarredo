@@ -99,8 +99,7 @@ class ElasticSearchController extends Controller
                     $saveLang = [];
 
                     foreach ($languages as $lang) {
-                        $lang = substr($lang['local'], 0, 2);
-                        if (in_array($lang, ['uk', 'ru', 'en', 'it'])) {
+                        if (in_array(substr($lang['local'], 0, 2), ['uk', 'ru', 'en', 'it'])) {
                             Yii::$app->language = $lang['local'];
 
                             /** @var $product Product */
@@ -167,8 +166,7 @@ class ElasticSearchController extends Controller
                     $saveLang = [];
 
                     foreach ($languages as $lang) {
-                        $lang = substr($lang['local'], 0, 2);
-                        if (in_array($lang, ['uk', 'ru', 'en', 'it'])) {
+                        if (in_array(substr($lang['local'], 0, 2), ['uk', 'ru', 'en', 'it'])) {
                             Yii::$app->language = $lang['local'];
 
                             /** @var $product Sale */
@@ -235,8 +233,7 @@ class ElasticSearchController extends Controller
                     $saveLang = [];
 
                     foreach ($languages as $lang) {
-                        $lang = substr($lang['local'], 0, 2);
-                        if (in_array($lang, ['uk', 'ru', 'en', 'it'])) {
+                        if (in_array(substr($lang['local'], 0, 2), ['uk', 'ru', 'en', 'it'])) {
                             Yii::$app->language = $lang['local'];
 
                             /** @var $product ItalianProduct */
