@@ -4,7 +4,7 @@ use yii\helpers\{
     Html, Url
 };
 use frontend\components\Breadcrumbs;
-use frontend\modules\catalog\models\{Product, ItalianProduct, ItalianProductLang, ProductLang};
+use frontend\modules\catalog\models\{Product, ItalianProduct, ItalianProductLang, ProductLang, Collection};
 use frontend\modules\catalog\widgets\filter\{
     ProductSorting
 };
@@ -48,6 +48,12 @@ if (!empty($models)) {
                             echo Html::a(
                                 Yii::t('app', 'Перейти на страницу фабрики'),
                                 ['/catalog/factory/view', 'alias' => $params[$keys['factory']][0]]
+                            );
+                        } elseif (isset($params[$keys['collection']]) && count($params[$keys['collection']]) == 1) {
+                            $collection = Collection::findByIdWithFactory($params[$keys['collection']]);
+                            echo Html::a(
+                                Yii::t('app', 'Перейти на страницу фабрики'),
+                                ['/catalog/factory/view', 'alias' => $collection['factory']['alias']]
                             );
                         } ?>
 

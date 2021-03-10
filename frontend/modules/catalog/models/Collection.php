@@ -25,6 +25,15 @@ class Collection extends \common\modules\catalog\models\Collection
      * @param $id
      * @return mixed
      */
+    public static function findByIdWithFactory($id)
+    {
+        return self::find()->innerJoinWith(['factory'])->byId($id)->enabled()->one();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
     public static function findById($id)
     {
         return self::findBase()->byId($id)->one();
