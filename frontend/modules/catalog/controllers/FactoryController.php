@@ -300,22 +300,38 @@ class FactoryController extends BaseController
             : $model['title'] .
             (DOMAIN_TYPE == 'com' ? ' - ' . Yii::t('app', 'мебели из Италии в') . ' ' . Yii::$app->city->getCityTitleWhere() : '');
 
+        $h1 = Yii::$app->metatag->seo_h1
+            ? Yii::$app->metatag->seo_h1
+            : Yii::t('app', 'Мебель') . ' ' . $model['title'];
+
+        $h1 .= !Yii::$app->metatag->seo_h1 && DOMAIN_TYPE != 'com'
+            ? ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere()
+            : '';
+
         if ($tab == 'collections') {
             $this->title = Yii::t('app', 'Все коллекции') . ': ' . $this->title;
+            $h1 .= ' - ' . Yii::t('app', 'Все коллекции');
         } elseif ($tab == 'articles') {
             $this->title = Yii::t('app', 'Все артикулы') . ': ' . $this->title;
+            $h1 .= ' - ' . Yii::t('app', 'Все артикулы');
         } elseif ($tab == 'catalogs') {
             $this->title = Yii::t('app', 'Каталоги') . ': ' . $this->title;
+            $h1 .= ' - ' . Yii::t('app', 'Каталоги');
         } elseif ($tab == 'samples') {
             $this->title = Yii::t('app', 'Варианты отделки') . ': ' . $this->title;
+            $h1 .= ' - ' . Yii::t('app', 'Варианты отделки');
         } elseif ($tab == 'pricelists') {
             $this->title = Yii::t('app', 'Прайс листы') . ': ' . $this->title;
+            $h1 .= ' - ' . Yii::t('app', 'Прайс листы');
         } elseif ($tab == 'grezzo') {
             $this->title = Yii::t('app', 'Мебель со сроком производства от ... до ...') . ': ' . $this->title;
+            $h1 .= ' - ' . Yii::t('app', 'Мебель со сроком производства от ... до ...');
         } elseif ($tab == 'orders') {
             $this->title = Yii::t('app', 'Orders') . ': ' . $this->title;
+            $h1 .= ' - ' . Yii::t('app', 'Orders');
         } elseif ($tab == 'working-conditions') {
             $this->title = Yii::t('app', 'Условия работы') . ': ' . $this->title;
+            $h1 .= ' - ' . Yii::t('app', 'Условия работы');
         }
 
         if (!Yii::$app->metatag->seo_description) {
@@ -329,6 +345,7 @@ class FactoryController extends BaseController
         return $this->render('view_tab', [
             'model' => $model,
             'tab' => $tab,
+            'h1' => $h1,
         ]);
     }
 
@@ -362,7 +379,7 @@ class FactoryController extends BaseController
             $model = FactoryFile::findOne(['file_link' => $file]);
 
             if ($model) {
-                $this->title = Yii::t('app', 'Каталог фабрики') .  ' ' . $model['factory']['title'] .
+                $this->title = Yii::t('app', 'Каталог фабрики') . ' ' . $model['factory']['title'] .
                     ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
 
                 Yii::$app->view->registerMetaTag([
