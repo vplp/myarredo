@@ -248,14 +248,14 @@ class ElasticSearchProduct extends ActiveRecord
                             ]
                         ]
                     ],
-                    [
-                        'match' => [
-                            'collection' => [
-                                'query' => $params['search'],
-                                'operator' => 'AND'
-                            ]
-                        ]
-                    ]
+//                    [
+//                        'match' => [
+//                            'collection' => [
+//                                'query' => $params['search'],
+//                                'operator' => 'AND'
+//                            ]
+//                        ]
+//                    ]
                 ]
             ]
         ];
