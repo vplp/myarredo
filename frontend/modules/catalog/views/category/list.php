@@ -12,6 +12,7 @@ use frontend\modules\catalog\widgets\category\CategoryOnMainPage;
 use frontend\modules\catalog\widgets\paginator\PageChanger;
 use frontend\modules\catalog\widgets\product\ViewedProducts;
 use frontend\modules\catalog\widgets\product\ProductsNovelties;
+use frontend\modules\articles\widgets\articles\ArticlesList;
 
 /**
  * @var $pages \yii\data\Pagination
@@ -24,6 +25,14 @@ $this->title = $this->context->title;
 
 $keys = Yii::$app->catalogFilter->keys;
 $params = Yii::$app->catalogFilter->params;
+
+$category_id = 0;
+
+if (!empty($models)) {
+    foreach ($models as $model) {
+        $category_id = $model->category[0]->id;
+    }
+}
 
 ?>
 
@@ -117,6 +126,15 @@ $params = Yii::$app->catalogFilter->params;
                                 <?php } ?>
                             </div>
                         </div>
+
+                        <?php if (isset($params[$keys['category']])) {
+                            echo ArticlesList::widget([
+                                'view' => 'articles_similarbox',
+                                'limit' => 4,
+                                'category_id' => $category_id,
+                                'city_id' => Yii::$app->city->getCityId()
+                            ]);
+                        } ?>
 
                         <?= ViewedProducts::widget([
                             'modelClass' => Product::class,

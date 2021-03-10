@@ -31,6 +31,16 @@ class ArticlesList extends Widget
     protected $model = [];
 
     /**
+     * @var int
+     */
+    public $category_id = 0;
+
+    /**
+     * @var int
+     */
+    public $city_id = 0;
+
+    /**
      * Init model for run method
      */
     public function init()
@@ -49,6 +59,14 @@ class ArticlesList extends Widget
 
         if ($alias = Yii::$app->request->get('alias')) {
             $query->andFilterWhere(['<>', 'alias', $alias]);
+        }
+
+        if ($this->category_id) {
+            $query->andFilterWhere(['=', 'category_id', $this->category_id]);
+        }
+
+        if ($this->city_id) {
+            $query->andFilterWhere(['=', 'city_id', $this->city_id]);
         }
 
         $this->model = $query->all();
