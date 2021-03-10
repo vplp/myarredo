@@ -221,11 +221,11 @@ class ElasticSearchSale extends ActiveRecord
             //'product.city'
         ]);
 
-        $params['country'] = Yii::$app->city->getCountryId();
-
-        if (isset($params['country'])) {
-            $query->andFilterWhere([self::index() . '.country_id' => $params['country']]);
-        }
+//        $params['country'] = Yii::$app->city->getCountryId();
+//
+//        if (isset($params['country'])) {
+//            $query->andFilterWhere([self::index() . '.country_id' => $params['country']]);
+//        }
 
 //        $params['city'] = Yii::$app->city->getCityId();
 //
