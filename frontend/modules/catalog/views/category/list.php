@@ -129,7 +129,7 @@ if (!empty($models)) {
 
                         <?php if (isset($params[$keys['category']])) {
                             echo ArticlesList::widget([
-                                'view' => 'articles_similarbox',
+                                'view' => 'articles_on_main',
                                 'limit' => 4,
                                 'category_id' => $category_id,
                                 'city_id' => Yii::$app->city->getCityId()
