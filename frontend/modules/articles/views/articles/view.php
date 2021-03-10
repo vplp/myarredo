@@ -142,10 +142,4 @@ $keys = Yii::$app->catalogFilter->keys;
         }
     }
 }
-
-
-
-
-
-
 </script>

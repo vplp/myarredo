@@ -3,7 +3,6 @@
 use yii\helpers\{
     Url, Html
 };
-//
 use frontend\modules\articles\models\Article;
 
 /** @var $articles Article[] */
@@ -31,9 +30,6 @@ use frontend\modules\articles\models\Article;
                                     $article->getUrl(),
                                     ['class' => 'btn-aricle-more']
                                 ) ?>
-                                <div class="article-item-data">
-                                    <i class="fa fa-calendar" aria-hidden="true"></i> <?= $article->getPublishedTime() ?>
-                                </div>
                             </div>
                         </div>
                     </div>

@@ -16,7 +16,6 @@ use frontend\modules\articles\models\Article;
         <?php } ?>
     </div>
     <div class="articles_i_r">
-        <div class="articles_i_date"><?= $article->getPublishedTime() ?></div>
         <?= Html::a(Html::encode($article['lang']['title']), $article->getUrl(), ['class' => 'articles_i_t']) ?>
         <div class="articles_i_tx"><?= $article['lang']['description'] ?></div>
     </div>
