@@ -203,7 +203,12 @@ class ElasticSearchSale extends ActiveRecord
 
     public function getProduct()
     {
-        return $this->hasOne(Sale::class, ['id' => 'id'])->enabled();
+        return $this
+            ->hasOne(Sale::class, ['id' => 'id'])
+            ->andFilterWhere([
+                Sale::tableName() . '.country_id' => Yii::$app->city->getCountryId()
+            ])
+            ->enabled();
     }
 
     /**
@@ -219,8 +224,7 @@ class ElasticSearchSale extends ActiveRecord
             'product.factory',
             //'product.country',
             //'product.city'
-        ])
-            ->where([self::index() . '.country_id' => Yii::$app->city->getCountryId()]);
+        ]);
 
 //        $params['country'] = Yii::$app->city->getCountryId();
 //
