@@ -95,7 +95,7 @@ class LangSwitch extends Widget
                 $url = 'https://www.myarredo.ru';
             }
 
-            if (in_array($lang['alias'], ['it', 'en', 'de', 'co.il'])) {
+            if (in_array($lang['alias'], ['it', 'en', 'de', 'he'])) {
                 $path = Yii::$app->request->url;
 
                 $params = Yii::$app->catalogFilter->params;
