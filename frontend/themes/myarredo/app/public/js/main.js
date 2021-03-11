@@ -61,7 +61,7 @@ function interPhoneInit() {
         // функционал переводов ошибок на языки сайта
         // для массива с текстами ошибок
         var errorMap = [];
-        // для кода страны по дефолту при инициализации плагина 
+        // для кода страны по дефолту при инициализации плагина
         var diCode = '';
 
         // Переключатель-котроллер (В зависимости какой язык выбран на сайте)
@@ -88,8 +88,8 @@ function interPhoneInit() {
             break;
             default:
                 // Массив ошибок для поля номер телефона в международном формате
-                errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"]; 
-                diCode = 'it';  
+                errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+                diCode = 'it';
         }
 
         // поле - телефон из нашей формы
@@ -145,7 +145,7 @@ function interPhoneInit() {
                 intlInputEl.setAttribute('aria-invalid', true);
             }
           };
-          
+
           // on blur: validate
           intlInputEl.addEventListener('blur', function() {
             reset();
@@ -163,7 +163,7 @@ function interPhoneInit() {
               }
             }
           });
-          
+
           // on keyup / change flag: reset
           intlInputEl.addEventListener('change', reset);
           intlInputEl.addEventListener('keyup', reset);
@@ -233,7 +233,7 @@ function initTelInputCountry(el, code) {
             intlInputEl.setAttribute('aria-invalid', true);
         }
       };
-      
+
       // on blur: validate
       intlInputEl.addEventListener('blur', function() {
         reset();
@@ -251,7 +251,7 @@ function initTelInputCountry(el, code) {
           }
         }
       });
-      
+
       // on keyup / change flag: reset
       intlInputEl.addEventListener('change', reset);
       intlInputEl.addEventListener('keyup', reset);
@@ -261,7 +261,7 @@ function initTelInputCountry(el, code) {
 
 // Функция для отслеживания и открития элементов фильтров в которых выбран хоть один элемент
 function runDesctop() {
-  
+
     setTimeout(function () {
         // Запускаем цыкл по всем элементам всех фильтров
         $('.filters').find('.one-filter').find('.list-item').children('a').each(function (i, elem) {
@@ -281,7 +281,7 @@ function runDesctop() {
     }
 }
 
-// Функция для открития первого элемента по умолчанию в модалке - показать фабрики 
+// Функция для открития первого элемента по умолчанию в модалке - показать фабрики
 function selectFirstFEl() {
     if ($(".alphabet-tab a").length > 0) {
         $(".alphabet-tab a").eq(0).trigger("click"); //показываем первый элемент по умолчанию
@@ -328,7 +328,7 @@ function slickInit() {
             dots: false,
             // autoplay: true,
             prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
-            nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>', 
+            nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>',
             responsive: [
                 {
                     breakpoint: 992,
@@ -362,7 +362,7 @@ function feedbackFormElInit() {
             selectSearch: true
         });
     }
-} 
+}
 
 // Ready 1
 $(document).ready(function () {
@@ -486,7 +486,7 @@ $(document).ready(function () {
                 }
             }
         }
-        
+
     });
 
     var state = {
@@ -859,7 +859,7 @@ $(document).ready(function () {
         slickInit();
     });
 
-    
+
     /*--Галерея Карточка товара--*/
     (function() {
         $("a.fancyimage").fancybox();
@@ -950,7 +950,7 @@ $(document).ready(function () {
     $("[data-toggle='tooltip']").tooltip({html: true});
 
     $(document).on('click', '.link-composition', function() {
-        if ($('#comp-slider').length > 0) { 
+        if ($('#comp-slider').length > 0) {
             $('#comp-slider').addClass('mw-item');
 
             // Ожидаем инициализацию слайдера и перемотываем на один слайд вперед чтобы убрать баг который возникает из за табов на телефонах
@@ -1309,7 +1309,7 @@ $(document).ready(function () {
     // функционал переводов ошибок на языки сайта
     // для массива с текстами ошибок
     var errorMap = [];
-    // для кода страны по дефолту при инициализации плагина 
+    // для кода страны по дефолту при инициализации плагина
     var diCode = '';
 
     // Переключатель-котроллер (В зависимости какой язык выбран на сайте)
@@ -1338,16 +1338,16 @@ $(document).ready(function () {
             // Массив ошибок для поля номер телефона для иврита
             errorMap = [
                 "מספר שגוי",
-                "קוד מדינה לא חוקי", 
-                "מספר קצר", 
-                "מספר ארוך", 
+                "קוד מדינה לא חוקי",
+                "מספר קצר",
+                "מספר ארוך",
                 "מספר שגוי"];
             diCode = 'il';
         break;
         default:
             // Массив ошибок для поля номер телефона в международном формате
-            errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"]; 
-            diCode = 'it';  
+            errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+            diCode = 'it';
     }
     // если данное поле существует на странице
     if ($('.intlinput-field').length > 0) {
@@ -1363,7 +1363,7 @@ $(document).ready(function () {
         var iti = {};
         // если по условию нужна только определенная страна
         if ($(intlInputEl).attr('data-conly') == 'yes') {
-            
+
             iti = window.intlTelInput(intlInputEl, {
                 separateDialCode: true,
                 onlyCountries: [diCode],
@@ -1416,7 +1416,7 @@ $(document).ready(function () {
                 intlInputEl.setAttribute('aria-invalid', true);
             }
           };
-          
+
           // on blur: validate
           intlInputEl.addEventListener('blur', function() {
             reset();
@@ -1434,7 +1434,7 @@ $(document).ready(function () {
               }
             }
           });
-          
+
           // on keyup / change flag: reset
           intlInputEl.addEventListener('change', reset);
           intlInputEl.addEventListener('keyup', reset);
@@ -1474,27 +1474,27 @@ $(document).ready(function () {
             switch($(this).val()) {
                 case '1':
                     changeIndicator = true;
-                    changeCCode = 'ua'; 
+                    changeCCode = 'ua';
                 break;
                 case '2':
                     changeIndicator = true;
-                    changeCCode = 'ru'; 
+                    changeCCode = 'ru';
                 break;
                 case '3':
                     changeIndicator = true;
-                    changeCCode = 'by'; 
+                    changeCCode = 'by';
                 break;
                 case '4':
                     changeIndicator = true;
-                    changeCCode = 'it'; 
+                    changeCCode = 'it';
                 break;
                 case '85':
                     changeIndicator = true;
-                    changeCCode = 'de'; 
+                    changeCCode = 'de';
                 break;
                 case '114':
                     changeIndicator = true;
-                    changeCCode = 'kz'; 
+                    changeCCode = 'kz';
                 break;
                 default:
                     changeIndicator = false;
@@ -1528,7 +1528,7 @@ $(document).ready(function () {
         var iti2 = {};
         // если по условию нужна только определенная страна
         if ($(intlInputEl2).attr('data-conly') == 'yes') {
-            
+
             iti2 = window.intlTelInput(intlInputEl2, {
                 separateDialCode: true,
                 onlyCountries: [diCode],
@@ -1581,7 +1581,7 @@ $(document).ready(function () {
                 intlInputEl2.setAttribute('aria-invalid', true);
             }
           };
-          
+
           // on blur: validate
           intlInputEl2.addEventListener('blur', function() {
             reset2();
@@ -1599,7 +1599,7 @@ $(document).ready(function () {
               }
             }
           });
-          
+
           // on keyup / change flag: reset
           intlInputEl2.addEventListener('change', reset2);
           intlInputEl2.addEventListener('keyup', reset2);
@@ -1734,7 +1734,7 @@ $(document).ready(function () {
     });
     // ===end Custom Galery Image Viewer
 
-    // Форма обратной связи 
+    // Форма обратной связи
     $(document).on('click', '.btn-feedback, .feedback-container, .block-rightbox-text>a', function() {
         var thisUrl = $('.jsftr').attr('data-url');
         $.ajax({
@@ -1744,9 +1744,9 @@ $(document).ready(function () {
                 '_csrf' : $('#token').val()
             },
             success: function(resp) {
-                $('#ajaxFormFeedbackModal').html(resp.html); 
+                $('#ajaxFormFeedbackModal').html(resp.html);
                 interPhoneInit();
-                $('#ajaxFormFeedbackModal').modal(); 
+                $('#ajaxFormFeedbackModal').modal();
                 setTimeout(function() {
                     feedbackFormElInit();
                 },100);
@@ -1756,9 +1756,9 @@ $(document).ready(function () {
             }
         });
         // $.post('$url', {_csrf: $('#token').val()}, function(data){
-        //     $('#ajaxFormFeedbackModal').html(data.html); 
+        //     $('#ajaxFormFeedbackModal').html(data.html);
         //     interPhoneInit();
-        //     $('#ajaxFormFeedbackModal').modal(); 
+        //     $('#ajaxFormFeedbackModal').modal();
         //     setTimeout(function() {
         //         feedbackFormElInit();
         //     },100);
@@ -1778,7 +1778,7 @@ console.time('speed mobile menu vue js');
     },
     methods: {
         openTwolevel: function(item) {
-            item = !item; 
+            item = !item;
             if (item) {
                 if (window.pageYOffset > 120) {
                     // window.scrollTo(pageXOffset, 0);
@@ -1792,7 +1792,7 @@ console.time('speed mobile menu vue js');
             return item;
         }
     },
-    template: 
+    template:
     `<ul class="menu-list navigation">
         <li v-for="oneItem in mobdata.menulist" v-if="oneItem.show" v-bind:class="{jshaslist : oneItem.levelisset}">
             <a v-on:click="oneItem.levelopen = !oneItem.levelopen"
@@ -1802,9 +1802,9 @@ console.time('speed mobile menu vue js');
                 {{ oneItem.text }}
             </a>
             <a v-else v-bind:href=oneItem.link>{{ oneItem.text }}</a>
-            
+
             <div v-if="oneItem.levelisset" class="list-levelbox">
-                
+
                 <ul v-show="oneItem.levelopen" class="list-level">
                     <li v-for="twoLevel in oneItem.levelData" v-bind:class="{open: twoLevel.lopen}">
                         <a href="javascript:void(0);"
@@ -1821,10 +1821,10 @@ console.time('speed mobile menu vue js');
                                 <li class="tl-panel">
                                     <button v-on:click="twoLevel.lopen = !twoLevel.lopen" class="btn-mobitem-close">
                                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                                        <span class="for-onelevel-text"> 
+                                        <span class="for-onelevel-text">
                                             {{ oneItem.text }}
                                         </span>
-                                        <span class="for-twolevel-text"> 
+                                        <span class="for-twolevel-text">
                                             {{ twoLevel.ltext }}
                                         </span>
                                     </button>
@@ -1839,9 +1839,9 @@ console.time('speed mobile menu vue js');
                         </transition>
                     </li>
                 </ul>
-                
+
             </div>
-            
+
         </li>
     </ul>`
 });
