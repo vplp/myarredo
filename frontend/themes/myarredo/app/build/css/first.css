@@ -1805,6 +1805,10 @@ h1 {
     .js-filter-modal .filters form {
       margin-bottom: 95px;
     }
+    .articles-list .section-header {
+      flex-direction: column;
+      height: 90px;
+    }
 }
 
 /* max 400px */
