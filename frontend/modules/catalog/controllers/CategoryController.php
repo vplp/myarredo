@@ -567,7 +567,7 @@ class CategoryController extends BaseController
             $alternateParamsUrl['en'][$keys['category']] = $model['alias_en'];
             $alternateParamsUrl['it'][$keys['category']] = $model['alias_it'];
             $alternateParamsUrl['de'][$keys['category']] = $model['alias_de'];
-            //$alternateParamsUrl['he'][$keys['category']] = $model['alias_he'];
+            $alternateParamsUrl['he'][$keys['category']] = $model['alias_he'];
         }
 
         if (DOMAIN_TYPE != 'com') {
@@ -590,7 +590,7 @@ class CategoryController extends BaseController
                 $alternateParamsUrl['en'][$keys['type']][] = $model['alias_en'];
                 $alternateParamsUrl['it'][$keys['type']][] = $model['alias_it'];
                 $alternateParamsUrl['de'][$keys['type']][] = $model['alias_de'];
-                //$alternateParamsUrl['he'][$keys['type']][] = $model['alias_he'];
+                $alternateParamsUrl['he'][$keys['type']][] = $model['alias_he'];
             }
 
             $pageTitle[] = implode(', ', $type);
@@ -619,6 +619,7 @@ class CategoryController extends BaseController
                 $alternateParamsUrl['en'][$keys['subtypes']][] = $model['alias'];
                 $alternateParamsUrl['it'][$keys['subtypes']][] = $model['alias'];
                 $alternateParamsUrl['de'][$keys['subtypes']][] = $model['alias'];
+                $alternateParamsUrl['he'][$keys['subtypes']][] = $model['alias'];
             }
 
             $pageTitle[] = implode(', ', $subtypes);
@@ -647,7 +648,7 @@ class CategoryController extends BaseController
                 $alternateParamsUrl['en'][$keys['style']][] = $model['alias_en'];
                 $alternateParamsUrl['it'][$keys['style']][] = $model['alias_it'];
                 $alternateParamsUrl['de'][$keys['style']][] = $model['alias_de'];
-                //$alternateParamsUrl['he'][$keys['style']][] = $model['alias_he'];
+                $alternateParamsUrl['he'][$keys['style']][] = $model['alias_he'];
             }
 
             $pageTitle[] = Yii::t('app', 'Стиль') . ' ' . implode(', ', $style);
@@ -676,6 +677,7 @@ class CategoryController extends BaseController
                 $alternateParamsUrl['en'][$keys['collection']] = $params[$keys['collection']];
                 $alternateParamsUrl['it'][$keys['collection']] = $params[$keys['collection']];
                 $alternateParamsUrl['de'][$keys['collection']] = $params[$keys['collection']];
+                $alternateParamsUrl['he'][$keys['collection']] = $params[$keys['collection']];
             }
 
             $pageTitle[] = Yii::t('app', 'Коллекция мебели') . ' ' . implode(', ', $collections);
@@ -709,6 +711,7 @@ class CategoryController extends BaseController
                 $alternateParamsUrl['en'][$keys['factory']][] = $model['alias'];
                 $alternateParamsUrl['it'][$keys['factory']][] = $model['alias'];
                 $alternateParamsUrl['de'][$keys['factory']][] = $model['alias'];
+                $alternateParamsUrl['he'][$keys['factory']][] = $model['alias'];
             }
 
             if (count($params[$keys['factory']]) > 1) {
@@ -737,6 +740,7 @@ class CategoryController extends BaseController
             $alternateParamsUrl['en'][$keys['price']] = $params[$keys['price']];
             $alternateParamsUrl['it'][$keys['price']] = $params[$keys['price']];
             $alternateParamsUrl['de'][$keys['price']] = $params[$keys['price']];
+            $alternateParamsUrl['he'][$keys['price']] = $params[$keys['price']];
         }
 
         if (isset($params[$keys['diameter']])) {
@@ -746,6 +750,7 @@ class CategoryController extends BaseController
             $alternateParamsUrl['en'][$keys['diameter']] = $params[$keys['diameter']];
             $alternateParamsUrl['it'][$keys['diameter']] = $params[$keys['diameter']];
             $alternateParamsUrl['de'][$keys['diameter']] = $params[$keys['diameter']];
+            $alternateParamsUrl['he'][$keys['diameter']] = $params[$keys['diameter']];
         }
 
         if (isset($params[$keys['width']])) {
@@ -755,6 +760,7 @@ class CategoryController extends BaseController
             $alternateParamsUrl['en'][$keys['width']] = $params[$keys['width']];
             $alternateParamsUrl['it'][$keys['width']] = $params[$keys['width']];
             $alternateParamsUrl['de'][$keys['width']] = $params[$keys['width']];
+            $alternateParamsUrl['he'][$keys['width']] = $params[$keys['width']];
         }
 
         if (isset($params[$keys['length']])) {
@@ -764,6 +770,7 @@ class CategoryController extends BaseController
             $alternateParamsUrl['en'][$keys['length']] = $params[$keys['length']];
             $alternateParamsUrl['it'][$keys['length']] = $params[$keys['length']];
             $alternateParamsUrl['de'][$keys['length']] = $params[$keys['length']];
+            $alternateParamsUrl['he'][$keys['length']] = $params[$keys['length']];
         }
 
         if (isset($params[$keys['height']])) {
@@ -773,6 +780,7 @@ class CategoryController extends BaseController
             $alternateParamsUrl['en'][$keys['height']] = $params[$keys['height']];
             $alternateParamsUrl['it'][$keys['height']] = $params[$keys['height']];
             $alternateParamsUrl['de'][$keys['height']] = $params[$keys['height']];
+            $alternateParamsUrl['he'][$keys['height']] = $params[$keys['height']];
         }
 
         if (isset($params[$keys['apportionment']])) {
@@ -782,6 +790,7 @@ class CategoryController extends BaseController
             $alternateParamsUrl['en'][$keys['apportionment']] = $params[$keys['apportionment']];
             $alternateParamsUrl['it'][$keys['apportionment']] = $params[$keys['apportionment']];
             $alternateParamsUrl['de'][$keys['apportionment']] = $params[$keys['apportionment']];
+            $alternateParamsUrl['he'][$keys['apportionment']] = $params[$keys['apportionment']];
         }
 
         if (isset($params[$keys['producing_country']])) {
@@ -791,6 +800,7 @@ class CategoryController extends BaseController
             $alternateParamsUrl['en'][$keys['producing_country']] = $params[$keys['producing_country']];
             $alternateParamsUrl['it'][$keys['producing_country']] = $params[$keys['producing_country']];
             $alternateParamsUrl['de'][$keys['producing_country']] = $params[$keys['producing_country']];
+            $alternateParamsUrl['he'][$keys['producing_country']] = $params[$keys['producing_country']];
         }
 
         $countParams = 0;
@@ -867,7 +877,7 @@ class CategoryController extends BaseController
             ]);
         }
 
-        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161])) {
+        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161, 164])) {
             if (!empty($alternateParamsUrl)) {
                 foreach ($alternateParamsUrl as $lang => $paramsUrl) {
                     if ($lang == 'en') {
@@ -897,7 +907,8 @@ class CategoryController extends BaseController
                     'ru' => 'https://www.myarredo.ru/catalog/',
                     'en' => 'https://www.myarredo.com/en/catalog/',
                     'it' => 'https://www.myarredo.com/it/catalog/',
-                    'de' => 'https://www.myarredo.de/catalog/'
+                    'de' => 'https://www.myarredo.de/catalog/',
+                    'he' => 'https://www.myarredo.co.il/catalog/'
                 ];
 
                 foreach ($alternateUrl as $lang => $url) {
