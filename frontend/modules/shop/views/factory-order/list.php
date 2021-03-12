@@ -190,7 +190,6 @@ if (Yii::$app->user->identity->profile->possibilityToAnswerForFactory) {
         if (thisField.val() == '') {
             thisField.val('0');
         }
-
     });
 
     // Если произошел клик по кнопке - отправить ответ клиенту

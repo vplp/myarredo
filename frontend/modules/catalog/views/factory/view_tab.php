@@ -18,13 +18,6 @@ $this->title = $this->context->title;
 
 $bundle = AppAsset::register($this);
 
-$h1 = Yii::$app->metatag->seo_h1
-    ? Yii::$app->metatag->seo_h1
-    : Yii::t('app', 'Мебель') . ' ' . $model['title'];
-$h1 .= !Yii::$app->metatag->seo_h1 && DOMAIN_TYPE != 'com'
-    ? ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere()
-    : '';
-
 $route = $model->producing_country_id == 4
     ? ['/catalog/category/list']
     : ['/catalog/countries-furniture/list'];

@@ -27,7 +27,9 @@ class LangSwitch extends Widget
      */
     public $current = '';
 
-    // $this->context->noIndex
+    /**
+     * @var int
+     */
     public $noIndex = 0;
 
     /**
@@ -58,7 +60,7 @@ class LangSwitch extends Widget
         $keys = Yii::$app->catalogFilter->keys;
 
         $this->current['image'] = Language::isImage($this->current['img_flag'])
-            ? Html::img(Language::getImage($this->current['img_flag']), ['width'=>'16', 'height' => '11'])
+            ? Html::img(Language::getImage($this->current['img_flag']), ['width' => '16', 'height' => '11'])
             : '<i class="fa fa-globe" aria-hidden="true"></i>';
 
         $items = [];
@@ -69,9 +71,9 @@ class LangSwitch extends Widget
                 continue;
             }
 
-            // ua only for domain ua
+            // ua only for domain he
             if (!in_array(DOMAIN_TYPE, ['co.il']) && in_array($lang['alias'], ['he'])) {
-                continue;
+                //continue;
             }
 
             $image = Language::isImage($lang['img_flag'])
@@ -93,7 +95,7 @@ class LangSwitch extends Widget
                 $url = 'https://www.myarredo.ru';
             }
 
-            if (in_array($lang['alias'], ['it', 'en', 'de', 'co.il'])) {
+            if (in_array($lang['alias'], ['it', 'en', 'de', 'he'])) {
                 $path = Yii::$app->request->url;
 
                 $params = Yii::$app->catalogFilter->params;
@@ -257,7 +259,7 @@ class LangSwitch extends Widget
             if ($lang['local'] == Yii::$app->language) {
                 $this->current = [
                     'label' => $lang['label'],
-                    'url' => !in_array($lang['alias'], ['de', 'co.il'])
+                    'url' => !in_array($lang['alias'], ['de', 'he'])
                         ? $url . '/' . $lang['alias'] . $path
                         : $url . $path,
                     'image' => $image,
@@ -269,7 +271,7 @@ class LangSwitch extends Widget
             if (!$lang['by_default']) {
                 $items[] = [
                     'label' => $lang['label'],
-                    'url' => !in_array($lang['alias'], ['de', 'co.il'])
+                    'url' => !in_array($lang['alias'], ['de', 'he'])
                         ? $url . '/' . $lang['alias'] . $path
                         : $url . $path,
                     'image' => $image,

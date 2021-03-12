@@ -7,7 +7,9 @@ use frontend\modules\news\widgets\news\NewsListForPartners;
 use frontend\modules\shop\models\Order;
 
 /**
+ * @var $pages Pagination
  * @var $modelOrder Order
+ * @var $params array
  * @var $model array
  * @var $models array
  */
@@ -112,8 +114,7 @@ use frontend\modules\shop\models\Order;
                                     </li>
                                     <li>
                                         <span>
-                                            <?php if ($modelOrder->orderAnswer->id &&
-                                                $modelOrder->orderAnswer->answer_time != 0) {
+                                            <?php if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
                                                 echo $modelOrder->customer->phone;
                                             } else {
                                                 echo '-';
@@ -122,8 +123,7 @@ use frontend\modules\shop\models\Order;
                                     </li>
                                     <li>
                                         <span>
-                                            <?php if ($modelOrder->orderAnswer->id &&
-                                                $modelOrder->orderAnswer->answer_time != 0) {
+                                            <?php if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
                                                 echo $modelOrder->customer->email;
                                             } else {
                                                 echo '-';
@@ -192,13 +192,12 @@ var errorIndicator = true;
 
 // Запрет на ввод любых символов кроме точки.
 $('.orderlist-price-field').on('keypress', function(e) {
-        // разрешаем только цыфры с плавающей точкой
-        if (isNaN(e.key) && e.key != '.') {
-            e.preventDefault();
-        }
-    });
-
-    // При фокусе убираем 0 у этого поля
+    // разрешаем только цыфры с плавающей точкой
+    if (isNaN(e.key) && e.key != '.') {
+        e.preventDefault();
+    }
+});
+// При фокусе убираем 0 у этого поля
 $('.orderlist-price-field').on('focus', function() {
     var thisField = $(this);
     if (thisField.val() == '0') {
@@ -211,7 +210,6 @@ $('.orderlist-price-field').on('blur', function() {
     if (thisField.val() == '') {
         thisField.val('0');
     }
-
 });
 
 // Если произошел клик по кнопке - отправить ответ клиенту
@@ -240,43 +238,51 @@ $(".manager-history-list").on("click", ".action-save-answer", function() {
             }
         }
         
-    if (isError) {
-        errorIndicator = false;
-        return false;
-    }
-    else {
-        errorIndicator = true;
-    }
+        if (isError) {
+            errorIndicator = false;
+            return false;
+        }
+        else {
+            errorIndicator = true;
+        }
     });
 
     thisBtn.attr('disabled', true);
+    thisBtn.append('<i class="fa fa-spinner fa-spin fa-fw"></i>');
     
-    // send form
-    $.post('$url', form.serialize()+'&action-save-answer=1').done(function (data) {
-        if (data.OrderAnswer) {
-            form
-                .find('.field-orderanswer-answer')
-                .addClass('has-error')
-                .find('.help-block')
-                .text(data.OrderAnswer.answer);
-        }
-        if (data.OrderItemPrice) {
-            $.each(data.OrderItemPrice, function( product_id, error ) {
+    if (errorIndicator) {
+        // send form
+        $.post('$url', form.serialize()+'&action-save-answer=1').done(function (data) {
+            if (data.OrderAnswer) {
                 form
-                    .find('input[name="OrderItemPrice['+product_id+'][price]"]')
-                    .parent()
+                    .find('.field-orderanswer-answer')
                     .addClass('has-error')
-                    .find('.help-block').text(error.price);
-            });
-        }
-        
-        if (data.success == 1) {
-            document.location.reload(true);
-        }
-        else {
-            thisBtn.attr('disabled', false); 
-        }
-    }, 'json');
+                    .find('.help-block')
+                    .text(data.OrderAnswer.answer);
+            }
+            if (data.OrderItemPrice) {
+                $.each(data.OrderItemPrice, function( product_id, error ) {
+                    form
+                        .find('input[name="OrderItemPrice['+product_id+'][price]"]')
+                        .parent()
+                        .addClass('has-error')
+                        .find('.help-block').text(error.price);
+                });
+            }
+            
+            if (data.success == 1) {
+                document.location.reload(true);
+            }
+            else {
+                thisBtn.attr('disabled', false); 
+            }
+        }, 'json');
+    }
+    else {
+        thisBtn.attr('disabled', false); 
+        thisBtn.children('i.fa').remove();
+        return false;
+    }
     
     return false;
 });
