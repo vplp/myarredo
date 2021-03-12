@@ -1038,7 +1038,7 @@ $(document).ready(function () {
 });
 // end ready
 
-(function () {
+// (function () {
   var loaderTemplate =
     '<div class="loader" style="display: none;">' +
     '<div id="floatingCirclesG">' +
@@ -1084,7 +1084,7 @@ $(document).ready(function () {
 
       });
   }
-})();
+// })();
 
 // Ready 2
 $(document).ready(function () {
