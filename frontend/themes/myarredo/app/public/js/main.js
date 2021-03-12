@@ -1038,52 +1038,55 @@ $(document).ready(function () {
 });
 // end ready
 
-// (function () {
-  var loaderTemplate =
-    '<div class="loader" style="display: none;">' +
-    '<div id="floatingCirclesG">' +
-    '<div class="f_circleG" id="frotateG_01"></div>' +
-    '<div class="f_circleG" id="frotateG_02"></div>' +
-    '<div class="f_circleG" id="frotateG_03"></div>' +
-    '<div class="f_circleG" id="frotateG_04"></div>' +
-    '<div class="f_circleG" id="frotateG_05"></div>' +
-    '<div class="f_circleG" id="frotateG_06"></div>' +
-    '<div class="f_circleG" id="frotateG_07"></div>' +
-    '<div class="f_circleG" id="frotateG_08"></div>' +
-    '</div>' +
-    '</div>';
 
-  if ($('#checkout-form').length) {
-    var btn = $('#checkout-form button[type=submit]');
+  // var loaderTemplate =
+  //   '<div class="loader" style="display: none;">' +
+  //   '<div id="floatingCirclesG">' +
+  //   '<div class="f_circleG" id="frotateG_01"></div>' +
+  //   '<div class="f_circleG" id="frotateG_02"></div>' +
+  //   '<div class="f_circleG" id="frotateG_03"></div>' +
+  //   '<div class="f_circleG" id="frotateG_04"></div>' +
+  //   '<div class="f_circleG" id="frotateG_05"></div>' +
+  //   '<div class="f_circleG" id="frotateG_06"></div>' +
+  //   '<div class="f_circleG" id="frotateG_07"></div>' +
+  //   '<div class="f_circleG" id="frotateG_08"></div>' +
+  //   '</div>' +
+  //   '</div>';
 
-    $('body').append(loaderTemplate);
+  // if ($('#checkout-form').length) {
+  //   var btn = $('#checkout-form button[type=submit]');
 
-    $('#checkout-form').on('submit', function (e) {
-      //запрет отправки формы при невалидном номере телефона
-      if (!iti.isValidNumber()) {
-        return false;
-      }
+  //   $('body').append(loaderTemplate);
 
-      if ($(this).find('.intlinput-field').val() != iti.getNumber()) {
-        $(this).find('.intlinput-field').val(iti.getNumber());
-      }
-      var countryData = iti.getSelectedCountryData();
+  //   $('#checkout-form').on('submit', function (e) {
+  //     var form = this;
+  //     e.preventDefault();
+  //     //запрет отправки формы при невалидном номере телефона
+  //     if (!iti.isValidNumber()) {
+  //       return false;
+  //     }
 
-      $(this).find('#cartcustomerform-country_code').val(countryData.iso2);
-      btn.addClass('disabled');
-      $('.loader').show();
-      setTimeout(function(){
-        $('#checkout-form').trigger("reset");
-      },500);
-    });
-    document
-      .getElementById('checkout-form')
-      .addEventListener('DOMSubtreeModified', function () {
-        $('.loader').hide();
-        btn.removeClass('disabled');
+  //     if ($(this).find('.intlinput-field').val() != iti.getNumber()) {
+  //       $(this).find('.intlinput-field').val(iti.getNumber());
+  //     }
+  //     var countryData = iti.getSelectedCountryData();
 
-      });
-  }
+  //     $(this).find('#cartcustomerform-country_code').val(countryData.iso2);
+  //     form.submit();
+  //     btn.addClass('disabled');
+  //     $('.loader').show();
+  //     setTimeout(function(){
+  //       $('#checkout-form').trigger("reset");
+  //     },500);
+  //   });
+  //   document
+  //     .getElementById('checkout-form')
+  //     .addEventListener('DOMSubtreeModified', function () {
+  //       $('.loader').hide();
+  //       btn.removeClass('disabled');
+
+  //     });
+  // }
 // })();
 
 // Ready 2
@@ -1730,6 +1733,55 @@ $(document).ready(function () {
             .find('name="CartCustomerForm[country_code]"')
             .val(countryData.iso2);
         }
+      });
+  }
+
+  var loaderTemplate =
+    '<div class="loader" style="display: none;">' +
+    '<div id="floatingCirclesG">' +
+    '<div class="f_circleG" id="frotateG_01"></div>' +
+    '<div class="f_circleG" id="frotateG_02"></div>' +
+    '<div class="f_circleG" id="frotateG_03"></div>' +
+    '<div class="f_circleG" id="frotateG_04"></div>' +
+    '<div class="f_circleG" id="frotateG_05"></div>' +
+    '<div class="f_circleG" id="frotateG_06"></div>' +
+    '<div class="f_circleG" id="frotateG_07"></div>' +
+    '<div class="f_circleG" id="frotateG_08"></div>' +
+    '</div>' +
+    '</div>';
+
+  if ($('#checkout-form').length) {
+    var btn = $('#checkout-form button[type=submit]');
+
+    $('body').append(loaderTemplate);
+
+    $('#checkout-form').on('submit', function (e) {
+      var form = this;
+      e.preventDefault();
+      //запрет отправки формы при невалидном номере телефона
+      if (!iti.isValidNumber()) {
+        return false;
+      }
+
+      if ($(this).find('.intlinput-field').val() != iti.getNumber()) {
+        $(this).find('.intlinput-field').val(iti.getNumber());
+      }
+      var countryData = iti.getSelectedCountryData();
+
+      $(this).find('#cartcustomerform-country_code').val(countryData.iso2);
+      btn.addClass('disabled');
+      $('.loader').show();
+      form.submit();
+      setTimeout(function(){
+        $('#checkout-form').trigger("reset");
+      },500);
+    });
+    document
+      .getElementById('checkout-form')
+      .addEventListener('DOMSubtreeModified', function () {
+        $('.loader').hide();
+        btn.removeClass('disabled');
+
       });
   }
 
