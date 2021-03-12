@@ -1072,16 +1072,16 @@ $(document).ready(function () {
       $(this).find('#cartcustomerform-country_code').val(countryData.iso2);
       btn.addClass('disabled');
       $('.loader').show();
-      // setTimeout(function(){
-      //   $('#checkout-form').trigger("reset");
-      // },500);
+      setTimeout(function(){
+        $('#checkout-form').trigger("reset");
+      },500);
     });
     document
       .getElementById('checkout-form')
       .addEventListener('DOMSubtreeModified', function () {
         $('.loader').hide();
         btn.removeClass('disabled');
-        $('#checkout-form').trigger("reset");
+
       });
   }
 })();
