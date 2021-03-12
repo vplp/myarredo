@@ -197,7 +197,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
             <ul class="list">
                 <?php
                 foreach ($model->catalogsFiles as $catalogFile) {
-                    if ($catalogFile->getFileLink()) {
+                    if ($fileLink = $catalogFile->getFileLink()) {
                         echo Html::beginTag('li') .
                             Html::a(
                                 ($catalogFile->image_link
@@ -205,8 +205,12 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                                     : ''
                                 ) .
                                 Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
-                                $catalogFile->getFileLink(),
-                                ['target' => '_blank', 'class' => 'click-on-factory-file', 'data-id' => $catalogFile->id]
+                                Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink,
+                                [
+                                    'target' => '_blank',
+                                    'class' => 'click-on-factory-file',
+                                    'data-id' => $catalogFile->id
+                                ]
                             ) .
                             Html::endTag('li');
                     }
@@ -248,7 +252,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
             <ul class="list">
                 <?php
                 foreach ($model->pricesFiles as $priceFile) {
-                    if ($priceFile->getFileLink()) {
+                    if ($fileLink = $priceFile->getFileLink()) {
                         echo Html::beginTag('li') .
                             Html::a(
                                 ($priceFile->image_link
@@ -256,8 +260,12 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                                     : ''
                                 ) .
                                 Html::tag('span', $priceFile->title, ['class' => 'for-catalog-list']),
-                                $priceFile->getFileLink(),
-                                ['target' => '_blank', 'class' => 'click-on-factory-file', 'data-id' => $priceFile->id]
+                                Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink,
+                                [
+                                    'target' => '_blank',
+                                    'class' => 'click-on-factory-file',
+                                    'data-id' => $priceFile->id
+                                ]
                             ) .
                             Html::endTag('li');
                     }
