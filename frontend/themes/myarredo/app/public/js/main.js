@@ -1771,7 +1771,7 @@ $(document).ready(function () {
       $(this).find('#cartcustomerform-country_code').val(countryData.iso2);
       btn.addClass('disabled');
       $('.loader').show();
-      form.submit();
+      $('#checkout-form').submit();
       setTimeout(function(){
         $('#checkout-form').trigger("reset");
       },500);
