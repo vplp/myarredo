@@ -151,7 +151,6 @@ $('.orderlist-price-field').on('blur', function() {
     if (thisField.val() == '') {
         thisField.val('0');
     }
-
 });
 
 // Если произошел клик по кнопке - отправить ответ клиенту
@@ -180,7 +179,7 @@ $(".manager-history-list").on("click", ".action-save-answer", function() {
             }
         }
         
-       if (isError) {
+        if (isError) {
             errorIndicator = false;
             return false;
         }
