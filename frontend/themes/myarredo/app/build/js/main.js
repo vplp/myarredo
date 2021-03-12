@@ -1756,7 +1756,6 @@ $(document).ready(function () {
     $('body').append(loaderTemplate);
 
     $('#checkout-form').on('submit', function (e) {
-      var form = this;
       e.preventDefault();
       //запрет отправки формы при невалидном номере телефона
       if (!iti.isValidNumber()) {
@@ -1772,9 +1771,9 @@ $(document).ready(function () {
       btn.addClass('disabled');
       $('.loader').show();
       $('#checkout-form').submit();
-      setTimeout(function(){
-        $('#checkout-form').trigger("reset");
-      },500);
+      // setTimeout(function(){
+      //   $('#checkout-form').trigger("reset");
+      // },500);
     });
     document
       .getElementById('checkout-form')
