@@ -110,7 +110,7 @@ class CatalogProductController extends Controller
                                 );
 
                                 $translateDescription = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    strip_tags($modelLang->description),
+                                    htmlspecialchars_decode(strip_tags($modelLang->description)),
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );
@@ -187,7 +187,7 @@ class CatalogProductController extends Controller
                                     );
 
                                     $translateDescription = (string)Yii::$app->yandexTranslation->getTranslate(
-                                        strip_tags($modelLang->description),
+                                        htmlspecialchars_decode(strip_tags($modelLang->description)),
                                         $sourceLanguageCode,
                                         $targetLanguageCode
                                     );
@@ -877,7 +877,7 @@ class CatalogProductController extends Controller
                     );
 
                     $description = (string)Yii::$app->yandexTranslation->getTranslate(
-                        strip_tags($modelLang->description),
+                        htmlspecialchars_decode(strip_tags($modelLang->description)),
                         $sourceLanguageCode,
                         $targetLanguageCode
                     );
