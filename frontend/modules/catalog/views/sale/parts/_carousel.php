@@ -28,7 +28,7 @@ $images = $model->getGalleryImageThumb();
                     Html::tag('link', '', ['itemprop' => 'contentUrl', 'href' => $src['img']]) .
                     Html::tag('meta', '', ['itemprop' => 'description', 'content' => strip_tags($model['lang']['description'])]) .
                     Html::a(
-                        Html::img($src['thumb'], ['alt' => $model->getTitle(), 'width'=> '555', 'height' => '382', 'class' => '111']),
+                        Html::img($src['thumb'], ['alt' => $model->getTitle(), 'width' => '555', 'height' => '382', 'class' => '111']),
                         $src['img'],
                         [
                             'class' => 'img-cont fancyimage',
@@ -40,14 +40,14 @@ $images = $model->getGalleryImageThumb();
                     Html::tag('span', '', ['class' => 'background']) .
                     Html::endTag('div');
 
-                // echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]);
+                echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]);
             } else {
                 echo Html::beginTag('div', [
                         'class' => 'item',
                         'data-dominant-color' => ''
                     ]) .
                     Html::a(
-                        Html::img($src['thumb'],['width'=> '555', 'height' => '382', 'class' => '111']),
+                        Html::img($src['thumb'], ['width' => '555', 'height' => '382', 'class' => '111']),
                         $src['img'],
                         [
                             'class' => 'img-cont fancyimage',
@@ -77,7 +77,7 @@ $images = $model->getGalleryImageThumb();
                 <?php foreach ($images as $key => $src) { ?>
                     <div class="thumb-item" data-dominant-color>
                         <span class="background"></span>
-                        <?= Html::img($src['thumb'], ['alt' => $model->getTitle(), 'width'=> '138', 'height' => '95', 'class' => '22']) ?>
+                        <?= Html::img($src['thumb'], ['alt' => $model->getTitle(), 'width' => '138', 'height' => '95', 'class' => '22']) ?>
                     </div>
                 <?php } ?>
 
