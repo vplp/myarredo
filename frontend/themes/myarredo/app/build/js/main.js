@@ -1396,7 +1396,7 @@ $(document).ready(function () {
                 formatOnDisplay: true
             });
         }
-
+        var btnSubmit = $("#checkout-form button[type=submit]");
         // создаем функцию - сброса
         var reset = function() {
 
@@ -1406,6 +1406,7 @@ $(document).ready(function () {
                 errorMsg.classList.add("hide");
                 formGroupBox[0].classList.remove("has-error");
                 formGroupBox[0].classList.add("has-success");
+                btnSubmit.attr("disabled", false);
             }
             else {
                 errorMsg.classList.remove("hide");
@@ -1414,6 +1415,7 @@ $(document).ready(function () {
                 formGroupBox[0].classList.remove("has-success");
                 formGroupBox[0].classList.add("has-error");
                 intlInputEl.setAttribute('aria-invalid', true);
+                btnSubmit.attr("disabled", true);
             }
           };
 
@@ -1422,6 +1424,7 @@ $(document).ready(function () {
             reset();
             if (intlInputEl.value.trim()) {
               if (!iti.isValidNumber()) {
+                btnSubmit.attr("disabled", true);
                   setTimeout(function() {
                     intlInputEl.classList.add("error");
                     var errorCode = iti.getValidationError();
@@ -1431,6 +1434,8 @@ $(document).ready(function () {
                     formGroupBox[0].classList.add("has-error");
                     intlInputEl.setAttribute('aria-invalid', true);
                   }, 500);
+              } else {
+                btnSubmit.attr("disabled", false);
               }
             }
           });
@@ -1443,6 +1448,7 @@ $(document).ready(function () {
         $('.form-iti-validate').on('afterValidate', function(ev) {
             // Если номер телефона уже введен и номер телефона не валидный
             if (iti.getNumber() && !iti.isValidNumber()) {
+              btnSubmit.attr("disabled", true);
                 setTimeout(function() {
                     intlInputEl.setAttribute('aria-invalid', true);
                     var errorCode = iti.getValidationError();
@@ -1452,6 +1458,8 @@ $(document).ready(function () {
                     formGroupBox[0].classList.add("has-error");
                 },300);
                 return false;
+            } else {
+              btnSubmit.attr("disabled", false);
             }
         });
         $('.form-iti-validate').on('beforeSubmit', function() {
