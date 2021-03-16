@@ -1763,14 +1763,26 @@ $(document).ready(function () {
                 console.log(err.statusText);
             }
         });
-        // $.post('$url', {_csrf: $('#token').val()}, function(data){
-        //     $('#ajaxFormFeedbackModal').html(data.html);
-        //     interPhoneInit();
-        //     $('#ajaxFormFeedbackModal').modal();
-        //     setTimeout(function() {
-        //         feedbackFormElInit();
-        //     },100);
-        // });
+    });
+
+    // Ajax Форма
+    $(document).on('click', '.btn-request-find-product', function() {
+        var thisUrl = $(this).attr('data-url');
+        $.ajax({
+            type: 'POST',
+            url: thisUrl,
+            data: {
+                '_csrf' : $('#token').val()
+            },
+            success: function(resp) {
+                $('#myModal').html(resp.html);
+                interPhoneInit();
+                $('#myModal').modal();
+            },
+            error: function(err) {
+                console.log(err.statusText);
+            }
+        });
     });
 
 });

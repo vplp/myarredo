@@ -55,7 +55,7 @@ $route = $model->producing_country_id == 4
                             <?= Html::img(Factory::getImage($model['image_link'])) ?>
                         </div>
                         <div class="nosearch-panel">
-                            <?= RequestFindProduct::widget([]) ?>
+                            <?= RequestFindProduct::widget(['view' => 'ajax_request_find_product']) ?>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-9">

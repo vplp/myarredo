@@ -25,6 +25,23 @@ class CartController extends BaseController
     public $defaultAction = 'notepad';
 
     /**
+     * @return array
+     */
+    public function actionAjaxGetRequestFindProduct()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            $model = new FormFindProduct(['scenario' => 'frontend']);
+
+            $html = $this->renderPartial('request_find_product', [
+                'model' => $model,
+            ]);
+
+            return ['success' => 1, 'html' => $html];
+        }
+    }
+    /**
      * @return bool|Response
      */
     public function actionRequestFindProduct()
@@ -116,7 +133,13 @@ class CartController extends BaseController
             }
         }
 
-        return $this->redirect(Yii::$app->request->referrer);
+        $this->title = Yii::t('app', 'Не нашли то что искали? Оставьте заявку тут');
+
+        return $this->render('request_find_product', [
+            'model' => $customerForm
+        ]);
+
+        //return $this->redirect(Yii::$app->request->referrer);
     }
 
     /**
