@@ -165,7 +165,8 @@ use frontend\modules\catalog\models\{
                                                     [
                                                         'target' => '_blank',
                                                         'class' => 'click-on-factory-file',
-                                                        'data-id' => $priceFile->id
+                                                        'data-id' => $priceFile->id,
+                                                        'data-factory' => $priceFile->factory_id
                                                     ]
                                                 ) ?>
                                             </li>
