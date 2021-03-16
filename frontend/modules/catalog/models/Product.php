@@ -213,7 +213,7 @@ class Product extends \common\modules\catalog\models\Product
     public function getFactoryCatalogsFiles()
     {
         return $this
-            ->hasMany(FactoryCatalogsFiles::class, ['id' => 'factory_file_id'])
+            ->hasMany(FactoryCatalogsFiles::class, ['id' => 'factory_id'])
             ->viaTable(ProductRelFactoryCatalogsFiles::tableName(), ['catalog_item_id' => 'id'])
             ->published();
     }
@@ -225,7 +225,7 @@ class Product extends \common\modules\catalog\models\Product
     public function getFactoryPricesFiles()
     {
         return $this
-            ->hasMany(FactoryPricesFiles::class, ['id' => 'factory_file_id'])
+            ->hasMany(FactoryPricesFiles::class, ['id' => 'factory_id'])
             ->viaTable(ProductRelFactoryPricesFiles::tableName(), ['catalog_item_id' => 'id'])
             ->published();
     }

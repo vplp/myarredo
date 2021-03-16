@@ -145,12 +145,11 @@ use frontend\modules\catalog\models\{
                         <div class="downloads">
                             <?php
                             $pricesFiles = [];
-//                            if (isset($orderItem->product->factoryPricesFiles)) {
-//                                $pricesFiles = $orderItem->product->factoryPricesFiles;
-//                            } else if (isset($orderItem->product->factory->pricesFiles)) {
-//                                $pricesFiles = $orderItem->product->factory->pricesFiles;
-//                            }
-                            $pricesFiles = $orderItem->product->factory->pricesFiles;
+                            if (isset($orderItem->product->factoryPricesFiles)) {
+                                $pricesFiles = $orderItem->product->factoryPricesFiles;
+                            } else if (isset($orderItem->product->factory->pricesFiles)) {
+                                $pricesFiles = $orderItem->product->factory->pricesFiles;
+                            }
                             ?>
 
                             <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
