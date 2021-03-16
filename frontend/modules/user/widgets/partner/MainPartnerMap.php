@@ -77,7 +77,7 @@ class MainPartnerMap extends Widget
                 'address' => $partner->profile->lang->address ?? '',
                 'city' => isset($partner->profile->city) ? $partner->profile->city->getTitle() : '',
                 'country' => isset($partner->profile->country) ? $partner->profile->country->getTitle() : '',
-                'phone' => $partner->profile->phone,
+                'phone' => $partner->profile->partner_in_city ? $partner->profile->phone : '',
                 'image' => $partner->profile->partner_in_city ? '/img/marker-main.png' : '/img/marker.png',
             ];
         }

@@ -43,6 +43,8 @@ $bundle = AppAsset::register($this);
                                                 $partner->profile->getNameCompany(),
                                                 ['itemprop' => 'name']
                                             ); ?>
+
+                                            <?php /*
                                             <div class="cont-info-row">
                                                 <div class="ico">
                                                     <?= Html::img($bundle->baseUrl . '/img/phone.svg', ['width' => '36', 'height' => '31']) ?>
@@ -54,6 +56,7 @@ $bundle = AppAsset::register($this);
                                                     ['itemprop' => 'telephone']
                                                 ) ?>
                                             </div>
+                                            */ ?>
 
                                             <div class="adres" itemprop="address" itemscope
                                                  itemtype="http://schema.org/PostalAddress">
