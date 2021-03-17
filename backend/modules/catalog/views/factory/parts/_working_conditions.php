@@ -11,4 +11,8 @@ use backend\modules\catalog\models\{
  * @var $form ActiveForm
  */
 
-echo $form->text_editor_lang($modelLang, 'working_conditions');
+?>
+
+<?= $form->field($model, 'factory_discount'); ?>
+
+<?= $form->text_editor_lang($modelLang, 'working_conditions'); ?>
