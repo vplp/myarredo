@@ -17,6 +17,6 @@ class Page extends \thread\modules\page\models\Page
      */
     public static function findBase()
     {
-        return self::find()->joinWith(['lang']);
+        return self::find()->innerJoinWith(['lang']);
     }
 }
