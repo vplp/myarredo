@@ -43,7 +43,7 @@ $model->user_agreement = 1;
                     ->label(false) ?>
 
                 <?php if (in_array(DOMAIN_TYPE, ['com', 'de', 'kz', 'co.il'])) {
-                    $model->city_id = 0;
+                    $model->city_id = Yii::$app->city->getCityId();
                     $model->country_code = Yii::$app->city->getCountryCode();
 
                     echo $form
