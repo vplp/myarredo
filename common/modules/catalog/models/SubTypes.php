@@ -146,7 +146,7 @@ class SubTypes extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->joinWith(['lang'])->orderBy(SubTypesLang::tableName() . '.title');
+        return self::find()->innerJoinWith(['lang'])->orderBy(SubTypesLang::tableName() . '.title');
     }
 
     /**

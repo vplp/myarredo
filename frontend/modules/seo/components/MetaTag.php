@@ -311,7 +311,7 @@ class MetaTag extends Component
         } elseif (in_array(DOMAIN_TYPE, ['de', 'co.il'])) {
             $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
         } else {
-            $hrefCanonical = Yii::$app->request->hostInfo . ($lang != 'ru' ? '/' . $lang : '/' ) . Yii::$app->request->pathInfo;
+            $hrefCanonical = Yii::$app->request->hostInfo . ($lang != 'ru' ? '/' . $lang : '/') . Yii::$app->request->pathInfo;
         }
 
         $view->registerLinkTag([
@@ -338,19 +338,19 @@ class MetaTag extends Component
         $view->registerMetaTag([
             'property' => 'og:title',
             'content' => $this->seo_title,
-        ]);
+        ], 'og:title');
 
         // og_type_register
         $view->registerMetaTag([
             'property' => 'og:type',
             'content' => 'website',
-        ]);
+        ], 'og:type');
 
         // og_site_name_register
         $view->registerMetaTag([
             'property' => 'og:site_name',
             'content' => 'Myarredo Family',
-        ]);
+        ], 'og:site_name');
 
         // og_url_register
         $view->registerMetaTag([
@@ -358,19 +358,19 @@ class MetaTag extends Component
             'content' => Yii::$app->request->hostInfo . '/' .
                 ($lang != 'ru' ? $lang . '/' : '') .
                 Yii::$app->request->pathInfo
-        ]);
+        ], 'og:url');
 
         // og_description_register
         $view->registerMetaTag([
             'property' => 'og:description',
             'content' => $this->seo_description,
-        ]);
+        ], 'og:description');
 
         // og_image_register
         $view->registerMetaTag([
             'property' => 'og:image',
             'content' => $this->seo_image_url,
-        ]);
+        ], 'og:image');
 
         $locale = $lang . '_' . strtoupper(DOMAIN_TYPE);
 
@@ -378,7 +378,7 @@ class MetaTag extends Component
         $view->registerMetaTag([
             'property' => 'og:locale',
             'content' => $locale,
-        ]);
+        ], 'og:locale');
 
         return $this;
     }
