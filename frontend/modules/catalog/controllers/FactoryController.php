@@ -3,6 +3,7 @@
 namespace frontend\modules\catalog\controllers;
 
 use Yii;
+use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -337,6 +338,17 @@ class FactoryController extends BaseController
             $h1 .= ' - ' . Yii::t('app', 'Представительство');
         }
 
+        if (in_array($tab, ['pricelists']) && (Yii::$app->getUser()->isGuest || !Yii::$app->user->identity->profile->isPdfAccess())) {
+            throw new ForbiddenHttpException('Access denied');
+        }
+
+        if (in_array($tab, ['orders']) && (Yii::$app->getUser()->isGuest || !in_array(Yii::$app->user->identity->group->role, ['admin']))) {
+            throw new ForbiddenHttpException('Access denied');
+        }
+
+        if (in_array($tab, ['working-conditions', 'subdivision']) && (Yii::$app->getUser()->isGuest || !in_array(Yii::$app->user->identity->group->role, ['admin', 'partner']))) {
+            throw new ForbiddenHttpException('Access denied');
+        }
 
         if (!Yii::$app->metatag->seo_description) {
             Yii::$app->view->registerMetaTag([
