@@ -332,7 +332,11 @@ class FactoryController extends BaseController
         } elseif ($tab == 'working-conditions') {
             $this->title = Yii::t('app', 'Условия работы') . ': ' . $this->title;
             $h1 .= ' - ' . Yii::t('app', 'Условия работы');
+        } elseif ($tab == 'subdivision') {
+            $this->title = Yii::t('app', 'Представительство') . ': ' . $this->title;
+            $h1 .= ' - ' . Yii::t('app', 'Представительство');
         }
+
 
         if (!Yii::$app->metatag->seo_description) {
             Yii::$app->view->registerMetaTag([

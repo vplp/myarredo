@@ -98,6 +98,14 @@ echo Tabs::widget([
             ])
         ],
         [
+            'label' => Yii::t('app', 'Представительство'),
+            'content' => $this->render('parts/_subdivision', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
+        [
             'label' => 'Редактор',
             'content' => $this->render('parts/_editors', [
                 'model' => $model
