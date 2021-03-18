@@ -49,9 +49,18 @@ function rangeInit() {
 }
 // Функция для активации плагина Intl-input doc - https://github.com/jackocnr/intl-tel-input.git
 // для форм в попапах
-function interPhoneInit() {
-
-    if ($('.inter-phone').length > 0) {
+function interPhoneInit(ourSelector) {
+    var selectorPhone = '.inter-phone',
+        formSelector = '.form-inter-phone',
+        codeSelector = '#cartcustomerform-country_code';
+    if (ourSelector) {
+      selectorPhone = ourSelector;
+      formSelector = $(selectorPhone).parent('.form-group').parent('form');
+      codeSelector = '#formfindproduct-country_code';
+    }
+    var btnSelector = $(formSelector).find('button[type=submit]');
+    // if ($('.inter-phone').length > 0) {
+    if ($(selectorPhone).length > 0) {
 
         // получаем язык сайта у пользователя
         var siteLang = $('html').attr('lang');
@@ -93,9 +102,11 @@ function interPhoneInit() {
         }
 
         // поле - телефон из нашей формы
-        var intlInputEl = document.querySelector(".inter-phone");
+        // var intlInputEl = document.querySelector(".inter-phone");
+        var intlInputEl = document.querySelector(selectorPhone);
         // div, обертка поля - телефон из нашей формы
-        var formGroupBox = $('.inter-phone').closest('.form-group');
+        // var formGroupBox = $('.inter-phone').closest('.form-group');
+        var formGroupBox = $(selectorPhone).closest('.form-group');
         // див help-block для показа сообщений об ошибке в поле телефон
         var errorMsg = formGroupBox.children('.help-block')[0];
 
@@ -135,6 +146,7 @@ function interPhoneInit() {
                 errorMsg.classList.add("hide");
                 formGroupBox[0].classList.remove("has-error");
                 formGroupBox[0].classList.add("has-success");
+                btnSelector.attr("disabled", false);
             }
             else {
                 errorMsg.classList.remove("hide");
@@ -143,6 +155,7 @@ function interPhoneInit() {
                 formGroupBox[0].classList.remove("has-success");
                 formGroupBox[0].classList.add("has-error");
                 intlInputEl.setAttribute('aria-invalid', true);
+                btnSelector.attr("disabled", true);
             }
           };
 
@@ -159,7 +172,10 @@ function interPhoneInit() {
                     formGroupBox[0].classList.remove("has-success");
                     formGroupBox[0].classList.add("has-error");
                     intlInputEl.setAttribute('aria-invalid', true);
+                    btnSelector.attr("disabled", true);
                   }, 500);
+              } else {
+                btnSelector.attr("disabled", false);
               }
             }
           });
@@ -169,7 +185,8 @@ function interPhoneInit() {
           intlInputEl.addEventListener('keyup', reset);
 
         //   Валидация номера телефона при отправке формы
-        $('.form-inter-phone').on('beforeSubmit', function(ev) {
+        // $('.form-inter-phone').on('beforeSubmit', function(ev) {
+        $(formSelector).on('beforeSubmit', function(ev) {
             // если номер телефона не валидный
             if (!iti.isValidNumber()) {
                 setTimeout(function() {
@@ -179,15 +196,20 @@ function interPhoneInit() {
                     errorMsg.classList.remove("hide");
                     formGroupBox[0].classList.remove("has-success");
                     formGroupBox[0].classList.add("has-error");
+                    btnSelector.attr("disabled", true);
                 },300);
                 return false;
             }
             else {
-                if ($(this).find('.inter-phone').val() != iti.getNumber()) {
-                    $(this).find('.inter-phone').val(iti.getNumber());
+                btnSelector.attr("disabled", false);
+                // if ($(this).find('.inter-phone').val() != iti.getNumber()) {
+                if ($(this).find(selectorPhone).val() != iti.getNumber()) {
+                    // $(this).find('.inter-phone').val(iti.getNumber());
+                    $(this).find(selectorPhone).val(iti.getNumber());
                 }
                 var countryData = iti.getSelectedCountryData();
-                $(this).find('#cartcustomerform-country_code').val(countryData.iso2);
+                // $(this).find('#cartcustomerform-country_code').val(countryData.iso2);
+                $(this).find(codeSelector).val(countryData.iso2);
             }
         });
     }
@@ -1523,118 +1545,118 @@ $(document).ready(function () {
             }
         });
     }
-    if ($('.intlinput-field2').length > 0) {
+    // if ($('.intlinput-field2').length > 0) {
 
-        // поле - телефон из нашей формы
-        var intlInputEl2 = document.querySelector(".intlinput-field2");
-        // div, обертка поля - телефон из нашей формы
-        var formGroupBox2 = $('.intlinput-field2').closest('.form-group');
-        // див help-block для показа сообщений об ошибке в поле телефон
-        var errorMsg2 = formGroupBox2.children('.help-block')[0];
+    //     // поле - телефон из нашей формы
+    //     var intlInputEl2 = document.querySelector(".intlinput-field2");
+    //     // div, обертка поля - телефон из нашей формы
+    //     var formGroupBox2 = $('.intlinput-field2').closest('.form-group');
+    //     // див help-block для показа сообщений об ошибке в поле телефон
+    //     var errorMsg2 = formGroupBox2.children('.help-block')[0];
 
-        // инициализируем плагин международных телефонных номеров
-        var iti2 = {};
-        // если по условию нужна только определенная страна
-        if ($(intlInputEl2).attr('data-conly') == 'yes') {
+    //     // инициализируем плагин международных телефонных номеров
+    //     var iti2 = {};
+    //     // если по условию нужна только определенная страна
+    //     if ($(intlInputEl2).attr('data-conly') == 'yes') {
 
-            iti2 = window.intlTelInput(intlInputEl2, {
-                separateDialCode: true,
-                onlyCountries: [diCode],
-                initialCountry: diCode,
-                utilsScript: "/js/utils.js",
-                formatOnDisplay: true
-            });
-        }
-        // иначе инициализируем со всемя странами
-        else {
-            // если страна Германия то по дефолту маска De, если любая другая то - It
-            if (siteLang == 'de') {
-                diCode = 'de';
-            }
-            else {
-                if (siteDomen == 'www.myarredofamily.com') {
-                    diCode = 'us';
-                }
-                else if (siteDomen == 'www.myarredo.kz') {
-                    diCode = 'kz';
-                }
-                else {
-                    diCode = 'it';
-                }
-            }
-            iti2 = window.intlTelInput(intlInputEl2, {
-                separateDialCode: true,
-                initialCountry: diCode,
-                utilsScript: "/js/utils.js",
-                formatOnDisplay: true
-            });
-        }
+    //         iti2 = window.intlTelInput(intlInputEl2, {
+    //             separateDialCode: true,
+    //             onlyCountries: [diCode],
+    //             initialCountry: diCode,
+    //             utilsScript: "/js/utils.js",
+    //             formatOnDisplay: true
+    //         });
+    //     }
+    //     // иначе инициализируем со всемя странами
+    //     else {
+    //         // если страна Германия то по дефолту маска De, если любая другая то - It
+    //         if (siteLang == 'de') {
+    //             diCode = 'de';
+    //         }
+    //         else {
+    //             if (siteDomen == 'www.myarredofamily.com') {
+    //                 diCode = 'us';
+    //             }
+    //             else if (siteDomen == 'www.myarredo.kz') {
+    //                 diCode = 'kz';
+    //             }
+    //             else {
+    //                 diCode = 'it';
+    //             }
+    //         }
+    //         iti2 = window.intlTelInput(intlInputEl2, {
+    //             separateDialCode: true,
+    //             initialCountry: diCode,
+    //             utilsScript: "/js/utils.js",
+    //             formatOnDisplay: true
+    //         });
+    //     }
 
-        // создаем функцию - сброса
-        var reset2 = function() {
+    //     // создаем функцию - сброса
+    //     var reset2 = function() {
 
-            intlInputEl2.classList.remove("error");
-            errorMsg2.innerHTML = "";
-            if (iti2.isValidNumber()) {
-                errorMsg2.classList.add("hide");
-                formGroupBox2[0].classList.remove("has-error");
-                formGroupBox2[0].classList.add("has-success");
-            }
-            else {
-                errorMsg2.classList.remove("hide");
-                var errorCode = iti2.getValidationError();
-                errorMsg2.innerHTML = errorMap[errorCode];
-                formGroupBox2[0].classList.remove("has-success");
-                formGroupBox2[0].classList.add("has-error");
-                intlInputEl2.setAttribute('aria-invalid', true);
-            }
-          };
+    //         intlInputEl2.classList.remove("error");
+    //         errorMsg2.innerHTML = "";
+    //         if (iti2.isValidNumber()) {
+    //             errorMsg2.classList.add("hide");
+    //             formGroupBox2[0].classList.remove("has-error");
+    //             formGroupBox2[0].classList.add("has-success");
+    //         }
+    //         else {
+    //             errorMsg2.classList.remove("hide");
+    //             var errorCode = iti2.getValidationError();
+    //             errorMsg2.innerHTML = errorMap[errorCode];
+    //             formGroupBox2[0].classList.remove("has-success");
+    //             formGroupBox2[0].classList.add("has-error");
+    //             intlInputEl2.setAttribute('aria-invalid', true);
+    //         }
+    //       };
 
-          // on blur: validate
-          intlInputEl2.addEventListener('blur', function() {
-            reset2();
-            if (intlInputEl2.value.trim()) {
-              if (!iti2.isValidNumber()) {
-                  setTimeout(function() {
-                    intlInputEl2.classList.add("error");
-                    var errorCode = iti2.getValidationError();
-                    errorMsg2.innerHTML = errorMap[errorCode];
-                    errorMsg2.classList.remove("hide");
-                    formGroupBox2[0].classList.remove("has-success");
-                    formGroupBox2[0].classList.add("has-error");
-                    intlInputEl2.setAttribute('aria-invalid', true);
-                  }, 500);
-              }
-            }
-          });
+    //       // on blur: validate
+    //       intlInputEl2.addEventListener('blur', function() {
+    //         reset2();
+    //         if (intlInputEl2.value.trim()) {
+    //           if (!iti2.isValidNumber()) {
+    //               setTimeout(function() {
+    //                 intlInputEl2.classList.add("error");
+    //                 var errorCode = iti2.getValidationError();
+    //                 errorMsg2.innerHTML = errorMap[errorCode];
+    //                 errorMsg2.classList.remove("hide");
+    //                 formGroupBox2[0].classList.remove("has-success");
+    //                 formGroupBox2[0].classList.add("has-error");
+    //                 intlInputEl2.setAttribute('aria-invalid', true);
+    //               }, 500);
+    //           }
+    //         }
+    //       });
 
-          // on keyup / change flag: reset
-          intlInputEl2.addEventListener('change', reset2);
-          intlInputEl2.addEventListener('keyup', reset2);
+    //       // on keyup / change flag: reset
+    //       intlInputEl2.addEventListener('change', reset2);
+    //       intlInputEl2.addEventListener('keyup', reset2);
 
-        //   Валидация номера телефона при отправке формы
-        $(intlInputEl2).closest('form').on('beforeSubmit', function(ev) {
-            // если номер телефона не валидный
-            if (!iti2.isValidNumber()) {
-                setTimeout(function() {
-                    intlInputEl2.setAttribute('aria-invalid', true);
-                    var errorCode = iti2.getValidationError();
-                    errorMsg2.innerHTML = errorMap[errorCode];
-                    errorMsg2.classList.remove("hide");
-                    formGroupBox2[0].classList.remove("has-success");
-                    formGroupBox2[0].classList.add("has-error");
-                },300);
-                return false;
-            }
-            else {
-                if ($(this).find('.intlinput-field2').val() != iti2.getNumber()) {
-                    $(this).find('.intlinput-field2').val(iti2.getNumber());
-                }
-                var countryData = iti2.getSelectedCountryData();
-                $(this).find('name="CartCustomerForm[country_code]"').val(countryData.iso2);
-            }
-        });
-    }
+    //     //   Валидация номера телефона при отправке формы
+    //     $(intlInputEl2).closest('form').on('beforeSubmit', function(ev) {
+    //         // если номер телефона не валидный
+    //         if (!iti2.isValidNumber()) {
+    //             setTimeout(function() {
+    //                 intlInputEl2.setAttribute('aria-invalid', true);
+    //                 var errorCode = iti2.getValidationError();
+    //                 errorMsg2.innerHTML = errorMap[errorCode];
+    //                 errorMsg2.classList.remove("hide");
+    //                 formGroupBox2[0].classList.remove("has-success");
+    //                 formGroupBox2[0].classList.add("has-error");
+    //             },300);
+    //             return false;
+    //         }
+    //         else {
+    //             if ($(this).find('.intlinput-field2').val() != iti2.getNumber()) {
+    //                 $(this).find('.intlinput-field2').val(iti2.getNumber());
+    //             }
+    //             var countryData = iti2.getSelectedCountryData();
+    //             $(this).find('name="CartCustomerForm[country_code]"').val(countryData.iso2);
+    //         }
+    //     });
+    // }
 
     // Функционал для открития фильтров по дефолту
     (function() {
@@ -1776,7 +1798,7 @@ $(document).ready(function () {
             },
             success: function(resp) {
                 $('#myModal').html(resp.html);
-                interPhoneInit();
+                interPhoneInit('#formfindproduct-phone');
                 $('#myModal').modal();
             },
             error: function(err) {
@@ -1784,6 +1806,7 @@ $(document).ready(function () {
             }
         });
     });
+
 });
 
 // Vue js Code
