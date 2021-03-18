@@ -106,13 +106,13 @@ class CatalogItalianProductController extends Controller
                                 );
 
                                 $translateDescription = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    strip_tags($modelLang->description),
+                                    htmlspecialchars_decode(strip_tags($modelLang->description)),
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );
 
                                 $translateDefects = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    strip_tags($modelLang->defects),
+                                    htmlspecialchars_decode(strip_tags($modelLang->defects)),
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );
@@ -190,13 +190,13 @@ class CatalogItalianProductController extends Controller
                                     );
 
                                     $translateDescription = (string)Yii::$app->yandexTranslation->getTranslate(
-                                        strip_tags($modelLang->description),
+                                        htmlspecialchars_decode(strip_tags($modelLang->description)),
                                         $sourceLanguageCode,
                                         $targetLanguageCode
                                     );
 
                                     $translateDefects = (string)Yii::$app->yandexTranslation->getTranslate(
-                                        strip_tags($modelLang->defects),
+                                        htmlspecialchars_decode(strip_tags($modelLang->defects)),
                                         $sourceLanguageCode,
                                         $targetLanguageCode
                                     );
@@ -308,7 +308,7 @@ class CatalogItalianProductController extends Controller
                     );
 
                     $description = (string)Yii::$app->yandexTranslation->getTranslate(
-                        strip_tags($modelLang->description),
+                        htmlspecialchars_decode(strip_tags($modelLang->description)),
                         $sourceLanguageCode,
                         $targetLanguageCode
                     );

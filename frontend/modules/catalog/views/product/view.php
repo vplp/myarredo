@@ -358,7 +358,7 @@ $this->title = $this->context->title;
                                 <div class="text-contain">
                                     <?= Yii::t('app', 'Экономьте время и усилия на поиск по множеству сайтов. Все лучшие и проверенные поставщики собраны в нашей сети.') ?>
                                     <div class="find-product-panel">
-                                        <?= RequestFindProduct::widget([]) ?>
+                                        <?= RequestFindProduct::widget(['view' => 'ajax_request_find_product']) ?>
                                     </div>
                                 </div>
                             </div>

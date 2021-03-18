@@ -12,7 +12,7 @@ use console\models\{
 use frontend\modules\catalog\models\{Category, Types, Factory};
 use frontend\modules\seo\modules\directlink\models\Directlink;
 use console\models\{
-    Sale
+    Sale, ArticlesArticle, NewsArticle
 };
 
 /**
@@ -51,15 +51,7 @@ class SitemapController extends Controller
         // delete files
         array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
 
-        // berlin
-//        $city = City::findBase()->byId(160)->one();
-//        $this->createSitemapFile(self::getUrls('de-DE', 'de'), 'https://' . 'www.myarredo.de', $city);
-//
-//        // washington
-//        $city = City::findBase()->byId(161)->one();
-//        $this->createSitemapFile(self::getUrls('en-EN', 'com'), 'https://' . 'www.myarredofamily.com', $city);
-
-        // ru ua by
+        // get cities by country
         $cities = City::find()
             ->joinWith(['lang', 'country', 'country.lang'])
             ->andFilterWhere(['IN', 'country_id', [1, 2, 3, 4, 5, 85, 114, 109]])
@@ -317,6 +309,20 @@ class SitemapController extends Controller
                     $model::tableName() . '.alias_he',
                     $model::tableName() . '.updated_at',
                 ]);
+            } elseif (in_array($model::className(), [ArticlesArticle::className(), NewsArticle::className()])) {
+                $query->select([
+                    $model::tableName() . '.id',
+                    $model::tableName() . '.alias',
+                    $model::tableName() . '.updated_at',
+                ]);
+
+                if ($cityID) {
+                    $query->andFilterWhere([
+                        'OR',
+                        [$model::tableName() . '.city_id' => $cityID],
+                        [$model::tableName() . '.city_id' => 0]
+                    ]);
+                }
             } else {
                 $query->select([
                     $model::tableName() . '.id',

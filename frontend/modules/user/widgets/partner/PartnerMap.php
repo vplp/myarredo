@@ -55,7 +55,7 @@ class PartnerMap extends Widget
             $dataJS[$k]['address'] = $partner->profile->lang->address ?? '';
             $dataJS[$k]['city'] = isset($partner->profile->city) ? $partner->profile->city->getTitle() : '';
             $dataJS[$k]['country'] = isset($partner->profile->country) ? $partner->profile->country->getTitle() : '';
-            $dataJS[$k]['phone'] = $partner->profile->phone;
+            $dataJS[$k]['phone'] = $partner->profile->partner_in_city ? $partner->profile->phone : '';
             $dataJS[$k]['image'] = $partner->profile->partner_in_city ? '/img/marker-main.png' : $this->defaultMarker;
         }
 

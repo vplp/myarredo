@@ -49,6 +49,7 @@ use voskobovich\behaviors\ManyToManyBehavior;
  * @property boolean $show_for_de
  * @property integer $product_count
  * @property boolean $dealers_can_answer
+ * @property boolean $factory_discount
  *
  * @property FactoryLang $lang
  * @property User $user
@@ -122,7 +123,8 @@ class Factory extends ActiveRecord
                     'updated_at',
                     'position',
                     'partner_id',
-                    'product_count'
+                    'product_count',
+                    'factory_discount'
                 ],
                 'integer'
             ],
@@ -155,7 +157,7 @@ class Factory extends ActiveRecord
             [['first_letter'], 'string', 'max' => 2],
             [['alias'], 'unique'],
             [
-                ['user_id', 'editor_id', 'producing_country_id', 'position', 'partner_id', 'product_count'],
+                ['user_id', 'editor_id', 'producing_country_id', 'position', 'partner_id', 'product_count', 'factory_discount'],
                 'default',
                 'value' => '0'
             ],
@@ -213,7 +215,8 @@ class Factory extends ActiveRecord
                 'show_for_com',
                 'show_for_de',
                 'dealers_ids',
-                'dealers_can_answer'
+                'dealers_can_answer',
+                'factory_discount'
             ],
         ];
     }
@@ -256,6 +259,7 @@ class Factory extends ActiveRecord
             'product_count' => 'product_count',
             'dealers_ids' => Yii::t('app', 'Dealers'),
             'dealers_can_answer' => Yii::t('app', 'Dealers can answer'),
+            'factory_discount' => 'Скидка фабрики'
         ];
     }
 

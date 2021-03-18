@@ -246,6 +246,7 @@ $urls = [
     'shop/order/link/<token:[\w\-]+>' => 'shop/order/link',
 
     'shop/cart/request-find-product' => 'shop/cart/request-find-product',
+    'shop/cart/ajax-get-request-find-product' => 'shop/cart/ajax-get-request-find-product',
 
     'shop/cart/add-to-cart' => 'shop/cart/add-to-cart',
     'shop/cart/delete-from-cart' => 'shop/cart/delete-from-cart',

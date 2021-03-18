@@ -226,9 +226,12 @@ class CityComponent extends Component
         } elseif (in_array(DOMAIN_TYPE, ['com']) && DOMAIN_NAME == 'myarredofamily') {
             // washington
             $this->defaultCityId = 161;
-        } elseif (in_array(DOMAIN_TYPE, ['com']) && DOMAIN_NAME == 'myarredo') {
+        } elseif (in_array(DOMAIN_TYPE, ['com']) && DOMAIN_NAME == 'myarredo' && $lang == 'it') {
             // rome
             $this->defaultCityId = 159;
+        } elseif (in_array(DOMAIN_TYPE, ['com']) && DOMAIN_NAME == 'myarredo' && $lang == 'en') {
+            // london
+            $this->defaultCityId = 162;
         } elseif (in_array(DOMAIN_TYPE, ['de'])) {
             // berlin
             $this->defaultCityId = 160;

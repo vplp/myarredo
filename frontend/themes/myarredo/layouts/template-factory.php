@@ -41,12 +41,14 @@ $this->beginPage()
                 ) ?>
             </div>
 
-            <?= Html::tag(
-                'h3',
-                $this->context->factory['lang']['h1'] . '. ' .
-                Yii::t('app', 'Купить в') . ' ' .
-                Yii::$app->city->getCityTitleWhere()
-            ); ?>
+            <?php if (isset($this->context->factory['lang'])) {
+                echo Html::tag(
+                    'h3',
+                    $this->context->factory['lang']['h1'] . '. ' .
+                    Yii::t('app', 'Купить в') . ' ' .
+                    Yii::$app->city->getCityTitleWhere()
+                );
+            } ?>
 
         </div>
         <a href="tel:<?= Yii::$app->partner->getPartnerPhone() ?>" class="tel">
@@ -107,9 +109,11 @@ $this->beginPage()
                 2015 - <?= date('Y'); ?> (С) <a href="/">MYARREDO</a>, ЛУЧШАЯ МЕБЕЛЬ ИЗ ИТАЛИИ ДЛЯ ВАШЕГО ДОМА
             </div>
             <div>
-                <?= $this->context->factory['lang']['h1'] . '. ' .
-                Yii::t('app', 'Купить в') . ' ' .
-                Yii::$app->city->getCityTitleWhere() ?>
+                <?php if (isset($this->context->factory['lang'])) {
+                    echo $this->context->factory['lang']['h1'] . '. ' .
+                        Yii::t('app', 'Купить в') . ' ' .
+                        Yii::$app->city->getCityTitleWhere();
+                } ?>
             </div>
         </div>
     </div>

@@ -8,7 +8,7 @@ use frontend\modules\catalog\models\{
     Category, Types, SubTypes
 };
 use console\models\{
-    Product, Factory, Sale, ItalianProduct
+    Product, Factory, Sale, ItalianProduct, ArticlesArticle, NewsArticle
 };
 use frontend\modules\seo\modules\directlink\models\Directlink;
 
@@ -168,6 +168,28 @@ return ArrayHelper::merge(
                                     'priority' => 0.5
                                 ];
                             },
+                        ],
+                        [
+                            'class' => ArticlesArticle::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/articles/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => NewsArticle::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/news/article/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            },
                         ]
                     ],
                     'uk' => [
@@ -220,6 +242,28 @@ return ArrayHelper::merge(
                             'dataClosure' => function ($model) {
                                 return [
                                     'loc' => '/factory/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => ArticlesArticle::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/articles/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => NewsArticle::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/news/article/' . $model['alias'] . '/',
                                     'lastmod' => date('c', $model['updated_at']),
                                     'changefreq' => 'daily',
                                     'priority' => 0.5
@@ -282,6 +326,28 @@ return ArrayHelper::merge(
                                     'priority' => 0.5
                                 ];
                             }
+                        ],
+                        [
+                            'class' => ArticlesArticle::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/articles/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => NewsArticle::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/news/article/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            },
                         ]
                     ],
                     'it' => [
@@ -339,6 +405,28 @@ return ArrayHelper::merge(
                                     'priority' => 0.5
                                 ];
                             }
+                        ],
+                        [
+                            'class' => ArticlesArticle::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/articles/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => NewsArticle::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/news/article/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            },
                         ]
                     ],
                     'de' => [
@@ -396,6 +484,28 @@ return ArrayHelper::merge(
                                     'priority' => 0.5
                                 ];
                             }
+                        ],
+                        [
+                            'class' => ArticlesArticle::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/articles/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => NewsArticle::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/news/article/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            },
                         ]
                     ],
                     'he' => [
@@ -453,6 +563,28 @@ return ArrayHelper::merge(
                                     'priority' => 0.5
                                 ];
                             }
+                        ],
+                        [
+                            'class' => ArticlesArticle::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/articles/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => NewsArticle::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/news/article/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            },
                         ]
                     ],
                 ],
