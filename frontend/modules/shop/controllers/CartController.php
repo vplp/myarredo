@@ -3,6 +3,7 @@
 namespace frontend\modules\shop\controllers;
 
 use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\helpers\Url;
 use frontend\components\BaseController;
@@ -27,6 +28,23 @@ class CartController extends BaseController
     /**
      * @return array
      */
+    public function behaviors()
+    {
+        $behaviors = [
+            [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'ajax-get-request-find-product' => ['post'],
+                    'request-find-product' => ['post'],
+                ],
+            ],
+        ];
+
+        return $behaviors;
+    }
+    /**
+     * @return array
+     */
     public function actionAjaxGetRequestFindProduct()
     {
         if (Yii::$app->request->isAjax) {
@@ -34,7 +52,7 @@ class CartController extends BaseController
 
             $model = new FormFindProduct(['scenario' => 'frontend']);
 
-            $html = $this->renderPartial('request_find_product', [
+            $html = $this->renderPartial('ajax_request_find_product', [
                 'model' => $model,
             ]);
 
