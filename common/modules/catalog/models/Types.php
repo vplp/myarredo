@@ -209,7 +209,7 @@ class Types extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->joinWith(['lang'])->orderBy(TypesLang::tableName() . '.title');
+        return self::find()->innerJoinWith(['lang'])->orderBy(TypesLang::tableName() . '.title');
     }
 
     /**
