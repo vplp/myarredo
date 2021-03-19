@@ -39,7 +39,7 @@ $images = $model->getGalleryImageThumb();
                     Html::tag('span', '', ['class' => 'background']) .
                     Html::endTag('div');
 
-                echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]);
+                // echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]);
             } else {
                 echo Html::beginTag('div', [
                         'class' => 'item',
