@@ -108,15 +108,7 @@ $this->title = $this->context->title;
                                                     echo $this->render('/category/_list_item', [
                                                         'model' => $model->product
                                                     ]);
-                                                } else { ?>
-                                                    <div class="one-prod-tile">
-                                                        <div class="one-prod-tile-in">
-<?php
-/* !!! */ echo  '<pre style="color:red;">'; print_r($model); echo '</pre>'; /* !!! */
-?>
-                                                        </div>
-                                                    </div>
-                                                <? }
+                                                }
                                             } ?>
                                         </div>
                                         <div class="pagi-wrap">
