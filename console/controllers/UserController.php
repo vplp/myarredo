@@ -107,7 +107,7 @@ class UserController extends Controller
                                 );
 
                                 $name_company = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    htmlspecialchars_decode(strip_tags($modelProfileLang->name_company)),
+                                    strip_tags($modelProfileLang->name_company),
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );
@@ -182,7 +182,7 @@ class UserController extends Controller
                                     );
 
                                     $name_company = (string)Yii::$app->yandexTranslation->getTranslate(
-                                        htmlspecialchars_decode(strip_tags($modelProfileLang->name_company)),
+                                        strip_tags($modelProfileLang->name_company),
                                         $sourceLanguageCode,
                                         $targetLanguageCode
                                     );

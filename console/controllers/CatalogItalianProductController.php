@@ -106,13 +106,13 @@ class CatalogItalianProductController extends Controller
                                 );
 
                                 $translateDescription = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    htmlspecialchars_decode(strip_tags($modelLang->description)),
+                                    str_replace("&nbsp;", ' ', strip_tags($modelLang->description)),
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );
 
                                 $translateDefects = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    htmlspecialchars_decode(strip_tags($modelLang->defects)),
+                                    str_replace("&nbsp;", ' ', strip_tags($modelLang->defects)),
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );
@@ -190,13 +190,13 @@ class CatalogItalianProductController extends Controller
                                     );
 
                                     $translateDescription = (string)Yii::$app->yandexTranslation->getTranslate(
-                                        htmlspecialchars_decode(strip_tags($modelLang->description)),
+                                        str_replace("&nbsp;", ' ', strip_tags($modelLang->description)),
                                         $sourceLanguageCode,
                                         $targetLanguageCode
                                     );
 
                                     $translateDefects = (string)Yii::$app->yandexTranslation->getTranslate(
-                                        htmlspecialchars_decode(strip_tags($modelLang->defects)),
+                                        str_replace("&nbsp;", ' ', strip_tags($modelLang->defects)),
                                         $sourceLanguageCode,
                                         $targetLanguageCode
                                     );
@@ -308,7 +308,7 @@ class CatalogItalianProductController extends Controller
                     );
 
                     $description = (string)Yii::$app->yandexTranslation->getTranslate(
-                        htmlspecialchars_decode(strip_tags($modelLang->description)),
+                        str_replace("&nbsp;", ' ', strip_tags($modelLang->description)),
                         $sourceLanguageCode,
                         $targetLanguageCode
                     );
