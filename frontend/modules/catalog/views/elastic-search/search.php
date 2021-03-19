@@ -111,7 +111,9 @@ $this->title = $this->context->title;
                                                 } else { ?>
                                                     <div class="one-prod-tile">
                                                         <div class="one-prod-tile-in">
-
+<?php
+/* !!! */ echo  '<pre style="color:red;">'; print_r($model); echo '</pre>'; /* !!! */
+?>
                                                         </div>
                                                     </div>
                                                 <? }
