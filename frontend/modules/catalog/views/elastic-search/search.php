@@ -108,7 +108,13 @@ $this->title = $this->context->title;
                                                     echo $this->render('/category/_list_item', [
                                                         'model' => $model->product
                                                     ]);
-                                                }
+                                                } else { ?>
+                                                    <div class="one-prod-tile">
+                                                        <div class="one-prod-tile-in">
+
+                                                        </div>
+                                                    </div>
+                                                <? }
                                             } ?>
                                         </div>
                                         <div class="pagi-wrap">
