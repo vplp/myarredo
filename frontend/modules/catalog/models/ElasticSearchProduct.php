@@ -269,7 +269,7 @@ class ElasticSearchProduct extends ActiveRecord
         $dataProvider = new ArrayDataProvider([
             'allModels' => $data,
             'pagination' => [
-                'pageSize' => $module->itemOnPage,
+                'pageSize' => 9,
             ],
         ]);
 
