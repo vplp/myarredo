@@ -204,11 +204,11 @@ class ElasticSearchSale extends ActiveRecord
     public function getProduct()
     {
         return $this
-            ->hasOne(Sale::class, ['id' => 'id'])
-            ->andFilterWhere([
-                Sale::tableName() . '.country_id' => Yii::$app->city->getCountryId()
-            ])
-            ->enabled();
+            ->hasOne(Sale::class, ['id' => 'id']);
+//            ->andFilterWhere([
+//                Sale::tableName() . '.country_id' => Yii::$app->city->getCountryId()
+//            ])
+//            ->enabled();
     }
 
     /**
