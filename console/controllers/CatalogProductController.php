@@ -866,45 +866,43 @@ class CatalogProductController extends Controller
 
                     $modelLang2->rid = $model->id;
                     $modelLang2->lang = Yii::$app->language;
+                }
 
-                    $sourceLanguageCode = substr($lang1, 0, 2);
-                    $targetLanguageCode = substr($lang2, 0, 2);
+                $sourceLanguageCode = substr($lang1, 0, 2);
+                $targetLanguageCode = substr($lang2, 0, 2);
 
-                    $title = (string)Yii::$app->yandexTranslation->getTranslate(
-                        $modelLang->title,
-                        $sourceLanguageCode,
-                        $targetLanguageCode
-                    );
+                $title = (string)Yii::$app->yandexTranslation->getTranslate(
+                    $modelLang->title,
+                    $sourceLanguageCode,
+                    $targetLanguageCode
+                );
 
-                    $description = (string)Yii::$app->yandexTranslation->getTranslate(
-                        htmlspecialchars_decode(strip_tags($modelLang->description)),
-                        $sourceLanguageCode,
-                        $targetLanguageCode
-                    );
+                $description = (string)Yii::$app->yandexTranslation->getTranslate(
+                    htmlspecialchars_decode(strip_tags($modelLang->description)),
+                    $sourceLanguageCode,
+                    $targetLanguageCode
+                );
 
-                    if ($title != '') {
-                        $transaction = $modelLang2::getDb()->beginTransaction();
-                        try {
-                            $modelLang2->title = $title;
-                            $modelLang2->description = $description;
+                if ($title != '') {
+                    $transaction = $modelLang2::getDb()->beginTransaction();
+                    try {
+                        $modelLang2->title = $title;
+                        $modelLang2->description = $description;
 
-                            $modelLang2->setScenario('backend');
+                        $modelLang2->setScenario('backend');
 
-                            if ($save = $modelLang2->save()) {
-                                $transaction->commit();
-                                $this->stdout("translate ID = " . $model->id . " " . $lang2 . " \n", Console::FG_GREEN);
-                            } else {
-                                foreach ($modelLang2->errors as $attribute => $errors) {
-                                    $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
-                                }
+                        if ($save = $modelLang2->save()) {
+                            $transaction->commit();
+                            $this->stdout("translate ID = " . $model->id . " " . $lang2 . " \n", Console::FG_GREEN);
+                        } else {
+                            foreach ($modelLang2->errors as $attribute => $errors) {
+                                $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
                             }
-                        } catch (Exception $e) {
-                            $transaction->rollBack();
-                            throw new Exception($e);
                         }
+                    } catch (Exception $e) {
+                        $transaction->rollBack();
+                        throw new Exception($e);
                     }
-                } else {
-                    $save = true;
                 }
 
                 if ($save) {

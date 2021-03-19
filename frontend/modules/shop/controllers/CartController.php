@@ -42,6 +42,7 @@ class CartController extends BaseController
 
         return $behaviors;
     }
+
     /**
      * @return array
      */
@@ -59,6 +60,7 @@ class CartController extends BaseController
             return ['success' => 1, 'html' => $html];
         }
     }
+
     /**
      * @return bool|Response
      */
