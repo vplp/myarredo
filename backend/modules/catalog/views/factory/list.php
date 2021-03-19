@@ -11,6 +11,7 @@ use backend\modules\catalog\models\{
     Factory, FactoryLang
 };
 use backend\modules\location\models\Country;
+use backend\modules\sys\modules\logbook\models\Logbook;
 
 /**
  * @var $model Factory
@@ -45,7 +46,7 @@ echo GridView::widget([
             'value' => function ($model) {
                 /** @var $model Factory */
 
-                if ($model->editor) {
+                if ($model->editor && Logbook::getCountItems($model->id, 'Factory')) {
                     return $this->render('parts/_editors_modal', [
                         'model' => $model
                     ]);

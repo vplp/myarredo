@@ -496,7 +496,7 @@ class Product extends ActiveRecord implements iProduct
             }
         }
 
-        if (Yii::$app instanceof \yii\web\Application) {
+        if (in_array($this->scenario, ['frontend', 'backend'])) {
             $this->editor_id = Yii::$app->user->id;
         }
 

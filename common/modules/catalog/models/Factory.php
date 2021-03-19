@@ -283,7 +283,7 @@ class Factory extends ActiveRecord
      */
     public function beforeSave($insert)
     {
-        if (Yii::$app instanceof \yii\web\Application) {
+        if (in_array($this->scenario, ['backend'])) {
             $this->editor_id = Yii::$app->user->id;
         }
 
@@ -348,7 +348,7 @@ class Factory extends ActiveRecord
      */
     public function getEditor()
     {
-        return $this->hasOne(User::class, ['id' => 'editor_id'])->cache(7200);
+        return $this->hasOne(User::class, ['id' => 'editor_id']);
     }
 
     /**

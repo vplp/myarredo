@@ -30,4 +30,19 @@ class Logbook extends \thread\modules\sys\modules\logbook\models\Logbook impleme
     {
         return (new search\Logbook())->trash($params);
     }
+
+    /**
+     * @param $model_id
+     * @param $model_name
+     * @return mixed
+     */
+    public static function getCountItems($model_id, $model_name)
+    {
+        $query = Logbook::find()->undeleted();
+        $query
+            ->andFilterWhere([Logbook::tableName() . '.model_id' => $model_id])
+            ->andFilterWhere([Logbook::tableName() . '.model_name' => $model_name]);
+
+        return $query->count();
+    }
 }
