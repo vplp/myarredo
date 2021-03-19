@@ -206,14 +206,14 @@ class ElasticSearchProduct extends ActiveRecord
     {
         return $this
             ->hasOne(Product::class, ['id' => 'id'])
-            ->innerJoinWith(['lang', 'factory']);
+            ->innerJoinWith(['lang', 'factory'])
 //            ->andFilterWhere([
 //                Product::tableName() . '.removed' => '0',
 //                Factory::tableName() . '.published' => '1',
 //                Factory::tableName() . '.deleted' => '0',
 //                //Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
 //            ])
-//            ->enabled();
+            ->enabled();
     }
 
     /**

@@ -115,15 +115,6 @@ $this->title = $this->context->title;
                                             <?= frontend\components\LinkPager::widget([
                                                 'pagination' => $models->getPagination()
                                             ]) ?>
-
-                                            <?php
-                                            if ($_SERVER['REMOTE_ADDR'] == '93.72.70.75') {
-                                                /* !!! */
-                                                echo '<pre style="color:red;">';
-                                                print_r($models->getPagination());
-                                                echo '</pre>'; /* !!! */
-                                            }
-                                            ?>
                                         </div>
                                     </div>
                                 <?php } ?>
