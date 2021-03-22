@@ -153,13 +153,13 @@ class CartController extends BaseController
             }
         }
 
-        $this->title = Yii::t('app', 'Не нашли то что искали? Оставьте заявку тут');
+//        $this->title = Yii::t('app', 'Не нашли то что искали? Оставьте заявку тут');
+//
+//        return $this->render('request_find_product', [
+//            'model' => $customerForm
+//        ]);
 
-        return $this->render('request_find_product', [
-            'model' => $customerForm
-        ]);
-
-        //return $this->redirect(Yii::$app->request->referrer);
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     /**
