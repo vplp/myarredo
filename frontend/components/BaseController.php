@@ -138,7 +138,7 @@ abstract class BaseController extends Controller
          */
         $lang = substr(Yii::$app->language, 0, 2);
 
-        if (in_array(DOMAIN_TYPE, ['ua', 'by', 'com', 'de', 'he'])) {
+        if (in_array(DOMAIN_TYPE, ['ua', 'by', 'com', 'de', 'co.il'])) {
             $session->set('currency', 'EUR');
         } elseif (in_array(DOMAIN_TYPE, ['kz'])) {
             $session->set('currency', 'KZT');

@@ -262,7 +262,7 @@ $this->beginPage();
             charset="UTF-8"></script>
     <![endif]-->
 </head>
-<body>
+<body<?= DOMAIN_TYPE == 'co.il' ? ' style="direction: rtl;"' : '' ?>>
 <?php $this->beginBody() ?>
 
 <?= Popup::widget(['clientOptions' => ['show' => true]]) ?>
