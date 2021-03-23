@@ -225,9 +225,17 @@ class AdminOrderController extends BaseController
                 Yii::$app->getSession()->setFlash('error', 'Не успели');
             } else {
                 /**
+                 * save Order
+                 */
+                if ((Yii::$app->request->post('Order'))['admin_comment']) {
+                    $modelOrder->scenario = 'admin_comment';
+                    $modelOrder->admin_comment = (Yii::$app->request->post('Order'))['admin_comment'];
+                    $modelOrder->save();
+                }
+
+                /**
                  * save OrderItemPrice
                  */
-
                 $dataOrderItemPrice = Yii::$app->request->post('OrderItemPrice');
 
                 if ($dataOrderItemPrice) {
