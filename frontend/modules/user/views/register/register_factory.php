@@ -9,11 +9,13 @@ use frontend\modules\user\models\form\RegisterForm;
 use frontend\modules\location\models\{
     Country, City
 };
+use frontend\modules\catalog\models\FactorySubdivision;
 
 $bundle = AppAsset::register($this);
 
 /**
  * @var $model RegisterForm
+ * @var $modelFactorySubdivision FactorySubdivision
  */
 
 $this->title = Yii::t('app', 'Регистрация для фабрики');
@@ -42,6 +44,29 @@ $model->factory_confirm_offers = 1;
 
                     <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5 right-border">
                         <div class="form-block-in">
+
+                            <div>
+                                Представительство в Странах СНГ
+                                <?= $form->field($modelFactorySubdivision, 'company_name') ?>
+                                <?= $form->field($modelFactorySubdivision, 'contact_person') ?>
+                                <?= $form->field($modelFactorySubdivision, 'email') ?>
+                                <?= $form->field($modelFactorySubdivision, 'phone') ?>
+                            </div>
+                            <div>
+                                Представительство в Италии
+                                <?= $form->field($modelFactorySubdivision, 'company_name') ?>
+                                <?= $form->field($modelFactorySubdivision, 'contact_person') ?>
+                                <?= $form->field($modelFactorySubdivision, 'email') ?>
+                                <?= $form->field($modelFactorySubdivision, 'phone') ?>
+                            </div>
+                            <div>
+                                Представительство в Европе
+                                <?= $form->field($modelFactorySubdivision, 'company_name') ?>
+                                <?= $form->field($modelFactorySubdivision, 'contact_person') ?>
+                                <?= $form->field($modelFactorySubdivision, 'email') ?>
+                                <?= $form->field($modelFactorySubdivision, 'phone') ?>
+                            </div>
+
                             <?= $form->field($model, 'name_company') ?>
 
                             <?= $form->field($model, 'address') ?>
@@ -116,7 +141,6 @@ $model->factory_confirm_offers = 1;
                                 ['class' => 'btn btn-success']
                             ) ?>
                         </div>
-
                     </div>
                 </div>
                 <?php ActiveForm::end(); ?>

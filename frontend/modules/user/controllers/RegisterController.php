@@ -11,6 +11,7 @@ use frontend\modules\user\models\User;
 use frontend\modules\user\models\form\{
     RegisterForm, SignInForm
 };
+use frontend\modules\catalog\models\FactorySubdivision;
 
 /**
  * Class RegisterController
@@ -212,6 +213,8 @@ class RegisterController extends BaseController
         $model = new $this->model();
         $model->setScenario('registerFactory');
 
+        $modelFactorySubdivision = new FactorySubdivision();
+
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
             $status = $model->addFactory();
 
@@ -274,6 +277,7 @@ class RegisterController extends BaseController
 
         return $this->render('register_factory', [
             'model' => $model,
+            'modelFactorySubdivision' => $modelFactorySubdivision,
         ]);
     }
 
