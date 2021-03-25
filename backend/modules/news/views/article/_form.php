@@ -1,16 +1,13 @@
 <?php
 
-use thread\app\bootstrap\{
-    ActiveForm
-};
-//
+use backend\app\bootstrap\ActiveForm;
 use backend\widgets\Tabs;
-//
 use backend\modules\news\models\{
     Article, ArticleLang
 };
 
 /**
+ * @var ActiveForm $form
  * @var Article $model
  * @var ArticleLang $modelLang
  */
