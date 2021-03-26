@@ -53,6 +53,7 @@ class CatalogFactoryController extends Controller
             }
 
             $model->file_link = '';
+            $model->file_size = 0;
 
             // delete image_link
             if (!empty($model->image_link) && is_file($path . '/thumb/' . $model->image_link)) {
