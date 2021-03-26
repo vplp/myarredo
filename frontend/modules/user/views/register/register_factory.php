@@ -45,26 +45,52 @@ $model->factory_confirm_offers = 1;
                     <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5 right-border">
                         <div class="form-block-in">
 
-                            <div>
-                                Представительство в Странах СНГ
+                            <?= $form
+                                ->field(
+                                    $model,
+                                    'subdivision_in_cis',
+                                    ['template' => '{label}{input}{error}{hint}']
+                                )
+                                ->checkbox([], false)
+                                ->label($model->getAttributeLabel('subdivision_in_cis') . '&nbsp;') ?>
+
+                            <div class="subdivision_in_cis" style="display: none">
                                 <?= $form->field($modelFactorySubdivision, 'company_name') ?>
                                 <?= $form->field($modelFactorySubdivision, 'contact_person') ?>
                                 <?= $form->field($modelFactorySubdivision, 'email') ?>
                                 <?= $form->field($modelFactorySubdivision, 'phone') ?>
                             </div>
-                            <div>
-                                Представительство в Италии
-                                <?= $form->field($modelFactorySubdivision, 'company_name') ?>
-                                <?= $form->field($modelFactorySubdivision, 'contact_person') ?>
-                                <?= $form->field($modelFactorySubdivision, 'email') ?>
-                                <?= $form->field($modelFactorySubdivision, 'phone') ?>
+
+                            <?= $form
+                                ->field(
+                                    $model,
+                                    'subdivision_in_italy',
+                                    ['template' => '{label}{input}{error}{hint}']
+                                )
+                                ->checkbox([], false)
+                                ->label($model->getAttributeLabel('subdivision_in_italy') . '&nbsp;') ?>
+
+                            <div class="subdivision_in_italy" style="display: none">
+                                <?= $form->field($modelFactorySubdivision, '[1]company_name') ?>
+                                <?= $form->field($modelFactorySubdivision, '[1]contact_person') ?>
+                                <?= $form->field($modelFactorySubdivision, '[1]email') ?>
+                                <?= $form->field($modelFactorySubdivision, '[1]phone') ?>
                             </div>
-                            <div>
-                                Представительство в Европе
-                                <?= $form->field($modelFactorySubdivision, 'company_name') ?>
-                                <?= $form->field($modelFactorySubdivision, 'contact_person') ?>
-                                <?= $form->field($modelFactorySubdivision, 'email') ?>
-                                <?= $form->field($modelFactorySubdivision, 'phone') ?>
+
+                            <?= $form
+                                ->field(
+                                    $model,
+                                    'subdivision_in_europe',
+                                    ['template' => '{label}{input}{error}{hint}']
+                                )
+                                ->checkbox([], false)
+                                ->label($model->getAttributeLabel('subdivision_in_europe') . '&nbsp;') ?>
+
+                            <div class="subdivision_in_europe" style="display: none">
+                                <?= $form->field($modelFactorySubdivision, '[2]company_name') ?>
+                                <?= $form->field($modelFactorySubdivision, '[2]contact_person') ?>
+                                <?= $form->field($modelFactorySubdivision, '[2]email') ?>
+                                <?= $form->field($modelFactorySubdivision, '[2]phone') ?>
                             </div>
 
                             <?= $form->field($model, 'name_company') ?>
@@ -148,3 +174,39 @@ $model->factory_confirm_offers = 1;
         </div>
     </div>
 </main>
+
+<?php
+$script = <<<JS
+$('input[name="RegisterForm[subdivision_in_cis]"]').on('change', function () {
+    if($(this).is(":checked")){
+        console.log("Checkbox is checked.");
+        $('.subdivision_in_cis').show();
+    }
+    else if($(this).is(":not(:checked)")){
+        console.log("Checkbox is unchecked.");
+        $('.subdivision_in_cis').hide();
+    }
+});
+$('input[name="RegisterForm[subdivision_in_italy]"]').on('change', function () {
+    if($(this).is(":checked")){
+        console.log("Checkbox is checked.");
+        $('.subdivision_in_italy').show();
+    }
+    else if($(this).is(":not(:checked)")){
+        console.log("Checkbox is unchecked.");
+        $('.subdivision_in_italy').hide();
+    }
+});
+$('input[name="RegisterForm[subdivision_in_europe]"]').on('change', function () {
+    if($(this).is(":checked")){
+        console.log("Checkbox is checked.");
+        $('.subdivision_in_europe').show();
+    }
+    else if($(this).is(":not(:checked)")){
+        console.log("Checkbox is unchecked.");
+        $('.subdivision_in_europe').hide();
+    }
+});
+JS;
+
+$this->registerJs($script);

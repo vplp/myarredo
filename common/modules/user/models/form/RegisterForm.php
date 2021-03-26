@@ -7,16 +7,12 @@ use Exception;
 use DomainException;
 use yii\db\mssql\PDO;
 use yii\helpers\ArrayHelper;
-
-//
 use common\modules\user\models\{
     Group, Profile, ProfileLang, User
 };
 use common\modules\location\models\{
     City, Country
 };
-
-//
 use thread\app\base\models\ActiveRecord;
 
 /**

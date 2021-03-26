@@ -48,7 +48,8 @@ class FactorySubdivision extends ActiveRecord
     public function rules()
     {
         return [
-            [['factory_id'], 'required'],
+            [['company_name', 'contact_person', 'email', 'phone'], 'required'],
+            //[['factory_id'], 'required'],
             [['region'], 'in', 'range' => array_keys(static::regionKeyRange())],
             [['factory_id', 'created_at', 'updated_at'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],

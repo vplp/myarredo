@@ -4,8 +4,6 @@ namespace common\modules\user\models\form;
 
 use Yii;
 use yii\base\Model;
-
-//
 use common\modules\user\User as UserModule;
 use common\modules\user\models\User as UserModel;
 
