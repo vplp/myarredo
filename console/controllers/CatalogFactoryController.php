@@ -45,13 +45,12 @@ class CatalogFactoryController extends Controller
 
             if (!empty($model->file_link) && is_file($path . '/' . $model->file_link)) {
                 unlink($path . '/' . $model->file_link);
-
-                $model->setScenario('mark');
-                $model->mark = '1';
-                $model->save();
-
                 $this->stdout("unlink " . $path . '/' . $model->file_link . "\n", Console::FG_GREEN);
             }
+
+            $model->setScenario('mark');
+            $model->mark = '1';
+            $model->save();
         }
 
         $this->stdout("ClearPdf: start. \n", Console::FG_GREEN);
