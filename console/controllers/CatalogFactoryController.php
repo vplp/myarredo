@@ -17,12 +17,42 @@ use frontend\modules\catalog\models\{
  */
 class CatalogFactoryController extends Controller
 {
+    public function actionClearPdf()
+    {
+        $this->stdout("ClearPdf: start. \n", Console::FG_GREEN);
+
+        $models = FactoryFile::find()
+            ->limit(100)
+            ->deleted()
+            ->all();
+
+        foreach ($models as $model) {
+            /** @var $model FactoryFile */
+
+            /** @var Catalog $module */
+            $module = Yii::$app->getModule('catalog');
+
+            if ($model->file_type == 1) {
+                $path = $module->getFactoryCatalogsFilesUploadPath();
+            } else {
+                $path = $module->getFactoryPricesFilesUploadPath();
+            }
+
+            if (!empty($model->file_link) && is_file($path . '/' . $model->file_link)) {
+                $this->stdout($path . '/' . $model->file_link . "\n", Console::FG_GREEN);
+                unlink($path . '/' . $model->file_link);
+            }
+        }
+
+        $this->stdout("ClearPdf: start. \n", Console::FG_GREEN);
+    }
+
     /**
      * Generate product it title
      */
     public function actionGeneratePdfPreview()
     {
-        $this->stdout("TranslateTitle: start. \n", Console::FG_GREEN);
+        $this->stdout("GeneratePdfPreview: start. \n", Console::FG_GREEN);
 
         $models = FactoryFile::find()
             ->andWhere([
@@ -105,6 +135,6 @@ class CatalogFactoryController extends Controller
 
         }
 
-        $this->stdout("TranslateTitle: finish. \n", Console::FG_GREEN);
+        $this->stdout("GeneratePdfPreview: finish. \n", Console::FG_GREEN);
     }
 }
