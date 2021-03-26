@@ -22,6 +22,9 @@ class CatalogFactoryController extends Controller
         $this->stdout("ClearPdf: start. \n", Console::FG_GREEN);
 
         $models = FactoryFile::find()
+            ->andFilterWhere([
+                'mark' => '0',
+            ])
             ->limit(100)
             ->deleted()
             ->all();
@@ -38,9 +41,16 @@ class CatalogFactoryController extends Controller
                 $path = $module->getFactoryPricesFilesUploadPath();
             }
 
+            $this->stdout($model->id . "\n", Console::FG_GREEN);
+
             if (!empty($model->file_link) && is_file($path . '/' . $model->file_link)) {
-                $this->stdout($path . '/' . $model->file_link . "\n", Console::FG_GREEN);
                 unlink($path . '/' . $model->file_link);
+
+                $model->setScenario('mark');
+                $model->mark = '1';
+                $model->save();
+
+                $this->stdout("unlink " . $path . '/' . $model->file_link . "\n", Console::FG_GREEN);
             }
         }
 
