@@ -17,10 +17,32 @@ use frontend\modules\catalog\models\{
  */
 class CatalogFactoryController extends Controller
 {
+    /**
+     * Delete pdf from database
+     */
+    public function actionClearPdfInFolder()
+    {
+        $this->stdout("ClearPdfInFolder: start. \n", Console::FG_GREEN);
+
+        $handle = scandir('web/uploads/factoryFileCatalog');
+
+        foreach ($handle as $key => $file) {
+            if (is_file(Yii::getAlias('@uploads') . '/factoryFileCatalog/' . $file)) {
+                $this->stdout($file . "\n", Console::FG_GREEN);
+            }
+        }
+
+        $this->stdout("ClearPdfInFolder: start. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * Delete pdf from database
+     */
     public function actionClearPdf()
     {
         $this->stdout("ClearPdf: start. \n", Console::FG_GREEN);
 
+        // find deleted items
         $models = FactoryFile::find()
             ->andFilterWhere([
                 'mark' => '0',
@@ -35,6 +57,7 @@ class CatalogFactoryController extends Controller
             /** @var Catalog $module */
             $module = Yii::$app->getModule('catalog');
 
+            // path
             if ($model->file_type == 1) {
                 $path = $module->getFactoryCatalogsFilesUploadPath();
             } else {
@@ -63,6 +86,7 @@ class CatalogFactoryController extends Controller
 
             $model->image_link = '';
 
+            // save
             $model->mark = '1';
             $model->save();
         }
