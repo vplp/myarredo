@@ -18,16 +18,17 @@ use frontend\modules\catalog\models\{
 class CatalogFactoryController extends Controller
 {
     /**
-     * Delete pdf from database
+     * @param string $folder factoryFileCatalog|factoryFilePrice
      */
-    public function actionClearPdfInFolder()
+    public function actionClearPdfInFolder($folder = 'factoryFileCatalog')
     {
         $this->stdout("ClearPdfInFolder: start. \n", Console::FG_GREEN);
 
-        $handle = scandir('web/uploads/factoryFileCatalog');
+        $handle = scandir('web/uploads/' . $folder);
+        $path = Yii::getAlias('@uploads') . '/' . $folder;
 
         foreach ($handle as $key => $file) {
-            if (is_file(Yii::getAlias('@uploads') . '/factoryFileCatalog/' . $file)) {
+            if (is_file($path . '/' . $file)) {
                 $model = FactoryFile::find()
                     ->andFilterWhere([
                         'file_link' => $file,
@@ -36,9 +37,8 @@ class CatalogFactoryController extends Controller
                     ->one();
 
                 if ($model == null) {
-                    $this->stdout($file . "\n", Console::FG_GREEN);
-                } else {
-                    $this->stdout($model['id'] . "\n", Console::FG_GREEN);
+                    unlink($path . '/' . $file);
+                    $this->stdout("unlink " . $file . "\n", Console::FG_GREEN);
                 }
             }
         }
