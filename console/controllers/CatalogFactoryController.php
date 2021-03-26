@@ -28,7 +28,18 @@ class CatalogFactoryController extends Controller
 
         foreach ($handle as $key => $file) {
             if (is_file(Yii::getAlias('@uploads') . '/factoryFileCatalog/' . $file)) {
-                $this->stdout($file . "\n", Console::FG_GREEN);
+                $model = FactoryFile::find()
+                    ->andFilterWhere([
+                        'file_link' => $file,
+                    ])
+                    ->asArray()
+                    ->one();
+
+                if ($model == null) {
+                    $this->stdout($file . "\n", Console::FG_GREEN);
+                } else {
+                    $this->stdout($model['id'] . "\n", Console::FG_GREEN);
+                }
             }
         }
 
