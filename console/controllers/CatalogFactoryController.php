@@ -43,12 +43,25 @@ class CatalogFactoryController extends Controller
 
             $this->stdout($model->id . "\n", Console::FG_GREEN);
 
+            $model->setScenario('unlinkFile');
+
+            // delete file_link
             if (!empty($model->file_link) && is_file($path . '/' . $model->file_link)) {
                 unlink($path . '/' . $model->file_link);
+
                 $this->stdout("unlink " . $path . '/' . $model->file_link . "\n", Console::FG_GREEN);
             }
 
-            $model->setScenario('mark');
+            $model->file_link = '';
+
+            // delete image_link
+            if (!empty($model->image_link) && is_file($path . '/thumb/' . $model->image_link)) {
+                unlink($path . '/thumb/' . $model->image_link);
+                $this->stdout("unlink " . $path . '/thumb/' . $model->image_link . "\n", Console::FG_GREEN);
+            }
+
+            $model->image_link = '';
+
             $model->mark = '1';
             $model->save();
         }

@@ -83,7 +83,7 @@ class FactoryFile extends ActiveRecord
             'deleted' => ['deleted'],
             'position' => ['position'],
             'setImage' => ['image_link'],
-            'mark' => ['mark'],
+            'unlinkFile' => ['mark', 'file_link', 'image_link'],
             'backend' => [
                 'factory_id',
                 'discount',
