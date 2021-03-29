@@ -71,6 +71,7 @@ use frontend\modules\catalog\models\{
             } elseif ($model['is_composition']) {
                 $isFiles = false;
                 foreach ($model->getElementsComposition() as $product) {
+                    /** @var $product Product */
                     foreach ($product->factoryPricesFiles as $priceFile) {
                         if ($fileLink = $priceFile->getFileLink()) {
                             $isFiles = true;
