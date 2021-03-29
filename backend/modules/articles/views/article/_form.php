@@ -2,11 +2,13 @@
 
 use backend\app\bootstrap\ActiveForm;
 use backend\widgets\Tabs;
-
+use backend\modules\articles\models\{
+    Article, ArticleLang
+};
 /**
- * @var \backend\app\bootstrap\ActiveForm $form
- * @var \backend\modules\articles\models\Article $model
- * @var \backend\modules\articles\models\ArticleLang $modelLang
+ * @var ActiveForm $form
+ * @var Article $model
+ * @var ArticleLang $modelLang
  */
 
 $form = ActiveForm::begin();

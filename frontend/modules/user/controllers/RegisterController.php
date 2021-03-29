@@ -220,9 +220,21 @@ class RegisterController extends BaseController
             $status = $model->addFactory();
 
             if ($status === true) {
+                /** @var User $modelUser */
                 $modelUser = User::find()->email($model->email)->one();
 
-                /** @var User $modelUser */
+                foreach (Yii::$app->getRequest()->post('FactorySubdivision') as $FactorySubdivision) {
+                    if ($FactorySubdivision['subdivision']) {
+                        $modelSubdivision = new FactorySubdivision();
+                        $modelSubdivision->setScenario('frontend');
+
+                        $modelSubdivision->setAttributes($FactorySubdivision);
+                        $modelSubdivision->user_id = $modelUser->id;
+
+                        $modelSubdivision->save();
+                    }
+                }
+
                 /** send mail to admin */
 
                 $title = 'Зарегистрирована новая фабрика';

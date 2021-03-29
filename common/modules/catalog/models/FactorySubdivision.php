@@ -5,13 +5,14 @@ namespace common\modules\catalog\models;
 use Yii;
 use thread\app\base\models\ActiveRecord;
 use common\modules\catalog\Catalog;
+use common\modules\user\models\User;
 
 /**
  * Class FactorySubdivision
  *
  * @property integer $id
  * @property integer $region
- * @property integer $factory_id
+ * @property integer $user_id
  * @property string $company_name
  * @property string $contact_person
  * @property integer $email
@@ -25,9 +26,7 @@ use common\modules\catalog\Catalog;
  */
 class FactorySubdivision extends ActiveRecord
 {
-    public $subdivision_in_cis;
-    public $subdivision_in_italy;
-    public $subdivision_in_europe;
+    public $subdivision;
 
     /**
      * @return object|string|\yii\db\Connection|null
@@ -52,14 +51,13 @@ class FactorySubdivision extends ActiveRecord
     public function rules()
     {
         return [
-            [['company_name', 'contact_person', 'email', 'phone'], 'required'],
-            //[['factory_id'], 'required'],
             [['region'], 'in', 'range' => array_keys(static::regionKeyRange())],
-            [['factory_id', 'created_at', 'updated_at'], 'integer'],
+            [['user_id', 'created_at', 'updated_at'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['company_name', 'contact_person', 'email', 'phone'], 'string', 'max' => 255],
+            [['email'], 'email'],
             [
-                ['subdivision_in_cis', 'subdivision_in_italy', 'subdivision_in_europe'],
+                ['subdivision'],
                 'in',
                 'range' => [0, 1]
             ],
@@ -76,7 +74,7 @@ class FactorySubdivision extends ActiveRecord
             'deleted' => ['deleted'],
             'backend' => [
                 'region',
-                'factory_id',
+                'user_id',
                 'company_name',
                 'contact_person',
                 'email',
@@ -86,7 +84,7 @@ class FactorySubdivision extends ActiveRecord
             ],
             'frontend' => [
                 'region',
-                'factory_id',
+                'user_id',
                 'company_name',
                 'contact_person',
                 'email',
@@ -104,31 +102,35 @@ class FactorySubdivision extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'factory_id' => Yii::t('app', 'Factory'),
-            'company_name',
-            'contact_person',
-            'email',
-            'phone',
+            'region',
+            'user_id',
+            'company_name' => Yii::t('app', 'Название компании'),
+            'contact_person' => Yii::t('app', 'Контактное лицо'),
+            'email' => Yii::t('app', 'Email'),
+            'phone' => Yii::t('app', 'Phone'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
-            'subdivision_in_cis' => 'Представительство в Странах СНГ',
-            'subdivision_in_italy' => 'Представительство в Италии',
-            'subdivision_in_europe' => 'Представительство в Европе',
         ];
     }
 
     /**
      * @return array
      */
-    public static function regionKeyRange()
+    public static function regionKeyRange($key)
     {
-        return [
-            0 => 'СНГ',
-            1 => 'Италия',
-            2 => 'Европа',
+        $data = [
+            0 => Yii::t('app', 'Представительство в Странах СНГ'),
+            1 => Yii::t('app', 'Представительство в Италии'),
+            2 => Yii::t('app', 'Представительство в Европе'),
         ];
+
+        if ($key) {
+            return $data[$key];
+        } else {
+            return $data;
+        }
     }
 
     /**
@@ -142,8 +144,8 @@ class FactorySubdivision extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFactory()
+    public function getUser()
     {
-        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 }

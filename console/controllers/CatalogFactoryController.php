@@ -18,11 +18,99 @@ use frontend\modules\catalog\models\{
 class CatalogFactoryController extends Controller
 {
     /**
+     * @param string $folder factoryFileCatalog|factoryFilePrice
+     */
+    public function actionClearPdfInFolder($folder = 'factoryFileCatalog')
+    {
+        $this->stdout("ClearPdfInFolder: start. \n", Console::FG_GREEN);
+
+        $handle = scandir('web/uploads/' . $folder);
+        $path = Yii::getAlias('@uploads') . '/' . $folder;
+
+        foreach ($handle as $key => $file) {
+            if (is_file($path . '/' . $file)) {
+                $model = FactoryFile::find()
+                    ->andFilterWhere([
+                        'file_link' => $file,
+                    ])
+                    ->asArray()
+                    ->one();
+
+                if ($model == null) {
+                    unlink($path . '/' . $file);
+                    $this->stdout("unlink " . $file . "\n", Console::FG_GREEN);
+                }
+            }
+        }
+
+        $this->stdout("ClearPdfInFolder: start. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * Delete pdf from database
+     */
+    public function actionClearPdf()
+    {
+        $this->stdout("ClearPdf: start. \n", Console::FG_GREEN);
+
+        // find deleted items
+        $models = FactoryFile::find()
+            ->andFilterWhere([
+                'mark' => '0',
+            ])
+            ->limit(100)
+            ->deleted()
+            ->all();
+
+        foreach ($models as $model) {
+            /** @var $model FactoryFile */
+
+            /** @var Catalog $module */
+            $module = Yii::$app->getModule('catalog');
+
+            // path
+            if ($model->file_type == 1) {
+                $path = $module->getFactoryCatalogsFilesUploadPath();
+            } else {
+                $path = $module->getFactoryPricesFilesUploadPath();
+            }
+
+            $this->stdout($model->id . "\n", Console::FG_GREEN);
+
+            $model->setScenario('unlinkFile');
+
+            // delete file_link
+            if (!empty($model->file_link) && is_file($path . '/' . $model->file_link)) {
+                unlink($path . '/' . $model->file_link);
+
+                $this->stdout("unlink " . $path . '/' . $model->file_link . "\n", Console::FG_GREEN);
+            }
+
+            $model->file_link = '';
+            $model->file_size = 0;
+
+            // delete image_link
+            if (!empty($model->image_link) && is_file($path . '/thumb/' . $model->image_link)) {
+                unlink($path . '/thumb/' . $model->image_link);
+                $this->stdout("unlink " . $path . '/thumb/' . $model->image_link . "\n", Console::FG_GREEN);
+            }
+
+            $model->image_link = '';
+
+            // save
+            $model->mark = '1';
+            $model->save();
+        }
+
+        $this->stdout("ClearPdf: start. \n", Console::FG_GREEN);
+    }
+
+    /**
      * Generate product it title
      */
     public function actionGeneratePdfPreview()
     {
-        $this->stdout("TranslateTitle: start. \n", Console::FG_GREEN);
+        $this->stdout("GeneratePdfPreview: start. \n", Console::FG_GREEN);
 
         $models = FactoryFile::find()
             ->andWhere([
@@ -105,6 +193,6 @@ class CatalogFactoryController extends Controller
 
         }
 
-        $this->stdout("TranslateTitle: finish. \n", Console::FG_GREEN);
+        $this->stdout("GeneratePdfPreview: finish. \n", Console::FG_GREEN);
     }
 }

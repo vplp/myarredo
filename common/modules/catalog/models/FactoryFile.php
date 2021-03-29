@@ -22,6 +22,7 @@ use common\modules\catalog\Catalog;
  * @property integer $updated_at
  * @property integer $published
  * @property integer $deleted
+ * @property integer $mark
  *
  * @package common\modules\catalog\models
  */
@@ -52,7 +53,7 @@ class FactoryFile extends ActiveRecord
         return [
             [['factory_id'], 'required'],
             [['factory_id', 'file_size', 'position', 'created_at', 'updated_at'], 'integer'],
-            [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
+            [['published', 'deleted', 'mark'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['file_type'], 'in', 'range' => [1, 2]],
             [['title', 'image_link'], 'string', 'max' => 255],
             [['file_link'], 'string', 'max' => 255],
@@ -82,6 +83,7 @@ class FactoryFile extends ActiveRecord
             'deleted' => ['deleted'],
             'position' => ['position'],
             'setImage' => ['image_link'],
+            'unlinkFile' => ['mark', 'file_link', 'file_size', 'image_link'],
             'backend' => [
                 'factory_id',
                 'discount',
@@ -92,7 +94,8 @@ class FactoryFile extends ActiveRecord
                 'file_size',
                 'position',
                 'published',
-                'deleted'
+                'deleted',
+                'mark',
             ],
         ];
     }
@@ -116,7 +119,21 @@ class FactoryFile extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'mark',
         ];
+    }
+
+    /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        if (in_array($this->scenario, ['backend'])) {
+            $this->mark = '0';
+        }
+
+        return parent::beforeSave($insert);
     }
 
     /**

@@ -30,7 +30,7 @@ class m210324_164420_create_catalog_factory_subdivision_table extends Migration
         $this->createTable($this->table, [
             'id' => $this->primaryKey()->unsigned()->comment('ID'),
             'region' => "enum('0','1','2') NOT NULL DEFAULT '0' COMMENT 'Region'",
-            'factory_id' => $this->integer(11)->unsigned()->notNull()->defaultValue(0),
+            'user_id' => $this->integer(11)->unsigned()->notNull()->defaultValue(0),
             'company_name' => $this->string(255)->notNull(),
             'contact_person' => $this->string(255)->notNull(),
             'email' => $this->string(255)->notNull(),
@@ -42,7 +42,7 @@ class m210324_164420_create_catalog_factory_subdivision_table extends Migration
         ]);
 
         $this->createIndex('region', $this->table, 'region');
-        $this->createIndex('factory_id', $this->table, 'factory_id');
+        $this->createIndex('user_id', $this->table, 'user_id');
         $this->createIndex('published', $this->table, 'published');
         $this->createIndex('deleted', $this->table, 'deleted');
     }
@@ -54,7 +54,7 @@ class m210324_164420_create_catalog_factory_subdivision_table extends Migration
     {
         $this->dropIndex('deleted', $this->table);
         $this->dropIndex('published', $this->table);
-        $this->dropIndex('factory_id', $this->table);
+        $this->dropIndex('user_id', $this->table);
         $this->dropIndex('region', $this->table);
 
         $this->dropTable($this->table);

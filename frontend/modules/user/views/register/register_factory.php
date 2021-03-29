@@ -83,45 +83,48 @@ $model->factory_confirm_offers = 1;
                                 <?= $form
                                     ->field(
                                         $modelFactorySubdivision,
-                                        'subdivision_in_cis',
+                                        '[0]subdivision',
                                         ['template' => '{label}{input}{error}{hint}']
                                     )
                                     ->checkbox([], false)
-                                    ->label($modelFactorySubdivision->getAttributeLabel('subdivision_in_cis') . '&nbsp;') ?>
+                                    ->label(Yii::t('app', 'Представительство в Странах СНГ') . '&nbsp;') ?>
 
-                                <div class="subdivision_in_cis" style="display: none">
-                                    <?= $form->field($modelFactorySubdivision, 'company_name') ?>
-                                    <?= $form->field($modelFactorySubdivision, 'contact_person') ?>
-                                    <?= $form->field($modelFactorySubdivision, 'email') ?>
-                                    <?= $form->field($modelFactorySubdivision, 'phone') ?>
+                                <div class="subdivision0" style="display: none">
+                                    <?= $form->field($modelFactorySubdivision, '[0]region')->hiddenInput(['value' => '0'])->label(false) ?>
+                                    <?= $form->field($modelFactorySubdivision, '[0]company_name') ?>
+                                    <?= $form->field($modelFactorySubdivision, '[0]contact_person') ?>
+                                    <?= $form->field($modelFactorySubdivision, '[0]email') ?>
+                                    <?= $form->field($modelFactorySubdivision, '[0]phone') ?>
                                 </div>
 
                                 <?= $form
                                     ->field(
                                         $modelFactorySubdivision,
-                                        'subdivision_in_italy',
+                                        '[1]subdivision',
                                         ['template' => '{label}{input}{error}{hint}']
                                     )
                                     ->checkbox([], false)
-                                    ->label($modelFactorySubdivision->getAttributeLabel('subdivision_in_italy') . '&nbsp;') ?>
+                                    ->label(Yii::t('app', 'Представительство в Италии') . '&nbsp;') ?>
 
-                                <div class="subdivision_in_italy" style="display: none">
-                                    <?= $form->field($modelFactorySubdivision, 'company_name') ?>
-                                    <?= $form->field($modelFactorySubdivision, 'contact_person') ?>
-                                    <?= $form->field($modelFactorySubdivision, 'email') ?>
+                                <div class="subdivision1" style="display: none">
+                                    <?= $form->field($modelFactorySubdivision, '[1]region')->hiddenInput(['value' => '1'])->label(false) ?>
+                                    <?= $form->field($modelFactorySubdivision, '[1]company_name') ?>
+                                    <?= $form->field($modelFactorySubdivision, '[1]contact_person') ?>
+                                    <?= $form->field($modelFactorySubdivision, '[1]email') ?>
                                     <?= $form->field($modelFactorySubdivision, '[1]phone') ?>
                                 </div>
 
                                 <?= $form
                                     ->field(
                                         $modelFactorySubdivision,
-                                        'subdivision_in_europe',
+                                        '[2]subdivision',
                                         ['template' => '{label}{input}{error}{hint}']
                                     )
                                     ->checkbox([], false)
-                                    ->label($modelFactorySubdivision->getAttributeLabel('subdivision_in_europe') . '&nbsp;') ?>
+                                    ->label(Yii::t('app', 'Представительство в Европе') . '&nbsp;') ?>
 
-                                <div class="subdivision_in_europe" style="display: none">
+                                <div class="subdivision2" style="display: none">
+                                    <?= $form->field($modelFactorySubdivision, '[2]region')->hiddenInput(['value' => '2'])->label(false) ?>
                                     <?= $form->field($modelFactorySubdivision, '[2]company_name') ?>
                                     <?= $form->field($modelFactorySubdivision, '[2]contact_person') ?>
                                     <?= $form->field($modelFactorySubdivision, '[2]email') ?>
@@ -177,34 +180,34 @@ $model->factory_confirm_offers = 1;
 
 <?php
 $script = <<<JS
-$('input[name="FactorySubdivision[subdivision_in_cis]"]').on('change', function () {
+$('input[name="FactorySubdivision[0][subdivision]"]').on('change', function () {
     if($(this).is(":checked")) {
         console.log("Checkbox is checked.");
-        $('.subdivision_in_cis').show();
+        $('.subdivision0').show();
     }
     else if ($(this).is(":not(:checked)")) {
         console.log("Checkbox is unchecked.");
-        $('.subdivision_in_cis').hide();
+        $('.subdivision0').hide();
     }
 });
-$('input[name="FactorySubdivision[subdivision_in_italy]"]').on('change', function () {
+$('input[name="FactorySubdivision[1][subdivision]"]').on('change', function () {
     if ($(this).is(":checked")) {
         console.log("Checkbox is checked.");
-        $('.subdivision_in_italy').show();
+        $('.subdivision1').show();
     }
     else if ($(this).is(":not(:checked)")) {
         console.log("Checkbox is unchecked.");
-        $('.subdivision_in_italy').hide();
+        $('.subdivision1').hide();
     }
 });
-$('input[name="FactorySubdivision[subdivision_in_europe]"]').on('change', function () {
+$('input[name="FactorySubdivision[2][subdivision]"]').on('change', function () {
     if ($(this).is(":checked")) {
         console.log("Checkbox is checked.");
-        $('.subdivision_in_europe').show();
+        $('.subdivision2').show();
     }
     else if ($(this).is(":not(:checked)")) {
         console.log("Checkbox is unchecked.");
-        $('.subdivision_in_europe').hide();
+        $('.subdivision2').hide();
     }
 });
 JS;
