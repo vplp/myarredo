@@ -25,6 +25,10 @@ use common\modules\catalog\Catalog;
  */
 class FactorySubdivision extends ActiveRecord
 {
+    public $subdivision_in_cis;
+    public $subdivision_in_italy;
+    public $subdivision_in_europe;
+
     /**
      * @return object|string|\yii\db\Connection|null
      * @throws \yii\base\InvalidConfigException
@@ -54,6 +58,11 @@ class FactorySubdivision extends ActiveRecord
             [['factory_id', 'created_at', 'updated_at'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['company_name', 'contact_person', 'email', 'phone'], 'string', 'max' => 255],
+            [
+                ['subdivision_in_cis', 'subdivision_in_italy', 'subdivision_in_europe'],
+                'in',
+                'range' => [0, 1]
+            ],
         ];
     }
 
@@ -104,6 +113,9 @@ class FactorySubdivision extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'subdivision_in_cis' => 'Представительство в Странах СНГ',
+            'subdivision_in_italy' => 'Представительство в Италии',
+            'subdivision_in_europe' => 'Представительство в Европе',
         ];
     }
 

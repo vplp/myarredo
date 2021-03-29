@@ -214,6 +214,7 @@ class RegisterController extends BaseController
         $model->setScenario('registerFactory');
 
         $modelFactorySubdivision = new FactorySubdivision();
+        $modelFactorySubdivision->setScenario('frontend');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
             $status = $model->addFactory();
