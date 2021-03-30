@@ -312,9 +312,10 @@ class SendPulseController extends Controller
                 Yii::$app
                     ->mailer
                     ->compose(
-                        !in_array($modelOrder->country_id, [1, 2, 3])
-                            ? 'letter_new_order_for_factory_from_italy'
-                            : 'letter_new_order_for_factory',
+//                        !in_array($modelOrder->country_id, [1, 2, 3])
+//                            ? 'letter_new_order_for_factory_from_italy'
+//                            : 'letter_new_order_for_factory',
+                        'letter_new_order_for_factory_from_italy',
                         [
                             'order' => $modelOrder,
                             'item' => $item,
@@ -322,7 +323,7 @@ class SendPulseController extends Controller
                         ]
                     )
                     ->setTo($senderEmail)
-                    ->setSubject(Yii::t('app', 'Новый запрос на товар'))
+                    ->setSubject('Richiesta di nuovo prodotto'/*Yii::t('app', 'Новый запрос на товар')*/)
                     ->send();
             }
 
@@ -344,9 +345,10 @@ class SendPulseController extends Controller
                     Yii::$app
                         ->mailer
                         ->compose(
-                            $modelUser->profile->factory->producing_country_id == 4
-                                ? 'letter_new_order_for_factory_from_italy'
-                                : 'letter_new_order_for_factory',
+//                            $modelUser->profile->factory->producing_country_id == 4
+//                                ? 'letter_new_order_for_factory_from_italy'
+//                                : 'letter_new_order_for_factory',
+                            'letter_new_order_for_factory_from_italy',
                             [
                                 'order' => $modelOrder,
                                 'item' => $item,
@@ -354,7 +356,7 @@ class SendPulseController extends Controller
                             ]
                         )
                         ->setTo($senderEmail)
-                        ->setSubject(Yii::t('app', 'Новый запрос на товар'))
+                        ->setSubject('Richiesta di nuovo prodotto'/*Yii::t('app', 'Новый запрос на товар')*/)
                         ->send();
                 }
             }

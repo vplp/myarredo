@@ -11,23 +11,23 @@ use frontend\modules\shop\models\{
 /* @var $order Order */
 /* @var $isUser boolean */
 
-if (in_array($order->lang, ['ru-RU'])) {
-    $domain = 'ru';
-} else if (in_array($order->lang, ['en-EN', 'it-IT'])) {
-    $domain = 'com/it';
-} else if (in_array($order->lang, ['de-DE'])) {
-    $domain = 'de';
-} else if (in_array($order->lang, ['uk-UA'])) {
-    $domain = 'ua';
-}
+//if (in_array($order->lang, ['ru-RU'])) {
+//    $domain = 'ru';
+//} else if (in_array($order->lang, ['en-EN', 'it-IT'])) {
+//    $domain = 'com/it';
+//} else if (in_array($order->lang, ['de-DE'])) {
+//    $domain = 'de';
+//} else if (in_array($order->lang, ['uk-UA'])) {
+//    $domain = 'ua';
+//}
+
+$domain = 'com/it';
 
 ?>
 
 <div style="width:540px; font: 18px Arial,sans-serif;">
     <div style="background:#c4c0b8 url(https://www.myarredo.ru/uploads/mailer/logo_note.png) center 10px no-repeat; height: 35px;  padding-top:45px; text-align:center;">
-        <span style="color: #fff; font:bold 18px Arial,sans-serif;">
-            <?= Yii::t('app', 'Мы помогаем продавать мебель') ?>
-        </span>
+        <span style="color: #fff; font:bold 18px Arial,sans-serif;">Aiutiamo a vendere mobili</span>
     </div>
     <div style="text-align:center;">
         <p style="font-weight:bold;">
@@ -47,7 +47,7 @@ if (in_array($order->lang, ['ru-RU'])) {
 
             echo Html::a(
                 $item->product['lang']['title'],
-                'https://www.myarredo.' . $domain . '/product/' . $item->product['alias'] . '/',
+                'https://www.myarredo.' . $domain . '/product/' . $item->product['alias_it'] . '/',
                 ['style' => 'font-weight:bold; display: block; color: #000; text-transform: uppercase; text-decoration: underline;']
             );
             ?>
@@ -61,8 +61,8 @@ if (in_array($order->lang, ['ru-RU'])) {
             Registrazione e elaborazione delle richieste gratuita!!!
         </p>
         <p style="font-weight:bold;">
-            <a href="https://www.myarredo.<?= $domain ?>/factory/registration/">registrazione per la fabbrica</a><br>
-            <a href="https://www.myarredo.<?= $domain ?>/partner/registration/">registrazione per salone</a><br>
+            <a href="https://www.myarredo.<?= $domain ?>/factory/registration/">Registrazione per la fabbrica</a><br>
+            <a href="https://www.myarredo.<?= $domain ?>/partner/registration/">Registrazione per salone</a><br>
         </p>
     </div>
 </div>
