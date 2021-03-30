@@ -276,6 +276,7 @@ class PartnerOrderController extends BaseController
                         if ($save) {
                             $transaction->commit();
 
+                            ///*
                             if ($modelOrder->product_type == 'product') {
                                 $viewMail = '/../mail/answer_order_user_letter';
                             } else {
@@ -306,6 +307,7 @@ class PartnerOrderController extends BaseController
                                 'success',
                                 Yii::t('app', 'Отправлено')
                             );
+                            //*/
                         } else {
                             $transaction->rollBack();
                         }

@@ -309,13 +309,15 @@ class SendPulseController extends Controller
 
                 $this->stdout("Send to factory: " . $senderEmail . " \n", Console::FG_GREEN);
 
+                $currentLanguage = Yii::$app->language;
+                Yii::$app->language = 'it-IT';
+
                 Yii::$app
                     ->mailer
                     ->compose(
-//                        !in_array($modelOrder->country_id, [1, 2, 3])
-//                            ? 'letter_new_order_for_factory_from_italy'
-//                            : 'letter_new_order_for_factory',
-                        'letter_new_order_for_factory_from_italy',
+                        !in_array($modelOrder->country_id, [1, 2, 3])
+                            ? 'letter_new_order_for_factory_from_italy'
+                            : 'letter_new_order_for_factory',
                         [
                             'order' => $modelOrder,
                             'item' => $item,
@@ -323,8 +325,10 @@ class SendPulseController extends Controller
                         ]
                     )
                     ->setTo($senderEmail)
-                    ->setSubject('Richiesta di nuovo prodotto'/*Yii::t('app', 'Новый запрос на товар')*/)
+                    ->setSubject(Yii::t('app', 'Новый запрос на товар'))
                     ->send();
+
+                Yii::$app->language = $currentLanguage;
             }
 
             if ($item->product['factory_id']) {
@@ -342,13 +346,15 @@ class SendPulseController extends Controller
 
                     $this->stdout("Send to factory: " . $senderEmail . " \n", Console::FG_GREEN);
 
+                    $currentLanguage = Yii::$app->language;
+                    Yii::$app->language = 'it-IT';
+
                     Yii::$app
                         ->mailer
                         ->compose(
-//                            $modelUser->profile->factory->producing_country_id == 4
-//                                ? 'letter_new_order_for_factory_from_italy'
-//                                : 'letter_new_order_for_factory',
-                            'letter_new_order_for_factory_from_italy',
+                            $modelUser->profile->factory->producing_country_id == 4
+                                ? 'letter_new_order_for_factory_from_italy'
+                                : 'letter_new_order_for_factory',
                             [
                                 'order' => $modelOrder,
                                 'item' => $item,
@@ -356,8 +362,10 @@ class SendPulseController extends Controller
                             ]
                         )
                         ->setTo($senderEmail)
-                        ->setSubject('Richiesta di nuovo prodotto'/*Yii::t('app', 'Новый запрос на товар')*/)
+                        ->setSubject(Yii::t('app', 'Новый запрос на товар'))
                         ->send();
+
+                    Yii::$app->language = $currentLanguage;
                 }
             }
         }

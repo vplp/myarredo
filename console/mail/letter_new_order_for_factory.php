@@ -58,7 +58,7 @@ if (in_array($order->lang, ['ru-RU'])) {
 
         echo Html::a(
             $item->product['lang']['title'],
-            'https://www.myarredo.' . $domain . '/product/' . $item->product['alias'] . '/',
+            'https://www.myarredo.' . $domain . '/product/' . $item->product['alias_it'] . '/',
             ['style' => 'font-weight:bold; display: block; color: #000; text-transform: uppercase; text-decoration: underline;']
         );
 
