@@ -10,7 +10,6 @@ use yii\filters\{
     VerbFilter, AccessControl
 };
 use yii\web\ForbiddenHttpException;
-//
 use frontend\components\BaseController;
 use frontend\modules\location\models\City;
 use frontend\modules\shop\models\{Order, OrderAnswer, OrderItemPrice};
@@ -283,6 +282,7 @@ class FactoryOrderController extends BaseController
                         if ($save) {
                             $transaction->commit();
 
+                            /*
                             if ($modelOrder->product_type == 'product') {
                                 $viewMail = '/../mail/answer_order_user_letter';
                             } else {
@@ -313,6 +313,7 @@ class FactoryOrderController extends BaseController
                                 'success',
                                 Yii::t('app', 'Отправлено')
                             );
+                            */
                         } else {
                             $transaction->rollBack();
                         }
