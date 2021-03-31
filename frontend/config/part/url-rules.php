@@ -240,6 +240,7 @@ $urls = [
     'shop/widget' => 'shop/widget/index',
     'shop/widget/request-price' => 'shop/widget/request-price',
     'orders/notepad' => 'shop/cart/notepad',
+    'shop/cart/test' => 'shop/cart/test',
     'shop/order/create/<product_id:[\d\-]+>' => 'shop/order/create',
     'shop/order/list' => 'shop/order/list',
     'shop/order/view/<id:[\d\-]+>' => 'shop/order/view',
