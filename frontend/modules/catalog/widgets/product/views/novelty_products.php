@@ -31,12 +31,12 @@ if (window.screen.width >= 768) {
     sliderData.forEach(function(elem, i) {
         var bestseler = elem.bestseller ? '<div class="prod-bestseller">'+ bestselerText +'</div>' : '';
 
-        sliderLayout += '' +
-        '<div class="item" data-dominant-color>' +
-            '<a class="tile" href="'+ elem.href +'" target="_blank">' +
-                bestseler +
-                '<div class="prod-saving-percentage">'+ elem.percent +'</div>' +
-                '<div class="img-cont">' +
+        sliderLayout += '<div class="item" data-dominant-color>' +
+            '<a class="tile" href="'+ elem.href +'" target="_blank">' + bestseler;
+        
+                sliderLayout += elem.percent ? '<div class="prod-saving-percentage">'+ elem.percent +'</div>' : '';
+                
+                sliderLayout += '<div class="img-cont">' +
                     '<img src="'+ elem.src +'" loading="lazy" alt="">' +
                     '<span class="background"></span>' +
                 '</div>' +
