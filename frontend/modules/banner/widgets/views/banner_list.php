@@ -16,7 +16,7 @@ if ($filterItem) {
     $firstFrameLink = $filterItem['lang']['link'] ?? '';
     $firstFrameSrc = $filterItem->getImageThumb();
     ?>
-    <div class="top-home-img" style="background-image: url(<?= $filterItem->getImageThumb() ?>)">
+    <div class="top-home-img" style="background-image: url(<?= $filterItem->getImageLink() ?>)">
         <?= ProductFilterOnMainPage::widget(['model' => $filterItem]); ?>
     </div>
 <?php } elseif (!empty($items)) {
