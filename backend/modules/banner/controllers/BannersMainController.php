@@ -3,13 +3,10 @@
 namespace backend\modules\banner\controllers;
 
 use yii\helpers\ArrayHelper;
-//
 use common\actions\upload\{
     DeleteAction, UploadAction
 };
-//
 use thread\app\base\controllers\BackendController;
-//
 use backend\modules\banner\models\{
     BannerItemMain, BannerItemLang, search\BannerItemMain as filterBannerItemMainModel
 };

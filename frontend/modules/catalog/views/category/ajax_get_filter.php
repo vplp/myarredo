@@ -25,7 +25,7 @@ use frontend\modules\catalog\models\Category;
 ]) ?>
 
     <div class="filter-title">
-        <?= Yii::t('app', 'Портал проверенных поставщиков итальянской мебели') ?>
+        <div><?= Yii::t('app', 'Портал проверенных поставщиков итальянской мебели') ?></div>
         <div class="frosted-glass"></div>
     </div>
 

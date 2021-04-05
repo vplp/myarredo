@@ -38,7 +38,7 @@ class BannerList extends Widget
     /**
      * @var object
      */
-    protected $model = [];
+    protected $models = [];
 
     /**
      * Init model for run method
@@ -56,7 +56,7 @@ class BannerList extends Widget
                 ->andFilterWhere([BannerItemRelCity::tableName() . '.city_id' => $this->city_id]);
         }
 
-        $this->model = $query->all();
+        $this->models = $query->all();
     }
 
     /**
@@ -70,11 +70,20 @@ class BannerList extends Widget
             $this->view = 'banner_list_mobile';
         }
 
+        $filterItem = [];
+
+        foreach ($this->models as $model) {
+            if ($model['show_filter']) {
+                $filterItem = $model;
+                continue;
+            }
+        }
+
         return $this->render(
             $this->view,
             [
-                'items' => $this->model,
-                'type' => $this->type
+                'items' => $this->models,
+                'filterItem' => $filterItem
             ]
         );
     }

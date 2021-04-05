@@ -2,14 +2,11 @@
 
 namespace common\modules\banner\models;
 
-use frontend\components\ImageResize;
 use Yii;
 use yii\helpers\ArrayHelper;
-//
+use frontend\components\ImageResize;
 use voskobovich\behaviors\ManyToManyBehavior;
-//
 use thread\app\base\models\ActiveRecord;
-//
 use common\modules\catalog\models\{
     Category, Factory
 };
@@ -31,6 +28,7 @@ use common\modules\location\models\City;
  * @property integer $updated_at
  * @property boolean $published
  * @property boolean $deleted
+ * @property boolean $show_filter
  *
  * @property Factory $factory
  * @property BannerItemRelCity $cities
@@ -81,7 +79,7 @@ class BannerItem extends ActiveRecord
     {
         return [
             [['user_id', 'factory_id', 'position', 'create_time', 'update_time'], 'integer'],
-            [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
+            [['published', 'deleted', 'show_filter'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['type'], 'in', 'range' => array_keys(static::typeKeyRange())],
             [['side'], 'in', 'range' => array_keys(static::sideKeyRange())],
             [['image_link'], 'string', 'max' => 255],
@@ -116,6 +114,7 @@ class BannerItem extends ActiveRecord
                 'position',
                 'published',
                 'deleted',
+                'show_filter',
                 'cities_ids',
                 'categories_ids',
             ],
@@ -140,6 +139,7 @@ class BannerItem extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'show_filter' => 'Выводить форму поиска',
             'cities_ids' => Yii::t('app', 'Cities'),
             'categories_ids' => Yii::t('app', 'Categories'),
         ];

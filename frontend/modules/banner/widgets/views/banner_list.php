@@ -6,18 +6,28 @@ use frontend\modules\catalog\widgets\filter\ProductFilterOnMainPage;
 
 /**
  * @var $model BannerItem
+ * @var $filterItem array
  */
-$presentData = array();
+$presentData = [];
 $firstFrameLink = '';
 $firstFrameSrc = '';
-if (!empty($items)) { ?>
-    <?php foreach ($items as $model) {
-        $presentData[] = array(
+
+if ($filterItem) {
+    $firstFrameLink = $filterItem['lang']['link'] ?? '';
+    $firstFrameSrc = $filterItem->getImageThumb();
+    ?>
+    <div class="top-home-img" style="background-image: url(<?= $filterItem->getImageThumb() ?>)">
+        <?= ProductFilterOnMainPage::widget(['model' => $filterItem]); ?>
+    </div>
+<?php } elseif (!empty($items)) {
+    foreach ($items as $model) {
+        $presentData[] = [
             'langLink' => $model['lang']['link'] ?? '',
             'langDescr' => $model['lang']['description'] ?? '',
             'imgLinkDsktp' => $model->getImageLink(),
             'imgLinkMob' => $model->getImageThumb()
-        );
+        ];
+
         $firstFrameLink = $model['lang']['link'] ?? '';
         $firstFrameSrc = $model->getImageThumb();
     } ?>
@@ -27,10 +37,6 @@ if (!empty($items)) { ?>
                 <img width="1600" height="560" src="<?= $firstFrameSrc; ?>" alt="">
             </a>
         </div>
-    </div>
-<?php } elseif ($type == 'main') { ?>
-    <div class="top-home-img">
-        <?= ProductFilterOnMainPage::widget(); ?>
     </div>
 <?php }
 

@@ -8,7 +8,6 @@ use backend\modules\banner\models\{
 use backend\modules\location\models\{
     Country, City
 };
-//
 use thread\widgets\grid\{ActionStatusColumn, GridViewFilter};
 
 /**
