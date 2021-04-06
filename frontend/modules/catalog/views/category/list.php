@@ -65,7 +65,7 @@ if (!empty($models)) {
 
                     </div>
 
-                    <?php if (empty($params) || (count($params) == 1 && isset($params[$keys['category']]))) {
+                    <?php if (in_array(DOMAIN_TYPE, ['ru', 'ua']) && (empty($params) || (count($params) == 1 && isset($params[$keys['category']])))) {
                         echo NoveltyProducts::widget([
                             'modelClass' => Sale::class,
                             'modelLangClass' => SaleLang::class,
