@@ -72,10 +72,14 @@ use frontend\modules\catalog\models\{
                             </tr>
                             <tr>
                                 <td colspan="2" class="spec-pad2">
-                                    <?= Html::a(
-                                        $orderItem->product['factory']['title'],
-                                        Factory::getUrl($orderItem->product['factory']['alias'])
-                                    ); ?>
+                                    <?php if (isset($orderItem->product['factory']['lang']) && $orderItem->product['factory']['title']) {
+                                        echo Html::a(
+                                            $orderItem->product['factory']['title'],
+                                            Factory::getUrl($orderItem->product['factory']['alias'])
+                                        );
+                                    } else {
+                                        echo $orderItem->product['factory_name'];
+                                    } ?>
                                 </td>
                             </tr>
                             <tr class="noborder">
