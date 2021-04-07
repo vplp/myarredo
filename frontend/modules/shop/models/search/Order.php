@@ -109,7 +109,23 @@ class Order extends OrderModel
             $query->andFilterWhere(['<=', self::tableName() . '.created_at', $date_to]);
         }
 
-        if (isset($params['start_date']) && $params['start_date'] != '' && isset($params['end_date']) && $params['end_date'] != '') {
+        if (isset($params['full_name'])) {
+            $query->andFilterWhere(['like', Customer::tableName() . '.full_name', $params['full_name']]);
+        }
+
+        if (isset($params['email'])) {
+            $query->andFilterWhere(['like', Customer::tableName() . '.email', $params['email']]);
+        }
+
+        if (isset($params['phone'])) {
+            $query->andFilterWhere(['like', Customer::tableName() . '.phone', $params['phone']]);
+        }
+
+        if (!isset($params['full_name']) &&
+            !isset($params['email']) &&
+            !isset($params['phone']) &&
+            isset($params['start_date']) && $params['start_date'] != '' &&
+            isset($params['end_date']) && $params['end_date'] != '') {
             $query->andWhere(['>=', self::tableName() . '.created_at', strtotime($params['start_date'] . ' 0:00')]);
             $query->andWhere(['<=', self::tableName() . '.created_at', strtotime($params['end_date'] . ' 23:59')]);
         }
@@ -145,18 +161,6 @@ class Order extends OrderModel
                 'AND',
                 ['in', self::tableName() . '.id', $subQueryFactory]
             ]);
-        }
-
-        if (isset($params['full_name'])) {
-            $query->andFilterWhere(['like', Customer::tableName() . '.full_name', $params['full_name']]);
-        }
-
-        if (isset($params['email'])) {
-            $query->andFilterWhere(['like', Customer::tableName() . '.email', $params['email']]);
-        }
-
-        if (isset($params['phone'])) {
-            $query->andFilterWhere(['like', Customer::tableName() . '.phone', $params['phone']]);
         }
 
         return $dataProvider;
