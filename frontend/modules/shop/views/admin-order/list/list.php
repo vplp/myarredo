@@ -28,12 +28,6 @@ $this->title = $this->context->title;
                     'models' => $models,
                 ]); ?>
 
-                <?= $this->render('_form_filter2', [
-                    'model' => $model,
-                    'params' => $params,
-                    'models' => $models,
-                ]); ?>
-
                 <div class="manager-history">
                     <div class="manager-history-header">
                         <ul class="orders-title-block flex">

@@ -121,9 +121,9 @@ class Order extends OrderModel
             $query->andFilterWhere(['like', Customer::tableName() . '.phone', $params['phone']]);
         }
 
-        if (!isset($params['full_name']) &&
-            !isset($params['email']) &&
-            !isset($params['phone']) &&
+        if ($params['full_name'] == '' &&
+            $params['email'] == '' &&
+            $params['phone'] == '' &&
             isset($params['start_date']) && $params['start_date'] != '' &&
             isset($params['end_date']) && $params['end_date'] != '') {
             $query->andWhere(['>=', self::tableName() . '.created_at', strtotime($params['start_date'] . ' 0:00')]);
