@@ -176,14 +176,16 @@ use frontend\modules\catalog\models\{
                                     }
                                 } else { ?>
                                     <li>
-                                        <?= Html::a(
-                                            Yii::t('app', 'Прайс листы') . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
-                                            ['/catalog/factory/view-tab', 'alias' => $orderItem->product->factory->alias, 'tab' => 'pricelists'],
-                                            [
-                                                'target' => '_blank',
-                                                'class' => 'btn-inpdf'
-                                            ]
-                                        ) ?>
+                                        <?php if (isset($orderItem->product['factory']['lang']) && $orderItem->product['factory']['title']) {
+                                            echo Html::a(
+                                                Yii::t('app', 'Прайс листы') . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                                                ['/catalog/factory/view-tab', 'alias' => $orderItem->product['factory']['alias'], 'tab' => 'pricelists'],
+                                                [
+                                                    'target' => '_blank',
+                                                    'class' => 'btn-inpdf'
+                                                ]
+                                            );
+                                        } ?>
                                     </li>
                                 <?php } ?>
                             </ul>
@@ -236,9 +238,9 @@ use frontend\modules\catalog\models\{
             } ?>
 
             <?php //if ($modelOrder->lang != 'ru-RU') {
-                echo $form
-                    ->field($modelOrder, 'admin_comment')
-                    ->textarea(['rows' => 5]);
+            echo $form
+                ->field($modelOrder, 'admin_comment')
+                ->textarea(['rows' => 5]);
             //} ?>
 
             <?= $form
