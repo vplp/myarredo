@@ -83,7 +83,8 @@ class BannerList extends Widget
             $this->view,
             [
                 'items' => $this->models,
-                'filterItem' => $filterItem
+                'filterItem' => $filterItem,
+                'type' => $this->type
             ]
         );
     }

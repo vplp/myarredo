@@ -7,7 +7,9 @@ use frontend\modules\catalog\widgets\filter\ProductFilterOnMainPage;
 /**
  * @var $model BannerItem
  * @var $filterItem array
+ * @var $type string
  */
+
 $presentData = [];
 $firstFrameLink = '';
 $firstFrameSrc = '';
@@ -37,6 +39,10 @@ if ($filterItem) {
                 <img width="1600" height="560" src="<?= $firstFrameSrc; ?>" alt="">
             </a>
         </div>
+    </div>
+<?php } elseif ($type == 'main') { ?>
+    <div class="top-home-img">
+        <?= ProductFilterOnMainPage::widget(); ?>
     </div>
 <?php }
 
