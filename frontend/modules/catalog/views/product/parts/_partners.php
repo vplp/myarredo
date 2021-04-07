@@ -123,7 +123,7 @@ $images = $model->getGalleryImageThumb();
                                     <div class="last-sale-text">
                                     <span class="for-lastsale-curval">
                                         <?php
-                                        $price_from = Yii::$app->currency->getReversValue($model['price_from'], Yii::$app->currency->code, 'EUR');
+                                        $price_from = $model['price_from'];
                                         $factory_discount = $model['factory']['factory_discount'];
 
                                         $price = (($price_from * $factory_discount) / 100) * 2 - ($price_from * 15 / 100);
