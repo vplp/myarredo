@@ -77,8 +77,6 @@ use frontend\modules\catalog\models\{
                                             $orderItem->product['factory']['title'],
                                             Factory::getUrl($orderItem->product['factory']['alias'])
                                         );
-                                    } else {
-                                        //echo $orderItem->product['factory_name'];
                                     } ?>
                                 </td>
                             </tr>
