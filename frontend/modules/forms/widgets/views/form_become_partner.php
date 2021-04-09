@@ -48,7 +48,7 @@ $model->user_agreement = 1;
                     ->field($model, 'phone')
                     ->input('tel', [
                         'placeholder' => Yii::t('app', 'Phone'),
-                        'class' => 'form-control intlinput-field2'
+                        'class' => 'form-control intlinput-field'
                     ])
                     ->label(false); ?>
             </div>
