@@ -153,12 +153,37 @@ $lang = substr(Yii::$app->language, 0, 2);
 
         <div class="form-group">
             <label class="control-label" for="phone"><?= Yii::t('app', 'Phone') ?></label>
-            <?= Html::input(
-                'text',
-                'phone',
-                $params['phone'],
-                ['class' => 'form-control']
-            ) ?>
+
+            <?php
+            if ($params['country_id'] == 1) {
+                echo \yii\widgets\MaskedInput::widget([
+                    'name' => 'phone',
+                    'mask' => Yii::$app->city->getPhoneMask('ua'),
+                    'class' => 'form-control'
+                ]);
+            } elseif ($params['country_id'] == 2) {
+                echo \yii\widgets\MaskedInput::widget([
+                    'name' => 'phone',
+                    'mask' => Yii::$app->city->getPhoneMask('ru'),
+                    'class' => 'form-control'
+                ]);
+            } elseif ($params['country_id'] == 3) {
+                echo \yii\widgets\MaskedInput::widget([
+                    'name' => 'phone',
+                    'mask' => Yii::$app->city->getPhoneMask('by'),
+                    'class' => 'form-control'
+                ]);
+            } else {
+                echo Html::input(
+                    'text',
+                    'phone',
+                    $params['phone'],
+                    ['class' => 'form-control']
+                );
+            }
+
+            ?>
+
         </div>
 
         <div class="form-group">
