@@ -237,11 +237,9 @@ use frontend\modules\catalog\models\{
                     '<div>' . $answer['answer'] . '</div><br>';
             } ?>
 
-            <?php //if ($modelOrder->lang != 'ru-RU') {
-            echo $form
+            <?= $form
                 ->field($modelOrder, 'admin_comment')
-                ->textarea(['rows' => 5]);
-            //} ?>
+                ->textarea(['rows' => 5]); ?>
 
             <?= $form
                 ->field($modelOrderAnswer, 'answer')
