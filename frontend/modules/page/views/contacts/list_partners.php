@@ -19,9 +19,9 @@ $this->title = $this->context->title;
 
                     <?= PartnerMap::widget([]) ?>
 
-                    <?php if (in_array(DOMAIN_TYPE, ['com', 'de', 'co.il'])) {
+                    <?php //if (in_array(DOMAIN_TYPE, ['com', 'de', 'co.il'])) {
                         echo FormFeedback::widget(['view' => 'form_become_partner']);
-                    } ?>
+                    //} ?>
 
                     <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'co.il'])) {
                         echo Html::a(
