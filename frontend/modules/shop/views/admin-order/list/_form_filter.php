@@ -159,18 +159,21 @@ $lang = substr(Yii::$app->language, 0, 2);
                 echo \yii\widgets\MaskedInput::widget([
                     'name' => 'phone',
                     'mask' => Yii::$app->city->getPhoneMask('ua'),
+                    'value' => $params['phone'],
                     'class' => 'form-control'
                 ]);
             } elseif ($params['country_id'] == 2) {
                 echo \yii\widgets\MaskedInput::widget([
                     'name' => 'phone',
                     'mask' => Yii::$app->city->getPhoneMask('ru'),
+                    'value' => $params['phone'],
                     'class' => 'form-control'
                 ]);
             } elseif ($params['country_id'] == 3) {
                 echo \yii\widgets\MaskedInput::widget([
                     'name' => 'phone',
                     'mask' => Yii::$app->city->getPhoneMask('by'),
+                    'value' => $params['phone'],
                     'class' => 'form-control'
                 ]);
             } else {
