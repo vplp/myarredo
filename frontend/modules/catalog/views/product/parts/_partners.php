@@ -126,7 +126,7 @@ $images = $model->getGalleryImageThumb();
                                         $price_from = $model['price_from'];
                                         $factory_discount = $model['factory']['factory_discount'];
 
-                                        $price = (($price_from * $factory_discount) / 100) * 2 - ($price_from * 15 / 100);
+                                        $price = (($price_from * $factory_discount) / 100) * 2 - ((($price_from * $factory_discount) / 100) * 2 * 15 / 100);
 
                                         echo Yii::$app->currency->getValue($price, 'EUR');
                                         ?>
