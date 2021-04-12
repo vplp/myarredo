@@ -52,10 +52,14 @@ use frontend\modules\catalog\models\{
                             <tr>
                                 <td><?= Yii::t('app', 'Factory') ?></td>
                                 <td>
-                                    <?= Html::a(
-                                        $orderItem->product['factory']['title'],
-                                        Factory::getUrl($orderItem->product['factory']['alias'])
-                                    ); ?>
+                                    <?php if (isset($orderItem->product['factory']['lang']) && $orderItem->product['factory']['title']) {
+                                        echo Html::a(
+                                            $orderItem->product['factory']['title'],
+                                            Factory::getUrl($orderItem->product['factory']['alias'])
+                                        );
+                                    } else {
+                                        echo $orderItem->product['factory_name'];
+                                    } ?>
                                 </td>
                             </tr>
                         <?php } ?>

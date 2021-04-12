@@ -197,9 +197,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
 
         if (!empty(Yii::$app->partner) && Yii::$app->partner->id) {
             $order['FIELD (' . self::tableName() . '.user_id, ' . Yii::$app->partner->id . ')'] = SORT_DESC;
-        }
-
-        if (in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159, 160, 161, 164])) {
+        } elseif (in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159, 160, 161, 164])) {
             $query
                 ->innerJoinWith(['city'])
                 ->andFilterWhere(['NOT IN', City::tableName() . '.id', [5]]);
@@ -213,9 +211,9 @@ class Sale extends SaleModel implements BaseBackendSearchModel
 
         /** cache */
 
-        self::getDb()->cache(function ($db) use ($dataProvider) {
-            $dataProvider->prepare();
-        }, 60 * 60 * 3, self::generateDependency(self::find()));
+//        self::getDb()->cache(function ($db) use ($dataProvider) {
+//            $dataProvider->prepare();
+//        }, 60 * 60 * 3, self::generateDependency(self::find()));
 
         return $dataProvider;
     }

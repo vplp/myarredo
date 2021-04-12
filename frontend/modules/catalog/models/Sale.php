@@ -70,6 +70,14 @@ class Sale extends \common\modules\catalog\models\Sale
     }
 
     /**
+     * @return mixed
+     */
+    public static function findBaseArray()
+    {
+        return self::findBase()->asArray();
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getCatalogFactory()

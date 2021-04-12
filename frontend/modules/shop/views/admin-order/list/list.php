@@ -67,9 +67,7 @@ $this->title = $this->context->title;
 
                                 <ul class="orders-title-block flex">
                                     <li class="order-id">
-                                    <span>
-                                        <?= $modelOrder->id; ?>
-                                    </span>
+                                        <span><?= $modelOrder->id; ?></span>
                                     </li>
                                     <li class="application-date">
                                         <span><?= $modelOrder->getCreatedTime() ?></span>
@@ -87,16 +85,14 @@ $this->title = $this->context->title;
                                         <span><?= substr($modelOrder->lang, 0, 2) ?></span>
                                     </li>
                                     <li>
-                                    <span>
-                                        <?= ($modelOrder->country) ? $modelOrder->country->getTitle() : ''; ?>
-                                    </span>
+                                        <span><?= ($modelOrder->country) ? $modelOrder->country->getTitle() : ''; ?></span>
                                     </li>
                                     <li>
-                                    <span>
-                                        <?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?>
-                                    </span>
+                                        <span><?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?></span>
                                     </li>
-                                    <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
+                                    <li>
+                                        <span><?= $modelOrder->getOrderStatus(); ?></span>
+                                    </li>
                                 </ul>
 
                                 <div class="hidden-order-info flex">

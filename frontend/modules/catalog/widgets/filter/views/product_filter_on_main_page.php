@@ -11,7 +11,7 @@ use yii\helpers\Url;
     <div class="filter"></div>
 
 <?php
-
+$description = $model['lang']['description'] ?? '';
 $url = Url::to(['/catalog/category/ajax-get-filter-on-main']);
 $ajax_get_types = Url::to(['/catalog/category/ajax-get-types']);
 $ajax_get_category = Url::to(['/catalog/category/ajax-get-category']);
@@ -20,6 +20,10 @@ $script = <<<JS
 $.post('$url', {_csrf: $('#token').val()}, function(data){
     $('.filter').html(data.html);
 
+    if ('$description' != '') {
+        $('.filter-title div').eq(0).html('$description');
+    }
+    
     setTimeout(function() {
         $('[data-styler]').styler();
     }, 100);

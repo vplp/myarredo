@@ -16,6 +16,11 @@ use frontend\modules\catalog\models\{
 class ProductFilterOnMainPage extends Widget
 {
     /**
+     * @var object
+     */
+    public $model = [];
+
+    /**
      * @var string
      */
     public $view = 'product_filter_on_main_page';
@@ -61,6 +66,6 @@ class ProductFilterOnMainPage extends Widget
             Yii::$app->end();
         }
 
-        return $this->render($this->view, []);
+        return $this->render($this->view, ['model' => $this->model]);
     }
 }

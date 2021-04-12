@@ -49,7 +49,10 @@ $this->title = $this->context->title;
 
                                                 if ($model->product != null) {
                                                     $factory = [];
-                                                    $factory[$model->product['factory']['id']] = $model->product['factory'];
+
+                                                    if (!empty($model->product['factory'])) {
+                                                        $factory[$model->product['factory']['id']] = $model->product['factory'];
+                                                    }
 
                                                     echo $this->render('/sale/_list_item', [
                                                         'model' => $model->product,
@@ -76,7 +79,10 @@ $this->title = $this->context->title;
 
                                                 if ($model->product != null) {
                                                     $factory = [];
-                                                    $factory[$model->product['factory']['id']] = $model->product['factory'];
+
+                                                    if (!empty($model->product['factory'])) {
+                                                        $factory[$model->product['factory']['id']] = $model->product['factory'];
+                                                    }
 
                                                     echo $this->render('/sale-italy/_list_item', [
                                                         'model' => $model->product,
@@ -103,7 +109,10 @@ $this->title = $this->context->title;
 
                                                 if ($model->product != null) {
                                                     $factory = [];
-                                                    $factory[$model->product['factory']['id']] = $model->product['factory'];
+
+                                                    if (!empty($model->product['factory'])) {
+                                                        $factory[$model->product['factory']['id']] = $model->product['factory'];
+                                                    }
 
                                                     echo $this->render('/category/_list_item', [
                                                         'model' => $model->product

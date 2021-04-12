@@ -131,6 +131,18 @@ class AdminOrderController extends BaseController
             $params['lang'] = null;
         }
 
+        if (!isset($params['full_name'])) {
+            $params['full_name'] = null;
+        }
+
+        if (!isset($params['phone'])) {
+            $params['phone'] = null;
+        }
+
+        if (!isset($params['email'])) {
+            $params['email'] = null;
+        }
+
         $params['product_type'] = 'product';
 
         $models = $model->search($params);

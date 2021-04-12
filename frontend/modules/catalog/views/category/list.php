@@ -4,14 +4,16 @@ use yii\helpers\{
     Html, Url
 };
 use frontend\components\Breadcrumbs;
-use frontend\modules\catalog\models\{Product, ItalianProduct, ItalianProductLang, ProductLang, Collection};
+use frontend\modules\catalog\models\{
+    Product, ItalianProduct, ItalianProductLang, ProductLang, Collection, Sale, SaleLang
+};
 use frontend\modules\catalog\widgets\filter\{
     ProductSorting
 };
 use frontend\modules\catalog\widgets\category\CategoryOnMainPage;
 use frontend\modules\catalog\widgets\paginator\PageChanger;
 use frontend\modules\catalog\widgets\product\ViewedProducts;
-use frontend\modules\catalog\widgets\product\ProductsNovelties;
+use frontend\modules\catalog\widgets\product\NoveltyProducts;
 use frontend\modules\articles\widgets\articles\ArticlesList;
 
 /**
@@ -63,14 +65,12 @@ if (!empty($models)) {
 
                     </div>
 
-                    <?php /*if (empty($params) || (count($params) == 1 && isset($params[$keys['category']]))) {
-                        echo ProductsNovelties::widget([
-                            'modelPromotionItemClass' => Product::class,
-                            'modelPromotionItemLangClass' => ProductLang::class,
-                            'modelClass' => ItalianProduct::class,
-                            'modelLangClass' => ItalianProductLang::class,
+                    <?php if (in_array(DOMAIN_TYPE, ['ru', 'ua']) && (empty($params) || (count($params) == 1 && isset($params[$keys['category']])))) {
+                        echo NoveltyProducts::widget([
+                            'modelClass' => Sale::class,
+                            'modelLangClass' => SaleLang::class,
                         ]);
-                    }*/ ?>
+                    } ?>
 
                     <?php if (empty($params)) { ?>
                         <div class="only-mob mobcat">

@@ -277,6 +277,9 @@ class Order extends \thread\modules\shop\models\Order
         $isArchive = false;
 
         if (!Yii::$app->getUser()->isGuest &&
+            in_array(Yii::$app->user->identity->group->role, ['admin'])) {
+            $isArchive = false;
+        } elseif (!Yii::$app->getUser()->isGuest &&
             Yii::$app->user->identity->profile->partner_in_city &&
             in_array(Yii::$app->user->identity->group->role, ['partner']) &&
             Yii::$app->user->identity->profile->city_id == $this->city_id) {

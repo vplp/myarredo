@@ -31,6 +31,13 @@ class Order extends OrderModel
 
     public $end_date;
 
+    public $email;
+
+    public $phone;
+
+    public $full_name;
+
+
     /**
      * @return array
      */
@@ -41,6 +48,7 @@ class Order extends OrderModel
             [['product_type'], 'in', 'range' => array_keys(self::productTypeKeyRange())],
             [['id', 'customer_id', 'country_id', 'city_id', 'factory_id', 'year'], 'integer'],
             [['start_date', 'end_date'], 'string', 'max' => 10],
+            [['email', 'full_name', 'phone'], 'string', 'max' => 50],
         ];
     }
 
@@ -101,7 +109,23 @@ class Order extends OrderModel
             $query->andFilterWhere(['<=', self::tableName() . '.created_at', $date_to]);
         }
 
-        if (isset($params['start_date']) && $params['start_date'] != '' && isset($params['end_date']) && $params['end_date'] != '') {
+        if (isset($params['full_name'])) {
+            $query->andFilterWhere(['like', Customer::tableName() . '.full_name', $params['full_name']]);
+        }
+
+        if (isset($params['email'])) {
+            $query->andFilterWhere(['like', Customer::tableName() . '.email', $params['email']]);
+        }
+
+        if (isset($params['phone'])) {
+            $query->andFilterWhere(['like', Customer::tableName() . '.phone', $params['phone']]);
+        }
+
+        if ($params['full_name'] == '' &&
+            $params['email'] == '' &&
+            $params['phone'] == '' &&
+            isset($params['start_date']) && $params['start_date'] != '' &&
+            isset($params['end_date']) && $params['end_date'] != '') {
             $query->andWhere(['>=', self::tableName() . '.created_at', strtotime($params['start_date'] . ' 0:00')]);
             $query->andWhere(['<=', self::tableName() . '.created_at', strtotime($params['end_date'] . ' 23:59')]);
         }

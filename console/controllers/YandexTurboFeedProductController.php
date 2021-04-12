@@ -164,7 +164,7 @@ class YandexTurboFeedProductController extends Controller
 
                 for ($j = $i * $this->countOffersInFeed; $j <= ($i + 1) * $this->countOffersInFeed; $j++) {
                     /** @var $offer Product */
-                    if (isset($offers[$j]) && !empty($offers[$j]['catalog_type_id']) && Product::isImage($offers[$j]['image_link'])) {
+                    if (isset($offers[$j]) && !empty($offers[$j]['catalog_type_id']) && Product::isImage($offers[$j]['image_link']) && $offers[$j]['price_from'] > 0) {
                         $offer = $offers[$j];
                         $url = City::getSubDomainUrl($city) . '/product/' . $offer['alias'] . '/';
 

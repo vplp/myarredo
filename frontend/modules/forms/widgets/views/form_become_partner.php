@@ -46,13 +46,10 @@ $model->user_agreement = 1;
 
                 <?= $form
                     ->field($model, 'phone')
-                    ->widget(\yii\widgets\MaskedInput::class, [
-                        'mask' => Yii::$app->city->getPhoneMask(),
-                        'clientOptions' => [
-                            'clearIncomplete' => true
-                        ]
+                    ->input('tel', [
+                        'placeholder' => Yii::t('app', 'Phone'),
+                        'class' => 'form-control intlinput-field'
                     ])
-                    ->input('text', ['placeholder' => Yii::t('app', 'Phone')])
                     ->label(false); ?>
             </div>
 
