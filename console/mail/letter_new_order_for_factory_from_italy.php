@@ -53,12 +53,27 @@ if (in_array($order->lang, ['ru-RU'])) {
             ?>
         </p>
         <p style="font-weight:bold;">
-            Abbiamo ricevuto la richiesta da <?= $order->country->getTitle() ?>.<br>
-            Per elaborare le richieste e trasformarli in un ordine potete collegare vostri<br>
-            diller oppure saloni di vendita al portale myarredo.com, per rispondere a<br>
-            queste richieste e lavorare ulteriormente con il cliente.<br>
-            In questo momento e attiva la PROMOZIONE:<br>
-            Registrazione e elaborazione delle richieste gratuita!!!
+            Riceviamo richieste siamo pronti a trasmetterla a voi GRATUITAMENTE.<br>
+            <br>
+            Se avete un reparto vendita al dettaglio in fabbrica, potete gestire voi stessi le richieste che vi inviamo e trasformarle in un ordine.<br>
+            <br>
+            In caso contrario, potete inviare hai vs. rivenditori - punti vendita al portale myarredo.com in modo che rispondano a queste richieste e continuino a lavorare con il cliente, per sviluppare l'ordine.<br>
+            <br>
+            Se il cliente non ordina per qualche motivo, il nostro servizio è GRATUITO.<br>
+            <br>
+            Se l'ordine è stato completato, dopo la sua chiusura, il venditore deve inserire l'importo della fattura netta della fabbrica nel suo account personale sul sito Web e gli emetteremo una fattura per un importo del 10% della fattura, che dovrà essere pagate per i nostri servizi di ricerca dei clienti.<br>
+            Attiriamo la vostra attenzione sul fatto che ogni cliente dal portale sarà monitorato per la soddisfazione del lavoro della nostra rete.<br>
+            <br>
+            Il portale ha già collegato 153 saloni di mobili in 4 paesi se state già ricevendo ordini da loro tramite noi, potete familiarizzare con le applicazioni e le statistiche sulla vs. fabbrica nel vs. account personale dopo la registrazione.<br>
+            <br>
+            Ora stiamo espandendo la nostra rete in Europa e in America.<br>
+            <br>
+            Potete aggiungere i vs. rivenditori in Europa e in America per ricevere ordini già elaborati dalla nostra risorsa.<br>
+            Per tutte le ulteriori informazioni siamo sempre a vs. disposizione.<br>
+            <br>
+            In attesa porgiamo distinti saluti.<br>
+            <br>
+            my arredo
         </p>
         <p style="font-weight:bold;">
             <a href="https://www.myarredo.<?= $domain ?>/factory/registration/">registrazione per la fabbrica</a><br>
