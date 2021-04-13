@@ -83,91 +83,96 @@ $this->title = $this->context->title;
                             </li>
                         </ul>
 
-                        <div class="">
+                        <div class="ordersanswer-box">
+                            <div class="flex-product orderanswer-cont">
 
-                            <div><?= Yii::t('shop', 'Товары заявки') ?>:</div>
+                                <div><?= Yii::t('shop', 'Товары заявки') ?>:</div>
 
-                            <?php foreach ($modelOrder->items as $key => $orderItem) {
-                                if (isset($orderItem->product)) {
-                                    $str = '<div>';
-                                    $str = $key + 1 . ')&nbsp;';
+                                <?php foreach ($modelOrder->items as $key => $orderItem) {
+                                    if (isset($orderItem->product)) {
+                                        $str = $key + 1 . ')&nbsp;';
 
+                                        $str .= Html::a(
+                                            $orderItem->product->getTitle(),
+                                            Product::getUrl($orderItem->product[Yii::$app->languages->getDomainAlias()]),
+                                            ['target' => '_blank']
+                                        );
+                                        if ($orderItem->orderItemPrice->price) {
+                                            $str .= '&nbsp;' . Yii::t('shop', 'Цена') . ':&nbsp;' . $orderItem->orderItemPrice->price . '&nbsp;' . $orderItem->orderItemPrice->currency;
+                                        }
 
-                                    $str .= Html::a(
-                                        $orderItem->product->getTitle(),
-                                        Product::getUrl($orderItem->product[Yii::$app->languages->getDomainAlias()]),
-                                        ['target' => '_blank']
-                                    );
-                                    if ($orderItem->orderItemPrice->price) {
-                                        $str .= '&nbsp;' . Yii::t('shop', 'Цена') . ':&nbsp;' . $orderItem->orderItemPrice->price . '&nbsp;' . $orderItem->orderItemPrice->currency;
+                                        $arrPrices = [];
+                                        foreach ($orderItem->orderItemPrices as $price) {
+                                            $arrPrices[] = $price['user']['profile']->getNameCompany() . '&nbsp;' . ($price['out_of_production'] == '1'
+                                                    ? Yii::t('app', 'Снят с производства')
+                                                    : $price['price'] . ' ' . $price['currency']);
+                                        }
+
+                                        if ($arrPrices) {
+                                            $str .= Html::tag('div', '(' . implode(', ', $arrPrices) . ')');
+                                        }
+
+                                        echo Html::tag('div', $str);
                                     }
-                                    $str .= '</div>';
+                                } ?>
 
-                                    echo $str;
-                                }
-                            } ?>
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 col-md-4">
-
-                                    <?= Html::beginForm(['/shop/admin-order/manager', 'id' => $modelOrder->id], 'post', []) ?>
-                                    <div class="form-group">
-                                        <label class="control-label">
-                                            <?= $modelOrder->getAttributeLabel('order_status') ?>:
-                                        </label>
-                                        <?= Html::dropDownList(
-                                            'order_status',
-                                            $modelOrder['order_status'],
-                                            Order::getOrderStatuses(),
-                                            [
-                                                'id' => 'order_status',
-                                                'class' => 'form-control',
-                                            ]
-                                        ); ?>
-                                    </div>
-                                    <div class="form-group">
-                                        <?= Html::submitButton(Yii::t('app', 'Save'), [
-                                            'class' => 'btn btn-primary',
-                                        ]); ?>
-                                    </div>
-                                    <?= Html::endForm() ?>
-
-                                    <?= Html::beginForm(['/shop/admin-order/manager', 'id' => $modelOrder->id], 'post', []) ?>
-                                    <div class="form-group">
-                                        <label class="control-label"><?= Yii::t('shop', 'Комментарий') ?>:</label>
-                                        <?= Html::textarea(
-                                            'comment',
-                                            '',
-                                            [
-                                                'id' => 'comment',
-                                                'class' => 'form-control',
-                                            ]
-                                        ); ?>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <?= Html::submitButton(Yii::t('shop', 'Добавить комментарий'), [
-                                            'class' => 'btn btn-primary',
-                                        ]); ?>
-                                    </div>
-                                    <?= Html::endForm() ?>
-
-
-                                    <?php foreach ($modelOrder->orderComments as $item) { ?>
-                                        <div>
-                                            <div><?= date('j.m.Y H:i', $item['updated_at']) ?></div>
-                                            <div><?= $item['comment'] ?></div>
-                                        </div>
-                                    <?php } ?>
-
+                                <?= Html::beginForm(['/shop/admin-order/manager', 'id' => $modelOrder->id], 'post', []) ?>
+                                <div class="form-group">
+                                    <label class="control-label">
+                                        <?= $modelOrder->getAttributeLabel('order_status') ?>:
+                                    </label>
+                                    <?= Html::dropDownList(
+                                        'order_status',
+                                        $modelOrder['order_status'],
+                                        Order::getOrderStatuses(),
+                                        [
+                                            'id' => 'order_status',
+                                            'class' => 'form-control',
+                                        ]
+                                    ); ?>
                                 </div>
+
+                                <div class="form-group">
+                                    <?= Html::submitButton(Yii::t('app', 'Save'), [
+                                        'class' => 'btn btn-primary',
+                                    ]); ?>
+                                </div>
+
+                                <?= Html::endForm() ?>
+
+                                <?= Html::beginForm(['/shop/admin-order/manager', 'id' => $modelOrder->id], 'post', []) ?>
+
+                                <div class="form-group">
+                                    <label class="control-label"><?= Yii::t('shop', 'Комментарий') ?>:</label>
+                                    <?= Html::textarea(
+                                        'comment',
+                                        '',
+                                        [
+                                            'id' => 'comment',
+                                            'class' => 'form-control',
+                                        ]
+                                    ); ?>
+                                </div>
+
+                                <div class="form-group">
+                                    <?= Html::submitButton(Yii::t('shop', 'Добавить комментарий'), [
+                                        'class' => 'btn btn-primary',
+                                    ]); ?>
+                                </div>
+
+                                <?= Html::endForm() ?>
+
+                                <?php foreach ($modelOrder->orderComments as $item) { ?>
+                                    <div>
+                                        <div><?= date('j.m.Y H:i', $item['updated_at']) ?></div>
+                                        <div><?= $item['comment'] ?></div>
+                                    </div>
+                                <?php } ?>
+
                             </div>
-
-
-
                         </div>
 
                     </div>
-
                     <br>
 
                     <?= Html::a(
@@ -175,7 +180,6 @@ $this->title = $this->context->title;
                         ['/shop/admin-order/list'],
                         ['class' => 'btn btn-cancel']
                     ) ?>
-
                 </div>
             </div>
         </div>
