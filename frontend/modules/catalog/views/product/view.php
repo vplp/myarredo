@@ -13,9 +13,10 @@ use frontend\modules\shop\widgets\request\{
 };
 use frontend\modules\catalog\widgets\product\ViewedProducts;
 
-/**
- * @var $model Product
- */
+/** @var $model Product */
+/** @var $bestsellers */
+
+$bestsellers = $bestsellers ?? [];
 
 $bundle = AppAsset::register($this);
 
@@ -67,7 +68,7 @@ $this->title = $this->context->title;
                                 ); ?>
                             </div>
 
-                            <?php if ($model['bestseller']) { ?>
+                            <?php if ($model['bestseller'] || in_array($model['id'], $bestsellers)) { ?>
                                 <div class="prod-bestseller"><?= Yii::t('app', 'Bestseller') ?></div>
                             <?php } ?>
 
