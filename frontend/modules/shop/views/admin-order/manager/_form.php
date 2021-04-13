@@ -173,13 +173,20 @@ $this->title = $this->context->title;
                         </div>
 
                     </div>
-                    <br>
 
+                    <br>
                     <?= Html::a(
                         Yii::t('shop', 'Вернуться к заявкам'),
                         ['/shop/admin-order/list'],
                         ['class' => 'btn btn-cancel']
                     ) ?>
+
+                    <?= Html::a(
+                        Yii::t('shop', 'Все заявки этого клиента'),
+                        Url::toRoute(['/shop/admin-order/list']) . '?email=' . $modelOrder->customer->email,
+                        ['class' => 'btn btn-cancel']
+                    ) ?>
+
                 </div>
             </div>
         </div>
