@@ -58,6 +58,9 @@ $this->title = $this->context->title;
                             <li>
                                 <span><?= Yii::t('app', 'Status') ?></span>
                             </li>
+                            <li>
+                                <span></span>
+                            </li>
                         </ul>
                     </div>
                     <div class="manager-history-list">
@@ -91,7 +94,15 @@ $this->title = $this->context->title;
                                         <span><?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?></span>
                                     </li>
                                     <li>
-                                        <span><?= $modelOrder->getOrderStatus(); ?></span>
+                                        <span><?= Order::getOrderStatuses($modelOrder->order_status); ?></span>
+                                    </li>
+                                    <li>
+                                        <span>
+                                            <?= Html::a(
+                                                '<i class="fa fa-list" aria-hidden="true"></i>',
+                                                Url::toRoute(['/shop/admin-order/manager', 'id' => $modelOrder->id])
+                                            ) ?>
+                                            </span>
                                     </li>
                                 </ul>
 

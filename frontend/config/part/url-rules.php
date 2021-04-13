@@ -259,6 +259,7 @@ $urls = [
     'shop/factory/orders-italy' => 'shop/factory-order/list-italy',
 
     'admin/order/update/<id:[\d\-]+>' => 'shop/admin-order/update',
+    'admin/order/manager/<id:[\d\-]+>' => 'shop/admin-order/manager',
     'admin/orders' => 'shop/admin-order/list',
     'admin/orders-italy' => 'shop/admin-order/list-italy',
     'admin/orders/pjax-save-order-answer' => 'shop/admin-order/pjax-save-order-answer',

@@ -23,4 +23,15 @@ return [
     'Discount of money for order' => 'Денежная скидка на заказ',
     'Summ discount for order' => 'Скидка на заказ',
     'Finish Summ' => 'Итого',
+    //
+    'Работа с заказом' => 'Работа с заказом',
+    'Товары заявки' => 'Товары заявки',
+    'Цена' => 'Цена',
+    'Комментарий' => 'Комментарий',
+    'Order_status_new' => 'Новая',
+    'Order_status_in_work' => 'В работе',
+    'Order_status_given_to_salon' => 'Передана в салон',
+    'Order_status_contract_signed' => 'Заключен договор',
+    'Order_status_failure' => 'Отказ',
+    'Order_status_archive' => 'Архивная'
 ];

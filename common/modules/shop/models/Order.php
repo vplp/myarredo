@@ -2,13 +2,13 @@
 
 namespace common\modules\shop\models;
 
-use voskobovich\behaviors\ManyToManyBehavior;
 use Yii;
 use yii\helpers\ArrayHelper;
+use common\modules\user\models\User;
 use common\modules\location\models\{
     City, Country
 };
-use common\modules\user\models\User;
+use voskobovich\behaviors\ManyToManyBehavior;
 
 /**
  * Class Order
@@ -39,6 +39,7 @@ use common\modules\user\models\User;
  *
  * @property boolean $isArchive
  * @property OrderAnswer[] $orderAnswers
+ * @property OrderComments[] $orderComments
  * @property OrderAnswer $orderAnswer
  * @property OrderItem[] $items
  * @property Customer $customer
@@ -109,6 +110,7 @@ class Order extends \thread\modules\shop\models\Order
             'mark' => ['mark'],
             'mark1' => ['mark1'],
             'admin_comment' => ['admin_comment'],
+            'order_status' => ['order_status'],
             'backend' => [
                 'customer_id',
                 'country_id',
@@ -237,6 +239,15 @@ class Order extends \thread\modules\shop\models\Order
         return $this
             ->hasMany(OrderAnswer::class, ['order_id' => 'id'])
             ->andWhere(OrderAnswer::tableName() . '.answer_time > 0');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderComments()
+    {
+        return $this
+            ->hasMany(OrderComment::class, ['order_id' => 'id']);
     }
 
     /**
