@@ -59,7 +59,7 @@ $this->title = $this->context->title;
                                 <span><?= Yii::t('app', 'Status') ?></span>
                             </li>
                             <li>
-                                <span></span>
+                                <span><?= Yii::t('shop', 'Комментарий') ?></span>
                             </li>
                         </ul>
                     </div>
@@ -102,7 +102,15 @@ $this->title = $this->context->title;
                                                 '<i class="fa fa-list" aria-hidden="true"></i>',
                                                 Url::toRoute(['/shop/admin-order/manager', 'id' => $modelOrder->id])
                                             ) ?>
-                                            </span>
+
+                                            <?php if ($modelOrder->orderComment) {
+                                                echo Html::a(
+                                                    date('j.m.Y H:i', $modelOrder->orderComment['updated_at']),
+                                                    Url::toRoute(['/shop/admin-order/manager', 'id' => $modelOrder->id])
+                                                );
+                                            } ?>
+
+                                        </span>
                                     </li>
                                 </ul>
 

@@ -41,6 +41,7 @@ use voskobovich\behaviors\ManyToManyBehavior;
  * @property OrderAnswer[] $orderAnswers
  * @property OrderComments[] $orderComments
  * @property OrderAnswer $orderAnswer
+ * @property OrderComment $orderComment
  * @property OrderItem[] $items
  * @property Customer $customer
  * @property City $city
@@ -244,16 +245,6 @@ class Order extends \thread\modules\shop\models\Order
     /**
      * @return mixed
      */
-    public function getOrderComments()
-    {
-        return $this
-            ->hasMany(OrderComment::class, ['order_id' => 'id'])
-            ->orderBy(OrderComment::tableName() . '.updated_at DESC');
-    }
-
-    /**
-     * @return mixed
-     */
     public function getOrderAnswer()
     {
         $modelAnswer = OrderAnswer::findByOrderIdUserId(
@@ -266,6 +257,30 @@ class Order extends \thread\modules\shop\models\Order
         }
 
         return $modelAnswer;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderComments()
+    {
+        return $this
+            ->hasMany(OrderComment::class, ['order_id' => 'id'])
+            ->orderBy(OrderComment::tableName() . '.updated_at DESC');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderComment()
+    {
+        $data = [];
+
+        if ($this->orderComments) {
+            $data = $this->orderComments[0];
+        }
+
+        return $data;
     }
 
     /**
