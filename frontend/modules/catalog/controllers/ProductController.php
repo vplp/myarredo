@@ -293,6 +293,13 @@ class ProductController extends BaseController
             ->cache(7200)
             ->all();
 
+        if (YII_ENV_DEV) {
+            /* !!! */
+            echo '<pre style="color:red;">';
+            print_r($bestsellers);
+            echo '</pre>'; /* !!! */
+        }
+
         return $this->render('view', [
             'model' => $model,
             'bestsellers' => $bestsellers,
