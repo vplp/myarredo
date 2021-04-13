@@ -247,7 +247,8 @@ class Order extends \thread\modules\shop\models\Order
     public function getOrderComments()
     {
         return $this
-            ->hasMany(OrderComment::class, ['order_id' => 'id']);
+            ->hasMany(OrderComment::class, ['order_id' => 'id'])
+            ->orderBy(OrderComment::tableName() . '.updated_at DESC');
     }
 
     /**
