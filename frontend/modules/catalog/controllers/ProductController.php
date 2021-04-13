@@ -4,6 +4,7 @@ namespace frontend\modules\catalog\controllers;
 
 use Yii;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use frontend\modules\catalog\models\{Factory, Product, ProductStats, ProductStatsDays};
@@ -293,16 +294,9 @@ class ProductController extends BaseController
             ->cache(7200)
             ->all();
 
-
-            /* !!! */
-            echo '<pre style="color:red;">';
-            print_r($bestsellers);
-            echo '</pre>'; /* !!! */
-
-
         return $this->render('view', [
             'model' => $model,
-            'bestsellers' => $bestsellers,
+            'bestsellers' => ArrayHelper::map($bestsellers, 'product_id', 'product_id'),
         ]);
     }
 
