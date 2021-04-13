@@ -159,12 +159,6 @@ $this->title = $this->context->title;
                                         </div>
                                     <?php } ?>
 
-
-                                    <?= Html::a(
-                                        Yii::t('shop', 'Вернуться к заявкам'),
-                                        ['/shop/admin-order/list'],
-                                        ['class' => 'btn btn-cancel']
-                                    ) ?>
                                 </div>
                             </div>
 
@@ -174,7 +168,15 @@ $this->title = $this->context->title;
 
                     </div>
                 </div>
+
+                <?= Html::a(
+                    Yii::t('shop', 'Вернуться к заявкам'),
+                    ['/shop/admin-order/list'],
+                    ['class' => 'btn btn-cancel']
+                ) ?>
+
             </div>
+
         </div>
     </div>
 </main>
