@@ -230,6 +230,7 @@ class RegisterController extends BaseController
 
                         $modelSubdivision->setAttributes($FactorySubdivision);
                         $modelSubdivision->user_id = $modelUser->id;
+                        $modelSubdivision->published = '1';
 
                         $modelSubdivision->save();
                     }

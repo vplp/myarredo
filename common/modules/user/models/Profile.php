@@ -2,6 +2,7 @@
 
 namespace common\modules\user\models;
 
+use common\modules\catalog\models\FactorySubdivision;
 use Yii;
 use yii\helpers\ArrayHelper;
 use voskobovich\behaviors\ManyToManyBehavior;
@@ -54,6 +55,7 @@ use common\modules\shop\models\Order;
  * @property Country $country
  * @property City $city
  * @property Factory $factory
+ * @property FactorySubdivision[] $factorySubdivision
  *
  * @property ProfileLang $lang
  *
@@ -420,6 +422,15 @@ class Profile extends \thread\modules\user\models\Profile
     public function getFactory()
     {
         return $this->hasOne(Factory::class, ['id' => 'factory_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getFactorySubdivision()
+    {
+        return $this->hasMany(FactorySubdivision::class, ['user_id' => 'id']);
     }
 
     /**

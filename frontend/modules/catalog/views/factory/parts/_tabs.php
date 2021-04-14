@@ -7,6 +7,7 @@ use frontend\modules\shop\models\Order;
 use frontend\modules\catalog\models\{
     Product, Factory, FactoryCatalogsFiles, FactoryPricesFiles, Samples, CountriesFurniture, ItalianProduct
 };
+use frontend\modules\catalog\models\FactorySubdivision;
 
 /**
  * @var $model Factory
@@ -21,6 +22,7 @@ $route = $model->producing_country_id == 4
     : ['/catalog/countries-furniture/list'];
 
 $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
+
 
 ?>
 
@@ -49,6 +51,15 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
             <?= Html::a(
                 Yii::t('app', 'Каталоги'),
                 ['/catalog/factory/view-tab', 'alias' => $model['alias'], 'tab' => 'catalogs']
+            ) ?>
+        </li>
+    <?php } ?>
+
+    <?php if (!empty($model->factorySubdivision)) { ?>
+        <li class="<?= Yii::$app->request->get('tab') == 'catalogs' ? 'active' : ''; ?>">
+            <?= Html::a(
+                Yii::t('app', 'Представительство'),
+                ['/catalog/factory/view-tab', 'alias' => $model['alias'], 'tab' => 'subdivision']
             ) ?>
         </li>
     <?php } ?>
@@ -223,6 +234,25 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                             ) .
                             Html::endTag('li');
                     }
+                } ?>
+            </ul>
+        </div>
+    <?php } ?>
+
+
+    <?php if (Yii::$app->request->get('tab') == 'subdivision' && !empty($model->factorySubdivision)) { ?>
+        <div id="subdivision"
+             class="tab-pane fade <?= Yii::$app->request->get('tab') == 'subdivision' ? 'in active' : ''; ?>">
+            <ul class="list">
+                <?php
+                foreach ($model->factorySubdivision as $item) {
+                    echo Html::beginTag('li') .
+                        FactorySubdivision::regionKeyRange($item['region']) . '<br>' .
+                        $item->company_name . '<br>' .
+                        $item->contact_person . '<br>' .
+                        $item->email . '<br>' .
+                        $item->phone . '<br>' .
+                        Html::endTag('li');
                 } ?>
             </ul>
         </div>

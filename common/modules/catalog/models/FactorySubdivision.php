@@ -102,7 +102,7 @@ class FactorySubdivision extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'region',
+            'region' => Yii::t('app', 'Region'),
             'user_id',
             'company_name' => Yii::t('app', 'Название компании'),
             'contact_person' => Yii::t('app', 'Контактное лицо'),
@@ -127,7 +127,7 @@ class FactorySubdivision extends ActiveRecord
             2 => Yii::t('app', 'Представительство в Европе'),
         ];
 
-        if ($key) {
+        if (isset($data[$key])) {
             return $data[$key];
         } else {
             return $data;
