@@ -13,7 +13,9 @@ use common\modules\user\models\User;
  * @property integer $id
  * @property integer $order_id
  * @property integer $user_id
- * @property string $comment
+ * @property string $type
+ * @property string $content
+ * @property integer $reminder_time
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $published
@@ -48,10 +50,18 @@ class OrderComment extends ActiveRecord
     public function rules()
     {
         return [
-            [['order_id', 'user_id', 'comment'], 'required'],
+            [['order_id', 'user_id', 'content'], 'required'],
             [['order_id', 'user_id', 'created_at', 'updated_at'], 'integer'],
-            [['comment'], 'string'],
+            [['content'], 'string'],
+            [
+                ['reminder_time'],
+                'date',
+                'format' => 'php:j.m.Y',
+                'timestampAttribute' => 'reminder_time'
+            ],
+            [['reminder_time'], 'default', 'value' => 0],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [['type'], 'in', 'range' => array_keys(self::typeKeyRange())],
         ];
     }
 
@@ -66,17 +76,32 @@ class OrderComment extends ActiveRecord
             'backend' => [
                 'order_id',
                 'user_id',
-                'comment',
+                'type',
+                'content',
+                'reminder_time',
                 'published',
                 'deleted'
             ],
             'frontend' => [
                 'order_id',
                 'user_id',
-                'comment',
+                'type',
+                'content',
+                'reminder_time',
                 'published',
                 'deleted'
             ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function typeKeyRange()
+    {
+        return [
+            'comment' => Yii::t('shop', 'Комментарий'),
+            'reminder' => Yii::t('shop', 'Напоминание')
         ];
     }
 
@@ -89,7 +114,8 @@ class OrderComment extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'order_id' => Yii::t('app', 'Order id'),
             'user_id' => Yii::t('app', 'User'),
-            'comment' => Yii::t('shop', 'Комментарий'),
+            'content' => Yii::t('shop', 'Комментарий'),
+            'reminder_time' => Yii::t('shop', 'Дата'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),

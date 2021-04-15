@@ -82,15 +82,19 @@ class AdminOrderController extends BaseController
             $model->save();
         }
 
-        if (Yii::$app->getRequest()->post('comment')) {
+        if (Yii::$app->getRequest()->post('content')) {
             $modelComment = new OrderComment();
 
             $modelComment->scenario = 'frontend';
             $modelComment->order_id = $model->id;
             $modelComment->user_id = Yii::$app->user->id;
-            $modelComment->comment = Yii::$app->getRequest()->post('comment');
+            $modelComment->type = Yii::$app->getRequest()->post('type');
+            $modelComment->reminder_time = Yii::$app->getRequest()->post('reminder_time');
+            $modelComment->content = Yii::$app->getRequest()->post('content');
 
-            $modelComment->save();
+            if(!$modelComment->save()) {
+                /* !!! */ echo  '<pre style="color:red;">'; print_r($modelComment->errors); echo '</pre>'; /* !!! */
+            }
         }
 
         $this->title = Yii::t('shop', 'Работа с заказом');
