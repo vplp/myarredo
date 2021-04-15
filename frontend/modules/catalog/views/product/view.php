@@ -61,21 +61,20 @@ $this->title = $this->context->title;
                                 );
                             } ?>
                             <div class="product-title">
-                                <div class="prod-bestseller">Бестселлер</div>
+                                <?php if ($model['bestseller'] || in_array($model['id'], $bestsellers)) { ?>
+                                    <div class="prod-bestseller"><?= Yii::t('app', 'Bestseller') ?></div>
+                                <?php } ?>
+
+                                <?php if ($model['novelty']) { ?>
+                                    <div class="prod-novelty"><?= Yii::t('app', 'Novelty') ?></div>
+                                <?php } ?>
+
                                 <?= Html::tag(
                                     'h1',
                                     $model->getTitle(),
                                     ['class' => 'prod-model', 'itemprop' => 'name']
                                 ); ?>
                             </div>
-
-                            <?php if ($model['bestseller'] || in_array($model['id'], $bestsellers)) { ?>
-                                <div class="prod-bestseller"><?= Yii::t('app', 'Bestseller') ?></div>
-                            <?php } ?>
-
-                            <?php if ($model['novelty']) { ?>
-                                <div class="prod-novelty"><?= Yii::t('app', 'Novelty') ?></div>
-                            <?php } ?>
 
                             <div class="prod-info-table">
                                 <div class="price-availability tobox" itemprop="offers" itemscope
