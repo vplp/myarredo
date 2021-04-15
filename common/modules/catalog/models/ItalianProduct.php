@@ -797,7 +797,7 @@ class ItalianProduct extends ActiveRecord
     {
         return $this
             ->hasMany(Specification::class, ['id' => 'specification_id'])
-            ->viaTable(ItalianProductRelSpecification::tableName(), ['item_id' => 'id']);
+            ->viaTable(ItalianProductRelSpecification::tableName() . ' ItalianProductRelSpecification', ['item_id' => 'id']);
     }
 
     /**
