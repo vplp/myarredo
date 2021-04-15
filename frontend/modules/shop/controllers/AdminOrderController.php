@@ -92,9 +92,7 @@ class AdminOrderController extends BaseController
             $modelComment->reminder_time = Yii::$app->getRequest()->post('reminder_time');
             $modelComment->content = Yii::$app->getRequest()->post('content');
 
-            if(!$modelComment->save()) {
-                /* !!! */ echo  '<pre style="color:red;">'; print_r($modelComment->errors); echo '</pre>'; /* !!! */
-            }
+            $modelComment->save();
         }
 
         $this->title = Yii::t('shop', 'Работа с заказом');

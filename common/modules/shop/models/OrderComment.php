@@ -20,6 +20,7 @@ use common\modules\user\models\User;
  * @property integer $updated_at
  * @property integer $published
  * @property integer $deleted
+ * @property integer $processed
  *
  * @property User $user
  * @property Order $order
@@ -60,7 +61,7 @@ class OrderComment extends ActiveRecord
                 'timestampAttribute' => 'reminder_time'
             ],
             [['reminder_time'], 'default', 'value' => 0],
-            [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [['published', 'deleted', 'processed'], 'in', 'range' => array_keys(self::statusKeyRange())],
             [['type'], 'in', 'range' => array_keys(self::typeKeyRange())],
         ];
     }
@@ -73,6 +74,7 @@ class OrderComment extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
+            'processed' => ['processed'],
             'backend' => [
                 'order_id',
                 'user_id',
@@ -80,7 +82,8 @@ class OrderComment extends ActiveRecord
                 'content',
                 'reminder_time',
                 'published',
-                'deleted'
+                'deleted',
+                'processed'
             ],
             'frontend' => [
                 'order_id',
@@ -89,7 +92,8 @@ class OrderComment extends ActiveRecord
                 'content',
                 'reminder_time',
                 'published',
-                'deleted'
+                'deleted',
+                'processed'
             ],
         ];
     }
@@ -120,6 +124,7 @@ class OrderComment extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'processed'
         ];
     }
 

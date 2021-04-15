@@ -186,7 +186,7 @@ $this->title = $this->context->title;
                                     <label class="control-label"><?= Yii::t('shop', 'Дата') ?>:</label>
                                     <?= DatePicker::widget([
                                         'name' => 'reminder_time',
-                                        'value' => date('j.m.Y', strtotime('+1 days')),
+                                        'value' => date('j.m.Y'),
                                         'options' => ['placeholder' => ''],
                                         'pluginOptions' => [
                                             'format' => 'dd.m.yyyy',
