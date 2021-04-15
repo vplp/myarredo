@@ -11421,11 +11421,11 @@ footer .partner-cities ul {
   z-index: 99;
 }
 .prod-bestseller {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   min-height: 22px;
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   left: 0;
   background-color: #ffd700;
