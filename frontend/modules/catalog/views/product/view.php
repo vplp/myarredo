@@ -61,6 +61,7 @@ $this->title = $this->context->title;
                                 );
                             } ?>
                             <div class="product-title">
+                                <div class="prod-bestseller">Бестселлер</div>
                                 <?= Html::tag(
                                     'h1',
                                     $model->getTitle(),
