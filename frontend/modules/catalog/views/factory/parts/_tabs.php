@@ -55,7 +55,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         </li>
     <?php } ?>
 
-    <?php if (!empty($model->factorySubdivision)) { ?>
+    <?php if (!empty($model->factorySubdivision) && !Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin'])) { ?>
         <li class="<?= Yii::$app->request->get('tab') == 'subdivision' ? 'active' : ''; ?>">
             <?= Html::a(
                 Yii::t('app', 'Представительство'),
@@ -240,7 +240,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
     <?php } ?>
 
 
-    <?php if (Yii::$app->request->get('tab') == 'subdivision' && !empty($model->factorySubdivision)) { ?>
+    <?php if (Yii::$app->request->get('tab') == 'subdivision' && !empty($model->factorySubdivision) && !Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin'])) { ?>
         <div id="subdivision"
              class="tab-pane fade <?= Yii::$app->request->get('tab') == 'subdivision' ? 'in active' : ''; ?>">
             <ul class="list">
