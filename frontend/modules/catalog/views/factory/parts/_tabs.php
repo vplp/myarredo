@@ -247,7 +247,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                 <?php
                 foreach ($model->factorySubdivision as $item) {
                     echo Html::beginTag('li') .
-                        FactorySubdivision::regionKeyRange($item['region']) . '<br>' .
+                        FactorySubdivision::getRegion($item['region']) . '<br>' .
                         $item->company_name . '<br>' .
                         $item->contact_person . '<br>' .
                         $item->email . '<br>' .

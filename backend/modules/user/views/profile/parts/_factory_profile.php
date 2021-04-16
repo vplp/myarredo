@@ -54,7 +54,7 @@ if (in_array($model['user']['group_id'], [3])) {
             [
                 'attribute' => 'region',
                 'value' => function ($item) {
-                    return FactorySubdivision::regionKeyRange($item['region']);
+                    return FactorySubdivision::getRegion($item['region']);
                 },
                 'format' => 'raw',
             ],

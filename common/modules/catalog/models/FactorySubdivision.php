@@ -119,19 +119,24 @@ class FactorySubdivision extends ActiveRecord
      * @param false $key
      * @return array|mixed
      */
-    public static function regionKeyRange($key = false)
+    public static function regionKeyRange()
     {
-        $data = [
+        return [
             0 => Yii::t('app', 'Представительство в Странах СНГ'),
             1 => Yii::t('app', 'Представительство в Италии'),
             2 => Yii::t('app', 'Представительство в Европе'),
         ];
+    }
 
-        if (isset($data[$key])) {
-            return $data[$key];
-        } else {
-            return $data;
-        }
+    /**
+     * @param false $region
+     * @return array|mixed
+     */
+    public static function getRegion($region = false)
+    {
+        $data = self::regionKeyRange();
+
+        return $data[$region] ?? '';
     }
 
     /**
