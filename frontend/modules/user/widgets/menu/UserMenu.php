@@ -98,7 +98,7 @@ class UserMenu extends Widget
                     'url' => ['/payment/partner-payment/tariffs']
                 ],
             ];
-        } elseif (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter'])) {
+        } elseif (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin'])) {
             $this->menuItems = [
                 [
                     'label' => Yii::t('app', 'Orders'),
@@ -127,6 +127,13 @@ class UserMenu extends Widget
                 [
                     'label' => Yii::t('app', 'Factory statistics'),
                     'url' => ['/catalog/factory-stats/list']
+                ]
+            ];
+        } elseif (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['settlementCenter'])) {
+            $this->menuItems = [
+                [
+                    'label' => Yii::t('app', 'Orders'),
+                    'url' => ['/shop/admin-order/list']
                 ]
             ];
         } elseif (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {

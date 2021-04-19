@@ -49,7 +49,7 @@ $this->title = $this->context->title;
 
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-4">
-                            <?php if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter', 'catalogeditor'])) {
+                            <?php if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])) {
                                 echo Html::a(
                                     Yii::t('app', 'Edit'),
                                     ($model['is_composition'])

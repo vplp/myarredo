@@ -64,7 +64,7 @@ class PartnerOrderController extends BaseController
      */
     public function beforeAction($action)
     {
-        if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter'])) {
+        if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin'])) {
             $href = str_replace(
                 'partner',
                 'admin',

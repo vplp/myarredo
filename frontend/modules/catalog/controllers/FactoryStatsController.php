@@ -52,7 +52,7 @@ class FactoryStatsController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['admin', 'settlementCenter', 'factory'],
+                        'roles' => ['admin', 'factory'],
                     ],
                     [
                         'allow' => false,

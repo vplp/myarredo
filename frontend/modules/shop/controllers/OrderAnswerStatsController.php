@@ -42,7 +42,7 @@ class OrderAnswerStatsController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['admin', 'settlementCenter'],
+                        'roles' => ['admin'],
                     ],
                     [
                         'allow' => false,

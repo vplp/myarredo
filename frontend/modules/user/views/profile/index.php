@@ -170,7 +170,7 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Yii::t('app', 'Тарифы') ?>
                                     </div>
                                 </a>
-                            <?php } elseif (in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter'])) { ?>
+                            <?php } elseif (in_array(Yii::$app->user->identity->group->role, ['admin'])) { ?>
                                 <a href="<?= Url::toRoute(['/shop/admin-order/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
@@ -205,6 +205,16 @@ $this->title = Yii::t('app', 'Profile');
                                     </div>
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'Factory statistics') ?>
+                                    </div>
+                                </a>
+                            <?php } elseif (in_array(Yii::$app->user->identity->group->role, ['settlementCenter'])) { ?>
+                                <a href="<?= Url::toRoute(['/shop/admin-order/list'], true) ?>"
+                                   class="profile-quadrlink">
+                                    <div class="profile-quadrlink-img">
+                                        <?= Html::img($bundle->baseUrl . '/img/requests.png') ?>
+                                    </div>
+                                    <div class="profile-quadrlink-text">
+                                        <?= Yii::t('app', 'Orders') ?>
                                     </div>
                                 </a>
                             <?php } elseif (Yii::$app->user->identity->group->role == 'factory') { ?>

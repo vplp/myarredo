@@ -37,7 +37,7 @@ HTML;
     ]
 ]) ?>
 
-<?php if (in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter']) &&
+<?php if (in_array(Yii::$app->user->identity->group->role, ['admin']) &&
     isset($params['factory_id']) &&
     Yii::$app->controller->action->id != 'view') { ?>
     <div class="form-group">
