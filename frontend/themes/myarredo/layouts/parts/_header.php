@@ -158,7 +158,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             </a>
                         <?php } ?>
 
-                        <?php if (Yii::$app->user->identity->group->role == 'admin') { ?>
+                        <?php if (in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter'])) { ?>
                             <a href="<?= Url::toRoute(['/shop/order-comment/reminder']) ?>" class="my-notebook wishlist"
                                title="<?= Yii::t('app', 'My notebook') ?>">
                                 <span class="red-but"><i class="fa fa-bell" aria-hidden="true"></i></span>
@@ -176,7 +176,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             $role = Yii::$app->user->identity->group->role;
                             if ($role == 'partner') {
                                 echo Yii::$app->user->identity->profile->getNameCompany();
-                            } elseif ($role == 'admin') {
+                            } elseif (in_array($role, ['admin', 'settlementCenter'])) {
                                 echo Yii::$app->user->identity->profile->first_name;
                             } elseif ($role == 'factory') {
                                 echo Yii::$app->user->identity->profile->factory

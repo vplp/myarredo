@@ -170,7 +170,7 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Yii::t('app', 'Тарифы') ?>
                                     </div>
                                 </a>
-                            <?php } elseif (Yii::$app->user->identity->group->role == 'admin') { ?>
+                            <?php } elseif (in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter'])) { ?>
                                 <a href="<?= Url::toRoute(['/shop/admin-order/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">

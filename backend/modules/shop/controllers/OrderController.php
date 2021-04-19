@@ -4,13 +4,12 @@ namespace backend\modules\shop\controllers;
 
 
 use Yii;
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
-//
 use thread\app\base\controllers\BackendController;
 use thread\actions\{
     ListModel, Update
 };
-//
 use backend\modules\shop\models\{
     Customer,
     Order,
@@ -32,6 +31,35 @@ class OrderController extends BackendController
     public $title = 'Order';
     public $name = 'Order';
 
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin', 'settlementCenter'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @return array|array[]
+     */
     public function actions()
     {
         return ArrayHelper::merge(
@@ -79,14 +107,12 @@ class OrderController extends BackendController
             ->all();
 
         foreach ($dataOrder as $order) {
-
             $user_profile = (new \yii\db\Query())
                 ->from('c1myarredo.fv_user_profile')
                 ->where(['user_id' => $order['user_id']])
                 ->one();
 
             if ($user_profile != null) {
-
                 $modelOrder = Order::findOne(['id' => $order['id']]);
 
                 if ($modelOrder == null) {

@@ -98,7 +98,7 @@ class UserMenu extends Widget
                     'url' => ['/payment/partner-payment/tariffs']
                 ],
             ];
-        } elseif (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') {
+        } elseif (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter'])) {
             $this->menuItems = [
                 [
                     'label' => Yii::t('app', 'Orders'),

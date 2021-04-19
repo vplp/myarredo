@@ -2,6 +2,8 @@
 
 namespace backend\modules\forms;
 
+use Yii;
+
 /**
  * Class FormsModule
  *
@@ -17,22 +19,28 @@ class FormsModule extends \common\modules\forms\FormsModule
 
     public function getMenuItems()
     {
-        return [
-            'label' => 'Forms',
-            'icon' => 'fa-tasks',
-            'position' => 5,
-            'items' => [
-                [
-                    'label' => 'Feedback',
-                    'icon' => 'fa-file-text',
-                    'url' => ['/forms/forms-feedback/list'],
-                ],
-                [
-                    'label' => 'Click on become partner',
-                    'icon' => 'fa-file-text',
-                    'url' => ['/forms/click-on-become-partner/list'],
-                ],
-            ]
-        ];
+        $menuItems = [];
+
+        if (in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])) {
+            $menuItems = [
+                'label' => 'Forms',
+                'icon' => 'fa-tasks',
+                'position' => 5,
+                'items' => [
+                    [
+                        'label' => 'Feedback',
+                        'icon' => 'fa-file-text',
+                        'url' => ['/forms/forms-feedback/list'],
+                    ],
+                    [
+                        'label' => 'Click on become partner',
+                        'icon' => 'fa-file-text',
+                        'url' => ['/forms/click-on-become-partner/list'],
+                    ],
+                ]
+            ];
+        }
+
+        return $menuItems;
     }
 }

@@ -52,7 +52,7 @@ class ProductStatsController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['admin', 'factory'],
+                        'roles' => ['admin', 'settlementCenter', 'factory'],
                     ],
                     [
                         'allow' => false,
