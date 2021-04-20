@@ -45,6 +45,19 @@ class Shop extends \common\modules\shop\Shop
                     ]
                 ]
             ];
+        } elseif (in_array(Yii::$app->user->identity->group->role, ['settlementCenter'])) {
+            $menuItems = [
+                'label' => 'Shop',
+                'icon' => 'fa-map-marker',
+                'position' => 6,
+                'items' => [
+                    [
+                        'label' => 'Orders',
+                        'position' => 4,
+                        'url' => ['/shop/order/list'],
+                    ]
+                ]
+            ];
         }
 
         return $menuItems;

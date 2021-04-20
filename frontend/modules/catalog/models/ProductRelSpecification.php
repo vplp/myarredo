@@ -32,8 +32,8 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
         $query->andWhere([self::tableName() . '.specification_id' => $specification_id]);
 
         $query
-            ->innerJoinWith(["product"], false)
-            ->innerJoinWith(["product.factory"], false)
+            ->innerJoinWith(['product'], false)
+            ->innerJoinWith(['product.factory'], false)
             ->andFilterWhere([
                 Product::tableName() . '.published' => '1',
                 Product::tableName() . '.deleted' => '0',
@@ -45,7 +45,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
 
         if (isset($params[$keys['category']])) {
             $query
-                ->innerJoinWith(["product.category productCategory"], false)
+                ->innerJoinWith(['product.category productCategory'], false)
                 ->andFilterWhere([
                     'IN',
                     'productCategory.' . Yii::$app->languages->getDomainAlias(),
@@ -55,7 +55,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
 
         if (isset($params[$keys['type']])) {
             $query
-                ->innerJoinWith(["product.types productTypes"], false)
+                ->innerJoinWith(['product.types productTypes'], false)
                 ->andFilterWhere([
                     'IN',
                     'productTypes.' . Yii::$app->languages->getDomainAlias(),
@@ -65,13 +65,13 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
 
         if (isset($params[$keys['subtypes']])) {
             $query
-                ->innerJoinWith(["product.subTypes productSubTypes"], false)
+                ->innerJoinWith(['product.subTypes productSubTypes'], false)
                 ->andFilterWhere(['IN', 'productSubTypes.alias', $params[$keys['subtypes']]]);
         }
 
         if (isset($params[$keys['style']])) {
             $query
-                ->innerJoinWith(["product.specification productSpecification"], false)
+                ->innerJoinWith(['product.specification productSpecification'], false)
                 ->andFilterWhere([
                     'IN',
                     'productSpecification.' . Yii::$app->languages->getDomainAlias(),
@@ -83,26 +83,26 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
             $country = Country::findBase()->byAlias($params[$keys['producing_country']])->one();
             if ($country != null) {
                 $query
-                    ->innerJoinWith(["product.factory productFactory"], false)
+                    ->innerJoinWith(['product.factory productFactory'], false)
                     ->andFilterWhere(['IN', 'productFactory.producing_country_id', $country['id']]);
             }
         }
 
         if (isset($params[$keys['factory']])) {
             $query
-                ->innerJoinWith(["product.factory productFactory"], false)
+                ->innerJoinWith(['product.factory productFactory'], false)
                 ->andFilterWhere(['IN', 'productFactory.alias', $params[$keys['factory']]]);
         }
 
         if (isset($params[$keys['collection']])) {
             $query
-                ->innerJoinWith(["product.collection productCollection"], false)
+                ->innerJoinWith(['product.collection productCollection'], false)
                 ->andFilterWhere(['IN', 'productCollection.id', $params[$keys['collection']]]);
         }
 
         if (isset($params[$keys['colors']])) {
             $query
-                ->innerJoinWith(["product.colors as productColors"], false)
+                ->innerJoinWith(['product.colors as productColors'], false)
                 ->andFilterWhere(['IN', 'productColors.alias', $params[$keys['colors']]]);
         }
 
@@ -116,7 +116,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
             $min = $params[$keys['diameter']][0];
             $max = $params[$keys['diameter']][1];
             $query
-                ->innerJoinWith(["product.specificationValue diameter"], false)
+                ->innerJoinWith(['product.specificationValue diameter'], false)
                 ->andFilterWhere(['diameter.specification_id' => 42])
                 ->andFilterWhere(['BETWEEN', 'diameter.val', $min, $max]);
         }
@@ -125,7 +125,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
             $min = $params[$keys['width']][0];
             $max = $params[$keys['width']][1];
             $query
-                ->innerJoinWith(["product.specificationValue width"], false)
+                ->innerJoinWith(['product.specificationValue width'], false)
                 ->andFilterWhere(['width.specification_id' => 8])
                 ->andFilterWhere(['BETWEEN', 'width.val', $min, $max]);
         }
@@ -134,7 +134,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
             $min = $params[$keys['length']][0];
             $max = $params[$keys['length']][1];
             $query
-                ->innerJoinWith(["product.specificationValue length"], false)
+                ->innerJoinWith(['product.specificationValue length'], false)
                 ->andFilterWhere(['length.specification_id' => 6])
                 ->andFilterWhere(['BETWEEN', 'length.val', $min, $max]);
         }
@@ -143,7 +143,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
             $min = $params[$keys['height']][0];
             $max = $params[$keys['height']][1];
             $query
-                ->innerJoinWith(["product.specificationValue height"], false)
+                ->innerJoinWith(['product.specificationValue height'], false)
                 ->andFilterWhere(['height.specification_id' => 7])
                 ->andFilterWhere(['BETWEEN', 'height.val', $min, $max
                 ]);
@@ -153,7 +153,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
             $min = $params[$keys['apportionment']][0];
             $max = $params[$keys['apportionment']][1];
             $query
-                ->innerJoinWith(["product.specificationValue apportionment"], false)
+                ->innerJoinWith(['product.specificationValue apportionment'], false)
                 ->andFilterWhere(['apportionment.specification_id' => 67])
                 ->andFilterWhere(['BETWEEN', 'apportionment.val', $min, $max]);
         }

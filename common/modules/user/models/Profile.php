@@ -2,6 +2,7 @@
 
 namespace common\modules\user\models;
 
+use common\modules\catalog\models\FactorySubdivision;
 use Yii;
 use yii\helpers\ArrayHelper;
 use voskobovich\behaviors\ManyToManyBehavior;
@@ -54,6 +55,7 @@ use common\modules\shop\models\Order;
  * @property Country $country
  * @property City $city
  * @property Factory $factory
+ * @property FactorySubdivision[] $factorySubdivision
  *
  * @property ProfileLang $lang
  *
@@ -423,6 +425,15 @@ class Profile extends \thread\modules\user\models\Profile
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getFactorySubdivision()
+    {
+        return $this->hasMany(FactorySubdivision::class, ['user_id' => 'id']);
+    }
+
+    /**
      * @return string
      */
     public function getNameCompany()
@@ -494,7 +505,7 @@ class Profile extends \thread\modules\user\models\Profile
      */
     public function getPossibilityToAnswer(Order $modelOrder = null)
     {
-        if (in_array(Yii::$app->user->identity->group->role, ['partner', 'factory']) && $modelOrder && $modelOrder->country_id) {
+        if (in_array(Yii::$app->user->identity->group->role, ['partner', 'factory', 'settlementCenter']) && $modelOrder && $modelOrder->country_id) {
             $modelCountries = Yii::$app->getUser()->getIdentity()->profile->countries;
             if ($modelCountries != null) {
                 foreach ($modelCountries as $item) {
@@ -517,7 +528,7 @@ class Profile extends \thread\modules\user\models\Profile
             Yii::$app->user->identity->profile->country_id &&
             Yii::$app->user->identity->profile->country_id == 4) {
             return true;
-        } elseif (in_array(Yii::$app->user->identity->group->role, ['logistician'])) {
+        } elseif (in_array(Yii::$app->user->identity->group->role, ['admin', 'logistician'])) {
             return true;
         } elseif (Yii::$app->getUser()->getIdentity()->profile->possibility_to_answer) {
             return true;

@@ -5,12 +5,10 @@ use yii\helpers\{
 };
 use yii\widgets\Pjax;
 use kartik\grid\GridView;
-//
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
     Sale, Factory
 };
-//
 use thread\widgets\grid\{
     GridViewFilter
 };

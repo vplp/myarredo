@@ -64,7 +64,7 @@ class PartnerOrderController extends BaseController
      */
     public function beforeAction($action)
     {
-        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') {
+        if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin'])) {
             $href = str_replace(
                 'partner',
                 'admin',
@@ -108,6 +108,18 @@ class PartnerOrderController extends BaseController
 
         if (!isset($params['factory_id'])) {
             $params['factory_id'] = 0;
+        }
+
+        if (!isset($params['full_name'])) {
+            $params['full_name'] = null;
+        }
+
+        if (!isset($params['phone'])) {
+            $params['phone'] = null;
+        }
+
+        if (!isset($params['email'])) {
+            $params['email'] = null;
         }
 
         $params['product_type'] = 'product';

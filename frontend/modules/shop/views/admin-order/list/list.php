@@ -58,6 +58,9 @@ $this->title = $this->context->title;
                             <li>
                                 <span><?= Yii::t('app', 'Status') ?></span>
                             </li>
+                            <li>
+                                <span><?= Yii::t('shop', 'Комментарий') ?></span>
+                            </li>
                         </ul>
                     </div>
                     <div class="manager-history-list">
@@ -67,9 +70,7 @@ $this->title = $this->context->title;
 
                                 <ul class="orders-title-block flex">
                                     <li class="order-id">
-                                    <span>
-                                        <?= $modelOrder->id; ?>
-                                    </span>
+                                        <span><?= $modelOrder->id; ?></span>
                                     </li>
                                     <li class="application-date">
                                         <span><?= $modelOrder->getCreatedTime() ?></span>
@@ -87,16 +88,30 @@ $this->title = $this->context->title;
                                         <span><?= substr($modelOrder->lang, 0, 2) ?></span>
                                     </li>
                                     <li>
-                                    <span>
-                                        <?= ($modelOrder->country) ? $modelOrder->country->getTitle() : ''; ?>
-                                    </span>
+                                        <span><?= ($modelOrder->country) ? $modelOrder->country->getTitle() : ''; ?></span>
                                     </li>
                                     <li>
-                                    <span>
-                                        <?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?>
-                                    </span>
+                                        <span><?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?></span>
                                     </li>
-                                    <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
+                                    <li>
+                                        <span><?= Order::getOrderStatuses($modelOrder->order_status); ?></span>
+                                    </li>
+                                    <li>
+                                        <span>
+                                            <?= Html::a(
+                                                '<i class="fa fa-list" aria-hidden="true"></i>',
+                                                Url::toRoute(['/shop/admin-order/manager', 'id' => $modelOrder->id])
+                                            ) ?>
+
+                                            <?php if ($modelOrder->orderComment) {
+                                                echo Html::a(
+                                                    date('j.m.Y H:i', $modelOrder->orderComment['updated_at']),
+                                                    Url::toRoute(['/shop/admin-order/manager', 'id' => $modelOrder->id])
+                                                );
+                                            } ?>
+
+                                        </span>
+                                    </li>
                                 </ul>
 
                                 <div class="hidden-order-info flex">

@@ -5,10 +5,8 @@ namespace backend\modules\banner\models\search;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
-//
 use thread\app\base\models\query\ActiveQuery;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
-//
 use backend\modules\banner\BannerModule;
 use backend\modules\banner\models\{
     BannerItemBackground as BannerItemBackgroundModel, BannerItemLang

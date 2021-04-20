@@ -22,7 +22,7 @@ $image_link = isset($partner['profile']['image_link'])
 
             <?php
             if (!Yii::$app->getUser()->isGuest &&
-                in_array(Yii::$app->user->identity->group->role, ['partner', 'admin', 'factory', 'logistician'])
+                in_array(Yii::$app->user->identity->group->role, ['partner', 'admin', 'settlementCenter', 'factory', 'logistician'])
             ) { ?>
                 <?php if ($this->beginCache('PartnerInfoUser' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) { ?>
                     <div class="ico">

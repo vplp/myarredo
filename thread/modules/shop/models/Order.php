@@ -200,19 +200,25 @@ class Order extends ActiveRecord
     }
 
     /**
-     * @return array
+     * @param string $key
+     * @return array|mixed
      */
-    public static function getOrderStatuses()
+    public static function getOrderStatuses($key = '')
     {
-        return [
-            'new' => Yii::t('shop', 'New'),
-            'confirmed' => Yii::t('shop', 'Confirmed'),
-            'on_performance' => Yii::t('shop', 'On performance'),
-            'prepared' => Yii::t('shop', 'Prepared'),
-            'on_delivery' => Yii::t('shop', 'On delivery'),
-            'refusal' => Yii::t('shop', 'Refusal'),
-            'executed' => Yii::t('shop', 'Executed')
+        $data = [
+            'new' => Yii::t('shop', 'Order_status_new'),
+            'in_work' => Yii::t('shop', 'Order_status_in_work'),
+            'given_to_salon' => Yii::t('shop', 'Order_status_given_to_salon'),
+            'contract_signed' => Yii::t('shop', 'Order_status_contract_signed'),
+            'failure' => Yii::t('shop', 'Order_status_failure'),
+            'archive' => Yii::t('shop', 'Order_status_archive'),
         ];
+
+        if ($key && $data[$key]) {
+            return $data[$key];
+        } else {
+            return $data;
+        }
     }
 
     /**

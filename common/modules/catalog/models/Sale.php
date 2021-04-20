@@ -520,7 +520,7 @@ class Sale extends ActiveRecord
     {
         return $this
             ->hasMany(Specification::class, ['id' => 'specification_id'])
-            ->viaTable(SaleRelSpecification::tableName(), ['sale_catalog_item_id' => 'id']);
+            ->viaTable(SaleRelSpecification::tableName() . ' SaleRelSpecification', ['sale_catalog_item_id' => 'id']);
     }
 
     /**

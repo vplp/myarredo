@@ -29,11 +29,12 @@ $lang = substr(Yii::$app->language, 0, 2);
     'action' => false,
     'id' => 'form-stats',
     'options' => [
-        'class' => 'form-filter-date-cont flex'
+        'class' => ''
     ]
 ]); ?>
 
-<?php /*
+    <div class="form-filter-date-cont flex">
+        <?php /*
     <div class="form-group">
         <?= Select2::widget([
             'name' => 'year',
@@ -47,95 +48,160 @@ $lang = substr(Yii::$app->language, 0, 2);
     </div>
 */ ?>
 
-    <div class="form-group">
-        <?= Select2::widget([
-            'name' => 'country_id',
-            'value' => $params['country_id'],
-            'data' => [0 => Yii::t('app', 'Все страны')] + Country::dropDownListWithOrders(),
-            'options' => [
-                'id' => 'country_id',
-                'multiple' => false,
-                'placeholder' => Yii::t('app', 'Choose the country')
-            ]
-        ]); ?>
-    </div>
+        <div class="form-group">
+            <?= Select2::widget([
+                'name' => 'country_id',
+                'value' => $params['country_id'],
+                'data' => [0 => Yii::t('app', 'Все страны')] + Country::dropDownListWithOrders(),
+                'options' => [
+                    'id' => 'country_id',
+                    'multiple' => false,
+                    'placeholder' => Yii::t('app', 'Choose the country')
+                ]
+            ]); ?>
+        </div>
 
-    <div class="form-group">
-        <?= Select2::widget([
-            'name' => 'factory_id',
-            'value' => $params['factory_id'],
-            'data' => [0 => Yii::t('app', 'Все фабрики')] + Factory::dropDownList($params['factory_id']),
-            'options' => [
-                'id' => 'factory_id',
-                'multiple' => false,
-                'placeholder' => Yii::t('app', 'Select option')
-            ]
-        ]); ?>
-    </div>
+        <div class="form-group">
+            <?= Select2::widget([
+                'name' => 'city_id',
+                'value' => $params['city_id'],
+                'data' => [0 => Yii::t('app', 'Все города')] + City::dropDownList($params['country_id']),
+                'options' => [
+                    'id' => 'city_id',
+                    'multiple' => false,
+                    'placeholder' => Yii::t('app', 'Select a city')
+                ]
+            ]); ?>
+        </div>
 
-    <div class="form-group">
-        <?= Select2::widget([
-            'name' => 'city_id',
-            'value' => $params['city_id'],
-            'data' => [0 => Yii::t('app', 'Все города')] + City::dropDownList($params['country_id']),
-            'options' => [
-                'id' => 'city_id',
-                'multiple' => false,
-                'placeholder' => Yii::t('app', 'Select a city')
-            ]
-        ]); ?>
-    </div>
+        <div class="form-group">
+            <?= Select2::widget([
+                'name' => 'factory_id',
+                'value' => $params['factory_id'],
+                'data' => [0 => Yii::t('app', 'Все фабрики')] + Factory::dropDownList($params['factory_id']),
+                'options' => [
+                    'id' => 'factory_id',
+                    'multiple' => false,
+                    'placeholder' => Yii::t('app', 'Select option')
+                ]
+            ]); ?>
+        </div>
 
-    <div class="form-group">
-        <?= Select2::widget([
-            'name' => 'lang',
-            'value' => (!is_array($params['lang'])) ? $params['lang'] : 0,
-            'data' => [null => Yii::t('app', 'Все языки')] + Language::dropDownList(),
-            'options' => [
-                'id' => 'lang',
-                'multiple' => false,
-            ]
-        ]); ?>
-    </div>
+        <div class="form-group">
+            <?= Select2::widget([
+                'name' => 'lang',
+                'value' => (!is_array($params['lang'])) ? $params['lang'] : 0,
+                'data' => [null => Yii::t('app', 'Все языки')] + Language::dropDownList(),
+                'options' => [
+                    'id' => 'lang',
+                    'multiple' => false,
+                ]
+            ]); ?>
+        </div>
 
-    <div class="form-group dropdown large-picker">
-        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-            <input type="text" class="drop-date-picker" readonly
-                   value="<?= $params['start_date'] . '-' . $params['end_date'] ?>">
-        </button>
-        <div class="dropdown-menu datepicker-drop">
-            <div class="range-inputs">
-                <label>
-                    <?= Html::input(
-                        'text',
-                        'start_date',
-                        $params['start_date'],
-                        ['class' => 'input-mini range-a']
-                    ) ?>
-                    -
-                    <?= Html::input(
-                        'text',
-                        'end_date',
-                        $params['end_date'],
-                        ['class' => 'input-mini range-b']
-                    ) ?>
-                </label>
+        <div class="form-group dropdown large-picker">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                <input type="text" class="drop-date-picker" readonly
+                       value="<?= $params['start_date'] . '-' . $params['end_date'] ?>">
+            </button>
+            <div class="dropdown-menu datepicker-drop">
+                <div class="range-inputs">
+                    <label>
+                        <?= Html::input(
+                            'text',
+                            'start_date',
+                            $params['start_date'],
+                            ['class' => 'input-mini range-a']
+                        ) ?>
+                        -
+                        <?= Html::input(
+                            'text',
+                            'end_date',
+                            $params['end_date'],
+                            ['class' => 'input-mini range-b']
+                        ) ?>
+                    </label>
+                </div>
+                <div class="flex btns-cont">
+                    <button type="button" class="btn btn-success dropdown-toggle change-date"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?= Yii::t('app', 'Apply') ?>
+                    </button>
+                    <button type="button" class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?= Yii::t('app', 'Cancel') ?>
+                    </button>
+                </div>
             </div>
-            <div class="flex btns-cont">
-                <button type="button" class="btn btn-success dropdown-toggle change-date"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <?= Yii::t('app', 'Apply') ?>
-                </button>
-                <button type="button" class="btn btn-default dropdown-toggle"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <?= Yii::t('app', 'Cancel') ?>
-                </button>
-            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-control"><?= Yii::t('app', 'Количество') ?>: <?= $models->getTotalCount() ?></div>
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="form-control"><?= Yii::t('app', 'Количество') ?>: <?= $models->getTotalCount() ?></div>
+    <div class="form-filter-date-cont flex form-inline">
+        <div class="form-group">
+            <label class="control-label" for="full_name"><?= Yii::t('app', 'First name') ?></label>
+            <?= Html::input(
+                'text',
+                'full_name',
+                $params['full_name'],
+                ['class' => 'form-control']
+            ) ?>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="phone"><?= Yii::t('app', 'Phone') ?></label>
+
+            <?php
+            if ($params['country_id'] == 1) {
+                echo \yii\widgets\MaskedInput::widget([
+                    'name' => 'phone',
+                    'mask' => Yii::$app->city->getPhoneMask('ua'),
+                    'value' => $params['phone'],
+                    'class' => 'form-control'
+                ]);
+            } elseif ($params['country_id'] == 2) {
+                echo \yii\widgets\MaskedInput::widget([
+                    'name' => 'phone',
+                    'mask' => Yii::$app->city->getPhoneMask('ru'),
+                    'value' => $params['phone'],
+                    'class' => 'form-control'
+                ]);
+            } elseif ($params['country_id'] == 3) {
+                echo \yii\widgets\MaskedInput::widget([
+                    'name' => 'phone',
+                    'mask' => Yii::$app->city->getPhoneMask('by'),
+                    'value' => $params['phone'],
+                    'class' => 'form-control'
+                ]);
+            } else {
+                echo Html::input(
+                    'text',
+                    'phone',
+                    $params['phone'],
+                    ['class' => 'form-control']
+                );
+            }
+
+            ?>
+
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="email"><?= Yii::t('app', 'Email') ?></label>
+            <?= Html::input(
+                'text',
+                'email',
+                $params['email'],
+                ['class' => 'form-control']
+            ) ?>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-default">Ok</button>
+        </div>
     </div>
 
 <?php ActiveForm::end(); ?>

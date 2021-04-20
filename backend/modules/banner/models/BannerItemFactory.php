@@ -3,7 +3,6 @@
 namespace backend\modules\banner\models;
 
 use thread\app\model\interfaces\BaseBackendModel;
-//
 use common\modules\banner\models\BannerItemFactory as CommonBannerItemFactory;
 
 /**

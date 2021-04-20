@@ -34,7 +34,7 @@ use frontend\modules\catalog\widgets\sale\SaleRequestForm;
                 </div>
                 <div class="text-center adress">
                     <?= $model['user']['profile']['city']['lang']['title']; ?>,<br>
-                    <?= $model['user']['profile']['lang']['address']; ?>
+                    <?= !empty($model['user']['profile']['lang']) ? $model['user']['profile']['lang']['address'] : ''; ?>
                 </div>
 
                 <div class="ico">

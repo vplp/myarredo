@@ -2,13 +2,13 @@
 
 namespace common\modules\shop\models;
 
-use voskobovich\behaviors\ManyToManyBehavior;
 use Yii;
 use yii\helpers\ArrayHelper;
+use common\modules\user\models\User;
 use common\modules\location\models\{
     City, Country
 };
-use common\modules\user\models\User;
+use voskobovich\behaviors\ManyToManyBehavior;
 
 /**
  * Class Order
@@ -40,7 +40,9 @@ use common\modules\user\models\User;
  *
  * @property boolean $isArchive
  * @property OrderAnswer[] $orderAnswers
+ * @property OrderComments[] $orderComments
  * @property OrderAnswer $orderAnswer
+ * @property OrderComment $orderComment
  * @property OrderItem[] $items
  * @property Customer $customer
  * @property City $city
@@ -118,6 +120,7 @@ class Order extends \thread\modules\shop\models\Order
             'mark1' => ['mark1'],
             'admin_comment' => ['admin_comment'],
             'send_answer' => ['send_answer'],
+            'order_status' => ['order_status'],
             'backend' => [
                 'customer_id',
                 'country_id',
@@ -269,6 +272,30 @@ class Order extends \thread\modules\shop\models\Order
     }
 
     /**
+     * @return mixed
+     */
+    public function getOrderComments()
+    {
+        return $this
+            ->hasMany(OrderComment::class, ['order_id' => 'id'])
+            ->orderBy(OrderComment::tableName() . '.updated_at DESC');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderComment()
+    {
+        $data = [];
+
+        if ($this->orderComments) {
+            $data = $this->orderComments[0];
+        }
+
+        return $data;
+    }
+
+    /**
      * @return bool
      * @throws \Exception
      */
@@ -277,6 +304,9 @@ class Order extends \thread\modules\shop\models\Order
         $isArchive = false;
 
         if (!Yii::$app->getUser()->isGuest &&
+            in_array(Yii::$app->user->identity->group->role, ['admin'])) {
+            $isArchive = false;
+        } elseif (!Yii::$app->getUser()->isGuest &&
             Yii::$app->user->identity->profile->partner_in_city &&
             in_array(Yii::$app->user->identity->group->role, ['partner']) &&
             Yii::$app->user->identity->profile->city_id == $this->city_id) {

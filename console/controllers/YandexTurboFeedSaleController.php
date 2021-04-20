@@ -109,7 +109,7 @@ class YandexTurboFeedSaleController extends Controller
 
             foreach ($offers as $offer) {
                 /** @var $offer Sale */
-                if (!empty($offer['category']) && Sale::isImage($offer['image_link'])) {
+                if (!empty($offer['category']) && Sale::isImage($offer['image_link']) && $offer['price_new'] > 0) {
                     $url = City::getSubDomainUrl($city) . '/sale-product/' . $offer['alias'] . '/';
 
                     $str = "\t<offer id=\"" . $offer['id'] . "\">" . PHP_EOL .
