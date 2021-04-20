@@ -63,19 +63,6 @@ $lang = substr(Yii::$app->language, 0, 2);
 
         <div class="form-group">
             <?= Select2::widget([
-                'name' => 'factory_id',
-                'value' => $params['factory_id'],
-                'data' => [0 => Yii::t('app', 'Все фабрики')] + Factory::dropDownList($params['factory_id']),
-                'options' => [
-                    'id' => 'factory_id',
-                    'multiple' => false,
-                    'placeholder' => Yii::t('app', 'Select option')
-                ]
-            ]); ?>
-        </div>
-
-        <div class="form-group">
-            <?= Select2::widget([
                 'name' => 'city_id',
                 'value' => $params['city_id'],
                 'data' => [0 => Yii::t('app', 'Все города')] + City::dropDownList($params['country_id']),
@@ -83,6 +70,19 @@ $lang = substr(Yii::$app->language, 0, 2);
                     'id' => 'city_id',
                     'multiple' => false,
                     'placeholder' => Yii::t('app', 'Select a city')
+                ]
+            ]); ?>
+        </div>
+
+        <div class="form-group">
+            <?= Select2::widget([
+                'name' => 'factory_id',
+                'value' => $params['factory_id'],
+                'data' => [0 => Yii::t('app', 'Все фабрики')] + Factory::dropDownList($params['factory_id']),
+                'options' => [
+                    'id' => 'factory_id',
+                    'multiple' => false,
+                    'placeholder' => Yii::t('app', 'Select option')
                 ]
             ]); ?>
         </div>

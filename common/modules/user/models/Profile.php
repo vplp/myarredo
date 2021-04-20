@@ -505,7 +505,7 @@ class Profile extends \thread\modules\user\models\Profile
      */
     public function getPossibilityToAnswer(Order $modelOrder = null)
     {
-        if (in_array(Yii::$app->user->identity->group->role, ['partner', 'factory']) && $modelOrder && $modelOrder->country_id) {
+        if (in_array(Yii::$app->user->identity->group->role, ['partner', 'factory', 'settlementCenter']) && $modelOrder && $modelOrder->country_id) {
             $modelCountries = Yii::$app->getUser()->getIdentity()->profile->countries;
             if ($modelCountries != null) {
                 foreach ($modelCountries as $item) {
@@ -528,7 +528,7 @@ class Profile extends \thread\modules\user\models\Profile
             Yii::$app->user->identity->profile->country_id &&
             Yii::$app->user->identity->profile->country_id == 4) {
             return true;
-        } elseif (in_array(Yii::$app->user->identity->group->role, ['logistician'])) {
+        } elseif (in_array(Yii::$app->user->identity->group->role, ['admin', 'logistician'])) {
             return true;
         } elseif (Yii::$app->getUser()->getIdentity()->profile->possibility_to_answer) {
             return true;

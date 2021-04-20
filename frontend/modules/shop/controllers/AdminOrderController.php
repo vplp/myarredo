@@ -9,6 +9,7 @@ use yii\filters\{
 use yii\db\Exception;
 use yii\db\mssql\PDO;
 use yii\db\Transaction;
+use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 use yii\web\NotFoundHttpException;
 use frontend\components\BaseController;
@@ -73,6 +74,8 @@ class AdminOrderController extends BaseController
 
         if ($model == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        } elseif (Yii::$app->user->identity->profile->getPossibilityToAnswer($model) == false) {
+            throw new ForbiddenHttpException('Access denied');
         }
 
         if (Yii::$app->getRequest()->post('order_status')) {
