@@ -314,16 +314,6 @@ class Order extends \thread\modules\shop\models\Order
     }
 
     /**
-     * @return string
-     */
-    public function getOrderStatus()
-    {
-        return ($this->isArchive())
-            ? Yii::t('app', 'Archival')
-            : Yii::t('app', 'New');
-    }
-
-    /**
      * @return null|string
      */
     public function getImageLink()

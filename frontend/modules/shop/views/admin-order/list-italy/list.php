@@ -97,7 +97,7 @@ $this->title = $this->context->title;
                                         <?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?>
                                     </span>
                                 </li>
-                                <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
+                                <li><span><?= Order::getOrderStatuses($modelOrder->order_status); ?></span></li>
                             </ul>
 
                             <div class="hidden-order-info flex">

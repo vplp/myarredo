@@ -149,7 +149,7 @@ use frontend\modules\shop\models\Order;
                                         </li>
                                     <?php } ?>
                                     <li>
-                                        <span><?= $modelOrder->getOrderStatus(); ?></span>
+                                        <span><?= Order::getOrderStatuses($modelOrder->order_status); ?></span>
                                     </li>
                                 </ul>
 
