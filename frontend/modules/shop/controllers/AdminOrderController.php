@@ -9,12 +9,14 @@ use yii\filters\{
 use yii\db\Exception;
 use yii\db\mssql\PDO;
 use yii\db\Transaction;
+use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 use yii\web\NotFoundHttpException;
 use frontend\components\BaseController;
 use frontend\modules\location\models\City;
 use frontend\modules\shop\models\Order;
 use frontend\modules\shop\models\OrderAnswer;
+use frontend\modules\shop\models\OrderComment;
 use frontend\modules\shop\models\OrderItemPrice;
 
 /**
@@ -38,6 +40,7 @@ class AdminOrderController extends BaseController
                 'class' => VerbFilter::class,
                 'actions' => [
                     'update' => ['post'],
+                    'manager' => ['get', 'post'],
                     'list' => ['get', 'post'],
                     'list-italy' => ['get', 'post'],
                     'pjax-save-order-answer' => ['get', 'post'],
@@ -48,7 +51,7 @@ class AdminOrderController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['admin'],
+                        'roles' => ['admin', 'settlementCenter'],
                     ],
                     [
                         'allow' => false,
@@ -56,6 +59,54 @@ class AdminOrderController extends BaseController
                 ],
             ],
         ];
+    }
+
+    /**
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionManager($id)
+    {
+        $model = Order::findById($id);
+
+        /** @var $model Order */
+
+        if ($model == null) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        } elseif (Yii::$app->user->identity->profile->getPossibilityToAnswer($model) == false) {
+            throw new ForbiddenHttpException('Access denied');
+        }
+
+        if (Yii::$app->getRequest()->post('order_status')) {
+            $model->scenario = 'order_status';
+            $model->order_status = Yii::$app->getRequest()->post('order_status');
+
+            $model->save();
+        }
+
+        if (Yii::$app->getRequest()->post('content')) {
+            $modelComment = new OrderComment();
+
+            $modelComment->scenario = 'frontend';
+            $modelComment->order_id = $model->id;
+            $modelComment->user_id = Yii::$app->user->id;
+            $modelComment->type = Yii::$app->getRequest()->post('type');
+            $modelComment->reminder_time = Yii::$app->getRequest()->post('reminder_time');
+            $modelComment->content = Yii::$app->getRequest()->post('content');
+
+            $modelComment->save();
+        }
+
+        $this->title = Yii::t('shop', 'Работа с заказом');
+
+        $this->breadcrumbs[] = [
+            'label' => $this->title,
+        ];
+
+        return $this->render('manager/_form', [
+            'modelOrder' => $model
+        ]);
     }
 
     /**

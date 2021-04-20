@@ -70,6 +70,15 @@ use backend\modules\user\models\{
             ]),
             'visible' => ($model->user->group_id == 7) ? 1 : 0
         ],
+        [
+            'label' => 'Расчетный центр',
+            'content' => $this->render('parts/_settlement_center_profile', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang,
+            ]),
+            'visible' => ($model->user->group_id == 8) ? 1 : 0
+        ],
     ]
 ]) ?>
 

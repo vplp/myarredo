@@ -3,6 +3,7 @@
 namespace frontend\modules\catalog\models;
 
 use frontend\modules\location\models\Country;
+use frontend\modules\user\models\Profile;
 use Yii;
 use yii\helpers\{
     Url, ArrayHelper
@@ -14,6 +15,7 @@ use frontend\components\ImageResize;
  *
  * @property CatalogsFiles[] $catalogsFiles
  * @property PricesFiles[] $pricesFiles
+ * @property FactorySubdivision[] $factorySubdivision
  *
  * @package frontend\modules\catalog\models
  */
@@ -165,6 +167,24 @@ class Factory extends \common\modules\catalog\models\Factory
     {
         return $this->hasMany(FactoryPricesFiles::class, ['factory_id' => 'id'])
             ->andWhere([FactoryPricesFiles::tableName() . '.file_type' => 2])->enabled();
+    }
+
+    /**
+     * @return array
+     */
+    public function getFactorySubdivision()
+    {
+        $res = [];
+
+        $profiles = Profile::find()
+            ->where(['factory_id' => $this->id])
+            ->all();
+
+        foreach ($profiles as $profile) {
+            $res = array_merge($res, $profile->factorySubdivision);
+        }
+
+        return $res;
     }
 
     /**

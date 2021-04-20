@@ -133,7 +133,7 @@ if (!empty($models)) {
                             </div>
                         </div>
 
-                        <?php if (isset($params[$keys['category']])) {
+                        <?php if (count($params) == 1 && isset($params[$keys['category']])) {
                             echo ArticlesList::widget([
                                 'view' => 'articles_on_main',
                                 'limit' => 4,

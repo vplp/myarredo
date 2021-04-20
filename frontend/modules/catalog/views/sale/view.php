@@ -40,7 +40,7 @@ $this->title = $this->context->title;
 
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-4">
-                            <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') {
+                            <?php if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin'])) {
                                 echo Html::a(
                                     Yii::t('app', 'Edit'),
                                     '/backend/catalog/sale/update?id=' . $model['id'],

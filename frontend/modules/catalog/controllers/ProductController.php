@@ -4,9 +4,10 @@ namespace frontend\modules\catalog\controllers;
 
 use Yii;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
-use frontend\modules\catalog\models\{Factory, Product, ProductStats};
+use frontend\modules\catalog\models\{Factory, Product, ProductStats, ProductStatsDays};
 use frontend\components\BaseController;
 
 /**
@@ -280,8 +281,22 @@ class ProductController extends BaseController
             }
         }
 
+        $bestsellers = ProductStatsDays::find()
+            ->select([
+                ProductStatsDays::tableName() . '.product_id',
+                'count(' . ProductStatsDays::tableName() . '.product_id) as count',
+                'sum(' . ProductStatsDays::tableName() . '.views) as views'
+            ])
+            ->groupBy(ProductStatsDays::tableName() . '.product_id')
+            ->orderBy(['views' => SORT_DESC])
+            ->asArray()
+            ->limit(30)
+            ->cache(7200)
+            ->all();
+
         return $this->render('view', [
             'model' => $model,
+            'bestsellers' => ArrayHelper::map($bestsellers, 'product_id', 'product_id'),
         ]);
     }
 

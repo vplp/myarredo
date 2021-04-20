@@ -89,7 +89,21 @@ class Order extends OrderModel
             self::tableName() . '.product_type' => $this->product_type,
         ]);
 
-        if (isset($params['country_id']) && $params['country_id'] > 0) {
+
+        $countries = [];
+
+        if (in_array(Yii::$app->user->identity->group->role, ['partner', 'factory', 'settlementCenter'])) {
+            $modelCountries = Yii::$app->getUser()->getIdentity()->profile->countries;
+            if ($modelCountries != null) {
+                $countries = [];
+                foreach ($modelCountries as $item) {
+                    $countries[] = $item['id'];
+                }
+                $query->andFilterWhere(['IN', self::tableName() . '.country_id', $countries]);
+            }
+        }
+
+        if (empty($countries) && isset($params['country_id']) && $params['country_id'] > 0) {
             $query->andFilterWhere([self::tableName() . '.country_id' => $params['country_id']]);
         }
 
@@ -121,9 +135,16 @@ class Order extends OrderModel
             $query->andFilterWhere(['like', Customer::tableName() . '.phone', $params['phone']]);
         }
 
-        if ($params['full_name'] == '' &&
+        if ($params['product_type'] == 'product' && $params['full_name'] == '' &&
             $params['email'] == '' &&
             $params['phone'] == '' &&
+            isset($params['start_date']) && $params['start_date'] != '' &&
+            isset($params['end_date']) && $params['end_date'] != '') {
+            $query->andWhere(['>=', self::tableName() . '.created_at', strtotime($params['start_date'] . ' 0:00')]);
+            $query->andWhere(['<=', self::tableName() . '.created_at', strtotime($params['end_date'] . ' 23:59')]);
+        }
+
+        if ($params['product_type'] != 'product' &&
             isset($params['start_date']) && $params['start_date'] != '' &&
             isset($params['end_date']) && $params['end_date'] != '') {
             $query->andWhere(['>=', self::tableName() . '.created_at', strtotime($params['start_date'] . ' 0:00')]);

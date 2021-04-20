@@ -31,7 +31,7 @@ class SaleRelSpecification extends \common\modules\catalog\models\SaleRelSpecifi
         $query->andWhere([self::tableName() . '.specification_id' => $specification_id]);
 
         $query
-            ->innerJoinWith(["sale"], false)
+            ->innerJoinWith(['sale'], false)
             ->andFilterWhere([
                 Sale::tableName() . '.published' => '1',
                 Sale::tableName() . '.deleted' => '0',
@@ -39,7 +39,7 @@ class SaleRelSpecification extends \common\modules\catalog\models\SaleRelSpecifi
 
         if (isset($params[$keys['category']])) {
             $query
-                ->innerJoinWith(["sale.category saleCategory"], false)
+                ->innerJoinWith(['sale.category saleCategory'], false)
                 ->andFilterWhere([
                     'IN',
                     'saleCategory.' . Yii::$app->languages->getDomainAlias(),
@@ -49,7 +49,7 @@ class SaleRelSpecification extends \common\modules\catalog\models\SaleRelSpecifi
 
         if (isset($params[$keys['type']])) {
             $query
-                ->innerJoinWith(["sale.types saleTypes"], false)
+                ->innerJoinWith(['sale.types saleTypes'], false)
                 ->andFilterWhere([
                     'IN',
                     'saleTypes.' . Yii::$app->languages->getDomainAlias(),
@@ -59,13 +59,13 @@ class SaleRelSpecification extends \common\modules\catalog\models\SaleRelSpecifi
 
         if (isset($params[$keys['subtypes']])) {
             $query
-                ->innerJoinWith(["sale.subTypes saleSubTypes"], false)
+                ->innerJoinWith(['sale.subTypes saleSubTypes'], false)
                 ->andFilterWhere(['IN', 'saleSubTypes.alias', $params[$keys['subtypes']]]);
         }
 
         if (isset($params[$keys['style']])) {
             $query
-                ->innerJoinWith(["sale.specification saleSpecification"], false)
+                ->innerJoinWith(['sale.specification saleSpecification'], false)
                 ->andFilterWhere([
                     'IN',
                     'saleSpecification.' . Yii::$app->languages->getDomainAlias(),
@@ -75,19 +75,19 @@ class SaleRelSpecification extends \common\modules\catalog\models\SaleRelSpecifi
 
         if (isset($params[$keys['factory']])) {
             $query
-                ->innerJoinWith(["sale.factory saleFactory"], false)
+                ->innerJoinWith(['sale.factory saleFactory'], false)
                 ->andFilterWhere(['IN', 'saleFactory.alias', $params[$keys['factory']]]);
         }
 
         if (isset($params[$keys['collection']])) {
             $query
-                ->innerJoinWith(["sale.collection saleCollection"], false)
+                ->innerJoinWith(['sale.collection saleCollection'], false)
                 ->andFilterWhere(['IN', 'saleCollection.id', $params[$keys['collection']]]);
         }
 
         if (isset($params[$keys['colors']])) {
             $query
-                ->innerJoinWith(["sale.colors as saleColors"], false)
+                ->innerJoinWith(['sale.colors as saleColors'], false)
                 ->andFilterWhere(['IN', 'saleColors.alias', $params[$keys['colors']]]);
         }
 
@@ -101,7 +101,7 @@ class SaleRelSpecification extends \common\modules\catalog\models\SaleRelSpecifi
             $min = $params[$keys['diameter']][0];
             $max = $params[$keys['diameter']][1];
             $query
-                ->innerJoinWith(["sale.specificationValue diameter"], false)
+                ->innerJoinWith(['sale.specificationValue diameter'], false)
                 ->andFilterWhere(['diameter.specification_id' => 42])
                 ->andFilterWhere(['BETWEEN', 'diameter.val', $min, $max]);
         }
@@ -110,7 +110,7 @@ class SaleRelSpecification extends \common\modules\catalog\models\SaleRelSpecifi
             $min = $params[$keys['width']][0];
             $max = $params[$keys['width']][1];
             $query
-                ->innerJoinWith(["sale.specificationValue width"], false)
+                ->innerJoinWith(['sale.specificationValue width'], false)
                 ->andFilterWhere(['width.specification_id' => 8])
                 ->andFilterWhere(['BETWEEN', 'width.val', $min, $max]);
         }
@@ -119,7 +119,7 @@ class SaleRelSpecification extends \common\modules\catalog\models\SaleRelSpecifi
             $min = $params[$keys['length']][0];
             $max = $params[$keys['length']][1];
             $query
-                ->innerJoinWith(["sale.specificationValue length"], false)
+                ->innerJoinWith(['sale.specificationValue length'], false)
                 ->andFilterWhere(['length.specification_id' => 6])
                 ->andFilterWhere(['BETWEEN', 'length.val', $min, $max]);
         }
@@ -128,7 +128,7 @@ class SaleRelSpecification extends \common\modules\catalog\models\SaleRelSpecifi
             $min = $params[$keys['height']][0];
             $max = $params[$keys['height']][1];
             $query
-                ->innerJoinWith(["sale.specificationValue height"], false)
+                ->innerJoinWith(['sale.specificationValue height'], false)
                 ->andFilterWhere(['height.specification_id' => 7])
                 ->andFilterWhere(['BETWEEN', 'height.val', $min, $max
                 ]);
@@ -138,7 +138,7 @@ class SaleRelSpecification extends \common\modules\catalog\models\SaleRelSpecifi
             $min = $params[$keys['apportionment']][0];
             $max = $params[$keys['apportionment']][1];
             $query
-                ->innerJoinWith(["sale.specificationValue apportionment"], false)
+                ->innerJoinWith(['sale.specificationValue apportionment'], false)
                 ->andFilterWhere(['apportionment.specification_id' => 67])
                 ->andFilterWhere(['BETWEEN', 'apportionment.val', $min, $max]);
         }

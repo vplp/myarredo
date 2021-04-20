@@ -29,7 +29,7 @@ class Order extends ParentModel
         $order->product_type = 'product';
         $order->lang = 'ru-RU';
         $order->country_id = 2;
-        $order->city_id = 0;
+        $order->city_id = 4;
         $order->customer_id = $customer_id;
         $order->admin_comment = 'Яндекс.Турбо';
 

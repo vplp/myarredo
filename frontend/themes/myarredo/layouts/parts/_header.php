@@ -158,6 +158,17 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             </a>
                         <?php } ?>
 
+                        <?php if (in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter'])) { ?>
+                            <a href="<?= Url::toRoute(['/shop/order-comment/reminder']) ?>" class="my-notebook wishlist"
+                               title="<?= Yii::t('app', 'My notebook') ?>">
+                                <span class="red-but"><i class="fa fa-bell" aria-hidden="true"></i></span>
+                                <span class="inscription">
+                                <span class="for-nt-arr"></span>
+                                <span class="for-price"><?= \frontend\modules\shop\models\OrderComment::getCountReminder() ?></span>
+                            </span>
+                            </a>
+                        <?php } ?>
+
                         <div class="sign-in withicon">
                             <?php
                             echo Html::beginTag('a', ['href' => Url::toRoute('/user/profile/index')]);
@@ -165,7 +176,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             $role = Yii::$app->user->identity->group->role;
                             if ($role == 'partner') {
                                 echo Yii::$app->user->identity->profile->getNameCompany();
-                            } elseif ($role == 'admin') {
+                            } elseif (in_array($role, ['admin', 'settlementCenter'])) {
                                 echo Yii::$app->user->identity->profile->first_name;
                             } elseif ($role == 'factory') {
                                 echo Yii::$app->user->identity->profile->factory
@@ -212,22 +223,18 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
                     <div class="search-cont">
                         <?php if ($this->beginCache('ElasticSearch' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) {
-                            $form = ActiveForm::begin([
-                                'id' => 'search-form',
+                            $form = ActiveForm::begin(['id' => 'search-form',
                                 'action' => ['/catalog/elastic-search/search'],
                                 'method' => 'get',
-                                'options' => ['class' => 'form-inline'],
-                            ]); ?>
+                                'options' => ['class' => 'form-inline'],]); ?>
 
                             <div class="search-group">
                                 <?= Html::input(
                                     'text',
                                     'search',
                                     null,
-                                    [
-                                        'class' => 'form-control input-md',
-                                        'placeholder' => Yii::t('app', 'Поиск'),
-                                    ]
+                                    ['class' => 'form-control input-md',
+                                        'placeholder' => Yii::t('app', 'Поиск'),]
                                 ) ?>
                                 <?= Html::submitButton(
                                     '<i class="fa fa-search" aria-hidden="true"></i>',
@@ -329,8 +336,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
     <div class="mobmenu-serch-part">
         <?php
         if ($this->beginCache('ElasticSearchMobile' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) {
-            $form = ActiveForm::begin([
-                'action' => ['/catalog/elastic-search/search'],
+            $form = ActiveForm::begin(['action' => ['/catalog/elastic-search/search'],
                 'id' => 'mobile-search-form',
                 'method' => 'get',
                 'options' => ['class' => 'mobsearch-form'],]); ?>
@@ -378,12 +384,10 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             <?= Html::a(
                 '<i class="fa fa-phone" aria-hidden="true"></i>',
                 'javascript:void(0);',
-                [
-                    'class' => 'back-call',
+                ['class' => 'back-call',
                     'data-toggle' => 'modal',
                     'data-target' => '#formFeedbackModal',
-                    'title' => Yii::t('app', 'Feedback form')
-                ]
+                    'title' => Yii::t('app', 'Feedback form')]
             ) ?>
 
             <?php if (DOMAIN_NAME == 'myarredo' && Yii::$app->controller->action->id != 'error' &&
