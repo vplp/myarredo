@@ -98,6 +98,30 @@ class PartnerOrderController extends BaseController
             $params['end_date'] = date('d-m-Y', $end_date);
         }
 
+        if (!isset($params['city_id'])) {
+            $params['city_id'] = 0;
+        }
+
+        if (!isset($params['country_id'])) {
+            $params['country_id'] = 0;
+        }
+
+        if (!isset($params['factory_id'])) {
+            $params['factory_id'] = 0;
+        }
+
+        if (!isset($params['full_name'])) {
+            $params['full_name'] = null;
+        }
+
+        if (!isset($params['phone'])) {
+            $params['phone'] = null;
+        }
+
+        if (!isset($params['email'])) {
+            $params['email'] = null;
+        }
+
         $params['product_type'] = 'product';
 
         $models = $model->search($params);
