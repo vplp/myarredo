@@ -372,6 +372,29 @@ class TemplateFactoryController extends BaseController
             'factory' => $factory,
         ]);
     }
+    /**
+     * @param string $alias
+     * @return string
+     * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionWorkingConditions(string $alias)
+    {
+        $factory = Factory::findByAlias($alias);
+
+        if ($factory == null) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        }
+
+        $this->factory = $factory;
+
+        $this->title = Yii::t('app', 'Условия работы') . ' ' . $factory['title'];
+
+        return $this->render('working_conditions', [
+            'factory' => $factory,
+        ]);
+    }
 
     /**
      * @param string $alias

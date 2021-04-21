@@ -59,6 +59,18 @@ $urls = [
 
     'factory/pdf-viewer' => 'catalog/factory/pdf-viewer',
 
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/catalogs-files' => 'catalog/template-factory/catalogs-files',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/prices-files' => 'catalog/template-factory/prices-files',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/contacts' => 'catalog/template-factory/contacts',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/working-conditions' => 'catalog/template-factory/working-conditions',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/catalog/<filter:[\=\;\-\w\d]+>' => 'catalog/template-factory/catalog',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/catalog' => 'catalog/template-factory/catalog',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/sale' => 'catalog/template-factory/sale',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/product/<product:[\w\-]+>' => 'catalog/template-factory/product',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/sale-product/<product:[\w\-]+>' => 'catalog/template-factory/sale-product',
+    'factory/template-factory/ajax-get-filter' => 'catalog/template-factory/ajax-get-filter',
+    'factory/template-factory/ajax-get-filter-sizes' => 'catalog/template-factory/ajax-get-filter-sizes',
+
     'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>' => 'catalog/template-factory/factory',
     'factory/<alias:[\w\-]+>' => 'catalog/factory/view',
     'factory/<alias:[\w\-]+>/<tab:(collections|articles|catalogs|samples|pricelists|grezzo|orders|working-conditions|subdivision)>' => 'catalog/factory/view-tab',
@@ -85,17 +97,6 @@ $urls = [
 
     'factory-stats' => 'catalog/factory-stats/list',
     'factory-stats/<alias:[\w\-]+>' => 'catalog/factory-stats/view',
-
-    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/catalogs-files' => 'catalog/template-factory/catalogs-files',
-    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/prices-files' => 'catalog/template-factory/prices-files',
-    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/contacts' => 'catalog/template-factory/contacts',
-    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/catalog/<filter:[\=\;\-\w\d]+>' => 'catalog/template-factory/catalog',
-    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/catalog' => 'catalog/template-factory/catalog',
-    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/sale' => 'catalog/template-factory/sale',
-    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/product/<product:[\w\-]+>' => 'catalog/template-factory/product',
-    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/sale-product/<product:[\w\-]+>' => 'catalog/template-factory/sale-product',
-    'factory/template-factory/ajax-get-filter' => 'catalog/template-factory/ajax-get-filter',
-    'factory/template-factory/ajax-get-filter-sizes' => 'catalog/template-factory/ajax-get-filter-sizes',
 
     // Factory product
     'factory-collections' => 'catalog/factory-collections/list',
