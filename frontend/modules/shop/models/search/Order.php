@@ -92,7 +92,7 @@ class Order extends OrderModel
 
         $countries = [];
 
-        if (in_array(Yii::$app->user->identity->group->role, ['partner', 'factory', 'settlementCenter'])) {
+        if (in_array(Yii::$app->user->identity->group->role, ['partner', 'settlementCenter'])) {
             $modelCountries = Yii::$app->getUser()->getIdentity()->profile->countries;
             if ($modelCountries != null) {
                 $countries = [];
@@ -101,6 +101,9 @@ class Order extends OrderModel
                 }
                 $query->andFilterWhere(['IN', self::tableName() . '.country_id', $countries]);
             }
+        } elseif (in_array(Yii::$app->user->identity->group->role, ['factory'])) {
+            $countries = [1, 2, 3];
+            $query->andFilterWhere(['IN', self::tableName() . '.country_id', $countries]);
         }
 
         if (empty($countries) && isset($params['country_id']) && $params['country_id'] > 0) {
