@@ -113,7 +113,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         </li>
     <?php } ?>
 
-    <?php if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter', 'partner'])) { ?>
+    <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->showWorkingConditions()) { ?>
         <li class="<?= Yii::$app->request->get('tab') == 'working-conditions' ? 'active' : ''; ?>">
             <?= Html::a(
                 Yii::t('app', 'Условия работы'),
@@ -428,7 +428,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         </div>
     <?php } ?>
 
-    <?php if (Yii::$app->request->get('tab') == 'working-conditions' && !Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter', 'partner'])) { ?>
+    <?php if (Yii::$app->request->get('tab') == 'working-conditions' && !Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->showWorkingConditions()) { ?>
         <div id="working-conditions"
              class="tab-pane fade <?= Yii::$app->request->get('tab') == 'working-conditions' ? 'in active' : ''; ?>">
             <?= $model->lang->working_conditions ?>

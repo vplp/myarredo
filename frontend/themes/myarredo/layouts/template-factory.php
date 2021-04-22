@@ -86,7 +86,7 @@ $this->beginPage()
                 );
             } ?>
 
-            <?php if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter', 'partner'])) {
+            <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->showWorkingConditions()) {
                 echo Html::a(
                     Yii::t('app', 'Условия работы'),
                     ['/catalog/template-factory/working-conditions', 'alias' => $this->context->factory['alias']]

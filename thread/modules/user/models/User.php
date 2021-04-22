@@ -4,7 +4,6 @@ namespace thread\modules\user\models;
 
 use Yii;
 use yii\web\IdentityInterface;
-//
 use thread\modules\sys\modules\logbook\models\LogbookAuthModel;
 use thread\app\base\models\ActiveRecord;
 use thread\modules\user\User as UserModule;
