@@ -298,7 +298,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                                     ? Html::img($priceFile->getImageLink())
                                     : ''
                                 ) .
-                                Html::tag('span', $priceFile->title, ['class' => 'for-catalog-list']),
+                                Html::tag('span', $priceFile->title, ['class' => 'for-catalog-list']) . date('d-m-Y', $priceFile->created_at),
                                 Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink,
                                 [
                                     'target' => '_blank',
