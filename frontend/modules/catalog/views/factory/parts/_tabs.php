@@ -298,7 +298,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                                     ? Html::img($priceFile->getImageLink())
                                     : ''
                                 ) .
-                                Html::tag('span', $priceFile->title, ['class' => 'for-catalog-list']) . date('d-m-Y', $priceFile->created_at),
+                                Html::tag('span', $priceFile->title . '<br>(' . date('d-m-Y', $priceFile->updated_at) . ')', ['class' => 'for-catalog-list']),
                                 Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink,
                                 [
                                     'target' => '_blank',
@@ -404,7 +404,8 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                                                     <?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?>
                                                 </span>
                                             </li>
-                                            <li><span><?= Order::getOrderStatuses($modelOrder->order_status); ?></span></li>
+                                            <li><span><?= Order::getOrderStatuses($modelOrder->order_status); ?></span>
+                                            </li>
                                         </ul>
 
                                         <div class="hidden-order-info flex">
