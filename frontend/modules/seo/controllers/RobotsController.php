@@ -29,7 +29,7 @@ class RobotsController extends Controller
             echo 'Disallow: /partner/' . PHP_EOL;
             echo 'Disallow: /*openstat' . PHP_EOL;
             echo 'Disallow: /*utm' . PHP_EOL;
-            echo 'Disallow: /search/' . PHP_EOL;
+            echo 'Disallow: */search/' . PHP_EOL;
             echo 'Disallow: /orders/' . PHP_EOL;
             echo 'Disallow: *three=' . PHP_EOL;
             echo 'Disallow: *sort=' . PHP_EOL;
