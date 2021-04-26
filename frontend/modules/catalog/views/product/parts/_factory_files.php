@@ -53,7 +53,6 @@ use frontend\modules\catalog\models\{
         <p class="inpdf-title"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
         <ul class="inpdf-list">
             <?php if (!empty($model->factoryPricesFiles)) {
-                /* !!! */ echo  '<pre style="color:red;">'; print_r($model->factoryPricesFiles); echo '</pre>'; /* !!! */
                 foreach ($model->factoryPricesFiles as $priceFile) {
                     if ($fileLink = $priceFile->getFileLink()) { ?>
                         <li>
