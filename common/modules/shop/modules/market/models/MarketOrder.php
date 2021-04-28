@@ -116,7 +116,7 @@ class MarketOrder extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'winner_id' => Yii::t('app', 'Winner'),
+            'winner_id',
             'email' => Yii::t('app', 'Email'),
             'full_name' => Yii::t('app', 'Name'),
             'country_id' => Yii::t('app', 'Country'),
