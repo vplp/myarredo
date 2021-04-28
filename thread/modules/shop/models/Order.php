@@ -3,7 +3,6 @@
 namespace thread\modules\shop\models;
 
 use Yii;
-//
 use thread\app\base\models\ActiveRecord;
 use thread\modules\shop\Shop;
 use thread\modules\shop\models\query\OrderQuery;

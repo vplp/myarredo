@@ -274,6 +274,14 @@ $urls = [
     'partner/delivery-italian-orders' => 'shop/partner-order/delivery-italian-orders',
     'partner/orders/pjax-save-order-answer' => 'shop/partner-order/pjax-save-order-answer',
 
+    // market-order
+    'shop/market/market-order-admin/list' => 'shop/market/market-order-admin/list',
+    'shop/market/market-order-admin/create' => 'shop/market/market-order-admin/create',
+    'shop/market/market-order-admin/update/<id:[\d\-]+>' => 'shop/market/market-order-admin/update',
+
+    'shop/market/market-order-partner/list' => 'shop/market/market-order-partner/list',
+    'shop/market/market-order-partner/update/<id:[\d\-]+>' => 'shop/market/market-order-partner/update',
+
     // Module [[Location]]
     'location/location/get-cities' => 'location/location/get-cities',
     'location/currency/change' => 'location/currency/change',

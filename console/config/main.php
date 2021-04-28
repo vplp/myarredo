@@ -65,10 +65,11 @@ return ArrayHelper::merge(
                     '@common/modules',
                     '@backend/modules',
                     '@frontend/modules',
-                    '@common/modules/sys/modules',
                     '@thread/modules/sys/modules',
-                    '@common/modules/seo/modules',
                     '@thread/modules/seo/modules',
+                    '@common/modules/seo/modules',
+                    '@common/modules/sys/modules',
+                    '@common/modules/shop/modules',
                 ],
                 'migrationPaths' => [
                 ],
