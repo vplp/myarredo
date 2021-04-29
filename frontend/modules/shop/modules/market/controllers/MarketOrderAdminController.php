@@ -31,7 +31,7 @@ class MarketOrderAdminController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['admin']
+                        'roles' => ['admin', 'settlementCenter']
                     ],
                     [
                         'allow' => false,

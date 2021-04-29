@@ -142,7 +142,11 @@ class UserMenu extends Widget
                 [
                     'label' => Yii::t('app', 'Orders'),
                     'url' => ['/shop/admin-order/list']
-                ]
+                ],
+                [
+                    'label' => Yii::t('market', 'Market order'),
+                    'url' => ['/shop/market/market-order-admin/list']
+                ],
             ];
         } elseif (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
             $this->menuItems = [
