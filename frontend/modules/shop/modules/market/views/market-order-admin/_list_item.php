@@ -38,12 +38,14 @@ use frontend\modules\shop\modules\market\models\MarketOrder;
             <div><?= Yii::t('market', 'Ответы салонов') ?>:</div>
 
             <?php
-            $items = ArrayHelper::map($model->answers, 'id', function ($answer) {
-                return ($answer['user']['profile']['lang']
+            $items = [];
+
+            foreach ($model->answers as $answer) {
+                $items[$answer['user']['id']] = ($answer['user']['profile']['lang']
                         ? $answer['user']['profile']['lang']['name_company']
                         : '') .
                     ' = ' . $answer['commission_percentage'] . ' %';
-            });
+            }
 
             echo $form
                 ->field($model, 'winner_id')
@@ -52,16 +54,12 @@ use frontend\modules\shop\modules\market\models\MarketOrder;
                     $items,
                     [
                         'item' => function ($index, $label, $name, $checked, $value) {
-                            $options = $checked ? [ 'style' => 'color: red;'] : [];
+                            $options = $checked ? ['style' => 'color: red;'] : [];
                             return Html::tag(
                                 'div',
-                                '<label class="">' .
-                                Html::radio($name, $checked, [
-                                    'value' => $value,
-                                ]) . '&nbsp;' .
-                                $label .
-                                '<span class=""></span>' .
-                                '</label>',
+                                Html::radio($name, $checked, ['value' => $value, 'id' => 'p' . $index]) .
+                                '&nbsp;' .
+                                Html::label($label, 'p' . $index, ['class' => '']),
                                 $options
                             );
                         },
