@@ -21,13 +21,13 @@ $this->title = $this->context->title;
 
                 <?= Html::tag('h1', $this->context->title); ?>
 
-                <?= $this->render('_form_filter', [
-                    'model' => $model,
-                    'params' => $params,
-                    'models' => $models,
-                ]); ?>
-
                 <div class="manager-history">
+                    <?= $this->render('_form_filter', [
+                        'model' => $model,
+                        'params' => $params,
+                        'models' => $models,
+                    ]); ?>
+
                     <div class="manager-history-header">
                         <ul class="orders-title-block flex">
                             <li class="order-id">

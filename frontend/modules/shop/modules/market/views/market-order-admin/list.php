@@ -21,21 +21,22 @@ $this->title = $this->context->title;
 
                 <?= Html::tag('h1', $this->context->title); ?>
 
-                <div class="flex form-inline">
-                    <?= Html::a(
-                        Yii::t('market', 'Добавить заказ'),
-                        ['/shop/market/market-order-admin/create'],
-                        ['class' => 'btn btn-cancel']
-                    ) ?>
-                </div>
-
-                <?= $this->render('_form_filter', [
-                    'model' => $model,
-                    'params' => $params,
-                    'models' => $models,
-                ]); ?>
-
                 <div class="manager-history">
+                    <div class="flex form-inline">
+                        <?= Html::a(
+                            Yii::t('market', 'Добавить заказ'),
+                            ['/shop/market/market-order-admin/create'],
+                            ['class' => 'btn btn-cancel']
+                        ) ?>
+                    </div>
+
+                    <?= $this->render('_form_filter', [
+                        'model' => $model,
+                        'params' => $params,
+                        'models' => $models,
+                    ]); ?>
+
+
                     <div class="manager-history-header">
                         <ul class="orders-title-block flex">
                             <li class="order-id">

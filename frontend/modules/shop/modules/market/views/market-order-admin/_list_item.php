@@ -47,19 +47,23 @@ use frontend\modules\shop\modules\market\models\MarketOrder;
 
             echo $form
                 ->field($model, 'winner_id')
-                ->label($model->getAttributeLabel('winner_id'))
+                ->label(false)
                 ->radioList(
                     $items,
                     [
                         'item' => function ($index, $label, $name, $checked, $value) {
-                            return
-                                '<div><label class="">' .
+                            $options = $checked ? [ 'style' => 'color: red;'] : [];
+                            return Html::tag(
+                                'div',
+                                '<label class="">' .
                                 Html::radio($name, $checked, [
                                     'value' => $value,
                                 ]) . '&nbsp;' .
                                 $label .
                                 '<span class=""></span>' .
-                                '</label></div>';
+                                '</label>',
+                                $options
+                            );
                         },
                     ]
                 ); ?>
