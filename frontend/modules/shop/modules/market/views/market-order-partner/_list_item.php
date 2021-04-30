@@ -44,8 +44,6 @@ use frontend\modules\shop\modules\market\models\{
                 <div><?= Yii::t('market', 'Ответы других салонов') ?>:</div>
 
                 <?php foreach ($model->answers as $key => $answer) {
-                    $options = ($model->winner_id == $answer['user']->id) ? ['style' => 'color:red;'] : [];
-
                     if ($answer['user']->id == Yii::$app->user->id) {
                         echo Html::tag(
                             'div',
@@ -53,13 +51,13 @@ use frontend\modules\shop\modules\market\models\{
                                 ? $answer['user']['profile']['lang']['name_company']
                                 : '') .
                             ' = ' . $answer['commission_percentage'] . ' %',
-                            $options
+                            ($model->winner_id == Yii::$app->user->id) ? ['style' => 'color:red;'] : []
                         );
                     } else {
                         echo Html::tag(
                             'div',
                             Yii::t('app', 'Partner') . ($key + 1) . ' = ' . $answer['commission_percentage'] . ' %',
-                            $options
+                            []
                         );
                     }
                 } ?>
