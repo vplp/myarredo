@@ -492,7 +492,7 @@ class Profile extends \thread\modules\user\models\Profile
      */
     public function isPdfAccess()
     {
-        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin', 'settlementCenter', 'catalogeditor']) ||
+        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin', 'settlementCenter', 'catalogEditor']) ||
             (
                 in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner']) &&
                 Yii::$app->getUser()->getIdentity()->profile->pdf_access
@@ -534,7 +534,7 @@ class Profile extends \thread\modules\user\models\Profile
             Yii::$app->user->identity->profile->country_id &&
             Yii::$app->user->identity->profile->country_id == 4) {
             return true;
-        } elseif (in_array(Yii::$app->user->identity->group->role, ['admin', 'logistician'])) {
+        } elseif (in_array(Yii::$app->user->identity->group->role, ['admin', 'logistician', 'settlementCenter'])) {
             return true;
         } elseif (Yii::$app->getUser()->getIdentity()->profile->possibility_to_answer) {
             return true;
