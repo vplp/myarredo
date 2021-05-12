@@ -15,41 +15,43 @@ use frontend\modules\catalog\models\{
 
 ?>
 
+
 <div class="downloads">
-    <p class="inpdf-title"><?= Yii::t('app', 'Посмотреть каталоги') ?></p>
-    <ul class="inpdf-list">
-        <?php if (!empty($model->factoryCatalogsFiles)) { ?>
-            <?php foreach ($model->factoryCatalogsFiles as $catalogFile) {
-                if ($fileLink = $catalogFile->getFileLink()) { ?>
-                    <li>
-                        <?= Html::a(
-                            $catalogFile->title . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
-                            Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink . '&search=' . $model->article,
-                            [
-                                'target' => '_blank',
-                                'class' => 'click-on-factory-file btn-inpdf',
-                                'data-id' => $catalogFile->id
-                            ]
-                        ) ?>
-                    </li>
-                <?php }
-            } ?>
-        <?php } else { ?>
-            <li>
-                <?= Html::a(
-                    Yii::t('app', 'Каталоги') . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
-                    ['/catalog/factory/view-tab', 'alias' => $model['factory']['alias'], 'tab' => 'catalogs'],
-                    [
-                        'target' => '_blank',
-                        'class' => 'btn-inpdf'
-                    ]
-                ) ?>
-            </li>
-        <?php } ?>
-    </ul>
+    <?php if (!Yii::$app->getUser()->isGuest || (Yii::$app->getUser()->isGuest && $model->factory->show_catalogs_files == '0')) { ?>
+        <p class="inpdf-title"><?= Yii::t('app', 'Посмотреть каталоги') ?></p>
+        <ul class="inpdf-list">
+            <?php if (!empty($model->factoryCatalogsFiles)) { ?>
+                <?php foreach ($model->factoryCatalogsFiles as $catalogFile) {
+                    if ($fileLink = $catalogFile->getFileLink()) { ?>
+                        <li>
+                            <?= Html::a(
+                                $catalogFile->title . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                                Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink . '&search=' . $model->article,
+                                [
+                                    'target' => '_blank',
+                                    'class' => 'click-on-factory-file btn-inpdf',
+                                    'data-id' => $catalogFile->id
+                                ]
+                            ) ?>
+                        </li>
+                    <?php }
+                } ?>
+            <?php } else { ?>
+                <li>
+                    <?= Html::a(
+                        Yii::t('app', 'Каталоги') . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                        ['/catalog/factory/view-tab', 'alias' => $model['factory']['alias'], 'tab' => 'catalogs'],
+                        [
+                            'target' => '_blank',
+                            'class' => 'btn-inpdf'
+                        ]
+                    ) ?>
+                </li>
+            <?php } ?>
+        </ul>
+    <?php } ?>
 
     <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->isPdfAccess()) { ?>
-
         <p class="inpdf-title"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
         <ul class="inpdf-list">
             <?php if (!empty($model->factoryPricesFiles)) {

@@ -46,7 +46,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         ) ?>
     </li>
 
-    <?php if (!empty($model->catalogsFiles)) { ?>
+    <?php if ((!Yii::$app->getUser()->isGuest || (Yii::$app->getUser()->isGuest && $model->show_catalogs_files == '0')) && !empty($model->catalogsFiles)) { ?>
         <li class="<?= Yii::$app->request->get('tab') == 'catalogs' ? 'active' : ''; ?>">
             <?= Html::a(
                 Yii::t('app', 'Каталоги'),
@@ -211,7 +211,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         </div>
     <?php } ?>
 
-    <?php if (Yii::$app->request->get('tab') == 'catalogs' && !empty($model->catalogsFiles)) { ?>
+    <?php if ((!Yii::$app->getUser()->isGuest || (Yii::$app->getUser()->isGuest && $model->show_catalogs_files == '0')) && Yii::$app->request->get('tab') == 'catalogs' && !empty($model->catalogsFiles)) { ?>
         <div id="catalogs"
              class="tab-pane fade <?= Yii::$app->request->get('tab') == 'catalogs' ? 'in active' : ''; ?>">
             <ul class="list">
@@ -238,7 +238,6 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
             </ul>
         </div>
     <?php } ?>
-
 
     <?php if (Yii::$app->request->get('tab') == 'subdivision' && !empty($model->factorySubdivision) && !Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter'])) { ?>
         <div id="subdivision"
