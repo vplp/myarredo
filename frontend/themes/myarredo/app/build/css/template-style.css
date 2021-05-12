@@ -5068,11 +5068,11 @@ footer .partner-cities ul {
 
 /*--content--*/
   .home-main .filter {
-    width: 960px;
+    width: 850px;
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%); }
+    top: 4%;
+    transform: translate(-50%, 0); }
     .home-main .filter .jq-selectbox ul {
       max-height: 150px !important; }
   .home-main .filter-bot {
@@ -5085,8 +5085,8 @@ footer .partner-cities ul {
     justify-content: space-between;
     width: 100%; }
   .home-main .filter-title {
-    height: 140px;
-    padding: 30px;
+    height: 75px;
+    padding: 15px;
     font-size: 33px;
     line-height: 45px;
     color: #ffffff;
@@ -9789,7 +9789,8 @@ footer .partner-cities ul {
   .home-main .filter {
     left: 10px;
     right: 10px;
-    transform: translate(0, -50%);
+    top: 20%;
+    transform: translate(0, 0);
     width: auto; }
   .home-main .filter-title {
     font-size: 17px;
