@@ -18,7 +18,12 @@ use common\modules\catalog\Catalog;
  * @property string $h1
  * @property string $meta_title
  * @property string $meta_desc
- * @property string $working_conditions
+ * @property string $wc_provider
+ * @property string $wc_phone
+ * @property string $wc_email
+ * @property string $wc_prepayment
+ * @property string $wc_balance
+ * @property string $wc_additional_terms
  * @property string $subdivision
  *
  * @package common\modules\catalog\models
@@ -26,7 +31,8 @@ use common\modules\catalog\Catalog;
 class FactoryLang extends ActiveRecordLang
 {
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -49,7 +55,18 @@ class FactoryLang extends ActiveRecordLang
         return ArrayHelper::merge(parent::rules(), [
             ['rid', 'exist', 'targetClass' => Factory::class, 'targetAttribute' => 'id'],
             [['h1', 'meta_title', 'meta_desc'], 'string', 'max' => 255],
-            [['description', 'content', 'contacts', 'working_conditions', 'subdivision'], 'string'],
+            [[
+                'description',
+                'content',
+                'contacts',
+                'wc_provider',
+                'wc_phone',
+                'wc_email',
+                'wc_prepayment',
+                'wc_balance',
+                'wc_additional_terms',
+                'subdivision'
+            ], 'string'],
         ]);
     }
 
@@ -66,8 +83,13 @@ class FactoryLang extends ActiveRecordLang
                 'description',
                 'content',
                 'contacts',
-                'working_conditions',
-                'subdivision'
+                'subdivision',
+                'wc_provider',
+                'wc_phone',
+                'wc_email',
+                'wc_prepayment',
+                'wc_balance',
+                'wc_additional_terms',
             ],
         ];
     }
@@ -84,8 +106,13 @@ class FactoryLang extends ActiveRecordLang
             'h1' => 'H1',
             'meta_title' => 'Meta title',
             'meta_desc' => 'Meta desc',
-            'working_conditions' => Yii::t('app', 'Условия работы'),
             'subdivision' => Yii::t('app', 'Представительство'),
+            'wc_provider' => Yii::t('app', 'Поставщик'),
+            'wc_phone' => Yii::t('app', 'Phone'),
+            'wc_email' => Yii::t('app', 'Email'),
+            'wc_prepayment' => Yii::t('app', 'Предоплата'),
+            'wc_balance' => Yii::t('app', 'Остаток'),
+            'wc_additional_terms' => Yii::t('app', 'Дополнительные условия'),
         ];
     }
 }

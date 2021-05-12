@@ -431,7 +431,12 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
     <?php if (Yii::$app->request->get('tab') == 'working-conditions' && !Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->showWorkingConditions()) { ?>
         <div id="working-conditions"
              class="tab-pane fade <?= Yii::$app->request->get('tab') == 'working-conditions' ? 'in active' : ''; ?>">
-            <?= $model->lang->working_conditions ?>
+            <?= $model->lang->getAttributeLabel('wc_provider') ?>: <?= $model->lang->wc_provider ?><br>
+            <?= $model->lang->getAttributeLabel('wc_phone') ?>: <?= $model->lang->wc_phone ?><br>
+            <?= $model->lang->getAttributeLabel('wc_email') ?>: <?= $model->lang->wc_email ?><br>
+            <?= $model->lang->getAttributeLabel('wc_prepayment') ?>: <?= $model->lang->wc_prepayment ?><br>
+            <?= $model->lang->getAttributeLabel('wc_balance') ?>: <?= $model->lang->wc_balance ?><br>
+            <?= $model->lang->getAttributeLabel('wc_additional_terms') ?>: <?= $model->lang->wc_additional_terms ?><br>
         </div>
     <?php } ?>
 
