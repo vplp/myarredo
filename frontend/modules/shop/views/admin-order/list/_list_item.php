@@ -191,7 +191,7 @@ use frontend\modules\catalog\models\{
                             </ul>
                         </div>
 
-                        <?php if (isset($orderItem->product['factory']['lang']) && $orderItem->product['factory']['lang']['working_conditions']) {
+                        <?php if (isset($orderItem->product['factory']['lang']) && isset($orderItem->product['factory']['lang']['working_conditions'])) {
                             echo Html::button(Yii::t('app', 'Условия работы'), [
                                 'class' => 'btn btn-primary',
                                 'data-toggle' => 'modal',
