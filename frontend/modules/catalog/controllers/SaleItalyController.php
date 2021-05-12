@@ -296,7 +296,7 @@ class SaleItalyController extends BaseController
             Yii::$app->getModule('catalog')->getViewedProducts($model['id'], 'viewed_sale_italy');
         }
 
-        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161, 164])) {
+        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161, 162, 164])) {
             $alternatePages = [
                 'ru' => [
                     'href' => 'https://www.myarredo.ru/sale-italy-product/' . $model['alias'] . '/', 'lang' => 'ru'

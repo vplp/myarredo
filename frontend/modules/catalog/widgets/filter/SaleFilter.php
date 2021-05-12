@@ -75,7 +75,7 @@ class SaleFilter extends Widget
 
         $queryParams['country'] = Yii::$app->city->getCountryId();
 
-        if (!in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159, 160, 161, 164])) {
+        if (!in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159, 160, 161, 162, 164])) {
             $queryParams['city'] = Yii::$app->city->getCityId();
         }
 
