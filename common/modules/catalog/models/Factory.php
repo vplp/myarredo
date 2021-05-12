@@ -485,4 +485,17 @@ class Factory extends ActiveRecord
 
         return $model->id;
     }
+
+    public function isShowCatalogsFiles()
+    {
+        $show = true;
+
+        if (!Yii::$app->getUser()->isGuest) {
+            $show = true;
+        } elseif (Yii::$app->getUser()->isGuest && $this->show_catalogs_files == 0) {
+            $show = false;
+        }
+
+        return $show;
+    }
 }

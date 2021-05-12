@@ -17,7 +17,7 @@ use frontend\modules\catalog\models\{
 
 
 <div class="downloads">
-    <?php if (!Yii::$app->getUser()->isGuest || (Yii::$app->getUser()->isGuest && $model->factory->show_catalogs_files == '0')) { ?>
+    <?php if ($model->factory->isShowCatalogsFiles()) { ?>
         <p class="inpdf-title"><?= Yii::t('app', 'Посмотреть каталоги') ?></p>
         <ul class="inpdf-list">
             <?php if (!empty($model->factoryCatalogsFiles)) { ?>
