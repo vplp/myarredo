@@ -1356,6 +1356,10 @@ h1 {
     font-weight: 600;
     border-bottom-right-radius: 4px;
   }
+  .home-main .filter .filter-price .search {
+    border-bottom-right-radius: 0;
+    min-width: 130px;
+  }
   .home-main .section-title,
   .articles-list .section-title
   {
