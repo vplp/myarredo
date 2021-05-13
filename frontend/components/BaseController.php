@@ -45,7 +45,6 @@ abstract class BaseController extends Controller
      */
     public function beforeAction($action)
     {
-
         // переход к ответу на заявку при авторизации на сайте
         $session = Yii::$app->session;
 
@@ -58,6 +57,11 @@ abstract class BaseController extends Controller
         Redirects::findRedirect();
 
         $lang = substr(Yii::$app->language, 0, 2);
+
+        if (in_array(DOMAIN_TYPE, ['kz'])) {
+            Yii::$app->response->redirect('https://' . 'www.myarredo.ru' . Yii::$app->request->url, 301);
+            yii::$app->end();
+        }
 
         // il domain
         if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && DOMAIN_TYPE == 'co.il' && !in_array($lang, ['he'])) {
