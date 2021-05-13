@@ -164,7 +164,9 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                                 <span class="red-but"><i class="fa fa-bell" aria-hidden="true"></i></span>
                                 <span class="inscription">
                                 <span class="for-nt-arr"></span>
-                                <span class="for-price"><?= \frontend\modules\shop\models\OrderComment::getCountReminder() ?></span>
+                                <span class="for-price for-price-bell">
+                                <?= \frontend\modules\shop\models\OrderComment::getCountReminder() ?>
+                                </span>
                             </span>
                             </a>
                         <?php } ?>
