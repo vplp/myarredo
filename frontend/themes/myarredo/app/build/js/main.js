@@ -999,6 +999,22 @@ $(document).ready(function () {
             scrollTop: topPos
         }, 300);
     });
+
+    // изменение цвета "колокольчика"
+    var rightPartAuth = $('.right-part.autorized');
+    // если авторизированы
+    if (rightPartAuth.length > 0) {
+      //получаем значение
+      var countWishlist = $('.for-price-bell').text();
+      // элемент "колокольчик"
+      var iconBell = $('.right-part.autorized .fa-bell');
+      // если больше нуля меняем цвет на красный
+      if (+countWishlist > 0) {
+        iconBell.css({'color': '#C4252F'});
+      } else {
+        iconBell.css({'color': '#bdbcb3'});
+      }
+    }
 });
 // end ready
 
@@ -1811,7 +1827,7 @@ $(document).ready(function () {
 
 // Vue js Code
 // Код Vue js для мобильного меню (желательно его держать в конце файла)
-console.time('speed mobile menu vue js');
+// console.time('speed mobile menu vue js');
  Vue.component('mob-menu-list', {
     data: function () {
         return {
@@ -1892,5 +1908,5 @@ console.time('speed mobile menu vue js');
 new Vue({
     el: '#mob_menu_list'
 });
-console.timeEnd('speed mobile menu vue js');
+// console.timeEnd('speed mobile menu vue js');
 // end Vue js code
