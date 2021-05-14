@@ -54,6 +54,14 @@ return ArrayHelper::merge(
                     'product/<alias:[\w\-]+>' => 'catalog/product/view',
                 ]
             ],
+            'redisCache' => [
+                'class' => \yii\redis\Cache::class,
+                'redis' => [
+                    'hostname' => \getenv('REDIS_HOST'),
+                    'port' => \getenv('REDIS_PORT'),
+                    'database' => 0,
+                ]
+            ],
         ],
         'controllerMap' => [
             'migrate' => [
@@ -110,6 +118,9 @@ return ArrayHelper::merge(
             ],
             'send-pulse' => [
                 'class' => \console\controllers\SendPulseController::class,
+            ],
+            'redirects' => [
+                'class' => \console\controllers\RedirectsController::class,
             ],
             'sitemap' => [
                 'class' => \console\controllers\SitemapController::class,

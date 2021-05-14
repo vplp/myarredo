@@ -56,6 +56,15 @@ class Redirects extends \common\modules\seo\models\Redirects
      */
     public static function findRedirect()
     {
+        $cache = Yii::$app->redisCache;
+
+        $key = md5($_SERVER['REQUEST_URI']);
+        if ($cache->exists($key)) {
+            //var_dump($cache->get($key));
+            Yii::$app->response->redirect($cache->get($key), 301);
+            yii::$app->end();
+        }
+
         $data = self::findBase()
             ->andWhere(['url_from' => $_SERVER['REQUEST_URI']])
             ->asArray()
