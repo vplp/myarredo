@@ -60,11 +60,11 @@ class Redirects extends \common\modules\seo\models\Redirects
 
         $key = md5($_SERVER['REQUEST_URI']);
         if ($cache->exists($key)) {
-            //var_dump($cache->get($key));
             Yii::$app->response->redirect($cache->get($key), 301);
             yii::$app->end();
         }
 
+        /*
         $data = self::findBase()
             ->andWhere(['url_from' => $_SERVER['REQUEST_URI']])
             ->asArray()
@@ -74,5 +74,6 @@ class Redirects extends \common\modules\seo\models\Redirects
             Yii::$app->response->redirect($data['url_to'], 301);
             yii::$app->end();
         }
+        */
     }
 }
