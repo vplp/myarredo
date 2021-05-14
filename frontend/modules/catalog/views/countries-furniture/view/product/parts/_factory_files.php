@@ -24,7 +24,7 @@ use yii\helpers\Html;
                     <?php if ($fileLink = $catalogFile->getFileLink()): ?>
                         <li>
                             <?= Html::a(
-                                $catalogFile->title,
+                                $catalogFile->getTitle(),
                                 $fileLink,
                                 [
                                     'target' => '_blank',

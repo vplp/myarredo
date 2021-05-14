@@ -30,7 +30,7 @@ $this->title = $this->context->title;
                                         : ''
                                     ) .
                                     // Html::tag('i', '', ['class' => 'fa fa-file-pdf-o']).
-                                    Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
+                                    Html::tag('span', $catalogFile->getTitle(), ['class' => 'for-catalog-list']),
                                     $catalogFile->getFileLink(),
                                     ['target' => '_blank', 'class' => 'click-on-factory-file btn-inpdf', 'data-id' => $catalogFile->id]
                                 ) .
