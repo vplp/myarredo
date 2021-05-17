@@ -141,7 +141,7 @@ class Profile extends ActiveRecord
     {
         $res = false;
 
-        if (in_array($this->user->group->role, ['admin', 'settlemenctenter'])) {
+        if (in_array($this->user->group->role, ['admin', 'settlementcenter'])) {
             $res = true;
         } elseif (in_array($this->user->group->role, ['partner']) && $this->working_conditions) {
             $res = true;
