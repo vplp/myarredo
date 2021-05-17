@@ -141,9 +141,9 @@ class Profile extends ActiveRecord
     {
         $res = false;
 
-        if (in_array($this->user->group->role, ['admin', 'settlementcenter'])) {
+        if (in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter'])) {
             $res = true;
-        } elseif (in_array($this->user->group->role, ['partner']) && $this->working_conditions) {
+        } elseif (in_array(Yii::$app->user->identity->group->role, ['partner']) && $this->working_conditions) {
             $res = true;
         }
 
