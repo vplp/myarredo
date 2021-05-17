@@ -56,24 +56,24 @@ class Redirects extends \common\modules\seo\models\Redirects
      */
     public static function findRedirect()
     {
-        $cache = Yii::$app->redisCache;
+        if (Yii::$app->getRequest()->getUserIP() != '127.0.0.1') {
+            $cache = Yii::$app->redisCache;
 
-        $key = md5($_SERVER['REQUEST_URI']);
-        if ($cache->exists($key)) {
-            Yii::$app->response->redirect($cache->get($key), 301);
-            yii::$app->end();
+            $key = md5($_SERVER['REQUEST_URI']);
+            if ($cache->exists($key)) {
+                Yii::$app->response->redirect($cache->get($key), 301);
+                yii::$app->end();
+            }
+        } else {
+            $data = self::findBase()
+                ->andWhere(['url_from' => $_SERVER['REQUEST_URI']])
+                ->asArray()
+                ->one();
+
+            if ($data != null) {
+                Yii::$app->response->redirect($data['url_to'], 301);
+                yii::$app->end();
+            }
         }
-
-        /*
-        $data = self::findBase()
-            ->andWhere(['url_from' => $_SERVER['REQUEST_URI']])
-            ->asArray()
-            ->one();
-
-        if ($data != null) {
-            Yii::$app->response->redirect($data['url_to'], 301);
-            yii::$app->end();
-        }
-        */
     }
 }
