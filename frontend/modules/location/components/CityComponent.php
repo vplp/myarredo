@@ -185,10 +185,10 @@ class CityComponent extends Component
             $_SERVER["HTTP_HOST"]
         );
 
-        if ($cityAlias && !in_array(DOMAIN_TYPE, ['com', 'de', 'kz', 'co.il'])) {
+        if ($cityAlias && !in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'kz', 'co.il'])) {
             $this->city = City::findByAlias($cityAlias);
 
-            if ($this->city == null || in_array($this->city['id'], [1, 2, 4, 159, 160, 161, 164])) {
+            if ($this->city == null || in_array($this->city['id'], [1, 2, 4, 159, 160, 161, 164, 165])) {
                 Yii::$app->response->redirect(
                     'https://' . 'www.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . Yii::$app->request->url,
                     301
@@ -241,6 +241,9 @@ class CityComponent extends Component
         } elseif (in_array(DOMAIN_TYPE, ['co.il'])) {
             // jerusalem
             $this->defaultCityId = 164;
+        } elseif (in_array(DOMAIN_TYPE, ['fr'])) {
+            // paris
+            $this->defaultCityId = 165;
         } else {
             // msk
             $this->defaultCityId = 4;

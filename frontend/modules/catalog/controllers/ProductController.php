@@ -227,7 +227,7 @@ class ProductController extends BaseController
 
         if (in_array(DOMAIN_TYPE, ['com']) && DOMAIN_NAME == 'myarredofamily') {
             $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
-        } elseif (in_array(DOMAIN_TYPE, ['de', 'co.il'])) {
+        } elseif (in_array(DOMAIN_TYPE, ['de', 'fr', 'co.il'])) {
             $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
         } else {
             $hrefCanonical = Yii::$app->request->hostInfo . ($lang != 'ru' ? '/' . $lang : '/' ) . Yii::$app->request->pathInfo;
@@ -253,7 +253,7 @@ class ProductController extends BaseController
             Yii::$app->getModule('catalog')->getViewedProducts($model['id'], 'viewed_products');
         }
 
-        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161, 162, 164])) {
+        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161, 162, 164, 165])) {
             $alternatePages = [
                 'ru' => [
                     'href' => 'https://www.myarredo.ru/product/' . $model['alias'] . '/', 'lang' => 'ru'

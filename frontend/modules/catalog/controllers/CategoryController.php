@@ -877,7 +877,7 @@ class CategoryController extends BaseController
             ]);
         }
 
-        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161, 162, 164])) {
+        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161, 162, 164, 165])) {
             if (!empty($alternateParamsUrl)) {
                 foreach ($alternateParamsUrl as $lang => $paramsUrl) {
                     if ($lang == 'en') {
