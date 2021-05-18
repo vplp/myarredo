@@ -94,7 +94,7 @@ $this->title = $this->context->title;
                                         <span><?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?></span>
                                     </li>
                                     <li>
-                                        <span><?= Order::getOrderStatuses($modelOrder->order_status); ?></span>
+                                        <span class="order_status_<?= $modelOrder->order_status ?>"><?= Order::getOrderStatuses($modelOrder->order_status); ?></span>
                                     </li>
                                     <li>
                                         <span>
