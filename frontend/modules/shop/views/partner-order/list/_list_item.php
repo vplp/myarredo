@@ -87,6 +87,14 @@ if ($user->profile->getPossibilityToAnswer($modelOrder)) { ?>
                                         $orderItem->product['factory']['title'],
                                         Factory::getUrl($orderItem->product['factory']['alias'])
                                     ); ?>
+
+                                    <?php if (Yii::$app->user->identity->profile->showWorkingConditions()) { ?>
+                                        <br>
+                                        <?= Html::a(
+                                            Yii::t('app', 'Условия работы'),
+                                            ['/catalog/factory/view-tab', 'alias' => $orderItem->product['factory']['alias'], 'tab' => 'working-conditions']
+                                        ) ?>
+                                    <?php } ?>
                                 </td>
                             </tr>
                             <tr class="noborder">
@@ -190,24 +198,6 @@ if ($user->profile->getPossibilityToAnswer($modelOrder)) { ?>
 
                             </div>
                         <?php } ?>
-
-                        <?php if (isset($orderItem->product['factory']['lang']) && isset($orderItem->product['factory']['lang']['working_conditions'])) {
-                            echo Html::button(Yii::t('app', 'Условия работы'), [
-                                'class' => 'btn btn-primary',
-                                'data-toggle' => 'modal',
-                                'data-target' => '#' . 'working_conditions-modal_' . $orderItem['id'],
-                            ]);
-
-                            Modal::begin([
-                                'header' => Yii::t('app', 'Условия работы') . ' ' . $orderItem->product['factory']['title'],
-                                'id' => 'working_conditions-modal_' . $orderItem['id']
-                            ]);
-
-                            echo $orderItem->product['factory']['lang']['working_conditions'];
-
-                            Modal::end();
-                        } ?>
-
                     </div>
                 <?php }
             } else {
