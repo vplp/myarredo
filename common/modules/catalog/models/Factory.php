@@ -262,7 +262,7 @@ class Factory extends ActiveRecord
             'product_count' => 'product_count',
             'dealers_ids' => Yii::t('app', 'Dealers'),
             'dealers_can_answer' => Yii::t('app', 'Dealers can answer'),
-            'factory_discount' => 'Скидка фабрики',
+            'factory_discount' => Yii::t('app', 'Скидка фабрики'),
             'show_catalogs_files' => 'Не показывать каталоги'
         ];
     }

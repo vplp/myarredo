@@ -32,14 +32,6 @@ class Factory extends \common\modules\catalog\models\Factory
     /**
      * @return array
      */
-    public function attributeLabels()
-    {
-        return [];
-    }
-
-    /**
-     * @return array
-     */
     public function rules()
     {
         return [];
