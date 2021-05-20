@@ -275,6 +275,8 @@ class Product extends ProductModel
 
         $query->orderBy($order);
 
+        $query->groupBy(self::tableName() . '.id');
+
         /** cache */
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
