@@ -11,6 +11,12 @@ if (!empty($items)) {
 
     Yii::$app->view->registerLinkTag([
         'rel' => 'preload',
+        'href' => $model->getImageLink(),
+        'as' => 'image',
+        'media' => '(min-width: 601px)',
+    ]);
+    Yii::$app->view->registerLinkTag([
+        'rel' => 'preload',
         'href' => $model->getImageThumb(),
         'as' => 'image',
         'media' => '(max-width: 600px)',
