@@ -76,6 +76,10 @@ class LangSwitch extends Widget
                 //continue;
             }
 
+            if (!in_array(DOMAIN_TYPE, ['fr']) && in_array($lang['alias'], ['fr'])) {
+                continue;
+            }
+
             $image = Language::isImage($lang['img_flag'])
                 ? Html::img(Language::getImage($lang['img_flag']), ['width' => '16', 'height' => '11'])
                 : '<i class="fa fa-globe" aria-hidden="true"></i>';
