@@ -14,6 +14,7 @@ use thread\app\base\models\ActiveRecord;
  * @property string $alias_en
  * @property string $alias_it
  * @property string $alias_de
+ * @property string $alias_fr
  * @property string $alias_he
  * @property string $default_title
  * @property string $color_code
@@ -56,12 +57,12 @@ class Colors extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_he', 'color_code'], 'required'],
+            [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_fr', 'alias_he', 'color_code'], 'required'],
             [['created_at', 'updated_at', 'position'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['default_title'], 'string', 'max' => 255],
-            [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_he', 'color_code'], 'string', 'max' => 32],
-            [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_he', 'color_code'], 'unique'],
+            [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_fr', 'alias_he', 'color_code'], 'string', 'max' => 32],
+            [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_fr', 'alias_he', 'color_code'], 'unique'],
             [['position'], 'default', 'value' => '0'],
         ];
     }
@@ -80,6 +81,7 @@ class Colors extends ActiveRecord
                 'alias_en',
                 'alias_it',
                 'alias_de',
+                'alias_fr',
                 'alias_he',
                 'default_title',
                 'color_code',
@@ -111,6 +113,7 @@ class Colors extends ActiveRecord
             'alias_en' => 'Alias for en',
             'alias_it' => 'Alias for it',
             'alias_de' => 'Alias for de',
+            'alias_fr' => 'Alias for fr',
             'alias_he' => 'Alias for he',
             'default_title' => Yii::t('app', 'Default title'),
             'color_code' => Yii::t('app', 'Color code'),

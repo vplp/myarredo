@@ -84,6 +84,7 @@ class ProductsNovelties extends Widget
                 $modelClass::tableName() . '.alias_en',
                 $modelClass::tableName() . '.alias_it',
                 $modelClass::tableName() . '.alias_de',
+                $modelClass::tableName() . '.alias_fr',
                 $modelClass::tableName() . '.alias_he',
                 $modelClass::tableName() . '.image_link',
                 $modelClass::tableName() . '.factory_id',

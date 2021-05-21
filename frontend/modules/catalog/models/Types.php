@@ -281,6 +281,7 @@ class Types extends \common\modules\catalog\models\Types
                     self::tableName() . '.alias_en',
                     self::tableName() . '.alias_it',
                     self::tableName() . '.alias_de',
+                    self::tableName() . '.alias_fr',
                     self::tableName() . '.alias_he',
                     TypesLang::tableName() . '.title',
                     'count(' . self::tableName() . '.id) as count'
@@ -373,6 +374,7 @@ class Types extends \common\modules\catalog\models\Types
                 self::tableName() . '.alias_en',
                 self::tableName() . '.alias_it',
                 self::tableName() . '.alias_de',
+                self::tableName() . '.alias_fr',
                 self::tableName() . '.alias_he',
                 TypesLang::tableName() . '.title',
                 'count(' . self::tableName() . '.id) as count'
@@ -457,6 +459,7 @@ class Types extends \common\modules\catalog\models\Types
                 self::tableName() . '.alias_en',
                 self::tableName() . '.alias_it',
                 self::tableName() . '.alias_de',
+                self::tableName() . '.alias_fr',
                 self::tableName() . '.alias_he',
                 TypesLang::tableName() . '.title',
                 'count(' . self::tableName() . '.id) as count'

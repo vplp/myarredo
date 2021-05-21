@@ -23,6 +23,7 @@ use backend\modules\catalog\models\{
 <?= $form->text_line($model, 'alias_it') ?>
 
 <?= $form->text_line($model, 'alias_de') ?>
+<?= $form->text_line($model, 'alias_fr') ?>
 
 <?= $form->text_line($model, 'alias_he') ?>
 

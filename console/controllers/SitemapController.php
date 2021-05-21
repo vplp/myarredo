@@ -274,6 +274,7 @@ class SitemapController extends Controller
                     $model::tableName() . '.alias_en',
                     $model::tableName() . '.alias_it',
                     $model::tableName() . '.alias_de',
+                    $model::tableName() . '.alias_fr',
                     $model::tableName() . '.alias_he',
                     $model::tableName() . '.updated_at',
                 ]);
@@ -306,6 +307,7 @@ class SitemapController extends Controller
                     $model::tableName() . '.alias_en',
                     $model::tableName() . '.alias_it',
                     $model::tableName() . '.alias_de',
+                    $model::tableName() . '.alias_fr',
                     $model::tableName() . '.alias_he',
                     $model::tableName() . '.updated_at',
                 ]);

@@ -19,6 +19,7 @@ use thread\app\base\models\ActiveRecord;
  * @property string $alias_en
  * @property string $alias_it
  * @property string $alias_de
+ * @property string $alias_fr
  * @property string $alias_he
  * @property string $image_link
  * @property string $image_link2
@@ -108,14 +109,14 @@ class Category extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_he'], 'required'],
+            [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_fr', 'alias_he'], 'required'],
             [['created_at', 'updated_at', 'position', 'product_count'], 'integer'],
             [['published', 'deleted', 'popular', 'popular_by'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [[
-                'alias', 'alias_en', 'alias_it', 'alias_de', 'alias_he',
+                'alias', 'alias_en', 'alias_it', 'alias_de', 'alias_fr', 'alias_he',
                 'image_link', 'image_link2', 'image_link3', 'image_link_com', 'image_link2_com'
             ], 'string', 'max' => 255],
-            [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_he'], 'unique'],
+            [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_fr', 'alias_he'], 'unique'],
             [['position', 'product_count'], 'default', 'value' => '0'],
             [['types_ids'], 'each', 'rule' => ['integer']],
         ];
@@ -139,6 +140,7 @@ class Category extends ActiveRecord
                 'alias_en',
                 'alias_it',
                 'alias_de',
+                'alias_fr',
                 'alias_he',
                 'image_link',
                 'image_link2',
@@ -166,6 +168,7 @@ class Category extends ActiveRecord
             'alias_en' => 'Alias for en',
             'alias_it' => 'Alias for it',
             'alias_de' => 'Alias for de',
+            'alias_fr' => 'Alias for fr',
             'alias_he' => 'Alias for he',
             'image_link' => Yii::t('app', 'Image link'),
             'image_link2' => 'Вторая картинка',
