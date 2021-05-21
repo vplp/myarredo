@@ -79,14 +79,8 @@ $this->title = $this->context->title;
                                         <span><?= $modelOrder->getCreatedTime() ?></span>
                                     </li>
                                     <li>
-                                        <span>
-                                            <?php
-                                            foreach ($modelOrder->orderAnswers as $key => $answer) {
-                                                if ($answer->user->group->role == 'settlementCenter') {
-                                                    echo $answer->getAnswerTime();
-                                                }
-                                            }
-                                            ?>
+                                        <span <?= $modelOrder->getDiffAnswerTime('settlementCenter') > 2 ? 'style="color: red;"' : '' ?>>
+                                            <?= $modelOrder->getAnswerTime('settlementCenter') ?>
                                         </span>
                                     </li>
                                     <li>
