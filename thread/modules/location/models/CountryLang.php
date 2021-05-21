@@ -3,11 +3,12 @@
 namespace thread\modules\location\models;
 
 use Yii;
-//
 use thread\modules\location\Location as LocationModule;
 
 /**
  * Class CountryLang
+ *
+ * @property string $title
  *
  * @package thread\modules\location\models
  */

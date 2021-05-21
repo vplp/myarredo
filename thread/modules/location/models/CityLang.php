@@ -3,7 +3,6 @@
 namespace thread\modules\location\models;
 
 use Yii;
-//
 use thread\app\base\models\ActiveRecordLang;
 use thread\modules\location\Location as LocationModule;
 

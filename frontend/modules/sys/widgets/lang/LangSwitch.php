@@ -85,6 +85,8 @@ class LangSwitch extends Widget
                 $url = 'https://www.myarredo.com';
             } elseif (in_array($lang['alias'], ['de'])) {
                 $url = 'https://www.myarredo.de';
+            } elseif (in_array($lang['alias'], ['fr'])) {
+                $url = 'https://www.myarredo.fr';
             } elseif (in_array($lang['alias'], ['he'])) {
                 $url = 'https://www.myarredo.co.il';
             } elseif (in_array($lang['alias'], ['ru']) && in_array(DOMAIN_TYPE, ['ru'])) {

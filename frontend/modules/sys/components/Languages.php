@@ -63,6 +63,9 @@ class Languages extends Component implements iLanguages, BootstrapInterface
             } elseif (DOMAIN_TYPE == 'de' && $item['alias'] == 'de') {
                 $this->defaultLang = $item;
                 break;
+            } elseif (DOMAIN_TYPE == 'fr' && $item['alias'] == 'fr') {
+                $this->defaultLang = $item;
+                break;
             } elseif (DOMAIN_TYPE == 'co.il' && $item['alias'] == 'he') {
                 $this->defaultLang = $item;
                 break;
@@ -174,7 +177,7 @@ class Languages extends Component implements iLanguages, BootstrapInterface
 
         $lang = substr(Yii::$app->language, 0, 2);
 
-        if (!in_array($lang, ['ru', 'uk'])) {
+        if (!in_array($lang, ['ru', 'uk', 'fr'])) {
             $alias = 'alias_' . $lang;
         }
 
