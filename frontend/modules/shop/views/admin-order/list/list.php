@@ -38,6 +38,9 @@ $this->title = $this->context->title;
                                 <span><?= Yii::t('app', 'Request Date') ?></span>
                             </li>
                             <li>
+                                <span><?= Yii::t('app', 'Дата ответа') ?></span>
+                            </li>
+                            <li>
                                 <span><?= Yii::t('app', 'Name') ?></span>
                             </li>
                             <li>
@@ -74,6 +77,17 @@ $this->title = $this->context->title;
                                     </li>
                                     <li class="application-date">
                                         <span><?= $modelOrder->getCreatedTime() ?></span>
+                                    </li>
+                                    <li>
+                                        <span>
+                                            <?php
+                                            foreach ($modelOrder->orderAnswers as $key => $answer) {
+                                                if ($answer->user->group->role == 'settlementCenter') {
+                                                    echo $answer->getAnswerTime();
+                                                }
+                                            }
+                                            ?>
+                                        </span>
                                     </li>
                                     <li>
                                         <span><?= $modelOrder->customer->full_name ?></span>
