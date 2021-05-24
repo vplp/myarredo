@@ -411,10 +411,40 @@ $url2 = Url::to(['/shop/widget/ajax-request-price']);
 
 if ($detect->isMobile()) {
     $script = <<<JS
-$('.btn-toform').on('click', function () { 
-    $.post('$url2', {_csrf: $('#token').val(), product_id:{$model['id']}}, function(data){
-        $('.best-price-form').html(data.view);
+var baseUrl = $("base").attr("href");
+
+$('.btn-toform').on('click', function () {
+    var product_id = {$model['id']},
+        count = 1;
+
+    $.post(
+        baseUrl + 'shop/cart/add-to-cart/',
+        {
+            _csrf: $('#token').val(),
+            id: product_id,
+            count: count,
+            flag: 'request-price'
+        }
+    ).done(function (data) {
+        if (data == true) {
+            refresh_full_cart();
+
+            $.post(
+                baseUrl + 'shop/widget/ajax-request-price/',
+                {
+                    _csrf: $('#token').val(),
+                    product_id: product_id
+                }
+            ).done(function (data) {
+                if (data.success) {
+                    $('.best-price-form').html(data.view);
+                    interPhoneInit('#cartcustomerform-phone');
+                }
+            });
+        }
     });
+
+    return false;
 });
 JS;
     $this->registerJs($script);
