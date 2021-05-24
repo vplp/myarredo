@@ -99,6 +99,18 @@ $lang = substr(Yii::$app->language, 0, 2);
             ]); ?>
         </div>
 
+        <div class="form-group">
+            <?= Select2::widget([
+                'name' => 'order_status',
+                'value' => (!is_array($params['order_status'])) ? $params['order_status'] : 0,
+                'data' => [null => Yii::t('shop', 'Все статусы')] + Order::getOrderStatuses(),
+                'options' => [
+                    'id' => 'order_status',
+                    'multiple' => false,
+                ]
+            ]); ?>
+        </div>
+
         <div class="form-group dropdown large-picker">
             <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
                 <input type="text" class="drop-date-picker" readonly
@@ -225,6 +237,9 @@ $('select#country_id').change(function(){
     $('#form-stats').submit();
 });
 $('select#lang').change(function(){
+    $('#form-stats').submit();
+});
+$('select#order_status').change(function(){
     $('#form-stats').submit();
 });
 $('select#city_id').change(function(){

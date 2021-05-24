@@ -37,7 +37,6 @@ class Order extends OrderModel
 
     public $full_name;
 
-
     /**
      * @return array
      */
@@ -46,6 +45,7 @@ class Order extends OrderModel
         return [
             ['lang', 'string', 'min' => 5, 'max' => 5],
             [['product_type'], 'in', 'range' => array_keys(self::productTypeKeyRange())],
+            [['order_status'], 'in', 'range' => array_keys(self::getOrderStatuses())],
             [['id', 'customer_id', 'country_id', 'city_id', 'factory_id', 'year'], 'integer'],
             [['start_date', 'end_date'], 'string', 'max' => 10],
             [['email', 'full_name', 'phone'], 'string', 'max' => 50],
@@ -116,6 +116,10 @@ class Order extends OrderModel
 
         if (isset($params['lang'])) {
             $query->andFilterWhere([self::tableName() . '.lang' => $params['lang']]);
+        }
+
+        if (isset($params['order_status'])) {
+            $query->andFilterWhere([self::tableName() . '.order_status' => $params['order_status']]);
         }
 
         if (isset($params['year']) && in_array($params['year'], self::dropDownListOrderYears())) {
