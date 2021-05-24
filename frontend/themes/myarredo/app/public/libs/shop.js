@@ -20,7 +20,7 @@ $('.ajax-request-price').on('click', function () {
             refresh_full_cart();
 
             $.post(
-                baseUrl + 'shop/widget/request-price/',
+                baseUrl + 'shop/widget/ajax-request-price-popup/',
                 {
                     _csrf: $('#token').val(),
                     view: 'full'

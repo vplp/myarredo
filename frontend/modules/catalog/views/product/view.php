@@ -325,8 +325,7 @@ $this->title = $this->context->title;
                                     </div>
                                     <div class="igallery-form scrolled">
                                         <div class="best-price-form">
-                                            <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
-                                            <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
+
 
                                         </div>
                                     </div>
@@ -404,6 +403,7 @@ $this->title = $this->context->title;
 
 <?php
 $url = Url::to(['/catalog/product/ajax-get-compositions']);
+$url2 = Url::to(['/shop/widget/ajax-request-price']);
 
 $script = <<<JS
 $.post('$url', {_csrf: $('#token').val(), product_id:{$model['id']}}, function(data){
@@ -412,7 +412,13 @@ $.post('$url', {_csrf: $('#token').val(), product_id:{$model['id']}}, function(d
     // Выжидаем некоторое время
     setTimeout(function() {
         slickInit();
-    },400);
+    }, 1000);
+});
+
+$.post('$url2', {_csrf: $('#token').val(), product_id:{$model['id']}}, function(data){
+      setTimeout(function() {
+        $('.best-price-form').html(data.view);
+    }, 1000);
 });
 JS;
 
