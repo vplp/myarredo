@@ -47,6 +47,13 @@ $bestsellers = $bestsellers ?? [];
             'height' => '188',
             'data-src' => Product::getImageThumb($model['image_link'])
         ]) ?>
+
+        <?php
+        Yii::$app->view->registerLinkTag([
+            'rel' => 'preload',
+            'href' => Product::getImageThumb($model['image_link']),
+            'as' => 'image'
+        ]) ?>
     </div>
 
     <div class="prod-infoblock">
