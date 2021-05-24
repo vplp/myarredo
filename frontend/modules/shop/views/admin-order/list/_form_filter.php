@@ -103,7 +103,7 @@ $lang = substr(Yii::$app->language, 0, 2);
             <?= Select2::widget([
                 'name' => 'order_status',
                 'value' => (!is_array($params['order_status'])) ? $params['order_status'] : 0,
-                'data' => [null => Yii::t('shop', 'Все статусы')] + Order::getOrderStatuses(),
+                'data' => [null => Yii::t('app', 'Все статусы')] + Order::getOrderStatuses(),
                 'options' => [
                     'id' => 'order_status',
                     'multiple' => false,
