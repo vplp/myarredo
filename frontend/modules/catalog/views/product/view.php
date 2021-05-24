@@ -16,6 +16,8 @@ use frontend\modules\catalog\widgets\product\ViewedProducts;
 /** @var $model Product */
 /** @var $bestsellers */
 
+$detect = new Mobile_Detect();
+
 $bestsellers = $bestsellers ?? [];
 
 $bundle = AppAsset::register($this);
@@ -325,8 +327,10 @@ $this->title = $this->context->title;
                                     </div>
                                     <div class="igallery-form scrolled">
                                         <div class="best-price-form">
-
-
+                                            <?php if (!$detect->isMobile()) { ?>
+                                                <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
+                                                <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
@@ -405,6 +409,17 @@ $this->title = $this->context->title;
 $url = Url::to(['/catalog/product/ajax-get-compositions']);
 $url2 = Url::to(['/shop/widget/ajax-request-price']);
 
+if ($detect->isMobile()) {
+    $script = <<<JS
+$('.btn-toform').on('click', function () { 
+    $.post('$url2', {_csrf: $('#token').val(), product_id:{$model['id']}}, function(data){
+        $('.best-price-form').html(data.view);
+    });
+});
+JS;
+    $this->registerJs($script);
+}
+
 $script = <<<JS
 $.post('$url', {_csrf: $('#token').val(), product_id:{$model['id']}}, function(data){
     $('.composition').html(data.html);
@@ -415,11 +430,6 @@ $.post('$url', {_csrf: $('#token').val(), product_id:{$model['id']}}, function(d
     }, 1000);
 });
 
-$.post('$url2', {_csrf: $('#token').val(), product_id:{$model['id']}}, function(data){
-      setTimeout(function() {
-        $('.best-price-form').html(data.view);
-    }, 1000);
-});
 JS;
 
 $this->registerJs($script);
