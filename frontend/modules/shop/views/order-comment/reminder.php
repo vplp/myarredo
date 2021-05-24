@@ -30,11 +30,23 @@ $this->title = $this->context->title;
                             'layout' => "{items}\n<div class=\"pagi-wrap\">{pager}</div>",
                             'filterUrl' => Url::toRoute(['/catalog/factory-prices-files/list']),
                             'columns' => [
+                                'order_id',
                                 [
                                     'attribute' => 'reminder_time',
                                     'value' => function ($model) {
                                         /** @var $model OrderComment */
                                         return date('j.m.Y', $model->reminder_time);
+                                    },
+                                    'headerOptions' => ['class' => 'col-sm-1'],
+                                    'contentOptions' => ['class' => 'text-center'],
+                                    'format' => 'raw',
+                                    'filter' => false
+                                ],
+                                [
+                                    'attribute' => 'country',
+                                    'value' => function ($model) {
+                                        /** @var $model OrderComment */
+                                        return ($model->order->country) ? $model->order->country->getTitle() : '';
                                     },
                                     'headerOptions' => ['class' => 'col-sm-1'],
                                     'contentOptions' => ['class' => 'text-center'],
