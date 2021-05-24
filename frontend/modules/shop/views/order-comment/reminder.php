@@ -30,7 +30,13 @@ $this->title = $this->context->title;
                             'layout' => "{items}\n<div class=\"pagi-wrap\">{pager}</div>",
                             'filterUrl' => Url::toRoute(['/catalog/factory-prices-files/list']),
                             'columns' => [
-                                'order_id',
+                                [
+                                    'attribute' => 'order_id',
+                                    'headerOptions' => ['class' => 'col-sm-1'],
+                                    'contentOptions' => ['class' => 'text-center'],
+                                    'format' => 'raw',
+                                    'filter' => false
+                                ],
                                 [
                                     'attribute' => 'reminder_time',
                                     'value' => function ($model) {
@@ -44,6 +50,7 @@ $this->title = $this->context->title;
                                 ],
                                 [
                                     'attribute' => 'country',
+                                    'label' => Yii::t('app', 'Country'),
                                     'value' => function ($model) {
                                         /** @var $model OrderComment */
                                         return ($model->order->country) ? $model->order->country->getTitle() : '';
