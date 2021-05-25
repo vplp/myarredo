@@ -88,7 +88,7 @@ use frontend\modules\catalog\models\{
                     </tr>
                     <tr>
                         <td colspan="2" class="spec-pad2">
-                            <?php if (isset($orderItem->product['factory']['lang']) && $orderItem->product['factory']['title']) {
+                            <?php if (isset($orderItem->product['factory']['lang']) && isset($orderItem->product['factory']['title'])) {
                                 echo Html::a(
                                         $orderItem->product['factory']['title'],
                                         Factory::getUrl($orderItem->product['factory']['alias'])

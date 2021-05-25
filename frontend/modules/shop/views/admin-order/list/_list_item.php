@@ -80,7 +80,7 @@ use frontend\modules\catalog\models\{
                                     } ?>
                                     <br>
                                     <?php
-                                    if ($orderItem->product['factory']['alias']) {
+                                    if (isset($orderItem->product['factory']['alias'])) {
                                         echo Html::a(
                                             Yii::t('app', 'Условия работы'),
                                             ['/catalog/factory/view-tab', 'alias' => $orderItem->product['factory']['alias'], 'tab' => 'working-conditions']
