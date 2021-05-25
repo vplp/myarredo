@@ -88,7 +88,7 @@ if ($user->profile->getPossibilityToAnswer($modelOrder)) { ?>
                                         Factory::getUrl($orderItem->product['factory']['alias'])
                                     ); ?>
 
-                                    <?php if (Yii::$app->user->identity->profile->showWorkingConditions()) { ?>
+                                    <?php if (Yii::$app->user->identity->profile->showWorkingConditions() && $orderItem->product['factory']['alias']) { ?>
                                         <br>
                                         <?= Html::a(
                                             Yii::t('app', 'Условия работы'),

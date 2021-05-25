@@ -94,7 +94,7 @@ use frontend\modules\catalog\models\{
                                     Factory::getUrl($orderItem->product['factory']['alias'])
                                 );
 
-                                if (Yii::$app->user->identity->profile->showWorkingConditions()) {
+                                if (Yii::$app->user->identity->profile->showWorkingConditions() && $orderItem->product['factory']['alias']) {
                                     echo '<br>' . Html::a(
                                         Yii::t('app', 'Условия работы'),
                                         ['/catalog/factory/view-tab', 'alias' => $orderItem->product['factory']['alias'], 'tab' => 'working-conditions']
