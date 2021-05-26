@@ -64,7 +64,7 @@ class CatalogTranslateController extends Controller
         foreach ($models as $model) {
             /** @var $model Types */
             $model->setScenario('backend');
-            $model->alias_he = Inflector::slug($model->lang->title);
+            $model->alias_fr = Inflector::slug($model->lang->title);
             $model->save();
         }
 
@@ -85,7 +85,7 @@ class CatalogTranslateController extends Controller
         foreach ($models as $model) {
             /** @var $model Specification */
             $model->setScenario('backend');
-            $model->alias_he = Inflector::slug($model->lang->title);
+            $model->alias_fr = Inflector::slug($model->lang->title);
             $model->save();
         }
 
@@ -106,7 +106,7 @@ class CatalogTranslateController extends Controller
         foreach ($models as $model) {
             /** @var $model Colors */
             $model->setScenario('backend');
-            $model->alias_he = Inflector::slug($model->lang->title);
+            $model->alias_fr = Inflector::slug($model->lang->title);
             $model->save();
         }
 
