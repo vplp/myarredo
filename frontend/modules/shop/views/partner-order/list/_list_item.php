@@ -83,10 +83,12 @@ if ($user->profile->getPossibilityToAnswer($modelOrder)) { ?>
                             </tr>
                             <tr>
                                 <td colspan="2" class="spec-pad2">
-                                    <?= Html::a(
-                                        $orderItem->product['factory']['title'],
-                                        Factory::getUrl($orderItem->product['factory']['alias'])
-                                    ); ?>
+                                    <?php if (isset($orderItem->product['factory']['alias'])) { ?>
+                                        <?= Html::a(
+                                            $orderItem->product['factory']['title'],
+                                            Factory::getUrl($orderItem->product['factory']['alias'])
+                                        ); ?>
+                                    <?php } ?>
 
                                     <?php if (Yii::$app->user->identity->profile->showWorkingConditions() && isset($orderItem->product['factory']['alias'])) { ?>
                                         <br>
