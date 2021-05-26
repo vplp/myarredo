@@ -49,6 +49,7 @@ class CategoryOnMainPage extends Widget
                     Category::tableName() . '.alias_en',
                     Category::tableName() . '.alias_it',
                     Category::tableName() . '.alias_de',
+                    Category::tableName() . '.alias_fr',
                     Category::tableName() . '.alias_he',
                     Category::tableName() . '.image_link',
                     Category::tableName() . '.image_link2',

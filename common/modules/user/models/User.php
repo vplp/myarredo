@@ -2,6 +2,7 @@
 
 namespace common\modules\user\models;
 
+use yii\helpers\ArrayHelper;
 use common\modules\catalog\models\Factory;
 use common\modules\catalog\models\FactoryRelDealers;
 use common\modules\shop\models\{
@@ -117,5 +118,31 @@ class User extends \thread\modules\user\models\User
                 'profile',
                 'profile.lang'
             ]);
+    }
+
+    /**
+     * Backend form drop down list
+     * @return array
+     */
+    public static function dropDownList()
+    {
+        return ArrayHelper::map(self::findBase()->enabled()->all(), 'id', 'email');
+    }
+
+    /**
+     * Backend form drop down list
+     * @return array
+     */
+    public static function dropDownListPartner()
+    {
+        $query = self::findBase()
+            ->andWhere(Group::tableName() . ".role = 'partner'")
+            ->enabled()
+            ->all();
+
+        return ArrayHelper::map($query, 'id', function ($item) {
+            return ($item['profile']['lang'] ? $item['profile']['lang']['name_company'] : '')
+                . ' (' . $item['email'] . ')';
+        });
     }
 }

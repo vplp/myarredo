@@ -346,7 +346,7 @@ class FactoryController extends BaseController
             throw new ForbiddenHttpException('Access denied');
         }
 
-        if (in_array($tab, ['working-conditions', 'subdivision']) && (Yii::$app->getUser()->isGuest || !in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter', 'partner']))) {
+        if (in_array($tab, ['working-conditions', 'subdivision']) && (Yii::$app->getUser()->isGuest || !Yii::$app->user->identity->profile->showWorkingConditions())) {
             throw new ForbiddenHttpException('Access denied');
         }
 

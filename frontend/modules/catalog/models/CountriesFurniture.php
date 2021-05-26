@@ -78,7 +78,7 @@ class CountriesFurniture extends Model
                 'category.lang'
             ])
             ->andFilterWhere(['NOT IN', Factory::tableName() . '.producing_country_id', [4]])
-            ->published()
+            ->enabled()
             ->asArray();
 
         $data1 = $query1->all();
@@ -101,7 +101,7 @@ class CountriesFurniture extends Model
                 'category.lang'
             ])
             ->andFilterWhere(['NOT IN', Factory::tableName() . '.producing_country_id', [4]])
-            ->published()
+            ->enabled()
             ->asArray();
 
         $data2 = $query2->all();

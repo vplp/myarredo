@@ -32,14 +32,6 @@ class Factory extends \common\modules\catalog\models\Factory
     /**
      * @return array
      */
-    public function attributeLabels()
-    {
-        return [];
-    }
-
-    /**
-     * @return array
-     */
     public function rules()
     {
         return [];
@@ -611,6 +603,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 category.alias_en AS alias_en,
                 category.alias_it AS alias_it,
                 category.alias_de AS alias_de,
+                category.alias_fr AS alias_fr,
                 category.alias_he AS alias_he,
                 categoryLang.title AS title
             FROM
@@ -656,6 +649,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 types.alias_en,
                 types.alias_it,
                 types.alias_de,
+                types.alias_fr,
                 types.alias_he,
                 typesLang.title AS title
             FROM
@@ -763,5 +757,18 @@ class Factory extends \common\modules\catalog\models\Factory
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
 
         return $models->totalCount >= 1 ? $models->totalCount : 0;
+    }
+
+    public function isShowCatalogsFiles()
+    {
+        $show = true;
+
+        if (!Yii::$app->getUser()->isGuest) {
+            $show = true;
+        } elseif (Yii::$app->getUser()->isGuest && $this->show_catalogs_files == '1') {
+            $show = false;
+        }
+
+        return $show;
     }
 }

@@ -4,7 +4,6 @@ use yii\helpers\{
     Html, Url
 };
 use yii\widgets\ActiveForm;
-//
 use frontend\modules\shop\models\CartCustomerForm;
 
 /** @var $model CartCustomerForm */

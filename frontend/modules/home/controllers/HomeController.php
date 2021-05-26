@@ -34,7 +34,7 @@ class HomeController extends BaseController
                 'lastModified' => function ($action, $params) {
                     // ProductsNoveltiesOnMain widget
                     $model = Product::findLastUpdated();
-                    $timeLastUpdate[] = $model['updated_at'];
+                    $timeLastUpdate[] = $model != null ? $model['updated_at'] : time();
 
                     // SaleItalyOnMainPage widget
 //                    $model = ItalianProduct::findLastUpdated();

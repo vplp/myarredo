@@ -304,7 +304,7 @@ class Order extends \thread\modules\shop\models\Order
         $isArchive = false;
 
         if (!Yii::$app->getUser()->isGuest &&
-            in_array(Yii::$app->user->identity->group->role, ['admin'])) {
+            in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter'])) {
             $isArchive = false;
         } elseif (!Yii::$app->getUser()->isGuest &&
             Yii::$app->user->identity->profile->partner_in_city &&
@@ -324,16 +324,6 @@ class Order extends \thread\modules\shop\models\Order
         }
 
         return $isArchive;
-    }
-
-    /**
-     * @return string
-     */
-    public function getOrderStatus()
-    {
-        return ($this->isArchive())
-            ? Yii::t('app', 'Archival')
-            : Yii::t('app', 'New');
     }
 
     /**

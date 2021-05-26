@@ -31,7 +31,14 @@ if ($filterItem) {
         ];
 
         $firstFrameLink = $model['lang']['link'] ?? '';
-        $firstFrameSrc = $model->getImageThumb();
+        $firstFrameSrc = $model->getImageLink();
+
+        Yii::$app->view->registerLinkTag([
+            'rel' => 'preload',
+            'href' => $model->getImageLink(),
+            'as' => 'image',
+            'media' => '(min-width: 601px)',
+        ]);
     } ?>
     <div class="home-top-slider">
         <div class="img-cont">

@@ -38,7 +38,7 @@ use frontend\modules\catalog\models\Category;
         </div>
     </li>
 
-    <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'kz', 'co.il'])) { ?>
+    <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'kz', 'co.il'])) { ?>
         <li <?= (Yii::$app->controller->id == 'sale') ? ' class="js-has-list second-link"' : ' class="js-has-list second-link"' ?>>
             <?= Html::a(
                 Yii::t('app', 'Sale'),

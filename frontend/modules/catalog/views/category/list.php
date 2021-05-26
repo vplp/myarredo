@@ -100,7 +100,14 @@ if (!empty($models)) {
                                     <div class="cat-prod-wrap">
                                         <div class="cat-prod">
                                             <?php if (!empty($models)) {
-                                                foreach ($models as $model) {
+                                                foreach ($models as $key => $model) {
+                                                    if ($key == 0) {
+                                                        Yii::$app->view->registerLinkTag([
+                                                            'rel' => 'preload',
+                                                            'href' => Product::getImageThumb($model['image_link']),
+                                                            'as' => 'image'
+                                                        ]);
+                                                    }
                                                     echo $this->render('_list_item', [
                                                         'model' => $model,
                                                         'bestsellers' => $bestsellers
@@ -133,7 +140,7 @@ if (!empty($models)) {
                             </div>
                         </div>
 
-                        <?php if (count($params) == 1 && isset($params[$keys['category']])) {
+                        <?php if (count($params) == 1 && isset($params[$keys['category']]) && !Yii::$app->request->get('page')) {
                             echo ArticlesList::widget([
                                 'view' => 'articles_on_main',
                                 'limit' => 4,

@@ -46,7 +46,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         ) ?>
     </li>
 
-    <?php if (!empty($model->catalogsFiles)) { ?>
+    <?php if ($model->isShowCatalogsFiles() && !empty($model->catalogsFiles)) { ?>
         <li class="<?= Yii::$app->request->get('tab') == 'catalogs' ? 'active' : ''; ?>">
             <?= Html::a(
                 Yii::t('app', 'Каталоги'),
@@ -113,7 +113,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         </li>
     <?php } ?>
 
-    <?php if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter', 'partner'])) { ?>
+    <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->showWorkingConditions()) { ?>
         <li class="<?= Yii::$app->request->get('tab') == 'working-conditions' ? 'active' : ''; ?>">
             <?= Html::a(
                 Yii::t('app', 'Условия работы'),
@@ -211,7 +211,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         </div>
     <?php } ?>
 
-    <?php if (Yii::$app->request->get('tab') == 'catalogs' && !empty($model->catalogsFiles)) { ?>
+    <?php if ($model->isShowCatalogsFiles() && Yii::$app->request->get('tab') == 'catalogs' && !empty($model->catalogsFiles)) { ?>
         <div id="catalogs"
              class="tab-pane fade <?= Yii::$app->request->get('tab') == 'catalogs' ? 'in active' : ''; ?>">
             <ul class="list">
@@ -224,7 +224,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                                     ? Html::img($catalogFile->getImageLink())
                                     : ''
                                 ) .
-                                Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
+                                Html::tag('span', $catalogFile->getTitle(), ['class' => 'for-catalog-list']),
                                 Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink,
                                 [
                                     'target' => '_blank',
@@ -238,7 +238,6 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
             </ul>
         </div>
     <?php } ?>
-
 
     <?php if (Yii::$app->request->get('tab') == 'subdivision' && !empty($model->factorySubdivision) && !Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter'])) { ?>
         <div id="subdivision"
@@ -298,7 +297,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                                     ? Html::img($priceFile->getImageLink())
                                     : ''
                                 ) .
-                                Html::tag('span', $priceFile->title, ['class' => 'for-catalog-list']),
+                                Html::tag('span', $priceFile->title . '<br>(' . date('d-m-Y', $priceFile->updated_at) . ')', ['class' => 'for-catalog-list']),
                                 Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink,
                                 [
                                     'target' => '_blank',
@@ -404,7 +403,8 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                                                     <?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?>
                                                 </span>
                                             </li>
-                                            <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
+                                            <li><span><?= Order::getOrderStatuses($modelOrder->order_status); ?></span>
+                                            </li>
                                         </ul>
 
                                         <div class="hidden-order-info flex">
@@ -428,10 +428,16 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         </div>
     <?php } ?>
 
-    <?php if (Yii::$app->request->get('tab') == 'working-conditions' && !Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter', 'partner'])) { ?>
+    <?php if (Yii::$app->request->get('tab') == 'working-conditions' && !Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->showWorkingConditions()) { ?>
         <div id="working-conditions"
              class="tab-pane fade <?= Yii::$app->request->get('tab') == 'working-conditions' ? 'in active' : ''; ?>">
-            <?= $model->lang->working_conditions ?>
+            <?= $model->getAttributeLabel('factory_discount') ?>: <?= $model->factory_discount ?><br>
+            <?= $model->lang->getAttributeLabel('wc_provider') ?>: <?= $model->lang->wc_provider ?><br>
+            <?= $model->lang->getAttributeLabel('wc_phone') ?>: <?= $model->lang->wc_phone ?><br>
+            <?= $model->lang->getAttributeLabel('wc_email') ?>: <?= $model->lang->wc_email ?><br>
+            <?= $model->lang->getAttributeLabel('wc_prepayment') ?>: <?= $model->lang->wc_prepayment ?><br>
+            <?= $model->lang->getAttributeLabel('wc_balance') ?>: <?= $model->lang->wc_balance ?><br>
+            <?= $model->lang->getAttributeLabel('wc_additional_terms') ?>: <?= $model->lang->wc_additional_terms ?><br>
         </div>
     <?php } ?>
 

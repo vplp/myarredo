@@ -50,6 +50,7 @@ use voskobovich\behaviors\ManyToManyBehavior;
  * @property integer $product_count
  * @property boolean $dealers_can_answer
  * @property boolean $factory_discount
+ * @property boolean $show_catalogs_files
  *
  * @property FactoryLang $lang
  * @property User $user
@@ -143,7 +144,8 @@ class Factory extends ActiveRecord
                     'show_for_ua',
                     'show_for_com',
                     'show_for_de',
-                    'dealers_can_answer'
+                    'dealers_can_answer',
+                    'show_catalogs_files'
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
@@ -216,7 +218,8 @@ class Factory extends ActiveRecord
                 'show_for_de',
                 'dealers_ids',
                 'dealers_can_answer',
-                'factory_discount'
+                'factory_discount',
+                'show_catalogs_files'
             ],
         ];
     }
@@ -259,7 +262,8 @@ class Factory extends ActiveRecord
             'product_count' => 'product_count',
             'dealers_ids' => Yii::t('app', 'Dealers'),
             'dealers_can_answer' => Yii::t('app', 'Dealers can answer'),
-            'factory_discount' => 'Скидка фабрики'
+            'factory_discount' => Yii::t('app', 'Скидка фабрики'),
+            'show_catalogs_files' => 'Не показывать каталоги'
         ];
     }
 

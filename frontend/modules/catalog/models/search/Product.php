@@ -275,6 +275,8 @@ class Product extends ProductModel
 
         $query->orderBy($order);
 
+        $query->groupBy(self::tableName() . '.id');
+
         /** cache */
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
@@ -369,6 +371,7 @@ class Product extends ProductModel
                 self::tableName() . '.alias_en',
                 self::tableName() . '.alias_it',
                 self::tableName() . '.alias_de',
+                self::tableName() . '.alias_fr',
                 self::tableName() . '.alias_he',
                 self::tableName() . '.image_link',
                 self::tableName() . '.factory_id',

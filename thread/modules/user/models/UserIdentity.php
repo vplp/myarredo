@@ -4,15 +4,12 @@ namespace thread\modules\user\models;
 
 use Yii;
 use yii\web\IdentityInterface;
-//
 use thread\app\base\models\ActiveRecord;
 
 /**
  * Class UserIdentity
  *
  * @package thread\modules\user\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class UserIdentity extends ActiveRecord implements IdentityInterface
 {

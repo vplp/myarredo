@@ -53,14 +53,31 @@ class WidgetController extends BaseController
     /**
      * @return array
      */
-    public function actionRequestPrice()
+    public function actionAjaxRequestPricePopup()
     {
         if (Yii::$app->request->isAjax) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
             return [
                 'success' => '1',
-                'view' => $this->renderPartial('request_price_popup')
+                'view' => $this->renderPartial('ajax_request_price_popup')
+            ];
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function actionAjaxRequestPrice()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            $product_id = Yii::$app->getRequest()->post('product_id');
+
+            return [
+                'success' => '1',
+                'view' => $this->renderAjax('ajax_request_price', ['product_id' => $product_id])
             ];
         }
     }

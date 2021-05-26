@@ -94,6 +94,7 @@ class ProductController extends BaseController
                     [Product::tableName() . '.alias_en' => $alias],
                     [Product::tableName() . '.alias_it' => $alias],
                     [Product::tableName() . '.alias_de' => $alias],
+                    [Product::tableName() . '.alias_fr' => $alias],
                     [Product::tableName() . '.alias_he' => $alias],
                 ])
                 ->enabled()
@@ -110,6 +111,9 @@ class ProductController extends BaseController
                 yii::$app->end();
             } elseif ($model != null && $model['alias_de'] == $alias) {
                 Yii::$app->response->redirect('https://' . 'www.myarredo.de/product/' . $alias . '/', 301);
+                yii::$app->end();
+            } elseif ($model != null && $model['alias_fr'] == $alias) {
+                Yii::$app->response->redirect('https://' . 'www.myarredo.fr/product/' . $alias . '/', 301);
                 yii::$app->end();
             } elseif ($model != null && $model['alias_he'] == $alias) {
                 Yii::$app->response->redirect('https://' . 'www.myarredo.co.il/product/' . $alias . '/', 301);
@@ -227,7 +231,7 @@ class ProductController extends BaseController
 
         if (in_array(DOMAIN_TYPE, ['com']) && DOMAIN_NAME == 'myarredofamily') {
             $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
-        } elseif (in_array(DOMAIN_TYPE, ['de', 'co.il'])) {
+        } elseif (in_array(DOMAIN_TYPE, ['de', 'fr', 'co.il'])) {
             $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
         } else {
             $hrefCanonical = Yii::$app->request->hostInfo . ($lang != 'ru' ? '/' . $lang : '/' ) . Yii::$app->request->pathInfo;
@@ -253,7 +257,7 @@ class ProductController extends BaseController
             Yii::$app->getModule('catalog')->getViewedProducts($model['id'], 'viewed_products');
         }
 
-        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161, 164])) {
+        if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161, 162, 164, 165])) {
             $alternatePages = [
                 'ru' => [
                     'href' => 'https://www.myarredo.ru/product/' . $model['alias'] . '/', 'lang' => 'ru'
@@ -266,6 +270,9 @@ class ProductController extends BaseController
                 ],
                 'de' => [
                     'href' => 'https://www.myarredo.de/product/' . $model['alias_de'] . '/', 'lang' => 'de'
+                ],
+                'fr' => [
+                    'href' => 'https://www.myarredo.fr/product/' . $model['alias_fr'] . '/', 'lang' => 'fr'
                 ],
                 'he' => [
                     'href' => 'https://www.myarredo.co.il/product/' . $model['alias_he'] . '/', 'lang' => 'he'

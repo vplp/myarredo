@@ -31,6 +31,7 @@ use common\modules\shop\models\{
  * @property string $alias_en
  * @property string $alias_it
  * @property string $alias_de
+ * @property string $alias_fr
  * @property string $alias_he
  * @property integer $country_id
  * @property integer $region_id
@@ -164,6 +165,16 @@ class ItalianProduct extends ActiveRecord
             [
                 'class' => AttributeBehavior::className(),
                 'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias_fr',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_fr',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias_fr, '_');
+                },
+            ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'alias_he',
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_he',
                 ],
@@ -241,7 +252,12 @@ class ItalianProduct extends ActiveRecord
                 [
                     'phone',
                     'email',
-                    'alias', 'alias_en', 'alias_it', 'alias_de', 'alias_he',
+                    'alias',
+                    'alias_en',
+                    'alias_it',
+                    'alias_de',
+                    'alias_fr',
+                    'alias_he',
                     'factory_name',
                     'article',
                     'image_link',
@@ -255,7 +271,7 @@ class ItalianProduct extends ActiveRecord
             ],
             [['email'], 'email'],
             [['gallery_image'], 'string', 'max' => 1024],
-            [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_he'], 'unique'],
+            [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_fr', 'alias_he'], 'unique'],
             [['factory_name',], 'default', 'value' => ''],
             [['catalog_type_id', 'factory_id', 'region_id', 'position'], 'default', 'value' => '0'],
             [['currency'], 'default', 'value' => 'EUR'],
@@ -292,7 +308,7 @@ class ItalianProduct extends ActiveRecord
             'mark3' => ['mark3'],
             'setStatus' => ['status'],
             'create_mode' => ['create_mode'],
-            'setAlias' => ['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_he', 'mark3'],
+            'setAlias' => ['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_fr', 'alias_he', 'mark3'],
             'backend' => [
                 'country_id',
                 'region_id',
@@ -311,6 +327,7 @@ class ItalianProduct extends ActiveRecord
                 'alias_en',
                 'alias_it',
                 'alias_de',
+                'alias_fr',
                 'alias_he',
                 'price',
                 'price_new',
@@ -357,6 +374,7 @@ class ItalianProduct extends ActiveRecord
                 'alias_en',
                 'alias_it',
                 'alias_de',
+                'alias_fr',
                 'alias_he',
                 'price',
                 'price_new',
@@ -407,6 +425,7 @@ class ItalianProduct extends ActiveRecord
             'alias_en' => 'Alias for en',
             'alias_it' => 'Alias for it',
             'alias_de' => 'Alias for de',
+            'alias_fr' => 'Alias for fr',
             'alias_he' => 'Alias for he',
             'price' => Yii::t('app', 'Price'),
             'price_new' => Yii::t('app', 'New price'),
@@ -485,6 +504,16 @@ class ItalianProduct extends ActiveRecord
 
             if ($this->id) {
                 $this->alias_de = $this->id . ' ' . $this->alias_de;
+            }
+        }
+
+        if ($this->alias_fr == '' && in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
+            $this->alias_fr = (!empty($this->types) ? $this->types->alias_fr : '')
+                . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
+                . (($this->article) ? ' ' . $this->article : ' ' . uniqid());
+
+            if ($this->id) {
+                $this->alias_fr = $this->id . ' ' . $this->alias_fr;
             }
         }
 

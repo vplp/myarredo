@@ -3,7 +3,6 @@
 namespace thread\modules\user\models;
 
 use Yii;
-//
 use thread\app\base\models\ActiveRecord;
 use thread\modules\user\User as UserModule;
 use thread\modules\user\models\User as UserModel;
@@ -133,5 +132,21 @@ class Profile extends ActiveRecord
     public function getFullName()
     {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+    /**
+     * @return bool
+     */
+    public function showWorkingConditions()
+    {
+        $res = false;
+
+        if (in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter'])) {
+            $res = true;
+        } elseif (in_array(Yii::$app->user->identity->group->role, ['partner']) && $this->working_conditions) {
+            $res = true;
+        }
+
+        return $res;
     }
 }

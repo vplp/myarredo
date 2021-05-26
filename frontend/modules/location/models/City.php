@@ -115,7 +115,7 @@ class City extends \common\modules\location\models\City
      */
     public static function getSubDomainUrl($model)
     {
-        $url = (!in_array($model['id'], array(1, 2, 4, 159, 160, 163, 164)))
+        $url = (!in_array($model['id'], array(1, 2, 4, 159, 160, 163, 164, 165)))
             ? 'https://' . $model['alias'] . '.myarredo.' . $model['country']['alias']
             : 'https://' . 'www.myarredo.' . $model['country']['alias'];
 

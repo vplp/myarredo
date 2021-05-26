@@ -4,6 +4,7 @@ use backend\widgets\GridView\GridView;
 use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
 };
+use backend\modules\shop\models\Order;
 
 echo GridView::widget([
     'dataProvider' => $model->trash(Yii::$app->request->queryParams),
@@ -49,7 +50,7 @@ echo GridView::widget([
         [
             'attribute' => 'order_status',
             'value' => function ($model) {
-                return $model->getOrderStatus();
+                return Order::getOrderStatuses($model->order_status);
             }
         ],
         [

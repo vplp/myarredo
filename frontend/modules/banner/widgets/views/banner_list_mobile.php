@@ -8,6 +8,12 @@ use frontend\modules\banner\models\BannerItem;
 
 if (!empty($items)) {
     $model = $items[0];
+
+    Yii::$app->view->registerLinkTag([
+        'rel' => 'preload',
+        'href' => $model->getImageThumb(),
+        'as' => 'image'
+    ]);
     ?>
 
     <div class="home-top-slider">

@@ -38,6 +38,9 @@ $this->title = $this->context->title;
                                 <span><?= Yii::t('app', 'Request Date') ?></span>
                             </li>
                             <li>
+                                <span><?= Yii::t('app', 'Дата ответа') ?></span>
+                            </li>
+                            <li>
                                 <span><?= Yii::t('app', 'Name') ?></span>
                             </li>
                             <li>
@@ -76,6 +79,11 @@ $this->title = $this->context->title;
                                         <span><?= $modelOrder->getCreatedTime() ?></span>
                                     </li>
                                     <li>
+                                        <span <?= $modelOrder->getDiffAnswerTime('settlementCenter') > 2 ? 'style="color: red;"' : '' ?>>
+                                            <?= $modelOrder->getAnswerTime('settlementCenter') ?>
+                                        </span>
+                                    </li>
+                                    <li>
                                         <span><?= $modelOrder->customer->full_name ?></span>
                                     </li>
                                     <li>
@@ -94,7 +102,7 @@ $this->title = $this->context->title;
                                         <span><?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?></span>
                                     </li>
                                     <li>
-                                        <span><?= Order::getOrderStatuses($modelOrder->order_status); ?></span>
+                                        <span class="order_status_<?= $modelOrder->order_status ?>"><?= Order::getOrderStatuses($modelOrder->order_status); ?></span>
                                     </li>
                                     <li>
                                         <span>

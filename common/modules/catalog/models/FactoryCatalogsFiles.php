@@ -118,4 +118,28 @@ class FactoryCatalogsFiles extends FactoryFile
 
         return $image;
     }
+
+    /**
+     * @return array|int|string|string[]
+     */
+    public function getTitle()
+    {
+        $search = [
+            'Каталог товаров-',
+            'Каталог товаров_',
+            'Каталог_',
+            'Каталог тканей и отделок - ',
+            'Каталог и отделок тканей - ',
+            'Каталог отделок - ',
+            'Каталог тканей - ',
+            'Каталог тканей-',
+            'Каталог мебели-',
+            'Каталог мебели - '
+        ];
+        $replace = '';
+
+        $lang = substr(Yii::$app->language, 0, 2);
+
+        return $lang == 'ru' ? $this->title : str_replace($search, $replace, $this->title);
+    }
 }

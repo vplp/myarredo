@@ -50,7 +50,8 @@
     "himiklab/yii2-recaptcha-widget": "*",
     "vlucas/phpdotenv": "^3.4",
     "spomky-labs/base64url": "^1.0|^2.0",
-    "mobiledetect/mobiledetectlib": "^2.8"
+    "mobiledetect/mobiledetectlib": "^2.8",
+    "notamedia/yii2-sentry": "^1.7"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",

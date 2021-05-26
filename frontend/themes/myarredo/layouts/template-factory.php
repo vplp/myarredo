@@ -79,10 +79,17 @@ $this->beginPage()
                 ['/catalog/template-factory/catalogs-files', 'alias' => $this->context->factory['alias']]
             ) ?>
 
-            <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->isPdfAccess() && !empty($model->pricesFiles)) {
+            <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->isPdfAccess() && !empty($this->context->factory->pricesFiles)) {
                 echo Html::a(
                     Yii::t('app', 'Прайс листы'),
                     ['/catalog/template-factory/prices-files', 'alias' => $this->context->factory['alias']]
+                );
+            } ?>
+
+            <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->showWorkingConditions()) {
+                echo Html::a(
+                    Yii::t('app', 'Условия работы'),
+                    ['/catalog/template-factory/working-conditions', 'alias' => $this->context->factory['alias']]
                 );
             } ?>
 

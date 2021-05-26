@@ -31,10 +31,29 @@ $this->title = $this->context->title;
                             'filterUrl' => Url::toRoute(['/catalog/factory-prices-files/list']),
                             'columns' => [
                                 [
+                                    'attribute' => 'order_id',
+                                    'headerOptions' => ['class' => 'col-sm-1'],
+                                    'contentOptions' => ['class' => 'text-center'],
+                                    'format' => 'raw',
+                                    'filter' => false
+                                ],
+                                [
                                     'attribute' => 'reminder_time',
                                     'value' => function ($model) {
                                         /** @var $model OrderComment */
                                         return date('j.m.Y', $model->reminder_time);
+                                    },
+                                    'headerOptions' => ['class' => 'col-sm-1'],
+                                    'contentOptions' => ['class' => 'text-center'],
+                                    'format' => 'raw',
+                                    'filter' => false
+                                ],
+                                [
+                                    'attribute' => 'country',
+                                    'label' => Yii::t('app', 'Country'),
+                                    'value' => function ($model) {
+                                        /** @var $model OrderComment */
+                                        return ($model->order->country) ? $model->order->country->getTitle() : '';
                                     },
                                     'headerOptions' => ['class' => 'col-sm-1'],
                                     'contentOptions' => ['class' => 'text-center'],

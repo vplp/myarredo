@@ -17,6 +17,8 @@ use backend\modules\catalog\models\{
  * @var $form ActiveForm
  */
 
+echo $form->switcher($model, 'show_catalogs_files');
+
 echo GridView::widget([
     'dataProvider' => (new FactoryCatalogsFiles())->search([
         'FactoryCatalogsFiles' => [

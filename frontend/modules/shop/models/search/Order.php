@@ -37,7 +37,6 @@ class Order extends OrderModel
 
     public $full_name;
 
-
     /**
      * @return array
      */
@@ -46,6 +45,7 @@ class Order extends OrderModel
         return [
             ['lang', 'string', 'min' => 5, 'max' => 5],
             [['product_type'], 'in', 'range' => array_keys(self::productTypeKeyRange())],
+            [['order_status'], 'in', 'range' => array_keys(self::getOrderStatuses())],
             [['id', 'customer_id', 'country_id', 'city_id', 'factory_id', 'year'], 'integer'],
             [['start_date', 'end_date'], 'string', 'max' => 10],
             [['email', 'full_name', 'phone'], 'string', 'max' => 50],
@@ -92,7 +92,7 @@ class Order extends OrderModel
 
         $countries = [];
 
-        if (in_array(Yii::$app->user->identity->group->role, ['partner', 'factory', 'settlementCenter'])) {
+        if (in_array(Yii::$app->user->identity->group->role, ['partner', 'settlementCenter'])) {
             $modelCountries = Yii::$app->getUser()->getIdentity()->profile->countries;
             if ($modelCountries != null) {
                 $countries = [];
@@ -101,6 +101,9 @@ class Order extends OrderModel
                 }
                 $query->andFilterWhere(['IN', self::tableName() . '.country_id', $countries]);
             }
+        } elseif (in_array(Yii::$app->user->identity->group->role, ['factory'])) {
+            $countries = [1, 2, 3];
+            $query->andFilterWhere(['IN', self::tableName() . '.country_id', $countries]);
         }
 
         if (empty($countries) && isset($params['country_id']) && $params['country_id'] > 0) {
@@ -113,6 +116,10 @@ class Order extends OrderModel
 
         if (isset($params['lang'])) {
             $query->andFilterWhere([self::tableName() . '.lang' => $params['lang']]);
+        }
+
+        if (isset($params['order_status'])) {
+            $query->andFilterWhere([self::tableName() . '.order_status' => $params['order_status']]);
         }
 
         if (isset($params['year']) && in_array($params['year'], self::dropDownListOrderYears())) {

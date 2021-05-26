@@ -1,6 +1,7 @@
 <?php
 
 use backend\widgets\GridView\GridView;
+use backend\modules\shop\models\Order;
 
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->getRequest()->queryParams),
@@ -45,7 +46,7 @@ echo GridView::widget([
         [
             'attribute' => 'order_status',
             'value' => function ($model) {
-                return $model->getOrderStatus();
+                return Order::getOrderStatuses($model->order_status);
             }
         ],
         [

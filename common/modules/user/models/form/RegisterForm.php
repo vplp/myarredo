@@ -113,10 +113,12 @@ class RegisterForm extends CommonForm
                 'required',
                 'on' => ['registerPartner'],
                 'when' => function ($model) {
-                    return $model->country_id != 4;
+                    return in_array($model->country_id, [1, 2, 3]);
                 },
                 'whenClient' => "function (attribute, value) {
-                    return $('select[name=\"RegisterForm[country_id]\"]').val() != 4;
+                    const countries = [1, 2, 3];
+                    const country_id = $('select[name=\"RegisterForm[country_id]\"]').val();
+                    return countries.includes(country_id);
                 }"
             ],
             [

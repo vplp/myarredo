@@ -59,6 +59,18 @@ $urls = [
 
     'factory/pdf-viewer' => 'catalog/factory/pdf-viewer',
 
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/catalogs-files' => 'catalog/template-factory/catalogs-files',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/prices-files' => 'catalog/template-factory/prices-files',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/contacts' => 'catalog/template-factory/contacts',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/working-conditions' => 'catalog/template-factory/working-conditions',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/catalog/<filter:[\=\;\-\w\d]+>' => 'catalog/template-factory/catalog',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/catalog' => 'catalog/template-factory/catalog',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/sale' => 'catalog/template-factory/sale',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/product/<product:[\w\-]+>' => 'catalog/template-factory/product',
+    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/sale-product/<product:[\w\-]+>' => 'catalog/template-factory/sale-product',
+    'factory/template-factory/ajax-get-filter' => 'catalog/template-factory/ajax-get-filter',
+    'factory/template-factory/ajax-get-filter-sizes' => 'catalog/template-factory/ajax-get-filter-sizes',
+
     'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>' => 'catalog/template-factory/factory',
     'factory/<alias:[\w\-]+>' => 'catalog/factory/view',
     'factory/<alias:[\w\-]+>/<tab:(collections|articles|catalogs|samples|pricelists|grezzo|orders|working-conditions|subdivision)>' => 'catalog/factory/view-tab',
@@ -85,17 +97,6 @@ $urls = [
 
     'factory-stats' => 'catalog/factory-stats/list',
     'factory-stats/<alias:[\w\-]+>' => 'catalog/factory-stats/view',
-
-    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/catalogs-files' => 'catalog/template-factory/catalogs-files',
-    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/prices-files' => 'catalog/template-factory/prices-files',
-    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/contacts' => 'catalog/template-factory/contacts',
-    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/catalog/<filter:[\=\;\-\w\d]+>' => 'catalog/template-factory/catalog',
-    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/catalog' => 'catalog/template-factory/catalog',
-    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/sale' => 'catalog/template-factory/sale',
-    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/product/<product:[\w\-]+>' => 'catalog/template-factory/product',
-    'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/sale-product/<product:[\w\-]+>' => 'catalog/template-factory/sale-product',
-    'factory/template-factory/ajax-get-filter' => 'catalog/template-factory/ajax-get-filter',
-    'factory/template-factory/ajax-get-filter-sizes' => 'catalog/template-factory/ajax-get-filter-sizes',
 
     // Factory product
     'factory-collections' => 'catalog/factory-collections/list',
@@ -238,7 +239,8 @@ $urls = [
 
     // Module [[Shop]]
     'shop/widget' => 'shop/widget/index',
-    'shop/widget/request-price' => 'shop/widget/request-price',
+    'shop/widget/ajax-request-price' => 'shop/widget/ajax-request-price',
+    'shop/widget/ajax-request-price-popup' => 'shop/widget/ajax-request-price-popup',
     'orders/notepad' => 'shop/cart/notepad',
     'shop/cart/test' => 'shop/cart/test',
     'shop/order/create/<product_id:[\d\-]+>' => 'shop/order/create',
@@ -274,6 +276,14 @@ $urls = [
     'partner/delivery-italian-orders' => 'shop/partner-order/delivery-italian-orders',
     'partner/orders/pjax-save-order-answer' => 'shop/partner-order/pjax-save-order-answer',
 
+    // market-order
+    'shop/market/market-order-admin/list' => 'shop/market/market-order-admin/list',
+    'shop/market/market-order-admin/create' => 'shop/market/market-order-admin/create',
+    'shop/market/market-order-admin/update/<id:[\d\-]+>' => 'shop/market/market-order-admin/update',
+
+    'shop/market/market-order-partner/list' => 'shop/market/market-order-partner/list',
+    'shop/market/market-order-partner/update/<id:[\d\-]+>' => 'shop/market/market-order-partner/update',
+
     // Module [[Location]]
     'location/location/get-cities' => 'location/location/get-cities',
     'location/currency/change' => 'location/currency/change',
@@ -289,7 +299,7 @@ $urls = [
     'seo/metrics/ajax-get-metrics' => 'seo/metrics/ajax-get-metrics'
 ];
 
-if (in_array(DOMAIN_TYPE, ['de', 'com', 'co.il'])) {
+if (in_array(DOMAIN_TYPE, ['de', 'fr', 'com', 'co.il'])) {
     $urls['contacts'] = 'page/contacts/list-partners';
 }
 

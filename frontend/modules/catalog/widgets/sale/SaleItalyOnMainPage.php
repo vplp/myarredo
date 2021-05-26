@@ -48,6 +48,7 @@ class SaleItalyOnMainPage extends Widget
                     ItalianProduct::tableName() . '.alias_en',
                     ItalianProduct::tableName() . '.alias_it',
                     ItalianProduct::tableName() . '.alias_de',
+                    ItalianProduct::tableName() . '.alias_fr',
                     ItalianProduct::tableName() . '.alias_he',
                     ItalianProduct::tableName() . '.image_link',
                     ItalianProduct::tableName() . '.factory_id',

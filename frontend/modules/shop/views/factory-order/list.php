@@ -23,12 +23,6 @@ $this->title = $this->context->title;
 
                 <?= Html::tag('h1', $this->context->title); ?>
 
-                <?= $this->render('/admin-order/list/_form_filter', [
-                    'model' => $model,
-                    'params' => $params,
-                    'models' => $models,
-                ]); ?>
-
                 <div class="manager-history">
 
                     <?php if (!empty($models)) { ?>
@@ -126,7 +120,7 @@ $this->title = $this->context->title;
                                             <?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?>
                                         </span>
                                         </li>
-                                        <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
+                                        <li><span class="order_status_<?= $modelOrder->order_status ?>"><?= Order::getOrderStatuses($modelOrder->order_status); ?></span></li>
                                     </ul>
 
                                     <div class="hidden-order-info flex">

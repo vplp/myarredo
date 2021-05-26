@@ -88,11 +88,16 @@ use frontend\modules\catalog\models\{
                     </tr>
                     <tr>
                         <td colspan="2" class="spec-pad2">
-                            <?php if (isset($orderItem->product['factory']['lang']) && $orderItem->product['factory']['title']) {
+                            <?php if (isset($orderItem->product['factory']['lang']) && isset($orderItem->product['factory']['title'])) {
                                 echo Html::a(
-                                    $orderItem->product['factory']['title'],
-                                    Factory::getUrl($orderItem->product['factory']['alias'])
-                                );
+                                        $orderItem->product['factory']['title'],
+                                        Factory::getUrl($orderItem->product['factory']['alias'])
+                                    ) .
+                                    '<br>' .
+                                    Html::a(
+                                        Yii::t('app', 'Условия работы'),
+                                        ['/catalog/factory/view-tab', 'alias' => $orderItem->product['factory']['alias'], 'tab' => 'working-conditions']
+                                    );
                             } else {
                                 echo $orderItem->product['factory_name'];
                             } ?>
@@ -205,23 +210,6 @@ use frontend\modules\catalog\models\{
                         </td>
                     </tr>
                 </table>
-
-                <?php if (isset($orderItem->product['factory']['lang']) && $orderItem->product['factory']['lang']['working_conditions']) {
-                    echo Html::button(Yii::t('app', 'Условия работы'), [
-                        'class' => 'btn btn-primary',
-                        'data-toggle' => 'modal',
-                        'data-target' => '#' . 'working_conditions-modal_' . $orderItem['id'],
-                    ]);
-
-                    Modal::begin([
-                        'header' => Yii::t('app', 'Условия работы') . ' ' . $orderItem->product['factory']['title'],
-                        'id' => 'working_conditions-modal_' . $orderItem['id']
-                    ]);
-
-                    echo $orderItem->product['factory']['lang']['working_conditions'];
-
-                    Modal::end();
-                } ?>
             </div>
         <?php } ?>
 

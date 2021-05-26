@@ -96,6 +96,8 @@ $this->title = $this->context->title;
                             if (isset($orderItem->product)) {
                                 $str = $key + 1 . ')&nbsp;';
 
+                                $str .= Html::img(Product::getImageThumb($orderItem->product['image_link']), ['width' => 50]);
+
                                 $str .= Html::a(
                                     $orderItem->product->getTitle(),
                                     Product::getUrl($orderItem->product[Yii::$app->languages->getDomainAlias()]),

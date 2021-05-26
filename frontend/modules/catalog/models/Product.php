@@ -215,7 +215,7 @@ class Product extends \common\modules\catalog\models\Product
         return $this
             ->hasMany(FactoryCatalogsFiles::class, ['id' => 'factory_file_id'])
             ->viaTable(ProductRelFactoryCatalogsFiles::tableName(), ['catalog_item_id' => 'id'])
-            ->published();
+            ->enabled();
     }
 
     /**
@@ -227,7 +227,7 @@ class Product extends \common\modules\catalog\models\Product
         return $this
             ->hasMany(FactoryPricesFiles::class, ['id' => 'factory_file_id'])
             ->viaTable(ProductRelFactoryPricesFiles::tableName(), ['catalog_item_id' => 'id'])
-            ->published();
+            ->enabled();
     }
 
     /**
@@ -477,6 +477,7 @@ class Product extends \common\modules\catalog\models\Product
                     self::tableName() . '.alias_en',
                     self::tableName() . '.alias_it',
                     self::tableName() . '.alias_de',
+                    self::tableName() . '.alias_fr',
                     self::tableName() . '.alias_he',
                     self::tableName() . '.image_link',
                     self::tableName() . '.factory_id',
@@ -514,6 +515,7 @@ class Product extends \common\modules\catalog\models\Product
                     self::tableName() . '.alias_en',
                     self::tableName() . '.alias_it',
                     self::tableName() . '.alias_de',
+                    self::tableName() . '.alias_fr',
                     self::tableName() . '.alias_he',
                     self::tableName() . '.image_link',
                     self::tableName() . '.factory_id',

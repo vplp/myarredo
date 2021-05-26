@@ -182,6 +182,10 @@ class AdminOrderController extends BaseController
             $params['lang'] = null;
         }
 
+        if (!isset($params['order_status'])) {
+            $params['order_status'] = null;
+        }
+
         if (!isset($params['full_name'])) {
             $params['full_name'] = null;
         }
@@ -245,6 +249,10 @@ class AdminOrderController extends BaseController
 
         if (!isset($params['lang'])) {
             $params['lang'] = null;
+        }
+
+        if (!isset($params['order_status'])) {
+            $params['order_status'] = null;
         }
 
         $params['product_type'] = 'sale-italy';

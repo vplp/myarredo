@@ -40,7 +40,7 @@ class User extends \common\modules\user\models\User
 
         $query = self::findBase()
             ->group_ids($groups)
-            ->published();
+            ->enabled();
 
         if ($city_id) {
             $query->andFilterWhere([Profile::tableName() . '.city_id' => $city_id]);
@@ -66,7 +66,7 @@ class User extends \common\modules\user\models\User
 
         $query = self::findBase()
             ->group_ids($groups)
-            ->published();
+            ->enabled();
 
         if ($city_id) {
             $query->andWhere([

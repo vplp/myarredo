@@ -3,7 +3,7 @@
 namespace thread\modules\shop\models;
 
 use Yii;
-//
+use DateTime;
 use thread\app\base\models\ActiveRecord;
 use thread\modules\shop\Shop;
 use thread\modules\shop\models\query\OrderQuery;
@@ -237,5 +237,37 @@ class Order extends ActiveRecord
     {
         $format = 'd.m.Y H:i';
         return $this->created_at == 0 ? date($format) : date($format, $this->created_at);
+    }
+
+    /**
+     * @return string
+     */
+    public function getAnswerTime($role = '')
+    {
+        foreach ($this->orderAnswers as $key => $answer) {
+            if ($answer->user->group->role == $role) {
+                return $answer->getAnswerTime();
+            }
+        }
+    }
+
+    /**
+     * @return string
+     * @throws \Exception
+     */
+    public function getDiffAnswerTime($role = '')
+    {
+        $datetime1 = (new DateTime())->setTimestamp($this->created_at);
+
+        $datetime2 = new DateTime('now');
+
+        foreach ($this->orderAnswers as $key => $answer) {
+            if ($answer->user->group->role == $role) {
+                $datetime2 = (new DateTime())->setTimestamp($answer->answer_time);
+            }
+        }
+
+        $interval = $datetime1->diff($datetime2);
+        return $interval->format('%h');
     }
 }

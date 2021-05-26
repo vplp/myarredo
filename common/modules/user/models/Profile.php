@@ -2,7 +2,6 @@
 
 namespace common\modules\user\models;
 
-use common\modules\catalog\models\FactorySubdivision;
 use Yii;
 use yii\helpers\ArrayHelper;
 use voskobovich\behaviors\ManyToManyBehavior;
@@ -10,8 +9,9 @@ use common\modules\user\User as UserModule;
 use common\modules\location\models\{
     City, Country
 };
-use common\modules\catalog\models\Factory;
 use common\modules\shop\models\Order;
+use common\modules\catalog\models\Factory;
+use common\modules\catalog\models\FactorySubdivision;
 
 /**
  * Class Profile
@@ -51,6 +51,7 @@ use common\modules\shop\models\Order;
  * @property string $language_editing
  * @property boolean $three_answers_per_month
  * @property boolean $one_answer_per_month
+ * @property boolean $working_conditions
  *
  * @property Country $country
  * @property City $city
@@ -135,6 +136,7 @@ class Profile extends \thread\modules\user\models\Profile
                     'show_contacts_on_sale',
                     'three_answers_per_month',
                     'one_answer_per_month',
+                    'working_conditions',
                     'mark'
                 ],
                 'in',
@@ -196,6 +198,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'possibility_to_answer',
                 'possibility_to_answer_sale_italy',
                 'possibility_to_answer_com_de',
+                'working_conditions',
                 'pdf_access',
                 'show_contacts',
                 'show_contacts_on_sale',
@@ -229,6 +232,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'possibility_to_answer',
                 'possibility_to_answer_sale_italy',
                 'possibility_to_answer_com_de',
+                'working_conditions',
                 'pdf_access',
                 'show_contacts',
                 'show_contacts_on_sale',
@@ -283,7 +287,8 @@ class Profile extends \thread\modules\user\models\Profile
                 'mark',
                 'language_editing',
                 'three_answers_per_month',
-                'one_answer_per_month'
+                'one_answer_per_month',
+                'working_conditions'
             ]
         ]);
     }
@@ -330,7 +335,8 @@ class Profile extends \thread\modules\user\models\Profile
             'mark',
             'language_editing',
             'three_answers_per_month' => Yii::t('app', 'Three answers per month'),
-            'one_answer_per_month' => Yii::t('app', 'One answer per month')
+            'one_answer_per_month' => Yii::t('app', 'One answer per month'),
+            'working_conditions' => Yii::t('app', 'Условия работы')
         ]);
     }
 
@@ -486,7 +492,7 @@ class Profile extends \thread\modules\user\models\Profile
      */
     public function isPdfAccess()
     {
-        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin', 'catalogeditor']) ||
+        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin', 'settlementCenter', 'catalogEditor']) ||
             (
                 in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner']) &&
                 Yii::$app->getUser()->getIdentity()->profile->pdf_access
@@ -528,7 +534,7 @@ class Profile extends \thread\modules\user\models\Profile
             Yii::$app->user->identity->profile->country_id &&
             Yii::$app->user->identity->profile->country_id == 4) {
             return true;
-        } elseif (in_array(Yii::$app->user->identity->group->role, ['admin', 'logistician'])) {
+        } elseif (in_array(Yii::$app->user->identity->group->role, ['admin', 'logistician', 'settlementCenter'])) {
             return true;
         } elseif (Yii::$app->getUser()->getIdentity()->profile->possibility_to_answer) {
             return true;

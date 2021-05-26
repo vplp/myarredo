@@ -114,6 +114,10 @@ class PartnerOrderController extends BaseController
             $params['full_name'] = null;
         }
 
+        if (!isset($params['order_status'])) {
+            $params['order_status'] = null;
+        }
+
         if (!isset($params['phone'])) {
             $params['phone'] = null;
         }

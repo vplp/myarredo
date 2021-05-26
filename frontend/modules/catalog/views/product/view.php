@@ -16,6 +16,8 @@ use frontend\modules\catalog\widgets\product\ViewedProducts;
 /** @var $model Product */
 /** @var $bestsellers */
 
+$detect = new Mobile_Detect();
+
 $bestsellers = $bestsellers ?? [];
 
 $bundle = AppAsset::register($this);
@@ -325,9 +327,10 @@ $this->title = $this->context->title;
                                     </div>
                                     <div class="igallery-form scrolled">
                                         <div class="best-price-form">
-                                            <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
-                                            <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
-
+                                            <?php if (!$detect->isMobile()) { ?>
+                                                <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
+                                                <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
@@ -404,6 +407,64 @@ $this->title = $this->context->title;
 
 <?php
 $url = Url::to(['/catalog/product/ajax-get-compositions']);
+$url2 = Url::to(['/shop/widget/ajax-request-price']);
+
+if ($detect->isMobile()) {
+    $script = <<<JS
+var baseUrl = $("base").attr("href");
+  function loadBestPriceForm() {
+    if (window.screen.width <= 1024) {
+
+        $(window).on('scroll', function (event) {
+
+          var scrollBtnTop = $(window).scrollTop();
+          var bestPriceForm = $('.best-price-form  #checkout-form');
+          if (bestPriceForm.length == 0 && scrollBtnTop > 30) {
+
+            var product_id = {$model['id']},
+            count = 1;
+
+            if (event.cancelable) event.preventDefault();
+            $.post(
+                baseUrl + 'shop/cart/add-to-cart/',
+                {
+                    _csrf: $('#token').val(),
+                    id: product_id,
+                    count: count,
+                    flag: 'request-price'
+                }
+            ).done(function (data) {
+                if (data == true) {
+                  if (event.cancelable) event.preventDefault();
+                    refresh_full_cart();
+
+                    $.post(
+                        baseUrl + 'shop/widget/ajax-request-price/',
+                        {
+                            _csrf: $('#token').val(),
+                            product_id: product_id
+                        }
+                    ).done(function (data) {
+                        if (data.success) {
+                            $('.best-price-form').html(data.view);
+                            interPhoneInit('#cartcustomerform-phone');
+                        }
+                    });
+                }
+            });
+            return true;
+          }
+        });
+    }
+  }
+  loadBestPriceForm();
+  $(window).resize(function () {
+    loadBestPriceForm();
+  });
+
+JS;
+    $this->registerJs($script);
+}
 
 $script = <<<JS
 $.post('$url', {_csrf: $('#token').val(), product_id:{$model['id']}}, function(data){
@@ -412,8 +473,9 @@ $.post('$url', {_csrf: $('#token').val(), product_id:{$model['id']}}, function(d
     // Выжидаем некоторое время
     setTimeout(function() {
         slickInit();
-    },400);
+    }, 1000);
 });
+
 JS;
 
 $this->registerJs($script);
