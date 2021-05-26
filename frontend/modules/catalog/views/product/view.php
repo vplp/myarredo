@@ -82,29 +82,13 @@ $this->title = $this->context->title;
                                 <div class="price-availability tobox" itemprop="offers" itemscope
                                      itemtype="http://schema.org/Offer">
 
-                                    <?php if ($model['price_from'] > 0 && !Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter', 'partner', 'catalogEditor'])) { ?>
+                                    <?php if (!$model['removed'] && $model['price_from'] > 0 && !Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter', 'partner', 'catalogEditor'])) { ?>
                                         <div class="price-sticker">
                                             <?= Yii::t('app', 'Цена от') ?><span>&#126;</span>
                                             <span><?= Yii::$app->currency->getValue($model['price_from'], $model['currency']); ?>
                                             &nbsp;<span class="currency"><?= Yii::$app->currency->symbol ?></span></span>
                                         </div>
                                     <?php } ?>
-
-                                    <?php /*if (Yii::$app->city->isShowPrice() && !$model['removed'] && $model['price_from'] > 0) { ?>
-                                    <div class="price-sticker">
-                                        <?= Yii::t('app', 'Цена от') ?><span>&#126;</span>
-                                        <span>
-                                        <?= Yii::$app->currency->getValue($model['price_from'], $model['currency']); ?>
-                                            &nbsp;<span class="currency"><?= Yii::$app->currency->symbol ?></span>
-                                            <meta itemprop="price"
-                                                  content="<?= Yii::$app->currency->getValue($model['price_from'], $model['currency'], ''); ?>">
-                                            <meta itemprop="priceCurrency" content="<?= Yii::$app->currency->code ?>"/>
-                                    </span>
-                                    </div>
-                                <?php } else { ?>
-                                    <meta itemprop="price" content="0"/>
-                                    <meta itemprop="priceCurrency" content="EUR"/>
-                                <?php }*/ ?>
 
                                     <meta itemprop="price" content="<?= $model['price_from'] ?>"/>
                                     <meta itemprop="priceCurrency" content="<?= $model['currency'] ?>"/>
@@ -122,34 +106,35 @@ $this->title = $this->context->title;
                                               href="<?= Product::getUrl($model[Yii::$app->languages->getDomainAlias()]) ?>"/>
                                     </div>
 
-                                    <?php if (!in_array(Yii::$app->controller->action->id, ['product'])) {
-                                        if (!in_array($model['id'], $products_id)) {
-                                            echo Html::a(
-                                                '<i class="fa fa-heart" aria-hidden="true"></i>',
-                                                'javascript:void(0);',
-                                                [
-                                                    'class' => 'add-to-notepad btn btn-default big',
-                                                    'data-id' => $model['id'],
-                                                    'data-toggle' => 'modal',
-                                                    'data-target' => '#myModal',
-                                                    'data-message' => '<i class="fa fa-heart" aria-hidden="true"></i>',
-                                                    'title' => Yii::t('app', 'Отложить в блокнот'),
-                                                    'data-doned' => Yii::t('app', 'В блокноте')
-                                                ]
-                                            );
-                                        } else {
-                                            echo Html::a(
-                                                '<i class="fa fa-heart" aria-hidden="true"></i>',
-                                                'javascript:void(0);',
-                                                [
-                                                    'class' => 'btn btn-default big doned',
-                                                    'title' => Yii::t('app', 'В блокноте')
-                                                ]
-                                            );
-                                        }
-                                    } ?>
-
-                                    <button class="btn-toform onlymob"><?= Yii::t('app', 'Получить лучшую цену') ?></button>
+                                    <?php if (!$model['removed']) { ?>
+                                        <?php if (!in_array(Yii::$app->controller->action->id, ['product'])) {
+                                            if (!in_array($model['id'], $products_id)) {
+                                                echo Html::a(
+                                                    '<i class="fa fa-heart" aria-hidden="true"></i>',
+                                                    'javascript:void(0);',
+                                                    [
+                                                        'class' => 'add-to-notepad btn btn-default big',
+                                                        'data-id' => $model['id'],
+                                                        'data-toggle' => 'modal',
+                                                        'data-target' => '#myModal',
+                                                        'data-message' => '<i class="fa fa-heart" aria-hidden="true"></i>',
+                                                        'title' => Yii::t('app', 'Отложить в блокнот'),
+                                                        'data-doned' => Yii::t('app', 'В блокноте')
+                                                    ]
+                                                );
+                                            } else {
+                                                echo Html::a(
+                                                    '<i class="fa fa-heart" aria-hidden="true"></i>',
+                                                    'javascript:void(0);',
+                                                    [
+                                                        'class' => 'btn btn-default big doned',
+                                                        'title' => Yii::t('app', 'В блокноте')
+                                                    ]
+                                                );
+                                            }
+                                        } ?>
+                                        <button class="btn-toform onlymob"><?= Yii::t('app', 'Получить лучшую цену') ?></button>
+                                    <?php } ?>
 
                                 </div>
 
