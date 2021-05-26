@@ -20,6 +20,7 @@ use common\modules\catalog\models\{Category,
     Product,
     ItalianProduct
 };
+use common\helpers\Inflector;
 
 /**
  * Class CatalogTranslateController
@@ -31,7 +32,7 @@ class CatalogTranslateController extends Controller
     /**
      * @param string $lang
      */
-    public function actionCategoryAlias($lang = 'he-IL')
+    public function actionCategoryAlias($lang = 'fr-FR')
     {
         $this->stdout("CategoryAlias: start. \n", Console::FG_GREEN);
 
@@ -42,7 +43,7 @@ class CatalogTranslateController extends Controller
         foreach ($models as $model) {
             /** @var $model Category */
             $model->setScenario('backend');
-            $model->alias_he = $model->alias_en;
+            $model->alias_fr = Inflector::slug($model->lang->title);
             $model->save();
         }
 
@@ -52,7 +53,7 @@ class CatalogTranslateController extends Controller
     /**
      * @param string $lang
      */
-    public function actionTypesAlias($lang = 'he-IL')
+    public function actionTypesAlias($lang = 'fr-FR')
     {
         $this->stdout("TypesAlias: start. \n", Console::FG_GREEN);
 
@@ -63,7 +64,7 @@ class CatalogTranslateController extends Controller
         foreach ($models as $model) {
             /** @var $model Types */
             $model->setScenario('backend');
-            $model->alias_he = $model->alias_en;
+            $model->alias_he = Inflector::slug($model->lang->title);
             $model->save();
         }
 
@@ -73,7 +74,7 @@ class CatalogTranslateController extends Controller
     /**
      * @param string $lang
      */
-    public function actionSpecificationAlias($lang = 'he-IL')
+    public function actionSpecificationAlias($lang = 'fr-FR')
     {
         $this->stdout("SpecificationAlias: start. \n", Console::FG_GREEN);
 
@@ -84,7 +85,7 @@ class CatalogTranslateController extends Controller
         foreach ($models as $model) {
             /** @var $model Specification */
             $model->setScenario('backend');
-            $model->alias_he = $model->alias_en;
+            $model->alias_he = Inflector::slug($model->lang->title);
             $model->save();
         }
 
@@ -94,7 +95,7 @@ class CatalogTranslateController extends Controller
     /**
      * @param string $lang
      */
-    public function actionColorsAlias($lang = 'he-IL')
+    public function actionColorsAlias($lang = 'fr-FR')
     {
         $this->stdout("ColorsAlias: start. \n", Console::FG_GREEN);
 
@@ -105,7 +106,7 @@ class CatalogTranslateController extends Controller
         foreach ($models as $model) {
             /** @var $model Colors */
             $model->setScenario('backend');
-            $model->alias_he = $model->alias_en;
+            $model->alias_he = Inflector::slug($model->lang->title);
             $model->save();
         }
 
@@ -115,44 +116,44 @@ class CatalogTranslateController extends Controller
     /**
      * @param string $lang
      */
-    public function actionProductAlias($lang = 'he-IL')
-    {
-        $this->stdout("ProductAlias: start. \n", Console::FG_GREEN);
-
-        Yii::$app->language = $lang;
-
-        $models = Product::findBase()->all();
-
-        foreach ($models as $model) {
-            /** @var $model Product */
-            $model->setScenario('backend');
-            $model->alias_he = $model->alias_en;
-            $model->save();
-        }
-
-        $this->stdout("ProductAlias: finish. \n", Console::FG_GREEN);
-    }
-
-    /**
-     * @param string $lang
-     */
-    public function actionItalianProductAlias($lang = 'he-IL')
-    {
-        $this->stdout("ItalianProductAlias: start. \n", Console::FG_GREEN);
-
-        Yii::$app->language = $lang;
-
-        $models = ItalianProduct::findBase()->all();
-
-        foreach ($models as $model) {
-            /** @var $model ItalianProduct */
-            $model->setScenario('backend');
-            $model->alias_he = $model->alias_en;
-            $model->save();
-        }
-
-        $this->stdout("ItalianProductAlias: finish. \n", Console::FG_GREEN);
-    }
+//    public function actionProductAlias($lang = 'fr-FR')
+//    {
+//        $this->stdout("ProductAlias: start. \n", Console::FG_GREEN);
+//
+//        Yii::$app->language = $lang;
+//
+//        $models = Product::findBase()->all();
+//
+//        foreach ($models as $model) {
+//            /** @var $model Product */
+//            $model->setScenario('backend');
+//            $model->alias_he = $model->alias_en;
+//            $model->save();
+//        }
+//
+//        $this->stdout("ProductAlias: finish. \n", Console::FG_GREEN);
+//    }
+//
+//    /**
+//     * @param string $lang
+//     */
+//    public function actionItalianProductAlias($lang = 'he-IL')
+//    {
+//        $this->stdout("ItalianProductAlias: start. \n", Console::FG_GREEN);
+//
+//        Yii::$app->language = $lang;
+//
+//        $models = ItalianProduct::findBase()->all();
+//
+//        foreach ($models as $model) {
+//            /** @var $model ItalianProduct */
+//            $model->setScenario('backend');
+//            $model->alias_he = $model->alias_en;
+//            $model->save();
+//        }
+//
+//        $this->stdout("ItalianProductAlias: finish. \n", Console::FG_GREEN);
+//    }
 
     /**
      * @param string $lang1
