@@ -420,7 +420,7 @@ var baseUrl = $("base").attr("href");
                 }
             ).done(function (data) {
                 if (data == true) {
-                  if (event.cancelable) event.preventDefault();
+                    if (event.cancelable) event.preventDefault();
                     refresh_full_cart();
 
                     $.post(
