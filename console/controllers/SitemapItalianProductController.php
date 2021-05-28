@@ -51,7 +51,7 @@ class SitemapItalianProductController extends Controller
         // list of cities
         $cities = City::findBase()
             ->joinWith(['country', 'country.lang'])
-            ->andFilterWhere(['IN', 'country_id', [1, 2, 3, 4, 5, 85, 114, 109]])
+            ->andFilterWhere(['IN', 'country_id', [1, 2, 3, 4, 5, 85, 114, 109, 79]])
             ->all();
 
         $urlsRu = self::getUrls('ru-RU');
@@ -77,8 +77,9 @@ class SitemapItalianProductController extends Controller
                 // germany
                 $this->createSitemapFile(self::getUrls('de-DE'), 'https://' . 'www.myarredo.de', $city);
             } elseif ($city['country_id'] == 109) {
-                // germany
                 $this->createSitemapFile(self::getUrls('he-IL'), 'https://' . 'www.myarredo.co.il', $city);
+            } elseif ($city['country_id'] == 79) {
+                $this->createSitemapFile(self::getUrls('fr-FR'), 'https://' . 'www.myarredo.fr', $city);
             } elseif ($city['country_id'] == 1) {
                 $urlsUa = self::getUrls('uk-UA');
 

@@ -54,7 +54,7 @@ class SitemapController extends Controller
         // get cities by country
         $cities = City::find()
             ->joinWith(['lang', 'country', 'country.lang'])
-            ->andFilterWhere(['IN', 'country_id', [1, 2, 3, 4, 5, 85, 114, 109]])
+            ->andFilterWhere(['IN', 'country_id', [1, 2, 3, 4, 5, 85, 114, 109, 79]])
             ->asArray()
             ->enabled()
             ->all();
@@ -95,6 +95,12 @@ class SitemapController extends Controller
                 $this->createSitemapFile(
                     self::getUrls('he-IL', 'co.il', $city['id']),
                     'https://' . 'www.myarredo.co.il',
+                    $city
+                );
+            } elseif ($city['country_id'] == 79) {
+                $this->createSitemapFile(
+                    self::getUrls('fr-FR', 'fr', $city['id']),
+                    'https://' . 'www.myarredo.fr',
                     $city
                 );
             } elseif ($city['country_id'] == 1) {
