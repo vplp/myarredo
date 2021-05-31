@@ -77,7 +77,7 @@ class LangSwitch extends Widget
             }
 
             if (!in_array(DOMAIN_TYPE, ['fr']) && in_array($lang['alias'], ['fr'])) {
-                continue;
+                //continue;
             }
 
             $image = Language::isImage($lang['img_flag'])
