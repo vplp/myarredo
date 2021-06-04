@@ -211,7 +211,11 @@ class SendPulseController extends Controller
             );
 
             $response = (array)$response;
+
+            $this->stdout("Order id: " . $modelOrder['id'] . " \n", Console::FG_GREEN);
+
 /* !!! */ echo  '<pre style="color:red;">'; print_r($response); echo '</pre>'; /* !!! */
+
             if (!isset($response['is_error'])) {
                 $modelOrder->setScenario('create_campaign');
                 $modelOrder->create_campaign = '1';
