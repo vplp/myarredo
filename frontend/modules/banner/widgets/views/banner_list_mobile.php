@@ -18,8 +18,8 @@ if (!empty($items)) {
 
     <div class="home-top-slider">
         <div class="img-cont">
-            <?php if ($model['lang']['link']) { ?>
-                <a href="<?= $model['lang']['link'] ?? '' ?>">
+            <?php if (isset($model['lang']['link'])) { ?>
+                <a href="<?= $model['lang']['link']?>">
                     <img width="375" height="162" src="<?= $model->getImageThumb(); ?>" alt="">
                 </a>
             <?php } else { ?>
