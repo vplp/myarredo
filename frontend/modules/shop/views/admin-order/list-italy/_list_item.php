@@ -96,7 +96,8 @@ use frontend\modules\catalog\models\{
                                     '<br>' .
                                     Html::a(
                                         Yii::t('app', 'Условия работы'),
-                                        ['/catalog/factory/view-tab', 'alias' => $orderItem->product['factory']['alias'], 'tab' => 'working-conditions']
+                                        ['/catalog/factory/view-tab', 'alias' => $orderItem->product['factory']['alias'], 'tab' => 'working-conditions'],
+                                        ['target' => '_blank']
                                     );
                             } else {
                                 echo $orderItem->product['factory_name'];

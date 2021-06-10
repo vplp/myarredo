@@ -96,9 +96,10 @@ use frontend\modules\catalog\models\{
 
                                 if (Yii::$app->user->identity->profile->showWorkingConditions() && isset($orderItem->product['factory']['alias'])) {
                                     echo '<br>' . Html::a(
-                                        Yii::t('app', 'Условия работы'),
-                                        ['/catalog/factory/view-tab', 'alias' => $orderItem->product['factory']['alias'], 'tab' => 'working-conditions']
-                                    );
+                                            Yii::t('app', 'Условия работы'),
+                                            ['/catalog/factory/view-tab', 'alias' => $orderItem->product['factory']['alias'], 'tab' => 'working-conditions'],
+                                            ['target' => '_blank']
+                                        );
                                 }
                             } else {
                                 echo $orderItem->product['factory_name'];

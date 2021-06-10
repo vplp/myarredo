@@ -94,7 +94,8 @@ if ($user->profile->getPossibilityToAnswer($modelOrder)) { ?>
                                         <br>
                                         <?= Html::a(
                                             Yii::t('app', 'Условия работы'),
-                                            ['/catalog/factory/view-tab', 'alias' => $orderItem->product['factory']['alias'], 'tab' => 'working-conditions']
+                                            ['/catalog/factory/view-tab', 'alias' => $orderItem->product['factory']['alias'], 'tab' => 'working-conditions'],
+                                            ['target' => '_blank']
                                         ) ?>
                                     <?php } ?>
                                 </td>
