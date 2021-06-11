@@ -36,9 +36,6 @@ AddDefaultCharset UTF-8
 #    RewriteCond %{HTTP_HOST} ^myarredofamily.com [NC]
 #    RewriteRule ^(.*)$ https://www.myarredofamily.com/$1 [R=301,L]
 
-    RewriteCond %{HTTP_HOST} ^myarredofamily\.com$ [NC]
-    RewriteRule ^(.*)$ https://myarredo.com/en/$1  [R=301,L]
-
     RewriteCond %{HTTP_HOST} ^myarredo.co.il [NC]
     RewriteRule ^(.*)$ https://www.myarredo.ci.il/$1 [R=301,L]
 
