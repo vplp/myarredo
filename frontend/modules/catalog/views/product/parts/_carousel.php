@@ -17,12 +17,6 @@ $images = $model->getGalleryImageThumb();
         <?php
         foreach ($images as $key => $src) {
             if ($key == 0) {
-                Yii::$app->view->registerLinkTag([
-                    'rel' => 'preload',
-                    'href' => $src['thumb'],
-                    'as' => 'image'
-                ]);
-
                 echo Html::beginTag('div', [
                         'class' => 'item active',
                         'data-dominant-color' => '',
