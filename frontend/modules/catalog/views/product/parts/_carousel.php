@@ -19,7 +19,7 @@ $images = $model->getGalleryImageThumb();
             if ($key == 0) {
                 Yii::$app->view->registerLinkTag([
                     'rel' => 'preload',
-                    'href' => $src['img'],
+                    'href' => $src['thumb'],
                     'as' => 'image'
                 ]);
 
