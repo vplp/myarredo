@@ -136,6 +136,7 @@ $mainPartner = array_shift($partners);
         </div>
     <?php } ?>
 
+    <?php /*
     <div class="send-salon-panel">
         <?= Html::a(Yii::t('app', 'Написать салону'), 'javascript:void(0);', [
             'class' => 'btn btn-myarredo',
@@ -143,6 +144,7 @@ $mainPartner = array_shift($partners);
             'data-target' => '#modalFormFeedbackPartner'
         ]); ?>
     </div>
+    */ ?>
 
     <?php if ($mainPartner->profile->getImageLink('image_salon') || $mainPartner->profile->getImageLink('image_salon2')) { ?>
         <div class="partner-imagepart">
@@ -174,7 +176,7 @@ $mainPartner = array_shift($partners);
 </div>
 <!-- end main partner -->
 
-<?= FormFeedback::widget([
+<?php /*FormFeedback::widget([
     'partner_id' => $mainPartner->id,
     'view' => 'form_feedback_partner_popup'
-]) ?>
+]); */ ?>
