@@ -30,7 +30,7 @@ $this->title = $this->context->title;
     <div class="text-description">
         <div class="container large-container">
             <div class="text-col">
-                <?= $model['lang']['content'] ?>
+                <?= $model['lang']['content'] ?? '' ?>
             </div>
         </div>
     </div>

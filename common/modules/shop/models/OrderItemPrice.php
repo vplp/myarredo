@@ -131,8 +131,7 @@ class OrderItemPrice extends ActiveRecord
      */
     public function getUser()
     {
-        return $this
-            ->hasOne(User::class, ['id' => 'user_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     /**
@@ -145,5 +144,22 @@ class OrderItemPrice extends ActiveRecord
             'RUB' => 'RUB',
             'USD' => 'USD'
         ];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderAnswer()
+    {
+        $modelAnswer = OrderAnswer::findByOrderIdUserId(
+            $this->order_id,
+            $this->user_id,
+        );
+
+        if ($modelAnswer == null) {
+            $modelAnswer = new OrderAnswer();
+        }
+
+        return $modelAnswer;
     }
 }

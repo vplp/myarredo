@@ -36,6 +36,7 @@ use voskobovich\behaviors\ManyToManyBehavior;
  * @property integer $create_campaign
  * @property integer $mark
  * @property integer $mark1
+ * @property integer $send_answer
  *
  * @property boolean $isArchive
  * @property OrderAnswer[] $orderAnswers
@@ -78,17 +79,24 @@ class Order extends \thread\modules\shop\models\Order
             [['comment', 'admin_comment'], 'string', 'max' => 512],
             [['order_first_url_visit'], 'string'],
             [['token'], 'string', 'max' => 255],
-            [['customer_id', 'country_id', 'city_id', 'items_count', 'items_total_count', 'order_count_url_visit'], 'integer'],
+            [
+                ['customer_id', 'country_id', 'city_id', 'items_count', 'items_total_count', 'order_count_url_visit'],
+                'integer'
+            ],
             [['order_status'], 'in', 'range' => array_keys(self::getOrderStatuses())],
             [['product_type'], 'in', 'range' => array_keys(self::productTypeKeyRange())],
             [
-                ['published', 'deleted', 'create_campaign', 'mark', 'mark1', 'order_mobile'],
+                ['published', 'deleted', 'create_campaign', 'mark', 'mark1', 'order_mobile', 'send_answer'],
                 'in',
                 'range' => array_keys(self::statusKeyRange())
             ],
             [['image_link'], 'string', 'max' => 255],
             // set default values
-            [['delivery_method_id', 'payment_method_id', 'country_id', 'city_id', 'order_count_url_visit'], 'default', 'value' => 0],
+            [
+                ['delivery_method_id', 'payment_method_id', 'country_id', 'city_id', 'order_count_url_visit'],
+                'default',
+                'value' => 0
+            ],
             [
                 [
                     'user_for_answer_ids',
@@ -111,6 +119,7 @@ class Order extends \thread\modules\shop\models\Order
             'mark' => ['mark'],
             'mark1' => ['mark1'],
             'admin_comment' => ['admin_comment'],
+            'send_answer' => ['send_answer'],
             'order_status' => ['order_status'],
             'backend' => [
                 'customer_id',
@@ -133,7 +142,8 @@ class Order extends \thread\modules\shop\models\Order
                 'create_campaign',
                 'created_at',
                 'updated_at',
-                'user_for_answer_ids'
+                'user_for_answer_ids',
+                'send_answer'
             ],
             'addNewOrder' => [
                 'product_type',
@@ -154,7 +164,8 @@ class Order extends \thread\modules\shop\models\Order
                 'items_total_count',
                 'token',
                 'published',
-                'deleted'
+                'deleted',
+                'send_answer'
             ],
         ];
     }
@@ -172,7 +183,8 @@ class Order extends \thread\modules\shop\models\Order
             'user_for_answer_ids' => 'Партнеры, которые могут отвечать на архивные заявки',
             'order_first_url_visit' => 'order_first_url_visit',
             'order_count_url_visit' => 'order_count_url_visit',
-            'order_mobile' => 'order_mobile'
+            'order_mobile' => 'order_mobile',
+            'send_answer' => 'send_answer'
         ];
 
         return ArrayHelper::merge(parent::attributeLabels(), $attributeLabels);
@@ -285,6 +297,7 @@ class Order extends \thread\modules\shop\models\Order
 
     /**
      * @return bool
+     * @throws \Exception
      */
     public function isArchive()
     {

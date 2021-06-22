@@ -41,9 +41,8 @@ use frontend\modules\shop\models\{
             <?php foreach ($modelOrder->items as $item) { ?>
                 <div style="clear: both; height: 100px;">
                     <div style="float: left;">
-                        <?= Html::a(
-                            $item->product['lang']['title'],
-                            ItalianProduct::getUrl($item->product[Yii::$app->languages->getDomainAlias()]),
+                        <?= Html::img(
+                            Product::getImageThumb($item->product['image_link']),
                             ['style' => 'width: 140px; max-height: 100px;']
                         ); ?>
                     </div>
