@@ -65,7 +65,7 @@ class CleanController extends \yii\console\Controller
             $model = OrderItem::find()
                 ->select(['id', 'order_id', 'product_id'])
                 ->groupBy(['order_id', 'product_id'])
-                ->where(['order_id' => $row['cart_id'], 'product_id' => $row['product_id']])
+                ->where(['order_id' => $row['order_id'], 'product_id' => $row['product_id']])
                 ->one();
 
             $model->delete();
