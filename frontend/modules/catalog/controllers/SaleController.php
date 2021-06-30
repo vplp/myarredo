@@ -357,6 +357,7 @@ class SaleController extends BaseController
         $pageTitle[] = Yii::t('app', 'Распродажа мебели');
         $pageDescription[] = Yii::t('app', 'Распродажа');
 
+        /** category */
         if (!empty($params[$keys['category']])) {
             $model = Category::findByAlias($params[$keys['category']][0]);
 
@@ -366,11 +367,80 @@ class SaleController extends BaseController
 
             $this->breadcrumbs[] = [
                 'label' => $model['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl([$keys['category'] => $params[$keys['category']]])
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['category'] => $params[$keys['category']]], ['/catalog/sale/list'])
             ];
         } else {
             $pageH1[] = Yii::t('app', 'мебели');
             $pageDescription[] = Yii::t('app', 'мебели');
+        }
+
+        /** type */
+        if (!empty($params[$keys['type']])) {
+            $models = Types::findByAlias($params[$keys['type']]);
+
+            if (count($params[$keys['type']]) > 1) {
+                $this->noIndex = 1;
+            }
+
+            $type = [];
+            foreach ($models as $model) {
+                $type[] = $model['lang']['title'];
+            }
+
+            $pageTitle[] = implode(', ', $type);
+            $pageH1[] = implode(' - ', $type);
+            $pageDescription[] = implode(', ', $type);
+
+            $this->breadcrumbs[] = [
+                'label' => implode(', ', $type),
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['type'] => $params[$keys['type']]], ['/catalog/sale/list'])
+            ];
+        }
+
+        /** subtypes */
+        if (!empty($params[$keys['subtypes']])) {
+            $models = SubTypes::findByAlias($params[$keys['subtypes']]);
+
+            if (count($params[$keys['subtypes']]) > 1) {
+                $this->noIndex = 1;
+            }
+
+            $subtypes = [];
+            foreach ($models as $model) {
+                $subtypes[] = $model['lang']['title'];
+            }
+
+            $pageTitle[] = implode(', ', $subtypes);
+            $pageH1[] = implode(' - ', $subtypes);
+            $pageDescription[] = implode(', ', $subtypes);
+
+            $this->breadcrumbs[] = [
+                'label' => implode(', ', $subtypes),
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['subtypes'] => $params[$keys['subtypes']]], ['/catalog/sale/list'])
+            ];
+        }
+
+        /** style */
+        if (!empty($params[$keys['style']])) {
+            $models = Specification::findByAlias($params[$keys['style']]);
+
+            if (count($params[$keys['style']]) > 1) {
+                $this->noIndex = 1;
+            }
+
+            $style = [];
+            foreach ($models as $model) {
+                $style[] = $model['lang']['title'];
+            }
+
+            $pageTitle[] = Yii::t('app', 'Стиль') . ' ' . implode(', ', $style);
+            $pageH1[] = implode(' - ', $style);
+            $pageDescription[] = Yii::t('app', 'Стиль') . ': ' . implode(' - ', $style);
+
+            $this->breadcrumbs[] = [
+                'label' => implode(', ', $style),
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['style'] => $params[$keys['style']]], ['/catalog/sale/list'])
+            ];
         }
 
         if (!empty($params[$keys['factory']])) {
@@ -395,7 +465,7 @@ class SaleController extends BaseController
 
             $this->breadcrumbs[] = [
                 'label' => implode(', ', $factory),
-                'url' => Yii::$app->catalogFilter->createUrl([$keys['factory'] => $params[$keys['factory']]])
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['factory'] => $params[$keys['factory']]], ['/catalog/sale/list'])
             ];
         }
 
