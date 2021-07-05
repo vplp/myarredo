@@ -386,6 +386,10 @@ class FactoryController extends BaseController
      */
     public function actionPdfViewer()
     {
+        if (Yii::$app->getUser()->isGuest || !Yii::$app->user->identity->profile->isPdfAccess()) {
+            throw new ForbiddenHttpException('Access denied');
+        }
+
         $this->layout = 'pdfjs';
 
         if (Yii::$app->request->get('file')) {
