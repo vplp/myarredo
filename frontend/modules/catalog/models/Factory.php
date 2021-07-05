@@ -761,7 +761,7 @@ class Factory extends \common\modules\catalog\models\Factory
 
     public function isShowCatalogsFiles()
     {
-        $show = true;
+        $show = false;
 
         if (!Yii::$app->getUser()->isGuest) {
             $show = true;

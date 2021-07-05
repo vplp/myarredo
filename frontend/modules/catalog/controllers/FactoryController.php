@@ -338,7 +338,7 @@ class FactoryController extends BaseController
             $h1 .= ' - ' . Yii::t('app', 'Представительство');
         }
 
-        if (in_array($tab, ['pricelists']) && (Yii::$app->getUser()->isGuest || !Yii::$app->user->identity->profile->isPdfAccess())) {
+        if (in_array($tab, ['pricelists', 'catalogs']) && (Yii::$app->getUser()->isGuest || !Yii::$app->user->identity->profile->isPdfAccess())) {
             throw new ForbiddenHttpException('Access denied');
         }
 
