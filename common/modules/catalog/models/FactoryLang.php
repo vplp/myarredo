@@ -67,6 +67,7 @@ class FactoryLang extends ActiveRecordLang
                 'wc_additional_terms',
                 'subdivision'
             ], 'string'],
+            [['h1', 'meta_title', 'meta_desc', 'description', 'content', 'contacts'], 'default', 'value' => ''],
         ]);
     }
 
