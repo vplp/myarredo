@@ -408,6 +408,11 @@ class FactoryController extends BaseController
             }
         }
 
+        Yii::$app->view->registerMetaTag([
+            'name' => 'robots',
+            'content' => 'noindex, nofollow',
+        ]);
+
         return $this->render('pdfjs', []);
     }
 }
