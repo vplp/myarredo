@@ -1335,6 +1335,9 @@ return ArrayHelper::merge(
                 ],
                 'urls' => []
             ],
+            'seo-directlink' => [
+                'class' => \console\controllers\SeoDirectlinkController::class,
+            ],
         ],
         'params' => [],
     ]

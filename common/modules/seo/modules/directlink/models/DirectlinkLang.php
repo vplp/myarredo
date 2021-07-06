@@ -4,9 +4,8 @@ namespace common\modules\seo\modules\directlink\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-//
 use thread\app\base\models\ActiveRecordLang;
-use thread\modules\seo\modules\directlink\Directlink as ParentModule;
+use common\modules\seo\modules\directlink\Directlink as ParentModule;
 
 /**
  * Class DirectlinkLang
