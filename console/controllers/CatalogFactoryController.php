@@ -224,7 +224,7 @@ class CatalogFactoryController extends Controller
             ->andFilterWhere([
                 'mark' => '0',
             ])
-            ->limit(100)
+            //->limit(50)
             ->orderBy(Factory::tableName() . '.id DESC')
             ->all();
 
@@ -250,8 +250,6 @@ class CatalogFactoryController extends Controller
                         'rid' => $model->id,
                     ])
                     ->one();
-
-                /* !!! ставим Mark в любом случае */ $saveLang[] = 1;
 
                 if ($modelLang != null) {
                     foreach ($languages as $language2) {
