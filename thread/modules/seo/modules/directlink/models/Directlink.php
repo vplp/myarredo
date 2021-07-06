@@ -3,6 +3,7 @@
 namespace thread\modules\seo\modules\directlink\models;
 
 use Yii;
+
 //
 use thread\app\base\models\ActiveRecord;
 use thread\modules\seo\helpers\CommonFunc;
@@ -21,6 +22,7 @@ use thread\modules\seo\modules\directlink\Directlink as ParentModule;
  * @property integer $updated_at
  * @property boolean $published
  * @property boolean $deleted
+ * @property boolean $mark
  *
  * @package thread\modules\seo\modules\directlink\models
  */
@@ -57,7 +59,13 @@ class Directlink extends ActiveRecord
             [['url'], 'required'],
             [['created_at', 'updated_at'], 'integer'],
             [
-                ['published', 'deleted', 'add_to_sitemap', 'dissallow_in_robotstxt'],
+                [
+                    'published',
+                    'deleted',
+                    'add_to_sitemap',
+                    'dissallow_in_robotstxt',
+                    'mark'
+                ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
             ],
@@ -76,6 +84,7 @@ class Directlink extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'add_to_sitemap' => ['add_to_sitemap'],
+            'mark' => ['mark'],
             'dissallow_in_robotstxt' => ['dissallow_in_robotstxt'],
             'backend' => [
                 'url',
@@ -87,7 +96,8 @@ class Directlink extends ActiveRecord
                 'title',
                 'description',
                 'keywords',
-                'image_url'
+                'image_url',
+                'mark'
             ],
         ];
     }
@@ -111,6 +121,7 @@ class Directlink extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'mark'
         ];
     }
 
