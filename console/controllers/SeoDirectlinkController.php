@@ -87,61 +87,60 @@ class SeoDirectlinkController extends Controller
 
                             if ($modelLang2 == null) {
                                 $modelLang2 = new DirectlinkLang();
-
                                 $modelLang2->rid = $model->id;
                                 $modelLang2->lang = Yii::$app->language;
+                            }
 
-                                $sourceLanguageCode = substr($currentLanguage, 0, 2);
-                                $targetLanguageCode = substr($language2['local'], 0, 2);
+                            $sourceLanguageCode = substr($currentLanguage, 0, 2);
+                            $targetLanguageCode = substr($language2['local'], 0, 2);
 
-                                $this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
+                            $this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
 
-                                $title = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    str_replace("&nbsp;", ' ', strip_tags($modelLang->title)),
-                                    $sourceLanguageCode,
-                                    $targetLanguageCode
-                                );
-                                $description = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    str_replace("&nbsp;", ' ', strip_tags($modelLang->description)),
-                                    $sourceLanguageCode,
-                                    $targetLanguageCode
-                                );
-                                $h1 = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    str_replace("&nbsp;", ' ', strip_tags($modelLang->h1)),
-                                    $sourceLanguageCode,
-                                    $targetLanguageCode
-                                );
-                                $content = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    str_replace("&nbsp;", ' ', strip_tags($modelLang->content)),
-                                    $sourceLanguageCode,
-                                    $targetLanguageCode
-                                );
+                            $title = (string)Yii::$app->yandexTranslation->getTranslate(
+                                str_replace("&nbsp;", ' ', strip_tags($modelLang->title)),
+                                $sourceLanguageCode,
+                                $targetLanguageCode
+                            );
+                            $description = (string)Yii::$app->yandexTranslation->getTranslate(
+                                str_replace("&nbsp;", ' ', strip_tags($modelLang->description)),
+                                $sourceLanguageCode,
+                                $targetLanguageCode
+                            );
+                            $h1 = (string)Yii::$app->yandexTranslation->getTranslate(
+                                str_replace("&nbsp;", ' ', strip_tags($modelLang->h1)),
+                                $sourceLanguageCode,
+                                $targetLanguageCode
+                            );
+                            $content = (string)Yii::$app->yandexTranslation->getTranslate(
+                                str_replace("&nbsp;", ' ', strip_tags($modelLang->content)),
+                                $sourceLanguageCode,
+                                $targetLanguageCode
+                            );
 
-                                if ($title != '' || $description != '' || $h1 != '') {
-                                    $transaction = $modelLang2::getDb()->beginTransaction();
-                                    try {
-                                        $modelLang2->title = $title;
-                                        $modelLang2->description = $description;
-                                        $modelLang2->h1 = $h1;
-                                        $modelLang2->content = $content;
+                            if ($title != '' || $description != '' || $h1 != '') {
+                                $transaction = $modelLang2::getDb()->beginTransaction();
+                                try {
+                                    $modelLang2->title = $title;
+                                    $modelLang2->description = $description;
+                                    $modelLang2->h1 = $h1;
+                                    $modelLang2->content = $content;
 
-                                        $modelLang2->setScenario('backend');
+                                    $modelLang2->setScenario('backend');
 
-                                        if ($saveLang[] = intval($modelLang2->save())) {
-                                            $transaction->commit();
-                                            $this->stdout("save " . $targetLanguageCode . " \n", Console::FG_GREEN);
-                                        } else {
-                                            foreach ($modelLang2->errors as $attribute => $errors) {
-                                                $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
-                                            }
+                                    if ($saveLang[] = intval($modelLang2->save())) {
+                                        $transaction->commit();
+                                        $this->stdout("save " . $targetLanguageCode . " \n", Console::FG_GREEN);
+                                    } else {
+                                        foreach ($modelLang2->errors as $attribute => $errors) {
+                                            $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
                                         }
-                                    } catch (Exception $e) {
-                                        $transaction->rollBack();
-                                        throw new Exception($e);
                                     }
-                                } else {
-                                    $saveLang[] = 0;
+                                } catch (Exception $e) {
+                                    $transaction->rollBack();
+                                    throw new Exception($e);
                                 }
+                            } else {
+                                $saveLang[] = 0;
                             }
                         }
                     }
