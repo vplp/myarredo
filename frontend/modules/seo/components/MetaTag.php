@@ -214,17 +214,32 @@ class MetaTag extends Component
         }
 
         $this->seo_title = str_replace(
-            ['#городе#', '#nella citta#', '#телефон#'],
             [
-                Yii::$app->city->getCityTitleWhere(),
-                Yii::$app->city->getCityTitleWhere(),
-                Yii::$app->partner->getPartnerPhone()
+                '#городе#',
+                '#nella citta#',
+                '# місті #', '# місті#', '#місті #', '#місті#',
+                '# Stadt#', '#Stadt#', '#Stadt #', '#Stadt#', 'Stadt#',
+                '#City #', '#City#', '# City #', '# City#',
+                '#city#', '# city#', '#city #', '#city#',
+                '# città #', '#città #', '# città#', '#città#',
+                '# עיר #', '# עיר#', ' עיר #','#עיר#', '# #'
             ],
+            Yii::$app->city->getCityTitleWhere(),
+            $this->seo_title
+        );
+
+        $this->seo_title = str_replace(
+            ['#телефон#'],
+            Yii::$app->partner->getPartnerPhone(),
             $this->seo_title
         );
 
         $this->seo_description = str_replace(
-            ['#городе#', '#nella citta#', '#телефон#'],
+            [
+                '#городе#',
+                '#nella citta#',
+                '#телефон#'
+            ],
             [
                 Yii::$app->city->getCityTitleWhere(),
                 Yii::$app->city->getCityTitleWhere(),
@@ -234,7 +249,11 @@ class MetaTag extends Component
         );
 
         $this->seo_h1 = str_replace(
-            ['#городе#', '#nella citta#', '#телефон#'],
+            [
+                '#городе#',
+                '#nella citta#',
+                '#телефон#'
+            ],
             [
                 Yii::$app->city->getCityTitleWhere(),
                 Yii::$app->city->getCityTitleWhere(),
@@ -244,7 +263,11 @@ class MetaTag extends Component
         );
 
         $this->seo_content = str_replace(
-            ['#городе#', '#nella citta#', '#телефон#'],
+            [
+                '#городе#',
+                '#nella citta#',
+                '#телефон#'
+            ],
             [
                 Yii::$app->city->getCityTitleWhere(),
                 Yii::$app->city->getCityTitleWhere(),
