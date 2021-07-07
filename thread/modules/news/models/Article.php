@@ -18,18 +18,19 @@ use thread\modules\news\News as NewsModule;
 /**
  * Class Article
  *
- * @property integer id
- * @property integer group_id
- * @property string alias
- * @property integer $city_id
+ * @property integer $id
+ * @property integer $group_id
+ * @property string $alias
+ * @property integer $$city_id
  * @property integer $category_id
  * @property integer $factory_id
- * @property string image_link
- * @property integer published_time
- * @property integer created_at
- * @property integer updated_at
- * @property boolean published
- * @property boolean deleted
+ * @property string $image_link
+ * @property integer $published_time
+ * @property integer $created_at
+ * @property integer $updated_at
+ * @property boolean $published
+ * @property boolean $deleted
+ * @property boolean $mark
  *
  * @property Category $category
  * @property Factory $factory
@@ -99,7 +100,7 @@ class Article extends ActiveRecord
                 'format' => 'php:' . NewsModule::getFormatDate(),
                 'timestampAttribute' => 'published_time'
             ],
-            [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
+            [['published', 'deleted', 'mark'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['alias', 'image_link'], 'string', 'max' => 255],
             [['alias'], 'unique'],
             [
@@ -121,6 +122,7 @@ class Article extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
+            'mark' => ['mark'],
             'backend' => [
                 'city_id',
                 'category_id',
@@ -133,6 +135,7 @@ class Article extends ActiveRecord
                 'published_time',
                 'types_ids',
                 'styles_ids',
+                'mark'
             ],
         ];
     }
@@ -159,7 +162,21 @@ class Article extends ActiveRecord
             'date_to' => Yii::t('news', 'Date to'),
             'types_ids' => Yii::t('app', 'Types'),
             'styles_ids' => Yii::t('app', 'Styles'),
+            'mark'
         ];
+    }
+
+    /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        if (in_array($this->scenario, ['backend'])) {
+            $this->mark = '0';
+        }
+
+        return parent::beforeSave($insert);
     }
 
     /**

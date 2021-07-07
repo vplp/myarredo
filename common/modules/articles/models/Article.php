@@ -29,6 +29,7 @@ use thread\app\base\models\ActiveRecord;
  * @property integer $updated_at
  * @property boolean $published
  * @property boolean $deleted
+ * @property boolean $mark
  *
  * @property Category $category
  * @property Factory $factory
@@ -97,7 +98,7 @@ class Article extends ActiveRecord
                 'format' => 'php:' . ArticlesModule::getFormatDate(),
                 'timestampAttribute' => 'published_time'
             ],
-            [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
+            [['published', 'deleted', 'mark'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['alias', 'image_link'], 'string', 'max' => 255],
             [['alias'], 'unique'],
             [
@@ -119,6 +120,7 @@ class Article extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
+            'mark' => ['mark'],
             'backend' => [
                 'alias',
                 'city_id',
@@ -130,6 +132,7 @@ class Article extends ActiveRecord
                 'deleted',
                 'types_ids',
                 'styles_ids',
+                'mark'
             ],
         ];
     }
@@ -153,7 +156,21 @@ class Article extends ActiveRecord
             'deleted' => Yii::t('app', 'Deleted'),
             'types_ids' => Yii::t('app', 'Types'),
             'styles_ids' => Yii::t('app', 'Styles'),
+            'mark'
         ];
+    }
+
+    /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        if (in_array($this->scenario, ['backend'])) {
+            $this->mark = '0';
+        }
+
+        return parent::beforeSave($insert);
     }
 
     /**

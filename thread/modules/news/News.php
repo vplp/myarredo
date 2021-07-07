@@ -30,7 +30,7 @@ class News extends aModule
      */
     public static function getFormatDate()
     {
-        return Yii::$app->getModule('news')->params['format']['date'];
+        return 'd.m.Y'; //Yii::$app->getModule('news')->params['format']['date'];
     }
 
     /**

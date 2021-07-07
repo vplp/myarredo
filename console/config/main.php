@@ -1338,6 +1338,12 @@ return ArrayHelper::merge(
             'seo-directlink' => [
                 'class' => \console\controllers\SeoDirectlinkController::class,
             ],
+            'articles' => [
+                'class' => \console\controllers\ArticlesController::class,
+            ],
+            'news' => [
+                'class' => \console\controllers\NewsController::class,
+            ],
         ],
         'params' => [],
     ]
