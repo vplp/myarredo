@@ -45,7 +45,7 @@ class Directlink extends \thread\modules\seo\modules\directlink\models\Directlin
      */
     public function scenarios()
     {
-        return [
+        return ArrayHelper::merge(parent::scenarios(), [
             'published' => ['published'],
             'deleted' => ['deleted'],
             'add_to_sitemap' => ['add_to_sitemap'],
@@ -60,7 +60,7 @@ class Directlink extends \thread\modules\seo\modules\directlink\models\Directlin
                 'image_url',
                 'city_ids'
             ],
-        ];
+        ]);
     }
 
     /**
