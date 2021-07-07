@@ -224,7 +224,7 @@ class CatalogFactoryController extends Controller
             ->andFilterWhere([
                 'mark' => '0',
             ])
-            //->limit(50)
+            ->limit(50)
             ->orderBy(Factory::tableName() . '.id DESC')
             ->all();
 
@@ -273,7 +273,7 @@ class CatalogFactoryController extends Controller
                             $sourceLanguageCode = substr($currentLanguage, 0, 2);
                             $targetLanguageCode = substr($language2['local'], 0, 2);
 
-                            $this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
+                            //$this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
 
                             $content = (string)Yii::$app->yandexTranslation->getTranslate(
                                 str_replace("&nbsp;", ' ', strip_tags($modelLang->content)),
@@ -314,7 +314,12 @@ class CatalogFactoryController extends Controller
             if (!in_array(0, array_values($saveLang))) {
                 $model->save();
                 $this->stdout("translate ID = " . $model->id . " \n", Console::FG_GREEN);
+            } else if (!in_array(1, array_values($saveLang))) {
+                $model->save();
+                $this->stdout("no translate ID = " . $model->id . " \n", Console::FG_GREEN);
             }
+
+
 
             $this->stdout("-------------------------------" . " \n", Console::FG_GREEN);
         }
