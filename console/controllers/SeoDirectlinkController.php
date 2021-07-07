@@ -117,7 +117,7 @@ class SeoDirectlinkController extends Controller
                                     $targetLanguageCode
                                 );
 
-                                if ($title != '' && $description != '' && $h1 != '' && $content != '') {
+                                if ($title != '' || $description != '' || $h1 != '') {
                                     $transaction = $modelLang2::getDb()->beginTransaction();
                                     try {
                                         $modelLang2->title = $title;
