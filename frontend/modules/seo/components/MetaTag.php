@@ -213,6 +213,8 @@ class MetaTag extends Component
             $this->seo_image_url = (!empty($model['image_url'])) ? $model['image_url'] : $this->seo_image_url;
         }
 
+        // seo_title
+
         $this->seo_title = str_replace(
             [
                 '#городе#',
@@ -234,45 +236,72 @@ class MetaTag extends Component
             $this->seo_title
         );
 
+        // seo_description
+
         $this->seo_description = str_replace(
             [
                 '#городе#',
                 '#nella citta#',
-                '#телефон#'
+                '# місті #', '# місті#', '#місті #', '#місті#',
+                '# Stadt#', '#Stadt#', '#Stadt #', '#Stadt#', 'Stadt#',
+                '#City #', '#City#', '# City #', '# City#',
+                '#city#', '# city#', '#city #', '#city#',
+                '# città #', '#città #', '# città#', '#città#',
+                '# עיר #', '# עיר#', ' עיר #','#עיר#', '# #'
             ],
-            [
-                Yii::$app->city->getCityTitleWhere(),
-                Yii::$app->city->getCityTitleWhere(),
-                Yii::$app->partner->getPartnerPhone()
-            ],
+            Yii::$app->city->getCityTitleWhere(),
             $this->seo_description
         );
+
+        $this->seo_description = str_replace(
+            ['#телефон#'],
+            Yii::$app->partner->getPartnerPhone(),
+            $this->seo_description
+        );
+
+        // seo_h1
 
         $this->seo_h1 = str_replace(
             [
                 '#городе#',
                 '#nella citta#',
-                '#телефон#'
+                '# місті #', '# місті#', '#місті #', '#місті#',
+                '# Stadt#', '#Stadt#', '#Stadt #', '#Stadt#', 'Stadt#',
+                '#City #', '#City#', '# City #', '# City#',
+                '#city#', '# city#', '#city #', '#city#',
+                '# città #', '#città #', '# città#', '#città#',
+                '# עיר #', '# עיר#', ' עיר #','#עיר#', '# #'
             ],
-            [
-                Yii::$app->city->getCityTitleWhere(),
-                Yii::$app->city->getCityTitleWhere(),
-                Yii::$app->partner->getPartnerPhone()
-            ],
+            Yii::$app->city->getCityTitleWhere(),
             $this->seo_h1
         );
+
+        $this->seo_h1 = str_replace(
+            ['#телефон#'],
+            Yii::$app->partner->getPartnerPhone(),
+            $this->seo_h1
+        );
+
+        // seo_content
 
         $this->seo_content = str_replace(
             [
                 '#городе#',
                 '#nella citta#',
-                '#телефон#'
+                '# місті #', '# місті#', '#місті #', '#місті#',
+                '# Stadt#', '#Stadt#', '#Stadt #', '#Stadt#', 'Stadt#',
+                '#City #', '#City#', '# City #', '# City#',
+                '#city#', '# city#', '#city #', '#city#',
+                '# città #', '#città #', '# città#', '#città#',
+                '# עיר #', '# עיר#', ' עיר #','#עיר#', '# #'
             ],
-            [
-                Yii::$app->city->getCityTitleWhere(),
-                Yii::$app->city->getCityTitleWhere(),
-                Yii::$app->partner->getPartnerPhone()
-            ],
+            Yii::$app->city->getCityTitleWhere(),
+            $this->seo_content
+        );
+
+        $this->seo_content = str_replace(
+            ['#телефон#'],
+            Yii::$app->partner->getPartnerPhone(),
             $this->seo_content
         );
 
