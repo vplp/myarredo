@@ -294,6 +294,7 @@ class Factory extends ActiveRecord
     {
         if (in_array($this->scenario, ['backend'])) {
             $this->editor_id = Yii::$app->user->id;
+            $this->mark = '0';
         }
 
         return parent::beforeSave($insert);

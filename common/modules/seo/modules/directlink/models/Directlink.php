@@ -64,6 +64,19 @@ class Directlink extends \thread\modules\seo\modules\directlink\models\Directlin
     }
 
     /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        if (in_array($this->scenario, ['backend'])) {
+            $this->mark = '0';
+        }
+
+        return parent::beforeSave($insert);
+    }
+
+    /**
      * @return array
      */
     public function attributeLabels()
