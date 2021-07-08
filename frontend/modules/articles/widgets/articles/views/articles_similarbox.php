@@ -19,7 +19,12 @@ use frontend\modules\articles\models\Article;
                 <div class="article-similar-item">
                     <div class="article-item-box">
                         <a class="article-item-imglink" href="<?= $article->getUrl() ?>">
-                            <div class="article-item-img"><?= Html::img(Article::getImageThumb($article['image_link'])) ?></div>
+                            <div class="article-item-img">
+                                <?= Html::img(
+                                    Article::getImageThumb($article['image_link']),
+                                    ['alt' => $article['lang']['title']]
+                                ) ?>
+                            </div>
                         </a>
                         <div class="article-item-descr">
                             <div class="article-item-title"><?= $article['lang']['title'] ?></div>

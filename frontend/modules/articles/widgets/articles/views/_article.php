@@ -11,7 +11,10 @@ use frontend\modules\articles\models\Article;
     <div class="articles_i_l">
         <?php if (Article::isImage($article['image_link'])) { ?>
             <div class="articles_i_img">
-                <?= Html::img(Article::getImageThumb($article['image_link'])) ?>
+                <?= Html::img(
+                    Article::getImageThumb($article['image_link']),
+                    ['alt' => $article['lang']['title']]
+                ) ?>
             </div>
         <?php } ?>
     </div>

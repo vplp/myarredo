@@ -39,7 +39,8 @@ use frontend\modules\news\models\Article;
                                                     'class' => 'lazy',
                                                     'data-src' => Article::getImageThumb($article['image_link']),
                                                     'width' => '290px',
-                                                    'height' => '190px'
+                                                    'height' => '190px',
+                                                    'alt' => $article['lang']['title']
                                                 ]) ?>
                                             </div>
                                         </a>

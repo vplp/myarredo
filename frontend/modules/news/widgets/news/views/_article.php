@@ -38,7 +38,10 @@ use frontend\modules\news\models\ArticleForPartners;
                         <?= $article['lang']['content'] ?>
 
                         <?php if (Article::isImage($article['image_link'])) {
-                            echo Html::img(Article::getImageThumb($article['image_link']), ['class' => '']);
+                            echo Html::img(
+                                Article::getImageThumb($article['image_link']),
+                                ['alt' => $article['lang']['title']]
+                            );
                         } ?>
 
                     </div>

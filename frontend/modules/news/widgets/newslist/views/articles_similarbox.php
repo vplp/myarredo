@@ -19,7 +19,12 @@ use frontend\modules\news\models\Article;
                 <div class="article-similar-item">
                     <div class="article-item-box">
                         <a class="article-item-imglink" href="<?= $article->getUrl() ?>">
-                            <div class="article-item-img"><?= Html::img(Article::getImageThumb($article['image_link'])) ?></div>
+                            <div class="article-item-img">
+                                <?= Html::img(
+                                    Article::getImageThumb($article['image_link']),
+                                    ['alt' => $article['lang']['title']]
+                                ) ?>
+                            </div>
                         </a>
                         <div class="article-item-descr">
                             <div class="article-item-title"><?= $article['lang']['title'] ?></div>
@@ -31,7 +36,8 @@ use frontend\modules\news\models\Article;
                                     ['class' => 'btn-aricle-more']
                                 ) ?>
                                 <div class="article-item-data">
-                                    <i class="fa fa-calendar" aria-hidden="true"></i> <?= $article->getPublishedTime() ?>
+                                    <i class="fa fa-calendar"
+                                       aria-hidden="true"></i> <?= $article->getPublishedTime() ?>
                                 </div>
                             </div>
                         </div>
