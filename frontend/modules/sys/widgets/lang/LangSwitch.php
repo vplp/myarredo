@@ -60,7 +60,10 @@ class LangSwitch extends Widget
         $keys = Yii::$app->catalogFilter->keys;
 
         $this->current['image'] = Language::isImage($this->current['img_flag'])
-            ? Html::img(Language::getImage($this->current['img_flag']), ['width' => '16', 'height' => '11'])
+            ? Html::img(
+                Language::getImage($this->current['img_flag']),
+                ['width' => '16', 'height' => '11', 'alt' => $this->current['label']]
+            )
             : '<i class="fa fa-globe" aria-hidden="true"></i>';
 
         $items = [];
@@ -81,7 +84,10 @@ class LangSwitch extends Widget
             }
 
             $image = Language::isImage($lang['img_flag'])
-                ? Html::img(Language::getImage($lang['img_flag']), ['width' => '16', 'height' => '11'])
+                ? Html::img(
+                    Language::getImage($lang['img_flag']),
+                    ['width' => '16', 'height' => '11', 'alt' => $lang['label']]
+                )
                 : '<i class="fa fa-globe" aria-hidden="true"></i>';
 
             // $url
