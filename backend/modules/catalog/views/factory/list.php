@@ -15,6 +15,7 @@ use backend\modules\sys\modules\logbook\models\Logbook;
 
 /**
  * @var $model Factory
+ * @var $filter Factory
  * @var $modelLang FactoryLang
  * @var $form ActiveForm
  */
@@ -57,13 +58,29 @@ echo GridView::widget([
             'filter' => GridViewFilter::selectOne($filter, 'editor_id', [0 => '-'] + Factory::dropDownListEditor()),
         ],
         [
+            'label' => 'Время обновления',
+            'format' => 'raw',
+            'value' => function ($model) {
+                /** @var $model Factory */
+
+                if ($model->editor && Logbook::getCountItems($model->id, 'Factory')) {
+                    $dataProvider = Logbook::getLastItem($model->id, 'Factory');
+                    return date('j.m.Y H:i', $dataProvider->updated_at);
+                } else {
+                    return '';
+                }
+            },
+            'filter' => false,
+        ],
+        [
             'attribute' => 'updated_at',
             'value' => function ($model) {
                 /** @var $model Factory */
                 return date('j.m.Y H:i', $model->updated_at);
             },
             'format' => 'raw',
-            'filter' => false
+            'filter' => false,
+            'visible' => false
         ],
         [
             'class' => ActionStatusColumn::class,
