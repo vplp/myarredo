@@ -37,7 +37,7 @@ if (window.screen.width >= 768) {
                 sliderLayout += elem.percent ? '<div class="prod-saving-percentage">'+ elem.percent +'</div>' : '';
                 
                 sliderLayout += '<div class="img-cont">' +
-                    '<img src="'+ elem.src +'" loading="lazy" alt="">' +
+                    '<img src="'+ elem.src +'" loading="lazy" alt="'+elem.text+'">' +
                     '<span class="background"></span>' +
                 '</div>' +
                 '<div class="add-item-text">' +
