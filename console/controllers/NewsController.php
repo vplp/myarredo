@@ -90,31 +90,26 @@ class NewsController extends Controller
                                 $modelLang2->rid = $model->id;
                                 $modelLang2->lang = Yii::$app->language;
 
-
                                 $sourceLanguageCode = substr($currentLanguage, 0, 2);
                                 $targetLanguageCode = substr($language2['local'], 0, 2);
 
                                 $this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
 
                                 $title = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    str_replace("&nbsp;", ' ', strip_tags($modelLang->title)),
+                                    $modelLang->title, //str_replace("&nbsp;", ' ', strip_tags($modelLang->title)),
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );
                                 $description = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    str_replace("&nbsp;", ' ', strip_tags($modelLang->description)),
+                                    $modelLang->description, //str_replace("&nbsp;", ' ', strip_tags($modelLang->description)),
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );
                                 $content = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    str_replace("&nbsp;", ' ', strip_tags($modelLang->content)),
+                                    $modelLang->content, //str_replace("&nbsp;", ' ', strip_tags($modelLang->content)),
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );
-
-//                            $title = $modelLang->title;
-//                            $description = $modelLang->description;
-//                            $content = $modelLang->content;
 
                                 if ($title != '' || $description != '' || $content != '') {
                                     $transaction = $modelLang2::getDb()->beginTransaction();
