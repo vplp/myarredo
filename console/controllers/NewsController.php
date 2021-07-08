@@ -111,9 +111,9 @@ class NewsController extends Controller
                                     $targetLanguageCode
                                 );
 
-                                $title = html_entity_decode(htmlentities($title));
-                                $description = html_entity_decode(htmlentities($description));
-                                $content = html_entity_decode(htmlentities($content));
+                                $title = html_entity_decode($title);
+                                $description = html_entity_decode($description);
+                                $content = html_entity_decode($content);
 
                                 /* !!! */ echo  '<pre style="color:red;">'; print_r($content); echo '</pre>'; /* !!! */
 
