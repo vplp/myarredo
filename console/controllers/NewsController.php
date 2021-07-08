@@ -113,6 +113,9 @@ class NewsController extends Controller
 
                                 $title = html_entity_decode($title);
                                 $description = html_entity_decode($description);
+
+                                $content = str_replace(['& ', ' / ', ' & ', '< '], ['&', '/', '&', '<'], $content);
+
                                 $content = html_entity_decode($content);
 
                                 /* !!! */ echo  '<pre style="color:red;">'; print_r($content); echo '</pre>'; /* !!! */
