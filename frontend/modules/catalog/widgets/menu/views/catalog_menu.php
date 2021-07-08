@@ -24,7 +24,10 @@ use frontend\modules\catalog\models\Category;
                     <li>
                         <a href="<?= Category::getUrl($model[Yii::$app->languages->getDomainAlias()]) ?>">
                             <div class="img-cont">
-                                <?= Html::img(Category::getImage($model['image_link3']), ['alt' => $model['lang']['title']]); ?>
+                                <?= Html::img(
+                                    Category::getImage($model['image_link3']),
+                                    ['alt' => $model['lang']['title']]
+                                ); ?>
                             </div>
                             <?= $model['lang']['title'] ?>
                         </a>
@@ -52,7 +55,10 @@ use frontend\modules\catalog\models\Category;
                         <li>
                             <a href="<?= Category::getUrl($model[Yii::$app->languages->getDomainAlias()], '/catalog/sale/list') ?>">
                                 <div class="img-cont">
-                                    <?= Html::img(Category::getImage($model['image_link3']), ['alt' => $model['lang']['title']]); ?>
+                                    <?= Html::img(
+                                        Category::getImage($model['image_link3']),
+                                        ['alt' => $model['lang']['title']]
+                                    ); ?>
                                 </div>
                                 <?= $model['lang']['title'] ?>
                             </a>
