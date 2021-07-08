@@ -26,7 +26,10 @@ use frontend\modules\catalog\models\Category;
                             <div class="img-cont">
                                 <?= Html::img(
                                     Category::getImage($model['image_link3']),
-                                    ['alt' => $model['lang']['title']]
+                                    [
+                                        'alt' => $model['lang']['title'],
+                                        'title' => $model['lang']['title']
+                                    ]
                                 ); ?>
                             </div>
                             <?= $model['lang']['title'] ?>
@@ -57,7 +60,10 @@ use frontend\modules\catalog\models\Category;
                                 <div class="img-cont">
                                     <?= Html::img(
                                         Category::getImage($model['image_link3']),
-                                        ['alt' => $model['lang']['title']]
+                                        [
+                                            'alt' => $model['lang']['title'],
+                                            'title' => $model['lang']['title']
+                                        ]
                                     ); ?>
                                 </div>
                                 <?= $model['lang']['title'] ?>
