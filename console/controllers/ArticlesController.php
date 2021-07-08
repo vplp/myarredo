@@ -45,7 +45,7 @@ class ArticlesController extends Controller
             ->andFilterWhere([
                 'mark' => '0',
             ])
-            ->limit(20)
+            ->limit(1)
             ->orderBy(Article::tableName() . '.id DESC')
             ->all();
 
@@ -89,7 +89,6 @@ class ArticlesController extends Controller
                                 $modelLang2 = new ArticleLang();
                                 $modelLang2->rid = $model->id;
                                 $modelLang2->lang = Yii::$app->language;
-
 
                                 $sourceLanguageCode = substr($currentLanguage, 0, 2);
                                 $targetLanguageCode = substr($language2['local'], 0, 2);

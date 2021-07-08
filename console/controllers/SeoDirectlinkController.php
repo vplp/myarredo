@@ -45,7 +45,7 @@ class SeoDirectlinkController extends Controller
             ->andFilterWhere([
                 'mark' => '0',
             ])
-            ->limit(20)
+            ->limit(1)
             ->orderBy(Directlink::tableName() . '.id DESC')
             ->all();
 
