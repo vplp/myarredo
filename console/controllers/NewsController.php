@@ -114,45 +114,40 @@ class NewsController extends Controller
                                 $title = html_entity_decode($title);
                                 $description = html_entity_decode($description);
 
-                                $content = str_replace(
-                                    ['& ', ' / ', ' & ', '< ', ' >', '&quot ', '&quot>'],
-                                    ['&', '/', '&', '<', '>', '&quot:', '&quot;>'],
-                                    $content
-                                );
-
-                                $content = html_entity_decode($content);
-
-                                /* !!! */
-                                echo '<pre style="color:red;">';
-                                print_r($content);
-                                echo '</pre>'; /* !!! */
-
                                 $saveLang[] = 0;
 
-//                                if ($title != '' || $description != '' || $content != '') {
-//                                    $transaction = $modelLang2::getDb()->beginTransaction();
-//                                    try {
-//                                        $modelLang2->title = $title;
-//                                        $modelLang2->description = $description;
-//                                        $modelLang2->content = $content;
-//
-//                                        $modelLang2->setScenario('backend');
-//
-//                                        if ($saveLang[] = intval($modelLang2->save())) {
-//                                            $transaction->commit();
-//                                            $this->stdout("save " . $targetLanguageCode . " \n", Console::FG_GREEN);
-//                                        } else {
-//                                            foreach ($modelLang2->errors as $attribute => $errors) {
-//                                                $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
-//                                            }
-//                                        }
-//                                    } catch (Exception $e) {
-//                                        $transaction->rollBack();
-//                                        throw new Exception($e);
-//                                    }
-//                                } else {
-//                                    $saveLang[] = 0;
-//                                }
+                                if ($title != '' || $description != '' || $content != '') {
+                                    $transaction = $modelLang2::getDb()->beginTransaction();
+                                    try {
+                                        $modelLang2->title = $title;
+                                        $modelLang2->description = $description;
+
+                                        $content = str_replace(
+                                            ['& ', ' / ', ' & ', '< p >', '< ', ' >', '&quot ', '&quot>'],
+                                            ['&', '/', '&', '<p>', '<', '>', '&quot:', '&quot;>'],
+                                            $content
+                                        );
+                                        $content = html_entity_decode($content);
+
+                                        $modelLang2->content = $content;
+
+                                        $modelLang2->setScenario('backend');
+
+                                        if ($saveLang[] = intval($modelLang2->save())) {
+                                            $transaction->commit();
+                                            $this->stdout("save " . $targetLanguageCode . " \n", Console::FG_GREEN);
+                                        } else {
+                                            foreach ($modelLang2->errors as $attribute => $errors) {
+                                                $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
+                                            }
+                                        }
+                                    } catch (Exception $e) {
+                                        $transaction->rollBack();
+                                        throw new Exception($e);
+                                    }
+                                } else {
+                                    $saveLang[] = 0;
+                                }
                             }
                         }
                     }
