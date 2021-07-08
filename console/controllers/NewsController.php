@@ -114,9 +114,9 @@ class NewsController extends Controller
                                 if ($title != '' || $description != '' || $content != '') {
                                     $transaction = $modelLang2::getDb()->beginTransaction();
                                     try {
-                                        $modelLang2->title = $title;
-                                        $modelLang2->description = $description;
-                                        $modelLang2->content = $content;
+                                        $modelLang2->title = html_entity_decode($title);
+                                        $modelLang2->description = html_entity_decode($description);
+                                        $modelLang2->content = html_entity_decode($content);
 
                                         $modelLang2->setScenario('backend');
 
