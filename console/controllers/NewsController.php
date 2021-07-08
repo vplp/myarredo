@@ -45,7 +45,7 @@ class NewsController extends Controller
             ->andFilterWhere([
                 'mark' => '0',
             ])
-            ->limit(1)
+            ->limit(5)
             ->orderBy(Article::tableName() . '.id DESC')
             ->all();
 
