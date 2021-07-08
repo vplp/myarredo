@@ -60,6 +60,21 @@ echo GridView::widget([
             'filter' => GridViewFilter::selectOne($filter, 'editor_id', [0 => '-'] + Composition::dropDownListEditor()),
         ],
         [
+            'label' => 'Время обновления',
+            'format' => 'raw',
+            'value' => function ($model) {
+                /** @var $model Factory */
+
+                if ($model->editor && Logbook::getCountItems($model->id, 'Composition')) {
+                    $dataProvider = Logbook::getLastItem($model->id, 'Composition');
+                    return date('j.m.Y H:i', $dataProvider->updated_at);
+                } else {
+                    return '';
+                }
+            },
+            'filter' => false,
+        ],
+        [
             'attribute' => 'category',
             'value' => function ($model) {
                 /** @var $model Composition */
