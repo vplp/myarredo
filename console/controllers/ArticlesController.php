@@ -44,8 +44,9 @@ class ArticlesController extends Controller
         $models = Article::find()
             ->andFilterWhere([
                 'mark' => '0',
+                'city_id' => 0
             ])
-            ->limit(5)
+            ->limit(3)
             ->orderBy(Article::tableName() . '.id DESC')
             ->all();
 
@@ -116,6 +117,19 @@ class ArticlesController extends Controller
                                     try {
                                         $modelLang2->title = $title;
                                         $modelLang2->description = $description;
+
+                                        $content = str_replace(
+                                            ['& ', ' / ', ' & ', '< p >', '< ', ' >', '&quot ', '&quot>', '# ', ' #', ' = '],
+                                            ['&', '/', '&', '<p>', '<', '>', '&quot:', '&quot;>', '#', '#', '='],
+                                            $content
+                                        );
+                                        $content = html_entity_decode($content);
+                                        $content = str_replace(
+                                            ['< p >', '< ', ' >'],
+                                            ['<p>', '<', '>'],
+                                            $content
+                                        );
+
                                         $modelLang2->content = $content;
 
                                         $modelLang2->setScenario('backend');

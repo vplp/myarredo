@@ -224,7 +224,7 @@ class CatalogFactoryController extends Controller
             ->andFilterWhere([
                 'mark' => '0',
             ])
-            ->limit(1)
+            ->limit(3)
             ->orderBy(Factory::tableName() . '.id DESC')
             ->all();
 
@@ -283,6 +283,18 @@ class CatalogFactoryController extends Controller
                                 if ($content != '') {
                                     $transaction = $modelLang2::getDb()->beginTransaction();
                                     try {
+                                        $content = str_replace(
+                                            ['& ', ' / ', ' & ', '< p >', '< ', ' >', '&quot ', '&quot>', '# ', ' #', ' = '],
+                                            ['&', '/', '&', '<p>', '<', '>', '&quot:', '&quot;>', '#', '#', '='],
+                                            $content
+                                        );
+                                        $content = html_entity_decode($content);
+                                        $content = str_replace(
+                                            ['< p >', '< ', ' >'],
+                                            ['<p>', '<', '>'],
+                                            $content
+                                        );
+
                                         $modelLang2->content = $content;
 
                                         $modelLang2->setScenario('backend');

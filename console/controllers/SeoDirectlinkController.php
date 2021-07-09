@@ -120,9 +120,34 @@ class SeoDirectlinkController extends Controller
                                 if ($title != '' || $description != '' || $h1 != '') {
                                     $transaction = $modelLang2::getDb()->beginTransaction();
                                     try {
+                                        $title = str_replace(
+                                            ['& ', ' / ', ' & ', '< p >', '< ', ' >', '&quot ', '&quot>', '# ', ' #', ' = '],
+                                            ['&', '/', '&', '<p>', '<', '>', '&quot:', '&quot;>', '#', '#', '='],
+                                            $title
+                                        );
+                                        $title = html_entity_decode($title);
+                                        $title = str_replace(
+                                            ['< p >', '< ', ' >'],
+                                            ['<p>', '<', '>'],
+                                            $title
+                                        );
+
                                         $modelLang2->title = $title;
                                         $modelLang2->description = $description;
                                         $modelLang2->h1 = $h1;
+
+                                        $content = str_replace(
+                                            ['& ', ' / ', ' & ', '< p >', '< ', ' >', '&quot ', '&quot>', '# ', ' #', ' = '],
+                                            ['&', '/', '&', '<p>', '<', '>', '&quot:', '&quot;>', '#', '#', '='],
+                                            $content
+                                        );
+                                        $content = html_entity_decode($content);
+                                        $content = str_replace(
+                                            ['< p >', '< ', ' >'],
+                                            ['<p>', '<', '>'],
+                                            $content
+                                        );
+
                                         $modelLang2->content = $content;
 
                                         $modelLang2->setScenario('backend');
