@@ -8,6 +8,7 @@ use backend\modules\catalog\models\{
 use thread\widgets\grid\{
     ActionStatusColumn, GridViewFilter
 };
+use backend\modules\sys\modules\logbook\models\Logbook;
 
 /**
  * @var $model Product

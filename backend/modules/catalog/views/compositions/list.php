@@ -8,6 +8,7 @@ use backend\modules\catalog\models\{
     Category, Factory, Composition, CompositionLang
 };
 use backend\app\bootstrap\ActiveForm;
+use backend\modules\sys\modules\logbook\models\Logbook;
 
 /**
  * @var $form ActiveForm
