@@ -97,22 +97,22 @@ class SeoDirectlinkController extends Controller
                                 $this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
 
                                 $title = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    str_replace("&nbsp;", ' ', strip_tags($modelLang->title)),
+                                    $modelLang->title,
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );
                                 $description = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    str_replace("&nbsp;", ' ', strip_tags($modelLang->description)),
+                                    $modelLang->description,
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );
                                 $h1 = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    str_replace("&nbsp;", ' ', strip_tags($modelLang->h1)),
+                                    $modelLang->h1,
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );
                                 $content = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    str_replace("&nbsp;", ' ', strip_tags($modelLang->content)),
+                                    $modelLang->content,
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );
