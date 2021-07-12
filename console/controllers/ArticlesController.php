@@ -119,8 +119,8 @@ class ArticlesController extends Controller
                                         $modelLang2->description = $description;
 
                                         $content = str_replace(
-                                            ['& ', ' / ', ' & ', '< p >', '< ', ' >', '&quot ', '&quot>', '# ', ' = '],
-                                            ['&', '/', '&', '<p>', '<', '>', '&quot:', '&quot;>', '#', '='],
+                                            ['& ', ' / ', ' & ', '< p >', '< ', ' >', '&quot ', '&quot>'],
+                                            ['&', '/', '&', '<p>', '<', '>', '&quot:', '&quot;>'],
                                             $content
                                         );
                                         $content = html_entity_decode($content);
