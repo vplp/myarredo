@@ -272,8 +272,6 @@ class CatalogFactoryController extends Controller
                                 $sourceLanguageCode = substr($currentLanguage, 0, 2);
                                 $targetLanguageCode = substr($language2['local'], 0, 2);
 
-                                //$this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
-
                                 $content = (string)Yii::$app->yandexTranslation->getTranslate(
                                     str_replace("&nbsp;", ' ', strip_tags($modelLang->content)),
                                     $sourceLanguageCode,
