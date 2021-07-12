@@ -282,8 +282,8 @@ class CatalogFactoryController extends Controller
                                     $transaction = $modelLang2::getDb()->beginTransaction();
                                     try {
                                         $content = str_replace(
-                                            ['& ', ' / ', ' & ', '< p >', '< ', ' >', '&quot ', '&quot>', '# ', ' #', ' = '],
-                                            ['&', '/', '&', '<p>', '<', '>', '&quot:', '&quot;>', '#', '#', '='],
+                                            ['& ', ' / ', ' & ', '< p >', '< ', ' >', '&quot ', '&quot>', '# ', ' = '],
+                                            ['&', '/', '&', '<p>', '<', '>', '&quot:', '&quot;>', '#', '='],
                                             $content
                                         );
                                         $content = html_entity_decode($content);

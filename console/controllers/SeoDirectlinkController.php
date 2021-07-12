@@ -121,8 +121,8 @@ class SeoDirectlinkController extends Controller
                                     $transaction = $modelLang2::getDb()->beginTransaction();
                                     try {
                                         $title = str_replace(
-                                            ['& ', ' / ', ' & ', '< p >', '< ', ' >', '&quot ', '&quot>', '# ', ' #', ' = '],
-                                            ['&', '/', '&', '<p>', '<', '>', '&quot:', '&quot;>', '#', '#', '='],
+                                            ['& ', ' / ', ' & ', '< p >', '< ', ' >', '&quot ', '&quot>', '# ', ' = '],
+                                            ['&', '/', '&', '<p>', '<', '>', '&quot:', '&quot;>', '#', '='],
                                             $title
                                         );
                                         $title = html_entity_decode($title);
@@ -137,8 +137,8 @@ class SeoDirectlinkController extends Controller
                                         $modelLang2->h1 = $h1;
 
                                         $content = str_replace(
-                                            ['& ', ' / ', ' & ', '< p >', '< ', ' >', '&quot ', '&quot>', '# ', ' #', ' = '],
-                                            ['&', '/', '&', '<p>', '<', '>', '&quot:', '&quot;>', '#', '#', '='],
+                                            ['& ', ' / ', ' & ', '< p >', '< ', ' >', '&quot ', '&quot>', '# ', ' = '],
+                                            ['&', '/', '&', '<p>', '<', '>', '&quot:', '&quot;>', '#', '='],
                                             $content
                                         );
                                         $content = html_entity_decode($content);
