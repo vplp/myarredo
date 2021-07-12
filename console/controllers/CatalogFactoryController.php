@@ -224,7 +224,7 @@ class CatalogFactoryController extends Controller
             ->andFilterWhere([
                 'mark' => '0',
             ])
-            ->limit(3)
+            ->limit(10)
             ->orderBy(Factory::tableName() . '.id DESC')
             ->all();
 
