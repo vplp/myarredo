@@ -124,9 +124,10 @@ $images = $model->getGalleryImageThumb();
                                     <span class="for-lastsale-curval">
                                         <?php
                                         $price_from = $model['price_from'];
+                                        $factory_price = $model['factory_price'];
                                         $factory_discount = $model['factory']['factory_discount'];
 
-                                        $price = (($price_from * $factory_discount) / 100) * 2 - ((($price_from * $factory_discount) / 100) * 2 * 15 / 100);
+                                        $price = (($factory_price * $factory_discount) / 100) * 2 - ((($factory_price * $factory_discount) / 100) * 2 * 15 / 100);
 
                                         echo Yii::$app->currency->getValue($price, 'EUR');
                                         ?>
