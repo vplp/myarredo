@@ -48,7 +48,7 @@ class NewsList extends Widget
             ->limit($this->limit);
 
         if ($alias = Yii::$app->request->get('alias')) {
-            $query->andFilterWhere(['<>', 'alias', $alias]);
+            $query->andFilterWhere(['<>', Article::tableName() . '.alias', $alias]);
         }
 
         $this->model = $query->all();

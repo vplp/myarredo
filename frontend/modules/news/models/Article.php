@@ -54,7 +54,7 @@ class Article extends \common\modules\news\models\Article
         $query = parent::findBase()
             ->innerJoinWith(['lang'])
             ->enabled()
-            ->orderBy(['published_time' => SORT_DESC]);
+            ->orderBy([self::tableName() . '.published_time' => SORT_DESC]);
 
         $query
             ->innerJoinWith(['cities'])

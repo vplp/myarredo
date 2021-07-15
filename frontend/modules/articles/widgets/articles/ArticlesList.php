@@ -58,11 +58,11 @@ class ArticlesList extends Widget
             ->limit($this->limit);
 
         if ($alias = Yii::$app->request->get('alias')) {
-            $query->andFilterWhere(['<>', 'alias', $alias]);
+            $query->andFilterWhere(['<>', Article::tableName() . '.alias', $alias]);
         }
 
         if ($this->category_id) {
-            $query->andFilterWhere(['=', 'category_id', $this->category_id]);
+            $query->andFilterWhere(['=', Article::tableName() . '.category_id', $this->category_id]);
         }
 
         if ($this->city_id) {
@@ -71,7 +71,7 @@ class ArticlesList extends Widget
                 ->andFilterWhere([
                     '=',
                     ArticleRelCity::tableName() . '.city_id' => Yii::$app->city->getCityId()
-                ]);    
+                ]);
         }
 
         $this->model = $query->all();
