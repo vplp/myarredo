@@ -43,10 +43,9 @@ class NewsController extends Controller
         // Article
         $models = Article::find()
             ->andFilterWhere([
-                'mark' => '0',
-                'city_id' => 0
+                'mark' => '0'
             ])
-            ->limit(3)
+            ->limit(5)
             ->orderBy(Article::tableName() . '.id DESC')
             ->all();
 
@@ -97,17 +96,17 @@ class NewsController extends Controller
                                 $this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
 
                                 $title = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    $modelLang->title, //str_replace("&nbsp;", ' ', strip_tags($modelLang->title)),
+                                    $modelLang->title,
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );
                                 $description = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    $modelLang->description, //str_replace("&nbsp;", ' ', strip_tags($modelLang->description)),
+                                    $modelLang->description,
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );
                                 $content = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    $modelLang->content, //str_replace("&nbsp;", ' ', strip_tags($modelLang->content)),
+                                    $modelLang->content,
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );

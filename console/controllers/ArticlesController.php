@@ -44,9 +44,8 @@ class ArticlesController extends Controller
         $models = Article::find()
             ->andFilterWhere([
                 'mark' => '0',
-                'city_id' => 0
             ])
-            ->limit(3)
+            ->limit(5)
             ->orderBy(Article::tableName() . '.id DESC')
             ->all();
 
@@ -97,7 +96,7 @@ class ArticlesController extends Controller
                                 $this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
 
                                 $title = (string)Yii::$app->yandexTranslation->getTranslate(
-                                    $modelLang->title, //str_replace("&nbsp;", ' ', strip_tags($modelLang->title)),
+                                    $modelLang->title,
                                     $sourceLanguageCode,
                                     $targetLanguageCode
                                 );
