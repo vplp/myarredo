@@ -34,7 +34,7 @@ $keys = Yii::$app->catalogFilter->keys;
                         if ($model['factory']) {
                             $paramsUrl[$keys['factory']][] = $model['factory']['alias'];
                         }
-                        $paramsUrl[$keys['category']] = $model['category']['alias'];
+                        $paramsUrl[$keys['category']] = $model['category'][Yii::$app->languages->getDomainAlias()];
 
                         echo Html::a(
                             $model['category']['lang']['title'],
@@ -64,7 +64,7 @@ $keys = Yii::$app->catalogFilter->keys;
                             if ($model['factory']) {
                                 $paramsUrl[$keys['factory']][] = $model['factory']['alias'];
                             }
-                            $paramsUrl[$keys['style']][] = $item['alias'];
+                            $paramsUrl[$keys['style']][] = $item[Yii::$app->languages->getDomainAlias()];
 
                             $array[] = Html::a(
                                 $item['lang']['title'],
@@ -87,7 +87,7 @@ $keys = Yii::$app->catalogFilter->keys;
                             if ($model['factory']) {
                                 $paramsUrl[$keys['factory']][] = $model['factory']['alias'];
                             }
-                            $paramsUrl[$keys['type']][] = $item['alias'];
+                            $paramsUrl[$keys['type']][] = $item[Yii::$app->languages->getDomainAlias()];
 
                             $array[] = Html::a(
                                 $item['lang']['title'],
