@@ -31,7 +31,7 @@ class Article extends ArticleModel implements BaseBackendSearchModel
         return [
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
-            [['city_id', 'category_id', 'factory_id'], 'integer'],
+            [['category_id', 'factory_id'], 'integer'],
             [
                 ['published_time'],
                 'date',
@@ -88,7 +88,6 @@ class Article extends ArticleModel implements BaseBackendSearchModel
             ->andFilterWhere(['=', 'published', $this->published])
             ->andFilterWhere(['=', 'published_time', $this->published_time])
             ->andFilterWhere(['=', 'category_id', $this->category_id])
-            ->andFilterWhere(['=', 'city_id', $this->city_id])
             ->andFilterWhere(['=', 'factory_id', $this->factory_id]);
         //
         $query->andFilterWhere(['>=', 'published_time', $this->date_from]);

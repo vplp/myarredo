@@ -20,7 +20,6 @@ use thread\app\base\models\ActiveRecord;
  *
  * @property integer $id
  * @property string $alias
- * @property integer $city_id
  * @property integer $category_id
  * @property integer $factory_id
  * @property string $image_link
@@ -35,6 +34,7 @@ use thread\app\base\models\ActiveRecord;
  * @property Factory $factory
  * @property Types[] $types
  * @property Specification[] $styles
+ * @property City[] $cities
  * @property ArticleLang $lang
  *
  * @package common\modules\articles\models
@@ -69,6 +69,7 @@ class Article extends ActiveRecord
                 'relations' => [
                     'types_ids' => 'types',
                     'styles_ids' => 'styles',
+                    'city_ids' => 'cities',
                 ],
             ],
             [
@@ -91,7 +92,7 @@ class Article extends ActiveRecord
     {
         return [
             [['alias'], 'required'],
-            [['city_id', 'category_id', 'factory_id', 'created_at', 'updated_at'], 'integer'],
+            [['category_id', 'factory_id', 'created_at', 'updated_at'], 'integer'],
             [
                 ['published_time'],
                 'date',
@@ -105,6 +106,7 @@ class Article extends ActiveRecord
                 [
                     'types_ids',
                     'styles_ids',
+                    'city_ids',
                 ],
                 'each',
                 'rule' => ['integer']
@@ -123,7 +125,6 @@ class Article extends ActiveRecord
             'mark' => ['mark'],
             'backend' => [
                 'alias',
-                'city_id',
                 'category_id',
                 'factory_id',
                 'image_link',
@@ -132,6 +133,7 @@ class Article extends ActiveRecord
                 'deleted',
                 'types_ids',
                 'styles_ids',
+                'city_ids',
                 'mark'
             ],
         ];
@@ -145,7 +147,6 @@ class Article extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
-            'city_id' => Yii::t('app', 'City'),
             'category_id' => Yii::t('app', 'Category'),
             'factory_id' => Yii::t('app', 'Factory'),
             'image_link' => Yii::t('app', 'Image link'),
@@ -156,6 +157,7 @@ class Article extends ActiveRecord
             'deleted' => Yii::t('app', 'Deleted'),
             'types_ids' => Yii::t('app', 'Types'),
             'styles_ids' => Yii::t('app', 'Styles'),
+            'city_ids' => Yii::t('app', 'Cities'),
             'mark'
         ];
     }
@@ -183,10 +185,13 @@ class Article extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
-    public function getCity()
+    public function getCities()
     {
-        return $this->hasOne(City::class, ['id' => 'city_id']);
+        return $this
+            ->hasMany(City::class, ['id' => 'city_id'])
+            ->viaTable(ArticleRelCity::tableName(), ['article_id' => 'id']);
     }
 
     /**

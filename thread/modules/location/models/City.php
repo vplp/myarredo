@@ -124,4 +124,12 @@ class City extends ActiveRecord
     {
         return $this->hasOne(Country::class, ['id' => 'country_id']);
     }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return (isset($this->lang->title)) ? $this->lang->title : "{{$this->alias}}";
+    }
 }

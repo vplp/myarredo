@@ -17,14 +17,18 @@ echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
+        'id',
         [
-            'attribute' => 'city_id',
-            'value' => 'city.lang.title',
-            'filter' => GridViewFilter::dropDownList(
-                $filter,
-                'city_id',
-                City::dropDownList()
-            ),
+            'format' => 'raw',
+            'label' => Yii::t('app', 'Cities'),
+            'value' => function ($model) {
+                /** @var $model Article */
+                $result = [];
+                foreach ($model->cities as $city) {
+                    $result[] = $city->getTitle();
+                }
+                return ($result) ? implode(' | ', $result) : '-';
+            },
         ],
         [
             'attribute' => 'category_id',

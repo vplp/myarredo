@@ -3,7 +3,6 @@
 namespace backend\modules\articles\models;
 
 use common\modules\articles\models\Article as CommonArticleModel;
-//
 use thread\modules\seo\behaviors\SeoBehavior;
 use thread\app\model\interfaces\BaseBackendModel;
 

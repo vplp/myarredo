@@ -107,7 +107,7 @@ class Article extends ArticleModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = ArticleModel::find()->joinWith(['lang'])->undeleted();
+        $query = ArticleModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -117,7 +117,7 @@ class Article extends ArticleModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = ArticleModel::find()->joinWith(['lang'])->deleted();
+        $query = ArticleModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }

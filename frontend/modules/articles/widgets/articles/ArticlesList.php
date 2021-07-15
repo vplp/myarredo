@@ -5,7 +5,7 @@ namespace frontend\modules\articles\widgets\articles;
 use Yii;
 use yii\base\Widget;
 use frontend\modules\articles\models\{
-    Article, ArticleLang
+    Article, ArticleLang, ArticleRelCity
 };
 
 /**
@@ -66,7 +66,12 @@ class ArticlesList extends Widget
         }
 
         if ($this->city_id) {
-            $query->andFilterWhere(['=', 'city_id', $this->city_id]);
+            $query
+                ->innerJoinWith(['cities'])
+                ->andFilterWhere([
+                    '=',
+                    ArticleRelCity::tableName() . '.city_id' => Yii::$app->city->getCityId()
+                ]);    
         }
 
         $this->model = $query->all();

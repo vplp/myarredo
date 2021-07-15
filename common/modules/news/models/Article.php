@@ -15,6 +15,14 @@ class Article extends \thread\modules\news\models\Article
     const COMMON_NAMESPACE = self::class;
 
     /**
+     * @return mixed
+     */
+    public static function findBase()
+    {
+        return self::find()->innerJoinWith(['lang'])->orderBy(['published_time' => SORT_DESC]);
+    }
+
+    /**
      * @return null|string
      */
     public function getArticleImage()

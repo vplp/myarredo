@@ -56,13 +56,19 @@ class Article extends \common\modules\articles\models\Article
             ->orderBy(['published_time' => SORT_DESC]);
 
         if (Yii::$app->city->getCityId() == 4) {
-            $query->andFilterWhere([
-                'OR',
-                ['city_id' => Yii::$app->city->getCityId()],
-                ['city_id' => 0]
-            ]);
+            $query
+                ->innerJoinWith(['cities'])
+                ->andFilterWhere([
+                    'OR',
+                    [ArticleRelCity::tableName() . '.city_id' => Yii::$app->city->getCityId()],
+                    [ArticleRelCity::tableName() . '.city_id' => 0]
+                ]);
         } else {
-            $query->andFilterWhere(['city_id' => Yii::$app->city->getCityId()]);
+            $query
+                ->innerJoinWith(['cities'])
+                ->andFilterWhere([
+                    ArticleRelCity::tableName() . '.city_id' => Yii::$app->city->getCityId(),
+                ]);
         }
 
         return $query;

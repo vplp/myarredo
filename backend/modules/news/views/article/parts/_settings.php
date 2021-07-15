@@ -14,12 +14,13 @@ use backend\modules\location\models\City;
  * @var \backend\widgets\forms\ActiveForm $form
  */
 
-echo $form->field($model, 'city_id')
+echo $form
+    ->field($model, 'city_ids')
     ->widget(Select2::class, [
-        'data' => [0 => 'Все города'] + City::dropDownList(),
+        'data' => City::dropDownList(),
         'options' => [
             'placeholder' => Yii::t('app', 'Select option'),
-            'multiple' => false
+            'multiple' => true
         ],
     ]);
 
