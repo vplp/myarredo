@@ -32,7 +32,9 @@ $category_id = 0;
 
 if (!empty($models)) {
     foreach ($models as $model) {
-        $category_id = $model->category[0]->id;
+        if($model->category) {
+            $category_id = $model->category[0]->id;
+        }
     }
 }
 
