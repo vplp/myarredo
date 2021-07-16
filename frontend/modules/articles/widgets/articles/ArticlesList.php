@@ -70,7 +70,7 @@ class ArticlesList extends Widget
                 ->innerJoinWith(['cities'])
                 ->andFilterWhere([
                     '=',
-                    ArticleRelCity::tableName() . '.city_id' => Yii::$app->city->getCityId()
+                    ArticleRelCity::tableName() . '.city_id', Yii::$app->city->getCityId()
                 ]);
         }
 
