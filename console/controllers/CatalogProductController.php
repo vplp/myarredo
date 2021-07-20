@@ -7,9 +7,7 @@ use yii\db\Exception;
 use yii\helpers\Console;
 use yii\console\Controller;
 use frontend\modules\sys\models\Language;
-use common\modules\catalog\models\{
-    Product, ProductLang
-};
+use common\modules\catalog\models\{Product, ProductLang};
 
 /**
  * Class CatalogProductController

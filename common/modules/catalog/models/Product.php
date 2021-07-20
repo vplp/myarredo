@@ -68,6 +68,7 @@ use common\modules\user\models\{
  *
  * @property ProductLang $title
  * @property ProductLang $lang
+ * @property ProductJson $json
  * @property Category[] $category
  * @property SubTypes[] $subTypes
  * @property Samples[] $samples
@@ -76,6 +77,7 @@ use common\modules\user\models\{
  * @property Types $types
  * @property Collection $collection
  * @property ProductNoveltyRelCity $noveltyRelCities
+ * @property ProductRelSpecification $specificationValue
  *
  * @package common\modules\catalog\models
  */
@@ -227,7 +229,7 @@ class Product extends ActiveRecord implements iProduct
                 'in',
                 'range' => array_keys(static::statusKeyRange())
             ],
-            [['country_code', 'alias', 'alias_en', 'alias_it', 'alias_de',  'alias_fr', 'alias_he', 'default_title', 'image_link'], 'string', 'max' => 255],
+            [['country_code', 'alias', 'alias_en', 'alias_it', 'alias_de', 'alias_fr', 'alias_he', 'default_title', 'image_link'], 'string', 'max' => 255],
             [['gallery_image'], 'string', 'max' => 1024],
             [['article'], 'string', 'max' => 100],
             [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_fr', 'alias_he'], 'unique'],
@@ -563,6 +565,10 @@ class Product extends ActiveRecord implements iProduct
             Factory::updateEnabledProductCount($this->factory_id);
         }
 
+        if (in_array($this->scenario, ['frontend', 'backend'])) {
+            ProductJson::add($this->id);
+        }
+
         parent::afterSave($insert, $changedAttributes);
     }
 
@@ -604,15 +610,12 @@ class Product extends ActiveRecord implements iProduct
     }
 
     /**
-     * Title
-     *
+     * @param $model
      * @return string
      */
-    public function getTitle()
+    public static function getTitle($model)
     {
-        $title = $this->lang->title ?? '{{-}}';
-
-        return $title;
+        return $model->lang->title ?? '{{-}}';
     }
 
     /**
@@ -621,6 +624,14 @@ class Product extends ActiveRecord implements iProduct
     public function getLang()
     {
         return $this->hasOne(ProductLang::class, ['rid' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getJson()
+    {
+        return $this->hasOne(ProductJson::class, ['rid' => 'id']);
     }
 
     /**

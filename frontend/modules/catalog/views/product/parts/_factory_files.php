@@ -15,7 +15,6 @@ use frontend\modules\catalog\models\{
 
 ?>
 
-
 <div class="downloads">
     <?php if ($model->factory->isShowCatalogsFiles()) { ?>
         <p class="inpdf-title"><?= Yii::t('app', 'Посмотреть каталоги') ?></p>

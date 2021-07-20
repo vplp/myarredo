@@ -7,7 +7,7 @@ use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
-use frontend\modules\catalog\models\{Factory, Product, ProductStats, ProductStatsDays};
+use frontend\modules\catalog\models\{Factory, Product, ProductJson, ProductStats, ProductStatsDays};
 use frontend\components\BaseController;
 
 /**
@@ -67,7 +67,8 @@ class ProductController extends BaseController
      */
     public function actionView(string $alias)
     {
-        $model = Product::findByAlias($alias);
+        /** @var $model Product */
+        $model = ProductJson::findByAlias($alias);
 
         $session = Yii::$app->session;
 
@@ -134,62 +135,62 @@ class ProductController extends BaseController
         $keys = Yii::$app->catalogFilter->keys;
 
         //if (!$model['is_composition']) {
-            $pageTitle[] = $model['lang']['title'];
-            $pageDescription[] = $model['lang']['title'];
+            $pageTitle[] = $model->lang->title;
+            $pageDescription[] = $model->lang->title;
         //}
 
-        if (isset($model['category'][0])) {
+        if (isset($model->category[0])) {
             $params = Yii::$app->catalogFilter->params;
 
-            $params[$keys['category']] = $model['category'][0][Yii::$app->languages->getDomainAlias()];
+            $params[$keys['category']] = $model->category[0]->{Yii::$app->languages->getDomainAlias()};
 
-            if ($model['is_composition'] && $model['category'][0]['lang']['composition_title']) {
-                $pageTitle[] = $model['category'][0]['lang']['composition_title'];
+            if ($model->is_composition && $model->category[0]->lang->composition_title) {
+                $pageTitle[] = $model->category[0]->lang->composition_title;
             }
 
             $this->breadcrumbs[] = [
-                'label' => $model['category'][0]['lang']['title'],
+                'label' => $model->category[0]->lang->title,
                 'url' => Yii::$app->catalogFilter->createUrl($params)
             ];
         }
 
-        if (isset($model['types'])) {
+        if (!empty($model->types)) {
             $params = Yii::$app->catalogFilter->params;
-            $params[$keys['type']] = $model['types'][Yii::$app->languages->getDomainAlias()];
+            $params[$keys['type']] = $model->types->{Yii::$app->languages->getDomainAlias()};
 
-            if ($model['is_composition']) {
-                $pageTitle[] = $model['types']['lang']['title'];
+            if ($model->is_composition) {
+                $pageTitle[] = $model->types->lang->title;
             }
 
             $this->breadcrumbs[] = [
-                'label' => $model['types']['lang']['title'],
+                'label' => $model->types->lang->title,
                 'url' => Yii::$app->catalogFilter->createUrl($params)
             ];
         }
 
-        if ($model['collections_id'] && $model['collection']) {
-            $pageTitle[] = $model['collection']['title'];
-            $pageDescription[] = Yii::t('app', 'Коллекция') . ': ' . $model['collection']['title'];
+        if ($model->collections_id && !empty($model->collection)) {
+            $pageTitle[] = $model->collection->title;
+            $pageDescription[] = Yii::t('app', 'Коллекция') . ': ' . $model->collection->title;
         }
 
         $array = [];
-        foreach ($model['specificationValue'] as $item) {
-            if ($item['specification']['parent_id'] == 9) {
-                $array[] = $item['specification']['lang']['title'];
+        foreach ($model->specificationValue as $item) {
+            if ($item->specification->parent_id == 9) {
+                $array[] = $item->specification->lang->title;
             }
         }
 
         if (!empty($array)) {
-            if ($model['is_composition']) {
+            if ($model->is_composition) {
                 $pageTitle[] = implode(', ', $array);
             }
             $pageDescription[] = Yii::t('app', 'Стиль') . ': ' . implode(', ', $array);
         }
 
         $array = [];
-        foreach ($model['specificationValue'] as $item) {
-            if ($item['specification']['parent_id'] == 2) {
-                $array[] = $item['specification']['lang']['title'];
+        foreach ($model->specificationValue as $item) {
+            if ($item->specification->parent_id == 2) {
+                $array[] = $item->specification->lang->title;
             }
         }
 
@@ -198,9 +199,9 @@ class ProductController extends BaseController
         }
 
         $array = [];
-        foreach ($model['specificationValue'] as $item) {
-            if ($item['specification']['parent_id'] == 4) {
-                $array[] = $item['specification']['lang']['title'] .
+        foreach ($model->specificationValue as $item) {
+            if ($item->specification->parent_id == 4) {
+                $array[] = $item->specification->lang->title .
                     ': ' .
                     $item['val'] . Yii::t('app', 'см');
             }
@@ -247,35 +248,35 @@ class ProductController extends BaseController
             'type' => 'product',
             'title' => $pageTitle,
             'description' => $pageDescription,
-            'image' => Product::getImage($model['image_link']),
+            'image' => Product::getImage($model->image_link),
         ]);
 
         /**
          * Viewed products
          */
         if ($model !== null) {
-            Yii::$app->getModule('catalog')->getViewedProducts($model['id'], 'viewed_products');
+            Yii::$app->getModule('catalog')->getViewedProducts($model->id, 'viewed_products');
         }
 
         if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161, 162, 164, 165])) {
             $alternatePages = [
                 'ru' => [
-                    'href' => 'https://www.myarredo.ru/product/' . $model['alias'] . '/', 'lang' => 'ru'
+                    'href' => 'https://www.myarredo.ru/product/' . $model->alias . '/', 'lang' => 'ru'
                 ],
                 'en' => [
-                    'href' => 'https://www.myarredo.com/en/product/' . $model['alias_en'] . '/', 'lang' => 'en'
+                    'href' => 'https://www.myarredo.com/en/product/' . $model->alias_en . '/', 'lang' => 'en'
                 ],
                 'it' => [
-                    'href' => 'https://www.myarredo.com/it/product/' . $model['alias_it'] . '/', 'lang' => 'it'
+                    'href' => 'https://www.myarredo.com/it/product/' . $model->alias_it . '/', 'lang' => 'it'
                 ],
                 'de' => [
-                    'href' => 'https://www.myarredo.de/product/' . $model['alias_de'] . '/', 'lang' => 'de'
+                    'href' => 'https://www.myarredo.de/product/' . $model->alias_de . '/', 'lang' => 'de'
                 ],
                 'fr' => [
-                    'href' => 'https://www.myarredo.fr/product/' . $model['alias_fr'] . '/', 'lang' => 'fr'
+                    'href' => 'https://www.myarredo.fr/product/' . $model->alias_fr . '/', 'lang' => 'fr'
                 ],
                 'he' => [
-                    'href' => 'https://www.myarredo.co.il/product/' . $model['alias_he'] . '/', 'lang' => 'he'
+                    'href' => 'https://www.myarredo.co.il/product/' . $model->alias_he . '/', 'lang' => 'he'
                 ]
             ];
 

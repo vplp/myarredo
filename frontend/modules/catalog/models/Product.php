@@ -328,7 +328,7 @@ class Product extends \common\modules\catalog\models\Product
     /**
      * @return array
      */
-    public function getGalleryImageThumb()
+    public static function getGalleryImageThumb($gallery_image = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -338,12 +338,12 @@ class Product extends \common\modules\catalog\models\Product
 
         $images = [];
 
-        if (!empty($this->gallery_image)) {
-            $this->gallery_image = $this->gallery_image[0] == ','
-                ? substr($this->gallery_image, 1)
-                : $this->gallery_image;
+        if (!empty($gallery_image)) {
+            $gallery_image = $gallery_image[0] == ','
+                ? substr($gallery_image, 1)
+                : $gallery_image;
 
-            $images = explode(',', $this->gallery_image);
+            $images = explode(',', $gallery_image);
         }
 
         $imagesSources = [];
@@ -387,14 +387,6 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->lang->title ?? '{{-}}';
-    }
-
-    /**
      * @param $model
      * @return string
      */
@@ -402,20 +394,20 @@ class Product extends \common\modules\catalog\models\Product
     {
         $alt = [];
 
-        if (!empty($model['types'])) {
-            $alt[] = $model['types']['lang']['title'];
+        if (!empty($model->types)) {
+            $alt[] = $model->types->lang->title;
         }
 
-        if (!empty($model['factory'])) {
-            $alt[] = $model['factory']['title'];
+        if (!empty($model->factory)) {
+            $alt[] = $model->factory->title;
         }
 
-        if ($model['article']) {
-            $alt[] = $model['article'];
+        if ($model->article) {
+            $alt[] = $model->article;
         }
 
-        if ($model['collection']) {
-            $alt[] = $model['collection']['title'] ?? '';
+        if ($model->collection) {
+            $alt[] = $model->collection->title ?? '';
         }
 
         return implode(' ', $alt);
@@ -427,8 +419,8 @@ class Product extends \common\modules\catalog\models\Product
      */
     public static function getStaticTitle($model)
     {
-        return $model['lang']['title'] != ''
-            ? $model['lang']['title']
+        return $model->lang->title != ''
+            ? $model->lang->title
             : '{{-}}';
     }
 
@@ -438,23 +430,22 @@ class Product extends \common\modules\catalog\models\Product
      */
     public static function getStaticTitleForList($model)
     {
-        return $model['lang']['title_for_list'] != ''
-            ? $model['lang']['title_for_list']
+        return $model->lang->title_for_list != ''
+            ? $model->lang->title_for_list
             : self::getStaticTitle($model);
     }
 
     /**
-     * Status
-     *
+     * @param $model
      * @return string
      */
-    public function getStatus()
+    public static function getStatus($model)
     {
         $status = Yii::t('app', 'Снят с производства');
 
-        if (!$this->removed && $this->in_stock) {
+        if (!$model->removed && $model->in_stock) {
             $status = Yii::t('app', 'Товар в наличии');
-        } elseif (!$this->removed) {
+        } elseif (!$model->removed) {
             $status = Yii::t('app', 'Под заказ');
         }
 

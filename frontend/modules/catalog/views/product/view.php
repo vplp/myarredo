@@ -54,26 +54,26 @@ $this->title = $this->context->title;
                             <?php if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])) {
                                 echo Html::a(
                                     Yii::t('app', 'Edit'),
-                                    ($model['is_composition'])
-                                        ? '/backend/catalog/compositions/update?id=' . $model['id']
-                                        : '/backend/catalog/product/update?id=' . $model['id'],
+                                    ($model->is_composition)
+                                        ? '/backend/catalog/compositions/update?id=' . $model->id
+                                        : '/backend/catalog/product/update?id=' . $model->id,
                                     [
                                         'target' => '_blank'
                                     ]
                                 );
                             } ?>
                             <div class="product-title">
-                                <?php if ($model['bestseller'] || in_array($model['id'], $bestsellers)) { ?>
+                                <?php if ($model->bestseller || in_array($model->id, $bestsellers)) { ?>
                                     <div class="prod-bestseller"><?= Yii::t('app', 'Bestseller') ?></div>
                                 <?php } ?>
 
-                                <?php if ($model['novelty']) { ?>
+                                <?php if ($model->novelty) { ?>
                                     <div class="prod-novelty"><?= Yii::t('app', 'Novelty') ?></div>
                                 <?php } ?>
 
                                 <?= Html::tag(
                                     'h1',
-                                    $model->getTitle(),
+                                    Product::getTitle($model),
                                     ['class' => 'prod-model', 'itemprop' => 'name']
                                 ); ?>
                             </div>
@@ -82,39 +82,39 @@ $this->title = $this->context->title;
                                 <div class="price-availability tobox" itemprop="offers" itemscope
                                      itemtype="http://schema.org/Offer">
 
-                                    <?php if (!$model['removed'] && $model['price_from'] > 0 && !Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter', 'partner', 'catalogEditor'])) { ?>
+                                    <?php if (!$model->removed && $model->price_from > 0 && !Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin', 'settlementCenter', 'partner', 'catalogEditor'])) { ?>
                                         <div class="price-sticker">
                                             <?= Yii::t('app', 'Цена от') ?><span>&#126;</span>
-                                            <span><?= Yii::$app->currency->getValue($model['price_from'], $model['currency']); ?>
+                                            <span><?= Yii::$app->currency->getValue($model->price_from, $model->currency); ?>
                                             &nbsp;<span class="currency"><?= Yii::$app->currency->symbol ?></span></span>
                                         </div>
                                     <?php } ?>
 
-                                    <meta itemprop="price" content="<?= $model['price_from'] ?>"/>
-                                    <meta itemprop="priceCurrency" content="<?= $model['currency'] ?>"/>
+                                    <meta itemprop="price" content="<?= $model->price_from ?>"/>
+                                    <meta itemprop="priceCurrency" content="<?= $model->currency ?>"/>
 
                                     <div class="availability">
                                         <?= Yii::t('app', 'Наличие') ?>:
-                                        <span><?= ($model['status']) ?></span>
-                                        <?php if (!$model['removed'] && $model['in_stock']) { ?>
+                                        <span><?= Product::getStatus($model) ?></span>
+                                        <?php if (!$model->removed && $model->in_stock) { ?>
                                             <meta itemprop="availability" content="InStock"/>
-                                        <?php } elseif (!$model['removed']) { ?>
+                                        <?php } elseif (!$model->removed) { ?>
                                             <meta itemprop="availability" content="PreOrder"/>
                                         <?php } ?>
                                         <meta itemprop="priceValidUntil" content="<?= date('Y-m-d') ?>"/>
                                         <link itemprop="url"
-                                              href="<?= Product::getUrl($model[Yii::$app->languages->getDomainAlias()]) ?>"/>
+                                              href="<?= Product::getUrl($model->{Yii::$app->languages->getDomainAlias()}) ?>"/>
                                     </div>
 
-                                    <?php if (!$model['removed']) { ?>
+                                    <?php if (!$model->removed) { ?>
                                         <?php if (!in_array(Yii::$app->controller->action->id, ['product'])) {
-                                            if (!in_array($model['id'], $products_id)) {
+                                            if (!in_array($model->id, $products_id)) {
                                                 echo Html::a(
                                                     '<i class="fa fa-heart" aria-hidden="true"></i>',
                                                     'javascript:void(0);',
                                                     [
                                                         'class' => 'add-to-notepad btn btn-default big',
-                                                        'data-id' => $model['id'],
+                                                        'data-id' => $model->id,
                                                         'data-toggle' => 'modal',
                                                         'data-target' => '#myModal',
                                                         'data-message' => '<i class="fa fa-heart" aria-hidden="true"></i>',
@@ -149,13 +149,13 @@ $this->title = $this->context->title;
                                 </div>
 
                                 <table class="info-table">
-                                    <?php if ($model['subTypes'] != null) { ?>
+                                    <?php if ($model->subTypes != null) { ?>
                                         <tr>
                                             <td><?= Yii::t('app', 'Типы') ?></td>
                                             <td>
                                                 <?php
                                                 $array = [];
-                                                foreach ($model['subTypes'] as $item) {
+                                                foreach ($model->subTypes as $item) {
                                                     $paramsUrl = [];
 
                                                     $paramsUrl[$keys['subtypes']][] = $item['alias'];
@@ -172,25 +172,25 @@ $this->title = $this->context->title;
                                         </tr>
                                     <?php } ?>
 
-                                    <?php if ($model['specificationValue'] != null) { ?>
+                                    <?php if ($model->specificationValue != null) { ?>
                                         <tr>
                                             <td><?= Yii::t('app', 'Стиль') ?></td>
                                             <td>
                                                 <?php
                                                 $array = [];
 
-                                                foreach ($model['specificationValue'] as $item) {
-                                                    if ($item['specification']['parent_id'] == 9) {
+                                                foreach ($model->specificationValue as $item) {
+                                                    if ($item->specification->parent_id == 9) {
                                                         $paramsUrl = [];
 
-                                                        if ($model['types']) {
-                                                            $paramsUrl[$keys['type']][] = $model['types'][Yii::$app->languages->getDomainAlias()];
+                                                        if ($model->types) {
+                                                            $paramsUrl[$keys['type']][] = $model->types->{Yii::$app->languages->getDomainAlias()};
                                                         }
 
-                                                        $paramsUrl[$keys['style']][] = $item['specification'][Yii::$app->languages->getDomainAlias()];
+                                                        $paramsUrl[$keys['style']][] = $item->specification->{Yii::$app->languages->getDomainAlias()};
 
                                                         $array[] = Html::a(
-                                                            $item['specification']['lang']['title'],
+                                                            $item->specification->lang->title,
                                                             Yii::$app->catalogFilter->createUrl($paramsUrl)
                                                         );
                                                     }
@@ -201,50 +201,50 @@ $this->title = $this->context->title;
                                         </tr>
                                     <?php } ?>
 
-                                    <?php if ($model['factory'] != null) { ?>
+                                    <?php if ($model->factory != null) { ?>
                                         <tr>
                                             <td><?= Yii::t('app', 'Factory') ?></td>
                                             <td>
-                                                <meta itemprop="brand" content="<?= $model['factory']['title'] ?>"/>
+                                                <meta itemprop="brand" content="<?= $model->factory->title ?>"/>
                                                 <?= Html::a(
-                                                    $model['factory']['title'],
-                                                    Factory::getUrl($model['factory']['alias'])
+                                                    $model->factory->title,
+                                                    Factory::getUrl($model->factory->alias)
                                                 ); ?>
                                             </td>
                                         </tr>
                                     <?php } ?>
 
-                                    <?php if (isset($model['collection'])) { ?>
+                                    <?php if (isset($model->collection)) { ?>
                                         <tr>
                                             <td><?= Yii::t('app', 'Коллекция') ?></td>
                                             <td>
                                                 <?= Html::a(
-                                                    $model['collection']['title'] ?? '',
+                                                    $model->collection->title ?? '',
                                                     Yii::$app->catalogFilter->createUrl(
                                                         Yii::$app->catalogFilter->params +
-                                                        [$keys['factory'] => $model['factory']['alias']] +
-                                                        [$keys['collection'] => $model['collection']['id']]
+                                                        [$keys['factory'] => $model->factory->alias] +
+                                                        [$keys['collection'] => $model->collection->id]
                                                     )
                                                 ) ?>
                                             </td>
                                         </tr>
                                     <?php } ?>
 
-                                    <meta itemprop="sku" content="<?= $model['article'] ?>">
+                                    <meta itemprop="sku" content="<?= $model->article ?>">
 
-                                    <?php if (!$model['is_composition']) { ?>
+                                    <?php if (!$model->is_composition) { ?>
                                         <tr>
                                             <td><?= Yii::t('app', 'Артикул') ?></td>
                                             <td>
-                                                <?= $model['article']; ?>
+                                                <?= $model->article; ?>
                                             </td>
                                         </tr>
 
-                                        <?php if (!empty($model['specificationValue'])) { ?>
+                                        <?php if (!empty($model->specificationValue)) { ?>
                                             <?php
                                             $array = [];
-                                            foreach ($model['specificationValue'] as $item) {
-                                                if ($item['specification']['parent_id'] == 4 && $item['val']) {
+                                            foreach ($model->specificationValue as $item) {
+                                                if ($item->specification->parent_id == 4 && $item->val) {
                                                     $str = '';
                                                     for ($n = 2; $n <= 10; $n++) {
                                                         $field = "val$n";
