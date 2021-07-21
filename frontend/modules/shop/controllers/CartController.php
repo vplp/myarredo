@@ -265,32 +265,4 @@ class CartController extends BaseController
             return Yii::$app->shop_cart->deleteItem($product_id, $count);
         }
     }
-
-    public function actionTest()
-    {
-        $models = Order::findBase()
-            ->andWhere(['send_answer' => '0'])
-            ->enabled()
-            ->limit(10)
-            ->all();
-
-        foreach ($models as $modelOrder) {
-            /** @var $modelOrder Order */
-
-            $sendAnswer = false;
-
-            if (count($modelOrder->orderAnswers) >= 3) {
-                $sendAnswer = true;
-            }
-
-            if ($sendAnswer) {
-                return $this->renderPartial(
-                    '@console/mail/letter_send_order_answer',
-                    [
-                        'modelOrder' => $modelOrder
-                    ]
-                );
-            }
-        }
-    }
 }

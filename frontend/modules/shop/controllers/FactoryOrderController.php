@@ -294,7 +294,7 @@ class FactoryOrderController extends BaseController
                         if ($save) {
                             $transaction->commit();
 
-                            /*
+                            // begin send
                             if ($modelOrder->product_type == 'product') {
                                 $viewMail = '/../mail/answer_order_user_letter';
                             } else {
@@ -325,7 +325,7 @@ class FactoryOrderController extends BaseController
                                 'success',
                                 Yii::t('app', 'Отправлено')
                             );
-                            */
+                            // end send
                         } else {
                             $transaction->rollBack();
                         }
