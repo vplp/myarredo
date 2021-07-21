@@ -13,5 +13,5 @@ class Articles extends \common\modules\articles\Articles
      * Number of elements in GridView
      * @var int
      */
-    public $itemOnPage = 8;
+    public $itemOnPage = 12;
 }
