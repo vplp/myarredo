@@ -12,5 +12,5 @@ class News extends \common\modules\news\News
     /**
      * @var int
      */
-    public $itemOnPage = 12;
+    public $itemOnPage = 8;
 }
