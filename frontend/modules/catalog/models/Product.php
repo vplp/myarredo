@@ -8,8 +8,6 @@ use frontend\components\ImageResize;
 
 /**
  * Class Product
- * @property ProductRelFactoryCatalogsFiles[] $factoryCatalogsFiles
- * @property ProductRelFactoryPricesFiles[] $factoryPricesFiles
  * @property Samples[] $samples
  *
  * @package frontend\modules\catalog\models
@@ -166,7 +164,7 @@ class Product extends \common\modules\catalog\models\Product
                 ->orderBy([self::tableName() . '.updated_at' => SORT_DESC])
                 ->limit(1)
                 ->one();
-        },7200);
+        }, 7200);
 
         return $result;
     }

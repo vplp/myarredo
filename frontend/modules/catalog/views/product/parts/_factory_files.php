@@ -4,7 +4,7 @@ use yii\helpers\{
     Html, Url
 };
 use frontend\modules\catalog\models\{
-    FactoryCatalogsFiles, Product, FactoryPricesFiles
+    FactoryCatalogsFiles, Product, Factory, FactoryPricesFiles
 };
 
 /**
@@ -16,12 +16,12 @@ use frontend\modules\catalog\models\{
 ?>
 
 <div class="downloads">
-    <?php if ($model->factory->isShowCatalogsFiles()) { ?>
+    <?php if ($model->factory && Factory::isShowCatalogsFiles($model->factory)) { ?>
         <p class="inpdf-title"><?= Yii::t('app', 'Посмотреть каталоги') ?></p>
         <ul class="inpdf-list">
             <?php if (!empty($model->factoryCatalogsFiles)) { ?>
                 <?php foreach ($model->factoryCatalogsFiles as $catalogFile) {
-                    if ($fileLink = $catalogFile->getFileLink()) { ?>
+                    if ($fileLink = FactoryCatalogsFiles::getFileLink($catalogFile)) { ?>
                         <li>
                             <?= Html::a(
                                 $catalogFile->getTitle() . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
@@ -39,7 +39,7 @@ use frontend\modules\catalog\models\{
                 <li>
                     <?= Html::a(
                         Yii::t('app', 'Каталоги') . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
-                        ['/catalog/factory/view-tab', 'alias' => $model['factory']['alias'], 'tab' => 'catalogs'],
+                        ['/catalog/factory/view-tab', 'alias' => $model->factory->alias, 'tab' => 'catalogs'],
                         [
                             'target' => '_blank',
                             'class' => 'btn-inpdf'
@@ -55,7 +55,7 @@ use frontend\modules\catalog\models\{
         <ul class="inpdf-list">
             <?php if (!empty($model->factoryPricesFiles)) {
                 foreach ($model->factoryPricesFiles as $priceFile) {
-                    if ($fileLink = $priceFile->getFileLink()) { ?>
+                    if ($fileLink = FactoryPricesFiles::getFileLink($priceFile)) { ?>
                         <li>
                             <?= Html::a(
                                 $priceFile->title . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
@@ -69,12 +69,12 @@ use frontend\modules\catalog\models\{
                         </li>
                     <?php }
                 }
-            } elseif ($model['is_composition']) {
+            } elseif ($model->is_composition) {
                 $isFiles = false;
                 foreach ($model->getElementsComposition() as $product) {
                     /** @var $product Product */
                     foreach ($product->factoryPricesFiles as $priceFile) {
-                        if ($fileLink = $priceFile->getFileLink()) {
+                        if ($fileLink = FactoryPricesFiles::getFileLink($priceFile)) {
                             $isFiles = true;
                             ?>
                             <li>
@@ -96,7 +96,7 @@ use frontend\modules\catalog\models\{
                     <li>
                         <?= Html::a(
                             Yii::t('app', 'Прайс листы') . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
-                            ['/catalog/factory/view-tab', 'alias' => $model['factory']['alias'], 'tab' => 'pricelists'],
+                            ['/catalog/factory/view-tab', 'alias' => $model->factory->alias, 'tab' => 'pricelists'],
                             [
                                 'target' => '_blank',
                                 'class' => 'btn-inpdf'
@@ -108,7 +108,7 @@ use frontend\modules\catalog\models\{
                 <li>
                     <?= Html::a(
                         Yii::t('app', 'Прайс листы') . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
-                        ['/catalog/factory/view-tab', 'alias' => $model['factory']['alias'], 'tab' => 'pricelists'],
+                        ['/catalog/factory/view-tab', 'alias' => $model->factory->alias, 'tab' => 'pricelists'],
                         [
                             'target' => '_blank',
                             'class' => 'btn-inpdf'

@@ -64,7 +64,7 @@ class FactoryPricesFiles extends FactoryFile
     /**
      * @return null|string
      */
-    public function getFileLink()
+    public static function getFileLink($model)
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -74,8 +74,8 @@ class FactoryPricesFiles extends FactoryFile
 
         $image = null;
 
-        if (!empty($this->file_link) && is_file($path . '/' . $this->file_link)) {
-            $image = $url . '/' . $this->file_link;
+        if (!empty($model->file_link) && is_file($path . '/' . $model->file_link)) {
+            $image = $url . '/' . $model->file_link;
         }
 
         return $image;
@@ -84,7 +84,7 @@ class FactoryPricesFiles extends FactoryFile
     /**
      * @return null|string
      */
-    public function getFileSize()
+    public static function getFileSize($model)
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -93,8 +93,8 @@ class FactoryPricesFiles extends FactoryFile
 
         $file_size = 0;
 
-        if (!empty($this->file_link) && is_file($path . '/' . $this->file_link)) {
-            $file_size = filesize($path . '/' . $this->file_link);
+        if (!empty($model->file_link) && is_file($path . '/' . $model->file_link)) {
+            $file_size = filesize($path . '/' . $model->file_link);
         }
 
         return $file_size;
@@ -103,7 +103,7 @@ class FactoryPricesFiles extends FactoryFile
     /**
      * @return null|string
      */
-    public function getImageLink()
+    public static function getImageLink($model)
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -113,8 +113,8 @@ class FactoryPricesFiles extends FactoryFile
 
         $image = null;
 
-        if (!empty($this->image_link) && is_file($path . '/thumb/' . $this->image_link)) {
-            $image = $url . '/thumb/' . $this->image_link;
+        if (!empty($model->image_link) && is_file($path . '/thumb/' . $model->image_link)) {
+            $image = $url . '/thumb/' . $model->image_link;
         }
 
         return $image;

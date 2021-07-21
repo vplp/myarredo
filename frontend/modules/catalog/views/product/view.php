@@ -248,16 +248,16 @@ $this->title = $this->context->title;
                                                     $str = '';
                                                     for ($n = 2; $n <= 10; $n++) {
                                                         $field = "val$n";
-                                                        if ($item[$field]) {
-                                                            $str .= '; ' . $item[$field];
+                                                        if ($item->{$field}) {
+                                                            $str .= '; ' . $item->{$field};
                                                         }
                                                     }
 
                                                     $array[] = Html::beginTag('div') .
-                                                        $item['specification']['lang']['title'] .
+                                                        $item->specification->lang->title .
                                                         ' (' . Yii::t('app', 'см') . ')' .
                                                         ': ' .
-                                                        $item['val'] . $str .
+                                                        $item->val . $str .
                                                         Html::endTag('div');
                                                 }
                                             }
@@ -272,9 +272,9 @@ $this->title = $this->context->title;
 
                                             <?php
                                             $array = [];
-                                            foreach ($model['specificationValue'] as $item) {
-                                                if ($item['specification']['parent_id'] == 2) {
-                                                    $array[] = $item['specification']['lang']['title'];
+                                            foreach ($model->specificationValue as $item) {
+                                                if ($item->specification->parent_id == 2) {
+                                                    $array[] = $item->specification->lang->title;
                                                 }
                                             }
                                             if (!empty($array)) { ?>
@@ -295,13 +295,12 @@ $this->title = $this->context->title;
                                     'model' => $model
                                 ]); ?>
 
-                                <div class="prod-descr"
-                                     itemprop="description"><?= $model['lang']['description']; ?></div>
+                                <div class="prod-descr" itemprop="description"><?= $model->lang->description; ?></div>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-12 col-lg-3">
 
-                            <?php if (!$model['removed']) { ?>
+                            <?php if (!$model->removed) { ?>
                                 <div class="custom-image-gallery">
                                     <div class="igalery-close">
                                         <button class="btn-igalery-close">&times;</button>
@@ -314,7 +313,7 @@ $this->title = $this->context->title;
                                         <div class="best-price-form">
                                             <?php if (!$detect->isMobile()) { ?>
                                                 <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
-                                                <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
+                                                <?= RequestPrice::widget(['product_id' => $model->id]) ?>
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -354,18 +353,18 @@ $this->title = $this->context->title;
                         </div>
                     </div>
 
-                    <?php if ($model['collections_id']) {
+                    <?php if ($model->collections_id) {
                         echo $this->render('parts/_product_by_collection', [
-                            'collection' => $model['collection'],
-                            'models' => $model->getProductByCollection($model['collections_id'], $model['catalog_type_id'])
+                            'collection' => $model->collection,
+                            'models' => Product::getProductByCollection($model->collections_id, $model->catalog_type_id)
                         ]);
                     } ?>
 
-                    <?php if ($model['collections_id']) {
+                    <?php if ($model->collections_id) {
                         echo $this->render('parts/_product_by_factory', [
-                            'factory' => $model['factory'],
-                            'types' => $model['types'],
-                            'models' => $model->getProductByFactory($model['factory_id'], $model['catalog_type_id'])
+                            'factory' => $model->factory,
+                            'types' => $model->types,
+                            'models' => Product::getProductByFactory($model->factory_id, $model->catalog_type_id)
                         ]);
                     } ?>
 
@@ -452,7 +451,7 @@ JS;
 }
 
 $script = <<<JS
-$.post('$url', {_csrf: $('#token').val(), product_id:{$model['id']}}, function(data){
+$.post('$url', {_csrf: $('#token').val(), product_id:{$model->id}}, function(data){
     $('.composition').html(data.html);
     $(".prod-card-page .nav-tabs li a").eq(0).click();
     // Выжидаем некоторое время

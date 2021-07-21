@@ -12,7 +12,7 @@ use frontend\modules\catalog\models\{Factory, Product, ProductLang};
 
 
 $partners = User::getPartners(Yii::$app->city->getCityId());
-$images = $model->getGalleryImageThumb();
+$images = Product::getGalleryImageThumb($model->gallery_image);
 
 ?>
 
@@ -65,23 +65,23 @@ $images = $model->getGalleryImageThumb();
                             <div class="last-sale-right">
                                 <div class="last-sale-tablebox">
                                     <table class="last-sale-table">
-                                        <?php if (!empty($model['specificationValue'])) { ?>
+                                        <?php if (!empty($model->specificationValue)) { ?>
                                             <?php
                                             $array = [];
-                                            foreach ($model['specificationValue'] as $item) {
-                                                if ($item['specification']['parent_id'] == 4 && $item['val']) {
+                                            foreach ($model->specificationValue as $item) {
+                                                if ($item->specification->parent_id == 4 && $item->val) {
                                                     $str = '';
                                                     for ($n = 2; $n <= 10; $n++) {
                                                         $field = "val$n";
-                                                        if ($item[$field]) {
-                                                            $str .= '; ' . $item[$field];
+                                                        if ($item->{$field}) {
+                                                            $str .= '; ' . $item->{$field};
                                                         }
                                                     }
                                                     ?>
                                                     <tr>
-                                                        <td><?= $item['specification']['lang']['title'] . ' (' . Yii::t('app', 'см') . ')' ?></td>
+                                                        <td><?= $item->specification->lang->title . ' (' . Yii::t('app', 'см') . ')' ?></td>
                                                         <td>
-                                                            <?= $item['val'] . $str ?>
+                                                            <?= $item->val . $str ?>
                                                         </td>
                                                     </tr>
                                                     <?php
@@ -91,9 +91,9 @@ $images = $model->getGalleryImageThumb();
 
                                             <?php
                                             $array = [];
-                                            foreach ($model['specificationValue'] as $item) {
-                                                if ($item['specification']['parent_id'] == 2) {
-                                                    $array[] = $item['specification']['lang']['title'];
+                                            foreach ($model->specificationValue as $item) {
+                                                if ($item->specification->parent_id == 2) {
+                                                    $array[] = $item->specification->lang->title;
                                                 }
                                             }
                                             if (!empty($array)) { ?>
@@ -112,7 +112,7 @@ $images = $model->getGalleryImageThumb();
                         </div>
                     </div>
 
-                    <?php if ($model['price_from']) { ?>
+                    <?php if ($model->price_from) { ?>
                         <div class="last-sale-bottom">
                             <div class="last-sale-infobot">
                                 <div class="last-sale-left">
@@ -123,9 +123,9 @@ $images = $model->getGalleryImageThumb();
                                     <div class="last-sale-text">
                                     <span class="for-lastsale-curval">
                                         <?php
-                                        $price_from = $model['price_from'];
-                                        $factory_price = $model['factory_price'];
-                                        $factory_discount = $model['factory']['factory_discount'];
+                                        $price_from = $model->price_from;
+                                        $factory_price = $model->factory_price;
+                                        $factory_discount = $model->factory->factory_discount;
 
                                         $price = (($factory_price * $factory_discount) / 100) * 2 - ((($factory_price * $factory_discount) / 100) * 2 * 15 / 100);
 

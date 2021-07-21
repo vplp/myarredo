@@ -70,6 +70,10 @@ class ProductController extends BaseController
         /** @var $model Product */
         $model = ProductJson::findByAlias($alias);
 
+        if ($model == null) {
+            $model = Product::findByAlias($alias);
+        }
+
         $session = Yii::$app->session;
 
         if (!$session->has('order_count_url_visit')) {
@@ -203,7 +207,7 @@ class ProductController extends BaseController
             if ($item->specification->parent_id == 4) {
                 $array[] = $item->specification->lang->title .
                     ': ' .
-                    $item['val'] . Yii::t('app', 'см');
+                    $item->val . Yii::t('app', 'см');
             }
         }
 

@@ -78,6 +78,8 @@ use common\modules\user\models\{
  * @property Collection $collection
  * @property ProductNoveltyRelCity $noveltyRelCities
  * @property ProductRelSpecification $specificationValue
+ * @property ProductRelFactoryCatalogsFiles[] $factoryCatalogsFiles
+ * @property ProductRelFactoryPricesFiles[] $factoryPricesFiles
  *
  * @package common\modules\catalog\models
  */

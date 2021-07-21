@@ -75,16 +75,20 @@ class ProductJson extends ActiveRecordLang
      */
     public static function findByAlias($alias)
     {
-        $data = self::find()
-            ->innerJoinWith(['parent'], false)
-            ->andWhere([Product::tableName() . '.' . Yii::$app->languages->getDomainAlias() => $alias])
-            ->one();
+        $result = self::getDb()->cache(function ($db) use ($alias) {
+            $data = self::find()
+                ->innerJoinWith(['parent'], false)
+                ->andWhere([Product::tableName() . '.' . Yii::$app->languages->getDomainAlias() => $alias])
+                ->one();
 
-        if ($data != null) {
-            $data = $data->content;
-        }
+            if ($data != null) {
+                $data = $data->content;
+            }
 
-        return $data;
+            return $data;
+        }, 3600);
+
+        return $result;
     }
 
     /**
@@ -136,6 +140,20 @@ class ProductJson extends ActiveRecordLang
 
         $obj['lang'] = $product->lang ? $product->lang->attributes : [];
 
+        $obj['factoryCatalogsFiles'] = [];
+        if ($product->factoryCatalogsFiles) {
+            foreach ($product->factoryCatalogsFiles as $item) {
+                $obj['factoryCatalogsFiles'][] = $item->attributes;
+            }
+        }
+
+        $obj['factoryPricesFiles'] = [];
+        if ($product->factoryPricesFiles) {
+            foreach ($product->factoryPricesFiles as $item) {
+                $obj['factoryPricesFiles'][] = $item->attributes;
+            }
+        }
+
         $obj['specificationValue'] = [];
         if ($product->specificationValue) {
             foreach ($product->specificationValue as $item) {
@@ -157,12 +175,11 @@ class ProductJson extends ActiveRecordLang
         }
 
         $obj['types'] = [];
+
         if ($product->types) {
-            foreach ($product->types as $item) {
-                $obj['types'][] = $item->attributes + [
-                        'lang' => $item->lang->attributes
-                    ];
-            }
+            $obj['types'] = $product->types->attributes + [
+                    'lang' => $product->types->lang->attributes
+                ];
         }
 
         $obj['subTypes'] = [];
@@ -174,20 +191,14 @@ class ProductJson extends ActiveRecordLang
             }
         }
 
-//        $obj['factory'] = [];
-//        if ($product->factory) {
-//            $obj['factory'] = $product->factory->attributes + [
-//                    'lang' => $product->factory->lang->attributes
-//                ];
-//        }
+        $obj['factory'] = [];
+        if ($product->factory) {
+            $obj['factory'] = $product->factory->attributes + [
+                    'lang' => $product->factory->lang->attributes
+                ];
+        }
 
         $obj['collection'] = $product->collection ? $product->collection->attributes : [];
-
-//        /* !!! */
-//        echo '<pre style="color:red;">';
-//        print_r($obj);
-//        echo '</pre>'; /* !!! */
-//        die;
 
         $productJson->setScenario('backend');
         $productJson->content = json_encode($obj);

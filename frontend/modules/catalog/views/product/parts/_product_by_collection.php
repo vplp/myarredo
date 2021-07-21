@@ -19,13 +19,13 @@ $keys = Yii::$app->catalogFilter->keys;
                 'h3',
                 Yii::t('app', 'Другие изделия коллекции') .
                 ' ' .
-                $collection['title']
+                $collection->title
             ); ?>
 
             <?= Html::a(
                 Yii::t('app', 'Показать все'),
                 Yii::$app->catalogFilter->createUrl(
-                    Yii::$app->catalogFilter->params + [$keys['collection'] => $collection['id']]
+                    Yii::$app->catalogFilter->params + [$keys['collection'] => $collection->id]
                 ),
                 ['class' => 'show-more']
             ); ?>

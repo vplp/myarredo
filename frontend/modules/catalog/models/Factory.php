@@ -759,13 +759,13 @@ class Factory extends \common\modules\catalog\models\Factory
         return $models->totalCount >= 1 ? $models->totalCount : 0;
     }
 
-    public function isShowCatalogsFiles()
+    public static function isShowCatalogsFiles($model)
     {
         $show = false;
 
         if (!Yii::$app->getUser()->isGuest) {
             $show = true;
-        } elseif (Yii::$app->getUser()->isGuest && $this->show_catalogs_files == '1') {
+        } elseif (Yii::$app->getUser()->isGuest && $model->show_catalogs_files == '1') {
             $show = false;
         }
 

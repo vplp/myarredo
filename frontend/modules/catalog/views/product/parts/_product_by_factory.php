@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use frontend\modules\catalog\models\Product;
 
 /**  @var $model Product */
-/**  @var $model Product */
 
 $keys = Yii::$app->catalogFilter->keys;
 
@@ -16,13 +15,13 @@ $keys = Yii::$app->catalogFilter->keys;
 
             <?= Html::tag(
                 'h3',
-                Yii::t('app', 'Другие') . ' ' . (isset($types) && $types['lang']['plural_name']) . ' ' . $factory['title']
+                Yii::t('app', 'Другие') . ' ' . (isset($types->lang) && $types->lang->plural_name) . ' ' . $factory->title
             ); ?>
 
             <?= Html::a(
                 Yii::t('app', 'Показать все'),
                 Yii::$app->catalogFilter->createUrl(
-                    Yii::$app->catalogFilter->params + [$keys['factory'] => $factory['alias']]
+                    Yii::$app->catalogFilter->params + [$keys['factory'] => $factory->alias]
                 ),
                 ['class' => 'show-more']
             ); ?>

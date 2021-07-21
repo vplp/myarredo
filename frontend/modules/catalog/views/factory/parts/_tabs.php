@@ -46,7 +46,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         ) ?>
     </li>
 
-    <?php if ($model->isShowCatalogsFiles() && !empty($model->catalogsFiles)) { ?>
+    <?php if (Factory::isShowCatalogsFiles($model) && !empty($model->catalogsFiles)) { ?>
         <li class="<?= Yii::$app->request->get('tab') == 'catalogs' ? 'active' : ''; ?>">
             <?= Html::a(
                 Yii::t('app', 'Каталоги'),
@@ -211,13 +211,13 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
         </div>
     <?php } ?>
 
-    <?php if ($model->isShowCatalogsFiles() && Yii::$app->request->get('tab') == 'catalogs' && !empty($model->catalogsFiles)) { ?>
+    <?php if (Factory::isShowCatalogsFiles($model) && Yii::$app->request->get('tab') == 'catalogs' && !empty($model->catalogsFiles)) { ?>
         <div id="catalogs"
              class="tab-pane fade <?= Yii::$app->request->get('tab') == 'catalogs' ? 'in active' : ''; ?>">
             <ul class="list">
                 <?php
                 foreach ($model->catalogsFiles as $catalogFile) {
-                    if ($fileLink = $catalogFile->getFileLink()) {
+                    if ($fileLink = FactoryCatalogsFiles::getFileLink($catalogFile)) {
                         echo Html::beginTag('li') .
                             Html::a(
                                 ($catalogFile->image_link
@@ -290,7 +290,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
             <ul class="list">
                 <?php
                 foreach ($model->pricesFiles as $priceFile) {
-                    if ($fileLink = $priceFile->getFileLink()) {
+                    if ($fileLink = FactoryPricesFiles::getFileLink($priceFile)) {
                         echo Html::beginTag('li') .
                             Html::a(
                                 ($priceFile->image_link
