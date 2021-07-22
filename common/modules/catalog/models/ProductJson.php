@@ -137,7 +137,7 @@ class ProductJson extends ActiveRecordLang
             foreach ($product->specificationValue as $item) {
                 $obj['specificationValue'][] = $item->attributes + [
                         'specification' => $item->specification->attributes + [
-                                'lang' => $item->specification->lang->attributes
+                                'lang' => $item->specification->lang ? $item->specification->lang->attributes : []
                             ]
                     ];
             }
@@ -156,7 +156,7 @@ class ProductJson extends ActiveRecordLang
 
         if ($product->types) {
             $obj['types'] = $product->types->attributes + [
-                    'lang' => $product->types->lang->attributes
+                    'lang' => $product->types->lang ? $product->types->lang->attributes : []
                 ];
         }
 
@@ -164,7 +164,7 @@ class ProductJson extends ActiveRecordLang
         if ($product->subTypes) {
             foreach ($product->subTypes as $item) {
                 $obj['subTypes'][] = $item->attributes + [
-                        'lang' => $item->lang->attributes
+                        'lang' => $item->lang ? $item->lang->attributes : []
                     ];
             }
         }
@@ -172,7 +172,7 @@ class ProductJson extends ActiveRecordLang
         $obj['factory'] = [];
         if ($product->factory) {
             $obj['factory'] = $product->factory->attributes + [
-                    'lang' => $product->factory->lang->attributes
+                    'lang' => $product->factory->lang ? $product->factory->lang->attributes : []
                 ];
         }
 
