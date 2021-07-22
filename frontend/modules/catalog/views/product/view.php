@@ -161,7 +161,7 @@ $this->title = $this->context->title;
                                                     $paramsUrl[$keys['subtypes']][] = $item->alias;
 
                                                     $array[] = Html::a(
-                                                        $item['lang']['title'],
+                                                        $item->lang->title,
                                                         Yii::$app->catalogFilter->createUrl($paramsUrl)
                                                     );
                                                 }
