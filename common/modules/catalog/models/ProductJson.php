@@ -70,28 +70,6 @@ class ProductJson extends ActiveRecordLang
     }
 
     /**
-     * @param $alias
-     * @return mixed
-     */
-    public static function findByAlias($alias)
-    {
-        $result = self::getDb()->cache(function ($db) use ($alias) {
-            $data = self::find()
-                ->innerJoinWith(['parent'], false)
-                ->andWhere([Product::tableName() . '.' . Yii::$app->languages->getDomainAlias() => $alias])
-                ->one();
-
-            if ($data != null) {
-                $data = $data->content;
-            }
-
-            return $data;
-        }, 3600);
-
-        return $result;
-    }
-
-    /**
      * @inheritDoc
      */
     public function afterFind()

@@ -32,7 +32,8 @@ $category_id = 0;
 
 if (!empty($models)) {
     foreach ($models as $model) {
-        if($model->category) {
+        // $model = $model->content;
+        if ($model->category) {
             $category_id = $model->category[0]->id;
         }
     }
@@ -103,10 +104,11 @@ if (!empty($models)) {
                                         <div class="cat-prod">
                                             <?php if (!empty($models)) {
                                                 foreach ($models as $key => $model) {
+                                                   // $model = $model->content;
                                                     if ($key == 0) {
                                                         Yii::$app->view->registerLinkTag([
                                                             'rel' => 'preload',
-                                                            'href' => Product::getImageThumb($model['image_link']),
+                                                            'href' => Product::getImageThumb($model->image_link),
                                                             'as' => 'image'
                                                         ]);
                                                     }

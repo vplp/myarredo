@@ -12,6 +12,7 @@ use frontend\modules\catalog\widgets\filter\{
 };
 use frontend\modules\catalog\models\{Collection,
     Product,
+    ProductJson,
     Category,
     Factory,
     ProductStatsDays,
