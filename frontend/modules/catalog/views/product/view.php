@@ -158,7 +158,7 @@ $this->title = $this->context->title;
                                                 foreach ($model->subTypes as $item) {
                                                     $paramsUrl = [];
 
-                                                    $paramsUrl[$keys['subtypes']][] = $item['alias'];
+                                                    $paramsUrl[$keys['subtypes']][] = $item->alias;
 
                                                     $array[] = Html::a(
                                                         $item['lang']['title'],
