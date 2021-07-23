@@ -63,7 +63,7 @@ class FactoryCatalogsFiles extends FactoryFile
     /**
      * @return null|string
      */
-    public static function getFileLink($model)
+    public static function getStaticFileLink($model)
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -83,26 +83,7 @@ class FactoryCatalogsFiles extends FactoryFile
     /**
      * @return null|string
      */
-    public static function getFileSize($model)
-    {
-        /** @var Catalog $module */
-        $module = Yii::$app->getModule('catalog');
-
-        $path = $module->getFactoryCatalogsFilesUploadPath();
-
-        $file_size = 0;
-
-        if (!empty($model->file_link) && is_file($path . '/' . $model->file_link)) {
-            $file_size = filesize($path . '/' . $model->file_link);
-        }
-
-        return $file_size;
-    }
-
-    /**
-     * @return null|string
-     */
-    public static function getImageLink()
+    public function getFileLink()
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -112,8 +93,47 @@ class FactoryCatalogsFiles extends FactoryFile
 
         $image = null;
 
-        if (!empty($model->image_link) && is_file($path . '/thumb/' . $model->image_link)) {
-            $image = $url . '/thumb/' . $model->image_link;
+        if (!empty($this->file_link) && is_file($path . '/' . $this->file_link)) {
+            $image = $url . '/' . $this->file_link;
+        }
+
+        return $image;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getFileSize()
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getFactoryCatalogsFilesUploadPath();
+
+        $file_size = 0;
+
+        if (!empty($this->file_link) && is_file($path . '/' . $this->file_link)) {
+            $file_size = filesize($path . '/' . $this->file_link);
+        }
+
+        return $file_size;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getImageLink()
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getFactoryCatalogsFilesUploadPath();
+        $url = $module->getFactoryCatalogsFilesUploadUrl();
+
+        $image = null;
+
+        if (!empty($this->image_link) && is_file($path . '/thumb/' . $this->image_link)) {
+            $image = $url . '/thumb/' . $this->image_link;
         }
 
         return $image;

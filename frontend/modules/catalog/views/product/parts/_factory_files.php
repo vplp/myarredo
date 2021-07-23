@@ -21,7 +21,7 @@ use frontend\modules\catalog\models\{
         <ul class="inpdf-list">
             <?php if (!empty($model->factoryCatalogsFiles)) { ?>
                 <?php foreach ($model->factoryCatalogsFiles as $catalogFile) {
-                    if ($fileLink = FactoryCatalogsFiles::getFileLink($catalogFile)) { ?>
+                    if ($fileLink = FactoryCatalogsFiles::getStaticFileLink($catalogFile)) { ?>
                         <li>
                             <?= Html::a(
                                 $catalogFile->getTitle() . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
@@ -55,7 +55,7 @@ use frontend\modules\catalog\models\{
         <ul class="inpdf-list">
             <?php if (!empty($model->factoryPricesFiles)) {
                 foreach ($model->factoryPricesFiles as $priceFile) {
-                    if ($fileLink = FactoryPricesFiles::getFileLink($priceFile)) { ?>
+                    if ($fileLink = FactoryPricesFiles::getStaticFileLink($priceFile)) { ?>
                         <li>
                             <?= Html::a(
                                 $priceFile->title . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
@@ -74,7 +74,7 @@ use frontend\modules\catalog\models\{
                 foreach ($model->getElementsComposition() as $product) {
                     /** @var $product Product */
                     foreach ($product->factoryPricesFiles as $priceFile) {
-                        if ($fileLink = FactoryPricesFiles::getFileLink($priceFile)) {
+                        if ($fileLink = FactoryPricesFiles::getStaticFileLink($priceFile)) {
                             $isFiles = true;
                             ?>
                             <li>

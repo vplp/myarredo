@@ -620,13 +620,14 @@ class Product extends ActiveRecord implements iProduct
         return $model->lang->title ?? '{{-}}';
     }
 
- /**
-     * @param $model
+    /**
      * @return string
      */
     public function getTitle()
     {
-        return $this->lang->title ?? '{{-}}';
+        $title = $this->lang->title ?? '{{-}}';
+
+        return $title;
     }
 
     /**

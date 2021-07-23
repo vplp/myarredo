@@ -217,7 +217,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
             <ul class="list">
                 <?php
                 foreach ($model->catalogsFiles as $catalogFile) {
-                    if ($fileLink = FactoryCatalogsFiles::getFileLink($catalogFile)) {
+                    if ($fileLink = $catalogFile->getFileLink()) {
                         echo Html::beginTag('li') .
                             Html::a(
                                 ($catalogFile->image_link
@@ -290,7 +290,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
             <ul class="list">
                 <?php
                 foreach ($model->pricesFiles as $priceFile) {
-                    if ($fileLink = FactoryPricesFiles::getFileLink($priceFile)) {
+                    if ($fileLink = $priceFile->getFileLink()) {
                         echo Html::beginTag('li') .
                             Html::a(
                                 ($priceFile->image_link
