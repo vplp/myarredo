@@ -23,7 +23,7 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                         'itemscope' => true,
                         'itemtype' => 'http://schema.org/ImageObject'
                     ]) .
-                    Html::tag('meta', '', ['itemprop' => 'name', 'content' => Product::getTitle($model)]) .
+                    Html::tag('meta', '', ['itemprop' => 'name', 'content' => Product::getStaticTitle($model)]) .
                     Html::tag('meta', '', ['itemprop' => 'caption', 'content' => Product::getStaticTitleForList($model)]) .
                     Html::tag('link', '', ['itemprop' => 'contentUrl', 'href' => $src['img']]) .
                     Html::tag('meta', '', ['itemprop' => 'description', 'content' => strip_tags($model->lang->description)]) .
@@ -77,7 +77,7 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                 <?php foreach ($images as $key => $src) { ?>
                     <div class="thumb-item" data-dominant-color>
                         <span class="background"></span>
-                        <?= Html::img($src['thumb'], ['alt' => Product::getTitle($model), 'width' => '138', 'height' => '95', 'class' => '22']) ?>
+                        <?= Html::img($src['thumb'], ['alt' => Product::getStaticTitle($model), 'width' => '138', 'height' => '95', 'class' => '22']) ?>
                     </div>
                 <?php } ?>
 

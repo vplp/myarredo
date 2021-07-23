@@ -73,7 +73,7 @@ $this->title = $this->context->title;
 
                                 <?= Html::tag(
                                     'h1',
-                                    Product::getTitle($model),
+                                    Product::getStaticTitle($model),
                                     ['class' => 'prod-model', 'itemprop' => 'name']
                                 ); ?>
                             </div>

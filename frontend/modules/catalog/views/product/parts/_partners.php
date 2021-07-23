@@ -55,7 +55,7 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                 <div class="last-sale">
                     <div class="last-sale-top">
 
-                        <h4 class="last-sale-title"><?= Product::getTitle($model) ?></h4>
+                        <h4 class="last-sale-title"><?= Product::getStaticTitle($model) ?></h4>
                         <div class="last-sale-info">
                             <div class="last-sale-left">
                                 <?php if ($images) {
