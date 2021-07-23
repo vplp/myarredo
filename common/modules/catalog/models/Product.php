@@ -624,9 +624,9 @@ class Product extends ActiveRecord implements iProduct
      * @param $model
      * @return string
      */
-    public function getTitle($model)
+    public function getTitle()
     {
-        return $model['lang']['title'] ?? '{{-}}';
+        return $this->lang->title ?? '{{-}}';
     }
 
     /**
