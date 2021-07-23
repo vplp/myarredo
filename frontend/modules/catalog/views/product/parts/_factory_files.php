@@ -24,7 +24,7 @@ use frontend\modules\catalog\models\{
                     if ($fileLink = FactoryCatalogsFiles::getStaticFileLink($catalogFile)) { ?>
                         <li>
                             <?= Html::a(
-                                $catalogFile->getTitle() . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                                FactoryCatalogsFiles::getStaticTitle($catalogFile) . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
                                 Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink . '&search=' . $model->article,
                                 [
                                     'target' => '_blank',
