@@ -562,12 +562,19 @@ class Product extends \common\modules\catalog\models\Product
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getElementsComposition()
+    public static function getElementsComposition($model)
     {
-        if ($this->is_composition) {
-            return $this->getProductsByCompositionId()->all();
+        $modelProduct = Product::findByID($model->id);
+        /** @var $modelProduct Product */
+
+        if ($modelProduct == null) {
+            return [];
+        }
+
+        if ($model->is_composition) {
+            return $modelProduct->getProductsByCompositionId()->all();
         } else {
-            $composition = $this->getCompositionByProductId()->all();
+            $composition = $modelProduct->getCompositionByProductId()->all();
 
             if (!empty($composition)) {
                 $aliasC = preg_replace('%^.+/%iu', '', trim(Yii::$app->request->url, '/'));
