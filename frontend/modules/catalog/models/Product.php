@@ -124,7 +124,7 @@ class Product extends \common\modules\catalog\models\Product
     public static function findByID($id)
     {
         $result = self::getDb()->cache(function ($db) use ($id) {
-            return self::findBaseArray()->byId($id)->one();
+            return self::findBase()->byId($id)->one();
         }, 7200);
 
         return $result;
