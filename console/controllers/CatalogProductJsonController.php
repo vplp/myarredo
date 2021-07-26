@@ -34,8 +34,8 @@ class CatalogProductJsonController extends Controller
             ->all();
 
         // languages
-        $modelLanguage = new Language();
-        $languages = $modelLanguage->getLanguages();
+//        $modelLanguage = new Language();
+//        $languages = $modelLanguage->getLanguages();
 
         foreach ($models as $model) {
             /** @var PDO $transaction */
@@ -43,12 +43,12 @@ class CatalogProductJsonController extends Controller
 
             $this->stdout("ID = " . $model->id . " \n", Console::FG_GREEN);
 
-            foreach ($languages as $language) {
-                Yii::$app->language = $language['local'];
-                $currentLanguage = Yii::$app->language;
+//            foreach ($languages as $language) {
+//                Yii::$app->language = $language['local'];
+//                ProductJson::add($model->id);
+//            }
 
-                ProductJson::add($model->id);
-            }
+            ProductJson::add($model->id);
 
             $model->setScenario($mark);
             $model->$mark = '1';
