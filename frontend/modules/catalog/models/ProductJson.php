@@ -64,7 +64,7 @@ class ProductJson extends \common\modules\catalog\models\ProductJson
      */
     public static function findByAlias($alias)
     {
-//        $result = self::getDb()->cache(function ($db) use ($alias) {
+        $result = self::getDb()->cache(function ($db) use ($alias) {
             $data = self::findBase()
                 ->andWhere([Product::tableName() . '.' . Yii::$app->languages->getDomainAlias() => $alias])
                 ->one();
@@ -74,9 +74,9 @@ class ProductJson extends \common\modules\catalog\models\ProductJson
             }
 
             return $data;
-//        }, 3600);
-//
-//        return $result;
+        }, 3600);
+
+        return $result;
     }
 
     /**
