@@ -57,7 +57,7 @@ class Directlink extends \common\modules\seo\modules\directlink\models\Directlin
                 'range' => array_keys(static::statusKeyRange())
             ],
             [['meta_robots'], 'in', 'range' => array_keys(static::statusMetaRobotsRange())],
-            [['url', 'title', 'description', 'keywords', 'image_url'], 'string', 'max' => 255],
+            [['url', 'image_url'], 'string', 'max' => 255],
             ['url', 'validateUrl', 'on' => 'backend'],
             [['image_url'], 'default', 'value' => ''],
             [['city_ids'], 'each', 'rule' => ['integer']],

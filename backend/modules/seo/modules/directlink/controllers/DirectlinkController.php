@@ -4,10 +4,8 @@ namespace backend\modules\seo\modules\directlink\controllers;
 
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
-//
 use thread\app\base\controllers\BackendController;
 use thread\actions\AttributeSwitch;
-//
 use backend\modules\seo\modules\directlink\models\{
     Directlink, DirectlinkLang, search\Directlink as filterModel
 };
