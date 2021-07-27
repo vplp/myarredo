@@ -26,6 +26,8 @@ if (in_array($order->lang, ['ru-RU'])) {
     $domain = 'de';
 } else if (in_array($order->lang, ['uk-UA'])) {
     $domain = 'ua';
+} else if (in_array($order->lang, ['fr-FR'])) {
+    $domain = 'fr';
 }
 
 ?>
