@@ -119,67 +119,103 @@ class ProductJson extends ActiveRecordLang
         $obj['lang'] = $product->lang ? $product->lang->attributes : [];
 
         $obj['factoryCatalogsFiles'] = [];
+
         if ($product->factoryCatalogsFiles) {
-            foreach ($product->factoryCatalogsFiles as $item) {
-                $obj['factoryCatalogsFiles'][] = $item->attributes;
+            foreach ($product->factoryCatalogsFiles as $key => $item) {
+                $obj['factoryCatalogsFiles'][$key] = [
+                    'id' => $item->id,
+                    'title' => $item->title,
+                    'file_link' => $item->file_link,
+                    'file_type' => $item->file_type,
+                    'file_size' => $item->file_size,
+                    'discount' => $item->discount,
+                ];
             }
         }
 
         $obj['factoryPricesFiles'] = [];
+
         if ($product->factoryPricesFiles) {
-            foreach ($product->factoryPricesFiles as $item) {
-                $obj['factoryPricesFiles'][] = $item->attributes;
+            foreach ($product->factoryPricesFiles as $key => $item) {
+                $obj['factoryPricesFiles'][$key] = [
+                    'id' => $item->id,
+                    'title' => $item->title,
+                    'file_link' => $item->file_link,
+                    'file_type' => $item->file_type,
+                    'file_size' => $item->file_size,
+                    'discount' => $item->discount,
+                ];
             }
         }
 
         $obj['specificationValue'] = [];
+
         if ($product->specificationValue) {
-            foreach ($product->specificationValue as $item) {
-                $obj['specificationValue'][] = $item->attributes + [
-                        'specification' => $item->specification->attributes + [
-                                'lang' => $item->specification->lang ? $item->specification->lang->attributes : []
-                            ]
+            foreach ($product->specificationValue as $key => $item) {
+                $obj['specificationValue'][$key] = $item->attributes;
+                $obj['specificationValue'][$key]['specification'] = $item->specification->attributes;
+
+                $obj['specificationValue'][$key]['specification']['lang'] = [];
+
+                if ($item->specification->lang) {
+                    $obj['specificationValue'][$key]['specification']['lang'] = [
+                        'title' => $item->specification->lang->title
                     ];
+                }
             }
         }
 
         $obj['category'] = [];
         if ($product->category) {
-            foreach ($product->category as $item) {
-                $obj['category'][] = $item->attributes + [
-                        'lang' => $item->lang->attributes
-                    ];
+            foreach ($product->category as $key => $item) {
+                $obj['category'][$key] = $item->attributes;
+                $obj['category'][$key]['lang'] = $item->lang->attributes;
             }
         }
 
         $obj['types'] = [];
 
         if ($product->types) {
-            $obj['types'] = $product->types->attributes + [
-                    'lang' => $product->types->lang ? $product->types->lang->attributes : []
-                ];
+            $obj['types'] = $product->types->attributes;
+            $obj['types']['lang'] = $product->types->lang ? $product->types->lang->attributes : [];
         }
 
         $obj['subTypes'] = [];
         if ($product->subTypes) {
-            foreach ($product->subTypes as $item) {
-                $obj['subTypes'][] = $item->attributes + [
-                        'lang' => $item->lang ? $item->lang->attributes : []
-                    ];
+            foreach ($product->subTypes as $key => $item) {
+                $obj['subTypes'][$key] = [
+                    'id' => $item->id,
+                    'alias' => $item->alias,
+                ];
+                $obj['subTypes'][$key]['lang'] = [
+                    'title' => $item->lang->title,
+                    'plural_name' => $item->lang->plural_name,
+                ];
             }
         }
 
         $obj['factory'] = [];
         if ($product->factory) {
-            $obj['factory'] = $product->factory->attributes + [
-                    'lang' => $product->factory->lang ? $product->factory->lang->attributes : []
-                ];
+            $obj['factory'] = [
+                'id' => $product->factory->id,
+                'alias' => $product->factory->alias,
+                'title' => $product->factory->title,
+                'show_catalogs_files' => $product->factory->show_catalogs_files,
+                'factory_discount' => $product->factory->factory_discount,
+            ];
+            $obj['factory']['lang'] = [];
         }
 
-        $obj['collection'] = $product->collection ? $product->collection->attributes : [];
+        $obj['collection'] = [];
+        if ($product->collection) {
+            $obj['collection'] = [
+                'id' => $product->collection->id,
+                'title' => $product->collection->title,
+            ];
+        }
 
         $productJson->setScenario('backend');
-        $productJson->content = json_encode($obj);
+        $productJson->content = json_encode($obj, JSON_UNESCAPED_UNICODE);
         $productJson->save();
     }
 }
