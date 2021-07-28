@@ -52,6 +52,7 @@ class CatalogProductJsonController extends Controller
 
             $model->setScenario($mark);
             $model->$mark = '1';
+            $model->save();
         }
 
         $this->stdout("AddJson: finish. \n", Console::FG_GREEN);
