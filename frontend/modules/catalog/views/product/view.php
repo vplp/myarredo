@@ -405,7 +405,7 @@ var baseUrl = $("base").attr("href");
           var bestPriceForm = $('.best-price-form  #checkout-form');
           if (bestPriceForm.length == 0 && scrollBtnTop > 30) {
 
-            var product_id = {$model['id']},
+            var product_id = {$model->id},
             count = 1;
 
             if (event.cancelable) event.preventDefault();
