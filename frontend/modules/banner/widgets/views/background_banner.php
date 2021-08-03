@@ -16,9 +16,9 @@ use frontend\modules\banner\models\BannerItem;
         <div class="fone-poster-left">
             <?php if ($bannerLeft['lang'] && $bannerLeft['lang']['link'] != '') {
                 echo Html::a(
-                    Html::img('/', ['class' => 'lazy', 'data-src' => $bannerLeft->getImageLink()]),
+                    Html::img('/', ['class' => 'lazy', 'data-src' => $bannerLeft->getImageLink(), 'alt' => $bannerLeft['lang']['link']),
                     $bannerLeft['lang']['link'],
-                    ['class' => 'fone-poster-link', 'alt' => $bannerLeft['lang']['link']]
+                    ['class' => 'fone-poster-link']]
                 );
             } else {
                 echo Html::img('/', ['class' => 'lazy', 'data-src' => $bannerLeft->getImageLink()]);
@@ -28,9 +28,9 @@ use frontend\modules\banner\models\BannerItem;
         <div class="fone-poster-right">
             <?php if ($bannerLeft['lang'] && $bannerRight['lang']['link'] != '') {
                 echo Html::a(
-                    Html::img('/', ['class' => 'lazy', 'data-src' => $bannerRight->getImageLink()]),
+                    Html::img('/', ['class' => 'lazy', 'data-src' => $bannerRight->getImageLink(), 'alt' => $bannerLeft['lang']['link']),
                     $bannerRight['lang']['link'],
-                    ['class' => 'fone-poster-link', 'alt' => $bannerLeft['lang']['link']]
+                    ['class' => 'fone-poster-link']
                 );
             } else {
                 echo Html::img('/', ['class' => 'lazy', 'data-src' => $bannerRight->getImageLink()]);

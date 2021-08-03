@@ -38,9 +38,9 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                     <div class="left-part">
 
                         <?= Html::a(
-                            Html::img($bundle->baseUrl . '/img/logo.svg', ['width' => '233', 'height' => '33', 'loading' => 'lazy']),
+                            Html::img($bundle->baseUrl . '/img/logo.svg', ['width' => '233', 'height' => '33', 'loading' => 'lazy', 'alt' => 'Myarredo']),
                             Yii::$app->controller->id != 'home' ? Url::toRoute('/home/home/index') : null,
-                            ['class' => 'logo', 'alt' => 'Myarredo']
+                            ['class' => 'logo']
                         ) ?>
 
                         <?php /*
@@ -117,7 +117,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                     <div class="left-part">
 
                         <?= Html::a(
-                            Html::img($bundle->baseUrl . '/img/logo.svg', ['width' => '233', 'height' => '33']),
+                            Html::img($bundle->baseUrl . '/img/logo.svg', ['width' => '233', 'height' => '33', 'alt' => 'Myarredo']),
                             Yii::$app->controller->id != 'home' ? Url::toRoute('/home/home/index') : null,
                             ['class' => 'logo']
                         ) ?>
@@ -261,9 +261,9 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
         </div>
         <div class="logo-num">
             <?= Html::a(
-                Html::img($bundle->baseUrl . '/img/logo_myarredo.svg', ['width' => '75px', 'height' => '49px']),
+                Html::img($bundle->baseUrl . '/img/logo_myarredo.svg', ['width' => '75px', 'height' => '49px', 'alt' => 'Myarredo']),
                 Yii::$app->controller->id != 'home' ? Url::toRoute('/home/home/index') : null,
-                ['class' => 'logo', 'alt' => 'Myarredo']
+                ['class' => 'logo']
             ) ?>
         </div>
     </div>
