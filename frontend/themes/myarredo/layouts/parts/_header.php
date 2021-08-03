@@ -40,7 +40,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                         <?= Html::a(
                             Html::img($bundle->baseUrl . '/img/logo.svg', ['width' => '233', 'height' => '33', 'loading' => 'lazy']),
                             Yii::$app->controller->id != 'home' ? Url::toRoute('/home/home/index') : null,
-                            ['class' => 'logo']
+                            ['class' => 'logo', 'alt' => 'Myarredo']
                         ) ?>
 
                         <?php /*
@@ -263,7 +263,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             <?= Html::a(
                 Html::img($bundle->baseUrl . '/img/logo_myarredo.svg', ['width' => '75px', 'height' => '49px']),
                 Yii::$app->controller->id != 'home' ? Url::toRoute('/home/home/index') : null,
-                ['class' => 'logo']
+                ['class' => 'logo', 'alt' => 'Myarredo']
             ) ?>
         </div>
     </div>
