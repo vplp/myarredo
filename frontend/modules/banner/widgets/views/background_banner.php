@@ -18,7 +18,7 @@ use frontend\modules\banner\models\BannerItem;
                 echo Html::a(
                     Html::img('/', ['class' => 'lazy', 'data-src' => $bannerLeft->getImageLink()]),
                     $bannerLeft['lang']['link'],
-                    ['class' => 'fone-poster-link']
+                    ['class' => 'fone-poster-link', 'alt' => $bannerLeft['lang']['link']]
                 );
             } else {
                 echo Html::img('/', ['class' => 'lazy', 'data-src' => $bannerLeft->getImageLink()]);
@@ -30,7 +30,7 @@ use frontend\modules\banner\models\BannerItem;
                 echo Html::a(
                     Html::img('/', ['class' => 'lazy', 'data-src' => $bannerRight->getImageLink()]),
                     $bannerRight['lang']['link'],
-                    ['class' => 'fone-poster-link']
+                    ['class' => 'fone-poster-link', 'alt' => $bannerLeft['lang']['link']]
                 );
             } else {
                 echo Html::img('/', ['class' => 'lazy', 'data-src' => $bannerRight->getImageLink()]);
