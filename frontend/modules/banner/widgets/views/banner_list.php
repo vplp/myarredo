@@ -17,6 +17,7 @@ $firstFrameSrc = '';
 if ($filterItem) {
     $firstFrameLink = $filterItem['lang']['link'] ?? '';
     $firstFrameSrc = $filterItem->getImageThumb();
+
     ?>
     <div class="top-home-img" style="background-image: url(<?= $filterItem->getImageLink() ?>)">
         <?= ProductFilterOnMainPage::widget(['model' => $filterItem]); ?>
@@ -25,13 +26,14 @@ if ($filterItem) {
     foreach ($items as $model) {
         $presentData[] = [
             'langLink' => $model['lang']['link'] ?? '',
-            'langDescr' => $model['lang']['description'] ?? '',
+            'langDescr' => $model['lang']['description'] ? strip_tags($model['lang']['description']) : '',
             'imgLinkDsktp' => $model->getImageLink(),
             'imgLinkMob' => $model->getImageThumb()
         ];
 
         $firstFrameLink = $model['lang']['link'] ?? '';
         $firstFrameSrc = $model->getImageLink();
+        $firstFrameDescr = $model['lang']['description'] ? strip_tags($model['lang']['description']) : '';
 
         Yii::$app->view->registerLinkTag([
             'rel' => 'preload',
@@ -43,7 +45,7 @@ if ($filterItem) {
     <div class="home-top-slider">
         <div class="img-cont">
             <a href="<?= $firstFrameLink; ?>">
-                <img width="1600" height="560" src="<?= $firstFrameSrc; ?>" alt="<?= $model['lang']['description'] ?? ''; ?>">
+                <img width="1600" height="560" src="<?= $firstFrameSrc; ?>" alt="<?= $firstFrameDescr ?>">
             </a>
         </div>
     </div>
