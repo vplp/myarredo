@@ -421,7 +421,6 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                 $this->endCache();
             }
         } ?>
-
     </div>
 </div>
 <div class="mobile-openbg"></div>
