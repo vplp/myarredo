@@ -26,14 +26,14 @@ if ($filterItem) {
     foreach ($items as $model) {
         $presentData[] = [
             'langLink' => $model['lang']['link'] ?? '',
-            'langDescr' => $model['lang']['description'] ? strip_tags($model['lang']['description']) : '',
+            'langDescr' => $model['lang']['description'] ? str_replace('<br>', ' ', $model['lang']['description']) : '',
             'imgLinkDsktp' => $model->getImageLink(),
             'imgLinkMob' => $model->getImageThumb()
         ];
 
         $firstFrameLink = $model['lang']['link'] ?? '';
         $firstFrameSrc = $model->getImageLink();
-        $firstFrameDescr = $model['lang']['description'] ? strip_tags($model['lang']['description']) : '';
+        $firstFrameDescr = $model['lang']['description'] ? str_replace('<br>', ' ', $model['lang']['description']) : '';
 
         Yii::$app->view->registerLinkTag([
             'rel' => 'preload',
