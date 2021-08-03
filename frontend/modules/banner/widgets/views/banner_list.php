@@ -80,11 +80,11 @@ function renderSlider(data) {
 
         if (elem.langLink != '') {
             layut += '<a href="'+ elem.langLink +'">' +
-                    '<img width="1600" height="560" src="'+ link +'" alt="">' +
+                    '<img width="1600" height="560" src="'+ link +'" alt="'+langDescr+'">' +
                 '</a>';
         }
         else {
-            layut += '<img width="1600" height="560" src="'+ link +'" alt="">';
+            layut += '<img width="1600" height="560" src="'+ link +'" alt="'+langDescr+'">';
         }
         if (elem.langDescr != '') {
             layut += '<span>'+ elem.langDescr +'</span>';
