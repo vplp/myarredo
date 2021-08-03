@@ -43,7 +43,7 @@ if ($filterItem) {
     <div class="home-top-slider">
         <div class="img-cont">
             <a href="<?= $firstFrameLink; ?>">
-                <img width="1600" height="560" src="<?= $firstFrameSrc; ?>" alt="">
+                <img width="1600" height="560" src="<?= $firstFrameSrc; ?>" alt="<?= $model['lang']['description'] ?? ''; ?>">
             </a>
         </div>
     </div>
