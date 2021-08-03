@@ -16,9 +16,9 @@ use frontend\modules\banner\models\BannerItem;
         <div class="fone-poster-left">
             <?php if ($bannerLeft['lang'] && $bannerLeft['lang']['link'] != '') {
                 echo Html::a(
-                    Html::img('/', ['class' => 'lazy', 'data-src' => $bannerLeft->getImageLink(), 'alt' => $bannerLeft['lang']['link']),
+                    Html::img('/', ['class' => 'lazy', 'data-src' => $bannerLeft->getImageLink(), 'alt' => $bannerLeft['lang']['link']]),
                     $bannerLeft['lang']['link'],
-                    ['class' => 'fone-poster-link']]
+                    ['class' => 'fone-poster-link']
                 );
             } else {
                 echo Html::img('/', ['class' => 'lazy', 'data-src' => $bannerLeft->getImageLink()]);
