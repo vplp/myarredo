@@ -82,11 +82,11 @@ function renderSlider(data) {
 
         if (elem.langLink != '') {
             layut += '<a href="'+ elem.langLink +'">' +
-                    '<img width="1600" height="560" src="'+ link +'" alt="'+langDescr+'">' +
+                    '<img width="1600" height="560" src="'+ link +'" alt="'+ elem.langDescr +'">' +
                 '</a>';
         }
         else {
-            layut += '<img width="1600" height="560" src="'+ link +'" alt="'+langDescr+'">';
+            layut += '<img width="1600" height="560" src="'+ link +'" alt="'+ elem.langDescr +'">';
         }
         if (elem.langDescr != '') {
             layut += '<span>'+ elem.langDescr +'</span>';
