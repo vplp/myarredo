@@ -202,11 +202,9 @@ class LangSwitch extends Widget
                     );
                 }
 
-                if (Yii::$app->controller->id == 'product') {
-                    $model = Product::findByAlias(Yii::$app->request->get('alias'));
+                if (Yii::$app->controller->id == 'product' && $model = Product::findByAlias(Yii::$app->request->get('alias'))) {
                     $path = Product::getUrl($model['alias'], false);
-                } elseif (Yii::$app->controller->id == 'sale-italy' && Yii::$app->controller->action->id == 'view') {
-                    $model = ItalianProduct::findByAlias(Yii::$app->request->get('alias'));
+                } elseif (Yii::$app->controller->id == 'sale-italy' && Yii::$app->controller->action->id == 'view' && $model = ItalianProduct::findByAlias(Yii::$app->request->get('alias'))) {
                     $path = ItalianProduct::getUrl($model['alias'], false);
                 }
 
@@ -255,11 +253,9 @@ class LangSwitch extends Widget
                     );
                 }
 
-                if (Yii::$app->controller->id == 'product') {
-                    $model = Product::findByAlias(Yii::$app->request->get('alias'));
+                if (Yii::$app->controller->id == 'product' && $model = Product::findByAlias(Yii::$app->request->get('alias'))) {
                     $path = Product::getUrl($model['alias'], false);
-                } elseif (Yii::$app->controller->id == 'sale-italy' && Yii::$app->controller->action->id == 'view') {
-                    $model = ItalianProduct::findByAlias(Yii::$app->request->get('alias'));
+                } elseif (Yii::$app->controller->id == 'sale-italy' && Yii::$app->controller->action->id == 'view' && $model = ItalianProduct::findByAlias(Yii::$app->request->get('alias'))) {
                     $path = ItalianProduct::getUrl($model['alias'], false);
                 }
 
