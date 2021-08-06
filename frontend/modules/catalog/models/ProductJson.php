@@ -66,7 +66,12 @@ class ProductJson extends \common\modules\catalog\models\ProductJson
     {
         $result = self::getDb()->cache(function ($db) use ($alias) {
             $data = self::findBase()
-                ->andWhere([Product::tableName() . '.' . Yii::$app->languages->getDomainAlias() => $alias])
+                ->andFilterWhere([
+                    Product::tableName() . '.' . Yii::$app->languages->getDomainAlias() => $alias,
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                    Product::tableName() . '.removed' => '0'
+                ])
                 ->one();
 
             if ($data != null) {
