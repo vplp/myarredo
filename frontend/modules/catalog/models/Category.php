@@ -151,6 +151,25 @@ class Category extends \common\modules\catalog\models\Category
     }
 
     /**
+     * @param string $image_link
+     * @return bool
+     */
+    public static function isImage($image_link = '')
+    {
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getCategoryUploadPath();
+
+        $image = false;
+
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = true;
+        }
+
+        return $image;
+    }
+
+    /**
      * ImageThumb
      *
      * @param string $image_link

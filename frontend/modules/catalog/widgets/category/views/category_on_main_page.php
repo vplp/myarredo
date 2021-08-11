@@ -31,10 +31,10 @@ use frontend\modules\catalog\models\{
                         $image_link = $model['image_link_com'];
                         break;
                     case 'de':
-                        $image_link = $model['image_link_de'];
+                        $image_link = $model['image_link_de'] ?? $model['image_link_com'];
                         break;
                     case 'fr':
-                        $image_link = $model['image_link_fr'];
+                        $image_link = $model['image_link_fr'] ?? $model['image_link_com'];
                         break;
                     default:
                         $image_link = $model['image_link'];
@@ -45,16 +45,16 @@ use frontend\modules\catalog\models\{
                         $image_link2 = $model['image_link2_com'];
                         break;
                     case 'de':
-                        $image_link2 = $model['image_link2_de'];
+                        $image_link2 = $model['image_link2_de'] ?? $model['image_link2_com'];
                         break;
                     case 'fr':
-                        $image_link2 = $model['image_link2_fr'];
+                        $image_link2 = $model['image_link2_fr'] ?? $model['image_link2_com'];
                         break;
                     default:
                         $image_link2 = $model['image_link2'];
                 }
-
                 ?>
+
                 <?= Html::a(
                     Html::img('/', [
                         'class' => 'lazy',
