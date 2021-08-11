@@ -221,10 +221,10 @@ class MetaTag extends Component
                 '#nella citta#',
                 '# місті #', '# місті#', '#місті #', '#місті#',
                 '# Stadt#', '#Stadt#', '#Stadt #', '#Stadt#', 'Stadt#',
-                '#City #', '#City#', '# City #', '# City#',
+                '#City #', '#City#', '# City #', '# City#', '#ciry#', '#gorod#',
                 '#city#', '# city#', '#city #', '#city#',
                 '# città #', '#città #', '# città#', '#città#',
-                '# עיר #', '# עיר#', ' עיר #','#עיר#', '# #'
+                '# עיר #', '# עיר#', ' עיר #', '#עיר#', '# #'
             ],
             Yii::$app->city->getCityTitleWhere(),
             $this->seo_title
@@ -244,10 +244,10 @@ class MetaTag extends Component
                 '#nella citta#',
                 '# місті #', '# місті#', '#місті #', '#місті#',
                 '# Stadt#', '#Stadt#', '#Stadt #', '#Stadt#', 'Stadt#',
-                '#City #', '#City#', '# City #', '# City#',
+                '#City #', '#City#', '# City #', '# City#', '#ciry#', '#gorod#',
                 '#city#', '# city#', '#city #', '#city#',
                 '# città #', '#città #', '# città#', '#città#',
-                '# עיר #', '# עיר#', ' עיר #','#עיר#', '# #'
+                '# עיר #', '# עיר#', ' עיר #', '#עיר#', '# #'
             ],
             Yii::$app->city->getCityTitleWhere(),
             $this->seo_description
@@ -267,10 +267,10 @@ class MetaTag extends Component
                 '#nella citta#',
                 '# місті #', '# місті#', '#місті #', '#місті#',
                 '# Stadt#', '#Stadt#', '#Stadt #', '#Stadt#', 'Stadt#',
-                '#City #', '#City#', '# City #', '# City#',
+                '#City #', '#City#', '# City #', '# City#', '#ciry#', '#gorod#',
                 '#city#', '# city#', '#city #', '#city#',
                 '# città #', '#città #', '# città#', '#città#',
-                '# עיר #', '# עיר#', ' עיר #','#עיר#', '# #'
+                '# עיר #', '# עיר#', ' עיר #', '#עיר#', '# #'
             ],
             Yii::$app->city->getCityTitleWhere(),
             $this->seo_h1
@@ -290,10 +290,10 @@ class MetaTag extends Component
                 '#nella citta#',
                 '# місті #', '# місті#', '#місті #', '#місті#',
                 '# Stadt#', '#Stadt#', '#Stadt #', '#Stadt#', 'Stadt#',
-                '#City #', '#City#', '# City #', '# City#',
+                '#City #', '#City#', '# City #', '# City#', '#ciry#', '#gorod#',
                 '#city#', '# city#', '#city #', '#city#',
                 '# città #', '#città #', '# città#', '#città#',
-                '# עיר #', '# עיר#', ' עיר #','#עיר#', '# #'
+                '# עיר #', '# עיר#', ' עיר #', '#עיר#', '# #'
             ],
             Yii::$app->city->getCityTitleWhere(),
             $this->seo_content
