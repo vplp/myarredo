@@ -56,6 +56,10 @@ class CategoryOnMainPage extends Widget
                     Category::tableName() . '.image_link3',
                     Category::tableName() . '.image_link_com',
                     Category::tableName() . '.image_link2_com',
+                    Category::tableName() . '.image_link_de',
+                    Category::tableName() . '.image_link2_de',
+                    Category::tableName() . '.image_link_fr',
+                    Category::tableName() . '.image_link2_fr',
                     Category::tableName() . '.position',
                     CategoryLang::tableName() . '.title',
                     'count(' . Category::tableName() . '.id) as count'

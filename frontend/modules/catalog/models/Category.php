@@ -340,6 +340,10 @@ class Category extends \common\modules\catalog\models\Category
                     self::tableName() . '.image_link3',
                     self::tableName() . '.image_link_com',
                     self::tableName() . '.image_link2_com',
+                    self::tableName() . '.image_link_de',
+                    self::tableName() . '.image_link2_de',
+                    self::tableName() . '.image_link_fr',
+                    self::tableName() . '.image_link2_fr',
                     self::tableName() . '.position',
                     CategoryLang::tableName() . '.title',
                     'count(' . self::tableName() . '.id) as count'
@@ -441,6 +445,10 @@ class Category extends \common\modules\catalog\models\Category
                     self::tableName() . '.image_link3',
                     self::tableName() . '.image_link_com',
                     self::tableName() . '.image_link2_com',
+                    self::tableName() . '.image_link_de',
+                    self::tableName() . '.image_link2_de',
+                    self::tableName() . '.image_link_fr',
+                    self::tableName() . '.image_link2_fr',
                     CategoryLang::tableName() . '.title',
                     'count(' . self::tableName() . '.id) as count'
                 ])
@@ -536,6 +544,10 @@ class Category extends \common\modules\catalog\models\Category
                     self::tableName() . '.image_link3',
                     self::tableName() . '.image_link_com',
                     self::tableName() . '.image_link2_com',
+                    self::tableName() . '.image_link_de',
+                    self::tableName() . '.image_link2_de',
+                    self::tableName() . '.image_link_fr',
+                    self::tableName() . '.image_link2_fr',
                     CategoryLang::tableName() . '.title',
                     'count(' . self::tableName() . '.id) as count'
                 ])
