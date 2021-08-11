@@ -23,16 +23,48 @@ use frontend\modules\catalog\models\{
                 <div class="cat-title">
                     <?= $model['lang']['title']; ?>
                 </div>
+
+                <?php
+
+                switch (DOMAIN_TYPE) {
+                    case 'com':
+                        $image_link = $model['image_link_com'];
+                        break;
+                    case 'de':
+                        $image_link = $model['image_link_de'];
+                        break;
+                    case 'fr':
+                        $image_link = $model['image_link_fr'];
+                        break;
+                    default:
+                        $image_link = $model['image_link'];
+                }
+
+                switch (DOMAIN_TYPE) {
+                    case 'com':
+                        $image_link2 = $model['image_link2_com'];
+                        break;
+                    case 'de':
+                        $image_link2 = $model['image_link2_de'];
+                        break;
+                    case 'fr':
+                        $image_link2 = $model['image_link2_fr'];
+                        break;
+                    default:
+                        $image_link2 = $model['image_link2'];
+                }
+
+                ?>
                 <?= Html::a(
                     Html::img('/', [
                         'class' => 'lazy',
-                        'data-src' => Category::getImage(DOMAIN_TYPE != 'com' ? $model['image_link'] : $model['image_link_com']),
+                        'data-src' => Category::getImage($image_link),
                         'alt' => $model['lang']['title'],
                         'title' => $model['lang']['title']
                     ])
                     . Html::img('/', [
                         'class' => 'is-hover lazy',
-                        'data-src' => Category::getImage(DOMAIN_TYPE != 'com' ? $model['image_link2'] : $model['image_link2_com']),
+                        'data-src' => Category::getImage($image_link2),
                         'alt' => $model['lang']['title'],
                         'title' => $model['lang']['title']
                     ]),

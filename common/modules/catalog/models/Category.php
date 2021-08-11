@@ -26,7 +26,10 @@ use thread\app\base\models\ActiveRecord;
  * @property string $image_link3
  * @property string $image_link_com
  * @property string $image_link2_com
- * @property string $image_link_home
+ * @property string $image_link_de
+ * @property string $image_link2_de
+ * @property string $image_link_fr
+ * @property string $image_link2_fr
  * @property integer $position
  * @property integer $popular
  * @property integer $popular_by
@@ -99,7 +102,22 @@ class Category extends ActiveRecord
                         'tempPath' => Yii::getAlias('@temp'),
                         'url' => Yii::$app->getModule('catalog')->getCategoryUploadPath(),
                     ],
-                    'image_link_home' => [
+                    'image_link_de' => [
+                        'path' => Yii::$app->getModule('catalog')->getCategoryUploadPath(),
+                        'tempPath' => Yii::getAlias('@temp'),
+                        'url' => Yii::$app->getModule('catalog')->getCategoryUploadPath(),
+                    ],
+                    'image_link2_de' => [
+                        'path' => Yii::$app->getModule('catalog')->getCategoryUploadPath(),
+                        'tempPath' => Yii::getAlias('@temp'),
+                        'url' => Yii::$app->getModule('catalog')->getCategoryUploadPath(),
+                    ],
+                    'image_link_fr' => [
+                        'path' => Yii::$app->getModule('catalog')->getCategoryUploadPath(),
+                        'tempPath' => Yii::getAlias('@temp'),
+                        'url' => Yii::$app->getModule('catalog')->getCategoryUploadPath(),
+                    ],
+                    'image_link2_fr' => [
                         'path' => Yii::$app->getModule('catalog')->getCategoryUploadPath(),
                         'tempPath' => Yii::getAlias('@temp'),
                         'url' => Yii::$app->getModule('catalog')->getCategoryUploadPath(),
@@ -120,7 +138,10 @@ class Category extends ActiveRecord
             [['published', 'deleted', 'popular', 'popular_by'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [[
                 'alias', 'alias_en', 'alias_it', 'alias_de', 'alias_fr', 'alias_he',
-                'image_link', 'image_link2', 'image_link3', 'image_link_com', 'image_link2_com', 'image_link_home'
+                'image_link', 'image_link2', 'image_link3',
+                'image_link_com', 'image_link2_com',
+                'image_link_de', 'image_link2_de',
+                'image_link_fr', 'image_link2_fr',
             ], 'string', 'max' => 255],
             [['alias', 'alias_en', 'alias_it', 'alias_de', 'alias_fr', 'alias_he'], 'unique'],
             [['position', 'product_count'], 'default', 'value' => '0'],
@@ -153,7 +174,10 @@ class Category extends ActiveRecord
                 'image_link3',
                 'image_link_com',
                 'image_link2_com',
-                'image_link_home',
+                'image_link_de',
+                'image_link2_de',
+                'image_link_fr',
+                'image_link2_fr',
                 'popular',
                 'popular_by',
                 'position',
@@ -182,7 +206,10 @@ class Category extends ActiveRecord
             'image_link3' => 'Иконка для главного меню',
             'image_link_com' => 'Изображение для .com',
             'image_link2_com' => 'Вторая картинка для .com',
-            'image_link_home' => 'Картинка на главной',
+            'image_link_de' => 'Изображение для .de',
+            'image_link2_de' => 'Вторая картинка для .de',
+            'image_link_fr' => 'Изображение для .fr',
+            'image_link2_fr' => 'Вторая картинка для .fr',
             'position' => Yii::t('app', 'Position'),
             'popular' => 'Популярный Ru',
             'popular_by' => 'Популярный By',
@@ -256,9 +283,10 @@ class Category extends ActiveRecord
     }
 
     /**
-     * @return null|string
+     * @param string $field
+     * @return string|null
      */
-    public function getImageLink()
+    public function getImageLink($field = 'image_link')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -268,108 +296,8 @@ class Category extends ActiveRecord
 
         $image = null;
 
-        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
-            $image = $url . '/' . $this->image_link;
-        }
-
-        return $image;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getImageLink2()
-    {
-        /** @var Catalog $module */
-        $module = Yii::$app->getModule('catalog');
-
-        $path = $module->getCategoryUploadPath();
-        $url = $module->getCategoryUploadUrl();
-
-        $image = null;
-
-        if (!empty($this->image_link2) && is_file($path . '/' . $this->image_link2)) {
-            $image = $url . '/' . $this->image_link2;
-        }
-
-        return $image;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getImageLink3()
-    {
-        /** @var Catalog $module */
-        $module = Yii::$app->getModule('catalog');
-
-        $path = $module->getCategoryUploadPath();
-        $url = $module->getCategoryUploadUrl();
-
-        $image = null;
-
-        if (!empty($this->image_link3) && is_file($path . '/' . $this->image_link3)) {
-            $image = $url . '/' . $this->image_link3;
-        }
-
-        return $image;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getImageLinkCom()
-    {
-        /** @var Catalog $module */
-        $module = Yii::$app->getModule('catalog');
-
-        $path = $module->getCategoryUploadPath();
-        $url = $module->getCategoryUploadUrl();
-
-        $image = null;
-
-        if (!empty($this->image_link_com) && is_file($path . '/' . $this->image_link_com)) {
-            $image = $url . '/' . $this->image_link_com;
-        }
-
-        return $image;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getImageLink2Com()
-    {
-        /** @var Catalog $module */
-        $module = Yii::$app->getModule('catalog');
-
-        $path = $module->getCategoryUploadPath();
-        $url = $module->getCategoryUploadUrl();
-
-        $image = null;
-
-        if (!empty($this->image_link2_com) && is_file($path . '/' . $this->image_link2_com)) {
-            $image = $url . '/' . $this->image_link2_com;
-        }
-
-        return $image;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getImageLinkHome()
-    {
-        /** @var Catalog $module */
-        $module = Yii::$app->getModule('catalog');
-
-        $path = $module->getCategoryUploadPath();
-        $url = $module->getCategoryUploadUrl();
-
-        $image = null;
-
-        if (!empty($this->image_link_home) && is_file($path . '/' . $this->image_link_home)) {
-            $image = $url . '/' . $this->image_link_home;
+        if (!empty($this->{$field}) && is_file($path . '/' . $this->{$field})) {
+            $image = $url . '/' . $this->{$field};
         }
 
         return $image;
