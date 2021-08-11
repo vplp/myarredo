@@ -19,8 +19,14 @@ use common\modules\catalog\Catalog;
  * @property string $meta_title
  * @property string $meta_desc
  * @property string $wc_provider
- * @property string $wc_phone
- * @property string $wc_email
+ * @property string $wc_phone_supplier
+ * @property string $wc_email_supplier
+ * @property string $wc_phone_factory
+ * @property string $wc_email_factory
+ * @property string $wc_contact_person_supplier
+ * @property string $wc_contact_person_factory
+ * @property string $wc_expiration_date
+ * @property string $wc_terms_of_payment
  * @property string $wc_prepayment
  * @property string $wc_balance
  * @property string $wc_additional_terms
@@ -60,8 +66,14 @@ class FactoryLang extends ActiveRecordLang
                 'content',
                 'contacts',
                 'wc_provider',
-                'wc_phone',
-                'wc_email',
+                'wc_phone_supplier',
+                'wc_email_supplier',
+                'wc_phone_factory',
+                'wc_email_factory',
+                'wc_contact_person_supplier',
+                'wc_contact_person_factory',
+                'wc_expiration_date',
+                'wc_terms_of_payment',
                 'wc_prepayment',
                 'wc_balance',
                 'wc_additional_terms',
@@ -86,8 +98,14 @@ class FactoryLang extends ActiveRecordLang
                 'contacts',
                 'subdivision',
                 'wc_provider',
-                'wc_phone',
-                'wc_email',
+                'wc_phone_supplier',
+                'wc_email_supplier',
+                'wc_phone_factory',
+                'wc_email_factory',
+                'wc_contact_person_supplier',
+                'wc_contact_person_factory',
+                'wc_expiration_date',
+                'wc_terms_of_payment',
                 'wc_prepayment',
                 'wc_balance',
                 'wc_additional_terms',
@@ -109,8 +127,14 @@ class FactoryLang extends ActiveRecordLang
             'meta_desc' => 'Meta desc',
             'subdivision' => Yii::t('app', 'Представительство'),
             'wc_provider' => Yii::t('app', 'Поставщик'),
-            'wc_phone' => Yii::t('app', 'Phone'),
-            'wc_email' => Yii::t('app', 'Email'),
+            'wc_expiration_date' => Yii::t('app', 'Срок производства'),
+            'wc_terms_of_payment' => Yii::t('app', 'Условия оплаты'),
+            'wc_phone_supplier' => Yii::t('app', 'Телефон поставщика'),
+            'wc_email_supplier' => Yii::t('app', 'Почта поставщика'),
+            'wc_contact_person_supplier' => Yii::t('app', 'Контактное лицо поставщика'),
+            'wc_phone_factory' => Yii::t('app', 'Телефон фабрики'),
+            'wc_email_factory' => Yii::t('app', 'Почта фабрики'),
+            'wc_contact_person_factory' => Yii::t('app', 'Контактное лицо фабрики'),
             'wc_prepayment' => Yii::t('app', 'Предоплата'),
             'wc_balance' => Yii::t('app', 'Остаток'),
             'wc_additional_terms' => Yii::t('app', 'Дополнительные условия'),

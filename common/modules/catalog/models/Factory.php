@@ -50,6 +50,8 @@ use voskobovich\behaviors\ManyToManyBehavior;
  * @property integer $product_count
  * @property boolean $dealers_can_answer
  * @property boolean $factory_discount
+ * @property boolean $factory_discount_with_exposure
+ * @property boolean $factory_discount_on_exposure
  * @property boolean $show_catalogs_files
  * @property integer $mark
  *
@@ -126,7 +128,9 @@ class Factory extends ActiveRecord
                     'position',
                     'partner_id',
                     'product_count',
-                    'factory_discount'
+                    'factory_discount',
+                    'factory_discount_with_exposure',
+                    'factory_discount_on_exposure'
                 ],
                 'integer'
             ],
@@ -161,7 +165,10 @@ class Factory extends ActiveRecord
             [['first_letter'], 'string', 'max' => 2],
             [['alias'], 'unique'],
             [
-                ['user_id', 'editor_id', 'producing_country_id', 'position', 'partner_id', 'product_count', 'factory_discount'],
+                [
+                    'user_id', 'editor_id', 'producing_country_id', 'position', 'partner_id', 'product_count',
+                    'factory_discount', 'factory_discount_with_exposure', 'factory_discount_on_exposure'
+                ],
                 'default',
                 'value' => '0'
             ],
@@ -222,6 +229,8 @@ class Factory extends ActiveRecord
                 'dealers_ids',
                 'dealers_can_answer',
                 'factory_discount',
+                'factory_discount_with_exposure',
+                'factory_discount_on_exposure',
                 'show_catalogs_files',
                 'mark'
             ],
@@ -266,7 +275,9 @@ class Factory extends ActiveRecord
             'product_count' => 'product_count',
             'dealers_ids' => Yii::t('app', 'Dealers'),
             'dealers_can_answer' => Yii::t('app', 'Dealers can answer'),
-            'factory_discount' => Yii::t('app', 'Скидка фабрики'),
+            'factory_discount' => Yii::t('app', 'Скидка'),
+            'factory_discount_with_exposure' => Yii::t('app', 'Скидка с экспозицией'),
+            'factory_discount_on_exposure' => Yii::t('app', 'Скидка на экспозицию'),
             'show_catalogs_files' => 'Не показывать каталоги',
             'mark',
         ];

@@ -431,13 +431,33 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
     <?php if (Yii::$app->request->get('tab') == 'working-conditions' && !Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->showWorkingConditions()) { ?>
         <div id="working-conditions"
              class="tab-pane fade <?= Yii::$app->request->get('tab') == 'working-conditions' ? 'in active' : ''; ?>">
-            <?= $model->getAttributeLabel('factory_discount') ?>: <?= $model->factory_discount ?><br>
-            <?= $model->lang->getAttributeLabel('wc_provider') ?>: <?= $model->lang->wc_provider ?><br>
-            <?= $model->lang->getAttributeLabel('wc_phone') ?>: <?= $model->lang->wc_phone ?><br>
-            <?= $model->lang->getAttributeLabel('wc_email') ?>: <?= $model->lang->wc_email ?><br>
-            <?= $model->lang->getAttributeLabel('wc_prepayment') ?>: <?= $model->lang->wc_prepayment ?><br>
-            <?= $model->lang->getAttributeLabel('wc_balance') ?>: <?= $model->lang->wc_balance ?><br>
-            <?= $model->lang->getAttributeLabel('wc_additional_terms') ?>: <?= $model->lang->wc_additional_terms ?><br>
+
+            <b><?= $model->getAttributeLabel('factory_discount') ?></b>: <?= $model->factory_discount ?><br>
+            <b><?= $model->getAttributeLabel('factory_discount_with_exposure') ?></b>: <?= $model->factory_discount_with_exposure ?>
+            <br>
+            <b><?= $model->getAttributeLabel('factory_discount_on_exposure') ?></b>: <?= $model->factory_discount_on_exposure ?>
+            <br>
+
+            <b><?= $model->lang->getAttributeLabel('wc_expiration_date') ?></b>: <?= $model->lang->wc_expiration_date ?>
+            <br>
+            <b><?= $model->lang->getAttributeLabel('wc_terms_of_payment') ?></b>: <?= $model->lang->wc_terms_of_payment ?>
+            <br>
+
+            <?php if (in_array(DOMAIN_TYPE, ['ru', 'ua', 'by'])) { ?>
+                <b><?= $model->lang->getAttributeLabel('wc_phone_supplier') ?></b>: <?= $model->lang->wc_phone_supplier ?>
+                <br>
+                <b><?= $model->lang->getAttributeLabel('wc_email_supplier') ?></b>: <?= $model->lang->wc_email_supplier ?>
+                <br>
+                <b><?= $model->lang->getAttributeLabel('wc_contact_person_supplier') ?></b>: <?= $model->lang->wc_contact_person_supplier ?>
+                <br>
+            <?php } else { ?>
+                <b><?= $model->lang->getAttributeLabel('wc_phone_factory') ?></b>: <?= $model->lang->wc_phone_factory ?>
+                <br>
+                <b><?= $model->lang->getAttributeLabel('wc_email_factory') ?></b>: <?= $model->lang->wc_email_factory ?>
+                <br>
+                <b><?= $model->lang->getAttributeLabel('wc_contact_person_factory') ?></b>: <?= $model->lang->wc_contact_person_factory ?>
+                <br>
+            <?php } ?>
         </div>
     <?php } ?>
 
