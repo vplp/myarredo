@@ -221,7 +221,8 @@ class MetaTag extends Component
                 '#nella citta#',
                 '# місті #', '# місті#', '#місті #', '#місті#',
                 '# Stadt#', '#Stadt#', '#Stadt #', '#Stadt#', 'Stadt#',
-                '#City #', '#City#', '# City #', '# City#', '#ciry#', '#gorod#', '#ville#',
+                '#City #', '#City#', '# City #', '# City#', '#ciry#', '#gorod#',
+                '#ville#', '# ville #',
                 '#city#', '# city#', '#city #', '#city#',
                 '# città #', '#città #', '# città#', '#città#',
                 '# עיר #', '# עיר#', ' עיר #', '#עיר#', '# #'
@@ -244,7 +245,8 @@ class MetaTag extends Component
                 '#nella citta#',
                 '# місті #', '# місті#', '#місті #', '#місті#',
                 '# Stadt#', '#Stadt#', '#Stadt #', '#Stadt#', 'Stadt#',
-                '#City #', '#City#', '# City #', '# City#', '#ciry#', '#gorod#', '#ville#',
+                '#City #', '#City#', '# City #', '# City#', '#ciry#', '#gorod#',
+                '#ville#', '# ville #',
                 '#city#', '# city#', '#city #', '#city#',
                 '# città #', '#città #', '# città#', '#città#',
                 '# עיר #', '# עיר#', ' עיר #', '#עיר#', '# #'
@@ -267,7 +269,8 @@ class MetaTag extends Component
                 '#nella citta#',
                 '# місті #', '# місті#', '#місті #', '#місті#',
                 '# Stadt#', '#Stadt#', '#Stadt #', '#Stadt#', 'Stadt#',
-                '#City #', '#City#', '# City #', '# City#', '#ciry#', '#gorod#', '#ville#',
+                '#City #', '#City#', '# City #', '# City#', '#ciry#', '#gorod#',
+                '#ville#', '# ville #',
                 '#city#', '# city#', '#city #', '#city#',
                 '# città #', '#città #', '# città#', '#città#',
                 '# עיר #', '# עיר#', ' עיר #', '#עיר#', '# #'
@@ -290,7 +293,8 @@ class MetaTag extends Component
                 '#nella citta#',
                 '# місті #', '# місті#', '#місті #', '#місті#',
                 '# Stadt#', '#Stadt#', '#Stadt #', '#Stadt#', 'Stadt#',
-                '#City #', '#City#', '# City #', '# City#', '#ciry#', '#gorod#', '#ville#',
+                '#City #', '#City#', '# City #', '# City#', '#ciry#', '#gorod#',
+                '#ville#', '# ville #',
                 '#city#', '# city#', '#city #', '#city#',
                 '# città #', '#città #', '# città#', '#città#',
                 '# עיר #', '# עיר#', ' עיר #', '#עיר#', '# #'
