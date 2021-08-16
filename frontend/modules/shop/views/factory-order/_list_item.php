@@ -58,7 +58,7 @@ use frontend\modules\catalog\models\{
                                             Factory::getUrl($orderItem->product['factory']['alias'])
                                         );
                                     } else {
-                                        echo $orderItem->product['factory_name'];
+                                        echo '-'; //$orderItem->product['factory_name'];
                                     } ?>
                                 </td>
                             </tr>
