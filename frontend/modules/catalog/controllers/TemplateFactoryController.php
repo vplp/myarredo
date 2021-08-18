@@ -416,7 +416,7 @@ class TemplateFactoryController extends BaseController
         $this->title = Yii::t('app', 'Прайс листы') . ' ' . $factory['title'];
 
         return $this->render('prices_files', [
-            'factory' => $factory,
+            'model' => $factory,
         ]);
     }
 }
