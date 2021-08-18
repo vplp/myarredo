@@ -2,12 +2,11 @@
 
 use yii\helpers\Html;
 use frontend\modules\catalog\models\{
-    Factory, FactoryPricesFiles
+    Factory
 };
 
 /**
- * @var $factory Factory
- * @var $priceFile FactoryPricesFiles
+ * @var $model Factory
  */
 
 $this->title = $this->context->title;
