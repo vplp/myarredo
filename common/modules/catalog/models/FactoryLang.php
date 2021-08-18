@@ -30,6 +30,8 @@ use common\modules\catalog\Catalog;
  * @property string $wc_prepayment
  * @property string $wc_balance
  * @property string $wc_additional_terms
+ * @property string $wc_additional_discount_info
+ * @property string $wc_additional_cost_calculations_info
  * @property string $subdivision
  *
  * @package common\modules\catalog\models
@@ -77,6 +79,8 @@ class FactoryLang extends ActiveRecordLang
                 'wc_prepayment',
                 'wc_balance',
                 'wc_additional_terms',
+                'wc_additional_discount_info',
+                'wc_additional_cost_calculations_info',
                 'subdivision'
             ], 'string'],
             [['h1', 'meta_title', 'meta_desc', 'description', 'content', 'contacts'], 'default', 'value' => ''],
@@ -109,6 +113,8 @@ class FactoryLang extends ActiveRecordLang
                 'wc_prepayment',
                 'wc_balance',
                 'wc_additional_terms',
+                'wc_additional_discount_info',
+                'wc_additional_cost_calculations_info',
             ],
         ];
     }
@@ -138,6 +144,8 @@ class FactoryLang extends ActiveRecordLang
             'wc_prepayment' => Yii::t('app', 'Предоплата'),
             'wc_balance' => Yii::t('app', 'Остаток'),
             'wc_additional_terms' => Yii::t('app', 'Дополнительные условия'),
+            'wc_additional_discount_info' => Yii::t('app', 'Дополнительная информация по скидке'),
+            'wc_additional_cost_calculations_info' => Yii::t('app', 'Дополнительная информация по расчетам стоимости')
         ];
     }
 }

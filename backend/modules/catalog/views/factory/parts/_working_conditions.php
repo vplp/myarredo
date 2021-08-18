@@ -12,8 +12,11 @@ use backend\modules\catalog\models\{
  */
 
 echo $form->field($model, 'factory_discount');
+echo $form->text_line_lang($modelLang, 'wc_additional_discount_info');
+
 echo $form->field($model, 'factory_discount_with_exposure');
 echo $form->field($model, 'factory_discount_on_exposure');
+echo $form->text_line_lang($modelLang, 'wc_additional_cost_calculations_info');
 
 //echo $form->text_line_lang($modelLang, 'wc_provider');
 

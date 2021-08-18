@@ -21,12 +21,13 @@ $this->title = $this->context->title;
                 <?= Html::tag('h1', $this->context->title); ?>
 
                 <b><?= $factory->getAttributeLabel('factory_discount') ?></b>: <?= $factory->factory_discount ?><br>
-                <b><?= $factory->getAttributeLabel('factory_discount_with_exposure') ?></b>: <?= $factory->factory_discount_with_exposure ?>
-                <br>
-                <b><?= $factory->getAttributeLabel('factory_discount_on_exposure') ?></b>: <?= $factory->factory_discount_on_exposure ?>
-                <br>
-
                 <?php if ($factory->lang) { ?>
+                    <b><?= $factory->lang->getAttributeLabel('wc_additional_discount_info') ?></b>: <?= $factory->lang->wc_additional_discount_info ?><br>
+                    <b><?= $factory->getAttributeLabel('factory_discount_with_exposure') ?></b>: <?= $factory->factory_discount_with_exposure ?>
+                    <br>
+                    <b><?= $factory->getAttributeLabel('factory_discount_on_exposure') ?></b>: <?= $factory->factory_discount_on_exposure ?>
+                    <br>
+                    <b><?= $factory->lang->getAttributeLabel('wc_additional_cost_calculations_info') ?></b>: <?= $factory->lang->wc_additional_cost_calculations_info ?><br>
                     <b><?= $factory->lang->getAttributeLabel('wc_expiration_date') ?></b>: <?= $factory->lang->wc_expiration_date ?>
                     <br>
                     <b><?= $factory->lang->getAttributeLabel('wc_terms_of_payment') ?></b>: <?= $factory->lang->wc_terms_of_payment ?>
