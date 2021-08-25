@@ -58,6 +58,8 @@ if (in_array($order->lang, ['ru-RU'])) {
                 );
             }
 
+            echo Html::tag('span', $item->product['factory']['title']);
+
             echo Html::a(
                 $item->product['lang']['title'],
                 'https://www.myarredo.' . $domain . '/sale-italy-product/' . $item->product['alias'] . '/',
