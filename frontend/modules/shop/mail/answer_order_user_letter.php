@@ -47,13 +47,13 @@ use frontend\modules\shop\models\{
                     ); ?>
                 </div>
                 <div style="float: left; margin: 10px 30px;">
+                    <span style="color:#9f8b80; font-size: 14px;"><?= $item->product['factory']['title']; ?></span>
+                    <br>
                     <?= Html::a(
                         $item->product['lang']['title'],
                         Product::getUrl($item->product[Yii::$app->languages->getDomainAlias()]),
                         ['style' => 'font-weight:bold; color: #000; text-transform: uppercase; text-decoration: underline;']
                     ); ?>
-                    <br>
-                    <span style="color:#9f8b80; font-size: 14px;"><?= $item->product['factory']['title']; ?></span>
                 </div>
                 <div style="padding-top: 10px; color:#8e3628">
                     <?php if ($item->orderItemPrice->out_of_production == '1') {

@@ -77,7 +77,8 @@ if (in_array($order->lang, ['ru-RU'])) {
 
                     </div>
                     <div style="float: left; margin: 10px 30px;">
-
+                        <span style="color:#9f8b80; font-size: 14px;"><?= $item->product['factory']['title']; ?></span>
+                        <br>
                         <?= Html::a(
                             $item->product['lang']['title'],
                             'https://www.myarredo.' . $domain . '/product/' . $item->product['alias'] . '/',

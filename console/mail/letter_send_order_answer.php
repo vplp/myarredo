@@ -46,6 +46,8 @@ if (!in_array($lang, ['ru', 'uk'])) {
                         ); ?>
                     </div>
                     <div style="float: left; margin: 10px 30px;">
+                        <span style="color:#9f8b80; font-size: 14px;"><?= $orderItem->product['factory']['title']; ?></span>
+                        <br>
                         <?= Html::a(
                             $orderItem->product['lang']['title'],
                             Product::getUrl($orderItem->product[$domainAlias]),

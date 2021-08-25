@@ -47,6 +47,8 @@ if (in_array($order->lang, ['ru-RU'])) {
                 );
             }
 
+            echo Html::tag('span', $item->product['factory']['title']);
+
             echo Html::a(
                 $item->product['lang']['title'],
                 'https://www.myarredo.' . $domain . '/product/' . $item->product['alias_it'] . '/',
@@ -57,20 +59,28 @@ if (in_array($order->lang, ['ru-RU'])) {
         <p style="font-weight:bold;">
             Riceviamo richieste siamo pronti a trasmetterla a voi GRATUITAMENTE.<br>
             <br>
-            Se avete un reparto vendita al dettaglio in fabbrica, potete gestire voi stessi le richieste che vi inviamo e trasformarle in un ordine.<br>
+            Se avete un reparto vendita al dettaglio in fabbrica, potete gestire voi stessi le richieste che vi inviamo
+            e trasformarle in un ordine.<br>
             <br>
-            In caso contrario, potete inviare hai vs. rivenditori - punti vendita al portale myarredo.com in modo che rispondano a queste richieste e continuino a lavorare con il cliente, per sviluppare l'ordine.<br>
+            In caso contrario, potete inviare hai vs. rivenditori - punti vendita al portale myarredo.com in modo che
+            rispondano a queste richieste e continuino a lavorare con il cliente, per sviluppare l'ordine.<br>
             <br>
             Se il cliente non ordina per qualche motivo, il nostro servizio è GRATUITO.<br>
             <br>
-            Se l'ordine è stato completato, dopo la sua chiusura, il venditore deve inserire l'importo della fattura netta della fabbrica nel suo account personale sul sito Web e gli emetteremo una fattura per un importo del 10% della fattura, che dovrà essere pagate per i nostri servizi di ricerca dei clienti.<br>
-            Attiriamo la vostra attenzione sul fatto che ogni cliente dal portale sarà monitorato per la soddisfazione del lavoro della nostra rete.<br>
+            Se l'ordine è stato completato, dopo la sua chiusura, il venditore deve inserire l'importo della fattura
+            netta della fabbrica nel suo account personale sul sito Web e gli emetteremo una fattura per un importo del
+            10% della fattura, che dovrà essere pagate per i nostri servizi di ricerca dei clienti.<br>
+            Attiriamo la vostra attenzione sul fatto che ogni cliente dal portale sarà monitorato per la soddisfazione
+            del lavoro della nostra rete.<br>
             <br>
-            Il portale ha già collegato 153 saloni di mobili in 4 paesi se state già ricevendo ordini da loro tramite noi, potete familiarizzare con le applicazioni e le statistiche sulla vs. fabbrica nel vs. account personale dopo la registrazione.<br>
+            Il portale ha già collegato 153 saloni di mobili in 4 paesi se state già ricevendo ordini da loro tramite
+            noi, potete familiarizzare con le applicazioni e le statistiche sulla vs. fabbrica nel vs. account personale
+            dopo la registrazione.<br>
             <br>
             Ora stiamo espandendo la nostra rete in Europa e in America.<br>
             <br>
-            Potete aggiungere i vs. rivenditori in Europa e in America per ricevere ordini già elaborati dalla nostra risorsa.<br>
+            Potete aggiungere i vs. rivenditori in Europa e in America per ricevere ordini già elaborati dalla nostra
+            risorsa.<br>
             Per tutte le ulteriori informazioni siamo sempre a vs. disposizione.<br>
             <br>
             In attesa porgiamo distinti saluti.<br>
