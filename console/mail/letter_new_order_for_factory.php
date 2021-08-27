@@ -58,7 +58,7 @@ if (in_array($order->lang, ['ru-RU'])) {
             );
         }
 
-        echo Html::tag('span', $item->product['factory']['title']);
+        echo Html::tag('span', $item->product['factory']['title']) . Html::tag('br');
 
         echo Html::a(
             $item->product['lang']['title'],

@@ -53,8 +53,6 @@ if (!in_array($lang, ['ru', 'uk'])) {
                             Product::getUrl($orderItem->product[$domainAlias]),
                             ['style' => 'font-weight:bold; color: #000; text-transform: uppercase; text-decoration: underline;']
                         ); ?>
-                        <br>
-                        <span style="color:#9f8b80; font-size: 14px;"><?= $orderItem->product['factory']['title']; ?></span>
                     </div>
                 </div>
 

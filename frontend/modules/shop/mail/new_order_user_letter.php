@@ -84,9 +84,6 @@ if (in_array($order->lang, ['ru-RU'])) {
                             'https://www.myarredo.' . $domain . '/product/' . $item->product['alias'] . '/',
                             ['style' => 'font-weight:bold; color: #000; text-transform: uppercase; text-decoration: underline;']
                         ); ?>
-
-                        <br>
-                        <span style="color:#9f8b80; font-size: 14px;"><?= $item->product['factory']['title']; ?></span>
                     </div>
                 </div>
             <?php } ?>
