@@ -68,17 +68,16 @@ if (in_array($order->lang, ['ru-RU'])) {
 
             <?php foreach ($order->items as $item) { ?>
                 <div style="clear: both; height: 100px;">
-                    <div style="float: left;">
-
+                    <div>
                         <?= Html::img(
                             Product::getImageThumb($item->product['image_link']),
                             ['style' => 'width: 140px; max-height: 100px;']
                         ) ?>
-
                     </div>
-                    <div style="float: left; margin: 10px 30px;">
+                    <div style="margin: 10px 30px;">
                         <span style="color:#9f8b80; font-size: 14px;"><?= $item->product['factory']['title']; ?></span>
-                        <br>
+                    </div>
+                    <div style="margin: 10px 30px;">
                         <?= Html::a(
                             $item->product['lang']['title'],
                             'https://www.myarredo.' . $domain . '/product/' . $item->product['alias'] . '/',

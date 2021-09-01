@@ -39,15 +39,16 @@ if (!in_array($lang, ['ru', 'uk'])) {
 
             <?php foreach ($modelOrder->items as $orderItem) { ?>
                 <div style="clear: both; height: 100px;">
-                    <div style="float: left;">
+                    <div style="">
                         <?= Html::img(
                             Product::getImageThumb($orderItem->product['image_link']),
                             ['style' => 'width: 140px; max-height: 100px;']
                         ); ?>
                     </div>
-                    <div style="float: left; margin: 10px 30px;">
+                    <div style="margin: 10px 30px;">
                         <span style="color:#9f8b80; font-size: 14px;"><?= $orderItem->product['factory']['title']; ?></span>
-                        <br>
+                    </div>
+                    <div style="margin: 10px 30px;">
                         <?= Html::a(
                             $orderItem->product['lang']['title'],
                             Product::getUrl($orderItem->product[$domainAlias]),
