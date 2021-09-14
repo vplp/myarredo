@@ -95,10 +95,10 @@ $this->title = $this->context->title;
 
                                     <div class="availability">
                                         <?= Yii::t('app', 'Наличие') ?>:
-                                        <span><?= ($model['status']) ?></span>
-                                        <?php if (!$model['removed'] && $model['in_stock']) { ?>
+                                        <span><?= Product::getStatus($model) ?></span>
+                                        <?php if (!$model->removed && $model->in_stock) { ?>
                                             <meta itemprop="availability" content="InStock"/>
-                                        <?php } elseif (!$model['removed']) { ?>
+                                        <?php } elseif (!$model->removed) { ?>
                                             <meta itemprop="availability" content="PreOrder"/>
                                         <?php } ?>
                                         <meta itemprop="priceValidUntil" content="<?= date('Y-m-d') ?>"/>
