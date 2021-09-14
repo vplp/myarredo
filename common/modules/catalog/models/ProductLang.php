@@ -49,6 +49,7 @@ class ProductLang extends ActiveRecordLang
         return ArrayHelper::merge(parent::rules(), [
             ['rid', 'exist', 'targetClass' => Product::class, 'targetAttribute' => 'id'],
             [['title', 'title_for_list'], 'string', 'max' => 255],
+            [['title'], 'unique'],
             [['description', 'content', 'comment'], 'string'],
             [['description', 'content', 'comment'], 'default', 'value' => ''],
         ]);
