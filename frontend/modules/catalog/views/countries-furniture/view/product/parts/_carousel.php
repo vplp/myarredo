@@ -1,12 +1,13 @@
 <?php
 
 use yii\helpers\Html;
-//
 use frontend\modules\catalog\models\Product;
 
 /**
  * @var $model Product
  */
+
+$images = Product::getGalleryImageThumb($model->gallery_image);
 
 ?>
 
@@ -16,7 +17,7 @@ use frontend\modules\catalog\models\Product;
     <div class="carousel-inner">
 
         <?php
-        foreach ($model->getGalleryImageThumb() as $key => $src) {
+        foreach ($images as $key => $src) {
             if ($key == 0) {
                 echo Html::beginTag('div', [
                         'class' => 'item active',
@@ -24,18 +25,18 @@ use frontend\modules\catalog\models\Product;
                         'itemscope' => '',
                         'itemtype' => 'http://schema.org/ImageObject'
                     ]) .
-                    Html::tag('meta', '', ['itemprop' => 'name', 'content' => $model->getTitle()]) .
+                    Html::tag('meta', '', ['itemprop' => 'name', 'content' => Product::getStaticTitle($model)]) .
                     Html::tag('meta', '', ['itemprop' => 'caption', 'content' => Product::getStaticTitleForList($model)]) .
                     Html::tag('link', '', ['itemprop' => 'contentUrl', 'href' => $src['img']]) .
                     Html::tag('meta', '', ['itemprop' => 'description', 'content' => strip_tags($model['lang']['description'])]) .
                     Html::a(
-                        Html::img($src['thumb'], ['alt' => $model->getTitle(), 'width'=> '555', 'height' => '382', 'class' => '111']),
+                        Html::img($src['thumb'], ['alt' => Product::getImageAlt($model), 'width' => '555', 'height' => '382', 'class' => '111']),
                         $src['img'],
                         [
                             'class' => 'img-cont fancyimage',
                             'data-fancybox-group' => 'group',
                             'data-dominant-color' => '',
-                            'data-alt' => $model->getTitle()
+                            'data-alt' => Product::getImageAlt($model)
                         ]
                     ) .
                     Html::tag('span', '', ['class' => 'background']) .
@@ -46,13 +47,13 @@ use frontend\modules\catalog\models\Product;
                         'data-dominant-color' => '',
                     ]) .
                     Html::a(
-                        Html::img($src['thumb'],['width'=> '555', 'height' => '382', 'class' => '111']),
+                        Html::img($src['thumb'], ['width' => '555', 'height' => '382', 'class' => '111']),
                         $src['img'],
                         [
                             'class' => 'img-cont fancyimage',
                             'data-fancybox-group' => 'group',
                             'data-dominant-color' => '',
-                            'data-alt' => $model->getTitle()
+                            'data-alt' => Product::getImageAlt($model)
                         ]
                     ) .
                     Html::tag('span', '', ['class' => 'background']) .
@@ -68,24 +69,25 @@ use frontend\modules\catalog\models\Product;
         ['class' => 'img-zoom']
     ) ?>
 
-    <!-- Carousel nav -->
+    <?php if (count($images) > 1) { ?>
+        <!-- Carousel nav -->
+        <div class="nav-cont">
+            <div class="carousel-indicators">
 
-    <div class="nav-cont">
-        <div class="carousel-indicators">
+                <?php foreach ($images as $key => $src) { ?>
+                    <div class="thumb-item" data-dominant-color>
+                        <span class="background"></span>
+                        <?php if ($key == 0) {
+                            echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
+                                Html::img($src['thumb'], ['alt' => $model->getTitle(), 'width' => '138', 'height' => '95', 'class' => '22']);
+                        } else {
+                            echo Html::img($src['thumb'], ['alt' => $model->getTitle(), 'width' => '138', 'height' => '95', 'class' => '22']);
+                        } ?>
+                    </div>
+                <?php } ?>
 
-            <?php foreach ($model->getGalleryImageThumb() as $key => $src) { ?>
-                <div class="thumb-item" data-dominant-color>
-                    <span class="background"></span>
-                    <?php if ($key == 0) {
-                        echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
-                            Html::img($src['thumb'], ['alt' => $model->getTitle(),'width'=> '138', 'height' => '95', 'class' => '22']);
-                    } else {
-                        echo Html::img($src['thumb'], ['alt' => $model->getTitle(),'width'=> '138', 'height' => '95', 'class' => '22']);
-                    } ?>
-                </div>
-            <?php } ?>
-
+            </div>
         </div>
-    </div>
+    <?php } ?>
 
 </div>
