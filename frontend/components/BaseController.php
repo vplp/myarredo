@@ -63,6 +63,11 @@ abstract class BaseController extends Controller
             yii::$app->end();
         }
 
+        if (in_array(DOMAIN_TYPE, ['co.il'])) {
+            Yii::$app->response->redirect('https://' . 'www.myarredo.ru' . Yii::$app->request->url, 301);
+            yii::$app->end();
+        }
+
         if (in_array(DOMAIN_TYPE, ['com']) && DOMAIN_NAME == 'myarredofamily') {
             Yii::$app->response->redirect('https://' . 'www.myarredo.com/en/' . Yii::$app->request->url, 301);
             yii::$app->end();
