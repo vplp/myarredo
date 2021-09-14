@@ -63,7 +63,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
                         <?php if (DOMAIN_NAME == 'myarredo' && Yii::$app->controller->action->id != 'error' &&
                             in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de', 'fr', 'co.il']) &&
-                            !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale']) &&
+                            !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale', 'countries-furniture']) &&
                             !in_array(Yii::$app->controller->module->id, ['news'])
                         ) { ?>
                             <div class="lang-selector">
@@ -124,7 +124,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
                         <?php if (DOMAIN_NAME == 'myarredo' && Yii::$app->controller->action->id != 'error' &&
                             in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de', 'fr', 'co.il']) &&
-                            !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale']) &&
+                            !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale', 'countries-furniture']) &&
                             !in_array(Yii::$app->controller->module->id, ['news'])
                         ) { ?>
                             <div class="lang-selector">
@@ -394,7 +394,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
             <?php if (DOMAIN_NAME == 'myarredo' && Yii::$app->controller->action->id != 'error' &&
                 in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de', 'fr', 'co.il']) &&
-                !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale']) &&
+                !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale', 'countries-furniture']) &&
                 !in_array(Yii::$app->controller->module->id, ['news'])
             ) { ?>
                 <div class="header-langbox">
