@@ -95,6 +95,7 @@ class CatalogProductController extends Controller
                                 $sourceLanguageCode = substr($currentLanguage, 0, 2);
                                 $targetLanguageCode = substr($language2['local'], 0, 2);
 
+                                /*
                                 $this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
 
                                 $translateTitle = (string)Yii::$app->yandexTranslation->getTranslate(
@@ -131,6 +132,24 @@ class CatalogProductController extends Controller
                                     }
                                 } else {
                                     $saveLang[] = 0;
+                                }
+                                */
+
+                                $transaction = $modelLang2::getDb()->beginTransaction();
+                                try {
+                                    $modelLang2->setScenario('backend');
+
+                                    if ($saveLang[] = intval($modelLang2->save())) {
+                                        $transaction->commit();
+                                        $this->stdout("save " . $targetLanguageCode . " \n", Console::FG_GREEN);
+                                    } else {
+                                        foreach ($modelLang2->errors as $attribute => $errors) {
+                                            $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
+                                        }
+                                    }
+                                } catch (Exception $e) {
+                                    $transaction->rollBack();
+                                    throw new Exception($e);
                                 }
                             } else {
                                 $saveLang[] = 1;
@@ -172,6 +191,7 @@ class CatalogProductController extends Controller
                                     $sourceLanguageCode = substr($currentLanguage, 0, 2);
                                     $targetLanguageCode = substr($language2['local'], 0, 2);
 
+                                    /*
                                     $this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
 
                                     $translateTitle = (string)Yii::$app->yandexTranslation->getTranslate(
@@ -208,6 +228,24 @@ class CatalogProductController extends Controller
                                         }
                                     } else {
                                         $saveLang[] = 0;
+                                    }
+                                    */
+
+                                    $transaction = $modelLang2::getDb()->beginTransaction();
+                                    try {
+                                        $modelLang2->setScenario('backend');
+
+                                        if ($saveLang[] = intval($modelLang2->save())) {
+                                            $transaction->commit();
+                                            $this->stdout("save " . $targetLanguageCode . " \n", Console::FG_GREEN);
+                                        } else {
+                                            foreach ($modelLang2->errors as $attribute => $errors) {
+                                                $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
+                                            }
+                                        }
+                                    } catch (Exception $e) {
+                                        $transaction->rollBack();
+                                        throw new Exception($e);
                                     }
                                 }
                             }
