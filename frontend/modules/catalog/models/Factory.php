@@ -361,7 +361,7 @@ class Factory extends \common\modules\catalog\models\Factory
             $min = $params[$keys['apportionment']][0];
             $max = $params[$keys['apportionment']][1];
             $query
-                ->innerJoinWith(["product.specification apportionment"], false)
+                ->innerJoinWith(["product.specificationValue apportionment"], false)
                 ->andFilterWhere(['apportionment.specification_id' => 67])
                 ->andFilterWhere(['BETWEEN', 'apportionment.val', $min, $max]);
         }

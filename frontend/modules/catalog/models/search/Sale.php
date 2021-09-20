@@ -171,7 +171,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
             $min = $params[$keys['apportionment']][0];
             $max = $params[$keys['apportionment']][1];
             $query
-                ->innerJoinWith(["specification apportionment"])
+                ->innerJoinWith(["specificationValue apportionment"])
                 ->andFilterWhere(['apportionment.specification_id' => 67])
                 ->andFilterWhere(['BETWEEN', 'apportionment.val', $min, $max]);
         }
