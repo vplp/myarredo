@@ -367,7 +367,7 @@ class MetaTag extends Component
         } elseif (in_array(DOMAIN_TYPE, ['de', 'fr', 'co.il'])) {
             $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
         } else {
-            $hrefCanonical = Yii::$app->request->hostInfo . ($lang != 'ru' ? '/' . $lang : '/') . Yii::$app->request->pathInfo;
+            $hrefCanonical = Yii::$app->request->hostInfo . ($lang != 'ru' ? '/' . $lang . '/' : '/') . Yii::$app->request->pathInfo;
         }
 
         $view->registerLinkTag([
