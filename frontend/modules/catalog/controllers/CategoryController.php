@@ -913,7 +913,7 @@ class CategoryController extends BaseController
                     'en' => 'https://www.myarredo.com/en/catalog/',
                     'it' => 'https://www.myarredo.com/it/catalog/',
                     'de' => 'https://www.myarredo.de/catalog/',
-                    'he' => 'https://www.myarredo.co.il/catalog/'
+                    //'he' => 'https://www.myarredo.co.il/catalog/'
                 ];
 
                 foreach ($alternateUrl as $lang => $url) {

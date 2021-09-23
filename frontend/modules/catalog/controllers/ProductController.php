@@ -279,9 +279,9 @@ class ProductController extends BaseController
                 'fr' => [
                     'href' => 'https://www.myarredo.fr/product/' . $model->alias_fr . '/', 'lang' => 'fr'
                 ],
-                'he' => [
-                    'href' => 'https://www.myarredo.co.il/product/' . $model->alias_he . '/', 'lang' => 'he'
-                ]
+//                'he' => [
+//                    'href' => 'https://www.myarredo.co.il/product/' . $model->alias_he . '/', 'lang' => 'he'
+//                ]
             ];
 
             foreach ($alternatePages as $page) {
