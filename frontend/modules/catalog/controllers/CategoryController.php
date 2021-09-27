@@ -570,6 +570,7 @@ class CategoryController extends BaseController
             $alternateParamsUrl['it'][$keys['category']] = $model['alias_it'];
             $alternateParamsUrl['de'][$keys['category']] = $model['alias_de'];
             $alternateParamsUrl['fr'][$keys['category']] = $model['alias_fr'];
+            $alternateParamsUrl['uk'][$keys['category']] = $model['alias_en'];
             $alternateParamsUrl['he'][$keys['category']] = $model['alias_he'];
         }
 
@@ -594,6 +595,7 @@ class CategoryController extends BaseController
                 $alternateParamsUrl['it'][$keys['type']][] = $model['alias_it'];
                 $alternateParamsUrl['de'][$keys['type']][] = $model['alias_de'];
                 $alternateParamsUrl['fr'][$keys['type']][] = $model['alias_fr'];
+                $alternateParamsUrl['uk'][$keys['type']][] = $model['alias_en'];
                 $alternateParamsUrl['he'][$keys['type']][] = $model['alias_he'];
             }
 
@@ -653,6 +655,7 @@ class CategoryController extends BaseController
                 $alternateParamsUrl['it'][$keys['style']][] = $model['alias_it'];
                 $alternateParamsUrl['de'][$keys['style']][] = $model['alias_de'];
                 $alternateParamsUrl['fr'][$keys['style']][] = $model['alias_fr'];
+                $alternateParamsUrl['uk'][$keys['style']][] = $model['alias_en'];
                 $alternateParamsUrl['he'][$keys['style']][] = $model['alias_he'];
             }
 

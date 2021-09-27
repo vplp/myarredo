@@ -317,6 +317,9 @@ class SaleItalyController extends BaseController
                 'fr' => [
                     'href' => 'https://www.myarredo.fr/sale-italy-product/' . $model['alias_fr'] . '/', 'lang' => 'fr'
                 ],
+                'uk' => [
+                    'href' => 'https://www.myarredo.uk/sale-italy-product/' . $model['alias_en'] . '/', 'lang' => 'en'
+                ],
 //                'he' => [
 //                    'href' => 'https://www.myarredo.co.il/sale-italy-product/' . $model['alias_he'] . '/', 'lang' => 'he'
 //                ]

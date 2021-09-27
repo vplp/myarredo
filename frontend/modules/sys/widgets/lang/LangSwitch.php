@@ -83,6 +83,10 @@ class LangSwitch extends Widget
                 //continue;
             }
 
+            if (!in_array(DOMAIN_TYPE, ['uk']) && in_array($lang['alias'], ['en'])) {
+                //continue;
+            }
+
             $image = Language::isImage($lang['img_flag'])
                 ? Html::img(
                     Language::getImage($lang['img_flag']),
@@ -97,6 +101,8 @@ class LangSwitch extends Widget
                 $url = 'https://www.myarredo.de';
             } elseif (in_array($lang['alias'], ['fr'])) {
                 $url = 'https://www.myarredo.fr';
+            } elseif (in_array($lang['alias'], ['uk'])) {
+                $url = 'https://www.myarredo.uk';
             } elseif (in_array($lang['alias'], ['he'])) {
                 $url = 'https://www.myarredo.co.il';
             } elseif (in_array($lang['alias'], ['ru']) && in_array(DOMAIN_TYPE, ['ru'])) {
@@ -107,7 +113,7 @@ class LangSwitch extends Widget
                 $url = 'https://www.myarredo.ru';
             }
 
-            if (in_array($lang['alias'], ['it', 'en', 'de', 'fr', 'he'])) {
+            if (in_array($lang['alias'], ['it', 'en', 'de', 'fr', 'uk', 'he'])) {
                 $path = Yii::$app->request->url;
 
                 $params = Yii::$app->catalogFilter->params;
@@ -158,7 +164,7 @@ class LangSwitch extends Widget
                 }
 
                 $path = str_replace($this->current['alias'] . '/', '', $path);
-            } elseif (in_array($lang['alias'], ['ru']) && in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'co.il'])) {
+            } elseif (in_array($lang['alias'], ['ru']) && in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'co.il'])) {
                 $path = Yii::$app->request->url;
 
                 $params = Yii::$app->catalogFilter->params;
@@ -265,7 +271,7 @@ class LangSwitch extends Widget
             if ($lang['local'] == Yii::$app->language) {
                 $this->current = [
                     'label' => $lang['label'],
-                    'url' => !in_array($lang['alias'], ['de', 'fr', 'he'])
+                    'url' => !in_array($lang['alias'], ['de', 'fr', 'uk', 'he'])
                         ? $url . '/' . $lang['alias'] . $path
                         : $url . $path,
                     'image' => $image,
@@ -277,7 +283,7 @@ class LangSwitch extends Widget
             if (!$lang['by_default']) {
                 $items[] = [
                     'label' => $lang['label'],
-                    'url' => !in_array($lang['alias'], ['de', 'fr', 'he'])
+                    'url' => !in_array($lang['alias'], ['de', 'fr', 'uk', 'he'])
                         ? $url . '/' . $lang['alias'] . $path
                         : $url . $path,
                     'image' => $image,

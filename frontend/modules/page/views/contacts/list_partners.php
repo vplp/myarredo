@@ -19,11 +19,11 @@ $this->title = $this->context->title;
 
                     <?= PartnerMap::widget([]) ?>
 
-                    <?php if (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'co.il'])) {
+                    <?php if (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'co.il'])) {
                         echo FormFeedback::widget(['view' => 'form_become_partner']);
                     } ?>
 
-                    <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'co.il'])) {
+                    <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'co.il'])) {
                         echo Html::a(
                             Yii::t('app', 'Вернуться назад'),
                             Url::toRoute('/page/contacts/index'),

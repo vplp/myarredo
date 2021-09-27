@@ -205,7 +205,7 @@ class CountriesFurnitureController extends BaseController
 
         if (in_array(DOMAIN_TYPE, ['com']) && DOMAIN_NAME == 'myarredofamily') {
             $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
-        } elseif (in_array(DOMAIN_TYPE, ['de', 'fr', 'co.il'])) {
+        } elseif (in_array(DOMAIN_TYPE, ['de', 'fr', 'uk', 'co.il'])) {
             $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
         } else {
             $hrefCanonical = Yii::$app->request->hostInfo . ($lang != 'ru' ? '/' . $lang . '/' : '/' ) . Yii::$app->request->pathInfo;

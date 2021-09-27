@@ -236,7 +236,7 @@ class ProductController extends BaseController
 
         if (in_array(DOMAIN_TYPE, ['com']) && DOMAIN_NAME == 'myarredofamily') {
             $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
-        } elseif (in_array(DOMAIN_TYPE, ['de', 'fr', 'co.il'])) {
+        } elseif (in_array(DOMAIN_TYPE, ['de', 'fr', 'uk', 'co.il'])) {
             $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
         } else {
             $hrefCanonical = Yii::$app->request->hostInfo . ($lang != 'ru' ? '/' . $lang . '/' : '/' ) . Yii::$app->request->pathInfo;
@@ -278,6 +278,9 @@ class ProductController extends BaseController
                 ],
                 'fr' => [
                     'href' => 'https://www.myarredo.fr/product/' . $model->alias_fr . '/', 'lang' => 'fr'
+                ],
+                'uk' => [
+                    'href' => 'https://www.myarredo.uk/product/' . $model->alias_en . '/', 'lang' => 'en'
                 ],
 //                'he' => [
 //                    'href' => 'https://www.myarredo.co.il/product/' . $model->alias_he . '/', 'lang' => 'he'

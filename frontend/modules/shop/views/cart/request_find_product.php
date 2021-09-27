@@ -33,7 +33,7 @@ $model->user_agreement = 1;
     ->input('text', ['placeholder' => Yii::t('app', 'Name')])
     ->label(false) ?>
 
-<?php if (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'kz', 'co.il'])) {
+<?php if (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'kz', 'co.il'])) {
     $model->city_id = Yii::$app->city->getCityId();
     $model->country_code = Yii::$app->city->getCountryCode();
 

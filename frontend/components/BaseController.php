@@ -152,7 +152,7 @@ abstract class BaseController extends Controller
          */
         $lang = substr(Yii::$app->language, 0, 2);
 
-        if (in_array(DOMAIN_TYPE, ['ua', 'by', 'com', 'de', 'fr', 'co.il'])) {
+        if (in_array(DOMAIN_TYPE, ['ua', 'by', 'com', 'de', 'fr', 'uk', 'co.il'])) {
             $session->set('currency', 'EUR');
         } elseif (in_array(DOMAIN_TYPE, ['kz'])) {
             $session->set('currency', 'KZT');
@@ -193,17 +193,17 @@ abstract class BaseController extends Controller
                     ];
                 }
 
-                if (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'ru']) && in_array($item['alias'], ['it', 'en'])) {
+                if (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'ru']) && in_array($item['alias'], ['it', 'en'])) {
                     $alternatePages[$item['local']] = [
                         'href' => 'https://www.myarredo.com' . '/' . $item['alias'] . $href,
                         'lang' => $lang
                     ];
-                } elseif (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'ru']) && in_array($item['alias'], ['de'])) {
+                } elseif (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'ru']) && in_array($item['alias'], ['de'])) {
                     $alternatePages[$item['local']] = [
                         'href' => 'https://www.myarredo.de' . $href,
                         'lang' => $lang
                     ];
-                } elseif (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'ru']) && in_array($item['alias'], ['ru'])) {
+                } elseif (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'ru']) && in_array($item['alias'], ['ru'])) {
                     $alternatePages[$item['local']] = [
                         'href' => 'https://www.myarredo.ru' . $href,
                         'lang' => $lang

@@ -23,7 +23,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
 <div class="footer jsftr" data-url="<?= $url; ?>">
     <div class="container-wrap">
 
-        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'kz', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale'])) { ?>
+        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'kz', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale'])) { ?>
             <div class="contacts">
                 <div class="cont-flex">
                     <?php if (!in_array(Yii::$app->controller->id, ['sale-italy'])) {
@@ -57,7 +57,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
 
         <?php
         if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
-        } else if (!in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'kz', 'co.il'])) {
+        } else if (!in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'kz', 'co.il'])) {
             if ($this->beginCache('CitiesWidget' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) {
                 echo Cities::widget();
                 $this->endCache();
@@ -67,7 +67,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
         <div class="footer-navpanel">
             <div class="bot-list">
                 <?php if (DOMAIN_NAME == 'myarredo' && Yii::$app->controller->action->id != 'error' &&
-                    in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de', 'fr', 'co.il']) &&
+                    in_array(DOMAIN_TYPE, ['ru', 'by', 'ua', 'com', 'de', 'fr', 'uk', 'co.il']) &&
                     !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale', 'countries-furniture']) &&
                     !in_array(Yii::$app->controller->module->id, ['news'])
                 ) { ?>
@@ -117,9 +117,9 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
                             <?php
                             if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
                                 echo '';
-                            } elseif (!in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'kz', 'co.il'])) {
+                            } elseif (!in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'kz', 'co.il'])) {
                                 echo Menu::widget(['alias' => 'footer']);
-                            } elseif (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'kz', 'co.il'])) {
+                            } elseif (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'kz', 'co.il'])) {
                                 echo Menu::widget(['alias' => 'footer-com']);
                             } ?>
                         </div>
