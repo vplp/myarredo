@@ -95,13 +95,13 @@ class LangSwitch extends Widget
                 : '<i class="fa fa-globe" aria-hidden="true"></i>';
 
             // $url
-            if (in_array($lang['alias'], ['it', 'en'])) {
+            if (in_array($lang['alias'], ['it'])) {
                 $url = 'https://www.myarredo.com';
             } elseif (in_array($lang['alias'], ['de'])) {
                 $url = 'https://www.myarredo.de';
             } elseif (in_array($lang['alias'], ['fr'])) {
                 $url = 'https://www.myarredo.fr';
-            } elseif (in_array($lang['alias'], ['uk'])) {
+            } elseif (in_array($lang['alias'], ['en'])) {
                 $url = 'https://www.myarredo.uk';
             } elseif (in_array($lang['alias'], ['he'])) {
                 $url = 'https://www.myarredo.co.il';

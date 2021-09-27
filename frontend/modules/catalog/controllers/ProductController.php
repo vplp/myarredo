@@ -271,7 +271,7 @@ class ProductController extends BaseController
                     'href' => 'https://www.myarredo.ru/product/' . $model->alias . '/', 'lang' => 'ru'
                 ],
                 'en' => [
-                    'href' => 'https://www.myarredo.com/en/product/' . $model->alias_en . '/', 'lang' => 'en'
+                    'href' => 'https://www.myarredo.uk/product/' . $model->alias_en . '/', 'lang' => 'en'
                 ],
                 'it' => [
                     'href' => 'https://www.myarredo.com/it/product/' . $model->alias_it . '/', 'lang' => 'it'
@@ -281,9 +281,6 @@ class ProductController extends BaseController
                 ],
                 'fr' => [
                     'href' => 'https://www.myarredo.fr/product/' . $model->alias_fr . '/', 'lang' => 'fr'
-                ],
-                'uk' => [
-                    'href' => 'https://www.myarredo.uk/product/' . $model->alias_en . '/', 'lang' => 'en'
                 ],
 //                'he' => [
 //                    'href' => 'https://www.myarredo.co.il/product/' . $model->alias_he . '/', 'lang' => 'he'

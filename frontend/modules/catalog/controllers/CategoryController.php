@@ -570,7 +570,6 @@ class CategoryController extends BaseController
             $alternateParamsUrl['it'][$keys['category']] = $model['alias_it'];
             $alternateParamsUrl['de'][$keys['category']] = $model['alias_de'];
             $alternateParamsUrl['fr'][$keys['category']] = $model['alias_fr'];
-            $alternateParamsUrl['uk'][$keys['category']] = $model['alias_en'];
             $alternateParamsUrl['he'][$keys['category']] = $model['alias_he'];
         }
 
@@ -595,7 +594,6 @@ class CategoryController extends BaseController
                 $alternateParamsUrl['it'][$keys['type']][] = $model['alias_it'];
                 $alternateParamsUrl['de'][$keys['type']][] = $model['alias_de'];
                 $alternateParamsUrl['fr'][$keys['type']][] = $model['alias_fr'];
-                $alternateParamsUrl['uk'][$keys['type']][] = $model['alias_en'];
                 $alternateParamsUrl['he'][$keys['type']][] = $model['alias_he'];
             }
 
@@ -655,7 +653,6 @@ class CategoryController extends BaseController
                 $alternateParamsUrl['it'][$keys['style']][] = $model['alias_it'];
                 $alternateParamsUrl['de'][$keys['style']][] = $model['alias_de'];
                 $alternateParamsUrl['fr'][$keys['style']][] = $model['alias_fr'];
-                $alternateParamsUrl['uk'][$keys['style']][] = $model['alias_en'];
                 $alternateParamsUrl['he'][$keys['style']][] = $model['alias_he'];
             }
 
@@ -888,9 +885,7 @@ class CategoryController extends BaseController
         if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161, 162, 164, 165])) {
             if (!empty($alternateParamsUrl)) {
                 foreach ($alternateParamsUrl as $lang => $paramsUrl) {
-                    if ($lang == 'en' && DOMAIN_TYPE == 'com') {
-                        $href = 'https://www.myarredo.com/en';
-                    } elseif ($lang == 'en') {
+                    if ($lang == 'en') {
                         $href = 'https://www.myarredo.uk';
                     } elseif ($lang == 'it') {
                         $href = 'https://www.myarredo.com/it';
@@ -915,11 +910,10 @@ class CategoryController extends BaseController
             } else {
                 $alternateUrl = [
                     'ru' => 'https://www.myarredo.ru/catalog/',
-                    'en' => 'https://www.myarredo.com/en/catalog/',
+                    'en' => 'https://www.myarredo.uk/catalog/',
                     'it' => 'https://www.myarredo.com/it/catalog/',
                     'de' => 'https://www.myarredo.de/catalog/',
                     'fr' => 'https://www.myarredo.fr/catalog/',
-                    'uk' => 'https://www.myarredo.uk/catalog/',
                     //'he' => 'https://www.myarredo.co.il/catalog/'
                 ];
 

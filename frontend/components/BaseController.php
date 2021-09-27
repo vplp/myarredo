@@ -63,13 +63,18 @@ abstract class BaseController extends Controller
             yii::$app->end();
         }
 
+        if (in_array(DOMAIN_TYPE, ['com']) && $lang == 'en') {
+            Yii::$app->response->redirect('https://' . 'www.myarredo.uk' . Yii::$app->request->url, 301);
+            yii::$app->end();
+        }
+
         if (in_array(DOMAIN_TYPE, ['co.il'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.ru', 301);
             yii::$app->end();
         }
 
         if (in_array(DOMAIN_TYPE, ['com']) && DOMAIN_NAME == 'myarredofamily') {
-            Yii::$app->response->redirect('https://' . 'www.myarredo.com/en/' . Yii::$app->request->url, 301);
+            Yii::$app->response->redirect('https://' . 'www.myarredo.uk/' . Yii::$app->request->url, 301);
             yii::$app->end();
         }
 
@@ -92,10 +97,10 @@ abstract class BaseController extends Controller
         }
 
         // com domain
-        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && DOMAIN_TYPE == 'com' && !in_array($lang, ['it', 'en'])) {
+        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && DOMAIN_TYPE == 'com' && !in_array($lang, ['it'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.com/it/', 301);
             yii::$app->end();
-        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(DOMAIN_TYPE, ['ru', 'ua', 'by', 'de']) && in_array($lang, ['it', 'en'])) {
+        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(DOMAIN_TYPE, ['ru', 'ua', 'by', 'de']) && in_array($lang, ['it'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.com/it/', 301);
             yii::$app->end();
         }
@@ -193,7 +198,7 @@ abstract class BaseController extends Controller
                     ];
                 }
 
-                if (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'ru']) && in_array($item['alias'], ['it', 'en'])) {
+                if (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'ru']) && in_array($item['alias'], ['it'])) {
                     $alternatePages[$item['local']] = [
                         'href' => 'https://www.myarredo.com' . '/' . $item['alias'] . $href,
                         'lang' => $lang
@@ -201,6 +206,11 @@ abstract class BaseController extends Controller
                 } elseif (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'ru']) && in_array($item['alias'], ['de'])) {
                     $alternatePages[$item['local']] = [
                         'href' => 'https://www.myarredo.de' . $href,
+                        'lang' => $lang
+                    ];
+                }  elseif (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'ru']) && in_array($item['alias'], ['en'])) {
+                    $alternatePages[$item['local']] = [
+                        'href' => 'https://www.myarredo.uk' . $href,
                         'lang' => $lang
                     ];
                 } elseif (in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'ru']) && in_array($item['alias'], ['ru'])) {
