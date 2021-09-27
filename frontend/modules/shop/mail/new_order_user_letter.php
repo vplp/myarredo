@@ -20,8 +20,10 @@ $text = str_replace($search, $replace, $text);
 
 if (in_array($order->lang, ['ru-RU'])) {
     $domain = 'ru';
-} else if (in_array($order->lang, ['en-EN', 'it-IT'])) {
+} else if (in_array($order->lang, ['it-IT'])) {
     $domain = 'com/it';
+} else if (in_array($order->lang, ['en-EN'])) {
+    $domain = 'uk';
 } else if (in_array($order->lang, ['de-DE'])) {
     $domain = 'de';
 } else if (in_array($order->lang, ['uk-UA'])) {
