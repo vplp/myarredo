@@ -108,10 +108,7 @@ class ProductController extends BaseController
             if ($model != null && $model['alias'] == $alias) {
                 Yii::$app->response->redirect('https://' . 'www.myarredo.ru/product/' . $alias . '/', 301);
                 yii::$app->end();
-            } elseif ($model != null && $model['alias_en'] == $alias && DOMAIN_TYPE == 'com') {
-                Yii::$app->response->redirect('https://' . 'www.myarredo.com/en/product/' . $alias . '/', 301);
-                yii::$app->end();
-            } elseif ($model != null && $model['alias_en'] == $alias && DOMAIN_TYPE == 'uk') {
+            } elseif ($model != null && $model['alias_en'] == $alias) {
                 Yii::$app->response->redirect('https://' . 'www.myarredo.uk/product/' . $alias . '/', 301);
                 yii::$app->end();
             } elseif ($model != null && $model['alias_it'] == $alias) {

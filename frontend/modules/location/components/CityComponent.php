@@ -127,6 +127,12 @@ class CityComponent extends Component
                 '+39 (9999) 999-999',
                 '+39 (9999) 999-9999'
             ],
+            'uk' => [
+                '+39 (99) 999-999',
+                '+39 (999) 999-999',
+                '+39 (9999) 999-999',
+                '+39 (9999) 999-9999'
+            ],
         ];
 
         if (in_array($key, array_keys($mask))) {
@@ -141,6 +147,8 @@ class CityComponent extends Component
             return $mask['de'];
         } elseif (in_array(DOMAIN_TYPE, ['by'])) {
             return $mask['by'];
+        } elseif (in_array(DOMAIN_TYPE, ['uk'])) {
+            return $mask['uk'];
         } elseif (in_array(DOMAIN_TYPE, ['kz'])) {
             return $mask['kz'];
         } elseif (in_array(DOMAIN_TYPE, ['co.il'])) {
