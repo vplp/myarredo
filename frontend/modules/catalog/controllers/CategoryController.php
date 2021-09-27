@@ -888,8 +888,10 @@ class CategoryController extends BaseController
         if (in_array(Yii::$app->city->getCityId(), [4, 159, 160, 161, 162, 164, 165])) {
             if (!empty($alternateParamsUrl)) {
                 foreach ($alternateParamsUrl as $lang => $paramsUrl) {
-                    if ($lang == 'en') {
+                    if ($lang == 'en' && DOMAIN_TYPE == 'com') {
                         $href = 'https://www.myarredo.com/en';
+                    } elseif ($lang == 'en') {
+                        $href = 'https://www.myarredo.uk';
                     } elseif ($lang == 'it') {
                         $href = 'https://www.myarredo.com/it';
                     } elseif ($lang == 'de') {
@@ -916,6 +918,8 @@ class CategoryController extends BaseController
                     'en' => 'https://www.myarredo.com/en/catalog/',
                     'it' => 'https://www.myarredo.com/it/catalog/',
                     'de' => 'https://www.myarredo.de/catalog/',
+                    'fr' => 'https://www.myarredo.fr/catalog/',
+                    'uk' => 'https://www.myarredo.uk/catalog/',
                     //'he' => 'https://www.myarredo.co.il/catalog/'
                 ];
 

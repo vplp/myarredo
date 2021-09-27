@@ -188,8 +188,11 @@ class SaleItalyController extends BaseController
             if ($model != null && $model['alias'] == $alias) {
                 Yii::$app->response->redirect('https://' . 'www.myarredo.ru/sale-italy-product/' . $alias . '/', 301);
                 yii::$app->end();
-            } elseif ($model != null && $model['alias_en'] == $alias) {
+            } elseif ($model != null && $model['alias_en'] == $alias && DOMAIN_TYPE == 'com') {
                 Yii::$app->response->redirect('https://' . 'www.myarredo.com/en/sale-italy-product/' . $alias . '/', 301);
+                yii::$app->end();
+            }  elseif ($model != null && $model['alias_en'] == $alias && DOMAIN_TYPE == 'uk') {
+                Yii::$app->response->redirect('https://' . 'www.myarredo.uk/sale-italy-product/' . $alias . '/', 301);
                 yii::$app->end();
             } elseif ($model != null && $model['alias_it'] == $alias) {
                 Yii::$app->response->redirect('https://' . 'www.myarredo.com/it/sale-italy-product/' . $alias . '/', 301);
