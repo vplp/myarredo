@@ -242,6 +242,7 @@ $urls = [
     'shop/widget/ajax-request-price' => 'shop/widget/ajax-request-price',
     'shop/widget/ajax-request-price-popup' => 'shop/widget/ajax-request-price-popup',
     'orders/notepad' => 'shop/cart/notepad',
+    'shop/cart/test' => 'shop/cart/test',
     'shop/order/create/<product_id:[\d\-]+>' => 'shop/order/create',
     'shop/order/list' => 'shop/order/list',
     'shop/order/view/<id:[\d\-]+>' => 'shop/order/view',

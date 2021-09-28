@@ -374,4 +374,63 @@ class SendPulseController extends Controller
 
         Yii::$app->language = $currentLanguage;
     }
+
+    public function actionSendOrderAnswer()
+    {
+        $this->stdout("SendPulse: start actionSendOrderAnswer. \n", Console::FG_GREEN);
+
+        // get order
+        $models = Order::findBase()
+            ->andWhere(['send_answer' => '0'])
+            ->enabled()
+            ->limit(10)
+            ->all();
+
+        foreach ($models as $modelOrder) {
+            /** @var $modelOrder Order */
+
+            $sendAnswer = false;
+
+            $date1 = new \DateTime();
+            $date2 = new \DateTime(date(DATE_ATOM, $modelOrder->created_at));
+
+            $diff = $date2->diff($date1);
+            $hours = $diff->h;
+            $hours = $hours + ($diff->days * 24);
+
+            if ($hours >= 3 && count($modelOrder->orderAnswers) >= 1) {
+                $sendAnswer = true;
+            } elseif (count($modelOrder->orderAnswers) >= 3) {
+                $sendAnswer = true;
+            }
+
+            if ($sendAnswer) {
+                $currentLanguage = Yii::$app->language;
+                Yii::$app->language = $modelOrder->lang;
+
+                // send user letter
+                Yii::$app
+                    ->mailer
+                    ->compose(
+                        'letter_send_order_answer',
+                        [
+                            'modelOrder' => $modelOrder
+                        ]
+                    )
+                    ->setTo($modelOrder->customer['email'])
+                    ->setSubject(Yii::t('app', 'Ответ за заказ') . ' № ' . $modelOrder['id'])
+                    ->send();
+
+                Yii::$app->language = $currentLanguage;
+
+                $modelOrder->setScenario('send_answer');
+                $modelOrder->send_answer = '1';
+                $modelOrder->save();
+
+                $this->stdout($modelOrder->id . "\n", Console::FG_GREEN);
+            }
+        }
+
+        $this->stdout("SendPulse: end actionSendOrderAnswer. \n", Console::FG_GREEN);
+    }
 }
