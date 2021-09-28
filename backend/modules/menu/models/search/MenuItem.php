@@ -5,9 +5,7 @@ namespace backend\modules\menu\models\search;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
-//
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
-//
 use backend\modules\menu\Menu as ParentModule;
 use backend\modules\menu\models\{
     MenuItem as ParentModel, MenuItemLang

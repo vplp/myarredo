@@ -1,17 +1,16 @@
 <?php
+
 use yii\helpers\{
     Url
 };
 use backend\widgets\GridView\GridView;
-//
 use thread\widgets\grid\{
     ActionStatusColumn
 };
-//
 use backend\modules\menu\models\search\MenuItem;
 
 /**
- * @var $model \backend\modules\menu\models\search\MenuItem
+ * @var $model MenuItem
  */
 echo GridView::widget(
     [
@@ -23,7 +22,7 @@ echo GridView::widget(
                 'class' => \thread\widgets\grid\kartik\EditableColumn::class,
                 'attribute' => 'title',
                 'displayValue' => function ($model) {
-                    return $model['lang']['title'];
+                    return $model['lang']['title'] ?? '';
                 }
             ],
             [
