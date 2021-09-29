@@ -100,7 +100,7 @@ function interPhoneInit(ourSelector) {
           'Too long',
           'Invalid number',
         ];
-        diCode = 'it';
+        diCode = 'gb';
         break;
       case 'ru':
         // Массив ошибок для поля номер телефона для русского языка
@@ -133,7 +133,7 @@ function interPhoneInit(ourSelector) {
           'Номер довгий',
           'Некоректний номер',
         ];
-        diCode = 'ru';
+        diCode = 'ua';
         break;
       default:
         // Массив ошибок для поля номер телефона в международном формате
@@ -170,6 +170,8 @@ function interPhoneInit(ourSelector) {
         diCode = 'ru';
       } else if (siteDomen == 'www.myarredo.fr') {
         diCode = 'fr';
+      } else if (siteDomen == 'www.myarredo.uk') {
+        diCode = 'gb';
       } else {
         diCode = 'it';
       }
@@ -1467,7 +1469,7 @@ $(document).ready(function () {
         'Too long',
         'Invalid number',
       ];
-      diCode = 'it';
+      diCode = 'gb';
       break;
     case 'ru':
       // Массив ошибок для поля номер телефона для русского языка
@@ -1489,7 +1491,7 @@ $(document).ready(function () {
         'Номер довгий',
         'Некоректний номер',
       ];
-      diCode = 'ru';
+      diCode = 'ua';
       break;
     case 'he':
       // Массив ошибок для поля номер телефона для иврита
@@ -1546,6 +1548,8 @@ $(document).ready(function () {
           diCode = 'kz';
         } else if (siteDomen == 'www.myarredo.fr') {
           diCode = 'fr';
+        } else if (siteDomen == 'www.myarredo.uk') {
+          diCode = 'gb';
         } else {
           diCode = 'it';
         }
