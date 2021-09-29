@@ -158,7 +158,7 @@ $(document).ready(function () {
             // отправляем аякс-пост запрос на сервер и передаем туда данные из формы
             $.ajax({
                 type: 'POST',
-                url: 'mail.php',
+                url: '/forms/forms/ajax-promo/',
                 data: {
                     name: ourForm.find('#name_field').val(),
                     email: ourForm.find('#email_field').val(),

@@ -32,11 +32,38 @@ class FormsController extends BaseController
                 'class' => VerbFilter::class,
                 'actions' => [
                     'feedback' => ['post', 'get'],
+                    'ajax-promo' => ['post', 'get'],
                     'feedback-partner' => ['post'],
                     'ajax-get-form-feedback' => ['post', 'get'],
                 ],
             ],
         ];
+    }
+
+    /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws \yii\base\ExitException
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+        if (in_array($action->id, ['ajax-promo'])) {
+            $this->enableCsrfValidation = false;
+        }
+        return parent::beforeAction($action);
+    }
+
+    /**
+     * @return array
+     */
+    public function actionAjaxPromo()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            return ['success' => 1];
+        }
     }
 
     /**

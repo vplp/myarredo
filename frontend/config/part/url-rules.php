@@ -225,6 +225,7 @@ $urls = [
     'find/<condition:[\w\-]+>' => 'page/find/index',
 
     // Module [[Forms]]
+    'forms/forms/ajax-promo' => 'forms/forms/ajax-promo',
     'forms/feedback' => 'forms/forms/feedback',
     'forms/feedback-partner' => 'forms/forms/feedback-partner',
     'forms/ajax-get-form-feedback' => '/forms/forms/ajax-get-form-feedback',

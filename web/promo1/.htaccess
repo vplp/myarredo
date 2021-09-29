@@ -9,21 +9,4 @@ AddDefaultCharset UTF-8
 <IfModule mod_rewrite.c>
     Options +FollowSymlinks
     RewriteEngine On
-
-    # Переадресацыя на www
-    RewriteCond %{HTTP_HOST} ^myarredo.ru [NC]
-    RewriteRule ^(.*)$ https://www.myarredo.com/$1 [R=301,L]
-
-    # Поддоменн без www
-    RewriteCond %{HTTP_HOST} ^www\.([A-Za-z0-9_-]*)\.myarredo\.ru
-    RewriteRule ^(.*)$ https://%1.myarredo.com/$1 [R=301,L]
-
-    # убираем index.php
-    RewriteCond %{THE_REQUEST} ^.*/index.php
-    RewriteRule ^(.*)index.php$ /$1 [R=301,L]
-
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-
-    RewriteRule . index.php [L]
 </IfModule>
