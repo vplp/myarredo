@@ -165,7 +165,6 @@ $(document).ready(function () {
                     textArrea: ourForm.find('#text_field').val()
                 },
                 success: function (data) {
-                    console.log(data)
                     // если сервер сообщает что сообщение отправлено
                     if (data.success) {
                         ourForm[0].reset();
@@ -175,8 +174,7 @@ $(document).ready(function () {
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown){
-                    //messagesForm(errorSubmitMess, false);
-                    messagesForm('Error: '+ errorThrown, false);
+                    messagesForm(errorSubmitMess, false);
                     console.log('Error: '+ errorThrown);
                 }
             }, 'json');
