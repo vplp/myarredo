@@ -164,6 +164,8 @@ $(document).ready(function () {
                     email: ourForm.find('#email_field').val(),
                     textArrea: ourForm.find('#text_field').val()
                 },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
                 success: function (resp) {
                     console.log(resp)
                     // если сервер сообщает что сообщение отправлено
@@ -178,7 +180,7 @@ $(document).ready(function () {
                     messagesForm(errorSubmitMess, false);
                     console.log(err);
                 }
-            }, 'json');
+            });
         }
     });
 
