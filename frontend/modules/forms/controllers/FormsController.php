@@ -55,14 +55,43 @@ class FormsController extends BaseController
     }
 
     /**
-     * @return array
+     * @return int[]
      */
     public function actionAjaxPromo()
     {
         if (Yii::$app->request->isAjax) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
-            return ['success' => 1];
+            if (!empty($_POST["name"]) && !empty($_POST["email"]) && !empty($_POST["textArrea"])) {
+                // записываем данные которые пришли от клиента из формы
+                $name = $_POST["name"];
+                $email = $_POST["email"];
+                $textMess = $_POST["textArrea"];
+
+                $message = <<<HTML
+            <p>Сообщение из сайта myarredo.com (Лендинг)</p>
+            <p>Имя: $name</p>
+            <p>Email: $email</p>
+            <p>Текст сообщения: $textMess</p>
+HTML;
+
+                Yii::$app
+                    ->mailer
+                    ->compose(
+                        '@app/modules/forms/mail/promo_letter.php',
+                        [
+                            'message' => $message,
+                        ]
+                    )
+                    ->setHtmlBody($message)
+                    ->setTo(Yii::$app->params['form_feedback']['setTo'])
+                    ->setSubject('Сообщение из сайта myarredo.com (Лендинг)')
+                    ->send();
+
+                return ['success' => 1];
+            }
+        } else {
+            return ['success' => 0];
         }
     }
 

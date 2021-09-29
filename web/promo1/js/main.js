@@ -164,15 +164,13 @@ $(document).ready(function () {
                     email: ourForm.find('#email_field').val(),
                     textArrea: ourForm.find('#text_field').val()
                 },
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (resp) {
-                    console.log(resp)
+                success: function (data) {
+                    console.log(data)
                     // если сервер сообщает что сообщение отправлено
-                    if (resp == 'success') {
+                    if (data.success) {
                         ourForm[0].reset();
                         messagesForm(succesSubmitMess, true);
-                    } else if (resp == 'empty') {
+                    } else {
                         messagesForm(errorEmtySubmitMess, false);
                     }
                 },
@@ -181,7 +179,7 @@ $(document).ready(function () {
                     messagesForm('Error: '+ errorThrown, false);
                     console.log('Error: '+ errorThrown);
                 }
-            });
+            }, 'json');
         }
     });
 
