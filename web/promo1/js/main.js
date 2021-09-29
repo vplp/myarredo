@@ -176,9 +176,10 @@ $(document).ready(function () {
                         messagesForm(errorEmtySubmitMess, false);
                     }
                 },
-                error: function (err) {
-                    messagesForm(errorSubmitMess, false);
-                    console.log(err);
+                error: function(jqXHR, textStatus, errorThrown){
+                    //messagesForm(errorSubmitMess, false);
+                    messagesForm('Error: '+ errorThrown, false);
+                    console.log('Error: '+ errorThrown);
                 }
             });
         }
