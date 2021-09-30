@@ -163,7 +163,7 @@ class LangSwitch extends Widget
                     $path = ItalianProduct::getUrl($model['alias_' . $lang['alias']], false);
                 }
 
-                $path = str_replace($this->current['alias'] . '/', '', $path);
+                $path = str_replace('/' . $this->current['alias'], '', $path);
             } elseif (in_array($lang['alias'], ['ru']) && in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'co.il'])) {
                 $path = Yii::$app->request->url;
 
@@ -214,7 +214,7 @@ class LangSwitch extends Widget
                     $path = ItalianProduct::getUrl($model['alias'], false);
                 }
 
-                $path = str_replace($this->current['alias'] . '/', '', $path);
+                $path = str_replace('/' . $this->current['alias'], '', $path);
             } else {
                 $path = Yii::$app->request->url;
 
@@ -265,7 +265,7 @@ class LangSwitch extends Widget
                     $path = ItalianProduct::getUrl($model['alias'], false);
                 }
 
-                $path = str_replace($this->current['alias'] . '/', '', $path);
+                $path = str_replace('/' . $this->current['alias'], '', $path);
             }
 
             if ($lang['local'] == Yii::$app->language) {
