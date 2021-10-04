@@ -195,11 +195,13 @@ class ElasticSearchProduct extends ActiveRecord
                 $result = $record->insert();
             } else {
                 $result = $record->update(false, [$title]);
+                var_dump($record->firstErrors);
+                var_dump($result);
             }
         } catch (\Exception $e) {
             $result = false;
         }
-        var_dump($result);
+
         return $result;
     }
 
