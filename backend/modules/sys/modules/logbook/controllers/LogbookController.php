@@ -11,8 +11,6 @@ use yii\helpers\ArrayHelper;
  * Class LogbookController
  *
  * @package backend\modules\sys\modules\logbook\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class LogbookController extends BackendController
 {
@@ -23,7 +21,6 @@ class LogbookController extends BackendController
 
     public function actions()
     {
-
         return ArrayHelper::merge(parent::actions(), [
             'list' => [
                 'layout' => '/base',
@@ -42,5 +39,15 @@ class LogbookController extends BackendController
                 'useLog' => false
             ],
         ]);
+    }
+
+    public function actionListByMonth()
+    {
+        return $this->render(
+            'list_by_month',
+            [
+
+            ]
+        );
     }
 }

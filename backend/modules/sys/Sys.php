@@ -64,9 +64,14 @@ class Sys extends \common\modules\sys\Sys
                         'url' => ['/sys/language/list'],
                     ],
                     [
-                        'label' => 'Log',
+                        'label' => 'Logbook',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/logbook/logbook/list'],
+                    ],
+                    [
+                        'label' => 'LogbookByMonth',
+                        'icon' => 'fa-tasks',
+                        'url' => ['/sys/logbook/logbook/list-by-month'],
                     ],
                     /*[
                         'label' => 'Messages',
