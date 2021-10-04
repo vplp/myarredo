@@ -184,20 +184,16 @@ class ElasticSearchProduct extends ActiveRecord
         $description = 'description_' . $lang;
         $collection = 'collection';
 
+        $record->id = $product['id'];
+        $record->$title = $product['lang']['title'];
+        $record->$description = '';
+        $record->$collection = $product['collection']['title'] ?? '';
+
         try {
             if (!$isExist) {
-                $record->id = $product['id'];
-                $record->$title = $product['lang']['title'];
-                $record->$description = $product['lang']['title'];
-                $record->$collection = $product['collection']['title'] ?? '';
-
                 $result = $record->insert();
             } else {
-                $record->$title = $product['lang']['title'];
-                $record->$description = $product['lang']['title'];
-                $record->$collection = $product['collection']['title'] ?? '';
-/* !!! */ echo  '<pre style="color:red;">'; print_r($record->attributes); echo '</pre>'; /* !!! */
-                $result = $record->update(false, null, ['routing' => $product['id']]);
+                $result = $record->update(false, [$title, $description]);
             }
         } catch (\Exception $e) {
             $result = false;
