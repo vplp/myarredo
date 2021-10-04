@@ -73,7 +73,7 @@ $this->title = $this->context->title;
                 }
 
                 echo Html::a(
-                    'смотреть полный<div>Каталог</div>',
+                        Yii::t('app', 'Смотреть полный') . '<div>'.Yii::t('app', 'Каталог').'</div>',
                     Yii::$app->catalogFilter->createUrl(
                         [],
                         ['/catalog/template-factory/catalog', 'alias' => $model['alias']]
