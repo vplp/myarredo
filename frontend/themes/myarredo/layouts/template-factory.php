@@ -113,7 +113,8 @@ $this->beginPage()
 
         <div class="flex copy-r">
             <div>
-                2015 - <?= date('Y'); ?> (С) <a href="/">MYARREDO</a>, ЛУЧШАЯ МЕБЕЛЬ ИЗ ИТАЛИИ ДЛЯ ВАШЕГО ДОМА
+                2013 - <?= date('Y'); ?> (с)
+                <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_COM')); ?>
             </div>
             <div>
                 <?php if (isset($this->context->factory['lang'])) {
