@@ -106,14 +106,17 @@ class ElasticSearchController extends Controller
                             $product = Product::findByID($model->id);
 
                             if (!empty($product->lang)) {
-                                $saveLang[] = ElasticSearchProduct::addRecord($product);
+                                $this->stdout("lang =" . $lang['local'] . " \n", Console::FG_GREEN);
+                                $saveLang[] = $a = ElasticSearchProduct::addRecord($product);
+
+                                $this->stdout("$a =" . $a . " \n", Console::FG_GREEN);
                             }
                         }
                     }
 
                     if ($model->save()/* && !in_array(0, array_values($saveLang))*/) {
                         $transaction->commit();
-                        $this->stdout("add ID=" . $model->id . " \n", Console::FG_GREEN);
+                        $this->stdout("add ID =" . $model->id . " \n", Console::FG_GREEN);
                     } else {
                         $transaction->rollBack();
                     }
