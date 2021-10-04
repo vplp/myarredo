@@ -186,7 +186,7 @@ class ElasticSearchProduct extends ActiveRecord
 
         $record->id = $product['id'];
         $record->$title = $product['lang']['title'];
-        $record->$description = ''; //$product['lang']['description'];
+        $record->$description = $product['lang']['title'];
         $record->$collection = $product['collection']['title'] ?? '';
 
         try {
@@ -196,6 +196,7 @@ class ElasticSearchProduct extends ActiveRecord
                 $result = $record->update(false);
             }
         } catch (\Exception $e) {
+            var_dump($e);
             $result = false;
         }
 

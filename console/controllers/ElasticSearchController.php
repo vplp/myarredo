@@ -107,9 +107,7 @@ class ElasticSearchController extends Controller
 
                             if (!empty($product->lang)) {
                                 $this->stdout("lang =" . $lang['local'] . " \n", Console::FG_GREEN);
-                                $saveLang[] = $a = ElasticSearchProduct::addRecord($product);
-
-                                $this->stdout("$a =" . $a . " \n", Console::FG_GREEN);
+                                $saveLang[] = ElasticSearchProduct::addRecord($product);
                             }
                         }
                     }
