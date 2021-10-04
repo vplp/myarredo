@@ -184,7 +184,6 @@ class ElasticSearchProduct extends ActiveRecord
         $description = 'description_' . $lang;
         $collection = 'collection';
 
-        var_dump($isExist);
         try {
             if (!$isExist) {
                 $record->id = $product['id'];
@@ -198,7 +197,7 @@ class ElasticSearchProduct extends ActiveRecord
                 $record->$description = $product['lang']['title'];
                 $record->$collection = $product['collection']['title'] ?? '';
 
-                $result = $record->update(false);
+                $result = $record->update(false, null, ['routing' => $product['id']]);
             }
         } catch (\Exception $e) {
             $result = false;
