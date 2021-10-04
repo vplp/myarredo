@@ -79,6 +79,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
         return parent::findBase()
             ->andWhere([self::tableName() . '.isGrezzo' => '1'])
             ->andWhere([self::tableName() . '.factory_id' => $factory_id])
+            ->enabled()
             ->all();
     }
 
