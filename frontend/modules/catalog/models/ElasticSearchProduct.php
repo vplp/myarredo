@@ -193,10 +193,10 @@ class ElasticSearchProduct extends ActiveRecord
             if (!$isExist) {
                 $result = $record->insert();
             } else {
-                $result = $record->update(false, [$title]);
+                $result = $record->update(false, ['title_' . $lang]);
             }
         } catch (\Exception $e) {
-            var_dump($e->getMessage());
+            echo 'Exception: ' . $e->getMessage() . ' (' . $e->getFile() . ':' . $e->getLine() . ")\n";
             $result = false;
         }
         var_dump($result);
