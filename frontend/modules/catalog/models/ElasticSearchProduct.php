@@ -199,7 +199,6 @@ class ElasticSearchProduct extends ActiveRecord
             $result = false;
         }
         var_dump($result);
-        var_dump($record);
         return $result;
     }
 

@@ -36,6 +36,7 @@ class ElasticSearchController extends BaseController
         $queryParams = ArrayHelper::merge(['search' => ''], Yii::$app->request->queryParams);
 
         if (Yii::$app->request->userIP == '93.72.70.75') {
+            ElasticSearchProduct::updateMapping();
            //* !!! */ echo  '<pre style="color:red;">'; print_r($queryParams); echo '</pre>'; /* !!! */
         }
 
