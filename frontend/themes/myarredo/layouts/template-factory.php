@@ -127,6 +127,24 @@ $this->beginPage()
     </div>
 </div>
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"></div>
+<div class="modal fade" id="ajaxFormFeedbackModal"></div>
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "url": "https://www.<?= DOMAIN_NAME . '.' . DOMAIN_TYPE ?>",
+    "name": "MyArredoFamily",
+    "email": "info@myarredo.ru",
+    "logo": "<?= 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE ?>/uploads/myarredo-ico.jpg",
+    "sameAs": [
+        "https://www.facebook.com/Myarredo/",
+        "https://www.instagram.com/my_arredo_family/"
+    ]
+}
+</script>
+
 <?= $this->render('parts/_jivosite', []) ?>
 <?= $this->render('parts/_yandex_metrika', []) ?>
 

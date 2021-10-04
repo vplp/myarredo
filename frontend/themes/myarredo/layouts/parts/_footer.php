@@ -168,6 +168,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
 </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"></div>
+<div class="modal fade" id="ajaxFormFeedbackModal"></div>
 
 <script type="application/ld+json">
 {

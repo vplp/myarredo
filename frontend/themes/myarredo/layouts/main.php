@@ -287,7 +287,6 @@ $this->beginPage();
 <!-- bootstrap -->
 <link href="/css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<div class="modal fade" id="ajaxFormFeedbackModal"></div>
 <?php $this->endBody() ?>
 </body>
 </html>
