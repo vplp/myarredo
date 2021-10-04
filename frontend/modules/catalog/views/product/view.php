@@ -410,7 +410,7 @@ var baseUrl = $("base").attr("href");
 
             if (event.cancelable) event.preventDefault();
             $.post(
-                baseUrl + 'shop/cart/add-to-cart/',
+                'shop/cart/add-to-cart/',
                 {
                     _csrf: $('#token').val(),
                     id: product_id,

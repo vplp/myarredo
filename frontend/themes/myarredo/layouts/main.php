@@ -19,11 +19,8 @@ $this->beginPage();
 <html lang="<?= substr(Yii::$app->language, 0, 2) ?>">
 <head>
     <base href="<?= Yii::$app->getRequest()->hostInfo . Url::toRoute(['/']) ?>">
-
     <meta charset="<?= Yii::$app->charset ?>"/>
-
     <title><?= $this->title ?></title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noyaca"/>
 

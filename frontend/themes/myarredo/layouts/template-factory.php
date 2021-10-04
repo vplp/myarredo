@@ -14,9 +14,9 @@ $this->beginPage()
 
 ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<html lang="<?= substr(Yii::$app->language, 0, 2) ?>">
 <head>
-    <base href="<?= Yii::$app->getUrlManager()->getBaseUrl() ?>">
+    <base href="<?= Yii::$app->getRequest()->hostInfo . Url::toRoute(['/']) ?>">
     <meta charset="<?= Yii::$app->charset ?>"/>
     <title><?= $this->title ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
