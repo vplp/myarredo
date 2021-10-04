@@ -196,7 +196,7 @@ class ElasticSearchProduct extends ActiveRecord
                 $record->$title = $product['lang']['title'];
                 $record->$description = $product['lang']['title'];
                 $record->$collection = $product['collection']['title'] ?? '';
-/* !!! */ echo  '<pre style="color:red;">'; print_r($record->attributes()); echo '</pre>'; /* !!! */
+/* !!! */ echo  '<pre style="color:red;">'; print_r($record->attributes); echo '</pre>'; /* !!! */
                 $result = $record->update(false, null, ['routing' => $product['id']]);
             }
         } catch (\Exception $e) {
