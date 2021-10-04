@@ -134,7 +134,7 @@ class ElasticSearchProduct extends ActiveRecord
                 $record->$key = $value;
             }
 
-            return $record->update();
+            return $record->update(false);
         } catch (\Exception $e) {
             return false;
         }
@@ -184,15 +184,20 @@ class ElasticSearchProduct extends ActiveRecord
         $description = 'description_' . $lang;
         $collection = 'collection';
 
-        $record->id = $product['id'];
-        $record->$title = $product['lang']['title'];
-        $record->$description = $product['lang']['title'];
-        $record->$collection = $product['collection']['title'] ?? '';
         var_dump($isExist);
         try {
             if (!$isExist) {
+                $record->id = $product['id'];
+                $record->$title = $product['lang']['title'];
+                $record->$description = $product['lang']['title'];
+                $record->$collection = $product['collection']['title'] ?? '';
+
                 $result = $record->insert();
             } else {
+                $record->$title = $product['lang']['title'];
+                $record->$description = $product['lang']['title'];
+                $record->$collection = $product['collection']['title'] ?? '';
+
                 $result = $record->update(false);
             }
         } catch (\Exception $e) {
