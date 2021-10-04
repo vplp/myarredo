@@ -193,7 +193,7 @@ class ElasticSearchProduct extends ActiveRecord
             if (!$isExist) {
                 $result = $record->insert();
             } else {
-                $result = $record->update(false, [$title, $description]);
+                $result = $record->update(false, [$title]);
             }
         } catch (\Exception $e) {
             $result = false;
