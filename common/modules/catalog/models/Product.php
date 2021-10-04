@@ -571,15 +571,6 @@ class Product extends ActiveRecord implements iProduct
             ProductJson::add($this->id);
         }
 
-        //LOG
-//        if (key_exists('status', $changedAttributes)) {
-//            if ($this->useLog) {
-//                $this->model = $this;
-//                $this->sendToLog('test');
-//            }
-//        }
-
-
         parent::afterSave($insert, $changedAttributes);
     }
 
