@@ -136,6 +136,11 @@ $this->title = $this->context->title;
                             <?php } ?>
 
                         </div>
+
+                        <?= frontend\components\LinkPager::widget([
+                            'pagination' => $models->getPagination(),
+                        ]) ?>
+
                     <?php } else { ?>
                         <div class="text-center">
                             <?= Yii::t(
@@ -146,10 +151,6 @@ $this->title = $this->context->title;
                     <?php } ?>
 
                 </div>
-
-                <?= frontend\components\LinkPager::widget([
-                    'pagination' => $models->getPagination(),
-                ]) ?>
 
             </div>
         </div>
