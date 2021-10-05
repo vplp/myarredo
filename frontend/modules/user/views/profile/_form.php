@@ -4,7 +4,6 @@ use backend\app\bootstrap\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
-//
 use frontend\modules\location\models\{
     Country, City
 };
@@ -77,7 +76,7 @@ $this->title = Yii::t('app', 'Profile');
                      */
                     if (Yii::$app->user->identity->group->role == 'factory') { ?>
                         <div class="col-md-4 col-lg-4 one-row">
-                            <?= $form->field($model, 'email_company') ?>
+                            <?= $form->field($model, 'email') ?>
                             <?= $form->field($modelLang, 'address') ?>
                             <?= $form
                                 ->field($model, 'website')

@@ -302,7 +302,7 @@ class Profile extends \thread\modules\user\models\Profile
             'phone' => Yii::t('app', 'Phone'),
             'phone2' => Yii::t('app', 'Телефон 2-го салона'),
             'additional_phone' => Yii::t('app', 'Телефон для подмены'),
-            'email_company' => Yii::t('app', 'E-mail'),
+            'email_company' => Yii::t('app', 'E-mail company'),
             'website' => Yii::t('app', 'Адресс сайта'),
             'exp_with_italian' => Yii::t('app', 'Опыт работы с итальянской мебелью, лет'),
             'country_id' => Yii::t('app', 'Country'),
