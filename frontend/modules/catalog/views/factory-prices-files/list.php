@@ -42,12 +42,12 @@ $this->title = $this->context->title;
             <div class="cat-content">
                 <div class="row">
                     <div class="col-md-12 col-lg-12">
-                        <div id="cont_goods" class="cont-area cont-goods">
+                        <div class="cont-area cont-goods">
 
                             <?php if (!empty($dataProvider->models)) {
                                 echo GridView::widget([
                                     'dataProvider' => $dataProvider,
-                                    'filterModel' => $filter,
+                                    'filterModel' => false,
                                     'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
                                     'filterUrl' => Url::toRoute(['/catalog/factory-prices-files/list']),
                                     'columns' => [
