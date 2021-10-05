@@ -58,7 +58,7 @@ HTML;
         <?= Select2::widget([
             'name' => 'country_id',
             'value' => $params['country_id'],
-            'data' => [0 => Yii::t('app', 'Все страны')] + Country::dropDownList([1, 2, 3, 4]),
+            'data' => [0 => Yii::t('app', 'Все страны')] + Country::dropDownList(),
             'options' => [
                 'id' => 'country_id',
                 'multiple' => false,
