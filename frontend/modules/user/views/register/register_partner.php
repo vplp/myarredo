@@ -52,7 +52,8 @@ $model->user_agreement = 1;
 
                                 echo $form->field($model, 'country_id')
                                     ->dropDownList(
-                                        [null => '--'] + Country::dropDownList([1, 2, 3, 4]) + Country::dropDownListForRegistration(),
+                                        [null => '--'] + Country::dropDownList(),
+                                        //[null => '--'] + Country::dropDownList([1, 2, 3, 4]) + Country::dropDownListForRegistration(),
                                         ['class' => 'selectpicker rcountry-sct']
                                     );
 
@@ -150,34 +151,19 @@ showHideForItalia(country_id);
 
 $('select#registerform-country_id').change(function(){
     var country_id = parseInt($(this).val());
-    
-    //changeInputmaskByCountry(country_id);
-    
+
     $.post('$url', {_csrf: $('#token').val(),country_id:country_id}, function(data){
         var select = $('select#registerform-city_id');
         select.html(data.options);
         select.selectpicker("refresh");
+        
+        showHideForItalia(country_id);
     });
-    
-    showHideForItalia(country_id);
 });
 
-function changeInputmaskByCountry(country_id) {
-    var inputmask = [];
-    
-    inputmask[1] = {"clearIncomplete":true,"mask":["+380 (99) 999-99-99"]};
-    inputmask[2] = {"clearIncomplete":true,"mask":["+7 (999) 999-99-99"]};
-    inputmask[3] = {"clearIncomplete":true,"mask":["+375 (99) 999-99-99"]};
-    inputmask[4] = {"clearIncomplete":true,"mask":['+39 (99) 999-999',
-    '+39 (999) 999-999',
-    '+39 (9999) 999-999',
-    '+39 (9999) 999-9999']};
-    inputmask[85] = {"clearIncomplete":true,"mask":[""]};
-
-    $('#registerform-phone').inputmask(inputmask[country_id]).trigger('focus').trigger("change");
-}
-
 function showHideForItalia(country_id) {
+    let cities = $('select#registerform-city_id').children('option');
+    
     // if selected Italy
     if (country_id == 4) {
         $('.field-registerform-city_id').css('display', 'none');
@@ -187,18 +173,24 @@ function showHideForItalia(country_id) {
         $('.field-registerform-cape_index').css('display', 'block');
        
         setTimeout(function() {
-            var romeOption = $('select#registerform-city_id').children('option')[1];
+            var romeOption = cities[1];
             $(romeOption).prop('selected', true);
         },300);
-        
-    } else if (country_id == 85 || country_id == 114 || country_id == 109) {
-        
+    } else if (cities.length == 1) {
         $('.field-registerform-city_id').css('display', 'none');
         $('.field-registerform-exp_with_italian').css('display', 'none');
         $('.field-registerform-delivery_to_other_cities').css('display', 'none');
-        
+        $('.field-registerform-cape_index').css('display', 'none');
+    } else if (cities.length == 2) {
+        $('.field-registerform-city_id').css('display', 'none');
+        $('.field-registerform-exp_with_italian').css('display', 'none');
+        $('.field-registerform-delivery_to_other_cities').css('display', 'none');
         $('.field-registerform-cape_index').css('display', 'none');
         
+        setTimeout(function() {
+            var romeOption = cities[1];
+            $(romeOption).prop('selected', true);
+        },300);
     } else {
         $('.field-registerform-city_id').css('display', 'block');
         $('.field-registerform-exp_with_italian').css('display', 'block');

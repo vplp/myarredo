@@ -52,7 +52,7 @@ $model->factory_confirm_offers = 1;
                                 <?= $form
                                     ->field($model, 'country_id')
                                     ->dropDownList(
-                                        [null => '--'] + Country::dropDownListForRegistration(),
+                                        [null => '--'] + Country::dropDownList(),
                                         [
                                             'class' => 'selectpicker rcountry-sct'
                                         ]
