@@ -148,4 +148,52 @@ class FactoryFile extends ActiveRecord
     {
         return $this->hasOne(Factory::class, ['id' => 'factory_id']);
     }
+
+    /**
+     * @return array|int|string|string[]
+     */
+    public function getTitle()
+    {
+        $search = [
+            'Каталог товаров-',
+            'Каталог товаров_',
+            'Каталог_',
+            'Каталог тканей и отделок - ',
+            'Каталог и отделок тканей - ',
+            'Каталог отделок - ',
+            'Каталог тканей - ',
+            'Каталог тканей-',
+            'Каталог мебели-',
+            'Каталог мебели - '
+        ];
+        $replace = '';
+
+        $lang = substr(Yii::$app->language, 0, 2);
+
+        return $lang == 'ru' ? $this->title : str_replace($search, $replace, $this->title);
+    }
+
+    /**
+     * @return array|int|string|string[]
+     */
+    public static function getStaticTitle($model)
+    {
+        $search = [
+            'Каталог товаров-',
+            'Каталог товаров_',
+            'Каталог_',
+            'Каталог тканей и отделок - ',
+            'Каталог и отделок тканей - ',
+            'Каталог отделок - ',
+            'Каталог тканей - ',
+            'Каталог тканей-',
+            'Каталог мебели-',
+            'Каталог мебели - '
+        ];
+        $replace = '';
+
+        $lang = substr(Yii::$app->language, 0, 2);
+
+        return $lang == 'ru' ? $model->title : str_replace($search, $replace, $model->title);
+    }
 }
