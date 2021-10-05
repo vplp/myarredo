@@ -26,9 +26,11 @@ $this->title = $this->context->title;
                     echo NewsListForPartners::widget([]);
                 } ?>
 
-                <?= $this->render('_form_filter', ['model' => $model,
+                <?= $this->render('_form_filter', [
+                    'model' => $model,
                     'params' => $params,
-                    'models' => $models,]); ?>
+                    'models' => $models
+                ]); ?>
 
                 <?php if (!Yii::$app->user->identity->profile->getPossibilityToAnswerSaleItaly()) {
                     if (DOMAIN_TYPE == 'com') {
@@ -117,7 +119,9 @@ $this->title = $this->context->title;
                                             <?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?>
                                         </span>
                                     </li>
-                                    <li><span class="order_status_<?= $modelOrder->order_status ?>"><?= Order::getOrderStatuses($modelOrder->order_status); ?></span></li>
+                                    <li>
+                                        <span class="order_status_<?= $modelOrder->order_status ?>"><?= Order::getOrderStatuses($modelOrder->order_status); ?></span>
+                                    </li>
                                 </ul>
 
                                 <div class="hidden-order-info flex">

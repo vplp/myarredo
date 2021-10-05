@@ -5,7 +5,6 @@ use yii\helpers\{
 };
 use yii\widgets\ActiveForm;
 use kartik\widgets\Select2;
-//
 use frontend\modules\location\models\{
     Country, City
 };

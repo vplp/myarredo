@@ -38,7 +38,7 @@ use frontend\modules\catalog\models\Factory;
         <?= Select2::widget([
             'name' => 'city_id',
             'value' => (!is_array($params['city_id'])) ? $params['city_id'] : 0,
-            'data' => [0 => Yii::t('app', 'Все города')] + City::dropDownList(Yii::$app->user->identity->profile->country_id),
+            'data' => [0 => Yii::t('app', 'Все города')] + City::dropDownList($params['city_id']),
             'options' => [
                 'id' => 'city_id',
                 'multiple' => false,
