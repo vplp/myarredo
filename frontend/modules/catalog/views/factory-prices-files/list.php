@@ -58,7 +58,7 @@ $this->title = $this->context->title;
                                             'value' => function ($model) {
                                                 /** @var $model FactoryCatalogsFiles */
                                                 return Html::a(
-                                                    $model->file_link,
+                                                    $model->getTitle(),
                                                     $model->getFileLink(),
                                                     ['target' => '_blank']
                                                 );
