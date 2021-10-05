@@ -22,12 +22,14 @@ use frontend\modules\shop\models\Order;
 
                 <?= Html::tag('h1', $this->context->title); ?>
 
-                <div class="text-center">
-                    <video width="640" height="360" controls>
-                        <source src="/uploads/video/2_my_arredo.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
+                <?php if (DOMAIN_TYPE != 'com') { ?>
+                    <div class="text-center">
+                        <video width="640" height="360" controls>
+                            <source src="/uploads/video/2_my_arredo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                <?php } ?>
 
                 <?php if (in_array(Yii::$app->user->identity->group->role, ['partner'])) {
                     echo NewsListForPartners::widget([]);
@@ -183,10 +185,10 @@ use frontend\modules\shop\models\Order;
 
 <?php
 if (Yii::$app->user->identity->profile->possibilityToAnswer) {
-$url = Url::toRoute(['/shop/partner-order/pjax-save-order-answer']);
-$messagePrice = Yii::t('app', 'Ваш ответ должен быть максимально приближен к реальности');
+    $url = Url::toRoute(['/shop/partner-order/pjax-save-order-answer']);
+    $messagePrice = Yii::t('app', 'Ваш ответ должен быть максимально приближен к реальности');
 
-$script = <<<JS
+    $script = <<<JS
 
 var errorIndicator = true;
 
@@ -305,5 +307,5 @@ $(".manager-history-list").on('change', 'input[type="checkbox"].field-orderitemp
 });
 JS;
 
-$this->registerJs($script);
+    $this->registerJs($script);
 }
