@@ -30,9 +30,15 @@ $this->title = $this->context->title;
                     'params' => $params,
                     'models' => $models,]); ?>
 
-                <?php if (!Yii::$app->user->identity->profile->getPossibilityToAnswerSaleItaly()) { ?>
+                <?php if (!Yii::$app->user->identity->profile->getPossibilityToAnswerSaleItaly()) {
+                    if (DOMAIN_TYPE == 'com') {
+                        $phone = '<a href="tel:+3904221500215">+39 (0422) 150-02-15</a>';
+                    } else {
+                        $phone = '';
+                    }
+                    ?>
                     <div class="info-alertbox">
-                        <?= Yii::t('app', 'Для получения возможности ответов на заявки - свяжитесь с администратором сайта') ?>
+                        <?= Yii::t('app', 'Для получения возможности ответов на заявки - свяжитесь с администратором сайта') . ' ' . $phone ?>
                     </div>
                 <?php } ?>
 
