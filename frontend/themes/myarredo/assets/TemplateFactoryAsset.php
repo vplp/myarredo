@@ -34,6 +34,8 @@ class TemplateFactoryAsset extends AssetBundle
         //'css/fonts.css',
         'libs/fancybox/jquery.fancybox.css',
         // 'css/main.scss.min.css',
+        'libs/formstyler/jquery.formstyler.css',
+        'libs/intl-input/intlTelInput.min.css',
         'css/template-style.min.css',
     ];
 
@@ -47,9 +49,11 @@ class TemplateFactoryAsset extends AssetBundle
         'libs/infoBubble/infobubble.js',
         'libs/wNumb.js',
         'libs/shop.js',
+        'libs/Vibrant.min.js',
         'libs/formstyler/jquery.formstyler.js',
         'libs/fancybox/jquery.fancybox.pack.js',
         'libs/lazyload/lazyload.min.js',
+        'libs/intl-input/intlTelInput.min.js',
         'libs/vue/vue.min.js',
         'js/main.js',
     ];
