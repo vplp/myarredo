@@ -2,9 +2,10 @@
 
 use backend\widgets\GridView\GridView;
 use thread\widgets\grid\{GridViewFilter};
+use backend\modules\sys\modules\logbook\models\Logbook;
 
 /**
- * @var $model \backend\modules\sys\modules\logbook\models\Logbook
+ * @var $model Logbook
  * @var $filter \backend\modules\sys\modules\logbook\models\search\Logbook
  */
 echo GridView::widget([
@@ -20,7 +21,8 @@ echo GridView::widget([
         ],
         [
             'attribute' => 'user_id',
-            'value' => 'user.username',
+            'value' => 'user.profile.fullName',
+            'filter' => GridViewFilter::selectOne($filter, 'user_id', Logbook::dropDownListUsers()),
         ],
         'category',
         [

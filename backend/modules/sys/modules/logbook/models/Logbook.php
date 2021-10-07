@@ -2,7 +2,9 @@
 
 namespace backend\modules\sys\modules\logbook\models;
 
+use backend\modules\user\models\User;
 use thread\app\model\interfaces\BaseBackendModel;
+use yii\helpers\ArrayHelper;
 
 /**
  * Class Logbook
@@ -52,5 +54,35 @@ class Logbook extends \thread\modules\sys\modules\logbook\models\Logbook impleme
             ->andFilterWhere([Logbook::tableName() . '.model_name' => $model_name]);
 
         return $query->one();
+    }
+
+    /**
+     * @return array
+     */
+    public static function dropDownListUsers()
+    {
+        $query = self::find()
+            ->indexBy('user_id')
+            ->select('user_id, count(user_id) as count')
+            ->groupBy('user_id')
+            ->andWhere('user_id > 0')
+            ->asArray()
+            ->all();
+
+        $ids = [];
+
+        foreach ($query as $item) {
+            $ids[] = $item['user_id'];
+        }
+
+        if ($ids) {
+            return ArrayHelper::map(
+                User::findBase()->andWhere(['IN', User::tableName() . '.id', $ids])->all(),
+                'id',
+                'profile.fullName'
+            );
+        } else {
+            return [];
+        }
     }
 }
