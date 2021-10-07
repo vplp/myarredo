@@ -79,7 +79,7 @@ class Logbook extends \thread\modules\sys\modules\logbook\models\Logbook impleme
             return ArrayHelper::map(
                 User::findBase()->andWhere(['IN', User::tableName() . '.id', $ids])->all(),
                 'id',
-                'profile.fullName'
+                'username'
             );
         } else {
             return [];

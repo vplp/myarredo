@@ -21,7 +21,7 @@ echo GridView::widget([
         ],
         [
             'attribute' => 'user_id',
-            'value' => 'user.profile.fullName',
+            'value' => 'user.username',
             'filter' => GridViewFilter::selectOne($filter, 'user_id', Logbook::dropDownListUsers()),
         ],
         'category',
