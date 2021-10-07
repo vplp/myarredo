@@ -21,7 +21,7 @@ use backend\modules\sys\modules\{
  */
 class Sys extends \common\modules\sys\Sys
 {
-    public $itemOnPage = 20;
+    public $itemOnPage = 100;
 
     public function getMenuItems()
     {
