@@ -54,7 +54,7 @@ class LogbookByMonth extends \thread\modules\sys\modules\logbook\models\LogbookB
             return ArrayHelper::map(
                 User::findBase()->andWhere(['IN', User::tableName() . '.id', $ids])->all(),
                 'id',
-                'profile.fullName'
+                'username'
             );
         } else {
             return [];
