@@ -73,7 +73,7 @@ class LogbookByMonth extends ParentModel implements BaseBackendSearchModel
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'created_at' => SORT_DESC,
+                    'action_date' => SORT_ASC,
                 ]
             ]
         ]);

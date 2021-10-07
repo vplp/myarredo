@@ -13,5 +13,5 @@ class Logbook extends \thread\modules\sys\modules\logbook\Logbook
      * Number of elements in GridView
      * @var int
      */
-    public $itemOnPage = 50;
+    public $itemOnPage = 100;
 }
