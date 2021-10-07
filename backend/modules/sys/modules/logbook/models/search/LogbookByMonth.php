@@ -26,21 +26,26 @@ class LogbookByMonth extends ParentModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-//            [['created_at', 'model_id'], 'integer'],
-//            [['message', 'category', 'model_name'], 'string', 'max' => 512],
-//            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
-//            [
-//                ['date_from'],
-//                'date',
-//                'format' => 'php: d.m.Y',
-//                'timestampAttribute' => 'date_from'
-//            ],
-//            [
-//                ['date_to'],
-//                'date',
-//                'format' => 'php: d.m.Y',
-//                'timestampAttribute' => 'date_to'
-//            ],
+            [['user_id'], 'integer'],
+            [['action_method'], 'string', 'max' => 512],
+            [
+                ['action_date'],
+                'date',
+                'format' => 'php: d.m.Y',
+                'timestampAttribute' => 'action_date'
+            ],
+            [
+                ['date_from'],
+                'date',
+                'format' => 'php: d.m.Y',
+                'timestampAttribute' => 'date_from'
+            ],
+            [
+                ['date_to'],
+                'date',
+                'format' => 'php: d.m.Y',
+                'timestampAttribute' => 'date_to'
+            ],
         ];
     }
 
@@ -77,7 +82,11 @@ class LogbookByMonth extends ParentModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', self::tableName() . '.user_id', $this->user_id]);
+        $query->andFilterWhere(['>=', self::tableName() . '.action_date', $this->date_from]);
+        $query->andFilterWhere(['<=', self::tableName() . '.action_date', $this->date_to]);
+
+        $query->andFilterWhere(['=', self::tableName() . '.user_id', $this->user_id]);
+        $query->andFilterWhere(['=', self::tableName() . '.action_method', $this->action_method]);
 
         return $dataProvider;
     }
