@@ -6,6 +6,7 @@ use backend\modules\sys\modules\logbook\models\{LogbookByMonth, search\LogbookBy
 use thread\actions\{AttributeSwitch, Create, Update};
 use thread\app\base\controllers\BackendController;
 use yii\helpers\ArrayHelper;
+use Yii;
 
 /**
  * Class LogbookByMonthController
