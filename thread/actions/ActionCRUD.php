@@ -234,6 +234,10 @@ class ActionCRUD extends Action
             $model_id = $this->getModel()->id;
 
             $logbook->send($info['message'], $info['url'] ?? '', Logbook::TYPE_NOTICE, $category, $model_name, $action_method, $model_id);
+
+            if (in_array($model_name, ['Product', 'Composition', 'FactoryPricesFiles', 'FactoryCatalogsFiles'])) {
+                Yii::$app->logbookByMonth->send($action_method . $model_name);
+            }
         } else {
             Yii::getLogger()->log('logbook service was not found', Logger::LEVEL_ERROR);
         }

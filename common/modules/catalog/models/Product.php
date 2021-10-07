@@ -527,6 +527,26 @@ class Product extends ActiveRecord implements iProduct
             $this->editor_id = Yii::$app->user->id;
         }
 
+        if ($this->factory_catalogs_files_ids) {
+            $factory_catalogs_files_ids = [];
+            foreach ($this->factoryCatalogsFiles as $item) {
+                $factory_catalogs_files_ids[] = $item['id'];
+            }
+            if (!empty(array_diff($this->factory_catalogs_files_ids, $factory_catalogs_files_ids))) {
+                Yii::$app->logbookByMonth->send('updateFactoryCatalogs' . $this->formName());
+            }
+        }
+
+        if ($this->factory_prices_files_ids) {
+            $factory_prices_files_ids = [];
+            foreach ($this->factoryPricesFiles as $item) {
+                $factory_prices_files_ids[] = $item['id'];
+            }
+            if (!empty(array_diff($this->factory_prices_files_ids, $factory_prices_files_ids))) {
+                Yii::$app->logbookByMonth->send('updateFactoryPrices' . $this->formName());
+            }
+        }
+
         return parent::beforeSave($insert);
     }
 
@@ -569,6 +589,18 @@ class Product extends ActiveRecord implements iProduct
 
         if (in_array($this->scenario, ['frontend', 'backend'])) {
             ProductJson::add($this->id);
+        }
+
+        if (key_exists('image_link', $changedAttributes)) {
+            Yii::$app->logbookByMonth->send('updateImage' . $this->formName());
+        }
+
+        if (key_exists('gallery_image', $changedAttributes)) {
+            Yii::$app->logbookByMonth->send('updateGallery' . $this->formName());
+        }
+
+        if (key_exists('removed', $changedAttributes) && $this->scenario != 'removed') {
+            Yii::$app->logbookByMonth->send('removed' . $this->formName());
         }
 
         parent::afterSave($insert, $changedAttributes);

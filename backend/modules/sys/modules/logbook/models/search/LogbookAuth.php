@@ -14,8 +14,6 @@ use yii\data\ActiveDataProvider;
  * Class Logbook
  *
  * @package backend\modules\sys\modules\logbook\models\search
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class LogbookAuth extends ParentModel implements BaseBackendSearchModel
 {

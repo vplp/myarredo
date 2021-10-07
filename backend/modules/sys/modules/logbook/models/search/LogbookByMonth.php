@@ -3,7 +3,7 @@
 namespace backend\modules\sys\modules\logbook\models\search;
 
 use backend\modules\sys\modules\logbook\Logbook as ParentModule;
-use backend\modules\sys\modules\logbook\models\{Logbook as ParentModel};
+use backend\modules\sys\modules\logbook\models\{LogbookByMonth as ParentModel};
 use thread\app\base\models\query\ActiveQuery;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 use Yii;
@@ -11,13 +11,12 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * Class Logbook
+ * Class LogbookByMonth
  *
  * @package backend\modules\sys\modules\logbook\models\search
  */
-class Logbook extends ParentModel implements BaseBackendSearchModel
+class LogbookByMonth extends ParentModel implements BaseBackendSearchModel
 {
-    public $title;
     public $date_from;
     public $date_to;
 
@@ -27,21 +26,21 @@ class Logbook extends ParentModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-            [['created_at', 'model_id'], 'integer'],
-            [['message', 'category', 'model_name'], 'string', 'max' => 512],
-            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
-            [
-                ['date_from'],
-                'date',
-                'format' => 'php: d.m.Y',
-                'timestampAttribute' => 'date_from'
-            ],
-            [
-                ['date_to'],
-                'date',
-                'format' => 'php: d.m.Y',
-                'timestampAttribute' => 'date_to'
-            ],
+//            [['created_at', 'model_id'], 'integer'],
+//            [['message', 'category', 'model_name'], 'string', 'max' => 512],
+//            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
+//            [
+//                ['date_from'],
+//                'date',
+//                'format' => 'php: d.m.Y',
+//                'timestampAttribute' => 'date_from'
+//            ],
+//            [
+//                ['date_to'],
+//                'date',
+//                'format' => 'php: d.m.Y',
+//                'timestampAttribute' => 'date_to'
+//            ],
         ];
     }
 
@@ -69,7 +68,6 @@ class Logbook extends ParentModel implements BaseBackendSearchModel
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'is_read' => SORT_ASC,
                     'created_at' => SORT_DESC,
                 ]
             ]
@@ -79,15 +77,7 @@ class Logbook extends ParentModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query
-            ->andFilterWhere([self::tableName() . '.model_id' => $this->model_id])
-            ->andFilterWhere([self::tableName() . '.model_name' => $this->model_name])
-            ->andFilterWhere(['like', self::tableName() . '.published', $this->published])
-            ->andFilterWhere(['like', self::tableName() . '.category', $this->category])
-            ->andFilterWhere(['like', self::tableName() . '.user_id', $this->user_id])
-            ->andFilterWhere(['like', self::tableName() . '.message', $this->message]);
-
-        $query->andFilterWhere(['<=', self::tableName() . '.created_at', $this->date_to]);
+        $query->andFilterWhere(['like', self::tableName() . '.user_id', $this->user_id]);
 
         return $dataProvider;
     }

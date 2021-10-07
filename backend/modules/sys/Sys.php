@@ -69,9 +69,9 @@ class Sys extends \common\modules\sys\Sys
                         'url' => ['/sys/logbook/logbook/list'],
                     ],
                     [
-                        'label' => 'LogbookByMonth',
+                        'label' => 'Logbook by month',
                         'icon' => 'fa-tasks',
-                        'url' => ['/sys/logbook/logbook/list-by-month'],
+                        'url' => ['/sys/logbook/logbook-by-month/list'],
                     ],
                     /*[
                         'label' => 'Messages',

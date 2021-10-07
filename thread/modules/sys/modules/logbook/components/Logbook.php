@@ -12,8 +12,6 @@ use yii\log\Logger;
  * Class Logbook
  *
  * @package thread\modules\sys\modules\logbook\components
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Logbook extends Component
 {

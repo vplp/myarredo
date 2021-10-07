@@ -3,14 +3,13 @@
 namespace backend\modules\sys\modules\logbook\models;
 
 use thread\app\model\interfaces\BaseBackendModel;
-use thread\modules\sys\modules\logbook\models\LogbookAuthModel as ParentModel;
 
 /**
- * Class Logbook
+ * Class LogbookByMonth
  *
  * @package backend\modules\sys\modules\logbook\models
  */
-class LogbookAuth extends ParentModel implements BaseBackendModel
+class LogbookByMonth extends \thread\modules\sys\modules\logbook\models\LogbookByMonth implements BaseBackendModel
 {
     /**
      * @param $params
@@ -18,7 +17,7 @@ class LogbookAuth extends ParentModel implements BaseBackendModel
      */
     public function search($params)
     {
-        return (new search\LogbookAuth())->search($params);
+        return (new search\LogbookByMonth())->search($params);
     }
 
     /**
@@ -27,6 +26,6 @@ class LogbookAuth extends ParentModel implements BaseBackendModel
      */
     public function trash($params)
     {
-        return (new search\LogbookAuth())->trash($params);
+        return (new search\LogbookByMonth())->trash($params);
     }
 }

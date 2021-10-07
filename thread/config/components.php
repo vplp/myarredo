@@ -15,6 +15,9 @@ return [
     'logbook' => [
         'class' => \thread\modules\sys\modules\logbook\components\Logbook::class,
     ],
+    'logbookByMonth' => [
+        'class' => \thread\modules\sys\modules\logbook\components\LogbookByMonth::class,
+    ],
     'logbookAuth' => [
         'class' => \thread\modules\sys\modules\logbook\components\LogbookAuth::class,
     ],

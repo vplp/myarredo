@@ -8,8 +8,6 @@ use thread\app\model\interfaces\BaseBackendModel;
  * Class Logbook
  *
  * @package backend\modules\sys\modules\logbook\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Logbook extends \thread\modules\sys\modules\logbook\models\Logbook implements BaseBackendModel
 {

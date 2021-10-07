@@ -40,14 +40,4 @@ class LogbookController extends BackendController
             ],
         ]);
     }
-
-    public function actionListByMonth()
-    {
-        return $this->render(
-            'list_by_month',
-            [
-
-            ]
-        );
-    }
 }
