@@ -27,7 +27,7 @@ class Logbook extends ParentModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-            [['created_at', 'model_id'], 'integer'],
+            [['created_at', 'model_id', 'user_id'], 'integer'],
             [['message', 'category', 'model_name'], 'string', 'max' => 512],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
             [
@@ -81,10 +81,10 @@ class Logbook extends ParentModel implements BaseBackendSearchModel
 
         $query
             ->andFilterWhere([self::tableName() . '.model_id' => $this->model_id])
+            ->andFilterWhere([self::tableName() . '.user_id' => $this->user_id])
             ->andFilterWhere([self::tableName() . '.model_name' => $this->model_name])
             ->andFilterWhere(['like', self::tableName() . '.published', $this->published])
             ->andFilterWhere(['like', self::tableName() . '.category', $this->category])
-            ->andFilterWhere(['like', self::tableName() . '.user_id', $this->user_id])
             ->andFilterWhere(['like', self::tableName() . '.message', $this->message]);
 
         $query->andFilterWhere(['<=', self::tableName() . '.created_at', $this->date_to]);
