@@ -31,7 +31,7 @@ class LogbookByMonthController extends BackendController
 
     public function actionImport()
     {
-        $query = Logbook::find();
+        $query = Logbook::find()->limit(1000);
 
         foreach ($query->batch(100) as $models) {
             foreach ($models as $item) {
