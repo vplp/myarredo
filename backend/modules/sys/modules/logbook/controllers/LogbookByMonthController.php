@@ -36,7 +36,7 @@ class LogbookByMonthController extends BackendController
         foreach ($query->batch(100) as $models) {
             foreach ($models as $item) {
                 if (in_array($item->model_name, ['Product', 'Composition', 'FactoryPricesFiles', 'FactoryCatalogsFiles']) &&
-                    in_array($item->action_method, ['updated', 'created', 'removed'])) {
+                    in_array($item->action_method, ['update', 'create', 'removed'])) {
                     Yii::$app->logbookByMonth->send($item->action_method . $item->model_name, $item->updated_at);
                 }
             }
