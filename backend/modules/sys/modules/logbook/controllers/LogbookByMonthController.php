@@ -31,7 +31,11 @@ class LogbookByMonthController extends BackendController
 
     public function actionImport()
     {
-        $query = Logbook::find()->orderBy(['created_at' => SORT_DESC,])->limit(20000);
+        $query = Logbook::find()
+            ->andFilterWhere(['IN', 'action_method', ['update', 'create', 'removed']])
+            ->andFilterWhere(['IN', 'model_name', ['Product', 'Composition', 'FactoryPricesFiles', 'FactoryCatalogsFiles']])
+            ->orderBy(['created_at' => SORT_DESC,])
+            ->limit(10000);
 
         foreach ($query->batch(100) as $models) {
             foreach ($models as $item) {
