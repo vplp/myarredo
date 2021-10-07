@@ -2,7 +2,7 @@
 
 namespace backend\modules\sys\modules\logbook\controllers;
 
-use backend\modules\sys\modules\logbook\models\{LogbookByMonth, search\LogbookByMonth as filterModel};
+use backend\modules\sys\modules\logbook\models\{LogbookByMonth, search\LogbookByMonth as filterModel, Logbook};
 use thread\actions\{AttributeSwitch, Create, Update};
 use thread\app\base\controllers\BackendController;
 use yii\helpers\ArrayHelper;
@@ -16,8 +16,8 @@ class LogbookByMonthController extends BackendController
 {
     public $model = LogbookByMonth::class;
     public $filterModel = filterModel::class;
-    public $title = 'Logbook';
-    public $name = 'logbook';
+    public $title = 'Logbook by month';
+    public $name = 'Logbook by month';
 
     public function actions()
     {
@@ -27,4 +27,18 @@ class LogbookByMonthController extends BackendController
             ],
         ]);
     }
+
+    public function actionImport()
+    {
+        $query = Logbook::find();
+
+        foreach ($query->batch(100) as $models) {
+            foreach ($models as $item) {
+                if (in_array($item->model_name, ['Product', 'Composition', 'FactoryPricesFiles', 'FactoryCatalogsFiles'])) {
+                    Yii::$app->logbookByMonth->send($item->model_name . $item->model_name);
+                }
+            }
+        }
+    }
+
 }
