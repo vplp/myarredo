@@ -19,9 +19,14 @@ class LogbookByMonth extends Component
      * @param $action_method
      * @throws \yii\base\InvalidConfigException
      */
-    public function send($action_method)
+    public function send($action_method, $date = 0)
     {
-        $action_date = mktime(0, 0, 0, date('m')  , 1, date('Y'));
+        if ($date) {
+            $action_date = mktime(0, 0, 0, date('m', $date)  , 1, date('Y', $date));
+        } else {
+            $action_date = mktime(0, 0, 0, date('m')  , 1, date('Y'));
+        }
+
 
         $model = LogbookModel::find()
             ->where([
