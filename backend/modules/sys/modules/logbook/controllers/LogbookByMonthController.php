@@ -31,11 +31,12 @@ class LogbookByMonthController extends BackendController
 
     public function actionImport()
     {
-        $query = Logbook::find();
+        $query = Logbook::find()->orderBy(['created_at' => SORT_DESC,])->limit(20000);
 
         foreach ($query->batch(100) as $models) {
             foreach ($models as $item) {
-                if (in_array($item->model_name, ['Product', 'Composition', 'FactoryPricesFiles', 'FactoryCatalogsFiles'])) {
+                if (in_array($item->model_name, ['Product', 'Composition', 'FactoryPricesFiles', 'FactoryCatalogsFiles']) &&
+                    in_array($item->action_method, ['updated', 'created', 'removed'])) {
                     Yii::$app->logbookByMonth->send($item->action_method . $item->model_name, $item->updated_at);
                 }
             }
