@@ -31,12 +31,12 @@ class LogbookByMonthController extends BackendController
 
     public function actionImport()
     {
-        $query = Logbook::find()->limit(1000);
+        $query = Logbook::find();
 
         foreach ($query->batch(100) as $models) {
             foreach ($models as $item) {
                 if (in_array($item->model_name, ['Product', 'Composition', 'FactoryPricesFiles', 'FactoryCatalogsFiles'])) {
-                    Yii::$app->logbookByMonth->send($item->model_name . $item->model_name, $item->updated_at);
+                    Yii::$app->logbookByMonth->send($item->action_method . $item->model_name, $item->updated_at);
                 }
             }
         }
