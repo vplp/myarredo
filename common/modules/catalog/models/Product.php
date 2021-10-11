@@ -527,7 +527,7 @@ class Product extends ActiveRecord implements iProduct
             $this->editor_id = Yii::$app->user->id;
         }
 
-        if ($this->factory_catalogs_files_ids) {
+        if (isset($this->factory_catalogs_files_ids)) {
             $factory_catalogs_files_ids = [];
             foreach ($this->factoryCatalogsFiles as $item) {
                 $factory_catalogs_files_ids[] = $item['id'];
@@ -537,7 +537,7 @@ class Product extends ActiveRecord implements iProduct
             }
         }
 
-        if ($this->factory_prices_files_ids) {
+        if (isset($this->factory_prices_files_ids)) {
             $factory_prices_files_ids = [];
             foreach ($this->factoryPricesFiles as $item) {
                 $factory_prices_files_ids[] = $item['id'];
