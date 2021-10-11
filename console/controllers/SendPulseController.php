@@ -182,7 +182,7 @@ class SendPulseController extends Controller
 
         if ($modelOrder !== null) {
             if ($modelOrder->city) {
-                $bookId = $modelOrder->city->country->bookId;
+                $bookId = $modelOrder->city->country->bookId ?? '88910536';
             } else {
                 $bookId = '88910536';
             }
