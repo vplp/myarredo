@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\widgets\product;
 
+use frontend\modules\location\models\City;
 use Yii;
 use yii\base\Exception;
 use yii\base\Widget;
@@ -71,6 +72,20 @@ class NoveltyProducts extends Widget
             ])
             ->limit(8)
             ->cache(7200);
+
+        if (!empty(Yii::$app->partner) && Yii::$app->partner->id) {
+            $order['FIELD (' . $modelClass::tableName() . '.user_id, ' . Yii::$app->partner->id . ')'] = SORT_DESC;
+        } elseif (in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159, 160, 161, 162, 164, 165])) {
+            $query
+                ->innerJoinWith(['city'])
+                ->andFilterWhere(['NOT IN', City::tableName() . '.id', [5]]);
+
+            $order[City::tableName() . '.id'] = SORT_ASC;
+        }
+
+        $order[$modelClass::tableName() . '.updated_at'] = SORT_DESC;
+
+        $query->orderBy($order);
 
         if (isset($params[$keys['category']])) {
             $query
