@@ -100,7 +100,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
 
                     </div>
 
-                    <?php if ($this->beginCache('Footer' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) { ?>
+                    <?php if ($this->beginCache('Footer' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 0])) { ?>
                         <ul class="nav ftr-nav">
                             <li><?= FormFeedback::widget(['view' => 'ajax_form_feedback']); ?></li>
                             <?php if (in_array(Yii::$app->language, ['ru-RU', 'uk-UA'])) { ?>
