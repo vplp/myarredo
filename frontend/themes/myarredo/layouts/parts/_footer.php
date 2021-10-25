@@ -156,8 +156,8 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
                             </div>
                         </div>
                         <?php
-                        //$this->endCache();
-                    } ?>
+                        //$this->endCache(); }
+                        ?>
                 </div>
             </div>
         </div>
