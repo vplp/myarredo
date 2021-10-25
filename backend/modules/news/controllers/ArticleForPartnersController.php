@@ -2,6 +2,7 @@
 
 namespace backend\modules\news\controllers;
 
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 //
 use thread\actions\AttributeSwitch;
@@ -26,6 +27,32 @@ class ArticleForPartnersController extends BackendController
     public $filterModel = filterArticleForPartnersModel::class;
     public $title = 'Information for partners';
     public $name = 'Information for partners';
+
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin', 'catalogEditor'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
 
     /**
      * @return array

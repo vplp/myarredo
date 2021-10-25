@@ -43,7 +43,7 @@ class ArticleController extends BackendController
                     ],
                     [
                         'allow' => true,
-                        'roles' => ['admin', 'seo'],
+                        'roles' => ['admin', 'catalogEditor'],
                     ],
                     [
                         'allow' => false,
