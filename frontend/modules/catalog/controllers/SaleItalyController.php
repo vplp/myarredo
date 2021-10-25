@@ -129,6 +129,10 @@ class SaleItalyController extends BaseController
         $queryParams['defaultPageSize'] = 33;
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
+        if ($models->getModels() == null) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        }
+
         Yii::$app->metatag
             ->render()
             ->setImageUrl('https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . '/uploads/myarredo-ico.jpg')
