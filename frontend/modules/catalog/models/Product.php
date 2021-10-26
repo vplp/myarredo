@@ -540,7 +540,8 @@ class Product extends \common\modules\catalog\models\Product
     {
         return $this
             ->hasMany(Product::class, ['id' => 'catalog_item_id'])
-            ->viaTable(ProductRelComposition::tableName(), ['composition_id' => 'id']);
+            ->viaTable(ProductRelComposition::tableName(), ['composition_id' => 'id'])
+            ->enabled();
     }
 
     /**
