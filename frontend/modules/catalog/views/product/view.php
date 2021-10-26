@@ -431,7 +431,11 @@ var baseUrl = $("base").attr("href");
                     ).done(function (data) {
                         if (data.success) {
                             $('.best-price-form').html(data.view);
-                            interPhoneInit('#cartcustomerform-phone');
+
+                            var currentUrl = new URL(window.location.href);
+                            if ( !(currentUrl.hostname.indexOf('.ru') != -1 || currentUrl.hostname.indexOf('.by') != -1 || currentUrl.hostname.indexOf('.ua') != -1) ) {
+                              interPhoneInit('#cartcustomerform-phone');
+                            }
                         }
                     });
                 }
