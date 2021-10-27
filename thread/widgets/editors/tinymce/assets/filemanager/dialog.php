@@ -15,6 +15,7 @@ if (USE_ACCESS_KEYS == TRUE){
 }
 
 $_SESSION['RF']["verify"] = "RESPONSIVEfilemanager";
+echo 1;
 
 if(isset($_POST['submit'])){
 
