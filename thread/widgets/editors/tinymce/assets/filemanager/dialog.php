@@ -4,6 +4,8 @@ echo 2;
 
 include('config/config.php');
 
+echo 3;
+
 if (USE_ACCESS_KEYS == TRUE){
 	if (!isset($_GET['akey'], $access_keys) || empty($access_keys)){
 		die('Access Denied!');
@@ -90,7 +92,7 @@ else
     $thumbs_path = $thumbs_base_path. $rfm_subfolder;
     $parent 	 = $rfm_subfolder.$subdir;
 }
-    /* !!! */ echo  '<pre style="color:red;">'; print_r($cur_path); echo '</pre>'; /* !!! */
+
 $cycle = TRUE;
 $max_cycles = 50;
 $i = 0;
