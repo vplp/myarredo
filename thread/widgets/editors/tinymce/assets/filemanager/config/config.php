@@ -9,11 +9,9 @@ error_reporting(E_All);
 
 mb_internal_encoding('UTF-8');
 
-echo 4;
-
-//if (!isset($_SESSION['TINYMCE_filemanager_ALLOW']) || $_SESSION['TINYMCE_filemanager_ALLOW'] !== true) {
-//    exit(0);
-//}
+if (!isset($_SESSION['TINYMCE_filemanager_ALLOW']) || $_SESSION['TINYMCE_filemanager_ALLOW'] !== true) {
+    //exit(0);
+}
 
 //------------------------------------------------------------------------------
 // DON'T COPY THIS VARIABLES IN FOLDERS config.php FILES
@@ -35,7 +33,7 @@ echo 4;
 
 $base_url = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'];  // DON'T TOUCH (base url (only domain) of site (without final /)).
 //$base_url = "http://localhost/!y2";  // DON'T TOUCH (base url (only domain) of site (without final /)).
-$upload_dir = '/uploads/tinymce/'; // path from base_url to base of upload folder (with start and final /)
+$upload_dir = '/uploads/'; // path from base_url to base of upload folder (with start and final /)
 
 $current_path = '../../../../../../web/uploads/tinymce/'; // relative path from filemanager folder to upload folder (with final /)
 //thumbs folder can't put inside upload folder

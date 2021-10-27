@@ -1,10 +1,6 @@
 <?php
 
-echo 2;
-
 include('config/config.php');
-
-
 
 if (USE_ACCESS_KEYS == TRUE){
 	if (!isset($_GET['akey'], $access_keys) || empty($access_keys)){
