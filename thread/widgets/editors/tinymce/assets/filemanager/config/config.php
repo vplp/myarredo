@@ -9,6 +9,8 @@ error_reporting(E_All);
 
 mb_internal_encoding('UTF-8');
 
+echo 4;
+
 if (!isset($_SESSION['TINYMCE_filemanager_ALLOW']) || $_SESSION['TINYMCE_filemanager_ALLOW'] !== true) {
     exit(0);
 }
