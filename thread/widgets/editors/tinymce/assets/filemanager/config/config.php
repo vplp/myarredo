@@ -11,9 +11,9 @@ mb_internal_encoding('UTF-8');
 
 echo 4;
 
-if (!isset($_SESSION['TINYMCE_filemanager_ALLOW']) || $_SESSION['TINYMCE_filemanager_ALLOW'] !== true) {
-    exit(0);
-}
+//if (!isset($_SESSION['TINYMCE_filemanager_ALLOW']) || $_SESSION['TINYMCE_filemanager_ALLOW'] !== true) {
+//    exit(0);
+//}
 
 //------------------------------------------------------------------------------
 // DON'T COPY THIS VARIABLES IN FOLDERS config.php FILES
