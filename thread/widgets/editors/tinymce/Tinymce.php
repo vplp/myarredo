@@ -150,9 +150,9 @@ class Tinymce extends InputWidget
         $this->settings['content_css'] = $this->content_css;
         /**/
         //REGISTER TINYMCE filemanager
-        $this->settings['external_filemanager_path'] = Url::base(true) . '/js/filemanager/';
+        $this->settings['external_filemanager_path'] = Url::base(true) . '/js2/filemanager/';
         $this->settings['external_plugins'] = [
-            'filemanager' => Url::base(true) . '/js/filemanager/plugin.min.js',
+            'filemanager' => Url::base(true) . '/js2/filemanager/plugin.min.js',
         ];
         $this->settings['filemanager_title'] = 'File Manager';
 
