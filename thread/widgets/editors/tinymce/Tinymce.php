@@ -157,6 +157,7 @@ class Tinymce extends InputWidget
         $this->settings['filemanager_title'] = 'File Manager';
 
         Yii::$app->getSession()->set('TINYMCE_filemanager_ALLOW', true);
+        $_SESSION['TINYMCE_filemanager_ALLOW'] = true;
         /**/
 
         $settings = Json::encode($this->settings);
