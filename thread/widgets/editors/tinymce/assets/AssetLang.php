@@ -6,13 +6,13 @@ use yii\web\AssetBundle;
 
 /**
  * Class AssetLang
- * 
+ *
  * @package thread\extensions\editors\tinymce\assets
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-
-class AssetLang extends AssetBundle {
+class AssetLang extends AssetBundle
+{
     /**
      * @var string
      */

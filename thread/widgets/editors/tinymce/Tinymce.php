@@ -2,15 +2,10 @@
 
 namespace thread\widgets\editors\tinymce;
 
+use thread\widgets\editors\tinymce\assets\{Asset, AssetLang};
 use Yii;
-use yii\helpers\{
-    Html, Json, ArrayHelper, Url
-};
+use yii\helpers\{ArrayHelper, Html, Json, Url};
 use yii\widgets\InputWidget;
-//
-use thread\widgets\editors\tinymce\assets\{
-    Asset, AssetLang
-};
 
 /**
  * Class Tinymce
@@ -99,6 +94,31 @@ class Tinymce extends InputWidget
             $this->language = Yii::$app->language;
 
         $this->settings = ArrayHelper::merge($this->_defaultSettings, $this->settings);
+
+        if (isset(Yii::$app->params['tinymce']['init_settings'])) {
+            $this->settings = ArrayHelper::merge($this->settings, Yii::$app->params['tinymce']['init_settings']);
+        }
+        //Image Tools
+        $this->settings['images_upload_handler'] = new \yii\web\JsExpression("function(blobInfo, success, failure){
+        var xhr, formData;
+        xhr = new XMLHttpRequest();
+        xhr.withCredentials = false;
+        xhr.open('POST','" . Url::toRoute(['/home/image-tools/index']) . "');
+        xhr.onload = function() {
+            var json;
+            if (xhr.status != 200) {
+                failure('HTTP Error: ' + xhr.status);
+                return;
+            }
+            json = JSON.parse(xhr.responseText);
+            success(json.location);
+        };
+        formData = new FormData();
+        formData.append('_csrf', '" . Yii::$app->getRequest()->getCsrfToken() . "');
+        formData.append('file', blobInfo.blob(), blobInfo.filename());
+        xhr.send(formData);
+        }
+        ");
     }
 
     /**
@@ -119,31 +139,24 @@ class Tinymce extends InputWidget
     {
         $view = $this->getView();
         Asset::register($view);
+        //REGISTER TINYMCE
         $assetslang = AssetLang::register($view);
-        $this->language_url = $assetslang->baseUrl . '/langs/' . $this->language . '.js';
+        if (is_file($assetslang->basePath . '/langs/' . $this->language . '.js')) {
+            $this->language_url = $assetslang->baseUrl . '/langs/' . $this->language . '.js';
+        } else {
+            $this->language_url = $assetslang->baseUrl . '/langs/en-EN.js';
+        }
         $this->settings['language_url'] = $this->language_url;
         $this->settings['content_css'] = $this->content_css;
-
-        if (!empty($this->settings['extended_valid_elements'])) {
-            $this->settings['extended_valid_elements'] .= ',';
-        }
-
-        $this->settings['extended_valid_elements'] = '@[id|class|style|title|itemscope|itemtype|itemprop|datetime|rel],div,dl,ul,dt,dd,li,span,meta[!content],a|rev|charset|href|lang|tabindex|accesskey|type|name|href|target|title|class|onfocus|onblur]';
-
-        if (!empty($this->settings['valid_children'])) {
-            $this->settings['valid_children'] .= ',';
-        }
-
-        $this->settings['valid_children'] = '+body[meta],+div[meta]';
-
         /**/
+        //REGISTER TINYMCE filemanager
+        $this->settings['external_filemanager_path'] = Url::base(true) . '/js/filemanager/';
+        $this->settings['external_plugins'] = [
+            'filemanager' => Url::base(true) . '/js/filemanager/plugin.min.js',
+        ];
+        $this->settings['filemanager_title'] = 'File Manager';
 
-        $assetsT = assets\AssetTinymce::register($view);
-        \yii\helpers\FileHelper::copyDirectory(__DIR__ . '/assets/plugins', $assetsT->basePath . '/plugins');
-
-        $this->settings['external_filemanager_path'] = $assetslang->baseUrl . '/filemanager/';
-        $this->settings['external_plugins'] = ['filemanager' => $assetslang->baseUrl . '/filemanager/plugin.min.js'];
-        $this->settings['filemanager_title'] = 'Файл менеджер';
+        Yii::$app->getSession()->set('TINYMCE_filemanager_ALLOW', true);
         /**/
 
         $settings = Json::encode($this->settings);
@@ -159,15 +172,13 @@ class Tinymce extends InputWidget
         $this->_defaultSettings = [
             'language' => $this->language,
             'language_url' => '',
-            'convert_urls' => true,
             'relative_urls' => false,
-            'remove_script_host' => false,
             'height' => '200px',
             'menubar' => true,
             'statusbar' => false,
             //importcss
-            'plugins' => ['contextmenu advlist autolink link image lists hr table media'],
-            'toolbar' => 'bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | fontsizeselect | bullist numlist | link unlink image media | hr table blockquote | pagebreak | removeformat '
+            'plugins' => ['contextmenu advlist autolink link image lists hr table media textcolor colorpicker'],
+            'toolbar' => 'bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | fontsizeselect | bullist numlist | link unlink image media | hr table blockquote | pagebreak | removeformat | forecolor backcolor '
         ];
     }
 
@@ -178,9 +189,7 @@ class Tinymce extends InputWidget
     {
         $this->_defaultSettings = [
             'language' => $this->language,
-            'convert_urls' => true,
             'relative_urls' => false,
-            'remove_script_host' => false,
             'language_url' => '',
             'height' => '150px',
             'menubar' => false,
@@ -198,15 +207,13 @@ class Tinymce extends InputWidget
     {
         $this->_defaultSettings = [
             'language' => $this->language,
-            'convert_urls' => true,
             'relative_urls' => false,
-            'remove_script_host' => false,
             'language_url' => '',
             'height' => '600px',
             'menubar' => true,
             'statusbar' => true,
-            'plugins' => ['contextmenu advlist autolink link image lists hr table pagebreak code media'],
-            'toolbar' => 'bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | fontsizeselect | bullist numlist | link unlink image media | hr table blockquote | pagebreak code | removeformat '
+            'plugins' => ['contextmenu advlist autolink link image lists hr table pagebreak code media textcolor colorpicker'],
+            'toolbar' => 'bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | fontsizeselect | bullist numlist | link unlink image media | hr table blockquote | pagebreak code | removeformat  | forecolor backcolor '
         ];
     }
 

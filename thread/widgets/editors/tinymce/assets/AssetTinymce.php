@@ -6,12 +6,13 @@ use yii\web\AssetBundle;
 
 /**
  * Class AssetTinymce
- * 
+ *
  * @package thread\extensions\editors\tinymce\assets
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class AssetTinymce extends AssetBundle {
+class AssetTinymce extends AssetBundle
+{
     /**
      * @var string
      */
@@ -20,7 +21,7 @@ class AssetTinymce extends AssetBundle {
      * @var array
      */
     public $js = [
-        'tinymce.jquery.min.js',
+        'tinymce.min.js',
     ];
 
 }
