@@ -3,7 +3,7 @@
 $time = time();
 
 $config = include 'config/config.php';
-
+/* !!! */ echo  '<pre style="color:red;">'; print_r($_SESSION); echo '</pre>'; /* !!! */
 //TODO switch to array
 extract($config, EXTR_OVERWRITE);
 
