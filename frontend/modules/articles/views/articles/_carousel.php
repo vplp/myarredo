@@ -6,7 +6,6 @@ use frontend\modules\catalog\models\Sale;
 /** @var $model Sale */
 
 $images = $model->getGalleryImageThumb();
-/* !!! */ echo  '<pre style="color:red;">'; print_r($images); echo '</pre>'; /* !!! */
 ?>
 
 
