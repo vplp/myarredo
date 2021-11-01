@@ -195,7 +195,7 @@ class Article extends \common\modules\news\models\Article
     public function getGalleryImageThumb()
     {
         /** @var Catalog $module */
-        $module = Yii::$app->getModule('articles');
+        $module = Yii::$app->getModule('news');
 
         $path = $module->getArticleUploadPath();
         $url = $module->getArticleUploadUrl();
