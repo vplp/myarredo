@@ -188,4 +188,54 @@ class Article extends \common\modules\news\models\Article
 
         return $image;
     }
+
+    /**
+     * @return array
+     */
+    public function getGalleryImageThumb()
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('articles');
+
+        $path = $module->getArticleUploadPath();
+        $url = $module->getArticleUploadUrl();
+
+        $images = [];
+
+        if (!empty($this->gallery_image)) {
+            $this->gallery_image = $this->gallery_image[0] == ','
+                ? substr($this->gallery_image, 1)
+                : $this->gallery_image;
+
+            $images = explode(',', $this->gallery_image);
+        }
+
+        $imagesSources = [];
+
+        foreach ($images as $image) {
+            if (is_file($path . '/' . $image)) {
+                $imagesSources[] = [
+                    'img' => 'https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . $url . '/' . $image,
+                    'thumb' => self::getImageThumb($image, 600, 600)
+                ];
+            } else {
+                $imagesSources[] = [
+                    'img' => 'https://img.myarredo.ru/' . $url . '/' . $image,
+                    'thumb' => 'https://img.myarredo.ru/' . $url . '/' . $image,
+                ];
+            }
+        }
+
+        return $imagesSources;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return (isset($this->lang->title))
+            ? $this->lang->title
+            : "{{-}}";
+    }
 }

@@ -1,9 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use frontend\modules\catalog\models\Sale;
+use frontend\modules\news\models\Article;
 
-/** @var $model Sale */
+/** @var $model Article */
 
 $images = $model->getGalleryImageThumb();
 ?>
