@@ -7,7 +7,7 @@ use backend\modules\catalog\models\{
 
 /**
  * @var $form ActiveForm
- * @var $model ItalianProduct $model
+ * @var $model ItalianProduct
  * @var $modelLang ItalianProductLang
  */
 

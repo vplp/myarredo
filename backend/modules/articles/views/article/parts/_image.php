@@ -1,8 +1,16 @@
 <?php
 
+use backend\app\bootstrap\ActiveForm;
+use backend\modules\articles\models\{
+    Article, ArticleLang
+};
+
 /**
- * @var \backend\app\bootstrap\ActiveForm $form
- * @var \backend\modules\articles\models\Article $model
+ * @var $form ActiveForm
+ * @var $model Article
+ * @var $modelLang ArticleLang
  */
 
 echo $form->field($model, 'image_link')->imageOne($model->getArticleImage());
+
+echo $form->field($model, 'gallery_image')->imageSeveral(['initialPreview' => $model->getGalleryImage()]);

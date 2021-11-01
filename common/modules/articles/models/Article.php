@@ -23,6 +23,7 @@ use thread\app\base\models\ActiveRecord;
  * @property integer $category_id
  * @property integer $factory_id
  * @property string $image_link
+ * @property string $gallery_image
  * @property integer $published_time
  * @property integer $created_at
  * @property integer $updated_at
@@ -101,6 +102,7 @@ class Article extends ActiveRecord
             ],
             [['published', 'deleted', 'mark'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['alias', 'image_link'], 'string', 'max' => 255],
+            [['gallery_image'], 'string', 'max' => 1024],
             [['alias'], 'unique'],
             [
                 [
@@ -128,6 +130,7 @@ class Article extends ActiveRecord
                 'category_id',
                 'factory_id',
                 'image_link',
+                'gallery_image',
                 'published_time',
                 'published',
                 'deleted',
@@ -150,6 +153,7 @@ class Article extends ActiveRecord
             'category_id' => Yii::t('app', 'Category'),
             'factory_id' => Yii::t('app', 'Factory'),
             'image_link' => Yii::t('app', 'Image link'),
+            'gallery_image' => Yii::t('app', 'Gallery image'),
             'published_time' => Yii::t('app', 'Published time'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
@@ -276,4 +280,36 @@ class Article extends ActiveRecord
 
         return $image;
     }
+
+    /**
+     * @return array
+     */
+    public function getGalleryImage()
+    {
+        $module = Yii::$app->getModule('articles');
+
+        $path = $module->getArticleUploadPath();
+        $url = $module->getArticleUploadUrl();
+
+        $images = [];
+
+        if (!empty($this->gallery_image)) {
+            $this->gallery_image = $this->gallery_image[0] == ','
+                ? substr($this->gallery_image, 1)
+                : $this->gallery_image;
+
+            $images = explode(',', $this->gallery_image);
+        }
+
+        $imagesSources = [];
+
+        foreach ($images as $image) {
+            if (is_file($path . '/' . $image)) {
+                $imagesSources[] = $url . '/' . $image;
+            }
+        }
+
+        return $imagesSources;
+    }
+
 }

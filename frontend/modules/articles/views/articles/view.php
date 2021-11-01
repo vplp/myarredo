@@ -100,6 +100,7 @@ $keys = Yii::$app->catalogFilter->keys;
                     </div>
                 <?php } ?>
 
+                <?= $this->render('_carousel', ['model' => $model]);?>
             </div>
             <!-- Контент конец -->
 
