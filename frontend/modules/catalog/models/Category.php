@@ -368,6 +368,7 @@ class Category extends \common\modules\catalog\models\Category
                     'count(' . self::tableName() . '.id) as count'
                 ])
                 ->groupBy(self::tableName() . '.id')
+                ->orderBy([self::tableName() . '.position' => SORT_ASC])
                 ->all();
         }, 7200);
 
@@ -472,6 +473,7 @@ class Category extends \common\modules\catalog\models\Category
                     'count(' . self::tableName() . '.id) as count'
                 ])
                 ->groupBy(self::tableName() . '.id')
+                ->orderBy([self::tableName() . '.position' => SORT_ASC])
                 ->all();
         }, 7200);
 
@@ -571,6 +573,7 @@ class Category extends \common\modules\catalog\models\Category
                     'count(' . self::tableName() . '.id) as count'
                 ])
                 ->groupBy(self::tableName() . '.id')
+                ->orderBy([self::tableName() . '.position' => SORT_ASC])
                 ->all();
         }, 7200);
 
