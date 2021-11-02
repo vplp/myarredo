@@ -65,6 +65,7 @@ class CategoryOnMainPage extends Widget
                     'count(' . Category::tableName() . '.id) as count'
                 ])
                 ->groupBy(Category::tableName() . '.id')
+                ->orderBy([Category::tableName() . '.position' => SORT_ASC])
                 ->all();
         }, 60 * 60);
     }
