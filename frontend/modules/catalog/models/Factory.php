@@ -621,7 +621,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 (factory.id IN ('" . implode("','", $ids) . "'))
             GROUP BY 
                 category.id , factory.id
-            ORDER BY categoryLang.title")
+            ORDER BY category.position ASC")
                 ->bindValues([
                     ':published' => '1',
                     ':deleted' => '0',
