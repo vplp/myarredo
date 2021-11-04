@@ -19,6 +19,7 @@ use voskobovich\behaviors\ManyToManyBehavior;
  * @property integer $customer_id
  * @property integer $country_id
  * @property integer $city_id
+ * @property string $city_name
  * @property string $order_status
  * @property integer $items_count
  * @property integer $items_total_count
@@ -76,7 +77,7 @@ class Order extends \thread\modules\shop\models\Order
         return [
             ['lang', 'string', 'min' => 5, 'max' => 5],
             [['customer_id', 'country_id'], 'required', 'on' => ['backend', 'addNewOrder']],
-            [['comment', 'admin_comment'], 'string', 'max' => 512],
+            [['comment', 'admin_comment', 'city_name'], 'string', 'max' => 512],
             [['order_first_url_visit'], 'string'],
             [['token'], 'string', 'max' => 255],
             [
@@ -125,6 +126,7 @@ class Order extends \thread\modules\shop\models\Order
                 'customer_id',
                 'country_id',
                 'city_id',
+                'city_name',
                 'delivery_method_id',
                 'payment_method_id',
                 'items_count',
@@ -160,6 +162,7 @@ class Order extends \thread\modules\shop\models\Order
                 'customer_id',
                 'country_id',
                 'city_id',
+                'city_name',
                 'items_count',
                 'items_total_count',
                 'token',
@@ -184,7 +187,8 @@ class Order extends \thread\modules\shop\models\Order
             'order_first_url_visit' => 'order_first_url_visit',
             'order_count_url_visit' => 'order_count_url_visit',
             'order_mobile' => 'order_mobile',
-            'send_answer' => 'send_answer'
+            'send_answer' => 'send_answer',
+            'city_name' => Yii::t('app', 'City'),
         ];
 
         return ArrayHelper::merge(parent::attributeLabels(), $attributeLabels);

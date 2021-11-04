@@ -4,7 +4,6 @@ namespace frontend\modules\shop\models;
 
 use Yii;
 use yii\base\Model;
-//
 use frontend\modules\location\models\Country;
 
 /**
@@ -13,6 +12,7 @@ use frontend\modules\location\models\Country;
  * @property string $full_name
  * @property string $email
  * @property string $phone
+ * @property string $city_name
  * @property string $comment
  * @property int $user_agreement
  * @property integer $country_code
@@ -28,6 +28,7 @@ class CartCustomerForm extends Model
     public $full_name;
     public $email;
     public $phone;
+    public $city_name;
     public $comment;
     public $delivery;
     public $pay;
@@ -48,7 +49,7 @@ class CartCustomerForm extends Model
         return [
             [['full_name', 'email', 'phone', 'reCaptcha', 'country_code'], 'required'],
             [['comment'], 'string', 'max' => 2048],
-            [['full_name'], 'string', 'max' => 255],
+            [['full_name', 'city_name'], 'string', 'max' => 255],
             [['phone'], 'string', 'max' => 50],
             [['email'], 'email'],
             [['user_agreement'], 'in', 'range' => [0, 1]],
@@ -79,6 +80,7 @@ class CartCustomerForm extends Model
                 'full_name',
                 'email',
                 'phone',
+                'city_name',
                 'comment',
                 'delivery',
                 'pay',
@@ -99,6 +101,7 @@ class CartCustomerForm extends Model
             'full_name' => Yii::t('app', 'Name'),
             'email' => Yii::t('app', 'Email'),
             'phone' => Yii::t('app', 'Phone'),
+            'city_name' => Yii::t('app', 'City'),
             'comment' => Yii::t('app', 'Comment'),
             'delivery' => Yii::t('app', 'Delivery method'),
             'pay' => Yii::t('app', 'Payment method'),

@@ -26,6 +26,7 @@ use yii\widgets\ActiveForm;
         ->field($model, 'full_name')
         ->input('text', ['placeholder' => Yii::t('app', 'Name')])
         ->label(false) ?>
+
 </div>
 
 <div class="form-fieldbox2">
@@ -40,6 +41,14 @@ use yii\widgets\ActiveForm;
                 'class' => 'form-control inter-phone'
             ])
             ->label(false);
+
+        if (DOMAIN_TYPE == 'com') {
+            echo $form
+                ->field($model, 'city_name')
+                ->input('text', ['placeholder' => Yii::t('app', 'City')])
+                ->label(false);
+        }
+
     } else {
         $model->city_id = Yii::$app->city->getCityId();
         $model->country_code = Yii::$app->city->getCountryCode();

@@ -146,7 +146,7 @@ use frontend\modules\shop\models\Order;
                                     <?php if (Yii::$app->language == 'ru-RU') { ?>
                                         <li>
                                             <span>
-                                                <?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?>
+                                                <?= $modelOrder->city_name ?? ($modelOrder->city ? $modelOrder->city->getTitle() : ''); ?>
                                             </span>
                                         </li>
                                     <?php } ?>

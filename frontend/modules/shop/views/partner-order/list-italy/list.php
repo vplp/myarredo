@@ -116,7 +116,7 @@ $this->title = $this->context->title;
                                     </li>
                                     <li>
                                         <span>
-                                            <?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?>
+                                            <?= $modelOrder->city_name ?? ($modelOrder->city ? $modelOrder->city->getTitle() : ''); ?>
                                         </span>
                                     </li>
                                     <li>

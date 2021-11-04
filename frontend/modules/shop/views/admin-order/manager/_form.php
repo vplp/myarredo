@@ -80,7 +80,7 @@ $this->title = $this->context->title;
                                 <span><?= ($modelOrder->country) ? $modelOrder->country->getTitle() : ''; ?></span>
                             </li>
                             <li>
-                                <span><?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?></span>
+                                <span><?= $modelOrder->city_name ?? ($modelOrder->city ? $modelOrder->city->getTitle() : ''); ?></span>
                             </li>
                         </ul>
                     </div>
