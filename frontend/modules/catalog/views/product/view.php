@@ -145,7 +145,9 @@ $this->title = $this->context->title;
                                     <meta itemprop="reviewCount" content="1"/>
                                 </div>
                                 <div itemprop="review" itemscope itemtype="http://schema.org/Review">
-                                    <meta itemprop="author" content="user">
+                                    <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
+                                        <meta itemprop="name" content="user" />
+                                    </div>
                                 </div>
 
                                 <table class="info-table">
@@ -205,11 +207,13 @@ $this->title = $this->context->title;
                                         <tr>
                                             <td><?= Yii::t('app', 'Factory') ?></td>
                                             <td>
-                                                <?= Html::a(
-                                                    Html::tag('span', $model->factory->title, ['itemprop' => 'brand']),
-                                                    Factory::getUrl($model->factory->alias),
-                                                    ['itemprop' => 'url']
-                                                ); ?>
+                                                <div itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
+                                                    <?= Html::a(
+                                                        Html::tag('span', $model->factory->title, ['itemprop' => 'brand']),
+                                                        Factory::getUrl($model->factory->alias),
+                                                        ['itemprop' => 'url']
+                                                    ); ?>
+                                                </div>
                                             </td>
                                         </tr>
                                     <?php } ?>
