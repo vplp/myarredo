@@ -206,8 +206,8 @@ $this->title = $this->context->title;
                                             <td><?= Yii::t('app', 'Factory') ?></td>
                                             <td>
                                                 <?= Html::a(
-                                                    $model->factory->title,
-                                                    Html::tag('span', Factory::getUrl($model->factory->alias), ['itemprop' => 'brand']),
+                                                    Html::tag('span', $model->factory->title, ['itemprop' => 'brand']),
+                                                    Factory::getUrl($model->factory->alias),
                                                     ['itemprop' => 'url']
                                                 ); ?>
                                             </td>
