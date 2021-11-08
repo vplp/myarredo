@@ -55,7 +55,15 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                         'data-dominant-color' => '',
                     ]) .
                     Html::a(
-                        Html::img($src['thumb'], ['width' => '555', 'height' => '382', 'class' => '111']),
+                        Html::img(
+                            $src['thumb'],
+                            [
+                                'width' => '555',
+                                'height' => '382',
+                                'class' => '111',
+                                'itemprop' => 'image'
+                            ]
+                        ),
                         $src['img'],
                         [
                             'class' => 'img-cont fancyimage',
