@@ -76,10 +76,6 @@ $this->title = $this->context->title;
                                     Product::getStaticTitle($model),
                                     ['class' => 'prod-model', 'itemprop' => 'name']
                                 ); ?>
-
-                                <?php if ($model->factory != null) { ?>
-                                    <meta itemprop="brand" content="<?= $model->factory->title ?>">
-                                <?php } ?>
                             </div>
 
                             <div class="prod-info-table">
@@ -211,7 +207,8 @@ $this->title = $this->context->title;
                                             <td>
                                                 <?= Html::a(
                                                     $model->factory->title,
-                                                    Factory::getUrl($model->factory->alias)
+                                                    Html::tag('span', Factory::getUrl($model->factory->alias), ['itemprop' => 'brand']),
+                                                    ['itemprop' => 'url']
                                                 ); ?>
                                             </td>
                                         </tr>
