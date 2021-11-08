@@ -145,7 +145,7 @@ $this->title = $this->context->title;
                                     <meta itemprop="reviewCount" content="1"/>
                                 </div>
                                 <div itemprop="review" itemscope itemtype="http://schema.org/Review">
-                                    <meta itemprop="author" content="user">
+                                    <div itemprop="author"></div>
                                 </div>
 
                                 <table class="info-table">
@@ -205,10 +205,10 @@ $this->title = $this->context->title;
                                         <tr>
                                             <td><?= Yii::t('app', 'Factory') ?></td>
                                             <td>
-                                                <meta itemprop="brand" content="<?= $model->factory->title ?>"/>
                                                 <?= Html::a(
                                                     $model->factory->title,
-                                                    Factory::getUrl($model->factory->alias)
+                                                    Factory::getUrl($model->factory->alias),
+                                                    ['itemprop' => 'brand']
                                                 ); ?>
                                             </td>
                                         </tr>

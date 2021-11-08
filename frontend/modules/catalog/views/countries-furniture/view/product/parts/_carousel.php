@@ -30,7 +30,7 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                     Html::tag('link', '', ['itemprop' => 'contentUrl', 'href' => $src['img']]) .
                     Html::tag('meta', '', ['itemprop' => 'description', 'content' => strip_tags($model['lang']['description'])]) .
                     Html::a(
-                        Html::img($src['thumb'], ['alt' => Product::getImageAlt($model), 'width' => '555', 'height' => '382', 'class' => '111']),
+                        Html::img($src['thumb'], ['alt' => Product::getImageAlt($model), 'width' => '555', 'height' => '382', 'class' => '111', 'itemprop' => 'image']),
                         $src['img'],
                         [
                             'class' => 'img-cont fancyimage',
