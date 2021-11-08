@@ -202,13 +202,13 @@ $this->title = $this->context->title;
                                     <?php } ?>
 
                                     <?php if ($model->factory != null) { ?>
+                                        <meta itemprop="brand" content="<?= $model->factory->title ?>">
                                         <tr>
                                             <td><?= Yii::t('app', 'Factory') ?></td>
                                             <td>
                                                 <?= Html::a(
                                                     $model->factory->title,
-                                                    Factory::getUrl($model->factory->alias),
-                                                    ['itemprop' => 'brand']
+                                                    Factory::getUrl($model->factory->alias)
                                                 ); ?>
                                             </td>
                                         </tr>
