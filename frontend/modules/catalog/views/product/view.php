@@ -76,6 +76,10 @@ $this->title = $this->context->title;
                                     Product::getStaticTitle($model),
                                     ['class' => 'prod-model', 'itemprop' => 'name']
                                 ); ?>
+
+                                <?php if ($model->factory != null) { ?>
+                                    <meta itemprop="brand" content="<?= $model->factory->title ?>">
+                                <?php } ?>
                             </div>
 
                             <div class="prod-info-table">
@@ -202,7 +206,6 @@ $this->title = $this->context->title;
                                     <?php } ?>
 
                                     <?php if ($model->factory != null) { ?>
-                                        <meta itemprop="brand" content="<?= $model->factory->title ?>">
                                         <tr>
                                             <td><?= Yii::t('app', 'Factory') ?></td>
                                             <td>
