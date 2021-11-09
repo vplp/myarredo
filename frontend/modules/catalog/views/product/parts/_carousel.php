@@ -53,6 +53,8 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                 echo Html::beginTag('div', [
                         'class' => 'item',
                         'data-dominant-color' => '',
+                        'itemscope' => true,
+                        'itemtype' => 'http://schema.org/ImageObject'
                     ]) .
                     Html::a(
                         Html::img(
