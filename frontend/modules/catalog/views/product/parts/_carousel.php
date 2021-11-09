@@ -56,6 +56,10 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                         'itemscope' => true,
                         'itemtype' => 'http://schema.org/ImageObject'
                     ]) .
+                    Html::tag('meta', '', ['itemprop' => 'name', 'content' => Product::getStaticTitle($model)]) .
+                    Html::tag('meta', '', ['itemprop' => 'caption', 'content' => Product::getStaticTitleForList($model)]) .
+                    Html::tag('link', '', ['itemprop' => 'contentUrl', 'href' => $src['img']]) .
+                    Html::tag('meta', '', ['itemprop' => 'description', 'content' => strip_tags($model->lang->description)]) .
                     Html::a(
                         Html::img(
                             $src['thumb'],
