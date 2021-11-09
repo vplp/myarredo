@@ -17,6 +17,7 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
         <?php
         foreach ($images as $key => $src) {
             if ($key == 0) {
+                echo Html::tag('link', '', ['itemprop' => 'image', 'href' => $src['img']]);
                 echo Html::beginTag('div', [
                         'class' => 'item active',
                         'data-dominant-color' => '',
@@ -26,7 +27,6 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                     Html::tag('meta', '', ['itemprop' => 'name', 'content' => Product::getStaticTitle($model)]) .
                     Html::tag('meta', '', ['itemprop' => 'caption', 'content' => Product::getStaticTitleForList($model)]) .
                     Html::tag('link', '', ['itemprop' => 'contentUrl', 'href' => $src['img']]) .
-                    Html::tag('link', '', ['itemprop' => 'image', 'href' => $src['img']]) .
                     Html::tag('meta', '', ['itemprop' => 'description', 'content' => strip_tags($model->lang->description)]) .
                     Html::a(
                         Html::img(
@@ -36,6 +36,7 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                                 'width' => '555',
                                 'height' => '382',
                                 'class' => '111',
+                                'itemprop' => 'image'
                             ]
                         ),
                         $src['img'],
@@ -47,8 +48,10 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                         ]
                     ) .
                     Html::tag('span', '', ['class' => 'background']) .
+                    Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
                     Html::endTag('div');
             } else {
+                echo Html::tag('link', '', ['itemprop' => 'image', 'href' => $src['img']]);
                 echo Html::beginTag('div', [
                         'class' => 'item',
                         'data-dominant-color' => '',
@@ -58,7 +61,6 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                     Html::tag('meta', '', ['itemprop' => 'name', 'content' => Product::getStaticTitle($model)]) .
                     Html::tag('meta', '', ['itemprop' => 'caption', 'content' => Product::getStaticTitleForList($model)]) .
                     Html::tag('link', '', ['itemprop' => 'contentUrl', 'href' => $src['img']]) .
-                    Html::tag('link', '', ['itemprop' => 'image', 'href' => $src['img']]) .
                     Html::tag('meta', '', ['itemprop' => 'description', 'content' => strip_tags($model->lang->description)]) .
                     Html::a(
                         Html::img(
@@ -67,6 +69,7 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                                 'width' => '555',
                                 'height' => '382',
                                 'class' => '111',
+                                'itemprop' => 'image'
                             ]
                         ),
                         $src['img'],
@@ -78,6 +81,7 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                         ]
                     ) .
                     Html::tag('span', '', ['class' => 'background']) .
+                    Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
                     Html::endTag('div');
             }
         } ?>
