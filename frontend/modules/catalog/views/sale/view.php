@@ -97,7 +97,9 @@ $this->title = $this->context->title;
                                 <meta itemprop="reviewCount" content="1"/>
                             </div>
                             <div itemprop="review" itemscope itemtype="http://schema.org/Review">
-                                <meta itemprop="author" content="user">
+                                <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
+                                    <meta itemprop="name" content="user" />
+                                </div>
                             </div>
 
                             <meta itemprop="sku" content="<?= $model['article'] ?>">
@@ -122,13 +124,14 @@ $this->title = $this->context->title;
                                 <tr>
                                     <td><?= Yii::t('app', 'Factory') ?></td>
                                     <td>
+                                        <div itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
                                         <?= ($model['catalogFactory'])
                                             ? Html::a(
-                                                $model['catalogFactory']['title'],
+                                                Html::tag('span', $model['catalogFactory']['title'], ['itemprop' => 'brand']),
                                                 Factory::getUrl($model['catalogFactory']['alias'])
-                                            ) : $model['factory']['title'] ?? ''; ?>
-                                        <meta itemprop="brand"
-                                              content="<?= ($model['catalogFactory']) ? $model['catalogFactory']['title'] : $model['factory']['title'] ?? ''; ?>"/>
+                                            ) : $model['factory']['title'] ? Html::tag('span', $model['factory']['title'], ['itemprop' => 'brand']) : ''; ?>
+
+                                        </div>
                                     </td>
                                 </tr>
                                 <?php if (!empty($model['specificationValue'])) {

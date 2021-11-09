@@ -17,6 +17,7 @@ $images = $model->getGalleryImageThumb();
         <?php
         foreach ($images as $key => $src) {
             if ($key == 0) {
+                echo Html::tag('link', '', ['itemprop' => 'image', 'href' => $src['img']]);
                 echo Html::beginTag('div', [
                         'class' => 'item active',
                         'data-dominant-color' => '',
@@ -28,7 +29,16 @@ $images = $model->getGalleryImageThumb();
                     Html::tag('link', '', ['itemprop' => 'contentUrl', 'href' => $src['img']]) .
                     Html::tag('meta', '', ['itemprop' => 'description', 'content' => strip_tags($model['lang']['description'])]) .
                     Html::a(
-                        Html::img($src['thumb'], ['alt' => $model->getTitle(), 'width' => '555', 'height' => '382', 'class' => '111']),
+                        Html::img(
+                            $src['thumb'],
+                            [
+                                'alt' => $model->getTitle(),
+                                'width' => '555',
+                                'height' => '382',
+                                'class' => '111',
+                                'itemprop' => 'image'
+                            ]
+                        ),
                         $src['img'],
                         [
                             'class' => 'img-cont fancyimage',
@@ -38,16 +48,24 @@ $images = $model->getGalleryImageThumb();
                         ]
                     ) .
                     Html::tag('span', '', ['class' => 'background']) .
+                    Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
                     Html::endTag('div');
-
-                // echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]);
             } else {
+                echo Html::tag('link', '', ['itemprop' => 'image', 'href' => $src['img']]);
                 echo Html::beginTag('div', [
                         'class' => 'item',
                         'data-dominant-color' => ''
                     ]) .
                     Html::a(
-                        Html::img($src['thumb'], ['width' => '555', 'height' => '382', 'class' => '111']),
+                        Html::img(
+                            $src['thumb'],
+                            [
+                                'width' => '555',
+                                'height' => '382',
+                                'class' => '111',
+                                'itemprop' => 'image'
+                            ]
+                        ),
                         $src['img'],
                         [
                             'class' => 'img-cont fancyimage',
@@ -57,6 +75,7 @@ $images = $model->getGalleryImageThumb();
                         ]
                     ) .
                     Html::tag('span', '', ['class' => 'background']) .
+                    Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
                     Html::endTag('div');
             }
         } ?>
