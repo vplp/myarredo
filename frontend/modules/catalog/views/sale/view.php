@@ -129,8 +129,8 @@ $this->title = $this->context->title;
                                             ? Html::a(
                                                 Html::tag('span', $model['catalogFactory']['title'], ['itemprop' => 'brand']),
                                                 Factory::getUrl($model['catalogFactory']['alias'])
-                                            ) : $model['factory']['title'] ? Html::tag('span', $model['factory']['title'], ['itemprop' => 'brand']) : ''; ?>
-
+                                            )
+                                            : $model['factory']['title'] ?? ''; ?>
                                         </div>
                                     </td>
                                 </tr>
