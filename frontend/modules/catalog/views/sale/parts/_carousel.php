@@ -9,6 +9,10 @@ $images = $model->getGalleryImageThumb();
 
 ?>
 
+<?php foreach ($images as $key => $src) {
+   echo Html::tag('link', '', ['itemprop' => 'image', 'href' => $src['img']]);
+} ?>
+
 <div id="prod-slider" class=" carousel-fade">
 
     <!-- Carousel items -->
@@ -48,10 +52,8 @@ $images = $model->getGalleryImageThumb();
                         ]
                     ) .
                     Html::tag('span', '', ['class' => 'background']) .
-                    Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
                     Html::endTag('div');
             } else {
-                echo Html::tag('link', '', ['itemprop' => 'image', 'href' => $src['img']]);
                 echo Html::beginTag('div', [
                         'class' => 'item',
                         'data-dominant-color' => ''
@@ -75,7 +77,6 @@ $images = $model->getGalleryImageThumb();
                         ]
                     ) .
                     Html::tag('span', '', ['class' => 'background']) .
-                    Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
                     Html::endTag('div');
             }
         } ?>
