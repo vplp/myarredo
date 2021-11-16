@@ -87,10 +87,22 @@ $this->title = $this->context->title;
                                         <span><?= $modelOrder->customer->full_name ?></span>
                                     </li>
                                     <li>
-                                        <span><?= $modelOrder->customer->phone ?></span>
+                                        <span>
+                                           <?php if (Yii::$app->user->identity->id == 3388061 && $modelOrder->orderAnswer == null) {
+                                               echo $modelOrder->customer->phone;
+                                           } else {
+                                               echo $modelOrder->customer->phone;
+                                           } ?>
+                                        </span>
                                     </li>
                                     <li>
-                                        <span><?= $modelOrder->customer->email ?></span>
+                                        <span>
+                                         <?php if (Yii::$app->user->identity->id == 3388061 && $modelOrder->orderAnswer == null) {
+                                             echo $modelOrder->customer->email;
+                                         } else {
+                                             echo $modelOrder->customer->email;
+                                         } ?>
+                                        </span>
                                     </li>
                                     <li class="lang-cell">
                                         <span><?= substr($modelOrder->lang, 0, 2) ?></span>
