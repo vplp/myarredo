@@ -89,7 +89,7 @@ $this->title = $this->context->title;
                                     <li>
                                         <span>
                                            <?php if (Yii::$app->user->identity->id == 3388061 && $modelOrder->orderAnswer == null) {
-                                               echo $modelOrder->customer->phone;
+                                               echo '-';
                                            } else {
                                                echo $modelOrder->customer->phone;
                                            } ?>
@@ -98,7 +98,7 @@ $this->title = $this->context->title;
                                     <li>
                                         <span>
                                          <?php if (Yii::$app->user->identity->id == 3388061 && $modelOrder->orderAnswer == null) {
-                                             echo $modelOrder->customer->email;
+                                             echo '-';
                                          } else {
                                              echo $modelOrder->customer->email;
                                          } ?>
