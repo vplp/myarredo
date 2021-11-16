@@ -88,7 +88,8 @@ $this->title = $this->context->title;
                                     </li>
                                     <li>
                                         <span>
-                                           <?php if (Yii::$app->user->identity->id == 3388061 && $modelOrder->orderAnswer == null) {
+                                           <?php
+                                           if (Yii::$app->user->identity->id == 3388061 && $modelOrder->orderAnswer->answer_time == 0) {
                                                echo '-';
                                            } else {
                                                echo $modelOrder->customer->phone;
@@ -97,7 +98,7 @@ $this->title = $this->context->title;
                                     </li>
                                     <li>
                                         <span>
-                                         <?php if (Yii::$app->user->identity->id == 3388061 && $modelOrder->orderAnswer == null) {
+                                         <?php if (Yii::$app->user->identity->id == 3388061 && $modelOrder->orderAnswer->answer_time == 0) {
                                              echo '-';
                                          } else {
                                              echo $modelOrder->customer->email;
