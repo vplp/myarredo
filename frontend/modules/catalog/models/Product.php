@@ -418,13 +418,9 @@ class Product extends \common\modules\catalog\models\Product
     public static function getStaticTitle($model)
     {
         if (is_object($model)) {
-            return $model->lang->title != ''
-                ? $model->lang->title
-                : '{{-}}';
+            return isset($model->lang->title) ? $model->lang->title : '{{-}}';
         } else {
-            return $model['lang']['title'] != ''
-                ? $model['lang']['title']
-                : '{{-}}';
+            return isset($model['lang']['title']) ? $model['lang']['title'] : '{{-}}';
         }
     }
 
