@@ -139,8 +139,8 @@ class ProductController extends BaseController
         $keys = Yii::$app->catalogFilter->keys;
 
         //if (!$model['is_composition']) {
-            $pageTitle[] = $model->lang ? $model->lang->title : '';
-            $pageDescription[] = $model->lang ? $model->lang->title : '';
+        $pageTitle[] = isset($model->lang->title) ? $model->lang->title : '';
+        $pageDescription[] = isset($model->lang->title) ? $model->lang->title : '';
         //}
 
         if (isset($model->category[0])) {
@@ -239,7 +239,7 @@ class ProductController extends BaseController
         } elseif (in_array(DOMAIN_TYPE, ['de', 'fr', 'uk', 'co.il'])) {
             $hrefCanonical = Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo;
         } else {
-            $hrefCanonical = Yii::$app->request->hostInfo . ($lang != 'ru' ? '/' . $lang . '/' : '/' ) . Yii::$app->request->pathInfo;
+            $hrefCanonical = Yii::$app->request->hostInfo . ($lang != 'ru' ? '/' . $lang . '/' : '/') . Yii::$app->request->pathInfo;
         }
 
         Yii::$app->view->registerLinkTag([
