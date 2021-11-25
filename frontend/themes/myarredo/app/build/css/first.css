@@ -1898,3 +1898,8 @@ h1 {
 .img-cont {
   position: relative;
 }
+
+.article-img img {
+  width: 100%;
+  height: auto;
+}
