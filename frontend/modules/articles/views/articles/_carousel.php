@@ -12,7 +12,7 @@ $images = $model->getGalleryImageThumb();
 <?php
 foreach ($images as $key => $src) {
     echo Html::beginTag('div', [
-            'class' => '',
+            'class' => 'article-img',
         ]) .
         Html::img($src['img'], []) .
         Html::endTag('div');
