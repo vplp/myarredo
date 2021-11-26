@@ -1898,6 +1898,11 @@ h1 {
 .img-cont {
   position: relative;
 }
+.article-img {
+  margin-top: 15px;
+  overflow: hidden;
+  border-radius: 4px;
+}
 
 .article-img img {
   width: 100%;
