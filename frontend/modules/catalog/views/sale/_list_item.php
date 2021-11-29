@@ -30,6 +30,7 @@ $hostInfo = $hostInfo ?? Yii::$app->request->hostInfo;
             'height' => '188',
             'data-src' => Sale::getImageThumb($model['image_link'])
         ]); ?>
+        <div class="sale-block">sale</div>
     </div>
 
     <?php if ($model['is_sold']) { ?>
