@@ -21,7 +21,6 @@ $images = $model->getGalleryImageThumb();
         <?php
         foreach ($images as $key => $src) {
             if ($key == 0) {
-                echo Html::tag('link', '', ['itemprop' => 'image', 'href' => $src['img']]);
                 echo Html::beginTag('div', [
                         'class' => 'item active',
                         'data-dominant-color' => '',
@@ -56,8 +55,14 @@ $images = $model->getGalleryImageThumb();
             } else {
                 echo Html::beginTag('div', [
                         'class' => 'item',
-                        'data-dominant-color' => ''
+                        'data-dominant-color' => '',
+                        'itemscope' => true,
+                        'itemtype' => 'http://schema.org/ImageObject'
                     ]) .
+                    Html::tag('meta', '', ['itemprop' => 'name', 'content' => $model->getTitle()]) .
+                    Html::tag('meta', '', ['itemprop' => 'caption', 'content' => $model->getTitle()]) .
+                    Html::tag('link', '', ['itemprop' => 'contentUrl', 'href' => $src['img']]) .
+                    Html::tag('meta', '', ['itemprop' => 'description', 'content' => strip_tags($model['lang']['description'])]) .
                     Html::a(
                         Html::img(
                             $src['thumb'],
