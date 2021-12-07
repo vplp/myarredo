@@ -67,16 +67,18 @@ $route = $model->producing_country_id == 4
                                 ['class' => 'title-text']
                             ); ?>
 
-                            <div class="fact-link">
-                                <?= Html::a(
-                                    $model['url'],
-                                    'http://' . $model['url'],
-                                    [
-                                        'target' => '_blank',
-                                        'rel' => 'nofollow'
-                                    ]
-                                ); ?>
-                            </div>
+                            <?php if (!in_array(DOMAIN_TYPE, ['de', 'fr', 'uk', 'com'])) { ?>
+                                <div class="fact-link">
+                                    <?= Html::a(
+                                        $model['url'],
+                                        'http://' . $model['url'],
+                                        [
+                                            'target' => '_blank',
+                                            'rel' => 'nofollow'
+                                        ]
+                                    ); ?>
+                                </div>
+                            <?php } ?>
 
                             <div class="fact-assort-wrap">
 
