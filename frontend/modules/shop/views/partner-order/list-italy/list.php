@@ -172,7 +172,7 @@ $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
         price.removeClass('has-error').find('.help-block').text('');
      
         // запускаем валидацию поля - цена
-        if (parseFloat(price.find('#orderitemprice-price').val()) <= 100) {
+        if (parseFloat(price.find('#orderitemprice-price').val()) < 99) {
             price.addClass('has-error').find('.help-block').text('$messagePrice');
             isError = true;
         }

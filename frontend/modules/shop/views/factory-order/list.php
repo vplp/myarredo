@@ -213,7 +213,7 @@ if (Yii::$app->user->identity->profile->possibilityToAnswerForFactory) {
         // если не выбран чекбокс - Товар снят с производства
         if (!out_of_production) {
             // запускаем валидацию поля - цена        
-            if (parseFloat(price.find('.orderlist-price-field').val()) <= 100) {
+            if (parseFloat(price.find('.orderlist-price-field').val()) < 99) {
                 price.addClass('has-error').find('.help-block').text('$messagePrice');
                 isError = true;
             }
