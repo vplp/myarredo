@@ -212,6 +212,7 @@ class Order extends ActiveRecord
             'contract_signed' => Yii::t('shop', 'Order_status_contract_signed'),
             'failure' => Yii::t('shop', 'Order_status_failure'),
             'archive' => Yii::t('shop', 'Order_status_archive'),
+            'postpone' => Yii::t('shop', 'Order_status_postpone'),
         ];
 
         if ($key && $data[$key]) {

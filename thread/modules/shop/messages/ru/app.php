@@ -39,6 +39,7 @@ return [
     'Order_status_contract_signed' => 'Заключен договор',
     'Order_status_failure' => 'Отказ',
     'Order_status_archive' => 'Архивная',
+    'Order_status_postpone' => 'Архивная',
     'Добавить комментарий' => 'Добавить комментарий',
     'Добавить напоминание' => 'Добавить напоминание'
 ];
