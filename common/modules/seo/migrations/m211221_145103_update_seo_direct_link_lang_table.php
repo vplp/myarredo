@@ -31,6 +31,8 @@ class m211221_145103_update_seo_direct_link_lang_table extends Migration
      */
     public function safeUp()
     {
+        $this->createIndex('rid_2', $this->tableLang, 'rid');
+
         $this->addForeignKey(
             'fk-seo_direct_link_lang-rid-seo_direct_link-id2',
             $this->tableLang,
@@ -48,5 +50,6 @@ class m211221_145103_update_seo_direct_link_lang_table extends Migration
     public function safeDown()
     {
         $this->dropForeignKey('fk-seo_direct_link_lang-rid-seo_direct_link-id2', $this->tableLang);
+        $this->dropIndex('rid_2', $this->tableLang);
     }
 }
