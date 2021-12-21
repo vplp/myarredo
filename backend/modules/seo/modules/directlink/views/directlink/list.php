@@ -4,7 +4,7 @@ use thread\widgets\grid\{
     ActionStatusColumn, GridViewFilter
 };
 //
-use backend\widgets\GridView\GridView;
+use backend\widgets\GridView;
 use backend\modules\location\models\City;
 use backend\modules\seo\modules\directlink\models\Directlink;
 
@@ -12,6 +12,7 @@ echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
+        'id',
         'url',
         [
             'format' => 'raw',
