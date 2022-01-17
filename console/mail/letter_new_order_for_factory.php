@@ -71,7 +71,7 @@ if (in_array($order->lang, ['ru-RU'])) {
         echo Html::endTag('p');
 
         // phone
-        $phone = ($order->city->country->alias == 'ua') ? '+39 (0422) 150-02-15' : '+7 968 353 36 36';
+        $phone = in_array($order->country_id, [2, 3]) ? '+7 968 353 36 36' : '+39 (0422) 150-02-15';
         ?>
 
         <?php if ($isUser) { ?>
