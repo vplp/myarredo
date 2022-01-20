@@ -3,6 +3,7 @@
 namespace backend\modules\sys\models;
 
 use common\modules\sys\models\Language as CommonLanguageModel;
+use yii\helpers\ArrayHelper;
 
 /**
  * Class Language
@@ -11,6 +12,14 @@ use common\modules\sys\models\Language as CommonLanguageModel;
  */
 class Language extends CommonLanguageModel
 {
+    /**
+     * @return array
+     */
+    public static function dropDownList($from = 'local', $to = 'label')
+    {
+        return ArrayHelper::map(self::findBase()->all(), $from, $to);
+    }
+
     /**
      * @return mixed
      * выводим только те языки, которые опубликованы

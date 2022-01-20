@@ -16,6 +16,7 @@ use thread\modules\user\models\User as UserModel;
  * @property string $last_name
  * @property string $avatar
  * @property string $preferred_language
+ * @property string $selected_languages
  * @property integer $created_at
  * @property integer $updated_at
  *
@@ -59,6 +60,7 @@ class Profile extends ActiveRecord
             ['user_id', 'exist', 'targetClass' => UserModel::className(), 'targetAttribute' => 'id'],
             [['user_id', 'created_at', 'updated_at'], 'integer'],
             [['first_name', 'last_name', 'avatar', 'preferred_language'], 'string', 'max' => 255],
+            [['selected_languages'], 'each', 'rule' => ['string']],
         ];
     }
 
@@ -68,7 +70,7 @@ class Profile extends ActiveRecord
     public function scenarios()
     {
         return [
-            'backend' => ['first_name', 'last_name', 'avatar', 'preferred_language'],
+            'backend' => ['first_name', 'last_name', 'avatar', 'preferred_language', 'selected_languages'],
             'frontend' => ['first_name', 'last_name', 'avatar', 'preferred_language'],
             'ownEdit' => ['first_name', 'last_name', 'avatar', 'preferred_language'],
             'basicCreate' => ['user_id'],
@@ -85,6 +87,7 @@ class Profile extends ActiveRecord
             'last_name' => Yii::t('user', 'Last name'),
             'avatar' => Yii::t('user', 'Avatar'),
             'preferred_language' => Yii::t('user', 'Preferred language'),
+            'selected_languages' => 'Язык',
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
         ];

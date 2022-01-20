@@ -162,7 +162,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'rule' => ['integer']
             ],
             [['language_editing'], 'string', 'max' => 5],
-            [['language_editing'], 'default', 'value' => ''],
+            [['language_editing'], 'default', 'value' => '']
         ]);
     }
 
@@ -288,7 +288,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'language_editing',
                 'three_answers_per_month',
                 'one_answer_per_month',
-                'working_conditions'
+                'working_conditions',
             ]
         ]);
     }
@@ -336,7 +336,7 @@ class Profile extends \thread\modules\user\models\Profile
             'language_editing',
             'three_answers_per_month' => Yii::t('app', 'Three answers per month'),
             'one_answer_per_month' => Yii::t('app', 'One answer per month'),
-            'working_conditions' => Yii::t('app', 'Условия работы')
+            'working_conditions' => Yii::t('app', 'Условия работы'),
         ]);
     }
 
@@ -349,6 +349,10 @@ class Profile extends \thread\modules\user\models\Profile
             $field = 'country_cities_' . $city['country_id'];
             $this->$field[$city['id']] = $city['id'];
         }
+
+        $this->selected_languages = explode('/', $this->selected_languages);
+        $this->selected_languages = array_filter($this->selected_languages, fn($value) => !is_null($value) && $value !== '');
+        $this->selected_languages = array_values($this->selected_languages);
 
         parent::afterFind();
     }
@@ -371,6 +375,12 @@ class Profile extends \thread\modules\user\models\Profile
         if (in_array($this->scenario, ['frontend', 'backend', 'basicCreate'])) {
             $this->mark = '0';
             $this->language_editing = Yii::$app->language;
+        }
+
+        if (is_array($this->selected_languages) && !empty($this->selected_languages)) {
+            $this->selected_languages = '/' . implode('/', array_filter($this->selected_languages)) . '/';
+        } else {
+            $this->selected_languages = '//';
         }
 
         return parent::beforeSave($insert);
