@@ -25,3 +25,10 @@ use backend\modules\user\models\{
 <?php if (!in_array($model['id'], [1])) {
     echo $form->switcher($model, 'published');
 } ?>
+
+<?php
+echo Html::a(
+    Yii::t('user', 'Profile'),
+    ['/user/profile/update', 'id' => $model['id']],
+    ['class' => 'btn btn-info']
+);
