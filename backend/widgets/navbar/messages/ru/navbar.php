@@ -65,5 +65,8 @@ return [
     'Forms' => 'Формы',
     'Feedback' => 'Обратная связь',
     'Countries furniture' => 'Мебели стран',
-    'Click on become partner' => 'Число нажатий на "Стать главным партнером"'
+    'Click on become partner' => 'Число нажатий на "Стать главным партнером"',
+    'Product translation' => 'Перевод товаров',
+    'Composition translation' => 'Перевод композиции',
+    'Factory translation' => 'Перевод фабрики',
 ];

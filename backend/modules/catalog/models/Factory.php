@@ -129,6 +129,15 @@ class Factory extends CommonFactoryModel implements BaseBackendModel
      * @param $params
      * @return \yii\data\ActiveDataProvider
      */
+    public function searchTranslation($params)
+    {
+        return (new search\Factory())->searchTranslation($params);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
     public function trash($params)
     {
         return (new search\Factory())->trash($params);

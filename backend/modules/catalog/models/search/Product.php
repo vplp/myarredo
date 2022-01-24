@@ -175,6 +175,25 @@ class Product extends ProductModel implements BaseBackendSearchModel
      * @param array $params
      * @return ActiveDataProvider
      */
+    public function searchTranslation($params)
+    {
+        $query = ProductModel::findBase()->undeleted();
+
+        $query
+            ->andWhere([
+                'OR',
+                ['=', ProductLang::tableName() . '.mark', '0'],
+                //['=', ProductLang::tableName() . '.title', ''],
+                //['=', ProductLang::tableName() . '.description', '']
+            ]);
+
+        return $this->baseSearch($query, $params);
+    }
+
+    /**
+     * @param array $params
+     * @return ActiveDataProvider
+     */
     public function searchWithoutPriceList($params)
     {
         $query = ProductModel::findBase()

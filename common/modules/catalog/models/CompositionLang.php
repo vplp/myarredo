@@ -26,8 +26,8 @@ class CompositionLang extends ProductLang
      */
     public function scenarios()
     {
-        return [
-            'backend' => ['title', 'description'],
-        ];
+        return ArrayHelper::merge(parent::scenarios(), [
+            'backend' => ['title', 'description']
+        ]);
     }
 }

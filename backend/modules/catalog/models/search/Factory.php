@@ -100,6 +100,25 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
      * @param array $params
      * @return ActiveDataProvider
      */
+    public function searchTranslation($params)
+    {
+        $query = FactoryModel::find()->joinWith(['lang'])->undeleted();
+
+        $query
+            ->andWhere([
+                'OR',
+                ['=', FactoryLang::tableName() . '.mark', '0'],
+                //['=', FactoryLang::tableName() . '.title', ''],
+                //['=', FactoryLang::tableName() . '.description', '']
+            ]);
+
+        return $this->baseSearch($query, $params);
+    }
+
+    /**
+     * @param array $params
+     * @return ActiveDataProvider
+     */
     public function trash($params)
     {
         $query = FactoryModel::findBase()->deleted();

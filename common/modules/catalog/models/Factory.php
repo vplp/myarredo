@@ -234,6 +234,12 @@ class Factory extends ActiveRecord
                 'show_catalogs_files',
                 'mark'
             ],
+            'translation' => [
+                'editor_id',
+                'created_at',
+                'updated_at',
+                'mark',
+            ],
         ];
     }
 

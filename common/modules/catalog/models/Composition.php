@@ -136,6 +136,13 @@ class Composition extends Product
                 'category_ids',
                 'product_ids'
             ],
+            'translation' => [
+                'editor_id',
+                'created_at',
+                'updated_at',
+                'mark',
+                'language_editing',
+            ],
         ];
     }
 

@@ -83,6 +83,15 @@ class Composition extends CommonCompositionModel implements BaseBackendModel
      * @param $params
      * @return \yii\data\ActiveDataProvider
      */
+    public function searchTranslation($params)
+    {
+        return (new search\Composition())->searchTranslation($params);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
     public function trash($params)
     {
         return (new search\Composition())->trash($params);

@@ -2,6 +2,7 @@
 
 namespace common\modules\catalog\models;
 
+use common\modules\sys\models\Language;
 use Yii;
 use yii\helpers\ArrayHelper;
 use thread\app\base\models\ActiveRecordLang;
@@ -33,11 +34,15 @@ use common\modules\catalog\Catalog;
  * @property string $wc_additional_discount_info
  * @property string $wc_additional_cost_calculations_info
  * @property string $subdivision
+ * @property integer $mark
  *
  * @package common\modules\catalog\models
  */
 class FactoryLang extends ActiveRecordLang
 {
+    const STATUS_KEY_ON = '1';
+    const STATUS_KEY_OFF = '0';
+
     /**
      * @return object|string|\yii\db\Connection|null
      * @throws \yii\base\InvalidConfigException
@@ -84,6 +89,7 @@ class FactoryLang extends ActiveRecordLang
                 'subdivision'
             ], 'string'],
             [['h1', 'meta_title', 'meta_desc', 'description', 'content', 'contacts'], 'default', 'value' => ''],
+            [['mark'], 'in', 'range' => array_keys(static::statusKeyRange())],
         ]);
     }
 
@@ -93,6 +99,7 @@ class FactoryLang extends ActiveRecordLang
     public function scenarios()
     {
         return [
+            'mark' => ['mark'],
             'backend' => [
                 'h1',
                 'meta_title',
@@ -115,7 +122,32 @@ class FactoryLang extends ActiveRecordLang
                 'wc_additional_terms',
                 'wc_additional_discount_info',
                 'wc_additional_cost_calculations_info',
+                'mark'
             ],
+            'translation' => [
+                'h1',
+                'meta_title',
+                'meta_desc',
+                'description',
+                'content',
+                'contacts',
+                'subdivision',
+                'wc_provider',
+                'wc_phone_supplier',
+                'wc_email_supplier',
+                'wc_phone_factory',
+                'wc_email_factory',
+                'wc_contact_person_supplier',
+                'wc_contact_person_factory',
+                'wc_expiration_date',
+                'wc_terms_of_payment',
+                'wc_prepayment',
+                'wc_balance',
+                'wc_additional_terms',
+                'wc_additional_discount_info',
+                'wc_additional_cost_calculations_info',
+                'mark'
+            ]
         ];
     }
 
@@ -147,5 +179,78 @@ class FactoryLang extends ActiveRecordLang
             'wc_additional_discount_info' => Yii::t('app', 'Дополнительная информация по скидке'),
             'wc_additional_cost_calculations_info' => Yii::t('app', 'Дополнительная информация по расчетам стоимости')
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function statusKeyRange()
+    {
+        return [
+            static::STATUS_KEY_ON => Yii::t('app', 'KEY_ON'),
+            static::STATUS_KEY_OFF => Yii::t('app', 'KEY_OFF')
+        ];
+    }
+
+    /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        if (in_array($this->scenario, ['frontend', 'backend', 'translation'])) {
+            $this->mark = '1';
+        }
+
+        return parent::beforeSave($insert);
+    }
+
+    /**
+     * @param $insert
+     * @param $changedAttributes
+     * @return void
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (in_array($this->scenario, ['frontend', 'backend'])) {
+
+            $currentLanguage = Yii::$app->language;
+
+            $modelLanguage = new Language();
+            $languages = $modelLanguage->getLanguages();
+
+            foreach ($languages as $language2) {
+                if ($language2['local'] != $currentLanguage) {
+                    Yii::$app->language = $language2['local'];
+
+                    /** @var $modelLang2 FactoryLang */
+                    $modelLang2 = FactoryLang::find()
+                        ->where([
+                            'rid' => $this->rid,
+                            'lang' => Yii::$app->language,
+                        ])
+                        ->one();
+
+                    if ($modelLang2 == null) {
+                        $modelLang2 = new FactoryLang();
+                        $modelLang2->rid = $this->rid;
+                        $modelLang2->lang = Yii::$app->language;
+                        $modelLang2->mark = '0';
+                        $modelLang2->setScenario('backend');
+                        $modelLang2->save();
+                    } else {
+                        $modelLang2->mark = '0';
+                        $modelLang2->setScenario('mark');
+                        $modelLang2->save();
+                    }
+                }
+            }
+
+            Yii::$app->language = $currentLanguage;
+        }
+
+        parent::afterSave($insert, $changedAttributes);
     }
 }

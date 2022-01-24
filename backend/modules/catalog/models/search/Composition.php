@@ -96,6 +96,25 @@ class Composition extends CompositionModel implements BaseBackendSearchModel
      * @param array $params
      * @return ActiveDataProvider
      */
+    public function searchTranslation($params)
+    {
+        $query = CompositionModel::findBase()->undeleted();
+
+        $query
+            ->andWhere([
+                'OR',
+                ['=', CompositionLang::tableName() . '.mark', '0'],
+                //['=', CompositionLang::tableName() . '.title', ''],
+                //['=', CompositionLang::tableName() . '.description', '']
+            ]);
+
+        return $this->baseSearch($query, $params);
+    }
+
+    /**
+     * @param array $params
+     * @return ActiveDataProvider
+     */
     public function trash($params)
     {
         $query = CompositionModel::findBase()->deleted();

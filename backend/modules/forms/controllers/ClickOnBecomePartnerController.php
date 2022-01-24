@@ -29,7 +29,7 @@ class ClickOnBecomePartnerController extends BackendController
                     'layout' => 'list-click-on-become-partner'
                 ],
                 'create' => false,
-                'create' => false,
+                'update' => false,
             ]
         );
     }

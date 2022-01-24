@@ -22,12 +22,27 @@ class Catalog extends \common\modules\catalog\Catalog
         $menuItems = [];
 
         if (in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])) {
-
             $menuItems = [
                 'label' => 'Catalog',
                 'icon' => 'fa-file-text',
                 'position' => 4,
                 'items' => [
+                    [
+                        'label' => 'Product translation',
+                        'position' => 1,
+                        'url' => ['/catalog/product-translation/list'],
+                    ],
+                    [
+                        'label' => 'Composition translation',
+                        'position' => 1,
+                        'url' => ['/catalog/composition-translation/list'],
+                    ],
+                    [
+                        'label' => 'Factory translation',
+                        'position' => 1,
+                        'url' => ['/catalog/factory-translation/list'],
+                    ],
+
                     [
                         'label' => 'Product',
                         'position' => 1,

@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use thread\app\base\models\ActiveRecordLang;
 use common\modules\catalog\Catalog;
+use common\modules\sys\models\Language;
 
 /**
  * Class ProductLang
@@ -17,6 +18,7 @@ use common\modules\catalog\Catalog;
  * @property string $description
  * @property string $content
  * @property string $comment
+ * @property integer $mark
  *
  * @property Product $parent
  *
@@ -24,6 +26,9 @@ use common\modules\catalog\Catalog;
  */
 class ProductLang extends ActiveRecordLang
 {
+    const STATUS_KEY_ON = '1';
+    const STATUS_KEY_OFF = '0';
+
     /**
      * @return object|string|\yii\db\Connection|null
      * @throws \yii\base\InvalidConfigException
@@ -49,9 +54,10 @@ class ProductLang extends ActiveRecordLang
         return ArrayHelper::merge(parent::rules(), [
             ['rid', 'exist', 'targetClass' => Product::class, 'targetAttribute' => 'id'],
             [['title', 'title_for_list'], 'string', 'max' => 255],
-            [['title'], 'unique'],
+            //[['title'], 'unique'],
             [['description', 'content', 'comment'], 'string'],
-            [['description', 'content', 'comment'], 'default', 'value' => ''],
+            [['title', 'description', 'content', 'comment'], 'default', 'value' => ''],
+            [['mark'], 'in', 'range' => array_keys(static::statusKeyRange())],
         ]);
     }
 
@@ -61,8 +67,10 @@ class ProductLang extends ActiveRecordLang
     public function scenarios()
     {
         return [
-            'backend' => ['title', 'title_for_list', 'description', 'content', 'comment'],
-            'frontend' => ['title', 'title_for_list', 'description', 'content', 'comment'],
+            'backend' => ['title', 'title_for_list', 'description', 'content', 'comment', 'mark'],
+            'frontend' => ['title', 'title_for_list', 'description', 'content', 'comment', 'mark'],
+            'translation' => ['title', 'title_for_list', 'description', 'content', 'comment', 'mark'],
+            'mark' => ['mark'],
         ];
     }
 
@@ -77,6 +85,17 @@ class ProductLang extends ActiveRecordLang
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
             'comment' => Yii::t('app', 'Comment'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function statusKeyRange()
+    {
+        return [
+            static::STATUS_KEY_ON => Yii::t('app', 'KEY_ON'),
+            static::STATUS_KEY_OFF => Yii::t('app', 'KEY_OFF')
         ];
     }
 
@@ -101,7 +120,60 @@ class ProductLang extends ActiveRecordLang
 //            $this->title = Yii::t('app', 'Композиция') . ' ' . $this->title;
 //        }
 
+        if (in_array($this->scenario, ['frontend', 'backend', 'translation'])) {
+            $this->mark = '1';
+        }
+
         return parent::beforeSave($insert);
+    }
+
+    /**
+     * @param $insert
+     * @param $changedAttributes
+     * @return void
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (in_array($this->scenario, ['frontend', 'backend'])) {
+
+            $currentLanguage = Yii::$app->language;
+
+            $modelLanguage = new Language();
+            $languages = $modelLanguage->getLanguages();
+
+            foreach ($languages as $language2) {
+                if ($language2['local'] != $currentLanguage) {
+                    Yii::$app->language = $language2['local'];
+
+                    /** @var $modelLang2 ProductLang */
+                    $modelLang2 = ProductLang::find()
+                        ->where([
+                            'rid' => $this->rid,
+                            'lang' => Yii::$app->language,
+                        ])
+                        ->one();
+
+                    if ($modelLang2 == null) {
+                        $modelLang2 = new ProductLang();
+                        $modelLang2->rid = $this->rid;
+                        $modelLang2->lang = Yii::$app->language;
+                        $modelLang2->mark = '0';
+                        $modelLang2->setScenario('backend');
+                        $modelLang2->save();
+                    } else {
+                        $modelLang2->mark = '0';
+                        $modelLang2->setScenario('mark');
+                        $modelLang2->save();
+                    }
+                }
+            }
+
+            Yii::$app->language = $currentLanguage;
+        }
+
+        parent::afterSave($insert, $changedAttributes);
     }
 
     /**

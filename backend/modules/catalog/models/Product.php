@@ -102,6 +102,15 @@ class Product extends CommonProductModel implements BaseBackendModel
     }
 
     /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function searchTranslation($params)
+    {
+        return (new search\Product())->searchTranslation($params);
+    }
+
+    /**
      * @inheritdoc
      */
     public function afterDelete()

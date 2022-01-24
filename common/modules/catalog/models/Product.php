@@ -251,7 +251,7 @@ class Product extends ActiveRecord implements iProduct
                 'each',
                 'rule' => ['integer']
             ],
-            [['category_ids'], 'required'],
+            [['category_ids'], 'required', 'on' => ['backend']],
             [['currency'], 'in', 'range' => array_keys(static::currencyRange())],
             [['currency'], 'default', 'value' => 'EUR'],
             [['language_editing'], 'string', 'max' => 5],
@@ -332,6 +332,13 @@ class Product extends ActiveRecord implements iProduct
                 'mark3',
                 'novelty_rel_cities',
                 'novelty_rel_cities_ids'
+            ],
+            'translation' => [
+                'editor_id',
+                'created_at',
+                'updated_at',
+                'mark',
+                'language_editing',
             ],
         ];
     }
@@ -523,7 +530,7 @@ class Product extends ActiveRecord implements iProduct
             }
         }
 
-        if (in_array($this->scenario, ['frontend', 'backend'])) {
+        if (in_array($this->scenario, ['frontend', 'backend', 'translation'])) {
             $this->editor_id = Yii::$app->user->id;
         }
 
