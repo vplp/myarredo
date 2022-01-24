@@ -350,9 +350,11 @@ class Profile extends \thread\modules\user\models\Profile
             $this->$field[$city['id']] = $city['id'];
         }
 
-        $this->selected_languages = explode('/', $this->selected_languages);
-        $this->selected_languages = array_filter($this->selected_languages, fn($value) => !is_null($value) && $value !== '');
-        $this->selected_languages = array_values($this->selected_languages);
+        if ($this->selected_languages != null) {
+            $this->selected_languages = explode('/', $this->selected_languages);
+            $this->selected_languages = array_filter($this->selected_languages, fn($value) => !is_null($value) && $value !== '');
+            $this->selected_languages = array_values($this->selected_languages);
+        }
 
         parent::afterFind();
     }

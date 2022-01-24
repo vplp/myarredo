@@ -22,6 +22,7 @@ class Catalog extends \common\modules\catalog\Catalog
         $menuItems = [];
 
         if (in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])) {
+
             $menuItems = [
                 'label' => 'Catalog',
                 'icon' => 'fa-file-text',
