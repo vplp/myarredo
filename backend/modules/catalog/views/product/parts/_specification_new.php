@@ -24,7 +24,7 @@ echo $form->text_line($model, 'volume');
             </tr>
             <?php foreach (Specification::findBase()->andWhere(['parent_id' => $spec['id']])->undeleted()->all() as $parentSpec) { ?>
                 <tr>
-                    <td><span><?= $parentSpec['lang']['title'] ?></span></td>
+                    <td><span><?= $parentSpec['lang']['title'] ?? '' ?></span></td>
                     <td class="form-inline">
                         <?php
                         $relationModel = ProductRelSpecification::findBase()
