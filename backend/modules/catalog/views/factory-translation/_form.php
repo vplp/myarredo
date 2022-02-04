@@ -27,13 +27,22 @@ Yii::$app->language = $currentLanguage;
 
 <?= Html::activeHiddenInput($model, 'id', ['value' => $model->id]) ?>
 
-<div style="border: 1px solid red; padding: 5px;  margin-bottom: 20px"><?= $dataLang['description'] ?></div>
+<?php if (Yii::$app->language != 'ru-RU') { ?>
+    <div style="border: 1px solid red; padding: 5px;  margin-bottom: 20px"><?= $dataLang['description'] ?></div>
+<?php } ?>
+
 <?= $form->text_editor_lang($modelLang, 'description') ?>
 
-<div style="border: 1px solid red; padding: 5px;  margin-bottom: 20px"><?= $dataLang['content'] ?></div>
+<?php if (Yii::$app->language != 'ru-RU') { ?>
+    <div style="border: 1px solid red; padding: 5px;  margin-bottom: 20px"><?= $dataLang['content'] ?></div>
+<?php } ?>
+
 <?= $form->text_editor_lang($modelLang, 'content') ?>
 
-<div style="border: 1px solid red; padding: 5px;  margin-bottom: 20px"><?= $dataLang['contacts'] ?></div>
+<?php if (Yii::$app->language != 'ru-RU') { ?>
+    <div style="border: 1px solid red; padding: 5px;  margin-bottom: 20px"><?= $dataLang['contacts'] ?></div>
+<?php } ?>
+
 <?= $form->text_editor_lang($modelLang, 'contacts') ?>
 
 <?= $form->submit($model, $this) ?>

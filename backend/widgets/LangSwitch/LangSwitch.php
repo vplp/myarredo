@@ -60,6 +60,12 @@ class LangSwitch extends Widget
 
         $selected_languages = Yii::$app->user->identity->profile->selected_languages;
 
+        if ($selected_languages != '') {
+            $selected_languages = explode('/', $selected_languages);
+            $selected_languages = array_filter($selected_languages, fn($value) => !is_null($value) && $value !== '');
+            $selected_languages = array_values($selected_languages);
+        }
+
         if (!empty($selected_languages) && count($selected_languages) == 1 && $selected_languages[0] != Yii::$app->language) {
             foreach ($this->items as $lang) {
                 if (!$lang['by_default'] && $lang['local'] == $selected_languages[0]) {
