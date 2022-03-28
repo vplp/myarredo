@@ -79,7 +79,6 @@ use frontend\modules\catalog\models\Category;
         </li>
     <?php } ?>
 
-    <?php /*
     <li <?= (Yii::$app->controller->id == 'sale-italy') ? ' class="js-has-list has-list third-link"' : ' class="js-has-list third-link"' ?>>
         <?= Html::a(
             Yii::t('app', 'Sale in Italy'),
@@ -106,7 +105,6 @@ use frontend\modules\catalog\models\Category;
             </ul>
         </div>
     </li>
-*/ ?>
 
     <li <?= (Yii::$app->controller->id == 'factory') ? ' class="has-list"' : '' ?>>
         <?= Html::a(
