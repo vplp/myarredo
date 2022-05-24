@@ -27,6 +27,10 @@ class PartnerMap extends Widget
      */
     public $city = false;
 
+    private $sngHosts = ['www.myarredo.ru', 'www.myarredo.by', 'www.myarredo.ua'];
+
+    private $sngCountries = ['Federazione Russa', 'Ucraina', 'Bielorussia', 'Russia', 'Ukraine', 'Belarus', 'Russie', 'Biélorussie'];
+
     /**
      * @return string
      */
@@ -48,15 +52,39 @@ class PartnerMap extends Widget
 
         $dataJS = [];
 
-        foreach ($partners as $k => $partner) {
-            /** @var $partner User */
-            $dataJS[$k]['lat'] = (float)$partner->profile->latitude;
-            $dataJS[$k]['lng'] = (float)$partner->profile->longitude;
-            $dataJS[$k]['address'] = $partner->profile->lang->address ?? '';
-            $dataJS[$k]['city'] = isset($partner->profile->city) ? $partner->profile->city->getTitle() : '';
-            $dataJS[$k]['country'] = isset($partner->profile->country) ? $partner->profile->country->getTitle() : '';
-            $dataJS[$k]['phone'] = $partner->profile->partner_in_city ? $partner->profile->phone : '';
-            $dataJS[$k]['image'] = $partner->profile->partner_in_city ? '/img/marker-main.png' : $this->defaultMarker;
+        if (in_array($_SERVER['HTTP_HOST'], $this->sngHosts)) {
+            foreach ($partners as $k => $partner) {
+                /** @var $partner User */
+                $dataJS[$k]['lat'] = (float)$partner->profile->latitude;
+                $dataJS[$k]['lng'] = (float)$partner->profile->longitude;
+                $dataJS[$k]['address'] = $partner->profile->lang->address ?? '';
+                $dataJS[$k]['city'] = isset($partner->profile->city) ? $partner->profile->city->getTitle() : '';
+                $dataJS[$k]['country'] = isset($partner->profile->country) ? $partner->profile->country->getTitle() : '';
+                $dataJS[$k]['phone'] = $partner->profile->partner_in_city ? $partner->profile->phone : '';
+                $dataJS[$k]['image'] = $partner->profile->partner_in_city ? '/img/marker-main.png' : $this->defaultMarker;
+            }
+        } else {
+            $lat = 48.124644;
+            $lng = -3.357115;
+            $zoom = 5.12;
+            $k = 0;
+
+            foreach ($partners as $i => $partner) {
+
+                /** @var $partner User */
+                $counryCheck = isset($partner->profile->country) ? $partner->profile->country->getTitle() : '';
+
+                if (!in_array($counryCheck, $this->sngCountries)) {
+                    $dataJS[$k]['lat'] = (float)$partner->profile->latitude;
+                    $dataJS[$k]['lng'] = (float)$partner->profile->longitude;
+                    $dataJS[$k]['address'] = $partner->profile->lang->address ?? '';
+                    $dataJS[$k]['city'] = isset($partner->profile->city) ? $partner->profile->city->getTitle() : '';
+                    $dataJS[$k]['country'] = isset($partner->profile->country) ? $partner->profile->country->getTitle() : '';
+                    $dataJS[$k]['phone'] = $partner->profile->partner_in_city ? $partner->profile->phone : '';
+                    $dataJS[$k]['image'] = $partner->profile->partner_in_city ? '/img/marker-main.png' : $this->defaultMarker;
+                    $k++;
+                }
+            }
         }
 
         $dataJS = json_encode($dataJS);
