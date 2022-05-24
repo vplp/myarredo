@@ -69,6 +69,10 @@ class LangSwitch extends Widget
         $items = [];
 
         foreach ($this->items as $lang) {
+            if (in_array(DOMAIN_TYPE, ['ru']) && in_array($lang['alias'], ['de', 'com', 'uk', 'fr', 'ua', 'it', 'en'])) {
+                continue;
+            }
+
             if (in_array($lang['alias'], ['ru']) && in_array(DOMAIN_TYPE, ['de', 'com', 'uk', 'fr'])) {
                 continue;
             }
