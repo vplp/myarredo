@@ -27,7 +27,7 @@ class PartnerMap extends Widget
      */
     public $city = false;
 
-    private $sngHosts = ['www.myarredo.ru', 'www.myarredo.by', 'www.myarredo.ua'];
+    private $sngDomainTypes = ['ru', 'by', 'ua'];
 
     private $sngCountries = ['Federazione Russa', 'Ucraina', 'Bielorussia', 'Russia', 'Ukraine', 'Belarus', 'Russie', 'Biélorussie'];
 
@@ -52,7 +52,7 @@ class PartnerMap extends Widget
 
         $dataJS = [];
 
-        if (in_array($_SERVER['HTTP_HOST'], $this->sngHosts)) {
+        if (in_array(DOMAIN_TYPE, $this->sngDomainTypes)) {
             foreach ($partners as $k => $partner) {
                 /** @var $partner User */
                 $dataJS[$k]['lat'] = (float)$partner->profile->latitude;
