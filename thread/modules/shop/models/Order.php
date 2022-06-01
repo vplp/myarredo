@@ -271,4 +271,23 @@ class Order extends ActiveRecord
         $interval = $datetime1->diff($datetime2);
         return $interval->format('%h');
     }
+
+    /**
+     * @return string
+     */
+    public function getFirstAnswerTime()
+    {
+        $times = [];
+        foreach ($this->orderAnswers as $answer) {
+            $times[] =  new DateTime($answer->getAnswerTime());
+        }
+
+        if ($times) {
+            $first = min($times);
+
+            return $first->format('d-m-Y H:i');
+        }
+
+        return '';
+    }
 }

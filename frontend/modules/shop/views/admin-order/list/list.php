@@ -80,7 +80,7 @@ $this->title = $this->context->title;
                                     </li>
                                     <li>
                                         <span <?= $modelOrder->getDiffAnswerTime('settlementCenter') > 2 ? 'style="color: red;"' : '' ?>>
-                                            <?= $modelOrder->getAnswerTime('settlementCenter') ?>
+                                            <?= $modelOrder->getFirstAnswerTime() ?>
                                         </span>
                                     </li>
                                     <li>
