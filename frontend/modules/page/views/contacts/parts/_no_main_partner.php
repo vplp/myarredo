@@ -34,6 +34,6 @@ use frontend\modules\user\widgets\partner\PartnerMap;
     </div>
 </div>
 <div class="one-cont double-cont map-cont contact-mapbox">
-    <?= PartnerMap::widget(['city' => Yii::$app->city->getCity(), 'defaultMarker' => '/img/marker-main.png']) ?>
+    <?= PartnerMap::widget(['city' => Yii::$app->city->getCity(), 'defaultMarker' => '/img/marker.png']) ?>
 </div>
 <!-- end main partner -->

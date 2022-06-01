@@ -38,7 +38,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
                 </div>
 
                 <?php
-                if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
+                if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory' || Yii::$app->request->url == '/contacts/') {
                 } else { ?>
                     <div class="white-stripe">
                         <div class="icon">

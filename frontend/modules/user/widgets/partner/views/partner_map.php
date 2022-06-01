@@ -178,7 +178,7 @@ function initMap() {
 
         marker.addListener('click', function() {
             map.setCenter(new google.maps.LatLng(
-                this.position.lat(),
+                this.position.lat() + 0.1,
                 this.position.lng() 
             ));
 
