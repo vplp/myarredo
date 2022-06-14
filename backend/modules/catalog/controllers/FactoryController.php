@@ -90,6 +90,12 @@ class FactoryController extends BackendController
                 'attribute' => 'show_for_de',
                 'redirect' => $this->defaultAction,
             ],
+            'to_translate' => [
+                'class' => AttributeSwitch::class,
+                'modelClass' => $this->model,
+                'attribute' => 'to_translate',
+                'redirect' => $this->defaultAction,
+            ],
             'fileupload' => [
                 'class' => UploadAction::class,
                 'path' => $this->module->getFactoryUploadPath()

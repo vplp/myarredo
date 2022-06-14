@@ -47,6 +47,7 @@ use voskobovich\behaviors\ManyToManyBehavior;
  * @property boolean $show_for_ua
  * @property boolean $show_for_com
  * @property boolean $show_for_de
+ * @property boolean $to_translate
  * @property integer $product_count
  * @property boolean $dealers_can_answer
  * @property boolean $factory_discount
@@ -149,6 +150,7 @@ class Factory extends ActiveRecord
                     'show_for_ua',
                     'show_for_com',
                     'show_for_de',
+                    'to_translate',
                     'dealers_can_answer',
                     'show_catalogs_files',
                     'mark',
@@ -197,6 +199,7 @@ class Factory extends ActiveRecord
             'show_for_ua' => ['show_for_ua'],
             'show_for_com' => ['show_for_com'],
             'show_for_de' => ['show_for_de'],
+            'to_translate' => ['to_translate'],
             'mark' => ['mark'],
             'backend' => [
                 'user_id',
@@ -226,6 +229,7 @@ class Factory extends ActiveRecord
                 'show_for_ua',
                 'show_for_com',
                 'show_for_de',
+                'to_translate',
                 'dealers_ids',
                 'dealers_can_answer',
                 'factory_discount',
@@ -278,6 +282,7 @@ class Factory extends ActiveRecord
             'show_for_ua' => 'Показывать на ua',
             'show_for_com' => 'Показывать на com',
             'show_for_de' => 'Показывать на de',
+            'to_translate' => 'В список на перевод',
             'product_count' => 'product_count',
             'dealers_ids' => Yii::t('app', 'Dealers'),
             'dealers_can_answer' => Yii::t('app', 'Dealers can answer'),
@@ -498,6 +503,7 @@ class Factory extends ActiveRecord
             $model->show_for_ua = 1;
             $model->show_for_com = 1;
             $model->show_for_de = 1;
+            $model->to_translate = 1;
 
             Yii::$app->session->setFlash('success', Yii::t('app', 'Создана новая фабрика'));
 

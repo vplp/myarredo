@@ -9,9 +9,13 @@ use yii\data\ActiveDataProvider;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 use common\modules\catalog\models\ProductRelFactoryPricesFiles;
 use backend\modules\catalog\Catalog;
-use backend\modules\catalog\models\{
-    ProductRelCategory, Product as ProductModel, ProductLang, Specification, ProductRelSpecification
-};
+use backend\modules\catalog\models\{FactoryLang,
+    ProductRelCategory,
+    Product as ProductModel,
+    ProductLang,
+    Specification,
+    ProductRelSpecification};
+use backend\modules\catalog\models\Factory;
 
 /**
  * Class Product
@@ -180,11 +184,18 @@ class Product extends ProductModel implements BaseBackendSearchModel
         $query = ProductModel::findBase()->undeleted();
 
         $query
+            ->innerJoinWith(["factory"])
             ->andWhere([
                 'OR',
                 ['=', ProductLang::tableName() . '.mark', '0'],
                 //['=', ProductLang::tableName() . '.title', ''],
                 //['=', ProductLang::tableName() . '.description', '']
+            ])
+            ->andWhere([
+                'AND',
+                ['=', Factory::tableName() . '.to_translate', '1'],
+                ['=', Factory::tableName() . '.published', '1'],
+                ['=', self::tableName() . '.removed', '0']
             ]);
 
         return $this->baseSearch($query, $params);
