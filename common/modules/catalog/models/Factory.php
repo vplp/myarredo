@@ -65,6 +65,7 @@ use voskobovich\behaviors\ManyToManyBehavior;
  * @property FactoryCatalogsFiles $catalogsFiles
  * @property FactoryPricesFiles $pricesFiles
  * @property FactoryRelDealers[] $factoryDealers
+ * @property FactorySamplesFiles $samplesFiles
  *
  * @package common\modules\catalog\models
  */
@@ -455,6 +456,15 @@ class Factory extends ActiveRecord
     {
         return $this->hasMany(FactoryPricesFiles::class, ['factory_id' => 'id'])
             ->andWhere(['file_type' => 2]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSamplesFiles()
+    {
+        return $this->hasMany(FactorySamplesFiles::class, ['factory_id' => 'id'])
+            ->andWhere(['file_type' => 3]);
     }
 
     /**

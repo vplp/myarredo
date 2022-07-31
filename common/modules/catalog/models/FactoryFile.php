@@ -54,7 +54,7 @@ class FactoryFile extends ActiveRecord
             [['factory_id'], 'required'],
             [['factory_id', 'file_size', 'position', 'created_at', 'updated_at'], 'integer'],
             [['published', 'deleted', 'mark'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['file_type'], 'in', 'range' => [1, 2]],
+            [['file_type'], 'in', 'range' => [1, 2, 3]],
             [['title', 'image_link'], 'string', 'max' => 255],
             [['file_link'], 'string', 'max' => 255],
             ['position', 'default', 'value' => '0'],

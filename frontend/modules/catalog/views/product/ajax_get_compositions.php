@@ -1,6 +1,7 @@
 <div class="col-md-12 col-lg-9">
     <ul class="nav nav-tabs">
-        <?php if (!empty($samples)) { ?>
+        <?php 
+        if (!empty($samples) || (!empty($samplesFiles))) { ?>
             <li>
                 <a data-toggle="tab" href="#panel2"><?= Yii::t('app', 'Варианты отделки') ?></a>
             </li>
@@ -20,6 +21,13 @@
                     'samples' => $samples
                 ]); ?>
             </div>
+        <?php } ?>
+
+        <?php if (!empty($samplesFiles)) { ?>
+            <?= $this->render('parts/_samples_files', [
+                'samplesFiles' => $samplesFiles,
+                'samples' => $samples ?? null
+            ]); ?>
         <?php } ?>
 
         <?php if (!empty($elementsComposition)) { ?>

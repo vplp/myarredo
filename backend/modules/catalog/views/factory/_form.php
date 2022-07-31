@@ -111,6 +111,12 @@ echo Tabs::widget([
                 'model' => $model
             ])
         ],
+        [
+            'label' => 'Варианты отделки',
+            'content' => $this->render('parts/_samples', [
+                'model' => $model
+            ])
+        ],
     ]
 ]);
 

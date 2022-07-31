@@ -229,6 +229,15 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getFactorySamplesFiles(): \yii\db\ActiveQuery
+    {
+        return $this->factory->getSamplesFiles();
+    }
+
+    /**
      * @param $params
      * @return \yii\data\ActiveDataProvider
      * @throws \Throwable

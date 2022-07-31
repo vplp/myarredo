@@ -117,6 +117,13 @@ $urls = [
     'factory-prices-files/create' => 'catalog/factory-prices-files/create',
     'factory-prices-files/update/<id:[\d\-]+>' => 'catalog/factory-prices-files/update',
 
+    // Factory samples files
+    'factory-samples-files' => 'catalog/factory-samples-files/list',
+    'factory-samples-files/one-file-upload' => 'catalog/factory-samples-files/one-file-upload',
+    'factory-samples-files/one-file-delete' => 'catalog/factory-samples-files/one-file-delete',
+    'factory-samples-files/create' => 'catalog/factory-samples-files/create',
+    'factory-samples-files/update/<id:[\d\-]+>' => 'catalog/factory-samples-files/update',
+
     // Factory product
     'factory-product' => 'catalog/factory-product/list',
     'factory-product/create' => 'catalog/factory-product/create',

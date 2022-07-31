@@ -80,6 +80,7 @@ use common\modules\user\models\{
  * @property ProductRelSpecification $specificationValue
  * @property ProductRelFactoryCatalogsFiles[] $factoryCatalogsFiles
  * @property ProductRelFactoryPricesFiles[] $factoryPricesFiles
+ * @property FactorySamplesFiles[] $factorySamplesFiles
  *
  * @package common\modules\catalog\models
  */

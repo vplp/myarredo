@@ -13,6 +13,7 @@ use frontend\modules\catalog\models\FactorySubdivision;
  * @var $model Factory
  * @var $catalogFile FactoryCatalogsFiles
  * @var $priceFile FactoryPricesFiles
+ * @var $samplesFile \frontend\modules\catalog\models\FactorySamplesFiles
  */
 
 $keys = Yii::$app->catalogFilter->keys;
@@ -279,6 +280,42 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
                             ) .
                             Html::endTag('li');
                     }
+                } ?>
+            </ul>
+        </div>
+
+        <?php if(!empty($FactorySamples) && !empty($model->samplesFiles)) { ?>
+
+            <style>
+                #sample-files-lists {
+                    border-top:1px solid #BDBCB3;
+                }
+            </style>
+
+        <?php } ?>
+            
+        <div id="sample-files-lists"
+             class="tab-pane fade <?= Yii::$app->request->get('tab') == 'samples' ? 'in active' : ''; ?>">
+            <ul class="list">
+                <?php
+                foreach ($model->samplesFiles as $samplesFile) {
+                    if ($fileLink = $samplesFile->getFileLink()) {
+                        echo Html::beginTag('li') .
+                            Html::a(
+                                ($samplesFile->image_link
+                                    ? Html::img($samplesFile->getImageLink())
+                                    : ''
+                                ) .
+                                Html::tag('span', $samplesFile->title . '<br>(' . date('d-m-Y', $samplesFile->updated_at) . ')', ['class' => 'for-catalog-list']),
+                                Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink,
+                                [
+                                    'target' => '_blank',
+                                    'class' => 'click-on-factory-file',
+                                    'data-id' => $samplesFile->id
+                                ]
+                            ) .
+                            Html::endTag('li');
+                    }  
                 } ?>
             </ul>
         </div>

@@ -191,4 +191,20 @@ class Catalog extends aModule
     {
         return Yii::$app->getModule('news')->params['format']['date'];
     }
+
+    /**
+     * @return string
+     */
+    public function getFactorySamplesFilesUploadPath(): string
+    {
+        return $this->getBaseUploadPath() . '/factoryFileSamples';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFactorySamplesFilesUploadUrl(): string
+    {
+        return $this->getBaseUploadUrl() . '/factoryFileSamples';
+    }
 }

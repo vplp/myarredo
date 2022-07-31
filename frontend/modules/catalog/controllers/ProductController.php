@@ -328,7 +328,8 @@ class ProductController extends BaseController
                 $html = $this->renderPartial('ajax_get_compositions', [
                     'model' => $model,
                     'elementsComposition' => Product::getElementsComposition($model),
-                    'samples' => $model->samples
+                    'samples' => $model->samples,
+                    'samplesFiles' => $model->factorySamplesFiles,
                 ]);
             }
 

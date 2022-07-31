@@ -16,6 +16,7 @@ use frontend\components\ImageResize;
  * @property CatalogsFiles[] $catalogsFiles
  * @property PricesFiles[] $pricesFiles
  * @property FactorySubdivision[] $factorySubdivision
+ * @property FactorySamplesFiles[] $samplesFiles
  *
  * @package frontend\modules\catalog\models
  */
@@ -159,6 +160,15 @@ class Factory extends \common\modules\catalog\models\Factory
     {
         return $this->hasMany(FactoryPricesFiles::class, ['factory_id' => 'id'])
             ->andWhere([FactoryPricesFiles::tableName() . '.file_type' => 2])->enabled();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSamplesFiles()
+    {
+        return $this->hasMany(FactorySamplesFiles::class, ['factory_id' => 'id'])
+            ->andWhere([FactorySamplesFiles::tableName() . '.file_type' => 3])->enabled();
     }
 
     /**
