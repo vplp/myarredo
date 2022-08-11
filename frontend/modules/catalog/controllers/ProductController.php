@@ -303,7 +303,7 @@ class ProductController extends BaseController
             ->orderBy(['views' => SORT_DESC])
             ->asArray()
             ->limit(30)
-            ->cache(7200)
+            ->cache(604800)
             ->all();
 
         return $this->render('view', [
