@@ -64,12 +64,6 @@ class BannerList extends Widget
      */
     public function run()
     {
-        $detect = new Mobile_Detect();
-
-        if ($detect->isMobile()) {
-            $this->view = 'banner_list_mobile';
-        }
-
         $filterItem = [];
 
         foreach ($this->models as $model) {
