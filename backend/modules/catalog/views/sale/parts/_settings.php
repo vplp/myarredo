@@ -38,6 +38,7 @@ $this->registerJs($script);
 
 <?= $form->text_line_lang($modelLang, 'title') ?>
 <?= $form->text_line($model, 'alias') ?>
+<?= $form->text_line($model, 'phone') ?>
 
 <?= $form
     ->field($model, 'factory_id')

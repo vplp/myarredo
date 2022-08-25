@@ -281,18 +281,30 @@ $this->title = $this->context->title;
 $user_id = $model['user']['id'];
 $sale_item_id = $model['id'];
 $url = Url::toRoute(['//catalog/sale/ajax-get-phone']);
-$script = <<<JS
-$('.js-show-num-btn').on('click', function () {
-    $.post(
-        '$url', 
-        {_csrf: $('#token').val(), user_id: $user_id, sale_item_id: $sale_item_id}, 
-        function(data){
-            $('.js-show-num').html('<a href="tel:'+data.phone+'">'+data.phone+'</a>');
-            $('.js-show-num-btn').remove();
-        }, 
-        'json'
-    );
-});
+$phone = $model['phone'] ?? null;
+
+if (!empty($phone)) {
+    $script = <<<JS
+    let phone = '$phone';
+    $('.js-show-num-btn').on('click', function () {
+        $('.js-show-num').html('<a href="tel:'+phone+'">'+phone+'</a>');
+        $('.js-show-num-btn').remove();
+    });
 JS;
+} else {
+    $script = <<<JS
+    $('.js-show-num-btn').on('click', function () {
+        $.post(
+            '$url', 
+            {_csrf: $('#token').val(), user_id: $user_id, sale_item_id: $sale_item_id}, 
+            function(data){
+                $('.js-show-num').html('<a href="tel:'+data.phone+'">'+data.phone+'</a>');
+                $('.js-show-num-btn').remove();
+            }, 
+            'json'
+        );
+    });
+JS;
+}
 
 $this->registerJs($script);

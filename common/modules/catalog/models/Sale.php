@@ -48,6 +48,7 @@ use common\modules\user\models\User;
  * @property integer $mark2
  * @property integer $mark3
  * @property string $language_editing
+ * @property string $phone
  *
  * @property SaleLang $lang
  * @property SaleRelCategory[] $category
@@ -145,7 +146,7 @@ class Sale extends ActiveRecord
                 'range' => array_keys(static::statusKeyRange())
             ],
             [['currency'], 'in', 'range' => array_keys(static::currencyRange())],
-            [['country_code', 'alias', 'factory_name', 'image_link'], 'string', 'max' => 255],
+            [['country_code', 'alias', 'factory_name', 'image_link', 'phone'], 'string', 'max' => 255],
             [['gallery_image'], 'string', 'max' => 1024],
             [['article'], 'string', 'max' => 100],
             [['alias'], 'unique'],
@@ -222,7 +223,8 @@ class Sale extends ActiveRecord
                 'mark1',
                 'mark2',
                 'mark3',
-                'language_editing'
+                'language_editing',
+                'phone'
             ],
             'frontend' => [
                 'country_id',
@@ -253,7 +255,8 @@ class Sale extends ActiveRecord
                 'mark1',
                 'mark2',
                 'mark3',
-                'language_editing'
+                'language_editing',
+                'phone'
             ]
         ];
     }
@@ -295,7 +298,8 @@ class Sale extends ActiveRecord
             'mark1',
             'mark2',
             'mark3',
-            'language_editing'
+            'language_editing',
+            'phone' => 'Номер телефона'
         ];
     }
 
