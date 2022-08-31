@@ -22,14 +22,14 @@ use frontend\modules\shop\models\Order;
 
                 <?= Html::tag('h1', $this->context->title); ?>
 
-<!--                --><?php //if (DOMAIN_TYPE != 'com') { ?>
-<!--                    <div class="text-center">-->
-<!--                        <video width="640" height="360" controls>-->
-<!--                            <source src="/uploads/video/2_my_arredo.mp4" type="video/mp4">-->
-<!--                            Your browser does not support the video tag.-->
-<!--                        </video>-->
-<!--                    </div>-->
-<!--                --><?php //} ?>
+                <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'uk', 'fr'])) { ?>
+                    <div class="text-center">
+                        <video width="640" height="360" controls>
+                            <source src="/uploads/video/2_my_arredo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                <?php } ?>
 
                 <?php if (in_array(Yii::$app->user->identity->group->role, ['partner'])) {
                     echo NewsListForPartners::widget([]);
