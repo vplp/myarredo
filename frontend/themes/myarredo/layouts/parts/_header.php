@@ -81,7 +81,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
                         <?= Cart::widget(['view' => 'short']) ?>
 
-                        <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'kz', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+                        <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'fr', 'uk', 'kz', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
                             <a href="tel:+<?= $clearPhoneNumb ?>" class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
