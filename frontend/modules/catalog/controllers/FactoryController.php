@@ -27,6 +27,10 @@ use frontend\modules\catalog\models\{
  */
 class FactoryController extends BaseController
 {
+    private const PDF_GUEST_ACCESS = [
+        'factoryFileSamples'
+    ];
+    
     public $label = "Factory";
 
     public $title = "Factory";
@@ -386,7 +390,11 @@ class FactoryController extends BaseController
      */
     public function actionPdfViewer()
     {
-        if (Yii::$app->getUser()->isGuest || !Yii::$app->user->identity->profile->isPdfAccess()) {
+        if (
+            !$this->checkPdfGuestAccess(Yii::$app->request->get('file') ?: '') 
+            && (Yii::$app->getUser()->isGuest
+            || !Yii::$app->user->identity->profile->isPdfAccess())
+        ) {
             throw new ForbiddenHttpException('Access denied');
         }
 
@@ -418,5 +426,16 @@ class FactoryController extends BaseController
         ]);
 
         return $this->render('pdfjs', []);
+    }
+    
+    private function checkPdfGuestAccess(string $fileName): bool
+    {
+        foreach (self::PDF_GUEST_ACCESS as $access) {
+            if (strpos($fileName, $access) !== false) {
+                return true;
+            }
+        }
+        
+        return false;
     }
 }
