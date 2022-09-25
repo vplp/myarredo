@@ -168,4 +168,14 @@ class Country extends ActiveRecord
     {
         return $this->getCities()->count();
     }
+
+    /**
+     * @param string $countryCode
+     *
+     * @return bool
+     */
+    public function checkCountryExists(string $countryCode): bool
+    {
+        return !empty(self::findOne(['alias' => $countryCode]));
+    }
 }

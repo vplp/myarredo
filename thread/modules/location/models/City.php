@@ -132,4 +132,32 @@ class City extends ActiveRecord
     {
         return (isset($this->lang->title)) ? $this->lang->title : "{{$this->alias}}";
     }
+
+    /**
+     * @param float $lat
+     * @param float $lng
+     *
+     * @return int|null
+     */
+    public static function getCityIdByCoordinates(float $lat, float $lng): ?int
+    {
+        try {
+            return Yii::$app
+                ->db
+                ->createCommand(
+                    'SELECT id FROM fv_location_city
+                    WHERE lat >= (:lat * 0.99) AND lat <= (:lat * 1.01)
+                    AND lng >= (:lng * 0.99) AND lng <= (:lng * 1.01)
+                    ORDER BY abs(lat - :lat), abs(lng - :lng)
+                    LIMIT 1',
+                    [
+                        'lat' => $lat,
+                        'lng' => $lng
+                    ]
+                )
+                ->queryScalar();
+        } catch (\Throwable $e) {
+            return null;
+        }
+    }
 }

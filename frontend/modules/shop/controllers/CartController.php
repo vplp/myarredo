@@ -2,11 +2,15 @@
 
 namespace frontend\modules\shop\controllers;
 
+use thread\modules\location\models\City;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\helpers\Url;
-use frontend\components\BaseController;
+use frontend\components\{
+    BaseController,
+    UserIp
+};
 use frontend\modules\shop\models\{
     CartCustomerForm,
     FormFindProduct,
@@ -14,6 +18,7 @@ use frontend\modules\shop\models\{
     search\Order as SearchOrder
 };
 use yii\web\UploadedFile;
+use thread\modules\location\models\Country;
 
 /**
  * Class CartController
@@ -178,7 +183,27 @@ class CartController extends BaseController
             return $this->render('order_success');
         }
 
-        if ($customerForm->load(Yii::$app->getRequest()->post(), 'CartCustomerForm') &&
+        $request = Yii::$app->getRequest()->post();
+
+        $userIP = new UserIp(Yii::$app->request->userIP);
+
+        $countryCode = $userIP->getCountryCode();
+
+        if (!empty($countryCode) && (new Country())->checkCountryExists($countryCode)) {
+            if ($countryCode !== $request['CartCustomerForm']['country_code']) {
+                $request['CartCustomerForm']['city_id'] = '0';
+            }
+
+            $request['CartCustomerForm']['country_code'] = $countryCode;
+
+            $cityId = City::getCityIdByCoordinates($userIP->getLat(), $userIP->getLng());
+
+            if (!empty($cityId)) {
+                $request['CartCustomerForm']['city_id'] = (string)$cityId;
+            }
+        }
+
+        if ($customerForm->load($request, 'CartCustomerForm') &&
             $customerForm->validate() &&
             !empty(Yii::$app->shop_cart->items)
         ) {
