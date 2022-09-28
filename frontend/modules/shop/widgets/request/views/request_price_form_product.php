@@ -33,7 +33,7 @@ $model->user_agreement = 1;
 <?php if (DOMAIN_TYPE == 'com') { ?>
     <?= $form
         ->field($model, 'city_name')
-        ->input('text', ['placeholder' => Yii::t('app', 'City')])
+        ->input('text', ['placeholder' => Yii::t('app', 'City'), 'required' => true])
         ->label(false) ?>
 <?php } ?>
 
