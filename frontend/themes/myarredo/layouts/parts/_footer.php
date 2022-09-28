@@ -24,7 +24,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
 <div class="footer jsftr" data-url="<?= $url; ?>">
     <div class="container-wrap">
 
-        <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'kz', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale'])) { ?>
+        <?php if (!in_array(DOMAIN_TYPE, ['co.il']) && !in_array(Yii::$app->controller->id, ['sale'])) { ?>
             <div class="contacts">
                 <div class="cont-flex">
                     <?php if (!in_array(Yii::$app->controller->id, ['sale-italy'])) {

@@ -85,6 +85,7 @@ class BannerItem extends ActiveRecord
             [['image_link'], 'string', 'max' => 255],
             [['background_code'], 'string', 'max' => 32],
             [['position'], 'default', 'value' => 0],
+            [['background_code'], 'default', 'value' => ''],
             [
                 [
                     'cities_ids',

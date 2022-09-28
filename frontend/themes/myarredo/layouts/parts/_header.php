@@ -81,7 +81,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
                         <?= Cart::widget(['view' => 'short']) ?>
 
-                        <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'fr', 'uk', 'kz', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+                        <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy']) && !empty($clearPhoneNumb)) { ?>
                             <a href="tel:+<?= $clearPhoneNumb ?>" class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
@@ -142,7 +142,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
 
                         <?= Cart::widget(['view' => 'short']) ?>
 
-                        <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'fr', 'uk', 'kz', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+                        <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])  && !empty($clearPhoneNumb)) { ?>
                             <a href="tel:+<?= $clearPhoneNumb ?>" class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
@@ -320,7 +320,7 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
             <span class="for-fctext"><?= Yii::t('app', 'Напишите нам') ?></span>
         </div>
 
-        <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'fr', 'uk', 'kz', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+        <?php if (Yii::$app->getUser()->isGuest && !in_array(DOMAIN_TYPE, ['com', 'co.il']) && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy']) && !empty($clearPhoneNumb)) { ?>
             <div class="phone-container">
                 <a href="tel:+<?= $clearPhoneNumb ?>" class="phone-num">
                     <?= Yii::$app->partner->getPartnerPhone() ?>
