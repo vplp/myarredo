@@ -1,0 +1,22 @@
+a:2:{i:0;a:2:{i:0;s:1028:"                    <div class="ico">
+                        <img src="/assets/6a3308ea/img/phone.svg" width="36" height="31" alt="">                    </div>
+
+                    <meta itemprop="name" content=""/>
+
+                    <p>Отримати консультацію в Києва</p>
+
+                    <p class="num" itemprop="telephone">+380931775344</p>
+
+                    <div class="ico">
+                        <img src="/assets/6a3308ea/img/marker-map.png" width="34" height="28" alt="">                    </div>
+
+                    <div class="stud" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                        <p></p>
+                        <meta itemprop="addressLocality"
+                              content="Україна Києва"/>
+                        <p>Києва</p>
+                        <meta itemprop="streetAddress" content="</"/>
+                        <p></p>
+                                            </div>
+
+                    ";i:1;N;}i:1;N;}

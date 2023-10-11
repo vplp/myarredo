@@ -1,0 +1,22 @@
+a:2:{i:0;a:2:{i:0;s:1085:"                    <div class="ico">
+                        <img src="/assets/6a3308ea/img/phone.svg" width="36" height="31" alt="">                    </div>
+
+                    <meta itemprop="name" content="Prospect Bau Consult GmbH"/>
+
+                    <p>Rat einholen bei Berlin</p>
+
+                    <p class="num" itemprop="telephone">+491602263355</p>
+
+                    <div class="ico">
+                        <img src="/assets/6a3308ea/img/marker-map.png" width="34" height="28" alt="">                    </div>
+
+                    <div class="stud" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                        <p>Prospect Bau Consult GmbH</p>
+                        <meta itemprop="addressLocality"
+                              content="Deutschland Berlin"/>
+                        <p>Berlin</p>
+                        <meta itemprop="streetAddress" content="Saargemünder Straße 27b</"/>
+                        <p>Saargemünder Straße 27b</p>
+                                            </div>
+
+                    ";i:1;N;}i:1;N;}

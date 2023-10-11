@@ -1,0 +1,5 @@
+a:2:{i:0;a:2:{i:0;s:448:"<form id="search-form" class="form-inline" action="/search/" method="get">
+                            <div class="search-group">
+                                <input type="text" class="form-control input-md" name="search" placeholder="Suche">                                <button type="submit" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>                            </div>
+
+                            </form>";i:1;N;}i:1;N;}

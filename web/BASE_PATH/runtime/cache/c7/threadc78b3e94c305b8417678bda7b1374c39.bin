@@ -1,0 +1,22 @@
+a:2:{i:0;a:2:{i:0;s:1180:"                    <div class="ico">
+                        <img src="/assets/6a3308ea/img/phone.svg" width="36" height="31" alt="">                    </div>
+
+                    <meta itemprop="name" content="Centrufficio"/>
+
+                    <p>Получить консультацию в Санкт-Петербурге</p>
+
+                    <p class="num" itemprop="telephone">+7 (812) 336-42-86</p>
+
+                    <div class="ico">
+                        <img src="/assets/6a3308ea/img/marker-map.png" width="34" height="28" alt="">                    </div>
+
+                    <div class="stud" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                        <p>Centrufficio</p>
+                        <meta itemprop="addressLocality"
+                              content="Россия Санкт-Петербург"/>
+                        <p>Санкт-Петербург</p>
+                        <meta itemprop="streetAddress" content="Московский пр., д.61</"/>
+                        <p>Московский пр., д.61</p>
+                                            </div>
+
+                    ";i:1;N;}i:1;N;}

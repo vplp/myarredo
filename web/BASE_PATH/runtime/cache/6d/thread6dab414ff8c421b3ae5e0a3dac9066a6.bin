@@ -1,0 +1,22 @@
+a:2:{i:0;a:2:{i:0;s:1135:"                    <div class="ico">
+                        <img src="/assets/6a3308ea/img/phone.svg" width="36" height="31" alt="">                    </div>
+
+                    <meta itemprop="name" content="&quot;Старый Рим&quot;"/>
+
+                    <p>Получить консультацию в Ялте</p>
+
+                    <p class="num" itemprop="telephone">+7 (978) 207-41-44</p>
+
+                    <div class="ico">
+                        <img src="/assets/6a3308ea/img/marker-map.png" width="34" height="28" alt="">                    </div>
+
+                    <div class="stud" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                        <p>&quot;Старый Рим&quot;</p>
+                        <meta itemprop="addressLocality"
+                              content="Россия Ялта"/>
+                        <p>Ялта</p>
+                        <meta itemprop="streetAddress" content=" ул. Морская, 5</"/>
+                        <p> ул. Морская, 5</p>
+                                            </div>
+
+                    ";i:1;N;}i:1;N;}

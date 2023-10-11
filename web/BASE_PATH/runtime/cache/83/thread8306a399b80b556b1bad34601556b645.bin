@@ -1,0 +1,48 @@
+a:2:{i:0;a:2:{i:0;s:2666:"
+<div class="cont-info">
+    <div class="cont-info-in feedback-box">
+        <div class="cont-info-border">
+            <div class="feedback-title">Заполните форму</div>
+
+            <form id="w1" action="https://vitebsk.myarredo.by/forms/feedback/" method="post">
+<input type="hidden" name="_csrf" value="pUbcCDykKKd_oo77S1GE7wSbsShAVe1FJNmW6hUG2fvIa5oxY8cf0DOay7EoAMiJW-7IH20Nm3NUm9-1ZH7ujA==">
+            <div class="form-group field-formsfeedback-email required">
+
+<input type="text" id="formsfeedback-email" class="form-control" name="FormsFeedback[email]" placeholder="E-mail" aria-required="true">
+
+<div class="help-block"></div>
+</div>
+            <div class="form-group field-formsfeedback-name required">
+
+<input type="text" id="formsfeedback-name" class="form-control" name="FormsFeedback[name]" placeholder="Имя" aria-required="true">
+
+<div class="help-block"></div>
+</div>
+            <div class="form-group field-formsfeedback-phone required">
+
+<input type="text" id="formsfeedback-phone" class="form-control" name="FormsFeedback[phone]" placeholder="Телефон" aria-required="true">
+
+<div class="help-block"></div>
+</div>
+            <div class="form-group field-formsfeedback-comment required">
+
+<textarea id="formsfeedback-comment" class="form-control" name="FormsFeedback[comment]" placeholder="Комментарий" aria-required="true"></textarea>
+
+<div class="help-block"></div>
+</div>
+            <div class="form-group field-formsfeedback-user_agreement required">
+<input type="hidden" name="FormsFeedback[user_agreement]" value="0"><input type="checkbox" id="formsfeedback-user_agreement" name="FormsFeedback[user_agreement]" value="1" aria-required="true"><label class="control-label" for="formsfeedback-user_agreement">&nbsp;Подтверждаю <a href="/terms-of-use/" target="_blank">пользовательское соглашение</a> и <a href="/offers/" target="_blank">оферту</a></label><div class="help-block"></div>
+</div>
+            <div class="form-group field-formsfeedback-recaptcha required">
+
+<input type="hidden" id="formsfeedback-recaptcha" class="form-control" name="FormsFeedback[reCaptcha]" aria-required="true"><div id="formsfeedback-recaptcha-recaptcha-w1" class="g-recaptcha" data-sitekey="6LehPRkUAAAAAB1TVTLbwB1GYua9tI4aC1cHYSTU" data-input-id="formsfeedback-recaptcha" data-form-id="w1"></div>
+
+<div class="help-block"></div>
+</div>
+            <button type="submit" class="btn btn-success big">Отправить</button>
+            </form>        </div>
+    </div>
+</div>
+
+<div class="cont-bg custom-lazy" data-background="/assets/6a3308ea/img/cont-photo-bg.jpg"></div>
+";i:1;N;}i:1;N;}
