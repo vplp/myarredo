@@ -3,11 +3,13 @@
 namespace frontend\modules\page\controllers;
 
 use Yii;
+use \yii\db\Query;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 use frontend\components\BaseController;
 use frontend\modules\page\models\Page;
-
+use frontend\modules\page\models\PageLang;
+use frontend\modules\user\components\UserIpComponent;
 /**
  * Class PageController
  *
@@ -72,6 +74,24 @@ class PageController extends BaseController
         Yii::$app->metatag->registerModel($model)->render();
 
         $this->title = Yii::$app->metatag->seo_title ?? $model['lang']['title'];
+
+        if ($model->alias == 'promo2'){
+            //$rip = new UserIpComponent();
+            //echo "<pre 111111111111111111111111>";var_dump((new UserIpComponent())->ip);echo "</pre>";
+            //exit;
+            //Yii::$app->cache->flush();
+            $langs = (new \yii\db\Query())
+            ->select('*')
+            ->from(PageLang::tableName())
+            ->where(['rid' => $model->id])
+            ->all();
+            //Yii::$app->cache->flush();
+            $this->layout = '/promo2';
+            return $this->render('promo2', [
+                'model' => $model,
+                'langs' => $langs,
+            ]);
+        }
 
         return $this->render('view', [
             'model' => $model,

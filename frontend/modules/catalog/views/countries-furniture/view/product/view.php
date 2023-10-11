@@ -178,6 +178,8 @@ $this->title = $this->context->title;
                                                     }
                                                 }
 
+                                                array_multisort($paramsUrl[$keys['style']], SORT_ASC, $paramsUrl[$keys['style']]);
+
                                                 if ($model['types']) {
                                                     $paramsUrl[$keys['type']][] = $model['types'][Yii::$app->languages->getDomainAlias()];
                                                 }

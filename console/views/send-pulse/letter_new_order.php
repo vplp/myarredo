@@ -37,7 +37,7 @@ if (in_array($order->lang, ['ru-RU'])) {
             <?= Html::a(
                 Yii::t('app', 'Новая заявка'),
                 'https://www.myarredo.' . $domain . '/partner/orders/'
-            ) . ' ' .
+            ) . ' ' . date('Y-m-d H:i', $order->created_at) . ' '.
             Yii::t('app', 'на сайте') . ' ' . 'MYARREDO.' . $domain ?>
 
             <?php if (in_array($order->lang, ['ru-RU']) && $order->city && $order->city->lang) { ?>

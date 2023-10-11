@@ -9,6 +9,10 @@ use yii\web\Response;
 use yii\filters\AccessControl;
 use frontend\components\BaseController;
 use frontend\modules\shop\models\{Order, OrderAnswer, OrderItem, OrderItemPrice};
+use yii\helpers\ArrayHelper;
+use common\actions\upload\{
+    DeleteAction, UploadAction
+};
 
 /**
  * Class PartnerOrderController
@@ -44,7 +48,8 @@ class PartnerOrderController extends BaseController
                         'actions' => [
                             'list-italy',
                             'delivery-italian-orders',
-                            'pjax-save-order-answer'
+                            'pjax-save-order-answer',
+                            'one-file-upload'
                         ],
                         'roles' => ['logistician', 'partner'],
                     ],
@@ -206,6 +211,7 @@ class PartnerOrderController extends BaseController
 
             if ($modelOrder->isArchive()) {
                 // show message
+                file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/partner-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." не успел, заказ в архиве\n", FILE_APPEND);
                 Yii::$app->getSession()->setFlash('error', 'Не успели');
             } else {
                 /**
@@ -257,11 +263,15 @@ class PartnerOrderController extends BaseController
                                     }
                                 }
                             } catch (Exception $e) {
+                                $q=print_r($e,1);
+                                file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/partner-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." OrderItemPrice error, rollback ".$q."\n", FILE_APPEND);
                                 $transaction->rollBack();
                             }
                         } else {
                             $response['success'] = 0;
                             $response['OrderItemPrice'][$product_id] = $modelOrderItemPrice->getFirstErrors();
+                            $q=print_r($response['OrderItemPrice'][$product_id],1);
+                            file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/partner-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." OrderItemPrice novalid ".$q."\n", FILE_APPEND);
                         }
                     }
 
@@ -325,14 +335,20 @@ class PartnerOrderController extends BaseController
                             );
                             // end send
                         } else {
+                            $q=print_r($modelOrderAnswer->getFirstErrors(),1);
+                            file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/partner-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." OrderAnswer not save, rollback ".$q."\n", FILE_APPEND);
                             $transaction->rollBack();
                         }
                     } catch (Exception $e) {
+                        $q=print_r($e,1);
+                        file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/partner-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." OrderAnswer error, rollback ".$q."\n", FILE_APPEND);
                         $transaction->rollBack();
                     }
                 } else {
                     $response['success'] = 0;
                     $response['OrderAnswer'] = $modelOrderAnswer->getFirstErrors();
+                    $q=print_r($response['OrderAnswer'],1);
+                    file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/partner-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." OrderAnswer novalid ".$q."\n", FILE_APPEND);
                 }
 
                 return $response;
@@ -362,5 +378,27 @@ class PartnerOrderController extends BaseController
         return $this->render('list-italy/delivery_italian_orders', [
             'dataProvider' => $models,
         ]);
+    }
+
+    /**
+     * @return array
+     */
+    public function actions()
+    {
+        return ArrayHelper::merge(
+            parent::actions(),
+            [
+                'one-file-upload' => [
+                    'class' => UploadAction::class,
+                    'path' => Yii::getAlias('@uploads').'/files',
+                    'uploadOnlyImage' => false,
+                    'unique' => false
+                ],
+                'one-file-delete' => [
+                    'class' => DeleteAction::class,
+                    'path' => Yii::getAlias('@uploads').'/files'
+                ],
+            ]
+        );
     }
 }

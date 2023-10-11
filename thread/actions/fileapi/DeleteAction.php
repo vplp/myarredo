@@ -53,6 +53,8 @@ class DeleteAction extends Action
         if (($file = Yii::$app->getRequest()->post($this->paramName))) {
             $filename = FileHelper::normalizePath($this->path . '/' . $file);
             if (is_file($filename)) {
+                $q=print_r(\Yii::$app->getUser()->id, 1);
+                file_put_contents('/var/www/www-root/data/www/myarredo.ru/DeleteAction-log.txt', date('Y-m-d H:i:s').' ThreadDeleteAction1 file='.$filename. ' user='.$q."\n", FILE_APPEND);
                 $error = (unlink($filename)) ? 'file deleted' : 'can not delete file';
             }
             //delete thumb
@@ -60,6 +62,8 @@ class DeleteAction extends Action
                 foreach ($this->thumb as $thumb) {
                     $filename = FileHelper::normalizePath($this->path . '/' . $thumb . $file);
                     if (is_file($filename)) {
+                        $q=print_r(\Yii::$app->getUser()->id, 1);
+                file_put_contents('/var/www/www-root/data/www/myarredo.ru/DeleteAction-log.txt', date('Y-m-d H:i:s').' ThreadDeleteAction2 file='.$filename. ' user='.$q."\n", FILE_APPEND);
                         unlink($filename);
                     }
                 }

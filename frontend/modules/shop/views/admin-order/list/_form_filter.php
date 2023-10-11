@@ -251,7 +251,7 @@ $('select#factory_id').change(function(){
 $('.change-date').on('click', function () {
     $('#form-stats').submit();
 });
-
+if (typeof $.datepicker !== 'undefined') {
 $.datepicker.regional['ru'] = {
     closeText: 'Закрыть',
     prevText: '&#x3c;Пред',
@@ -283,10 +283,10 @@ $(".drop-date-picker").daterangepicker({
     rangeStartTitle: '',
     rangeEndTitle: '',
     presetRanges: [
-        {text: '$todayLabel', dateStart: 'today', dateEnd: 'today'},
-        {text: '$yesterdayLabel', dateStart: 'today-1days', dateEnd: 'today'},
-        {text: '$weekLabel', dateStart: 'today-7days', dateEnd: 'today'},
-        {text: '$oneMonthLabel', dateStart: 'today-29days', dateEnd:'today'},
+        {text: "$todayLabel", dateStart: 'today', dateEnd: 'today'},
+        {text: "$yesterdayLabel", dateStart: 'today-1days', dateEnd: 'today'},
+        {text: "$weekLabel", dateStart: 'today-7days', dateEnd: 'today'},
+        {text: "$oneMonthLabel", dateStart: 'today-29days', dateEnd:'today'},
         {
             text: '$currentMonthLabel', 
             dateStart: function() { 
@@ -308,7 +308,7 @@ $(".drop-date-picker").daterangepicker({
         dateRange: '$dateRangeLabel'
     },
 },$.datepicker.setDefaults($.datepicker.regional['$lang']));
-
+}
 $(".drop-date-picker").click(function(){
     $(this).parent().click();
 });

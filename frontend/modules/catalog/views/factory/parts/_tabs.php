@@ -145,7 +145,7 @@ $ItalianProductGrezzo = ItalianProduct::getGrezzo($model['id']);
 
                     $params[$keys['factory']][] = $model['alias'];
                     $params[$keys['type']][] = $item[Yii::$app->languages->getDomainAlias()];
-
+                    
                     echo Html::beginTag('li') .
                         Html::a(
                             '<span class="for-allprod">' . $item['title'] . '</span>' .

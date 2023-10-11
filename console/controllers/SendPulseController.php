@@ -27,22 +27,23 @@ class SendPulseController extends Controller
 
         /**
          * Import by country
-         */
-
+         */   
         $modelCountry = Country::findBase()->all();
 
         foreach ($modelCountry as $country) {
-            $modelUser = User::findBase()
-                ->andWhere([
-                    'group_id' => Group::PARTNER,
-                    Profile::tableName() . '.country_id' => $country['id']
-                ])
-                ->all();
-
             /**
              * Add new email to mailing lists
              */
             if ($country['bookId']) {
+                $modelUser = User::find()
+                ->joinWith(['countries'])
+                ->andWhere([
+                    'group_id' => Group::PARTNER,
+                    User::tableName() . '.published' => '1',
+                    'fv_user_rel_location_country.location_country_id' => $country['id']
+                ])
+                ->all();
+
                 $bookId = $country['bookId'];
                 $emails = [];
 
@@ -61,7 +62,6 @@ class SendPulseController extends Controller
                         ],
                     ];
                 }
-
                 Yii::$app->sendPulse->addEmails($bookId, $emails);
             }
         }
@@ -105,7 +105,7 @@ class SendPulseController extends Controller
          */
 
         $modelCountry = Country::findBase()->all();
-
+              
         foreach ($modelCountry as $country) {
             if ($country['bookId']) {
                 $bookId = $country['bookId'];
@@ -114,19 +114,29 @@ class SendPulseController extends Controller
                 $requestResult = Yii::$app->sendPulse->getEmailsFromBook($bookId);
 
                 foreach ($requestResult as $item) {
-                    $modelUser = User::findBase()
+                    $modelUser = User::find()
+                        ->joinWith(['countries'])
                         ->andWhere([
                             'group_id' => Group::PARTNER,
+                            User::tableName() . '.published' => '1',
                             'email' => $item->email,
-                        ])
-                        ->one();
+                            //'fv_user_rel_location_country.location_country_id' => $country['id']
+                        ]);
+
+                    if (in_array($country['id'], [4,5,79,85])) {
+                        $modelUser = $modelUser->andWhere(['IN','fv_user_rel_location_country.location_country_id', [4,5,79,85]]);
+                    } else {
+                        $modelUser = $modelUser->andWhere(['fv_user_rel_location_country.location_country_id'=>$country['id']]);
+                    }
+
+                    $modelUser = $modelUser->one();
 
                     if ($modelUser == null) {
                         $emails[] = $item->email;
                     }
                 }
 
-                if (!empty($emails)) {
+                if (!empty($emails)) {            
                     Yii::$app->sendPulse->removeEmails($bookId, $emails);
                 }
             }
@@ -164,7 +174,7 @@ class SendPulseController extends Controller
      */
     public function actionSendCampaign()
     {
-        $this->stdout("SendPulse: start actionSendCampaign. \n", Console::FG_GREEN);
+        $this->stdout("SendPulse ".date("Y-m-d H:i:s").": start actionSendCampaign. \n", Console::FG_GREEN);
 
         /**
          * get order
@@ -182,7 +192,7 @@ class SendPulseController extends Controller
 
         if ($modelOrder !== null) {
             if ($modelOrder->city) {
-                $bookId = $modelOrder->city->country->bookId ?? '88910536';
+                $bookId = empty($modelOrder->city->country->bookId) ? '88910536' : $modelOrder->city->country->bookId;
             } else {
                 $bookId = '88910536';
             }
@@ -193,7 +203,7 @@ class SendPulseController extends Controller
             $senderName = 'myarredo';
             $senderEmail = 'info@myarredo.ru';
             $subject = Yii::t('app', 'Новая заявка') . ' №' . $modelOrder['id'];
-            $body = $this->renderPartial('letter_new_order', ['order' => $modelOrder]);
+            $body = $bookId == '88910536' ? $this->renderPartial('letter_new_order_europe', ['order' => $modelOrder]) : $this->renderPartial('letter_new_order', ['order' => $modelOrder]);
             $name = Yii::t('app', 'Новая заявка') . ' №' . $modelOrder['id'];
 
             Yii::$app->language = $currentLanguage;
@@ -207,12 +217,13 @@ class SendPulseController extends Controller
                 $subject,
                 $body,
                 $bookId,
-                $name
+                $name,
+                $modelOrder
             );
 
             $response = (array)$response;
 
-            $this->stdout("Order id: " . $modelOrder['id'] . " \n", Console::FG_GREEN);
+            $this->stdout("Order id ".date("Y-m-d H:i:s").": " . $modelOrder['id'] . " \n", Console::FG_GREEN);
 
             if (!isset($response['is_error'])) {
                 $modelOrder->setScenario('create_campaign');
@@ -224,13 +235,86 @@ class SendPulseController extends Controller
                  */
                 $this->sendNewRequestForFactory($modelOrder);
 
-                $this->stdout("Create campaign: " . $subject . " \n", Console::FG_GREEN);
+                $this->stdout("Create campaign ".date("Y-m-d H:i:s").": " . $subject . " \n", Console::FG_GREEN);
             } else {
-                $this->stdout("Error in " . $modelOrder['id'] . ': ' . $response['message'] . " \n", Console::FG_GREEN);
+                $responseArray = array(
+                    $senderName,
+                    $senderEmail,
+                    $subject,
+                    $body,
+                    $bookId,
+                    $name
+                );
+                $this->stdout("Error in ".date("Y-m-d H:i:s")." " . $modelOrder['id'] . ': ' . $response['message'] . " \n".print_r($responseArray, 1) . " \n", Console::FG_GREEN);
             }
         }
 
-        $this->stdout("SendPulse: end actionSendCampaign. \n", Console::FG_GREEN);
+        $this->stdout("SendPulse ".date("Y-m-d H:i:s").": end actionSendCampaign. \n", Console::FG_GREEN);
+    }
+
+    public function actionSendTest()
+    {
+        $this->stdout("SendPulse ".date("Y-m-d H:i:s").": start actionSendTest. \n", Console::FG_GREEN);
+
+        /**
+         * get order
+         */
+        $dateFrom = strtotime(date('Y-m-d 00:00:00', strtotime('-14 days')));
+        $dateTo = strtotime(date('Y-m-d 23:59:59', strtotime('-14 days')));
+        $modelOrders = Order::findBase()
+            /*->andWhere([
+                'between', Order::tableName() . '.created_at', $dateFrom, $dateTo
+            ])*/
+            ->andWhere([
+                Order::tableName() .'.id'=>11520
+            ])
+            ->enabled()
+            ->all();
+
+        /** @var Order $modelOrder */
+
+        if ($modelOrders !== null) {
+
+            foreach ($modelOrders as $modelOrder) {
+
+                $currentLanguage = Yii::$app->language;
+                Yii::$app->language = $modelOrder->lang;
+
+                $senderName = 'myarredo';
+                $senderEmail = 'info@myarredo.ru';
+                $subject = Yii::t('app', 'Оцените сотрудничество с') . ' MYARREDO';
+                $body = $this->renderPartial('letter_review', ['order' => $modelOrder]);
+
+                Yii::$app->language = $currentLanguage;
+
+                /**
+                 * send partner campaign
+                 */
+                $response = \Yii::$app->mailer
+                                ->compose()
+                                ->setFrom([$senderEmail => $senderName])
+                                //->setTo($modelOrder->customer->email)
+                                ->setTo('dmd@liderpoiska.ru')
+                                //->setTo('myarredo@myarredo.ru')
+                                ->setSubject($subject)
+                                ->setHtmlBody($body)
+                                ->send();
+
+                $response = (array)$response;
+
+                if (isset($response['is_error'])) {
+                    $responseArray = array(
+                        $senderName,
+                        $senderEmail,
+                        $subject,
+                        $body,
+                    );
+                    $this->stdout("Error in ".date("Y-m-d H:i:s")." " . $modelOrder['id'] . ': ' . $response['message'] . " \n".print_r($responseArray, 1) . " \n", Console::FG_GREEN);
+                }
+            }
+        }
+
+        $this->stdout("SendPulse ".date("Y-m-d H:i:s").": end actionSendTest. \n", Console::FG_GREEN);
     }
 
     /**
@@ -436,5 +520,9 @@ class SendPulseController extends Controller
         }
 
         $this->stdout("SendPulse: end actionSendOrderAnswer. \n", Console::FG_GREEN);
+    }
+
+    public function actionSendTest1(){
+        var_dump(Yii::$app->sendPulse->sendSmtpBz('myarredo', 'info@myarredo.com', 'testAction', '<b>test action</b>', 99999));
     }
 }

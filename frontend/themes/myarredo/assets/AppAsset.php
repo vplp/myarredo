@@ -77,4 +77,13 @@ class AppAsset extends AssetBundle
     public $cssOptions = [
         'position' => View::POS_END
     ];
+
+    public function init()
+    {
+        parent::init();
+        if (\Yii::$app->request->url == '/promo2/') {
+            $this->css = [];
+            $this->js = [];
+        }
+    }
 }

@@ -7,7 +7,7 @@ use frontend\modules\catalog\models\Product;
 
 /* @var $this yii\web\View */
 /* @var $orderItem \frontend\modules\shop\models\OrderItem */
-
+$user = Yii::$app->user->identity;
 ?>
 
 <div class="basket-item-info">
@@ -64,4 +64,51 @@ use frontend\modules\catalog\models\Product;
             </td>
         </tr>
     </table>
+    <?php if (!Yii::$app->getUser()->isGuest && $user->profile->isPdfAccess()) { ?>
+        <div class="downloads">
+            <?php
+            $pricesFiles = [];
+            if (isset($orderItem->product->factoryPricesFiles)) {
+                $pricesFiles = $orderItem->product->factoryPricesFiles;
+            } else if (isset($orderItem->product->factory->pricesFiles)) {
+                $pricesFiles = $orderItem->product->factory->pricesFiles;
+            }
+
+            ?>
+            <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
+            <ul>
+                <?php
+                    if (!empty($pricesFiles)) {
+                        foreach ($pricesFiles as $priceFile) {
+                            if ($fileLink = $priceFile->getFileLink()) { ?>
+                                <li>
+                                    <?= Html::a(
+                                        $priceFile->title,
+                                        Url::toRoute(['/catalog/factory/pdf-viewer']) . '?file=' . $fileLink . '&search=' . $orderItem->product->article,
+                                        [
+                                            'target' => '_blank',
+                                            'class' => 'click-on-factory-file',
+                                            'data-id' => $priceFile->id
+                                        ]
+                                    ) ?>
+                                </li>
+                            <?php }
+                        }
+                    } else { ?>
+                        <li>
+                            <?= Html::a(
+                                Yii::t('app', 'Прайс листы') . ' <i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
+                                ['/catalog/factory/view-tab', 'alias' => $orderItem->product->factory->alias, 'tab' => 'pricelists'],
+                                [
+                                    'target' => '_blank',
+                                    'class' => 'btn-inpdf'
+                                ]
+                            ) ?>
+                        </li>
+                    <?php } ?>
+
+            </ul>
+
+        </div>
+    <?php } ?>
 </div>

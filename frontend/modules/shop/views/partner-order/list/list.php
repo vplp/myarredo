@@ -49,7 +49,8 @@ use frontend\modules\shop\models\Order;
                     echo '<div class="partner-info-text">' . Yii::t('app', 'Вы можете отвечать на заявки фабрик {factoryDealers}. Для ответа на другие заявки свяжитесь с администратором.', ['factoryDealers' => implode(',', $factoryDealers)]) . '</div>';
                 } ?>
 
-                <?php if (!Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
+                <?php if (Yii::$app->user->identity->group->role == 'partner' && in_array(Yii::$app->user->identity->profile->country_id, [4,5,79,85])) { ?>
+                <?php } elseif (!Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                     <div class="info-alertbox">
                         <?= Yii::t('app', 'Вы сможете ответить на Заявки покупателей после размещения небольшого кода на Вашем сайте.') ?>
                         <u>
@@ -116,7 +117,7 @@ use frontend\modules\shop\models\Order;
                                     </li>
                                     <li>
                                         <span>
-                                            <?php if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
+                                            <?php if (Yii::$app->user->identity->profile->getPossibilityToViewCustomer($modelOrder)) {
                                                 echo $modelOrder->customer->phone;
                                             } else {
                                                 echo '-';
@@ -125,7 +126,7 @@ use frontend\modules\shop\models\Order;
                                     </li>
                                     <li>
                                         <span>
-                                            <?php if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
+                                            <?php if (Yii::$app->user->identity->profile->getPossibilityToViewCustomer($modelOrder)) {
                                                 echo $modelOrder->customer->email;
                                             } else {
                                                 echo '-';
@@ -151,7 +152,12 @@ use frontend\modules\shop\models\Order;
                                         </li>
                                     <?php } ?>
                                     <li>
-                                        <span class="order_status_<?= $modelOrder->order_status ?>"><?= Order::getOrderStatuses($modelOrder->order_status); ?></span>
+                                        <?php 
+                                        $orderStatus = $modelOrder->order_status;
+                                        if ((Yii::$app->user->identity->id == 3388061 && $modelOrder->orderAnswer->answer_time == 0) || !Yii::$app->user->identity->profile->getPossibilityToViewCustomer($modelOrder)) {
+                                              $orderStatus = 'new';
+                                         } ?>
+                                        <span class="order_status_<?= $orderStatus ?>"><?= Order::getOrderStatuses($orderStatus); ?></span>
                                     </li>
                                 </ul>
 

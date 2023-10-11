@@ -186,4 +186,13 @@ class Languages extends Component implements iLanguages, BootstrapInterface
 
         return $alias;
     }
+
+    /**
+     * @return string
+     */
+    public function getDomain()
+    {
+        $domain = DOMAIN_TYPE;
+        return $domain;
+    }
 }

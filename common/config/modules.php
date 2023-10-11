@@ -6,5 +6,8 @@ return [
             '/news/list/index' => 'News List',
             '/feedback/feedback/index' => 'Feedback'
         ]
+    ],
+    'files' => [
+        'class' => \common\modules\files\FilesModule::class,
     ]
 ];

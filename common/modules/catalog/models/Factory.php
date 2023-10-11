@@ -46,6 +46,8 @@ use voskobovich\behaviors\ManyToManyBehavior;
  * @property boolean $show_for_by
  * @property boolean $show_for_ua
  * @property boolean $show_for_com
+ * @property boolean $show_for_uk
+ * @property boolean $show_for_fr
  * @property boolean $show_for_de
  * @property boolean $to_translate
  * @property integer $product_count
@@ -150,6 +152,8 @@ class Factory extends ActiveRecord
                     'show_for_by',
                     'show_for_ua',
                     'show_for_com',
+                    'show_for_uk',
+                    'show_for_fr',
                     'show_for_de',
                     'to_translate',
                     'dealers_can_answer',
@@ -199,6 +203,8 @@ class Factory extends ActiveRecord
             'show_for_by' => ['show_for_by'],
             'show_for_ua' => ['show_for_ua'],
             'show_for_com' => ['show_for_com'],
+            'show_for_uk' => ['show_for_uk'],
+            'show_for_fr' => ['show_for_fr'],
             'show_for_de' => ['show_for_de'],
             'to_translate' => ['to_translate'],
             'mark' => ['mark'],
@@ -229,6 +235,8 @@ class Factory extends ActiveRecord
                 'show_for_by',
                 'show_for_ua',
                 'show_for_com',
+                'show_for_uk',
+                'show_for_fr',
                 'show_for_de',
                 'to_translate',
                 'dealers_ids',
@@ -282,6 +290,8 @@ class Factory extends ActiveRecord
             'show_for_by' => 'Показывать на by',
             'show_for_ua' => 'Показывать на ua',
             'show_for_com' => 'Показывать на com',
+            'show_for_uk' => 'Показывать на uk',
+            'show_for_fr' => 'Показывать на fr',
             'show_for_de' => 'Показывать на de',
             'to_translate' => 'В список на перевод',
             'product_count' => 'product_count',
@@ -512,6 +522,8 @@ class Factory extends ActiveRecord
             $model->show_for_by = 1;
             $model->show_for_ua = 1;
             $model->show_for_com = 1;
+            $model->show_for_uk = 1;
+            $model->show_for_fr = 1;
             $model->show_for_de = 1;
             $model->to_translate = 1;
 

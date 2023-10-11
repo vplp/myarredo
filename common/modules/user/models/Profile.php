@@ -52,6 +52,10 @@ use common\modules\catalog\models\FactorySubdivision;
  * @property boolean $three_answers_per_month
  * @property boolean $one_answer_per_month
  * @property boolean $working_conditions
+ * @property boolean $access_to_admin_orders
+ * @property boolean $can_see_all_answers
+ * @property boolean $can_see_contacts
+ * @property boolean $reliable_partner
  *
  * @property Country $country
  * @property City $city
@@ -80,6 +84,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'relations' => [
                     'city_ids' => 'cities',
                     'country_ids' => 'countries',
+                    'factory_ids' => 'factories',
                 ],
             ],
         ]);
@@ -131,6 +136,10 @@ class Profile extends \thread\modules\user\models\Profile
                     'possibility_to_answer',
                     'possibility_to_answer_sale_italy',
                     'possibility_to_answer_com_de',
+                    'access_to_admin_orders',
+                    'can_see_all_answers',
+                    'can_see_contacts',
+                    'reliable_partner',
                     'pdf_access',
                     'show_contacts',
                     'show_contacts_on_sale',
@@ -157,6 +166,7 @@ class Profile extends \thread\modules\user\models\Profile
                     'country_cities_2',
                     'country_cities_3',
                     'country_cities_4',
+                    'factory_ids'
                 ],
                 'each',
                 'rule' => ['integer']
@@ -198,6 +208,10 @@ class Profile extends \thread\modules\user\models\Profile
                 'possibility_to_answer',
                 'possibility_to_answer_sale_italy',
                 'possibility_to_answer_com_de',
+                'access_to_admin_orders',
+                'can_see_all_answers',
+                'can_see_contacts',
+                'reliable_partner',
                 'working_conditions',
                 'pdf_access',
                 'show_contacts',
@@ -232,6 +246,10 @@ class Profile extends \thread\modules\user\models\Profile
                 'possibility_to_answer',
                 'possibility_to_answer_sale_italy',
                 'possibility_to_answer_com_de',
+                'access_to_admin_orders',
+                'can_see_all_answers',
+                'can_see_contacts',
+                'reliable_partner',
                 'working_conditions',
                 'pdf_access',
                 'show_contacts',
@@ -271,6 +289,10 @@ class Profile extends \thread\modules\user\models\Profile
                 'possibility_to_answer',
                 'possibility_to_answer_sale_italy',
                 'possibility_to_answer_com_de',
+                'access_to_admin_orders',
+                'can_see_all_answers',
+                'can_see_contacts',
+                'reliable_partner',
                 'pdf_access',
                 'show_contacts',
                 'show_contacts_on_sale',
@@ -280,6 +302,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'country_cities_2',
                 'country_cities_3',
                 'country_cities_4',
+                'factory_ids',
                 'cape_index',
                 'image_link',
                 'image_salon',
@@ -322,11 +345,16 @@ class Profile extends \thread\modules\user\models\Profile
             'possibility_to_answer' => Yii::t('app', 'Отвечает без установки кода на сайт'),
             'possibility_to_answer_sale_italy' => Yii::t('app', 'Отвечает на заявки Итальянской распродажи'),
             'possibility_to_answer_com_de' => 'Отвечает на заявки myarredo.com  myarredo.de myarredofamily.com',
+            'access_to_admin_orders' => 'Может оставлять комментарии к заявкам',
+            'can_see_all_answers' => 'Видеть все ответы',
+            'can_see_contacts' => Yii::t('app', 'Показать контакты'),
+            'reliable_partner' => Yii::t('app', 'Надежный продавец'),
             'pdf_access' => Yii::t('app', 'Доступ к прайсам и каталогам'),
             'show_contacts' => Yii::t('app', 'Показывать в контактах'),
             'show_contacts_on_sale' => Yii::t('app', 'Показывать контакты в распродаже'),
             'city_ids' => Yii::t('app', 'Ответы в городах'),
             'country_ids' => Yii::t('app', 'Ответы в странах'),
+            'factory_ids' => Yii::t('app', 'Ответы на фабрики'),
             'factory_package' => Yii::t('app', 'Package'),
             'cape_index' => Yii::t('app', 'CAPE index'),
             'image_link' => Yii::t('app', 'Image link'),
@@ -424,6 +452,17 @@ class Profile extends \thread\modules\user\models\Profile
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getFactories()
+    {
+        return $this
+            ->hasMany(Factory::class, ['id' => 'catalog_factory_id'])
+            ->viaTable('fv_user_rel_catalog_factory', ['user_id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
      */
     public function getFactory()
     {
@@ -509,9 +548,54 @@ class Profile extends \thread\modules\user\models\Profile
      * @return bool
      * @throws \Throwable
      */
+    public function getPossibilityToViewCustomer(Order $modelOrder = null)
+    {
+        if (Yii::$app->user->identity->group->role == 'admin') return true;
+        if (in_array(Yii::$app->user->identity->group->role, ['partner', 'settlementCenter']) && !empty(Yii::$app->user->identity->profile->can_see_contacts))
+            return true;
+        if (in_array(Yii::$app->user->identity->group->role, ['partner', 'factory', 'settlementCenter']) && $modelOrder) {
+            foreach ($modelOrder->orderAnswers as $answer) {
+                if ($answer->user_id == Yii::$app->user->id) return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param Order $modelOrder
+     * @return bool
+     * @throws \Throwable
+     */
     public function getPossibilityToAnswer(Order $modelOrder = null)
     {
+        if (Yii::$app->user->identity->group->role == 'partner' && !in_array(Yii::$app->user->identity->profile->country_id, [1,2,3])){
+            $modelFactories = Yii::$app->user->identity->profile->factories;
+            if ($modelFactories != null) {
+                $arFactories = array();
+                foreach ($modelOrder->items as $item) {
+                    $arFactories[] = $item->product->factory_id;
+                }
+                foreach ($modelFactories as $item) {
+                    if (in_array($item['id'],$arFactories)) {
+                        return true;
+                    }
+                }
+                return false;
+            } else {
+                return false;
+            }
+        }
         if (in_array(Yii::$app->user->identity->group->role, ['partner', 'factory', 'settlementCenter']) && $modelOrder && $modelOrder->country_id) {
+            $modelCities = Yii::$app->getUser()->getIdentity()->profile->cities;
+            if ($modelCities != null) {
+                foreach ($modelCities as $item) {
+                    if ($item['id'] == $modelOrder->city_id) {
+                        return true;
+                    }
+                }
+                return false;
+            }
             $modelCountries = Yii::$app->getUser()->getIdentity()->profile->countries;
             if ($modelCountries != null) {
                 foreach ($modelCountries as $item) {
@@ -573,6 +657,15 @@ class Profile extends \thread\modules\user\models\Profile
         return false;
     }
 
+
+    public function getAccessToAdminOrders()
+    {
+        if (in_array(Yii::$app->user->identity->group->role, ['partner']) && Yii::$app->user->identity->profile->access_to_admin_orders) {
+            return true;
+        }
+
+        return false;
+    }
 
     public function getPossibilityToAnswerComDe()
     {

@@ -12,7 +12,12 @@ use frontend\modules\shop\models\{
 /* @var $isUser boolean */
 
 if (in_array($order->lang, ['ru-RU'])) {
-    $domain = 'ru';
+    if ($modelOrder->city) {
+        $domain = $modelOrder->city->country->alias ?? 'ru';
+    } else {
+        $domain = 'ru';
+    }
+    //$domain = 'ru';
 } else if (in_array($order->lang, ['it-IT'])) {
     $domain = 'com/it';
 } else if (in_array($order->lang, ['en-EN'])) {

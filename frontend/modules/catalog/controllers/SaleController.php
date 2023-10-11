@@ -11,6 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\components\BaseController;
 use frontend\modules\user\models\Profile;
+use frontend\modules\forms\models\FormsFeedbackAfterOrder;
 use frontend\modules\catalog\models\{Sale,
     SaleLang,
     SaleRelSpecification,
@@ -257,6 +258,9 @@ class SaleController extends BaseController
             'image' => Sale::getImage($model['image_link']),
         ]);
 
+        $reviews = FormsFeedbackAfterOrder::findBase()->andWhere(['question_2'=> $model['user']['id'], 'published'=>1])->limit(4)->all();
+        $vote = FormsFeedbackAfterOrder::findBase()->andWhere(['question_2'=> $model['user']['id'], 'published'=>1])->average('vote');
+
         /**
          * Viewed products
          */
@@ -266,6 +270,8 @@ class SaleController extends BaseController
 
         return $this->render('view', [
             'model' => $model,
+            'reviews' => $reviews,
+            'vote' => $vote,
         ]);
     }
 

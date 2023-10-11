@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use frontend\modules\catalog\models\Product;
+use frontend\modules\forms\models\FormsFeedbackAfterOrder;
 use frontend\modules\shop\models\{
     Order, OrderItem
 };
@@ -11,7 +12,8 @@ use frontend\modules\shop\models\{
 /* @var $item Product */
 /* @var $product OrderItem */
 /* @var $modelOrder Order */
-
+$reviews = FormsFeedbackAfterOrder::findBase()->andWhere(['question_2'=> $modelOrder->orderAnswer->user->id, 'published'=>1])->one();
+$hasReviews = !empty($reviews);
 ?>
 
 <div style="width:540px; font: 16px Arial,sans-serif;">
@@ -93,6 +95,13 @@ use frontend\modules\shop\models\{
         <span style="text-align: left; color: #0077ca; border-bottom: 1px dotted #0077ca;">
             <?= $modelOrder->orderAnswer->user->profile->phone; ?>
         </span>
+        <?php if ($hasReviews){
+            echo Html::a(
+                Yii::t('app', 'Отзывы о салоне').' '.$modelOrder->orderAnswer->user->profile->getNameCompany(),
+                '/reviews/'.$modelOrder->orderAnswer->user->id,
+                []
+            ); 
+        }?>
     </div>
 
 </div>

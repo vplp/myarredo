@@ -14420,3 +14420,11 @@ body .concact-page .one-cont .cont-info-row a {
     font-size: 12px;
   }
 }
+.vote-wrapper table td div {background: url('/uploads/ai.png') -390px -51px no-repeat; width:19px; height:16px; overflow:hidden; }
+.vote-wrapper table td div.star-over { background-position:-374px -51px;}
+.div-flex{display: flex;justify-content: center;align-items: center;gap: 7px;}
+.mb-5 {margin-bottom: 5px}
+.reliable-partner{color:#9B1327}
+.fw600{font-weight: 600}
+.vote-number{font-size: 17px}
+.reviews-vote-wrapper{margin-bottom:10px}

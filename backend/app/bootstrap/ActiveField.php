@@ -185,7 +185,6 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
                     key: '" . basename($preview) . "',
                     filename: '" . basename($preview) . "',
                     caption: '" . basename($preview) . "',
-                    size: " . filesize(Yii::getAlias('@frontend-web') . $preview) . ",
                     url: '" . Url::toRoute(['one-file-delete', 'id' => $this->model->id]) . "'
                 }";
 
@@ -205,6 +204,83 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
                 'uploadAsync' => true,
                 'showCaption' => false,
                 'showRemove' => false,
+                'showUpload' => false,
+                'overwriteInitial' => false,
+                'initialPreview' => [$preview],
+                'initialPreviewConfig' => new JsExpression('[' . $initialPreviewConfig . ']'),
+                'preferIconicPreview' => true,
+                'previewFileIconSettings' => [
+                    'doc' => '<i class="fa fa-file-word-o text-primary"></i>',
+                    'xls' => '<i class="fa fa-file-excel-o text-success"></i>',
+                    'ppt' => '<i class="fa fa-file-powerpoint-o text-danger"></i>',
+                    'pdf' => '<i class="fa fa-file-pdf-o text-danger"></i>',
+                    'zip' => '<i class="fa fa-file-archive-o text-muted"></i>',
+                    'htm' => '<i class="fa fa-file-code-o text-info"></i>',
+                    'txt' => '<i class="fa fa-file-text-o text-info"></i>',
+                    'mov' => '<i class="fa fa-file-movie-o text-warning"></i>',
+                    'mp3' => '<i class="fa fa-file-audio-o text-warning"></i>',
+                    'jpg' => '<i class="fa fa-file-photo-o text-danger"></i>',
+                    'gif' => '<i class="fa fa-file-photo-o text-muted"></i>',
+                    'png' => '<i class="fa fa-file-photo-o text-primary"></i>'
+                ],
+                'autoReplace' => true,
+                'maxFileCount' => 1,
+                'append' => true,
+                'maxFileSize' => 200000000
+            ], $pluginOptions),
+            'pluginEvents' => [
+                'filebatchselected' => 'function(event, files) {
+                     $(this).fileinput("upload"); 
+                }',
+                'filebatchuploadsuccess' => 'function(event, data, previewId, index){
+                    var response = data.response;
+                    $("input[name=\'' . $inputName . '\']").val(response.name);
+                }',
+                'fileuploaded' => 'function(event, data, previewId, index){
+                    var response = data.response;
+                    $("input[name=\'' . $inputName . '\']").val(response.name);
+                }',
+            ]
+        ]);
+        return $this;
+    }
+
+    public function fileInputWidgetShort($preview = '', $options = [], $pluginOptions = [])
+    {
+        /* @var $class \yii\base\Widget */
+        $config['model'] = $this->model;
+        $config['attribute'] = $this->attribute;
+        $config['view'] = $this->form->getView();
+
+        $name = uniqid();
+
+        $initialPreviewConfig = "{  
+                    key: '" . basename($preview) . "',
+                    filename: '" . basename($preview) . "',
+                    caption: '" . basename($preview) . "',
+                    url: '" . Url::toRoute(['one-file-delete', 'id' => $this->model->id]) . "'
+                }";
+
+        $inputName = Html::getInputName($this->model, $this->attribute);
+        $this->parts['{input}'] = Html::activeHiddenInput($this->model, $this->attribute);
+        $this->parts['{input}'] .= FileInput::widget([
+            'name' => $name,
+            'options' => ArrayHelper::merge([], $options),
+            'pluginOptions' => ArrayHelper::merge([
+                'uploadUrl' => Url::toRoute(['one-file-upload', 'input_file_name' => $name]),
+                'uploadExtraData' => [
+                    '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
+                ],
+                'deleteExtraData' => [
+                    '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
+                ],
+                'uploadAsync' => true,
+                'showCaption' => true,
+                'initialCaption' => Yii::t('app', 'Choose file...'),
+                'showCancel' => false,
+                'showZoom' => true,
+                'showPreview' => false,
+                'showRemove' => true,
                 'showUpload' => false,
                 'overwriteInitial' => false,
                 'initialPreview' => [$preview],

@@ -11,7 +11,21 @@ use frontend\modules\catalog\models\ItalianProduct;
  */
 
 ?>
+<style>
+    @media screen and (max-width: 768px){
+        .home-main .sale-sect .sale-wrap .one-sale {
+            width: calc(50% - 20px);
+        }
+    }
 
+    @media screen and (max-width: 540px){
+        .home-main .sale-sect .sale-wrap .one-sale {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+</style>
 <div class="sale-sect">
     <div class="container large-container">
         <div class="section-header">

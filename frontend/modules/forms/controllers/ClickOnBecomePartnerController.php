@@ -8,6 +8,7 @@ use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
 use frontend\modules\forms\models\ClickOnBecomePartner;
+use frontend\modules\user\components\UserIpComponent;
 
 /**
  * Class ClickOnBecomePartnerController
@@ -47,7 +48,7 @@ class ClickOnBecomePartnerController extends BaseController
 
             $model->country_id = Yii::$app->city->getCountryId();
             $model->city_id = Yii::$app->city->getCityId();
-            $model->ip = Yii::$app->request->userIP;
+            $model->ip = (new UserIpComponent())->ip;//Yii::$app->request->userIP;
             $model->http_user_agent = $_SERVER['HTTP_USER_AGENT'];
 
             $save = $model->save();

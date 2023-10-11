@@ -19,6 +19,7 @@ use frontend\modules\shop\models\{
 };
 use yii\web\UploadedFile;
 use thread\modules\location\models\Country;
+use frontend\modules\user\components\UserIpComponent;
 
 /**
  * Class CartController
@@ -146,7 +147,7 @@ class CartController extends BaseController
                     // message
                     Yii::$app->getSession()->setFlash(
                         'success',
-                        Yii::t('app', 'Отправлено')
+                        Yii::t('app', 'Отправлено')."<script>window.reachGoal='find_product';</script>"
                     );
                 } else {
                     $transaction->rollBack();
@@ -185,7 +186,8 @@ class CartController extends BaseController
 
         $request = Yii::$app->getRequest()->post();
 
-        $userIP = new UserIp(Yii::$app->request->userIP);
+        //$userIP = new UserIp(Yii::$app->request->userIP);
+        $userIP = new UserIp((new UserIpComponent())->ip);
 
         $countryCode = $userIP->getCountryCode();
 

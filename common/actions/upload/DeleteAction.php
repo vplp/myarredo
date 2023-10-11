@@ -78,6 +78,8 @@ class DeleteAction extends Action
             $result['$filename'] = $filename;
 
             if (is_file($filename) && unlink($filename)) {
+                $q=print_r(\Yii::$app->getUser()->id, 1);
+                file_put_contents('/var/www/www-root/data/www/myarredo.ru/DeleteAction-log.txt', date('Y-m-d H:i:s').' DeleteAction1 file='.$filename. ' user='.$q."\n", FILE_APPEND);
                 $result['success'] = 1;
             } else {
                 $result['error'] = 'Can not delete file';
@@ -88,6 +90,8 @@ class DeleteAction extends Action
                 foreach ($this->thumb as $thumb) {
                     $filename = FileHelper::normalizePath($this->path . '/' . $thumb . $file);
                     if (is_file($filename)) {
+                        $q=print_r(\Yii::$app->getUser()->id, 1);
+                        file_put_contents('/var/www/www-root/data/www/myarredo.ru/DeleteAction-log.txt', date('Y-m-d H:i:s').' DeleteAction2 file='.$filename. ' user='.$q."\n", FILE_APPEND);
                         unlink($filename);
                     }
                 }

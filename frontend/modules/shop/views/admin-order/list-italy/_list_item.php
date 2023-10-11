@@ -9,7 +9,7 @@ use frontend\modules\shop\models\{
     Order, OrderItem, OrderAnswer
 };
 use frontend\modules\catalog\models\{
-    ItalianProduct, Factory
+    ItalianProduct, Factory, Product
 };
 
 /* @var $this yii\web\View */
@@ -29,29 +29,43 @@ use frontend\modules\catalog\models\{
     <div class="flex-product orderanswer-cont">
 
         <?php foreach ($modelOrder->items as $orderItem) { ?>
+            <?php if (empty($orderItem->product)) {
+                $product = Product::findById($orderItem->product_id);
+                if (empty($product)) {
+                    continue;
+                }
+                $productClass = get_class($product);
+                $published = (bool) $product['published'];
+                
+            } else {
+                $published = ItalianProduct::isPublished($orderItem->product['alias']);
+                $productClass = get_class($orderItem->product);
+                $product = $orderItem->product;
+            }
+            ?>
             <div class="basket-item-info">
                 <div class="img-cont">
-                    <?php if (ItalianProduct::isPublished($orderItem->product['alias'])) {
+                    <?php if ($published) {
                         echo Html::a(
-                            Html::img(ItalianProduct::getImageThumb($orderItem->product['image_link'])),
-                            ItalianProduct::getUrl($orderItem->product[Yii::$app->languages->getDomainAlias()]),
+                            Html::img($productClass::getImageThumb($product['image_link'])),
+                            $productClass::getUrl($product[Yii::$app->languages->getDomainAlias()]),
                             ['target' => '_blank']
                         );
                     } else {
-                        echo Html::img(ItalianProduct::getImageThumb($orderItem->product['image_link']));
+                        echo Html::img($productClass::getImageThumb($product['image_link']));
                     } ?>
                 </div>
                 <table class="char" width="100%">
                     <tr>
                         <td colspan="2">
-                            <?php if (ItalianProduct::isPublished($orderItem->product['alias'])) {
+                            <?php if ($published) {
                                 echo Html::a(
-                                    $orderItem->product->getTitle(),
-                                    ItalianProduct::getUrl($orderItem->product[Yii::$app->languages->getDomainAlias()]),
+                                    $product->getTitle(),
+                                    $productClass::getUrl($product[Yii::$app->languages->getDomainAlias()]),
                                     ['class' => 'productlink']
                                 );
                             } else {
-                                echo $orderItem->product->getTitle();
+                                echo $product->getTitle();
                             } ?>
                         </td>
                     </tr>
@@ -64,7 +78,7 @@ use frontend\modules\catalog\models\{
                     </tr>
                     <tr>
                         <td colspan="2" class="spec-pad2">
-                            <?= $orderItem->product['article'] ?>
+                            <?= $product['article'] ?>
                         </td>
                     </tr>
                     <tr class="noborder">
@@ -76,7 +90,7 @@ use frontend\modules\catalog\models\{
                     </tr>
                     <tr>
                         <td colspan="2" class="spec-pad2">
-                            <?= $orderItem->product['types']['lang']['title'] ?>
+                            <?= $product['types']['lang']['title'] ?>
                         </td>
                     </tr>
                     <tr class="noborder">
@@ -88,19 +102,19 @@ use frontend\modules\catalog\models\{
                     </tr>
                     <tr>
                         <td colspan="2" class="spec-pad2">
-                            <?php if (isset($orderItem->product['factory']['lang']) && isset($orderItem->product['factory']['title'])) {
+                            <?php if (isset($product['factory']['lang']) && isset($product['factory']['title'])) {
                                 echo Html::a(
-                                        $orderItem->product['factory']['title'],
-                                        Factory::getUrl($orderItem->product['factory']['alias'])
+                                        $product['factory']['title'],
+                                        Factory::getUrl($product['factory']['alias'])
                                     ) .
                                     '<br>' .
                                     Html::a(
                                         Yii::t('app', 'Условия работы'),
-                                        ['/catalog/factory/view-tab', 'alias' => $orderItem->product['factory']['alias'], 'tab' => 'working-conditions'],
+                                        ['/catalog/factory/view-tab', 'alias' => $product['factory']['alias'], 'tab' => 'working-conditions'],
                                         ['target' => '_blank']
                                     );
                             } else {
-                                echo $orderItem->product['factory_name'];
+                                echo $product['factory_name'];
                             } ?>
                         </td>
                     </tr>
@@ -113,35 +127,36 @@ use frontend\modules\catalog\models\{
                     </tr>
                     <tr>
                         <td colspan="2" class="spec-pad2">
-                            <?= $orderItem->product['region']['title'] ?? '' ?>
+                            <?= $product['region']['title'] ?? '' ?>
                         </td>
                     </tr>
                     <tr class="noborder">
                         <td colspan="2" class="spec-pad">
                                 <span class="for-ordertable">
-                                    <?= $orderItem->product->getAttributeLabel('volume') ?>
+                                    <?= $product->getAttributeLabel('volume') ?>
                                 </span>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" class="spec-pad2">
-                            <?= $orderItem->product['volume'] ?>
+                            <?= $product['volume'] ?>
                         </td>
                     </tr>
+                    <?php if (isset($product['weight'])) { ?>
                     <tr class="noborder">
                         <td colspan="2" class="spec-pad">
                                 <span class="for-ordertable">
-                                    <?= $orderItem->product->getAttributeLabel('weight') ?>
+                                    <?= $product->getAttributeLabel('weight') ?>
                                 </span>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" class="spec-pad2">
-                            <?= $orderItem->product['weight'] ?>
+                            <?= $product['weight'] ?>
                         </td>
                     </tr>
-
-                    <?php if (!empty($orderItem->product['specificationValue'])) { ?>
+                <?php } ?>
+                    <?php if (!empty($product['specificationValue'])) { ?>
                         <tr class="noborder">
                             <td colspan="2" class="spec-pad">
                                 <span class="for-ordertable">
@@ -152,7 +167,7 @@ use frontend\modules\catalog\models\{
                         <tr>
                             <td colspan="2" class="spec-pad2">
                                 <?php
-                                foreach ($orderItem->product['specificationValue'] as $item) {
+                                foreach ($product['specificationValue'] as $item) {
                                     if ($item['specification']['parent_id'] == 4 && $item['val']) {
                                         echo Html::beginTag('div') .
                                             $item['specification']['lang']['title'] .
@@ -185,7 +200,7 @@ use frontend\modules\catalog\models\{
                             <?= $form
                                 ->field($orderItem->orderItemPrice, 'product_id')
                                 ->input('hidden', [
-                                    'name' => 'OrderItemPrice[' . $orderItem->product_id . '][product_id]',
+                                    'name' => 'OrderItemPrice[' . $product_id . '][product_id]',
                                 ])
                                 ->label(false);
                             ?>
@@ -193,7 +208,7 @@ use frontend\modules\catalog\models\{
                                 <?= $form
                                     ->field($orderItem->orderItemPrice, 'price')
                                     ->input('text', [
-                                        'name' => 'OrderItemPrice[' . $orderItem->product_id . '][price]',
+                                        'name' => 'OrderItemPrice[' . $product_id . '][price]',
                                         'value' => $orderItem->orderItemPrice->price ?? 0,
                                         'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true
                                     ])
@@ -204,7 +219,7 @@ use frontend\modules\catalog\models\{
                                         $orderItem->orderItemPrice,
                                         'currency'
                                     )
-                                    ->dropDownList($orderItem->orderItemPrice::currencyRange(), ['name' => 'OrderItemPrice[' . $orderItem->product_id . '][currency]'])
+                                    ->dropDownList($orderItem->orderItemPrice::currencyRange(), ['name' => 'OrderItemPrice[' . $product_id . '][currency]'])
                                     ->label(false);
                                 ?>
                             </div>
@@ -262,8 +277,8 @@ use frontend\modules\catalog\models\{
             <?php if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) { ?>
                 <div><strong><?= Yii::t('app', 'Контактные данные продавца') ?>:</strong></div>
                 <?php foreach ($modelOrder->items as $orderItem) { ?>
-                    <div><?= Yii::t('app', 'Phone') ?>: <?= $orderItem->product['user']['profile']['phone'] ?></div>
-                    <div>Email: <?= $orderItem->product['user']['email'] ?></div>
+                    <div><?= Yii::t('app', 'Phone') ?>: <?= $product['user']['profile']['phone'] ?></div>
+                    <div>Email: <?= $product['user']['email'] ?></div>
                 <?php } ?>
             <?php } ?>
 

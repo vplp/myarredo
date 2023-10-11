@@ -362,6 +362,37 @@ function selectFirstFEl() {
 
 // Функция для инициализации слайдеров - Варианты отделки и Композиции
 function slickInit() {
+  if ($('.reviews-items-slider').length > 0) {
+    $('.reviews-items-slider').slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      arrows: false,
+      responsive: [
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 540,
+          settings: {
+            dots:true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+    });
+  }
   if ($('#panel2 .row').length > 0) {
     $('#panel2 .row').slick({
       slidesToShow: 3,

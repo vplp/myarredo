@@ -124,6 +124,15 @@ class Page extends ActiveRecord
     }
 
     /**
+     *
+     * @return ActiveQuery
+     */
+    public function getLangs()
+    {
+        return $this->hasMany(PageLang::class, ['rid' => 'id']);
+    }
+
+    /**
      * Url route to view particular page
      *
      * @param null $schema

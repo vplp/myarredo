@@ -137,6 +137,7 @@ AddDefaultCharset UTF-8
     <filesmatch .(js|css|jpg|gif|png|tiff|ico|svg)$="">
         SetOutputFilter DEFLATE
     </filesmatch>
+#AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/css text/javascript application/javascript application/x-javascript
 </IfModule>
 
 <IfModule mod_gzip.c>

@@ -21,5 +21,14 @@ if (in_array($model['user']['group_id'], [8])) {
                 'placeholder' => Yii::t('app', 'Select option'),
                 'multiple' => true
             ],
-        ]);
+        ]);?>
+    <div class="row control-group">
+        <div class="col-md-4">
+            <?= $form->switcher($model, 'can_see_all_answers');?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->switcher($model, 'can_see_contacts');?>
+        </div>
+    </div>
+    <?php  
 }

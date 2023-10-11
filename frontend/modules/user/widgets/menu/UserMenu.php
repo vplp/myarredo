@@ -56,7 +56,7 @@ class UserMenu extends Widget
                 ],
                 [
                     'label' => Yii::t('app', 'Orders'),
-                    'url' => ['/shop/partner-order/list']
+                    'url' => [Yii::$app->user->identity->profile->getAccessToAdminOrders() ? '/shop/admin-order/list' : '/shop/partner-order/list']
                 ],
                 [
                     'label' => Yii::t('app', 'Orders italy'),
@@ -83,7 +83,7 @@ class UserMenu extends Widget
 //                ],
                 [
                     'label' => Yii::t('app', 'Orders'),
-                    'url' => ['/shop/partner-order/list']
+                    'url' => [Yii::$app->user->identity->profile->getAccessToAdminOrders() ? '/shop/admin-order/list' : '/shop/partner-order/list']
                 ],
                 [
                     'label' => Yii::t('app', 'Orders italy'),
@@ -93,10 +93,10 @@ class UserMenu extends Widget
                     'label' => Yii::t('app', 'Размещение кода'),
                     'url' => ['/page/page/view', 'alias' => 'razmeshchenie-koda']
                 ],
-                [
+                /*[
                     'label' => Yii::t('app', 'Инструкция партнерам'),
                     'url' => ['/page/page/view', 'alias' => 'instructions']
-                ],
+                ],*/
                 [
                     'label' => Yii::t('app', 'Тарифы'),
                     'url' => ['/payment/partner-payment/tariffs']

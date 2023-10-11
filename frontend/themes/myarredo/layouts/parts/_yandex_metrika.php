@@ -7,15 +7,43 @@ use yii\web\View;
 /**
  * Yandex.Metrika counter
  */
-
+$show = !isset($_COOKIE["cookie_agree"]) || $_COOKIE["cookie_agree"] == "1";
 if (DOMAIN_TYPE == 'ru') {
     $script = <<<JS
 (function () {
     var d = document;
     var w = window;
+    var fired = false;
 
+    window.addEventListener('click', () => {
+        if (fired === false) {
+            fired = true;
+            l();
+        }
+    });
+
+    window.addEventListener('scroll', () => {
+        if (fired === false) {
+            fired = true;
+            l();
+        }
+    });
+
+    window.addEventListener('mousemove', () => {
+        if (fired === false) {
+            fired = true;
+            l();
+        }
+    });
+
+    window.addEventListener('touchmove', () => {
+        if (fired === false) {
+            fired = true;
+            l();
+        }
+    });
     function l() {
-        setTimeout(function () {
+        //setTimeout(function () {
             (function (m, e, t, r, i, k, a) {
                 m[i] = m[i] || function () {
                     (m[i].a = m[i].a || []).push(arguments)
@@ -31,11 +59,16 @@ if (DOMAIN_TYPE == 'ru') {
                 accurateTrackBounce: true,
                 webvisor: true,
                 trackHash: true
-            });            
-        }, 5000);
+            });   
+            if (typeof window.reachGoal != 'undefined' && window.reachGoal != ''){
+                ym(24814823,'reachGoal',window.reachGoal);
+                console.log('reachGoal',reachGoal);
+                window.reachGoal = '';
+            }         
+        //}, 5000);
     }
 
-    if (d.readyState == 'complete') {
+    /*if (d.readyState == 'complete') {
         l();
     } else {
         if (w.attachEvent) {
@@ -43,7 +76,7 @@ if (DOMAIN_TYPE == 'ru') {
         } else {
             w.addEventListener('load', l, false);
         }
-    }
+    }*/
 })();
 JS;
 
@@ -57,9 +90,37 @@ JS;
 (function () {
     var d = document;
     var w = window;
+    var fired = false;
 
+    window.addEventListener('click', () => {
+        if (fired === false) {
+            fired = true;
+            l();
+        }
+    });
+
+    window.addEventListener('scroll', () => {
+        if (fired === false) {
+            fired = true;
+            l();
+        }
+    });
+
+    window.addEventListener('mousemove', () => {
+        if (fired === false) {
+            fired = true;
+            l();
+        }
+    });
+
+    window.addEventListener('touchmove', () => {
+        if (fired === false) {
+            fired = true;
+            l();
+        }
+    });
     function l() {
-        setTimeout(function () {
+        //setTimeout(function () {
             (function (m, e, t, r, i, k, a) {
                 m[i] = m[i] || function () {
                     (m[i].a = m[i].a || []).push(arguments)
@@ -75,10 +136,15 @@ JS;
                 accurateTrackBounce: true,
                 webvisor: true
             });           
-        }, 5000);
+            if (typeof window.reachGoal != 'undefined' && window.reachGoal != ''){
+                ym(24880844,'reachGoal',window.reachGoal);
+                console.log('reachGoal',reachGoal);
+                window.reachGoal = '';
+            }         
+        //}, 5000);
     }
 
-    if (d.readyState == 'complete') {
+    /*if (d.readyState == 'complete') {
         l();
     } else {
         if (w.attachEvent) {
@@ -86,7 +152,7 @@ JS;
         } else {
             w.addEventListener('load', l, false);
         }
-    }
+    }*/
 })();
 JS;
 
@@ -100,9 +166,37 @@ JS;
 (function () {
     var d = document;
     var w = window;
+    var fired = false;
 
+    window.addEventListener('click', () => {
+        if (fired === false) {
+            fired = true;
+            l();
+        }
+    });
+
+    window.addEventListener('scroll', () => {
+        if (fired === false) {
+            fired = true;
+            l();
+        }
+    });
+
+    window.addEventListener('mousemove', () => {
+        if (fired === false) {
+            fired = true;
+            l();
+        }
+    });
+
+    window.addEventListener('touchmove', () => {
+        if (fired === false) {
+            fired = true;
+            l();
+        }
+    });
     function l() {
-        setTimeout(function () {
+        //setTimeout(function () {
             (function (m, e, t, r, i, k, a) {
                 m[i] = m[i] || function () {
                     (m[i].a = m[i].a || []).push(arguments)
@@ -118,10 +212,15 @@ JS;
                 accurateTrackBounce: true,
                 webvisor: true
             });           
-        }, 5000);
+            if (typeof window.reachGoal != 'undefined' && window.reachGoal != ''){
+                ym(39354035,'reachGoal',window.reachGoal);
+                console.log('reachGoal',reachGoal);
+                window.reachGoal = '';
+            }         
+        //}, 5000);
     }
 
-    if (d.readyState == 'complete') {
+    /*if (d.readyState == 'complete') {
         l();
     } else {
         if (w.attachEvent) {
@@ -129,7 +228,7 @@ JS;
         } else {
             w.addEventListener('load', l, false);
         }
-    }
+    }*/
 })();
 JS;
 
@@ -138,14 +237,42 @@ JS;
     <noscript>
         <div><img src="https://mc.yandex.ru/watch/39354035" alt=""/></div>
     </noscript>
-<?php } elseif (DOMAIN_TYPE == 'com') {
+<?php } elseif (DOMAIN_TYPE == 'com' && $show) {
     $script = <<<JS
 (function () {
     var d = document;
     var w = window;
+    var fired = false;
 
+    window.addEventListener('click', () => {
+        if (fired === false) {
+            fired = true;
+            l();
+        }
+    });
+
+    window.addEventListener('scroll', () => {
+        if (fired === false) {
+            fired = true;
+            l();
+        }
+    });
+
+    window.addEventListener('mousemove', () => {
+        if (fired === false) {
+            fired = true;
+            l();
+        }
+    });
+
+    window.addEventListener('touchmove', () => {
+        if (fired === false) {
+            fired = true;
+            l();
+        }
+    });
     function l() {
-        setTimeout(function () {
+        //setTimeout(function () {
             (function (m, e, t, r, i, k, a) {
                 m[i] = m[i] || function () {
                     (m[i].a = m[i].a || []).push(arguments)
@@ -160,10 +287,15 @@ JS;
                 trackLinks:true,
                 accurateTrackBounce:true
            });        
-        }, 5000);
+            if (typeof window.reachGoal != 'undefined' && window.reachGoal != ''){
+                ym(54688942,'reachGoal',window.reachGoal);
+                console.log('reachGoal',reachGoal);
+                window.reachGoal = '';
+            }         
+        //}, 5000);
     }
 
-    if (d.readyState == 'complete') {
+    /*if (d.readyState == 'complete') {
         l();
     } else {
         if (w.attachEvent) {
@@ -171,7 +303,7 @@ JS;
         } else {
             w.addEventListener('load', l, false);
         }
-    }
+    }*/
 })();
 JS;
 

@@ -1,7 +1,9 @@
 <?php
 
 namespace frontend\modules\user\models;
-
+use common\modules\location\models\{
+    City, Country
+};
 /**
  * Class User
  *
@@ -87,5 +89,16 @@ class User extends \common\modules\user\models\User
     public function searchOrderAnswerStats($params)
     {
         return (new search\User())->searchOrderAnswerStats($params);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getCountries()
+    {
+        return $this
+            ->hasMany(Country::class, ['id' => 'location_country_id'])
+            ->viaTable('fv_user_rel_location_country', ['user_id' => 'id']);
     }
 }

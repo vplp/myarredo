@@ -11,10 +11,9 @@ use frontend\themes\myarredo\assets\{
 
 FirstAsset::register($this);
 
-$bundle = AppAsset::register($this);
-
-$this->beginPage();
-?>
+$bundle = AppAsset::register($this); ?>
+<?php \defyma\helper\Minifier::begin(); ?>
+<?php $this->beginPage();?>
 <!DOCTYPE html>
 <html lang="<?= substr(Yii::$app->language, 0, 2) ?>">
 <head>
@@ -23,7 +22,7 @@ $this->beginPage();
     <title><?= $this->title ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noyaca"/>
-
+    <meta name="p:domain_verify" content="98b95b6411b60192d93d0bff2679df8d"/>
     <link rel="icon" href="https://img.<?= DOMAIN_NAME . '.' . DOMAIN_TYPE ?>/myarredo-ico.svg" type="image/svg+xml"/>
     <link rel="icon" href="https://img.<?= DOMAIN_NAME . '.' . DOMAIN_TYPE ?>/favicon.ico" type="image/x-icon"/>
 
@@ -253,7 +252,6 @@ $this->beginPage();
     </style>
     <!-- end preloader styles -->
     <script>var mobMenuData = {};</script>
-
     <?php $this->head(); ?>
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js" type="text/javascript"
@@ -281,6 +279,8 @@ $this->beginPage();
 
 <?= $this->render('parts/_google_metrika', []) ?>
 
+<?= $this->render('parts/_cookie', []) ?>
+
 <input type="hidden" id="token" value="<?= Yii::$app->request->getCsrfToken() ?>">
 <!-- font awesome -->
 <link href="/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -291,3 +291,4 @@ $this->beginPage();
 </body>
 </html>
 <?php $this->endPage() ?>
+<?php \defyma\helper\Minifier::end(); ?>

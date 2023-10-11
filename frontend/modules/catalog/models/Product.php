@@ -62,6 +62,7 @@ class Product extends \common\modules\catalog\models\Product
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
                 //Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
+                Factory::tableName() . '.show_for_' . Yii::$app->languages->getDomain() => '1',
             ])
             ->enabled()
             ->orderBy(self::tableName() . '.updated_at DESC');
@@ -81,6 +82,7 @@ class Product extends \common\modules\catalog\models\Product
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
                 //Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
+                Factory::tableName() . '.show_for_' . Yii::$app->languages->getDomain() => '1',
             ])
             ->enabled()
             ->orderBy(self::tableName() . '.updated_at DESC');
@@ -107,6 +109,13 @@ class Product extends \common\modules\catalog\models\Product
             return self::find()
                 ->innerJoinWith(['lang', 'factory'])
                 ->andWhere([self::tableName() . '.' . Yii::$app->languages->getDomainAlias() => $alias])
+                ->andFilterWhere([
+                    Product::tableName() . '.removed' => '0',
+                    Factory::tableName() . '.published' => '1',
+                    Factory::tableName() . '.deleted' => '0',
+                    //Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
+                    Factory::tableName() . '.show_for_' . Yii::$app->languages->getDomain() => '1',
+                ])
                 //->byAlias($alias)
                 ->enabled()
                 ->one();

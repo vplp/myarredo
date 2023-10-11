@@ -5,6 +5,7 @@ namespace frontend\modules\catalog\models;
 use Yii;
 //
 use frontend\modules\catalog\Catalog;
+use frontend\modules\user\components\UserIpComponent;
 
 /**
  * Class ItalianProductStats
@@ -30,7 +31,7 @@ class ItalianProductStats extends \common\modules\catalog\models\ItalianProductS
             $model->product_id = $product_id;
             $model->country_id = Yii::$app->city->getCountryId();
             $model->city_id = Yii::$app->city->getCityId();
-            $model->ip = Yii::$app->request->userIP;
+            $model->ip = (new UserIpComponent())->ip;//Yii::$app->request->userIP;
             $model->http_user_agent = $_SERVER['HTTP_USER_AGENT'];
             $model->is_bot = $module->isBot2();
 

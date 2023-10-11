@@ -40,7 +40,13 @@ if (!empty($models)) {
 }
 
 ?>
-
+<style>
+    .category-page .cat-prod .one-prod-tile .background,
+    .std-slider .background{
+        -webkit-filter: none;
+        filter: none;
+    }
+</style>
     <main>
         <div class="page category-page">
             <div class="container-wrap">

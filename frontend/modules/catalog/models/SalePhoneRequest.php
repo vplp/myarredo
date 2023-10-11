@@ -3,6 +3,7 @@
 namespace frontend\modules\catalog\models;
 
 use Yii;
+use frontend\modules\user\components\UserIpComponent;
 
 /**
  * Class SalePhoneRequest
@@ -28,7 +29,7 @@ class SalePhoneRequest extends \common\modules\catalog\models\SalePhoneRequest
             $model->sale_item_id = $sale_item_id;
             $model->country_id = Yii::$app->city->getCountryId();
             $model->city_id = Yii::$app->city->getCityId();
-            $model->ip = Yii::$app->request->userIP;
+            $model->ip = (new UserIpComponent())->ip;//Yii::$app->request->userIP;
             $model->http_user_agent = $_SERVER['HTTP_USER_AGENT'];
             $model->is_bot = $module->isBot2();
 

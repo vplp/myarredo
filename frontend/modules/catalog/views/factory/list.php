@@ -14,7 +14,13 @@ use frontend\modules\catalog\models\Factory;
 $this->title = $this->context->title;
 
 ?>
-
+<style>
+    .category-page .cat-prod .one-prod-tile .background,
+    .std-slider .background{
+        -webkit-filter: none;
+        filter: none;
+    }
+</style>
 <main>
     <div class="page factory-list-page">
         <div class="container-wrap">

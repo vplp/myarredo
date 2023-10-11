@@ -4,7 +4,7 @@ use yii\helpers\{
     Html, Url
 };
 use yii\bootstrap\Modal;
-use yii\widgets\ActiveForm;
+use backend\app\bootstrap\ActiveForm;
 use frontend\modules\shop\models\{
     Order, OrderItem, OrderAnswer
 };
@@ -237,6 +237,21 @@ if ($user->profile->getPossibilityToAnswer($modelOrder)) { ?>
                 ->field($modelOrderAnswer, 'order_id')
                 ->input('hidden', ['value' => $modelOrder->id])
                 ->label(false) ?>
+
+            <?php if(!empty($modelOrderAnswer->file)) {?>
+                <div class="form-group field-orderanswer-file">
+                    <label class="control-label" for="orderanswer-file">Прикрепленный файл</label>
+                    <div>
+                        <?= Html::a(
+                            $modelOrderAnswer->file,
+                            '/uploads/files/'.$modelOrderAnswer->file,
+                            ['target' => '_blank']
+                        ); ?>
+                    </div>
+                </div>
+            <?php } elseif (empty($modelOrderAnswer->answer)) { ?>
+                <?= $form->field($modelOrderAnswer, 'file')->fileInputWidgetShort($modelOrderAnswer->getFile());?>
+            <?php } ?>
 
         </div>
     </div>

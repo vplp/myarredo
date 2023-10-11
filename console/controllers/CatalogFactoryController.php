@@ -50,6 +50,30 @@ class CatalogFactoryController extends Controller
     /**
      * Delete pdf from database
      */
+    public function actionFindDelPdf()
+    {
+
+        // find deleted items
+        $models = FactoryFile::find()
+            ->andFilterWhere([
+                'deleted' => '0',
+                'file_type' => '2'
+            ])
+            ->all();
+
+        $path = Yii::getAlias('@uploads') . '/factoryFilePrice/';
+
+        foreach ($models as $model) {
+            if (!empty($model->file_link) && !is_file($path . $model->file_link)) {
+                echo date('Y-m-d H:i:s', $model->updated_at)."\n";
+            }
+        }
+
+    }
+
+    /**
+     * Delete pdf from database
+     */
     public function actionClearPdf()
     {
         $this->stdout("ClearPdf: start. \n", Console::FG_GREEN);

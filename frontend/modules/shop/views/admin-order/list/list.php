@@ -70,7 +70,6 @@ $this->title = $this->context->title;
 
                         <?php foreach ($models->getModels() as $modelOrder) { ?>
                             <div class="item" data-hash="<?= $modelOrder->id; ?>">
-
                                 <ul class="orders-title-block flex">
                                     <li class="order-id">
                                         <span><?= $modelOrder->id; ?></span>
@@ -80,7 +79,12 @@ $this->title = $this->context->title;
                                     </li>
                                     <li>
                                         <span <?= $modelOrder->getDiffAnswerTime('settlementCenter') > 2 ? 'style="color: red;"' : '' ?>>
-                                            <?= $modelOrder->getFirstAnswerTime() ?>
+                                            <?php
+                                           if ((Yii::$app->user->identity->id == 3388061 && $modelOrder->orderAnswer->answer_time == 0) || !Yii::$app->user->identity->profile->getPossibilityToViewCustomer($modelOrder)) {
+                                               echo '-';
+                                           } else {
+                                               echo $modelOrder->getFirstAnswerTime();
+                                           } ?>
                                         </span>
                                     </li>
                                     <li>
@@ -89,7 +93,7 @@ $this->title = $this->context->title;
                                     <li>
                                         <span>
                                            <?php
-                                           if (Yii::$app->user->identity->id == 3388061 && $modelOrder->orderAnswer->answer_time == 0) {
+                                           if (!Yii::$app->user->identity->profile->getPossibilityToViewCustomer($modelOrder)) {
                                                echo '-';
                                            } else {
                                                echo $modelOrder->customer->phone;
@@ -98,7 +102,7 @@ $this->title = $this->context->title;
                                     </li>
                                     <li>
                                         <span>
-                                         <?php if (Yii::$app->user->identity->id == 3388061 && $modelOrder->orderAnswer->answer_time == 0) {
+                                         <?php if (!Yii::$app->user->identity->profile->getPossibilityToViewCustomer($modelOrder)) {
                                              echo '-';
                                          } else {
                                              echo $modelOrder->customer->email;
@@ -115,7 +119,12 @@ $this->title = $this->context->title;
                                         <span><?= $modelOrder->city_name ?? ($modelOrder->city ? $modelOrder->city->getTitle() : ''); ?></span>
                                     </li>
                                     <li>
-                                        <span class="order_status_<?= $modelOrder->order_status ?>"><?= Order::getOrderStatuses($modelOrder->order_status); ?></span>
+                                        <?php 
+                                        $orderStatus = $modelOrder->order_status;
+                                        if ((Yii::$app->user->identity->id == 3388061 && $modelOrder->orderAnswer->answer_time == 0) || !Yii::$app->user->identity->profile->getPossibilityToViewCustomer($modelOrder)) {
+                                              $orderStatus = 'new';
+                                         } ?>
+                                        <span class="order_status_<?= $orderStatus ?>"><?= Order::getOrderStatuses($orderStatus); ?></span>
                                     </li>
                                     <li>
                                         <span>
@@ -124,7 +133,7 @@ $this->title = $this->context->title;
                                                 Url::toRoute(['/shop/admin-order/manager', 'id' => $modelOrder->id])
                                             ) ?>
 
-                                            <?php if ($modelOrder->orderComment) {
+                                            <?php if ($modelOrder->orderComment && Yii::$app->user->identity->profile->getPossibilityToViewCustomer($modelOrder)) {
                                                 echo Html::a(
                                                     date('j.m.Y H:i', $modelOrder->orderComment['updated_at']),
                                                     Url::toRoute(['/shop/admin-order/manager', 'id' => $modelOrder->id])

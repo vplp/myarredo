@@ -89,7 +89,47 @@ class Order extends OrderModel
             self::tableName() . '.product_type' => $this->product_type,
         ]);
 
-        if (in_array(Yii::$app->user->identity->group->role, ['partner', 'settlementCenter'])) {
+        if (in_array(Yii::$app->user->identity->group->role, ['partner'])) {
+            /*if(!in_array(Yii::$app->user->identity->profile->country_id, [1,2,3])) {
+                $modelFactories = Yii::$app->user->identity->profile->factories;
+                $arFactories = array(3);
+                if ($modelFactories != null) {
+                    foreach ($modelFactories as $item) {
+                        $arFactories[] = $item['id'];
+                    }
+                }
+                $subQueryFactory = OrderModel::find()
+                    ->select(OrderModel::tableName() . '.id')
+                    ->innerJoinWith(["items.product product"], false)
+                    ->andFilterWhere(['IN', 'product.factory_id', $arFactories]);  
+                $query->andFilterWhere([
+                    'AND',
+                    ['in', self::tableName() . '.id', $subQueryFactory]
+                ]);
+
+            }*/
+            $modelCities = Yii::$app->getUser()->getIdentity()->profile->cities;
+            if ($modelCities != null && Yii::$app->getUser()->getIdentity()->profile->country_id == 2) {
+                $cities = [];
+                foreach ($modelCities as $item) {
+                    $cities[] = $item['id'];
+                }
+                $query->andFilterWhere(['IN', self::tableName() . '.city_id', $cities]);
+            } else {
+                $modelCountries = Yii::$app->getUser()->getIdentity()->profile->countries;
+                if ($modelCountries != null) {
+                    $countries = [];
+                    foreach ($modelCountries as $item) {
+                        $countries[] = $item['id'];
+                    }
+                    $query->andFilterWhere(['IN', self::tableName() . '.country_id', $countries]);
+                } elseif (!in_array(Yii::$app->user->identity->profile->country_id, [1,2,3])) {
+                    $query->andFilterWhere(['NOT IN', self::tableName() . '.country_id', [1,2,3]]);
+                }
+            }
+        }
+
+        if (in_array(Yii::$app->user->identity->group->role, ['settlementCenter'])) {
             $modelCountries = Yii::$app->getUser()->getIdentity()->profile->countries;
             if ($modelCountries != null) {
                 $countries = [];
@@ -184,7 +224,7 @@ class Order extends OrderModel
                 ['in', self::tableName() . '.id', $subQueryFactory]
             ]);
         }
-
+//echo $query->createCommand()->getRawSql();exit;
         return $dataProvider;
     }
 

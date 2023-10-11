@@ -104,3 +104,4 @@ $this->title = $this->context->title;
         </div>
     </div>
 </main>
+<script type="text/javascript">window.reachGoal='get_price';</script>

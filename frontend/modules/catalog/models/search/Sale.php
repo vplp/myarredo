@@ -196,13 +196,23 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         /** orderBy */
 
         if (!empty(Yii::$app->partner) && Yii::$app->partner->id) {
-            $order['FIELD (' . self::tableName() . '.user_id, ' . Yii::$app->partner->id . ')'] = SORT_DESC;
+            $partners = Yii::$app->partner->id;
+            if (Yii::$app->city->getCityId() == 4) {
+                $partners = '48, 3372632';
+            } elseif (Yii::$app->city->getCityId() == 8) {
+                $partners = '3372632, 48';
+            } elseif (!in_array(Yii::$app->city->getCityId(), [1, 2, 4, 8, 159, 160, 161, 162, 164, 165])) {
+                $partners = '3372632, 48,'.Yii::$app->partner->id;
+            }
+            $order['FIELD (' . self::tableName() . '.user_id, ' . $partners . ')'] = SORT_DESC;
         } elseif (in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159, 160, 161, 162, 164, 165])) {
             $query
                 ->innerJoinWith(['city'])
                 ->andFilterWhere(['NOT IN', City::tableName() . '.id', [5]]);
 
             $order[City::tableName() . '.id'] = SORT_ASC;
+        } else {
+            $order['FIELD (' . self::tableName() . '.user_id,  3372632, 48)'] = SORT_DESC;
         }
 
         $order[self::tableName() . '.updated_at'] = SORT_DESC;

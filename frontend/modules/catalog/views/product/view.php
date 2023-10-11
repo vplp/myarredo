@@ -189,6 +189,7 @@ $this->title = $this->context->title;
                                                             $paramsUrl[$keys['type']][] = $model->types->{Yii::$app->languages->getDomainAlias()};
                                                         }
 
+                                                        array_multisort($paramsUrl[$keys['style']], SORT_ASC, $paramsUrl[$keys['style']]);
                                                         $paramsUrl[$keys['style']][] = $item->specification->{Yii::$app->languages->getDomainAlias()};
 
                                                         $array[] = Html::a(

@@ -27,14 +27,19 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
         <?php if (!in_array(DOMAIN_TYPE, ['co.il']) && !in_array(Yii::$app->controller->id, ['sale'])) { ?>
             <div class="contacts">
                 <div class="cont-flex">
-                    <?php if (!in_array(Yii::$app->controller->id, ['sale-italy'])) {
+                    <?php if (!in_array(Yii::$app->controller->id, ['sale-italy']) && Yii::$app->partner->getPartner()) {
                         echo PartnerInfo::widget();
-                    } else {
-                        if ($this->beginCache('FormFeedbackSaleItaly' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) {
-                            echo FormFeedback::widget(['view' => 'form_feedback_sale_italy']);
+                    } else if (!in_array(Yii::$app->controller->id, ['sale-italy'])){
+                        if ($this->beginCache('FormFeedback' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) {
+                            echo FormFeedback::widget(['view' => 'form_feedback_main']);
                             $this->endCache();
                         }
-                    } ?>
+                    } else {
+                       if ($this->beginCache('FormFeedbackSaleItaly' . Yii::$app->city->getCityId() . Yii::$app->language, ['duration' => 7200])) {
+                            echo FormFeedback::widget(['view' => 'form_feedback_sale_italy']);
+                            $this->endCache();
+                        } 
+                    }?>
                 </div>
 
                 <?php
@@ -125,6 +130,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
                             } ?>
                         </div>
                         <div class="soc-copy">
+                            <?php if (!in_array(DOMAIN_TYPE, ['com', 'de', 'fr', 'uk', 'kz', 'co.il', 'ru'])) {?>
                             <div class="social">
                                 <a href="https://www.facebook.com/Myarredo/" target="_blank" rel="nofollow">
                                     <i class="fa fa-facebook" aria-hidden="true"></i>
@@ -133,6 +139,7 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
                                     <i class="fa fa-instagram" aria-hidden="true"></i>
                                 </a>
                             </div>
+                            <? } ?>
                             <div class="copyright">
 
                                 <?php if (DOMAIN_TYPE == 'by') { ?>
@@ -149,10 +156,6 @@ $url = Url::to(['/forms/forms/ajax-get-form-feedback'], true);
                                     <br>
                                 <?php } ?>
 
-                                <?php if (in_array(DOMAIN_TYPE, ['by', 'ru', 'ua'])) { ?>
-                                    <?= Yii::t('app', 'Программирование сайта') ?> -
-                                    <a href="http://www.vipdesign.com.ua/" rel="nofollow">VipDesign</a>
-                                <?php } ?>
                             </div>
                         </div>
                         <?php

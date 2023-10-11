@@ -120,7 +120,7 @@ $('select#factory_id').change(function(){
 $('.change-date').on('click', function () {
     $('#form-stats').submit();
 });
-
+if (typeof $.datepicker !== 'undefined') {
 $.datepicker.regional['ru'] = {
     closeText: 'Закрыть',
     prevText: '&#x3c;Пред',
@@ -177,7 +177,7 @@ $(".drop-date-picker").daterangepicker({
         dateRange: '$dateRangeLabel'
     },
 },$.datepicker.setDefaults($.datepicker.regional['$lang']));
-
+}
 $(".drop-date-picker").click(function(){
     $(this).parent().click();
 });

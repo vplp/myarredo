@@ -86,7 +86,7 @@ $this->title = $this->context->title;
                                 'class' => 'write-seller',
                                 'data-toggle' => 'modal',
                                 'data-target' => '#modalSaleRequestForm'
-                            ]); ?>
+                            ]);?>
 
                             <?= SaleRequestForm::widget(['sale_item_id' => $model['id']]) ?>
 
@@ -236,7 +236,8 @@ $this->title = $this->context->title;
                             <?php if (!empty($model['user'])) {
                                 echo $this->render('parts/_seller', [
                                     'model' => $model,
-                                    'bundle' => $bundle
+                                    'bundle' => $bundle,
+                                    'vote' => $vote
                                 ]);
                             } ?>
 
@@ -255,6 +256,13 @@ $this->title = $this->context->title;
                         </div>
                         */ ?>
 
+                    </div>
+
+                    <div class="row">
+                        <?= $this->render('parts/_reviews', [
+                            'model' => $model,
+                            'reviews' => $reviews
+                        ]) ?>
                     </div>
 
                     <?= $this->render('@app/modules/catalog/views/product/parts/_product_by_factory', [

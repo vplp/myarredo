@@ -16,6 +16,7 @@ use common\modules\user\models\User;
  * @property integer $user_id
  * @property string $answer
  * @property string $answer_time
+ * @property string $file
  * @property string $results
  * @property integer $created_at
  * @property integer $updated_at
@@ -53,7 +54,7 @@ class OrderAnswer extends ActiveRecord
         return [
             [['order_id', 'user_id', 'answer'], 'required'],
             [['order_id', 'user_id', 'answer_time', 'created_at', 'updated_at'], 'integer'],
-            [['answer'], 'string'],
+            [['answer', 'file'], 'string'],
             [['results'], 'string', 'max' => 255],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -72,6 +73,7 @@ class OrderAnswer extends ActiveRecord
                 'user_id',
                 'answer',
                 'answer_time',
+                'file',
                 'results',
                 'published',
                 'deleted'
@@ -81,6 +83,7 @@ class OrderAnswer extends ActiveRecord
                 'user_id',
                 'answer',
                 'answer_time',
+                'file',
                 'results',
                 'published',
                 'deleted'
@@ -99,6 +102,7 @@ class OrderAnswer extends ActiveRecord
             'user_id' => Yii::t('app', 'User'),
             'answer' => Yii::t('app', 'Answer'),
             'answer_time' => Yii::t('app', 'Answer time'),
+            'file' => Yii::t('app', 'File_answer'),
             'results' => Yii::t('app', 'Results'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
@@ -145,5 +149,13 @@ class OrderAnswer extends ActiveRecord
     public function getOrder()
     {
         return $this->hasOne(Order::class, ['id' => 'order_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFile()
+    {
+        return !empty($this->file) ? \Yii::getAlias('@uploads').'/files/'.$this->file : '';
     }
 }

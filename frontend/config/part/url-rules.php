@@ -48,6 +48,7 @@ $urls = [
 
     'catalog/<filter:[\=\;\-\w\d]+>' => 'catalog/category/list',
     'catalog' => 'catalog/category/list',
+    'catalog1' => 'catalog/category/list1',
     'catalog/category/ajax-get-types' => 'catalog/category/ajax-get-types',
     'catalog/category/ajax-get-category' => 'catalog/category/ajax-get-category',
     'catalog/category/ajax-get-novelty' => 'catalog/category/ajax-get-novelty',
@@ -96,6 +97,7 @@ $urls = [
     'sale-italy-stats/<id:[\d\-]+>' => 'catalog/sale-italy-stats/view',
 
     'factory-stats' => 'catalog/factory-stats/list',
+    'factory-stats1' => 'catalog/factory-stats/test',
     'factory-stats/<alias:[\w\-]+>' => 'catalog/factory-stats/view',
 
     // Factory product
@@ -237,6 +239,7 @@ $urls = [
     'forms/feedback-partner' => 'forms/forms/feedback-partner',
     'forms/ajax-get-form-feedback' => '/forms/forms/ajax-get-form-feedback',
     'forms/click-on-become-partner' => 'forms/click-on-become-partner/index',
+    'forms/feedback-after-order/<order_id:[\d\-]+>' => 'forms/forms/feedback-after-order',
 
     // Module [[SEO]]
     'page/sitemap' => 'seo/sitemap-html/index',
@@ -275,10 +278,16 @@ $urls = [
     'admin/order-comment/processed/<id:[\d\-]+>' => 'shop/order-comment/processed',
 
     'admin/orders' => 'shop/admin-order/list',
+    'admin/orders1' => 'shop/admin-order1/list',
+    'admin/orders1/pjax-save-order-answer' => 'shop/admin-order1/pjax-save-order-answer',
+    'admin/orders1/one-file-upload' => 'shop/admin-order1/one-file-upload',
+    'admin/order1/manager/<id:[\d\-]+>' => 'shop/admin-order1/manager',
     'admin/orders-italy' => 'shop/admin-order/list-italy',
     'admin/orders/pjax-save-order-answer' => 'shop/admin-order/pjax-save-order-answer',
+    'admin/orders/one-file-upload' => 'shop/admin-order/one-file-upload',
 
     'partner/orders' => 'shop/partner-order/list',
+    'partner/orders/one-file-upload' => 'shop/partner-order/one-file-upload',
     'partner/orders-italy' => 'shop/partner-order/list-italy',
     'partner/delivery-italian-orders' => 'shop/partner-order/delivery-italian-orders',
     'partner/orders/pjax-save-order-answer' => 'shop/partner-order/pjax-save-order-answer',
@@ -303,7 +312,9 @@ $urls = [
     'banner/factory-banner/fileupload' => 'banner/factory-banner/fileupload',
     'banner/factory-banner/filedelete' => 'banner/factory-banner/filedelete',
 
-    'seo/metrics/ajax-get-metrics' => 'seo/metrics/ajax-get-metrics'
+    'seo/metrics/ajax-get-metrics' => 'seo/metrics/ajax-get-metrics',
+
+    'reviews/<id:[\d\-]+>' => 'forms/reviews/view',
 ];
 
 if (in_array(DOMAIN_TYPE, ['de', 'fr', 'uk', 'com', 'co.il'])) {

@@ -5,6 +5,7 @@ namespace console\controllers;
 use Yii;
 use yii\helpers\Console;
 use yii\console\Controller;
+use frontend\modules\location\models\City;
 use frontend\modules\catalog\models\{
     ProductStats, ProductStatsDays, FactoryStatsDays
 };
@@ -133,10 +134,17 @@ class StatsController extends Controller
                     $timestamp = strtotime(date('d-m-Y', $order['created_at']));
                     $date = mktime(0, 0, 0, date("m", $timestamp), date("d", $timestamp), date("Y", $timestamp));
 
+                    $city_id = $order['city_id'];
+                    if ($city_id == 0 && $order['country_id'] > 0) {
+                        $model = City::findOne(['country_id' => $order['country_id']]);
+                        if ($model) {
+                           $city_id = $model->id;
+                        }
+                    }
                     $model = ProductStatsDays::find()
                         ->andWhere([
                             'product_id' => $item['product_id'],
-                            'city_id' => $order['city_id'],
+                            'city_id' => $city_id,
                             'factory_id' => $item['product']['factory_id'],
                             'date' => $date,
                         ])
@@ -151,7 +159,7 @@ class StatsController extends Controller
                     $model->product_id = $item['product']['id'];
                     $model->factory_id = $item['product']['factory_id'];
                     $model->country_id = 0;
-                    $model->city_id = $order['city_id'];
+                    $model->city_id = $city_id;
                     $model->date = $date;
 
                     $model->requests = $model->requests + 1;
@@ -177,7 +185,7 @@ class StatsController extends Controller
     {
         $this->stdout("Start. \n", Console::FG_GREEN);
 
-        $end_date = mktime(23, 59, 0, date("m"), date("d") - 1, date("Y"));
+        $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
 
         $data = ProductStatsDays::find()
             ->andWhere([
@@ -223,4 +231,94 @@ class StatsController extends Controller
 
         $this->stdout("Finish. \n", Console::FG_GREEN);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function actionDelFactoryStatsDays()
+    {
+        $data = FactoryStatsDays::find()
+            ->andWhere([
+                FactoryStatsDays::tableName() . '.city_id' => '0',
+            ])
+            ->andWhere([
+                '>', FactoryStatsDays::tableName() . '.requests', 0
+            ])
+            ->all();
+        file_put_contents('/var/www/www-root/data/www/myarredo.ru/delFactoryStatsDays.scv','factory_id,country_id,city_id,views,requests,date'.PHP_EOL);
+        foreach ($data as $item) {
+            file_put_contents('/var/www/www-root/data/www/myarredo.ru/delFactoryStatsDays.scv',$item['factory_id'].','.$item['country_id'].','.$item['city_id'].','.$item['views'].','.$item['requests'].','.$item['date'].PHP_EOL, FILE_APPEND);
+        }
+    }
+    /**
+     * @inheritDoc
+     */
+    public function actionAlignFactoryStatsDays()
+    {
+        $start = microtime(true);
+        $this->stdout("Start. \n", Console::FG_GREEN);
+
+        
+        $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
+        $start_date = $end_date - 60*60;
+
+        while ($start_date > 60*60*24*366*5){
+            echo "Star_date=".$start_date." End_date=".$end_date." \n";
+            $data = ProductStatsDays::find()
+                ->where([
+                    'between', ProductStatsDays::tableName() . '.date', $start_date, $end_date
+                ])
+                ->orderBy(ProductStatsDays::tableName() . '.date ASC')
+                ->all();
+
+            $arAlign = array();
+            foreach ($data as $item) {
+                if (!isset($arAlign[$item->factory_id])) {
+                    $arAlign[$item->factory_id] = array();
+                }
+                if (!isset($arAlign[$item->factory_id][$item->city_id])) {
+                    $arAlign[$item->factory_id][$item->city_id] = array();
+                }
+                if (!isset($arAlign[$item->factory_id][$item->city_id][$item->date])) {
+                    $arAlign[$item->factory_id][$item->city_id][$item->date] = array('views'=>0,'requests'=>0,);
+                }
+
+                $arAlign[$item->factory_id][$item->city_id][$item->date]['views'] += $item->views;
+                $arAlign[$item->factory_id][$item->city_id][$item->date]['requests'] += $item->requests;
+            }
+            $data = false;
+            foreach ($arAlign as $factory_id => $cities) {
+                foreach ($cities as $city_id => $dates) {
+                    foreach ($dates as $date => $data) {
+                        $model = FactoryStatsDays::find()
+                        ->andWhere([
+                            'city_id' => $city_id,
+                            'factory_id' => $factory_id,
+                            'date' => $date,
+                        ])
+                        ->one();
+
+                        if ($model == null) {
+                            $model = new FactoryStatsDays();
+                        }
+
+                        $model->setScenario('frontend');
+                        $model->factory_id = $factory_id;
+                        $model->country_id = 0;
+                        $model->city_id = $city_id;
+                        $model->date = $date;
+                        $model->views = $data['views'];
+                        $model->requests = $data['requests'];
+                        $model->save();
+                    }
+                }
+            }
+
+            $end_date = $start_date + 1;
+            $start_date = $end_date - 60*60;
+        }
+        echo 'Время выполнения скрипта: '.round(microtime(true) - $start, 4).' сек.';
+        $this->stdout("Finish. \n", Console::FG_GREEN);
+    }
+
 }

@@ -37,6 +37,11 @@ class FormsModule extends \common\modules\forms\FormsModule
                         'icon' => 'fa-file-text',
                         'url' => ['/forms/click-on-become-partner/list'],
                     ],
+                    [
+                        'label' => 'Отзывы после заказа',
+                        'icon' => 'fa-file-text',
+                        'url' => ['/forms/forms-feedback-after-order/list'],
+                    ],
                 ]
             ];
         }

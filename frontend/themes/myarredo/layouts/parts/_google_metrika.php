@@ -7,7 +7,7 @@ use yii\web\View;
 /**
  * Global site tag (gtag.js) - Google Analytics
  */
-
+$show = !isset($_COOKIE["cookie_agree"]) || $_COOKIE["cookie_agree"] == "1";
 if (DOMAIN_TYPE == 'ru') {
     $script = <<<JS
 (function () {
@@ -116,7 +116,7 @@ JS;
 JS;
 
     $this->registerJs($script, View::POS_END);
-} elseif (DOMAIN_TYPE == 'com') {
+} elseif (DOMAIN_TYPE == 'com' && $show) {
     $script = <<<JS
 (function () {
     var id = 'UA-54015829-2';

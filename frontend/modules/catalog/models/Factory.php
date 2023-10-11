@@ -46,6 +46,7 @@ class Factory extends \common\modules\catalog\models\Factory
         return parent::findBase()
             ->andFilterWhere([
                 //self::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
+                self::tableName() . '.show_for_' . Yii::$app->languages->getDomain() => '1',
             ])
             ->enabled();
     }
@@ -670,7 +671,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 ON (product.catalog_type_id = types.id) 
                 AND (product.published = :published AND product.deleted = :deleted AND product.removed = :removed)
             WHERE
-                product.factory_id = :id
+                product.factory_id = :id AND types.published = :published
             GROUP BY 
                 types.id
             ORDER BY typesLang.title")
@@ -682,7 +683,6 @@ class Factory extends \common\modules\catalog\models\Factory
                     ':lang' => Yii::$app->language,
                 ])->queryAll();
         }, 7200);
-
         return $result;
     }
 

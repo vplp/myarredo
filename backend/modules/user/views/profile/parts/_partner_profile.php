@@ -1,6 +1,7 @@
 <?php
 
 use kartik\widgets\Select2;
+use backend\modules\catalog\models\Factory;
 use backend\modules\location\models\{
     Country, City
 };
@@ -95,8 +96,27 @@ if (in_array($model['user']['group_id'], [4, 7])) {
             ]);
     }
 
-    echo $form->switcher($model, 'partner_in_city');
-
+    if (in_array($model->country_id, [4,5,79,85])) {
+    echo $form
+        ->field($model, 'factory_ids')
+        ->label(Yii::t('app', 'Ответы на фабрики'))
+        ->widget(Select2::class, [
+            'data' => Factory::dropDownList(),
+            'options' => [
+                'placeholder' => Yii::t('app', 'Select option'),
+                'multiple' => true
+            ],
+        ]);
+    }?>
+    <div class="row control-group">
+        <div class="col-md-4">
+            <?= $form->switcher($model, 'partner_in_city');?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->switcher($model, 'can_see_contacts');?>
+        </div>
+    </div>
+    <?php
     echo $form->switcher($model, 'partner_in_city_paid');
 
     echo $form->switcher($model, 'possibility_to_answer');
@@ -116,6 +136,10 @@ if (in_array($model['user']['group_id'], [4, 7])) {
     echo $form->switcher($model, 'one_answer_per_month');
 
     echo $form->switcher($model, 'working_conditions');
+
+    echo $form->switcher($model, 'access_to_admin_orders');
+    
+    echo $form->switcher($model, 'reliable_partner');
 }
 
 $url = \yii\helpers\Url::toRoute('/location/city/get-cities');

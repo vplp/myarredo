@@ -18,7 +18,10 @@ use frontend\modules\shop\models\Order;
 use frontend\modules\shop\models\OrderAnswer;
 use frontend\modules\shop\models\OrderComment;
 use frontend\modules\shop\models\OrderItemPrice;
-
+use yii\helpers\ArrayHelper;
+use common\actions\upload\{
+    DeleteAction, UploadAction
+};
 /**
  * Class AdminOrderController
  *
@@ -44,13 +47,32 @@ class AdminOrderController extends BaseController
                     'list' => ['get', 'post'],
                     'list-italy' => ['get', 'post'],
                     'pjax-save-order-answer' => ['get', 'post'],
+                    'one-file-upload' => ['get', 'post'],
                 ],
             ],
             'AccessControl' => [
                 'class' => AccessControl::class,
                 'rules' => [
                     [
+                        'allow' => Yii::$app->user->identity->profile->getAccessToAdminOrders(),
+                        'actions' => [
+                            'manager',
+                            'update',
+                            'list',
+                            'pjax-save-order-answer'
+                        ],
+                        'roles' => ['partner'],
+                    ],
+                    [
                         'allow' => true,
+                        'actions' => [
+                            'update',
+                            'manager',
+                            'list',
+                            'list-italy',
+                            'pjax-save-order-answer',
+                            'one-file-upload',
+                        ],
                         'roles' => ['admin', 'settlementCenter'],
                     ],
                     [
@@ -292,6 +314,7 @@ class AdminOrderController extends BaseController
             $modelOrder = Order::findById($order_id);
 
             if ($modelOrder->isArchive()) {
+                file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/admin-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." не успел, заказ в архиве\n", FILE_APPEND);
                 // show message
                 Yii::$app->getSession()->setFlash('error', 'Не успели');
             } else {
@@ -352,11 +375,15 @@ class AdminOrderController extends BaseController
                                     }
                                 }
                             } catch (Exception $e) {
+                                 $q=print_r($e,1);
+                                file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/admin-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." OrderItemPrice error, rollback ".$q."\n", FILE_APPEND);
                                 $transaction->rollBack();
                             }
                         } else {
                             $response['success'] = 0;
                             $response['OrderItemPrice'][$product_id] = $modelOrderItemPrice->getFirstErrors();
+                            $q=print_r($response['OrderItemPrice'][$product_id],1);
+                            file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/admin-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." OrderItemPrice novalid ".$q."\n", FILE_APPEND);
                         }
                     }
 
@@ -398,7 +425,7 @@ class AdminOrderController extends BaseController
                             Yii::$app->language = $modelOrder->lang;
 
                             // send user letter
-                            Yii::$app
+                            $mail = Yii::$app
                                 ->mailer
                                 ->compose(
                                     $viewMail,
@@ -408,8 +435,11 @@ class AdminOrderController extends BaseController
                                     ]
                                 )
                                 ->setTo($modelOrder->customer['email'])
-                                ->setSubject(Yii::t('app', 'Ответ за заказ') . ' № ' . $modelOrder['id'])
-                                ->send();
+                                ->setSubject(Yii::t('app', 'Ответ за заказ') . ' № ' . $modelOrder['id']);
+
+                            if (!empty($modelOrderAnswer->file)) $mail->attach($modelOrderAnswer->getFile());
+                                
+                            $mail->send();
 
                             Yii::$app->language = $currentLanguage;
 
@@ -420,18 +450,46 @@ class AdminOrderController extends BaseController
                             );
                             // end send
                         } else {
+                            $q=print_r($modelOrderAnswer->getFirstErrors(),1);
+                            file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/admin-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." OrderAnswer not save, rollback ".$q."\n", FILE_APPEND);
                             $transaction->rollBack();
                         }
                     } catch (Exception $e) {
+                        $q=print_r($e,1);
+                        file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/admin-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." OrderAnswer error, rollback ".$q."\n", FILE_APPEND);
                         $transaction->rollBack();
                     }
                 } else {
                     $response['success'] = 0;
                     $response['OrderAnswer'] = $modelOrderAnswer->getFirstErrors();
+                    $q=print_r($response['OrderAnswer'],1);
+                    file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/admin-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." OrderAnswer novalid ".$q."\n", FILE_APPEND);
                 }
 
                 return $response;
             }
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function actions()
+    {
+        return ArrayHelper::merge(
+            parent::actions(),
+            [
+                'one-file-upload' => [
+                    'class' => UploadAction::class,
+                    'path' => Yii::getAlias('@uploads').'/files',
+                    'uploadOnlyImage' => false,
+                    'unique' => false
+                ],
+                'one-file-delete' => [
+                    'class' => DeleteAction::class,
+                    'path' => Yii::getAlias('@uploads').'/files'
+                ],
+            ]
+        );
     }
 }

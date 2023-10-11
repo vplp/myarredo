@@ -206,6 +206,7 @@ class FactoryOrderController extends BaseController
             $modelOrder = Order::findById($order_id);
 
             if ($modelOrder->isArchive()) {
+                file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/factory-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." не успел, заказ в архиве\n", FILE_APPEND);
                 // show message
                 Yii::$app->getSession()->setFlash(
                     'error',
@@ -260,11 +261,15 @@ class FactoryOrderController extends BaseController
                                 }
                             }
                         } catch (Exception $e) {
+                             $q=print_r($e,1);
+                            file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/factory-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." OrderItemPrice error, rollback ".$q."\n", FILE_APPEND);
                             $transaction->rollBack();
                         }
                     } else {
                         $response['success'] = 0;
                         $response['OrderItemPrice'][$product_id] = $modelOrderItemPrice->getFirstErrors();
+                        $q=print_r($response['OrderItemPrice'][$product_id],1);
+                            file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/factory-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." OrderItemPrice novalid ".$q."\n", FILE_APPEND);
                     }
                 }
 
@@ -327,14 +332,20 @@ class FactoryOrderController extends BaseController
                             );
                             // end send
                         } else {
+                            $q=print_r($modelOrderAnswer->getFirstErrors(),1);
+                            file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/factory-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." OrderAnswer not save, rollback ".$q."\n", FILE_APPEND);
                             $transaction->rollBack();
                         }
                     } catch (Exception $e) {
+                        $q=print_r($e,1);
+                        file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/factory-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." OrderAnswer error, rollback ".$q."\n", FILE_APPEND);
                         $transaction->rollBack();
                     }
                 } else {
                     $response['success'] = 0;
                     $response['OrderAnswer'] = $modelOrderAnswer->getFirstErrors();
+                    $q=print_r($response['OrderAnswer'],1);
+                    file_put_contents("/var/www/www-root/data/www/myarredo.ru/frontend/modules/shop/controllers/factory-log.txt", date('Y-m-d H:i:s')." ".Yii::$app->getUser()->getId()." OrderAnswer novalid ".$q."\n", FILE_APPEND);
                 }
 
                 return $response;

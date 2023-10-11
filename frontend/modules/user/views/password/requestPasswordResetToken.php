@@ -18,12 +18,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="page factory-profile">
         <div class="largex-container">
 
-            <?= Html::tag('h1', $this->title); ?>
+            <?= Html::tag('h1', Yii::t('app', 'Запросить сброс пароля')); ?>
 
             <div class="passreset-box">
 
-                <p>Пожалуйста, заполните свой адрес электронной почты. Здесь будет отправлена ссылка на сброс
-                    пароля.</p>
+                <p><?= Yii::t('app', 'Пожалуйста, заполните свой адрес электронной почты. Здесь будет отправлена ссылка на сброс пароля.') ?>(</p>
 
                 <?php $form = ActiveForm::begin([
                     'id' => 'request-password-reset-form',
@@ -40,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ->label(false) ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Отправить', ['class' => 'btn btn-green']) ?>
+                    <?= Html::submitButton(Yii::t('app', 'Отправить'), ['class' => 'btn btn-green']) ?>
                 </div>
 
                 <?php ActiveForm::end(); ?>

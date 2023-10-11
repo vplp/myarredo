@@ -128,6 +128,7 @@ class Colors extends \common\modules\catalog\models\Colors
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
                 //Factory::tableName() . '.show_for_' . DOMAIN_TYPE => '1',
+                Factory::tableName() . '.show_for_' . Yii::$app->languages->getDomain() => '1',
             ]);
 
         if ($isCountriesFurniture) {

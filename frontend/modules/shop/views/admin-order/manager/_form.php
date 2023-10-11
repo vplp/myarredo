@@ -68,10 +68,22 @@ $this->title = $this->context->title;
                                 <span><?= $modelOrder->customer->full_name ?></span>
                             </li>
                             <li>
-                                <span><?= $modelOrder->customer->phone ?></span>
+                                <span>
+                                    <?php  if ((Yii::$app->user->identity->id == 3388061 && $modelOrder->orderAnswer->answer_time == 0) || !Yii::$app->user->identity->profile->getPossibilityToViewCustomer($modelOrder)) {
+                                       echo '-';
+                                   } else {
+                                       echo $modelOrder->customer->phone;
+                                   } ?>
+                               </span>
                             </li>
                             <li>
-                                <span><?= $modelOrder->customer->email ?></span>
+                                <span>
+                                 <?php if ((Yii::$app->user->identity->id == 3388061 && $modelOrder->orderAnswer->answer_time == 0) || !Yii::$app->user->identity->profile->getPossibilityToViewCustomer($modelOrder)) {
+                                     echo '-';
+                                 } else {
+                                     echo $modelOrder->customer->email;
+                                 } ?>
+                                </span>
                             </li>
                             <li class="lang-cell">
                                 <span><?= substr($modelOrder->lang, 0, 2) ?></span>
@@ -109,6 +121,7 @@ $this->title = $this->context->title;
 
                                 $arrPrices = [];
                                 foreach ($orderItem->orderItemPrices as $price) {
+                                    if ($price->user_id != Yii::$app->user->id  && Yii::$app->user->identity->group->role != 'admin') continue;
                                     $arrPrices[] = $price['user']['profile']->getNameCompany() . '&nbsp;' . ($price['out_of_production'] == '1'
                                             ? Yii::t('app', 'Снят с производства')
                                             : $price['price'] . ' ' . $price['currency']);
@@ -215,6 +228,7 @@ $this->title = $this->context->title;
 
                         <!-- list -->
                         <?php foreach ($modelOrder->orderComments as $item) { ?>
+                            <?php if ($item->user_id != Yii::$app->user->id && Yii::$app->user->identity->group->role != 'admin') continue;?>
                             <div>
                                 <div><?= date('j.m.Y H:i', $item['updated_at']) ?></div>
                                 <?php if ($item['type'] == 'reminder') { ?>

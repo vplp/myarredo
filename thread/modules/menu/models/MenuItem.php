@@ -288,9 +288,12 @@ class MenuItem extends ActiveRecord
     public function getLink()
     {
         $link = '';
+
         switch ($this['link_type']) {
             case self::LINK_TYPE_EXTERNAL:
                 $link = $this['link'];
+                if ($this->id == 24) $link ='/user/login/';
+                if ($this->id == 24 && DOMAIN_TYPE == 'com') $link ='/it/user/login/';
                 break;
             case self::LINK_TYPE_INTERNAL:
                 $link = (isset($this->source)) ? $this->source->getUrl() : '';

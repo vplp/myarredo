@@ -43,6 +43,9 @@ return [
     'forms' => [
         'class' => \backend\modules\forms\FormsModule::class,
     ],
+    'files' => [
+        'class' => \backend\modules\files\FilesModule::class,
+    ],
     'payment' => [
         'class' => \backend\modules\payment\PaymentModule::class,
     ],

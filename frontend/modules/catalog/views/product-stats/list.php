@@ -17,7 +17,13 @@ use frontend\modules\catalog\models\{
 $this->title = $this->context->title;
 
 ?>
-
+<style>
+    .category-page .cat-prod .one-prod-tile .background,
+    .std-slider .background{
+        -webkit-filter: none;
+        filter: none;
+    }
+</style>
 <main>
     <div class="page adding-product-page">
         <div class="container large-container">

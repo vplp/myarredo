@@ -315,15 +315,15 @@ class Order extends \thread\modules\shop\models\Order
             in_array(Yii::$app->user->identity->group->role, ['partner']) &&
             Yii::$app->user->identity->profile->city_id == $this->city_id) {
             $isArchive = false;
-        } elseif ($this->orderRelUserForAnswer) {
+        } elseif ($this->orderRelUserForAnswer) {if ($this->id == 10744 && Yii::$app->user->id == 3388135) exit;
             foreach ($this->orderRelUserForAnswer as $user) {
                 if ($user->id == Yii::$app->user->identity->id) {
                     $isArchive = false;
                 }
             }
-        } elseif (date_diff(new \DateTime(), new \DateTime(date(DATE_ATOM, $this->created_at)))->days >= 5) {
+        } elseif (date_diff(new \DateTime(), new \DateTime(date(DATE_ATOM, $this->created_at)))->days >= 5 && ($this->id != 10744 && Yii::$app->user->id != 3388135)) {
             $isArchive = true;
-        } elseif (count($this->orderAnswers) >= 3) {
+        } elseif (count($this->orderAnswers) >= 3  && ($this->id != 10744 && Yii::$app->user->id != 3388135)) {
             $isArchive = true;
         }
 

@@ -174,6 +174,8 @@ class UploadBehavior extends Behavior
     protected function deleteFile($file)
     {
         if (is_file($file)) {
+            $q=print_r(\Yii::$app->getUser()->id, 1);
+            file_put_contents('/var/www/www-root/data/www/myarredo.ru/DeleteAction-log.txt', date('Y-m-d H:i:s').' UploadBehavior file='.$fil. ' user='.$q."\n", FILE_APPEND);
             return unlink($file);
         }
 

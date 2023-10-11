@@ -430,6 +430,20 @@ class RegisterForm extends CommonForm
 
                 $saveLang = $modelLang->save();
 
+                if (Yii::$app->language != 'ru-RU') {
+                    $modelLangRu = new ProfileLang([
+                        'scenario' => 'basicCreate',
+                        'rid' => $model->id,
+                        'lang' => 'ru-RU',
+                        'address' => $this->address,
+                        'name_company' => $this->name_company,
+                    ]);
+
+                    $saveLangRu = $modelLangRu->save();
+                }
+
+                
+
                 ($save && $saveLang) ? $transaction->commit() : $transaction->rollBack();
 
                 return $save;

@@ -138,6 +138,60 @@ class CategoryController extends BaseController
             'bestsellers' => ArrayHelper::map($bestsellers, 'product_id', 'product_id'),
         ]);
     }
+    /**
+     * @return string
+     * @throws \Throwable
+     */
+    public function actionList1()
+    {
+        Yii::$app->assetManager->forceCopy = true;
+        $model = new Product();
+
+        Yii::$app->catalogFilter->parserUrl();
+
+        $keys = Yii::$app->catalogFilter->keys;
+        $queryParams = Yii::$app->catalogFilter->params;
+
+        $queryParams['defaultPageSize'] = 33;
+        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+
+        Yii::$app->metatag
+            ->render()
+            ->setImageUrl('https://img.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . '/uploads/myarredo-ico.jpg')
+            ->renderGraph();
+
+        if (!empty($models->getModels()) && !empty($queryParams[$keys['colors']])) {
+            $this->listSeoColors();
+        } elseif (!empty($models->getModels())) {
+            $this->listSeo();
+        } else {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'robots',
+                'content' => 'noindex, nofollow',
+            ]);
+        }
+
+        $bestsellers = ProductStatsDays::find()
+            ->select([
+                ProductStatsDays::tableName() . '.product_id',
+                'count(' . ProductStatsDays::tableName() . '.product_id) as count',
+                'sum(' . ProductStatsDays::tableName() . '.views) as views'
+            ])
+            ->groupBy(ProductStatsDays::tableName() . '.product_id')
+            ->orderBy(['views' => SORT_DESC])
+            ->asArray()
+            ->limit(30)
+            ->cache(604800)
+            ->all();
+        
+        $this->layout ='@frontend/themes/myarredo/layouts/main1.php';
+
+        return $this->render('list1', [
+            'models' => $models->getModels(),
+            'pages' => $models->getPagination(),
+            'bestsellers' => ArrayHelper::map($bestsellers, 'product_id', 'product_id'),
+        ]);
+    }
 
     /**
      * @return array
