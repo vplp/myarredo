@@ -66,9 +66,9 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                             !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale', 'countries-furniture']) &&
                             !in_array(Yii::$app->controller->module->id, ['news'])
                         ) { ?>
-                            <div class="lang-selector">
-                                <?= LangSwitch::widget(['noIndex' => $this->context->noIndex]) ?>
-                            </div>
+<!--                            <div class="lang-selector">-->
+<!--                                --><?//= LangSwitch::widget(['noIndex' => $this->context->noIndex]) ?>
+<!--                            </div>-->
                         <?php } ?>
 
                         <?php if (in_array(DOMAIN_TYPE, ['ru']) && Yii::$app->controller->action->id != 'error') { ?>
@@ -397,9 +397,9 @@ $clearPhoneNumb = preg_replace('/\D+/', '', Yii::$app->partner->getPartnerPhone(
                 !in_array(Yii::$app->controller->id, ['articles', 'contacts', 'sale', 'countries-furniture']) &&
                 !in_array(Yii::$app->controller->module->id, ['news'])
             ) { ?>
-                <div class="header-langbox">
-                    <?= LangSwitch::widget(['view' => 'lang_switch_mobile', 'noIndex' => $this->context->noIndex]) ?>
-                </div>
+<!--                <div class="header-langbox">-->
+<!--                    --><?//= LangSwitch::widget(['view' => 'lang_switch_mobile', 'noIndex' => $this->context->noIndex]) ?>
+<!--                </div>-->
             <?php } ?>
 
             <a href="javascript:void(0);" class="close-mobile-menu js-close-mobile-menu">

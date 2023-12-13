@@ -7,6 +7,8 @@ use Yii;
 use yii\base\Exception;
 use yii\base\Widget;
 use frontend\modules\catalog\models\Category;
+use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\Factory;
 
 /**
  * Class NoveltyProducts
@@ -53,10 +55,10 @@ class NoveltyProducts extends Widget
         if ($this->modelClass === null) {
             throw new Exception(__CLASS__ . '::$modelClass must be set.');
         }
-
+\Yii::$app->cache->flush();
         $modelClass = new $this->modelClass();
         $modelLangClass = new $this->modelLangClass();
-
+//echo "<pre style='display:none' 111111111111111111111111>";var_dump($modelClass);echo "</pre>"; exit;
         $keys = Yii::$app->catalogFilter->keys;
         $params = Yii::$app->catalogFilter->params;
 
@@ -70,17 +72,33 @@ class NoveltyProducts extends Widget
                 $modelClass::tableName() . '.price_new',
                 $modelLangClass::tableName() . '.title',
             ])
+            ->innerJoinWith(['lang', 'factory'])
+            ->andFilterWhere([
+                Factory::tableName() . '.published' => '1',
+                Factory::tableName() . '.deleted' => '0',
+                Factory::tableName() . '.show_for_' . Yii::$app->languages->getDomain() => '1',
+            ])
             ->limit(8)
             ->cache(7200);
 
         if (!empty(Yii::$app->partner) && Yii::$app->partner->id) {
+            $partners = Yii::$app->partner->id;
+            if (Yii::$app->city->getCityId() == 4) {
+                $partners = '48, 3372632';
+            } elseif (Yii::$app->city->getCityId() == 8) {
+                $partners = '3372632, 48';
+            } elseif (!in_array(Yii::$app->city->getCityId(), [1, 2, 4, 8, 159, 160, 161, 162, 164, 165])) {
+                $partners = '3372632, 48,'.Yii::$app->partner->id;
+            }
             $order['FIELD (' . $modelClass::tableName() . '.user_id, ' . Yii::$app->partner->id . ')'] = SORT_DESC;
-        } elseif (in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159, 160, 161, 162, 164, 165])) {
+        } elseif (in_array(Yii::$app->city->getCityId(), [1, 2, 159, 160, 161, 162, 164, 165])) {
             $query
                 ->innerJoinWith(['city'])
                 ->andFilterWhere(['NOT IN', City::tableName() . '.id', [5]]);
 
             $order[City::tableName() . '.id'] = SORT_ASC;
+        } else {
+            $order['FIELD (' . $modelClass::tableName() . '.user_id,  3372632, 48)'] = SORT_DESC;
         }
 
         $order[$modelClass::tableName() . '.updated_at'] = SORT_DESC;
@@ -98,6 +116,8 @@ class NoveltyProducts extends Widget
         }
 
         $this->models = $query->all();
+
+        //echo "<pre style='display:none' 111111111111111111111111>";echo $query->createCommand()->sql;echo "</pre>";
 
         foreach ($this->models as $model) {
             $this->sliderData[] = array(

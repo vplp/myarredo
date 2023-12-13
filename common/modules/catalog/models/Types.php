@@ -74,7 +74,7 @@ class Types extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
                 ],
                 'value' => function ($event) {
-                    return Inflector::slug($this->alias);
+                    return Inflector::slug($this->alias,'-');
                 },
             ],
             [
@@ -84,7 +84,7 @@ class Types extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_en',
                 ],
                 'value' => function ($event) {
-                    return Inflector::slug($this->alias_en);
+                    return Inflector::slug($this->alias_en,'-');
                 },
             ],
             [
@@ -94,7 +94,7 @@ class Types extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_it',
                 ],
                 'value' => function ($event) {
-                    return Inflector::slug($this->alias_it);
+                    return Inflector::slug($this->alias_it,'-');
                 },
             ],
             [
@@ -104,7 +104,7 @@ class Types extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_de',
                 ],
                 'value' => function ($event) {
-                    return Inflector::slug($this->alias_de);
+                    return Inflector::slug($this->alias_de,'-');
                 },
             ],
             [
@@ -114,7 +114,7 @@ class Types extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_fr',
                 ],
                 'value' => function ($event) {
-                    return Inflector::slug($this->alias_fr);
+                    return Inflector::slug($this->alias_fr,'-');
                 },
             ],
             [
@@ -124,7 +124,7 @@ class Types extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_he',
                 ],
                 'value' => function ($event) {
-                    return Inflector::slug($this->alias_he);
+                    return Inflector::slug($this->alias_he,'-');
                 },
             ],
         ]);

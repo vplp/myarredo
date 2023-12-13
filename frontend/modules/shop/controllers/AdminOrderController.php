@@ -120,7 +120,7 @@ class AdminOrderController extends BaseController
             $modelComment->save();
         }
 
-        $this->title = Yii::t('shop', 'Работа с заказом');
+        $this->title = Yii::t('app', 'Работа с заказом');
 
         $this->breadcrumbs[] = [
             'label' => $this->title,

@@ -30,7 +30,7 @@ class CatalogProductJsonController extends Controller
             ->andFilterWhere([
                 $mark => '0',
             ])
-            ->limit(200)
+            ->limit(2000)
             ->all();
 
         // languages

@@ -9,7 +9,7 @@ use frontend\modules\catalog\models\{
     ElasticSearchProduct, ElasticSearchSale, ElasticSearchItalianProduct
 };
 use common\modules\catalog\models\{
-    Product, Sale, ItalianProduct
+    Product, Sale, ItalianProduct, Factory
 };
 use frontend\modules\sys\models\Language;
 
@@ -79,12 +79,12 @@ class ElasticSearchController extends Controller
                 Product::tableName() . '.mark1' => '0',
             ])
             ->orderBy(Product::tableName() . '.id ASC')
-            ->limit(100)
+            ->limit(1000)
             ->all();
 
         foreach ($models as $model) {
             /** @var $model Product */
-
+            var_dump($model->id);
             if ($model->removed == 0 && $model->published == 1 && $model->deleted == 0 &&
                 $model->factory->published == 1 && $model->factory->deleted == 0) {
                 /** @var PDO $transaction */
@@ -112,11 +112,12 @@ class ElasticSearchController extends Controller
                         }
                     }
 
-                    if ($model->save() && !in_array(0, array_values($saveLang))) {
+                    if ($model->save()/* && !in_array(0, array_values($saveLang))*/) {
                         $transaction->commit();
                         $this->stdout("add ID =" . $model->id . " \n", Console::FG_GREEN);
                     } else {
                         $transaction->rollBack();
+                        $this->stdout("rollBack ID =" . $model->id ." \n", Console::FG_GREEN);
                     }
                 } catch (\Exception $e) {
                     $transaction->rollBack();

@@ -46,10 +46,10 @@ class FactoryController extends BaseController
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'list' => ['get'],
-                    'view' => ['get'],
+                    'list' => ['get','head'],
+                    'view' => ['get','head'],
                     'click-on-file' => ['post'],
-                    'pdf-viewer' => ['get'],
+                    'pdf-viewer' => ['get','head'],
                 ],
             ],
         ];

@@ -29,10 +29,10 @@ use frontend\modules\location\models\{
 class CatalogFilter extends Component
 {
     /** delimiter */
-    const AMPERSAND_1 = '--';
+    const AMPERSAND_1 = '---';
 
     /** delimiter */
-    const AMPERSAND_2 = '-';
+    const AMPERSAND_2 = '--';
 
     /**
      * Filter parameters

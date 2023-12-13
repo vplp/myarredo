@@ -37,7 +37,7 @@ if ($filterItem) {
 
         Yii::$app->view->registerLinkTag([
             'rel' => 'preload',
-            'href' => $model->getImageLink(),
+            'href' => $model->getImageLink().'?v=1.0',
             'as' => 'image',
             'media' => '(min-width: 601px)',
         ]);
@@ -82,11 +82,11 @@ function renderSlider(data) {
 
         if (elem.langLink != '') {
             layut += '<a href="'+ elem.langLink +'">' +
-                    '<img width="1600" height="560" src="'+ link +'" alt="'+ elem.langDescr +'">' +
+                    '<img width="1600" height="560" src="'+ link +'?v=1.0" alt="'+ elem.langDescr +'">' +
                 '</a>';
         }
         else {
-            layut += '<img width="1600" height="560" src="'+ link +'" alt="'+ elem.langDescr +'">';
+            layut += '<img width="1600" height="560" src="'+ link +'?v=1.0" alt="'+ elem.langDescr +'">';
         }
         if (elem.langDescr != '') {
             layut += '<span>'+ elem.langDescr +'</span>';

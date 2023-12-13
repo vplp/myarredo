@@ -30,7 +30,7 @@ class ProductController extends BaseController
             [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'view' => ['get'],
+                    'view' => ['get','head'],
                     'ajax-get-compositions' => ['get', 'post'],
                 ],
             ],
@@ -73,7 +73,7 @@ class ProductController extends BaseController
         if ($model == null) {
             $model = Product::findByAlias($alias);
         }
-
+//echo "<pre style='display:none' 111111111111111111111111>";var_dump($model);echo "</pre>";exit;
         $session = Yii::$app->session;
 
         if (!$session->has('order_count_url_visit')) {

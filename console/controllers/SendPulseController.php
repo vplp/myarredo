@@ -252,9 +252,9 @@ class SendPulseController extends Controller
         $this->stdout("SendPulse ".date("Y-m-d H:i:s").": end actionSendCampaign. \n", Console::FG_GREEN);
     }
 
-    public function actionSendTest()
+    public function actionSendReviewInvoce()
     {
-        $this->stdout("SendPulse ".date("Y-m-d H:i:s").": start actionSendTest. \n", Console::FG_GREEN);
+        $this->stdout("SendPulse ".date("Y-m-d H:i:s").": start actionSendReviewInvoce. \n", Console::FG_GREEN);
 
         /**
          * get order
@@ -262,12 +262,15 @@ class SendPulseController extends Controller
         $dateFrom = strtotime(date('Y-m-d 00:00:00', strtotime('-14 days')));
         $dateTo = strtotime(date('Y-m-d 23:59:59', strtotime('-14 days')));
         $modelOrders = Order::findBase()
-            /*->andWhere([
-                'between', Order::tableName() . '.created_at', $dateFrom, $dateTo
-            ])*/
             ->andWhere([
-                Order::tableName() .'.id'=>11520
+                'between', Order::tableName() . '.created_at', $dateFrom, $dateTo
             ])
+            ->andWhere([
+                Order::tableName() .'.country_id'=>2
+            ])
+            /*->andWhere([
+                Order::tableName() .'.id'=>11520
+            ])*/
             ->enabled()
             ->all();
 
@@ -293,8 +296,8 @@ class SendPulseController extends Controller
                 $response = \Yii::$app->mailer
                                 ->compose()
                                 ->setFrom([$senderEmail => $senderName])
-                                //->setTo($modelOrder->customer->email)
-                                ->setTo('dmd@liderpoiska.ru')
+                                ->setTo($modelOrder->customer->email)
+                                ->setBcc('dmd@liderpoiska.ru')
                                 //->setTo('myarredo@myarredo.ru')
                                 ->setSubject($subject)
                                 ->setHtmlBody($body)
@@ -314,7 +317,7 @@ class SendPulseController extends Controller
             }
         }
 
-        $this->stdout("SendPulse ".date("Y-m-d H:i:s").": end actionSendTest. \n", Console::FG_GREEN);
+        $this->stdout("SendPulse ".date("Y-m-d H:i:s").": end actionSendReviewInvoce. \n", Console::FG_GREEN);
     }
 
     /**
@@ -523,6 +526,8 @@ class SendPulseController extends Controller
     }
 
     public function actionSendTest1(){
+        var_dump(Yii::$app->mailer);
+        exit;
         var_dump(Yii::$app->sendPulse->sendSmtpBz('myarredo', 'info@myarredo.com', 'testAction', '<b>test action</b>', 99999));
     }
 }

@@ -55,7 +55,7 @@ class CategoryController extends BaseController
             [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'list' => ['get'],
+                    'list' => ['get','head'],
                     'ajax-get-types' => ['post'],
                     'ajax-get-category' => ['post'],
                     'ajax-get-filter' => ['post'],

@@ -101,7 +101,7 @@ class Sale extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
                 ],
                 'value' => function ($event) {
-                    return Inflector::slug($this->alias, '_');
+                    return Inflector::slug($this->alias, '-');
                 },
             ],
         ]);

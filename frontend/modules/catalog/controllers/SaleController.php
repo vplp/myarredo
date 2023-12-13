@@ -57,8 +57,8 @@ class SaleController extends BaseController
             [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'list' => ['get'],
-                    'view' => ['post', 'get'],
+                    'list' => ['get','head'],
+                    'view' => ['post', 'get','head'],
                     'ajax-get-phone' => ['post'],
                     'ajax-get-filter' => ['post'],
                     'ajax-get-filter-sizes' => ['post'],
@@ -258,7 +258,7 @@ class SaleController extends BaseController
             'image' => Sale::getImage($model['image_link']),
         ]);
 
-        $reviews = FormsFeedbackAfterOrder::findBase()->andWhere(['question_2'=> $model['user']['id'], 'published'=>1])->limit(4)->all();
+        $reviews = FormsFeedbackAfterOrder::findBase()->andWhere(['question_2'=> $model['user']['id'], 'published'=>1, 'deleted'=>0])->limit(4)->all();
         $vote = FormsFeedbackAfterOrder::findBase()->andWhere(['question_2'=> $model['user']['id'], 'published'=>1])->average('vote');
 
         /**

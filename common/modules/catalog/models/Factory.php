@@ -109,7 +109,7 @@ class Factory extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
                 ],
                 'value' => function ($event) {
-                    return Inflector::slug($this->alias);
+                    return Inflector::slug($this->alias,'-');
                 },
             ],
         ]);
@@ -328,6 +328,25 @@ class Factory extends ActiveRecord
         if (in_array($this->scenario, ['backend'])) {
             $this->editor_id = Yii::$app->user->id;
             $this->mark = '0';
+            foreach ($this->product as $product) {
+                $product->setScenario('mark1');
+                $product->mark1 = '0';
+                $product->save();
+            }
+            if ($this->sale){
+                foreach ($this->sale as $product) {
+                    $product->setScenario('mark1');
+                    $product->mark1 = '0';
+                    $product->save();
+                }
+            }
+            if ($this->italianProduct){
+                foreach ($this->italianProduct as $product) {
+                    $product->setScenario('mark1');
+                    $product->mark1 = '0';
+                    $product->save();
+                }
+            }
         }
 
         return parent::beforeSave($insert);

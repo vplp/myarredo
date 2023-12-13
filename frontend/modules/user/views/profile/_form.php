@@ -76,7 +76,7 @@ $this->title = Yii::t('app', 'Profile');
                      */
                     if (Yii::$app->user->identity->group->role == 'factory') { ?>
                         <div class="col-md-4 col-lg-4 one-row">
-                            <?= $form->field($model, 'email') ?>
+                            <?= $form->field($model, 'email_company') ?>
                             <?= $form->field($modelLang, 'address') ?>
                             <?= $form
                                 ->field($model, 'website')

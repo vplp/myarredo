@@ -140,7 +140,7 @@ class Order extends ActiveRecord
             'discount_money' => Yii::t('shop', 'Discount of money for order'),
             'discount_full' => Yii::t('shop', 'Summ discount for order'),
             'total_summ' => Yii::t('shop', 'Finish Summ'),
-            'order_status' => Yii::t('shop', 'Order status'),
+            'order_status' => Yii::t('app', 'Статус заказа'),
             'payd_status' => Yii::t('shop', 'Payd status'),
             'delivery_method_id' => Yii::t('shop', 'Delivery method'),
             'payment_method_id' => Yii::t('shop', 'Payment method'),
@@ -206,13 +206,13 @@ class Order extends ActiveRecord
     public static function getOrderStatuses($key = '')
     {
         $data = [
-            'new' => Yii::t('shop', 'Order_status_new'),
-            'in_work' => Yii::t('shop', 'Order_status_in_work'),
-            'given_to_salon' => Yii::t('shop', 'Order_status_given_to_salon'),
-            'contract_signed' => Yii::t('shop', 'Order_status_contract_signed'),
-            'failure' => Yii::t('shop', 'Order_status_failure'),
-            'archive' => Yii::t('shop', 'Order_status_archive'),
-            'postpone' => Yii::t('shop', 'Order_status_postpone'),
+            'new' => Yii::t('app', 'Новая'),
+            'in_work' => Yii::t('app', 'В работе'),
+            'given_to_salon' => Yii::t('app', 'Передана в салон'),
+            'contract_signed' => Yii::t('app', 'Заключен договор'),
+            'failure' => Yii::t('app', 'Отказ'),
+            'archive' => Yii::t('app', 'Архивная'),
+            'postpone' => Yii::t('app', 'Отложен'),
         ];
 
         if ($key && $data[$key]) {

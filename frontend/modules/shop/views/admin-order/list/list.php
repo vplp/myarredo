@@ -62,7 +62,7 @@ $this->title = $this->context->title;
                                 <span><?= Yii::t('app', 'Status') ?></span>
                             </li>
                             <li>
-                                <span><?= Yii::t('shop', 'Комментарий') ?></span>
+                                <span><?= Yii::t('app', 'Комментарий') ?></span>
                             </li>
                         </ul>
                     </div>

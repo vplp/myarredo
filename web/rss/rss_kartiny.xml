@@ -5,23 +5,23 @@
 		<link>https://www.myarredo.ru/</link>
 		<description>Портал MYARREDO — проверенные салоны продаж итальянской мебели в более, чем 70 городах России</description>
 		<item>
-			<title>Панно GIORGIO COLLECTION Mirage Gold Shadow</title>
-			<link>https://www.myarredo.ru/product/panno_kartina_giorgio_collection_gold_shadow/</link>
-			<guid>https://www.myarredo.ru/product/panno_kartina_giorgio_collection_gold_shadow/</guid>
-			<enclosure url="https://img.myarredo.ru/uploads/images/2a39/4813/cc97/58f7/c9a0/40e3/b2de/61fb9e45c96a2.jpg" type="image/jpeg"/>
-			<description><![CDATA[Фабрика GIORGIO COLLECTION
-Стиль Современный
-Квадратная рамка в деревянном каркасе с аппликацией кристаллов Swarovski.
-]]></description>
-		</item>
-		<item>
 			<title>Панно GIORGIO COLLECTION Mirage Aramis</title>
-			<link>https://www.myarredo.ru/product/panno_kartina_giorgio_collection_aramis/</link>
-			<guid>https://www.myarredo.ru/product/panno_kartina_giorgio_collection_aramis/</guid>
+			<link>https://www.myarredo.ru/product/panno-kartina-giorgio-collection-aramis/</link>
+			<guid>https://www.myarredo.ru/product/panno-kartina-giorgio-collection-aramis/</guid>
 			<enclosure url="https://img.myarredo.ru/uploads/images/bbf9/a087/552d/8527/cd2d/0366/8259/61fb8ed646ccb.jpg" type="image/jpeg"/>
 			<description><![CDATA[Фабрика GIORGIO COLLECTION
 Стиль Современный
 Прямоугольная металлическая рамка с ручной росписью и светодиодной подсветкой.
+]]></description>
+		</item>
+		<item>
+			<title>Панно GIORGIO COLLECTION Mirage Gold Shadow</title>
+			<link>https://www.myarredo.ru/product/panno-kartina-giorgio-collection-gold-shadow/</link>
+			<guid>https://www.myarredo.ru/product/panno-kartina-giorgio-collection-gold-shadow/</guid>
+			<enclosure url="https://img.myarredo.ru/uploads/images/2a39/4813/cc97/58f7/c9a0/40e3/b2de/61fb9e45c96a2.jpg" type="image/jpeg"/>
+			<description><![CDATA[Фабрика GIORGIO COLLECTION
+Стиль Современный
+Квадратная рамка в деревянном каркасе с аппликацией кристаллов Swarovski.
 ]]></description>
 		</item>
 	</channel>

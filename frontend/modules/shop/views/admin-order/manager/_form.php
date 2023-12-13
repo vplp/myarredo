@@ -102,7 +102,7 @@ $this->title = $this->context->title;
             <div class="container large-container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div><?= Yii::t('shop', 'Товары заявки') ?>:</div>
+                        <div><?= Yii::t('app', 'Товары заявки') ?>:</div>
 
                         <?php foreach ($modelOrder->items as $key => $orderItem) {
                             if (isset($orderItem->product)) {
@@ -116,7 +116,7 @@ $this->title = $this->context->title;
                                     ['target' => '_blank']
                                 );
                                 if ($orderItem->orderItemPrice->price) {
-                                    $str .= '&nbsp;' . Yii::t('shop', 'Цена') . ':&nbsp;' . $orderItem->orderItemPrice->price . '&nbsp;' . $orderItem->orderItemPrice->currency;
+                                    $str .= '&nbsp;' . Yii::t('app', 'Цена') . ':&nbsp;' . $orderItem->orderItemPrice->price . '&nbsp;' . $orderItem->orderItemPrice->currency;
                                 }
 
                                 $arrPrices = [];
@@ -161,11 +161,11 @@ $this->title = $this->context->title;
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="active">
                                 <a href="#comment" aria-controls="comment" role="tab"
-                                   data-toggle="tab"><?= Yii::t('shop', 'Добавить комментарий') ?></a>
+                                   data-toggle="tab"><?= Yii::t('app', 'Добавить комментарий') ?></a>
                             </li>
                             <li role="presentation">
                                 <a href="#reminder" aria-controls="reminder" role="tab"
-                                   data-toggle="tab"><?= Yii::t('shop', 'Добавить напоминание') ?></a>
+                                   data-toggle="tab"><?= Yii::t('app', 'Добавить напоминание') ?></a>
                             </li>
                         </ul>
 
@@ -177,7 +177,7 @@ $this->title = $this->context->title;
                                 <?= Html::beginForm(['/shop/admin-order/manager', 'id' => $modelOrder->id], 'post', []) ?>
                                 <?= Html::hiddenInput('type', 'comment') ?>
                                 <div class="form-group">
-                                    <label class="control-label"><?= Yii::t('shop', 'Комментарий') ?>:</label>
+                                    <label class="control-label"><?= Yii::t('app', 'Комментарий') ?>:</label>
                                     <?= Html::textarea(
                                         'content',
                                         '',
@@ -185,7 +185,7 @@ $this->title = $this->context->title;
                                     ); ?>
                                 </div>
                                 <div class="form-group">
-                                    <?= Html::submitButton(Yii::t('shop', 'Добавить комментарий'), [
+                                    <?= Html::submitButton(Yii::t('app', 'Добавить комментарий'), [
                                         'class' => 'btn btn-primary',
                                     ]); ?>
                                 </div>
@@ -198,7 +198,7 @@ $this->title = $this->context->title;
                                 <?= Html::hiddenInput('type', 'reminder') ?>
 
                                 <div class="form-group">
-                                    <label class="control-label"><?= Yii::t('shop', 'Дата') ?>:</label>
+                                    <label class="control-label"><?= Yii::t('app', 'Дата') ?>:</label>
                                     <?= DatePicker::widget([
                                         'name' => 'reminder_time',
                                         'value' => date('j.m.Y'),
@@ -210,7 +210,7 @@ $this->title = $this->context->title;
                                     ]); ?>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label"><?= Yii::t('shop', 'Напоминание') ?>:</label>
+                                    <label class="control-label"><?= Yii::t('app', 'Напоминание') ?>:</label>
                                     <?= Html::textarea(
                                         'content',
                                         '',
@@ -218,7 +218,7 @@ $this->title = $this->context->title;
                                     ); ?>
                                 </div>
                                 <div class="form-group">
-                                    <?= Html::submitButton(Yii::t('shop', 'Добавить напоминание'), [
+                                    <?= Html::submitButton(Yii::t('app', 'Добавить напоминание'), [
                                         'class' => 'btn btn-primary',
                                     ]); ?>
                                 </div>
@@ -242,13 +242,13 @@ $this->title = $this->context->title;
                         <!-- buttons -->
                         <br>
                         <?= Html::a(
-                            Yii::t('shop', 'Вернуться к заявкам'),
+                            Yii::t('app', 'Вернуться к заявкам'),
                             ['/shop/admin-order/list'],
                             ['class' => 'btn btn-cancel']
                         ) ?>
 
                         <?= Html::a(
-                            Yii::t('shop', 'Все заявки этого клиента'),
+                            Yii::t('app', 'Все заявки этого клиента'),
                             Url::toRoute(['/shop/admin-order/list']) . '?email=' . $modelOrder->customer->email,
                             ['class' => 'btn btn-cancel']
                         ) ?>

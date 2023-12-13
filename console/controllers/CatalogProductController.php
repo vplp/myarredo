@@ -7,7 +7,8 @@ use yii\db\Exception;
 use yii\helpers\Console;
 use yii\console\Controller;
 use frontend\modules\sys\models\Language;
-use common\modules\catalog\models\{Product, ProductLang};
+use common\modules\catalog\models\{Product, ProductLang, Factory, ItalianProduct, Sale, Category};
+use \common\modules\seo\modules\directlink\models\Directlink;
 
 /**
  * Class CatalogProductController
@@ -16,6 +17,96 @@ use common\modules\catalog\models\{Product, ProductLang};
  */
 class CatalogProductController extends Controller
 {
+    public function actionMakeRedirect()
+    {
+        $start = microtime(true);
+        $models = Product::find()
+            ->all();
+        foreach ($models as $model) {
+            $model->setScenario('backend');
+            if (strpos($model->alias, '_') !== false)
+                echo 'rewrite "/product/'.$model->alias.'/" /product/'.str_replace('_', '-', $model->alias)."/ permanent;\n";
+        }
+        $models = Factory::find()
+            ->all();
+        foreach ($models as $model) {
+            $model->setScenario('backend');
+            if (strpos($model->alias, '_') !== false)
+                echo 'rewrite "/factory/'.$model->alias.'/" /factory/'.str_replace('_', '-', $model->alias)."/ permanent;\n";
+        }
+        $models = ItalianProduct::find()
+            ->all();
+        foreach ($models as $model) {
+            $model->setScenario('backend');
+            if (strpos($model->alias, '_') !== false)
+                echo 'rewrite "/sale-italy-product/'.$model->alias.'/" /sale-italy-product/'.str_replace('_', '-', $model->alias)."/ permanent;\n";
+        }
+        $models = Sale::find()
+            ->all();
+        foreach ($models as $model) {
+            $model->setScenario('backend');
+            if (strpos($model->alias, '_') !== false)
+                echo 'rewrite "/sale-product/'.$model->alias.'/" /sale-product/'.str_replace('_', '-', $model->alias)."/ permanent;\n";
+        }
+        $models = Category::find()
+            ->all();
+        foreach ($models as $model) {
+            $model->setScenario('backend');
+            if (strpos($model->alias, '_') !== false){
+                echo 'rewrite "/catalog/'.$model->alias.'/" /catalog/'.str_replace('_', '-', $model->alias)."/ permanent;\n";
+                echo 'rewrite "/sale/'.$model->alias.'/" /sale/'.str_replace('_', '-', $model->alias)."/ permanent;\n";
+                echo 'rewrite "/sale-italy/'.$model->alias.'/" /sale-italy/'.str_replace('_', '-', $model->alias)."/ permanent;\n";
+            }
+        }
+        $models = Directlink::find()
+            ->all();
+        foreach ($models as $model) {
+            $model->setScenario('backend');
+            if (strpos($model->url, '_') !== false || strpos($model->url, '--') !== false){
+                $url = $model->url;
+                $url = str_replace('-', '--', $url);
+                $url = str_replace('----', '---', $url);
+                $url = str_replace('_', '-', $url);
+                echo 'rewrite "'.$model->url.'" '.$url." permanent;\n";
+            }
+        }
+
+        echo 'Время выполнения скрипта: '.round(microtime(true) - $start, 4).' сек.'."\n";
+    }
+    public function actionChangeAliases()
+    {
+        $start = microtime(true);
+        $models = Product::find()
+            ->where(['>','id',92540])
+            ->limit(4000)
+            ->all();
+        foreach ($models as $model) {
+            $model->setScenario('setAlias');
+            $model->alias = str_replace('_', '-', $model->alias);
+            $model->alias_en = str_replace('_', '-', $model->alias_en);
+            $model->alias_it = str_replace('_', '-', $model->alias_it);
+            $model->alias_de = str_replace('_', '-', $model->alias_de);
+            $model->alias_fr = str_replace('_', '-', $model->alias_fr);
+            $model->alias_he = str_replace('_', '-', $model->alias_he);
+            $model->mark3 = '0';
+            $model->save();  
+        }
+        /*$models = Directlink::find()
+            ->all();
+        foreach ($models as $model) {
+            $model->setScenario('backend');
+            $url = $model->url;
+            $url = str_replace('-', '--', $url);
+            $url = str_replace('----', '---', $url);
+            $url = str_replace('_', '-', $url);
+            $model->url = $url;
+            $model->save();exit;
+            echo 'Время выполнения скрипта: '.round(microtime(true) - $start, 4).' сек.'."\n";
+            echo $model->id."\n";
+            exit;
+        }*/
+        echo 'Время выполнения скрипта: '.round(microtime(true) - $start, 4).' сек.'."\n";
+    }
     /**
      * @param string $mark
      * @throws Exception

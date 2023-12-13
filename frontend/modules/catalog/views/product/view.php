@@ -41,6 +41,7 @@ $this->title = $this->context->title;
                             'links' => $this->context->breadcrumbs,
                         ]) ?>
                     <?php } ?>
+               
                     <div class="row" itemscope itemtype="http://schema.org/Product">
 
                         <div class="col-sm-6 col-md-6 col-lg-5">
@@ -460,15 +461,42 @@ JS;
 }
 
 $script = <<<JS
-$.post('$url', {_csrf: $('#token').val(), product_id:{$model->id}}, function(data){
-    $('.composition').html(data.html);
-    $(".prod-card-page .nav-tabs li a").eq(0).click();
-    // Выжидаем некоторое время
-    setTimeout(function() {
-        slickInit();
-    }, 1000);
+var fired_composition = false;
+window.addEventListener('click', () => {
+    if (fired_composition === false) {
+        fired_composition = true;
+        load_composition();
+    }
+});
+window.addEventListener('scroll', () => {
+    if (fired_composition === false) {
+        fired_composition = true;
+        load_composition();
+    }
+});
+window.addEventListener('mousemove', () => {
+    if (fired_composition === false) {
+        fired_composition = true;
+        load_composition();
+    }
+});
+window.addEventListener('touchmove', () => {
+    if (fired_composition === false) {
+        fired_composition = true;
+        load_composition();
+    }
 });
 
+function load_composition() {
+    $.post('$url', {_csrf: $('#token').val(), product_id:{$model->id}}, function(data){
+        $('.composition').html(data.html);
+        $(".prod-card-page .nav-tabs li a").eq(0).click();
+        // Выжидаем некоторое время
+        setTimeout(function() {
+            slickInit();
+        }, 1000);
+    });
+}
 JS;
 
 $this->registerJs($script);

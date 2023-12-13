@@ -5,7 +5,7 @@ namespace frontend\modules\catalog\widgets\sale;
 use Yii;
 use yii\base\Widget;
 use frontend\modules\catalog\models\{
-    Sale, SaleLang
+    Sale, SaleLang, Factory
 };
 use frontend\modules\location\models\{
     Country, City
@@ -51,7 +51,7 @@ class SaleOnMainPage extends Widget
                     Sale::tableName() . '.position',
                     SaleLang::tableName() . '.title',
                 ])
-                ->innerJoinWith(["country", "city"])
+                ->innerJoinWith(["country", "city", "factory"])
                 ->andFilterWhere(['IN', Country::tableName() . '.id', $country_id])
                 ->andFilterWhere(['IN', City::tableName() . '.id', $city_id])
                 ->andWhere([

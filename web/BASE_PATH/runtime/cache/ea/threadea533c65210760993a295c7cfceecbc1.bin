@@ -1,5 +1,0 @@
-a:2:{i:0;a:2:{i:0;s:390:"<form id="mobile-search-form" class="mobsearch-form" action="/search/" method="get">
-            <div class="mobsearch-group">
-                <input type="text" class="form-control mobsearch-fld" name="search" placeholder="Recherche">                <button type="submit" class="btn-mobsearch"><i class="fa fa-search" aria-hidden="true"></i></button>            </div>
-
-            </form>";i:1;N;}i:1;N;}

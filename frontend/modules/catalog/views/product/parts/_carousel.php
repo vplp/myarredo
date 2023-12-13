@@ -35,7 +35,8 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                         Html::img(
                             $src['thumb'],
                             [
-                                'alt' => Product::getImageAlt($model),
+                                'alt' => $model->lang->title.' '.Yii::t('app', 'фабрика').' '.$model->factory->title.' '.Yii::t('app', 'из Италии').'. '.Yii::t('app', 'Фото №').($key+1),
+                                'title' => Product::getStaticTitle($model),
                                 'width' => '555',
                                 'height' => '382',
                                 'class' => '111',
@@ -47,7 +48,8 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                             'class' => 'img-cont fancyimage',
                             'data-fancybox-group' => 'group',
                             'data-dominant-color' => '',
-                            'data-alt' => Product::getImageAlt($model)
+                            'data-title' => Product::getStaticTitle($model),
+                            'data-alt' => $model->lang->title.' '.Yii::t('app', 'фабрика').' '.$model->factory->title.' '.Yii::t('app', 'из Италии').'. '.Yii::t('app', 'Фото №').($key+1)
                         ]
                     ) .
                     Html::tag('span', '', ['class' => 'background']) .
@@ -67,6 +69,8 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                         Html::img(
                             $src['thumb'],
                             [
+                                'alt' => $model->lang->title.' '.Yii::t('app', 'фабрика').' '.$model->factory->title.' '.Yii::t('app', 'из Италии').'. '.Yii::t('app', 'Фото №').($key+1),
+                                'title' => Product::getStaticTitle($model),
                                 'width' => '555',
                                 'height' => '382',
                                 'class' => '111',
@@ -78,7 +82,8 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                             'class' => 'img-cont fancyimage',
                             'data-fancybox-group' => 'group',
                             'data-dominant-color' => '',
-                            'data-alt' => Product::getImageAlt($model)
+                            'data-title' => Product::getStaticTitle($model),
+                            'data-alt' => $model->lang->title.' '.Yii::t('app', 'фабрика').' '.$model->factory->title.' '.Yii::t('app', 'из Италии').'. '.Yii::t('app', 'Фото №').($key+1)
                         ]
                     ) .
                     Html::tag('span', '', ['class' => 'background']) .
@@ -102,7 +107,7 @@ $images = Product::getGalleryImageThumb($model->gallery_image);
                 <?php foreach ($images as $key => $src) { ?>
                     <div class="thumb-item" data-dominant-color>
                         <span class="background"></span>
-                        <?= Html::img($src['thumb'], ['alt' => Product::getStaticTitle($model), 'width' => '138', 'height' => '95', 'class' => '22']) ?>
+                        <?= Html::img($src['thumb'], ['alt' => $model->lang->title.' '.Yii::t('app', 'фабрика').' '.$model->factory->title.' '.Yii::t('app', 'из Италии').'. '.Yii::t('app', 'Фото №').($key+1), 'title' => Product::getStaticTitle($model), 'width' => '138', 'height' => '95', 'class' => '22']) ?>
                     </div>
                 <?php } ?>
 

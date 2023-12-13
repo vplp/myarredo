@@ -75,6 +75,7 @@ $lang = substr(Yii::$app->language, 0, 2);
         </div>
 
         <div class="form-group">
+            <?php echo "<pre style='display:none' 111111111111111111111111>";var_dump(Factory::dropDownList($params['factory_id']));echo "</pre>"; ?>
             <?= Select2::widget([
                 'name' => 'factory_id',
                 'value' => $params['factory_id'],

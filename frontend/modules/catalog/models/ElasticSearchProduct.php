@@ -179,15 +179,21 @@ class ElasticSearchProduct extends ActiveRecord
         }
 
         $lang = substr($product['lang']['lang'], 0, 2);
-
+        
         $title = 'title_' . $lang;
         $description = 'description_' . $lang;
         $collection = 'collection';
 
-
-        $record->$title = $product['lang']['title'];
-        $record->$description = '';
-        $record->$collection = $product['collection']['title'] ?? '';
+        $arLangs = ['uk'=>'ua', 'ru'=>'ru', 'en'=>'uk', 'it'=>'com'];
+        $showFor = 'show_for_'.$arLangs[$lang];
+        $record->$title = '#';
+        $record->$description = '#';
+        $record->$collection = '#';
+        if ((bool)$product->factory->$showFor){
+            $record->$title = $product['lang']['title'];
+            $record->$description = '#';
+            $record->$collection = $product['collection']['title'] ?? '#';
+        }
 
         try {
             if (!$isExist) {
@@ -200,7 +206,7 @@ class ElasticSearchProduct extends ActiveRecord
             echo 'Exception: ' . $e->getMessage() . ' (' . $e->getFile() . ':' . $e->getLine() . ")\n";
             $result = false;
         }
-        var_dump($result);
+
         return $result;
     }
 

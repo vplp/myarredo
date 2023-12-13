@@ -129,7 +129,7 @@ class ItalianProduct extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
                 ],
                 'value' => function ($event) {
-                    return Inflector::slug($this->alias, '_');
+                    return Inflector::slug($this->alias, '-');
                 },
             ],
             [
@@ -139,7 +139,7 @@ class ItalianProduct extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_en',
                 ],
                 'value' => function ($event) {
-                    return Inflector::slug($this->alias_en, '_');
+                    return Inflector::slug($this->alias_en, '-');
                 },
             ],
             [
@@ -149,7 +149,7 @@ class ItalianProduct extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_it',
                 ],
                 'value' => function ($event) {
-                    return Inflector::slug($this->alias_it, '_');
+                    return Inflector::slug($this->alias_it, '-');
                 },
             ],
             [
@@ -159,7 +159,7 @@ class ItalianProduct extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_de',
                 ],
                 'value' => function ($event) {
-                    return Inflector::slug($this->alias_de, '_');
+                    return Inflector::slug($this->alias_de, '-');
                 },
             ],
             [
@@ -169,7 +169,7 @@ class ItalianProduct extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_fr',
                 ],
                 'value' => function ($event) {
-                    return Inflector::slug($this->alias_fr, '_');
+                    return Inflector::slug($this->alias_fr, '-');
                 },
             ],
             [
@@ -179,7 +179,7 @@ class ItalianProduct extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias_he',
                 ],
                 'value' => function ($event) {
-                    return Inflector::slug($this->alias_he, '_');
+                    return Inflector::slug($this->alias_he, '-');
                 },
             ]
         ]);

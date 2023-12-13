@@ -80,7 +80,7 @@ class Article extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
                 ],
                 'value' => function ($event) {
-                    return Inflector::slug($this->alias);
+                    return Inflector::slug($this->alias,'-');
                 },
             ],
         ]);

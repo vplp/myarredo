@@ -41,6 +41,12 @@ phpunit.phar
 
 tests/_output/*
 
+web/BASE_PATH/
+web/BASE_PATH/*
+
+web/minify/
+web/minify/*
+
 ACCESS.txt
 _DOC
 npm-debug.log

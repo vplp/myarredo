@@ -1,11 +1,11 @@
-a:2:{i:0;a:2:{i:0;s:2669:"
+a:2:{i:0;a:2:{i:0;s:2686:"
 <div class="cont-info">
     <div class="cont-info-in feedback-box">
         <div class="cont-info-border">
             <div class="feedback-title">Заполните форму</div>
 
             <form id="w1" action="https://chernovtsy.myarredo.ua/forms/feedback/" method="post">
-<input type="hidden" name="_csrf" value="h1tMMfqWwFKVKFy4TRP-lrBPUh1vtBBlaaIl68R2JHnzanRYuaeONdJZbo8XaaT3xwM6aCjTWgYnknyohyZIMg==">
+<input type="hidden" name="_csrf" value="n9KnLKP6-Rz6qLx-dMEE4t5KSYmmN1AGHS-xyGbPQS3ap8N-78zOU8zPhDYZkHaDpigm8Od0H2lCGdm5NK47Tw==">
             <div class="form-group field-formsfeedback-email required">
 
 <input type="text" id="formsfeedback-email" class="form-control" name="FormsFeedback[email]" placeholder="E-mail" aria-required="true">
@@ -44,5 +44,5 @@ a:2:{i:0;a:2:{i:0;s:2669:"
     </div>
 </div>
 
-<div class="cont-bg custom-lazy" data-background="/assets/6a3308ea/img/cont-photo-bg.jpg"></div>
+<div class="cont-bg custom-lazy" data-background="//css.myarredo.ua/assets/c369d7d9/img/cont-photo-bg.jpg"></div>
 ";i:1;N;}i:1;N;}

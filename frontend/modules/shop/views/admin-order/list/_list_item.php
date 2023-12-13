@@ -273,8 +273,8 @@ if (in_array(Yii::$app->user->identity->group->role, ['admin']) || (in_array(Yii
                 <?php } ?>
 
                 <?php if ($modelOrder->order_count_url_visit) {
-                    echo '<div>Просмотреных страниц: ' . $modelOrder->order_count_url_visit . ' ' . ($modelOrder->order_mobile ? 'мобильный' : 'ПК') . '</div>' .
-                        '<div>Первая страница: ' . Html::a('Ссылка', $modelOrder->order_first_url_visit, ['target' => '_blank']) . '</div>';
+                    echo '<div>'.Yii::t('app', 'Просмотреных страниц').': ' . $modelOrder->order_count_url_visit . ' ' . ($modelOrder->order_mobile ? Yii::t('app', 'мобильный') : Yii::t('app', 'ПК')) . '</div>' .
+                        '<div>'.Yii::t('app', 'Первая страница').': ' . Html::a(Yii::t('app', 'Ссылка'), $modelOrder->order_first_url_visit, ['target' => '_blank']) . '</div>';
                 } ?>
             </div>
         </div>

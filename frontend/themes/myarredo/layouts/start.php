@@ -37,65 +37,93 @@ $bundle = AppAsset::register($this);
                             <?= Yii::t('app', 'Как мы получаем лучшие цены для вас?') ?>
                         </div>
                     </div>
-                    <div class="numbers js-numbers">
-                        <div class="one-number">
-                            <div class="title">
-                                1
-                                <div class="img-cont">
-                                    <img src="/" data-src="<?= $bundle->baseUrl ?>/img/num1.svg" alt="номер 1" width="105" height="105"
-                                         class="lazy">
+                    <style type="text/css">
+                        .home-main ul.slick-dots._nodisplay{
+                            display: none !important;
+                        }
+                        @media (max-width:540px){
+                            .section-numbers._start{
+                                width: 100%;
+                                overflow: hidden;
+                            }
+                            .numbers._start{
+                                //width: 1920px;
+                                //-ms-flex-wrap: nowrap;
+                                //flex-wrap: nowrap;
+                                height: 267px;
+                            }
+                            .one-number._start{
+                                width: 97%;
+                                height: 244px;
+                            }
+                            .home-main ul.slick-dots._start{
+                                display: flex !important;
+                            }
+                        }
+                    </style>
+                    <?php echo "<pre style='display:none' 111111111111111111111111>";var_dump($bundle);echo "</pre>"; ?>
+                    <div class="section-numbers _start">
+                        <div class="numbers js-numbers _start">
+                            <div class="one-number _start">
+                                <div class="title">
+                                    1
+                                    <div class="img-cont">
+                                        <img src="/" data-src="<?= $bundle->baseUrl ?>/img/num1.svg" alt="номер 1" width="105" height="105"
+                                             class="lazy">
+                                    </div>
+                                </div>
+                                <div class="descr">
+                                    <?= Yii::t('app', 'Ваш запрос отправляется всем поставщикам, авторизированным в нашей сети MY ARREDO FAMILY.') ?>
                                 </div>
                             </div>
-                            <div class="descr">
-                                <?= Yii::t('app', 'Ваш запрос отправляется всем поставщикам, авторизированным в нашей сети MY ARREDO FAMILY.') ?>
-                            </div>
-                        </div>
-                        <div class="one-number">
-                            <div class="title">
-                                2
-                                <div class="img-cont">
-                                    <img src="/" data-src="<?= $bundle->baseUrl ?>/img/num2.svg" alt="номер 2" width="105" height="105"
-                                         class="lazy">
+                            <ul class="slick-dots _start _nodisplay" role="tablist"><li class="slick-active" aria-hidden="false" role="presentation" aria-selected="true" aria-controls="navigation10" id="slick-slide10"><button type="button" data-role="none" role="button" tabindex="0">1</button></li><li aria-hidden="true" role="presentation" aria-selected="false" aria-controls="navigation11" id="slick-slide11" class=""><button type="button" data-role="none" role="button" tabindex="0">2</button></li><li aria-hidden="true" role="presentation" aria-selected="false" aria-controls="navigation12" id="slick-slide12"><button type="button" data-role="none" role="button" tabindex="0">3</button></li><li aria-hidden="true" role="presentation" aria-selected="false" aria-controls="navigation13" id="slick-slide13"><button type="button" data-role="none" role="button" tabindex="0">4</button></li><li aria-hidden="true" role="presentation" aria-selected="false" aria-controls="navigation14" id="slick-slide14"><button type="button" data-role="none" role="button" tabindex="0">5</button></li></ul>
+                            <div class="one-number">
+                                <div class="title">
+                                    2
+                                    <div class="img-cont">
+                                        <img src="/" data-src="<?= $bundle->baseUrl ?>/img/num2.svg" alt="номер 2" width="105" height="105"
+                                             class="lazy">
+                                    </div>
+                                </div>
+                                <div class="descr">
+                                    <?= Yii::t('app', 'Самые активные и успешные профессионалы рассчитают для вас лучшие цены.') ?>
                                 </div>
                             </div>
-                            <div class="descr">
-                                <?= Yii::t('app', 'Самые активные и успешные профессионалы рассчитают для вас лучшие цены.') ?>
-                            </div>
-                        </div>
-                        <div class="one-number">
-                            <div class="title">
-                                3
-                                <div class="img-cont" style="margin-top: 0;">
-                                    <img src="/" data-src="<?= $bundle->baseUrl ?>/img/num3.svg" alt="номер 3" width="105" height="105"
-                                         class="lazy">
+                            <div class="one-number">
+                                <div class="title">
+                                    3
+                                    <div class="img-cont" style="margin-top: 0;">
+                                        <img src="/" data-src="<?= $bundle->baseUrl ?>/img/num3.svg" alt="номер 3" width="105" height="105"
+                                             class="lazy">
+                                    </div>
+                                </div>
+                                <div class="descr">
+                                    <?= Yii::t('app', 'Вы получите предложения и останется только выбрать лучшее по цене и условиям.') ?>
                                 </div>
                             </div>
-                            <div class="descr">
-                                <?= Yii::t('app', 'Вы получите предложения и останется только выбрать лучшее по цене и условиям.') ?>
-                            </div>
-                        </div>
-                        <div class="one-number">
-                            <div class="title">
-                                4
-                                <div class="img-cont">
-                                    <img src="/" data-src="<?= $bundle->baseUrl ?>/img/num4.svg" alt="номер 4" width="105" height="105"
-                                         class="lazy">
+                            <div class="one-number">
+                                <div class="title">
+                                    4
+                                    <div class="img-cont">
+                                        <img src="/" data-src="<?= $bundle->baseUrl ?>/img/num4.svg" alt="номер 4" width="105" height="105"
+                                             class="lazy">
+                                    </div>
+                                </div>
+                                <div class="descr">
+                                    <?= Yii::t('app', 'Партнеры сети MY ARREDO FAMILY получают дополнительные скидки от фабрик и предоставляют лучшие цены Вам.') ?>
                                 </div>
                             </div>
-                            <div class="descr">
-                                <?= Yii::t('app', 'Партнеры сети MY ARREDO FAMILY получают дополнительные скидки от фабрик и предоставляют лучшие цены Вам.') ?>
-                            </div>
-                        </div>
-                        <div class="one-number">
-                            <div class="title">
-                                5
-                                <div class="img-cont">
-                                    <img src="/" data-src="<?= $bundle->baseUrl ?>/img/num5.svg" alt="номер 5" width="105" height="105"
-                                         class="lazy">
+                            <div class="one-number">
+                                <div class="title">
+                                    5
+                                    <div class="img-cont">
+                                        <img src="/" data-src="<?= $bundle->baseUrl ?>/img/num5.svg" alt="номер 5" width="105" height="105"
+                                             class="lazy">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="descr">
-                                <?= Yii::t('app', 'В сети MY ARREDO FAMILY только проверенные поставщики, которые подтвердили свою надежность.') ?>
+                                <div class="descr">
+                                    <?= Yii::t('app', 'В сети MY ARREDO FAMILY только проверенные поставщики, которые подтвердили свою надежность.') ?>
+                                </div>
                             </div>
                         </div>
                     </div>

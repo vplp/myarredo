@@ -25,7 +25,8 @@ use frontend\modules\catalog\models\ItalianProduct;
     <div class="img-cont" data-dominant-color>
         <span class="background"></span>
         <?= Html::img('/', [
-            'alt' => $model->getTitleForList(),
+            'alt' => $model['lang']['title'].' '.Yii::t('app', 'фабрика').' '.$model['factory']['title'].' '.Yii::t('app', 'из Италии'),
+            'title' => $model['lang']['title'],
             'class' => 'lazy',
             'width' => '317',
             'height' => '188',

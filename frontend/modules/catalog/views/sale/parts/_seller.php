@@ -19,8 +19,9 @@ use frontend\modules\catalog\widgets\sale\SaleRequestForm;
                     <?= $model['user']['profile']->getNameCompany(); ?>
                 </h4>
 
-                <?php if (!empty($vote)){?>
+                
                 <div class="reviews-vote-wrapper">
+                    <?php if (!empty($vote)){?>
                     <div class="reviews-vote div-flex mb-5">
                         <div class="vote-number fw600"><?=round($vote,1)?></div>
                         <div class="vote-wrapper">
@@ -45,6 +46,7 @@ use frontend\modules\catalog\widgets\sale\SaleRequestForm;
                             </style>*/?>
                         </div>
                     </div>
+                    <?php } ?>
                     <div class="partner-date text-center mb-5 fw600"><?=Yii::t('app', 'На сайте с')?> <?=Yii::$app->formatter->asDate($model['user']['created_at'], 'php:F');?> <?=date('Y',$model['user']['created_at'])?></div>
                     <?php if ($model['user']['profile']['reliable_partner']) { ?>
                     <div class="reliable-partner div-flex">
@@ -63,7 +65,6 @@ use frontend\modules\catalog\widgets\sale\SaleRequestForm;
                     </div>
                     <?php }?>
                 </div>
-                <?php } ?>
                 
                 <div class="ico">
                     <?= Html::img($bundle->baseUrl . '/img/phone.svg', ['width' => '36', 'height' => '31']) ?>

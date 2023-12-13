@@ -45,7 +45,7 @@ return [
     'view' => [
         //'class' => \thread\app\web\View::class,
 	'class' => '\rmrevin\yii\minify\View',
-	'enableMinify' => !YII_DEBUG,
+	'enableMinify' => false,//!YII_DEBUG,
 	'concatCss' => true, // concatenate css
 	'minifyCss' => true, // minificate css
 	'concatJs' => true, // concatenate js
@@ -74,8 +74,8 @@ return [
         //Використовуємо для постійного оновлення assets
         //потрібно для верстальника
         //обовязково очистити директорію /frontend/assets
-        //'linkAssets' => true,
-        //'baseUrl' =>  $_SERVER['REQUEST_SCHEME'] . '://css.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . '/assets',
+        'linkAssets' => true,
+        'baseUrl' =>  '//css.' . DOMAIN_NAME . '.' . DOMAIN_TYPE . '/assets',
         'bundles' => [
             'yii\web\YiiAsset' => [
                 'cssOptions' => [

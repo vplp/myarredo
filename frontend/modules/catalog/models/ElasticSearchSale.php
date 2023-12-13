@@ -249,7 +249,9 @@ class ElasticSearchSale extends ActiveRecord
 
         $query->query($queryBool);
 
-        $query->limit(10000);
+        $limit = 1000;
+        if (in_array($lang, ['it','en'])) $limit = 0;
+        $query->limit($limit);
 
         $data = $query->all();
 

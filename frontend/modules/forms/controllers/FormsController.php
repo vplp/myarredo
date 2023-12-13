@@ -128,17 +128,23 @@ HTML;
         $this->title = Yii::t('app', 'Связаться с оператором сайта');
 
         $model = new FormsFeedback(['scenario' => 'frontend']);
-
-        if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
+        $phone = preg_replace('/\(|\)|\s|-|\+|[^\d]/', '', $model->phone);
+        if ($model->load(Yii::$app->getRequest()->post()) && $model->validate() && !empty($phone) && strlen($phone)>=10) {
             $transaction = $model::getDb()->beginTransaction();
             try {
                 $model->published = '1';
-
+                
                 $save = $model->save();
 
                 $save ? $transaction->commit() : $transaction->rollBack();
 
                 if ($save) {
+                    $q=print_r($model,1);
+                    $w=print_r(Yii::$app->getRequest()->post(),1);
+                    $s=print_r($_SERVER,1);
+                    $p=print_r($_REQUEST,1);
+                    file_put_contents('/var/www/www-root/data/www/myarredo.ru/FormsFeedbackLog.txt', date('Y-m-d H:i:s').' form from  '.$s.' REQUEST '.$p.' model '.$q.' post '.$w."\n\r", FILE_APPEND);
+                    if (strpos($model->email, 'daniil89217894501')) return $this->redirect(Yii::$app->request->referrer);
                     $subject = 'Связаться с оператором сайта';
                     /**
                      * send letter

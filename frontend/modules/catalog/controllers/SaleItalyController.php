@@ -66,8 +66,8 @@ class SaleItalyController extends BaseController
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'list' => ['get'],
-                    'view' => ['post', 'get'],
+                    'list' => ['get','head'],
+                    'view' => ['post', 'get','head'],
                     'ajax-get-filter' => ['post'],
                     'ajax-get-filter-sizes' => ['post'],
                 ],
